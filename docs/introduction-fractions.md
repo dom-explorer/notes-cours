@@ -583,6 +583,110 @@ C'est une distinction très importante.
 Diviser par zéro ne donne pas 0. La division n'est tout simplement pas définie.
 
 
+## Et pourquoi est-ce qu'on ne peut pas diviser par zéro? 
+
+Maintenant, on arrive à une règle extrêmement importante en mathématiques :
+
+<div class="tip-box" markdown="1">
+
+$$
+\boxed{\text{Le dénominateur ne peut jamais être égal à zéro.}}
+$$
+
+</div>
+
+Rappelons-nous qu'une fraction représente aussi une division :
+
+$$
+\frac{a}{b}=a\div b
+$$
+
+Prenons quelque chose de simple :
+
+$$
+6\div2
+$$
+
+On peut voir cette division comme une question :
+
+**Combien de groupes de 2 peut-on faire avec 6?**
+
+La réponse est 3.
+
+$$
+6\div2=3
+$$
+
+On peut aussi le voir avec une multiplication :
+
+$$
+2\times3=6
+$$
+
+Donc la réponse à $6\div2$ est le nombre qui, multiplié par 2, donne 6.
+
+Mais maintenant, essayons :
+
+$$
+6\div0
+$$
+
+La question deviendrait :
+
+**Combien de groupes de 0 faut-il pour obtenir 6?**
+
+Et là, on a un problème.
+
+On pourrait essayer n'importe quel nombre :
+
+$$
+1\times0=0
+$$
+
+$$
+100\times0=0
+$$
+
+$$
+1\,000\,000\times0=0
+$$
+
+Peu importe le nombre que l'on choisit :
+
+<div class="result-box" markdown="1">
+
+$$
+\boxed{\text{n'importe quel nombre}\times0=0}
+$$
+
+</div>
+
+Il est donc impossible de trouver un nombre $x$ qui satisfait :
+
+$$
+x\times0=6
+$$
+
+Il n'existe tout simplement **aucun nombre** qui peut faire ça.
+
+C'est pourquoi :
+
+<div class="tip-box" markdown="1">
+
+$$
+\boxed{6\div0}
+$$
+
+Cette division **n'est pas définie**.
+
+Elle ne donne **pas** zéro.
+
+</div>
+
+C'est une distinction très importante.
+
+**Diviser par zéro ne donne pas 0. La division n'est tout simplement pas définie.**
+
 ### Une situation de la vie de tous les jours 
 
 On peut aussi comprendre le problème avec quelque chose de très concret.
@@ -591,7 +695,9 @@ Imaginez que vous avez 10 $ et que vous voulez partager cet argent entre 2 perso
 
 Ça fonctionne :
 
-$$10\div2=5$$
+$$
+10\div2=5
+$$
 
 Chaque personne reçoit 5 $.
 
@@ -603,30 +709,37 @@ La situation n'a tout simplement pas de sens.
 
 C'est la même idée en mathématiques.
 
-Le zéro représente ici une absence de quantité ou de groupes, et on ne peut pas construire une division à partir de zéro groupe pour obtenir une quantité non nulle.
+Le zéro représente ici une absence de groupes, et on ne peut pas construire une division à partir de zéro groupe pour obtenir une quantité non nulle.
 
 <div class="tip-box" markdown="1">
-Le dénominateur ne peut jamais être zéro. Jamais.
+
+**Le dénominateur ne peut jamais être zéro. Jamais.**
+
 </div>
 
+Et croyez-moi, en avançant en mathématiques, vous allez probablement rencontrer une situation où une erreur de calcul vous amènera à essayer de diviser par zéro.
 
-Et croyez-moi, en avançant en mathématiques, vous allez probablement rencontrer une situation où une erreur de calcul vous amènera à essayer de diviser par zéro. Lorsque ça arrive, ce n'est pas que les mathématiques ne fonctionnent plus : c'est qu'il y a une erreur quelque part dans notre démarche. Il faut alors revenir en arrière et trouver où l'erreur s'est produite.
+Lorsque ça arrive, ce n'est pas que les mathématiques ne fonctionnent plus : **c'est qu'il y a une erreur quelque part dans notre démarche.**
 
+Il faut alors revenir en arrière et trouver où l'erreur s'est produite.
 
 ## Et maintenant? 
 
 On a maintenant une bonne base pour comprendre les fractions. On sait :
 
--  ce qu'est une fraction;
--  ce que sont le numérateur et le dénominateur;
--  la différence entre une fraction propre et une fraction impropre;
--  ce qu'est un nombre mixte;
+- ce qu'est une fraction;
+- ce que sont le numérateur et le dénominateur;
+- la différence entre une fraction propre et une fraction impropre;
+- ce qu'est un nombre mixte;
 - comment représenter une fraction sur une droite numérique;
 - pourquoi le dénominateur influence la taille des morceaux;
--  ce que sont les fractions équivalentes;
--  comment simplifier une fraction;
--  ce qu'est une fraction irréductible;
--  pourquoi certaines fractions sont plus pratiques que leur écriture décimale;
+- ce que sont les fractions équivalentes;
+- comment simplifier une fraction;
+- ce qu'est une fraction irréductible;
+- pourquoi certaines fractions sont plus pratiques que leur écriture décimale;
+- et surtout, pourquoi on ne peut jamais diviser par zéro.
+
+Dans la prochaine partie, on va commencer à travailler avec les fractions : comment les additionner, les soustraire, les multiplier et les diviser, et surtout comment mettre des fractions sur un même dénominateur lorsque c'est nécessaire.
 -  et surtout, pourquoi on ne peut jamais diviser par zéro.
 
 Dans la prochaine partie, on va commencer à travailler avec les fractions : comment les additionner, les soustraire, les multiplier et les diviser, et surtout comment mettre des fractions sur un même dénominateur lorsque c'est nécessaire. 
