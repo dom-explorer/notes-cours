@@ -157,7 +157,7 @@ Dans tous ces cas, on prend quelque chose qui représente un tout et on cherche 
 Maintenant qu'on comprend un peu mieux pourquoi on utilise les fractions, il faut se demander : qu'est-ce qu'une fraction?
 
 <div class="def-box" markdown="1">
-** Définition**
+ Définition
 
 Une fraction est une façon de représenter une partie d'un tout à l'aide de deux nombres.
 
