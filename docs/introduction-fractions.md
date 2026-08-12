@@ -723,7 +723,7 @@ Lorsque ça arrive, ce n'est pas que les mathématiques ne fonctionnent plus : *
 
 Il faut alors revenir en arrière et trouver où l'erreur s'est produite.
 
-## Et maintenant? 
+##Et maintenant? 
 
 On a maintenant une bonne base pour comprendre les fractions. On sait :
 
