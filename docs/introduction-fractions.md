@@ -607,7 +607,9 @@ Le zéro représente ici une absence de quantité ou de groupes, et on ne peut p
 **Le dénominateur ne peut jamais être zéro. Jamais.**
 </div>
 
+
 Et croyez-moi, en avançant en mathématiques, vous allez probablement rencontrer une situation où une erreur de calcul vous amènera à essayer de diviser par zéro. Lorsque ça arrive, ce n'est pas que les mathématiques ne fonctionnent plus : c'est qu'il y a une erreur quelque part dans notre démarche. Il faut alors revenir en arrière et trouver où l'erreur s'est produite.
+
 
 ## Et maintenant? 
 
