@@ -32,9 +32,9 @@ h2 { color: #2f6fed; border-bottom: 2px solid #cfe0fb; padding-bottom: 4px; }
 h3 { color: #1e4fb8; }
 </style>
 
-# 🧮 MAT1101 — Les fractions
+# MAT1101 — Les fractions
 
-## 📑 Table des matières
+## Table des matières
 
 1. [Les fractions — pourquoi est-ce qu'on en a besoin? ](#les-fractions--pourquoi-est-ce-quon-en-a-besoin)
 2. [Un petit voyage dans l'histoire ](#un-petit-voyage-dans-lhistoire)
@@ -61,7 +61,7 @@ C'est un peu ça, l'idée derrière les fractions : prendre un tout et être cap
 
 On peut prendre un autre exemple, encore plus simple :
 
-Vous allez au restaurant avec 4 amis et vous commandez une pizza . La pizza complète représente un tout. Mais vous voulez la partager entre vous. Vous allez donc la couper en plusieurs parties pour que chacun puisse en manger une partie.
+Vous allez au restaurant avec 4 amis et vous commandez une pizza. La pizza complète représente un tout. Mais vous voulez la partager entre vous. Vous allez donc la couper en plusieurs parties pour que chacun puisse en manger une partie.
 
 Mais les fractions ne servent pas seulement à partager une pizza!
 
@@ -77,7 +77,7 @@ Les Égyptiens utilisaient déjà des fractions il y a plusieurs milliers d'ann�
 
 Par exemple, pour représenter $\dfrac{1}{5}$, ils avaient leur propre système de symboles.
 
-> 🖼️ **Figure : Hiéroglyphe représentant 1/5**
+>  **Figure : Hiéroglyphe représentant 1/5**
 > *(image `content-id-2515-1_5hieroglyph.jpg` à ajouter dans le dossier `images/` du dépôt)*
 
 Ça fonctionnait, mais il y avait quand même certaines limitations. Lorsqu'on voulait faire des calculs avec plusieurs fractions, ça pouvait rapidement devenir compliqué. Il fallait connaître différentes façons de décomposer les fractions et utiliser des tables pour faciliter les calculs.
@@ -88,7 +88,7 @@ Ce n'était donc pas nécessairement la façon la plus pratique de faire des op�
 
 Un peu plus tard, les civilisations de la Mésopotamie ont développé des méthodes très efficaces pour travailler avec les nombres. Les Babyloniens, par exemple, utilisaient un système basé sur 60. On appelle ça un système sexagésimal. Et vous utilisez encore ce système aujourd'hui sans nécessairement vous en rendre compte!
 
-Une minute contient 60 secondes et une heure contient 60 minutes ⏰. Lorsqu'on mesure des angles, on utilise aussi ce système : un degré contient 60 minutes d'arc, et une minute d'arc contient 60 secondes d'arc.
+Une minute contient 60 secondes et une heure contient 60 minutes. Lorsqu'on mesure des angles, on utilise aussi ce système : un degré contient 60 minutes d'arc, et une minute d'arc contient 60 secondes d'arc.
 
 Les Babyloniens avaient donc développé une façon très efficace de représenter et de calculer avec les fractions.
 
@@ -106,9 +106,9 @@ Les fractions deviennent donc un outil pour organiser et comprendre la réalité
 
 Aujourd'hui, on pourrait se demander : *Pourquoi est-ce que je dois apprendre à faire des fractions? J'ai une calculatrice!*
 
-Et c'est vrai. On possède maintenant des calculatrices, des ordinateurs et des téléphones capables de faire énormément de calculs à notre place. Mais ça ne veut pas dire qu'on n'a plus besoin de comprendre les fractions. Au contraire.
+Et c'est vrai. On possède maintenant des calculatrices, des ordinateurs et des téléphones capables d’effectuer énormément de calculs à notre place. Mais ça ne veut pas dire qu'on n'a plus besoin de comprendre les fractions. Au contraire.
 
-Une calculatrice peut nous donner une réponse, mais elle ne nous explique pas nécessairement ce que cette réponse veut dire. Comprendre les fractions nous permet de comprendre les quantités et les relations entre les quantités. Et les fractions sont partout autour de nous.
+Une calculatrice peut nous donner une réponse, mais elle ne nous explique pas nécessairement ce que cette réponse veut dire. Comprendre les fractions nous permet de saisir les quantités et les relations entre elles. Et les fractions sont partout autour de nous.
 
 ### En cuisine 
 
@@ -201,7 +201,7 @@ C'est une petite phrase qui peut nous aider à nous en rappeler.
 - Dénominateur → combien de parties égales?
 - Numérateur → combien de parties prend-on?
 
-## Une fraction, c'est aussi une division ➗
+## Une fraction, c'est aussi une division 
 
 Il y a une autre façon très importante de comprendre une fraction. Une fraction représente également une division. Par exemple :
 
@@ -253,7 +253,7 @@ Par exemple :
 
 $$\frac{1}{2},\qquad \frac{3}{4},\qquad \frac{5}{8},\qquad \frac{7}{10}$$
 
-Dans tous ces cas, le nombre du haut est plus petit que le nombre du bas.
+Dans tous ces cas, le nombre du haut est une quantité inférieure à 1 .
 
 Une fraction propre représente donc toujours une quantité inférieure à 1.
 
@@ -323,7 +323,7 @@ $$\boxed{2\frac{1}{3}=\frac{7}{3}}$$
 
 Les deux écritures représentent exactement la même quantité.
 
-### Une fraction n'est pas nécessairement plus grande que zéro et plus petite que un
+### Une fraction n'est pas nécessairement plus grande que zéro et une quantité inférieure à 1
 
 Il est important de ne pas penser qu'une fraction est toujours une quantité entre 0 et 1.
 
@@ -430,7 +430,7 @@ $$\frac11=\frac22=\frac33=\frac{20}{20}=\frac{100}{100}$$
 
 Toutes ces fractions représentent un tout.
 
-## Les fractions irréductibles ✂️
+## Les fractions irréductibles 
 
 Une fraction peut aussi être irréductible. Une fraction irréductible est une fraction qu'on ne peut plus simplifier en divisant son numérateur et son dénominateur par un même nombre entier supérieur à 1.
 
@@ -450,7 +450,7 @@ Et $\dfrac34$ est irréductible, parce qu'on ne peut plus simplifier davantage.
 
 Quand on simplifie une fraction, on cherche donc à obtenir une écriture plus simple qui représente exactement la même quantité.
 
-## Pourquoi garder les fractions plutôt que toujours utiliser les décimales? 
+## Pourquoi garder les fractions plutôt que d'utiliser toujours les décimales? 
 
 On pourrait se demander : « Pourquoi utiliser des fractions? Pourquoi ne pas simplement transformer tout en nombres décimaux? » Parfois, les décimales sont effectivement très pratiques. Mais certaines quantités deviennent beaucoup moins pratiques à représenter avec des décimales.
 
