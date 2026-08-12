@@ -581,19 +581,20 @@ C'est une distinction très importante.
 
 Diviser par zéro ne donne pas 0. La division n'est tout simplement pas définie.
 
+
 ### Une situation de la vie de tous les jours 
 
 On peut aussi comprendre le problème avec quelque chose de très concret.
 
-Imaginez que vous avez 10 \$ et que vous voulez partager cet argent entre 2 personnes.
+Imaginez que vous avez 10 $ et que vous voulez partager cet argent entre 2 personnes.
 
 Ça fonctionne :
 
 $$10\div2=5$$
 
-Chaque personne reçoit 5 \$.
+Chaque personne reçoit 5 $.
 
-Mais si vous voulez partager les 10 \$ entre zéro personne, ça devient quoi?
+Mais si vous voulez partager les 10 $ entre zéro personne, ça devient quoi?
 
 Il n'y a personne avec qui partager l'argent.
 
