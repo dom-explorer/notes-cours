@@ -711,19 +711,19 @@ C'est la même idée en mathématiques.
 
 Le zéro représente ici une absence de groupes, et on ne peut pas construire une division à partir de zéro groupe pour obtenir une quantité non nulle.
 
-<div class="tip-box" markdown="1">
+
 
 **Le dénominateur ne peut jamais être zéro. Jamais.**
 
-</div>
+
 
 Et croyez-moi, en avançant en mathématiques, vous allez probablement rencontrer une situation où une erreur de calcul vous amènera à essayer de diviser par zéro.
 
-Lorsque ça arrive, ce n'est pas que les mathématiques ne fonctionnent plus : **c'est qu'il y a une erreur quelque part dans notre démarche.**
+Lorsque ça arrive, ce n'est pas que les mathématiques ne fonctionnent plus : c'est qu'il y a une erreur quelque part dans notre démarche.
 
 Il faut alors revenir en arrière et trouver où l'erreur s'est produite.
 
-##Et maintenant? 
+## Et maintenant? 
 
 On a maintenant une bonne base pour comprendre les fractions. On sait :
 
