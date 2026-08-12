@@ -572,8 +572,9 @@ Il n'existe tout simplement aucun nombre qui peut faire ça.
 C'est pourquoi :
 
 
-$$6\div0\text{ n'est pas défini}$$
+$$6\div0$$
 
+n'est pas défini.
 
 et non pas simplement:  ça donne zéro .
 
