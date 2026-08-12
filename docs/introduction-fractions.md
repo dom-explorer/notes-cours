@@ -55,7 +55,7 @@ h3 { color: #1e4fb8; }
 
 Avant de commencer à parler de fractions, j'aimerais qu'on se pose une question toute simple : pourquoi est-ce qu'on a inventé les fractions?
 
-Imaginez une situation assez concrète. Vous avez un beau vase en céramique. Par malchance, vous l'accrochez et il tombe par terre. Il se brise en 1000 morceaux 💥. Si vous voulez maintenant réparer le vase et le remettre dans son état original, vous allez devoir travailler avec tous ces petits morceaux. Le vase était un tout, mais maintenant il est séparé en plusieurs parties.
+Imaginez une situation assez concrète. Vous avez un beau vase en céramique. Par malchance, vous l'accrochez et il tombe par terre. Il se brise en 1000 morceaux. Si vous voulez maintenant réparer le vase et le remettre dans son état original, vous allez devoir travailler avec tous ces petits morceaux. Le vase était un tout, mais maintenant il est séparé en plusieurs parties.
 
 C'est un peu ça, l'idée derrière les fractions : prendre un tout et être capable de parler des différentes parties qui le composent.
 
@@ -152,7 +152,7 @@ Quand on y pense, les fractions sont finalement une façon très naturelle de d�
 
 Dans tous ces cas, on prend quelque chose qui représente un tout et on cherche à comprendre ou à représenter une partie de ce tout. C'est exactement ce que les fractions vont nous permettre de faire. Et maintenant qu'on comprend pourquoi les fractions existent et pourquoi elles sont utiles, on peut commencer à regarder mathématiquement ce qu'est réellement une fraction.
 
-## Qu'est-ce qu'une fraction? ❓
+## Qu'est-ce qu'une fraction? 
 
 Maintenant qu'on comprend un peu mieux pourquoi on utilise les fractions, il faut se demander : qu'est-ce qu'une fraction?
 
@@ -188,9 +188,9 @@ Mais qu'est-ce que ça veut réellement dire, $\dfrac{3}{4}$? Le dénominateur n
 
 <div class="fraction-visual">
 
-<div class="fraction-visual-title">
+
 Représentation de $\frac{3}{4}$
-</div>
+
 
 <div class="rectangle-fraction">
   <div class="part filled"></div>
@@ -199,14 +199,13 @@ Représentation de $\frac{3}{4}$
   <div class="part"></div>
 </div>
 
-<div class="visual-caption">
-Le rectangle est divisé en <strong>4 parties égales</strong>.
-On en prend <strong>3</strong>.
-<br>
-$$\frac{3}{4}$$
-</div>
 
-</div>
+Le rectangle est divisé en 4 parties égales.
+On en prend 3.
+$$\frac{3}{4}$$
+
+
+
 
 
 On a alors :
@@ -250,15 +249,14 @@ Et si on effectue la division :
 
 $$3\div4=0{,}75$$
 
-<div class="result-box" markdown="1">
-$$\boxed{\frac{3}{4}=0{,}75}$$
-</div>
+
+$$\frac{3}{4}=0{,}75$$
+
 
 Une même quantité peut donc être représentée de plusieurs façons :
 
-<div class="result-box" markdown="1">
-$$\boxed{\frac{3}{4}=3\div4=0{,}75}$$
-</div>
+\frac{3}{4}=3\div4=0{,}75$$
+
 
 C'est exactement la même quantité, mais on la représente de différentes manières.
 
@@ -340,9 +338,9 @@ On garde le même dénominateur :
 
 $$2\frac{1}{3}=\frac{7}{3}$$
 
-<div class="result-box" markdown="1">
-$$\boxed{2\frac{1}{3}=\frac{7}{3}}$$
-</div>
+
+  $$2\frac{1}{3}=\frac{7}{3}$$
+
 
 Les deux écritures représentent exactement la même quantité.
 
@@ -427,9 +425,8 @@ Si on multiplie le numérateur et le dénominateur par 2 :
 
 $$\frac46$$
 
-<div class="result-box" markdown="1">
-$$\boxed{\frac23=\frac46}$$
-</div>
+
+$$\frac23=\frac46$$
 
 Pourquoi est-ce que ça fonctionne?
 
@@ -465,9 +462,9 @@ n'est pas irréductible, parce que 6 et 8 peuvent tous les deux être divisés p
 
 $$\frac68=\frac{6\div2}{8\div2}=\frac34$$
 
-<div class="result-box" markdown="1">
-$$\boxed{\frac68=\frac34}$$
-</div>
+
+$$\frac68=\frac34$$
+
 
 Et $\dfrac34$ est irréductible, parce qu'on ne peut plus simplifier davantage.
 
@@ -519,9 +516,8 @@ C'est donc une des grandes forces des fractions : elles permettent de représent
 
 Maintenant, on arrive à une règle extrêmement importante en mathématiques :
 
-<div class="tip-box" markdown="1">
-$$\boxed{\text{On ne peut jamais avoir }0\text{ au dénominateur.}}$$
-</div>
+$$\text{On ne peut jamais avoir }0\text{ au dénominateur.}$$
+
 
 Rappelons-nous qu'une fraction représente aussi une division :
 
@@ -565,7 +561,7 @@ $$1\,000\,000\times0=0$$
 
 Peu importe le nombre que l'on choisit :
 
-$$\boxed{\text{n'importe quel nombre}\times0=0}$$
+$$\text{n'importe quel nombre}\times0=0$$
 
 Il est donc impossible de trouver un nombre $x$ qui satisfait :
 
@@ -575,9 +571,9 @@ Il n'existe tout simplement aucun nombre qui peut faire ça.
 
 C'est pourquoi :
 
-<div class="tip-box" markdown="1">
-$$\boxed{6\div0\text{ n'est pas défini}}$$
-</div>
+
+$$6\div0\text{ n'est pas défini}$$
+
 
 et non pas simplement « ça donne zéro ».
 
