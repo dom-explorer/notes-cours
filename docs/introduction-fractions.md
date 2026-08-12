@@ -186,6 +186,29 @@ On lit cette fraction *trois quarts*. Dans cette fraction :
 
 Mais qu'est-ce que ça veut réellement dire, $\dfrac{3}{4}$? Le dénominateur nous indique en combien de parties égales notre tout va être divisé. Donc, avec $4$ comme dénominateur, on divise notre tout en 4 parties égales. On pourrait, par exemple, prendre un rectangle et le diviser en quatre parties égales. Ensuite, le numérateur nous indique combien de ces parties on prend. Dans notre exemple, le numérateur est $3$. On prend donc 3 des 4 parties.
 
+<div class="fraction-visual">
+
+<div class="fraction-visual-title">
+Représentation de $\frac{3}{4}$
+</div>
+
+<div class="rectangle-fraction">
+  <div class="part filled"></div>
+  <div class="part filled"></div>
+  <div class="part filled"></div>
+  <div class="part"></div>
+</div>
+
+<div class="visual-caption">
+Le rectangle est divisé en <strong>4 parties égales</strong>.
+On en prend <strong>3</strong>.
+<br>
+$$\frac{3}{4}$$
+</div>
+
+</div>
+
+
 On a alors :
 
 $$\frac{3}{4}$$
