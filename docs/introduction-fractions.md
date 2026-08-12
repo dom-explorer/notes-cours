@@ -255,7 +255,7 @@ $$\frac{3}{4}=0{,}75$$
 
 Une même quantité peut donc être représentée de plusieurs façons :
 
-\frac{3}{4}=3\div4=0{,}75$$
+$$ \frac{3}{4}=3\div4=0{,}75 $$
 
 
 C'est exactement la même quantité, mais on la représente de différentes manières.
