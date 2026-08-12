@@ -563,7 +563,7 @@ Peu importe le nombre que l'on choisit :
 
 $$\text{n'importe quel nombre}\times0=0$$
 
-Il est donc impossible de trouver un nombre $x$ qui satisfait :
+Il est donc impossible de trouver un nombre $ x $ qui satisfait :
 
 $$x\times0=6$$
 
@@ -575,7 +575,7 @@ C'est pourquoi :
 $$6\div0\text{ n'est pas défini}$$
 
 
-et non pas simplement « ça donne zéro ».
+et non pas simplement:  ça donne zéro .
 
 C'est une distinction très importante.
 
@@ -605,7 +605,7 @@ C'est la même idée en mathématiques.
 Le zéro représente ici une absence de quantité ou de groupes, et on ne peut pas construire une division à partir de zéro groupe pour obtenir une quantité non nulle.
 
 <div class="tip-box" markdown="1">
-**Le dénominateur ne peut jamais être zéro. Jamais.**
+Le dénominateur ne peut jamais être zéro. Jamais.
 </div>
 
 
