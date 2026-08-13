@@ -90,40 +90,31 @@ body {
 }
 </style>
 
-<div class="rational-home">
+<div class="rational-home" markdown="1">
 
-<div class="rational-header">
+<div class="rational-header" markdown="1">
 
-<h1>Les nombres rationnels</h1>
+# Les nombres rationnels
 
-<p>
 L'ensemble des nombres rationnels est généralement représenté par le symbole :
-</p>
 
 $$
 \boxed{\mathbb{Q}}
 $$
 
-<p>
-Un nombre rationnel est un nombre qui peut être représenté sous la forme
-d'une fraction :
-</p>
+Un nombre rationnel est un nombre qui peut être représenté sous la forme d'une fraction :
 
 $$
 \frac{a}{b}
 $$
 
-<p>
-où \(a\) et \(b\) sont des nombres entiers et où :
-</p>
+où $a$ et $b$ sont des nombres entiers et où :
 
 $$
 b\neq0
 $$
 
-<p>
 On peut donc définir l'ensemble des nombres rationnels par :
-</p>
 
 $$
 \mathbb{Q}
@@ -135,15 +126,9 @@ a,b\in\mathbb{Z},\ b\neq0
 \right\}
 $$
 
-<p>
-Le symbole \(\mathbb{Q}\) vient du mot <em>quotient</em>, puisqu'un nombre
-rationnel peut être exprimé comme le quotient de deux nombres entiers.
-</p>
+Le symbole $\mathbb{Q}$ vient du mot *quotient*, puisqu'un nombre rationnel peut être exprimé comme le quotient de deux nombres entiers.
 
-<p>
-Les fractions sont donc une façon fondamentale de représenter les nombres
-rationnels.
-</p>
+Les fractions sont donc une façon fondamentale de représenter les nombres rationnels.
 
 </div>
 
@@ -182,87 +167,63 @@ Ces trois écritures représentent exactement la même quantité.
 
 ## Notions
 
-<div class="rational-section">
+<div class="rational-section" markdown="1">
 
-<h3>Les fractions</h3>
+### Les fractions
 
-<p>
-Une première introduction aux fractions : leur histoire, leur définition,
-le numérateur et le dénominateur, les différents types de fractions,
-les fractions équivalentes et les fractions irréductibles.
-</p>
+Une première introduction aux fractions : leur histoire, leur définition, le numérateur et le dénominateur, les différents types de fractions, les fractions équivalentes et les fractions irréductibles.
 
-<a class="rational-link" href="les-fractions.html">
-Voir les notes sur les fractions →
-</a>
+<a class="rational-link" href="les-fractions.html">Voir les notes sur les fractions →</a>
 
 </div>
 
-<div class="rational-section">
+<div class="rational-section" markdown="1">
 
-<h3>Les opérations avec les fractions</h3>
+### Les opérations avec les fractions
 
-<p>
 Additionner, soustraire, multiplier et diviser des fractions.
-</p>
 
-<p><em>Cette section sera ajoutée prochainement.</em></p>
-
-</div>
-
-<div class="rational-section">
-
-<h3>Les nombres décimaux et les fractions</h3>
-
-<p>
-Comprendre le lien entre les fractions et les nombres décimaux,
-notamment les nombres décimaux terminants et périodiques.
-</p>
-
-<p><em>Cette section sera ajoutée prochainement.</em></p>
+*Cette section sera ajoutée prochainement.*
 
 </div>
 
-<div class="rational-section">
+<div class="rational-section" markdown="1">
 
-<h3>Les proportions et les pourcentages</h3>
+### Les nombres décimaux et les fractions
 
-<p>
-Les fractions permettent également de comprendre les proportions,
-les taux et les pourcentages.
-</p>
+Comprendre le lien entre les fractions et les nombres décimaux, notamment les nombres décimaux terminants et périodiques.
 
-<p><em>Cette section sera ajoutée prochainement.</em></p>
+*Cette section sera ajoutée prochainement.*
+
+</div>
+
+<div class="rational-section" markdown="1">
+
+### Les proportions et les pourcentages
+
+Les fractions permettent également de comprendre les proportions, les taux et les pourcentages.
+
+*Cette section sera ajoutée prochainement.*
 
 </div>
 
 ---
 
-<div class="fundamental">
+<div class="fundamental" markdown="1">
 
-<h2>Un concept fondamental</h2>
+## Un concept fondamental
 
-<p>
-Une des idées les plus importantes à retenir est qu'une fraction n'est pas
-simplement deux nombres placés l'un au-dessus de l'autre.
-</p>
+Une des idées les plus importantes à retenir est qu'une fraction n'est pas simplement deux nombres placés l'un au-dessus de l'autre.
 
-<p>
-Elle représente une <strong>quantité</strong>.
-</p>
+Elle représente une **quantité**.
 
 $$
 \frac{1}{2}
 $$
 
-<p>
-peut représenter la moitié d'une pizza, la moitié d'une heure, la moitié
-d'un dollar ou la moitié de n'importe quelle quantité.
-</p>
+peut représenter la moitié d'une pizza, la moitié d'une heure, la moitié d'un dollar ou la moitié de n'importe quelle quantité.
 
-<p>
 Le contexte change, mais la relation mathématique reste la même.
-</p>
 
 </div>
 
@@ -272,14 +233,10 @@ Le contexte change, mais la relation mathématique reste la même.
 
 Si vous débutez avec les nombres rationnels, commencez par les fractions.
 
-<a class="rational-link" href="les-fractions.html">
-Introduction aux fractions →
-</a>
+<a class="rational-link" href="les-fractions.html">Introduction aux fractions →</a>
 
 <div class="course-footer">
-
 MAT1101 — Mathématiques
-
 </div>
 
 </div>
