@@ -216,6 +216,7 @@ On les utilise notamment pour :
 </div>
 
 ---
+---
 
 ## Notions
 
@@ -269,13 +270,20 @@ Une des idées les plus importantes à retenir est qu'une fraction n'est pas sim
 
 Elle représente une **quantité**.
 
-$$
-\frac{1}{2}
-$$
+<p class="math-display">
+<span class="fraction">
+  <span class="numerator">1</span>
+  <span class="denominator">2</span>
+</span>
+</p>
 
+<p>
 peut représenter la moitié d'une pizza, la moitié d'une heure, la moitié d'un dollar ou la moitié de n'importe quelle quantité.
+</p>
 
+<p>
 Le contexte change, mais la relation mathématique reste la même.
+</p>
 
 </div>
 
