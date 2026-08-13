@@ -134,26 +134,26 @@ h3 { color: #1e4fb8; }
 }
 </style>
 
-# 🧮 MAT1101 — Les fractions
+#  MAT1101 — Les fractions
 
 ## 📑 Table des matières
 
-1. [Les fractions — pourquoi est-ce qu'on en a besoin? 🤔](#les-fractions--pourquoi-est-ce-quon-en-a-besoin)
-2. [Un petit voyage dans l'histoire 🏛️](#un-petit-voyage-dans-lhistoire)
-3. [Les mathématiques de la Mésopotamie 🕰️](#les-mathématiques-de-la-mésopotamie)
-4. [Pourquoi est-ce encore important aujourd'hui? 📱](#pourquoi-est-ce-encore-important-aujourdhui)
-5. [Qu'est-ce qu'une fraction? ❓](#quest-ce-quune-fraction)
-6. [Une fraction, c'est aussi une division ➗](#une-fraction-cest-aussi-une-division)
-7. [Les différents types de fractions 🍕](#les-différents-types-de-fractions)
-8. [Les fractions équivalentes ⚖️](#les-fractions-équivalentes)
-9. [Les fractions irréductibles ✂️](#les-fractions-irréductibles)
-10. [Pourquoi garder les fractions plutôt que toujours utiliser les décimales? 🔢](#pourquoi-garder-les-fractions-plutôt-que-toujours-utiliser-les-décimales)
-11. [Et pourquoi est-ce qu'on ne peut pas diviser par zéro? 🚫](#et-pourquoi-est-ce-quon-ne-peut-pas-diviser-par-zéro)
-12. [Et maintenant? ✨](#et-maintenant)
+1. [Les fractions — pourquoi est-ce qu'on en a besoin? ](#les-fractions--pourquoi-est-ce-quon-en-a-besoin)
+2. [Un petit voyage dans l'histoire ](#un-petit-voyage-dans-lhistoire)
+3. [Les mathématiques de la Mésopotamie ](#les-mathématiques-de-la-mésopotamie)
+4. [Pourquoi est-ce encore important aujourd'hui? ](#pourquoi-est-ce-encore-important-aujourdhui)
+5. [Qu'est-ce qu'une fraction? ](#quest-ce-quune-fraction)
+6. [Une fraction, c'est aussi une division ](#une-fraction-cest-aussi-une-division)
+7. [Les différents types de fractions ](#les-différents-types-de-fractions)
+8. [Les fractions équivalentes ](#les-fractions-équivalentes)
+9. [Les fractions irréductibles ](#les-fractions-irréductibles)
+10. [Pourquoi garder les fractions plutôt que toujours utiliser les décimales? ](#pourquoi-garder-les-fractions-plutôt-que-toujours-utiliser-les-décimales)
+11. [Et pourquoi est-ce qu'on ne peut pas diviser par zéro? ](#et-pourquoi-est-ce-quon-ne-peut-pas-diviser-par-zéro)
+12. [Et maintenant? ](#et-maintenant)
 
 ---
 
-## Les fractions — pourquoi est-ce qu'on en a besoin? 🤔
+## Les fractions — pourquoi est-ce qu'on en a besoin? 
 
 Avant de commencer à parler de fractions, j'aimerais qu'on se pose une question toute simple : pourquoi est-ce qu'on a inventé les fractions?
 
@@ -163,7 +163,7 @@ C'est un peu ça, l'idée derrière les fractions : prendre un tout et être cap
 
 On peut prendre un autre exemple, encore plus simple :
 
-Vous allez au restaurant avec 4 amis et vous commandez une pizza 🍕. La pizza complète représente un tout. Mais vous voulez la partager entre vous. Vous allez donc la couper en plusieurs parties pour que chacun puisse en manger une partie.
+Vous allez au restaurant avec 4 amis et vous commandez une pizza . La pizza complète représente un tout. Mais vous voulez la partager entre vous. Vous allez donc la couper en plusieurs parties pour que chacun puisse en manger une partie.
 
 Mais les fractions ne servent pas seulement à partager une pizza!
 
@@ -171,7 +171,7 @@ Depuis très longtemps, les humains ont eu besoin de représenter des parties d'
 
 En fait, les fractions sont apparues très tôt dans l'histoire des mathématiques parce que les humains avaient besoin de quantifier le monde qui les entourait.
 
-## Un petit voyage dans l'histoire 🏛️
+## Un petit voyage dans l'histoire 
 
 Si on retourne aux premières grandes civilisations, on retrouve déjà des façons de représenter les fractions. On peut notamment penser aux Égyptiens, aux civilisations de la vallée de l'Indus et aux civilisations de Mésopotamie.
 
@@ -179,18 +179,18 @@ Les Égyptiens utilisaient déjà des fractions il y a plusieurs milliers d'ann�
 
 Par exemple, pour représenter $\dfrac{1}{5}$, ils avaient leur propre système de symboles.
 
-> 🖼️ **Figure : Hiéroglyphe représentant 1/5**
+>  **Figure : Hiéroglyphe représentant 1/5**
 > *(image `content-id-2515-1_5hieroglyph.jpg` à ajouter dans le dossier `images/` du dépôt)*
 
 Ça fonctionnait, mais il y avait quand même certaines limitations. Lorsqu'on voulait faire des calculs avec plusieurs fractions, ça pouvait rapidement devenir compliqué. Il fallait connaître différentes façons de décomposer les fractions et utiliser des tables pour faciliter les calculs.
 
 Ce n'était donc pas nécessairement la façon la plus pratique de faire des opérations avec les fractions.
 
-## Les mathématiques de la Mésopotamie 🕰️
+## Les mathématiques de la Mésopotamie 
 
 Un peu plus tard, les civilisations de la Mésopotamie ont développé des méthodes très efficaces pour travailler avec les nombres. Les Babyloniens, par exemple, utilisaient un système basé sur 60. On appelle ça un système sexagésimal. Et vous utilisez encore ce système aujourd'hui sans nécessairement vous en rendre compte!
 
-Une minute contient 60 secondes et une heure contient 60 minutes ⏰. Lorsqu'on mesure des angles, on utilise aussi ce système : un degré contient 60 minutes d'arc, et une minute d'arc contient 60 secondes d'arc.
+Une minute contient 60 secondes et une heure contient 60 minutes . Lorsqu'on mesure des angles, on utilise aussi ce système : un degré contient 60 minutes d'arc, et une minute d'arc contient 60 secondes d'arc.
 
 Les Babyloniens avaient donc développé une façon très efficace de représenter et de calculer avec les fractions.
 
@@ -204,7 +204,7 @@ Il faut être capable de calculer combien de sacs cela représente, combien il l
 
 Les fractions deviennent donc un outil pour organiser et comprendre la réalité.
 
-## Pourquoi est-ce encore important aujourd'hui? 📱
+## Pourquoi est-ce encore important aujourd'hui? 
 
 Aujourd'hui, on pourrait se demander : *Pourquoi est-ce que je dois apprendre à faire des fractions? J'ai une calculatrice!*
 
@@ -212,7 +212,7 @@ Et c'est vrai. On possède maintenant des calculatrices, des ordinateurs et des 
 
 Une calculatrice peut nous donner une réponse, mais elle ne nous explique pas nécessairement ce que cette réponse veut dire. Comprendre les fractions nous permet de saisir les quantités et les relations entre elles. Et les fractions sont partout autour de nous.
 
-### En cuisine 🎂
+### En cuisine 
 
 Vous voulez préparer un gâteau et la recette demande :
 
@@ -224,7 +224,7 @@ $$\frac{3}{4}\text{ de tasse de farine}$$
 
 Mais finalement, vous voulez faire le double de la recette. Qu'est-ce que vous allez faire? Vous allez devoir multiplier les quantités par 2. C'est là qu'on va commencer à utiliser les opérations avec les fractions.
 
-### Dans le temps ⏱️
+### Dans le temps 
 
 Les fractions sont aussi présentes dans notre façon de parler du temps.
 
@@ -242,24 +242,24 @@ Donc un quart d'heure correspond à 15 minutes.
 
 On utilise donc déjà les fractions dans notre langage de tous les jours, souvent sans même y penser.
 
-### Les fractions sont partout 🌎
+### Les fractions sont partout 
 
 Quand on y pense, les fractions sont finalement une façon très naturelle de décrire le monde.
 
-- 🍕 On partage une pizza.
-- 🥣 On mesure des ingrédients.
-- 💰 On partage de l'argent.
-- 🧾 On calcule une taxe.
-- 📏 On mesure une distance.
+-  On partage une pizza.
+-  On mesure des ingrédients.
+-  On partage de l'argent.
+-  On calcule une taxe.
+-  On mesure une distance.
 
 Dans tous ces cas, on prend quelque chose qui représente un tout et on cherche à comprendre ou à représenter une partie de ce tout. C'est exactement ce que les fractions vont nous permettre de faire. Et maintenant qu'on comprend pourquoi les fractions existent et pourquoi elles sont utiles, on peut commencer à regarder mathématiquement ce qu'est réellement une fraction.
 
-## Qu'est-ce qu'une fraction? ❓
+## Qu'est-ce qu'une fraction? 
 
 Maintenant qu'on comprend un peu mieux pourquoi on utilise les fractions, il faut se demander : qu'est-ce qu'une fraction?
 
 <div class="def-box" markdown="1">
-**📘 Définition**
+** Définition**
 
 Une fraction est une façon de représenter une partie d'un tout à l'aide de deux nombres.
 
@@ -306,17 +306,17 @@ On a alors :
 $$\frac{3}{4}$$
 
 <div class="tip-box" markdown="1">
-💡 **Le dénominateur détermine la découpe, le numérateur compte les morceaux.**
+**Le dénominateur détermine la découpe, le numérateur compte les morceaux.**
 
 C'est une petite phrase qui peut nous aider à nous en rappeler.
 </div>
 
-### À retenir ✅
+### À retenir 
 
 - Dénominateur → combien de parties égales?
 - Numérateur → combien de parties prend-on?
 
-## Une fraction, c'est aussi une division ➗
+## Une fraction, c'est aussi une division 
 
 Il y a une autre façon très importante de comprendre une fraction. Une fraction représente également une division. Par exemple :
 
@@ -356,7 +356,7 @@ C'est exactement la même quantité, mais on la représente de différentes mani
 
 Et c'est ça qui est intéressant avec les fractions : une fraction n'est pas seulement deux nombres placés l'un au-dessus de l'autre. Elle représente une quantité, une partie d'un tout et aussi une division.
 
-## Les différents types de fractions 🍕
+## Les différents types de fractions 
 
 Maintenant qu'on sait ce qu'est une fraction, on peut regarder les différents types de fractions qu'on peut rencontrer.
 
@@ -482,7 +482,7 @@ $$\frac12>\frac13>\frac15$$
 
 Pourquoi?
 
-Revenons à notre pizza 🍕.
+Revenons à notre pizza .
 
 Si vous coupez une pizza en 2 morceaux égaux, chaque morceau est assez gros. Si vous coupez cette même pizza en 5 morceaux égaux, chaque morceau devient beaucoup plus petit.
 
@@ -494,7 +494,7 @@ Par exemple :
 
 $$\frac15<\frac14<\frac13<\frac12$$
 
-## Les fractions équivalentes ⚖️
+## Les fractions équivalentes 
 
 Il existe aussi ce qu'on appelle des fractions équivalentes. Deux fractions sont équivalentes lorsqu'elles ont une apparence différente, mais qu'elles représentent exactement la même quantité.
 
@@ -504,7 +504,7 @@ $$\frac12=\frac24=\frac36=\frac48$$
 
 Toutes ces fractions représentent la même quantité.
 
-### On peut le voir avec une pizza 🍕
+### On peut le voir avec une pizza 
 
 Une moitié de pizza est la même quantité que deux quarts de pizza. Et deux quarts représentent la même quantité que trois sixièmes, ou quatre huitièmes. On peut donc représenter la même quantité de différentes façons.
 
@@ -566,7 +566,7 @@ Et $\dfrac34$ est irréductible, parce qu'on ne peut plus simplifier davantage.
 
 Quand on simplifie une fraction, on cherche donc à obtenir une écriture plus simple qui représente exactement la même quantité.
 
-## Pourquoi garder les fractions plutôt que toujours utiliser les décimales? 🔢
+## Pourquoi garder les fractions plutôt que toujours utiliser les décimales? 
 
 On pourrait se demander : « Pourquoi utiliser des fractions? Pourquoi ne pas simplement transformer tout en nombres décimaux? » Parfois, les décimales sont effectivement très pratiques. Mais certaines quantités deviennent beaucoup moins pratiques à représenter avec des décimales.
 
@@ -600,7 +600,7 @@ Si on utilise $0{,}33$, on obtient :
 
 $$0{,}33+0{,}33+0{,}33=0{,}99$$
 
-On n'obtient pas exactement 1! 😮
+On n'obtient pas exactement 1! 
 
 Le problème vient de l'arrondissement.
 
@@ -608,7 +608,7 @@ La fraction, elle, représente exactement la quantité.
 
 C'est donc une des grandes forces des fractions : elles permettent de représenter certaines quantités exactement, même lorsque leur écriture décimale est compliquée ou infinie.
 
-## Et pourquoi est-ce qu'on ne peut pas diviser par zéro? 🚫
+## Et pourquoi est-ce qu'on ne peut pas diviser par zéro? 
 
 Maintenant, on arrive à une règle extrêmement importante en mathématiques :
 
@@ -680,7 +680,7 @@ C'est une distinction très importante.
 
 **Diviser par zéro ne donne pas 0. La division n'est tout simplement pas définie.**
 
-### Une situation de la vie de tous les jours 💵
+### Une situation de la vie de tous les jours 
 
 On peut aussi comprendre le problème avec quelque chose de très concret.
 
@@ -708,20 +708,20 @@ Le zéro représente ici une absence de quantité ou de groupes, et on ne peut p
 
 Et croyez-moi, en avançant en mathématiques, vous allez probablement rencontrer une situation où une erreur de calcul vous amènera à essayer de diviser par zéro. Lorsque ça arrive, ce n'est pas que les mathématiques ne fonctionnent plus : c'est qu'il y a une erreur quelque part dans notre démarche. Il faut alors revenir en arrière et trouver où l'erreur s'est produite.
 
-## Et maintenant? ✨
+## Et maintenant? 
 
 On a maintenant une bonne base pour comprendre les fractions. On sait :
 
-- ✅ ce qu'est une fraction;
-- ✅ ce que sont le numérateur et le dénominateur;
-- ✅ la différence entre une fraction propre et une fraction impropre;
-- ✅ ce qu'est un nombre mixte;
-- ✅ comment représenter une fraction sur une droite numérique;
-- ✅ pourquoi le dénominateur influence la taille des morceaux;
-- ✅ ce que sont les fractions équivalentes;
-- ✅ comment simplifier une fraction;
-- ✅ ce qu'est une fraction irréductible;
-- ✅ pourquoi certaines fractions sont plus pratiques que leur écriture décimale;
-- ✅ et surtout, pourquoi on ne peut jamais diviser par zéro.
+-  ce qu'est une fraction;
+-  ce que sont le numérateur et le dénominateur;
+-  la différence entre une fraction propre et une fraction impropre;
+-  ce qu'est un nombre mixte;
+-  comment représenter une fraction sur une droite numérique;
+-  pourquoi le dénominateur influence la taille des morceaux;
+-  ce que sont les fractions équivalentes;
+-  comment simplifier une fraction;
+-  ce qu'est une fraction irréductible;
+-  pourquoi certaines fractions sont plus pratiques que leur écriture décimale;
+-  et surtout, pourquoi on ne peut jamais diviser par zéro.
 
-Dans la prochaine partie, on va commencer à travailler avec les fractions : comment les additionner, les soustraire, les multiplier et les diviser, et surtout comment mettre des fractions sur un même dénominateur lorsque c'est nécessaire. 🚀
+Dans la prochaine partie, on va commencer à travailler avec les fractions : comment les additionner, les soustraire, les multiplier et les diviser, et surtout comment mettre des fractions sur un même dénominateur lorsque c'est nécessaire. 
