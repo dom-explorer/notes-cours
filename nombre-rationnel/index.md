@@ -90,29 +90,39 @@ body {
 }
 </style>
 
-<div class="rational-home" markdown="1">
+<div class="rational-home">
 
-<div class="rational-header" markdown="1">
+<div class="rational-header">
 
-# Les nombres rationnels
+<h1>Les nombres rationnels</h1>
 
+<p>
 L'ensemble des nombres rationnels est généralement représenté par le symbole :
+</p>
 
-\[ \boxed{\mathbb{Q}} \]
+$$
+\boxed{\mathbb{Q}}
+$$
 
+<p>
 Un nombre rationnel est un nombre qui peut être représenté sous la forme d'une fraction :
+</p>
 
 $$
 \frac{a}{b}
 $$
 
-où $a$ et $b$ sont des nombres entiers et où :
+<p>
+où \(a\) et \(b\) sont des nombres entiers et où :
+</p>
 
 $$
-b\neq0
+b \neq 0
 $$
 
+<p>
 On peut donc définir l'ensemble des nombres rationnels par :
+</p>
 
 $$
 \mathbb{Q}
@@ -124,9 +134,14 @@ a,b\in\mathbb{Z},\ b\neq0
 \right\}
 $$
 
-Le symbole $\mathbb{Q}$ vient du mot *quotient*, puisqu'un nombre rationnel peut être exprimé comme le quotient de deux nombres entiers.
+<p>
+Le symbole \(\mathbb{Q}\) vient du mot <em>quotient</em>, puisqu'un nombre rationnel
+peut être exprimé comme le quotient de deux nombres entiers.
+</p>
 
+<p>
 Les fractions sont donc une façon fondamentale de représenter les nombres rationnels.
+</p>
 
 </div>
 
