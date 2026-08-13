@@ -98,9 +98,7 @@ body {
 
 L'ensemble des nombres rationnels est généralement représenté par le symbole :
 
-\(
-\boxed{\mathbb{Q}}
-\)
+\[ \boxed{\mathbb{Q}} \]
 
 Un nombre rationnel est un nombre qui peut être représenté sous la forme d'une fraction :
 
