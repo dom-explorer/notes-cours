@@ -308,8 +308,8 @@ $$
 $$
 
 <ul>
-<li>Le nombre du haut, $a$, s'appelle le <strong>numérateur</strong>.</li>
-<li>Le nombre du bas, $b$, s'appelle le <strong>dénominateur</strong>.</li>
+<li>Le nombre du haut, \(a\), s'appelle le <strong>numérateur</strong>.</li>
+<li>Le nombre du bas, \(b\), s'appelle le <strong>dénominateur</strong>.</li>
 </ul>
 
 <p>Il y a cependant une règle très importante à retenir :</p>
