@@ -35,8 +35,20 @@ body {
 .def-title {
   font-weight: 700;
   font-size: 1.15em;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   color: #1e4fb8;
+}
+
+.def-box {
+  line-height: 1.6;
+}
+
+.def-box p {
+  margin: 10px 0;
+}
+
+.def-box mjx-container[display="true"] {
+  margin: 18px 0 !important;
 }
 .tip-box {
   background: #fff8e1;
@@ -283,23 +295,31 @@ Dans tous ces cas, on prend quelque chose qui représente un tout et on cherche 
 
 Maintenant qu'on comprend un peu mieux pourquoi on utilise les fractions, il faut se demander : qu'est-ce qu'une fraction?
 
-<div class="def-box" markdown="1">
-  <div class="def-title">Définition</div>
+<div class="def-box">
 
-Une fraction est une façon de représenter une partie d'un tout à l'aide de deux nombres.
+<p class="def-title">Définition</p>
 
-On peut écrire une fraction comme ceci :
+<p>Une fraction est une façon de représenter une partie d'un tout à l'aide de deux nombres.</p>
 
-$$\frac{a}{b}$$
+<p>On peut écrire une fraction comme ceci :</p>
 
-- Le nombre du haut, $a$, s'appelle le **numérateur**.
-- Le nombre du bas, $b$, s'appelle le **dénominateur**.
+$$
+\frac{a}{b}
+$$
 
-Il y a cependant une règle très importante à retenir :
+<ul>
+<li>Le nombre du haut, $a$, s'appelle le <strong>numérateur</strong>.</li>
+<li>Le nombre du bas, $b$, s'appelle le <strong>dénominateur</strong>.</li>
+</ul>
 
-- $b \neq 0$
+<p>Il y a cependant une règle très importante à retenir :</p>
 
-Le dénominateur ne peut **jamais être égal à zéro**. On reviendra plus tard sur la raison pour laquelle on ne peut pas diviser par zéro. Pour le moment, retenez simplement que le dénominateur ne peut jamais être 0.
+$$
+b \neq 0
+$$
+
+<p>Le dénominateur ne peut <strong>jamais être égal à zéro</strong>. On reviendra plus tard sur la raison pour laquelle on ne peut pas diviser par zéro. Pour le moment, retenez simplement que le dénominateur ne peut jamais être 0.</p>
+
 </div>
 
 ### Prenons un exemple
