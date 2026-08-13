@@ -1,5 +1,5 @@
 ---
-title: "MAT1101 — Introduction aux fractions"
+title: "MAT1101 — Section 1.1 - Introduction aux fractions"
 layout: default
 ---
 
