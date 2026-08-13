@@ -1,5 +1,5 @@
 ---
-title: "MAT1101 — Les fractions"
+title: "MAT1101 — Introduction aux fractions"
 layout: default
 ---
 
@@ -31,6 +31,12 @@ body {
   border-radius: 6px;
   padding: 14px 20px;
   margin: 20px 0;
+}
+.def-title {
+  font-weight: 700;
+  font-size: 1.15em;
+  margin-bottom: 10px;
+  color: #1e4fb8;
 }
 .tip-box {
   background: #fff8e1;
@@ -176,7 +182,7 @@ h3 { color: #1e4fb8; }
 
 Avant de commencer à parler de fractions, j'aimerais qu'on se pose une question toute simple : pourquoi est-ce qu'on a inventé les fractions?
 
-Imaginez une situation assez concrète. Vous avez un beau vase en céramique. Par malchance, vous l'accrochez et il tombe par terre. Il se brise en 1000 morceaux 💥. Si vous voulez maintenant réparer le vase et le remettre dans son état original, vous allez devoir travailler avec tous ces petits morceaux. Le vase était un tout, mais maintenant il est séparé en plusieurs parties.
+Imaginez une situation assez concrète. Vous avez un beau vase en céramique. Par malchance, vous l'accrochez et il tombe par terre. Il se brise en 1000 morceaux. Si vous voulez maintenant réparer le vase et le remettre dans son état original, vous allez devoir travailler avec tous ces petits morceaux. Le vase était un tout, mais maintenant il est séparé en plusieurs parties.
 
 C'est un peu ça, l'idée derrière les fractions : prendre un tout et être capable de parler des différentes parties qui le composent.
 
@@ -196,10 +202,10 @@ Si on retourne aux premières grandes civilisations, on retrouve déjà des faç
 
 Les Égyptiens utilisaient déjà des fractions il y a plusieurs milliers d'années. Leur façon de les représenter était cependant assez différente de la nôtre. Ils travaillaient surtout avec des fractions dites unitaires, c'est-à-dire des fractions dont le numérateur était 1.
 
-Par exemple, pour représenter $\dfrac{1}{5}$, ils avaient leur propre système de symboles.
+Par exemple, pour représenter $\frac{1}{5}$, ils avaient leur propre système de symboles.
 
 >  **Figure : Hiéroglyphe représentant 1/5**
-> *(image `content-id-2515-1_5hieroglyph.jpg` à ajouter dans le dossier `images/` du dépôt)*
+> *<img width="90" height="94" alt="image" src="https://github.com/user-attachments/assets/76b2ea71-7dee-4963-828f-81b6d82a81d7" />*
 
 Ça fonctionnait, mais il y avait quand même certaines limitations. Lorsqu'on voulait faire des calculs avec plusieurs fractions, ça pouvait rapidement devenir compliqué. Il fallait connaître différentes façons de décomposer les fractions et utiliser des tables pour faciliter les calculs.
 
@@ -278,7 +284,7 @@ Dans tous ces cas, on prend quelque chose qui représente un tout et on cherche 
 Maintenant qu'on comprend un peu mieux pourquoi on utilise les fractions, il faut se demander : qu'est-ce qu'une fraction?
 
 <div class="def-box" markdown="1">
-** Définition**
+  <div class="def-title">Définition</div>
 
 Une fraction est une façon de représenter une partie d'un tout à l'aide de deux nombres.
 
