@@ -136,7 +136,7 @@ h3 { color: #1e4fb8; }
 
 #  MAT1101 — Les fractions
 
-## 📑 Table des matières
+##  Table des matières
 
 1. [Les fractions — pourquoi est-ce qu'on en a besoin? ](#les-fractions--pourquoi-est-ce-quon-en-a-besoin)
 2. [Un petit voyage dans l'histoire ](#un-petit-voyage-dans-lhistoire)
@@ -546,7 +546,7 @@ $$\frac11=\frac22=\frac33=\frac{20}{20}=\frac{100}{100}$$
 
 Toutes ces fractions représentent un tout.
 
-## Les fractions irréductibles ✂️
+## Les fractions irréductibles 
 
 Une fraction peut aussi être irréductible. Une fraction irréductible est une fraction qu'on ne peut plus simplifier en divisant son numérateur et son dénominateur par un même nombre entier supérieur à 1.
 
