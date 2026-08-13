@@ -1,6 +1,6 @@
 ---
 title: "Notes de cours"
-layout: default
+layout: home
 ---
 
 <style>
