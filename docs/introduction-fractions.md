@@ -4,8 +4,14 @@ layout: default
 ---
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
 
 <style>
+  body {
+  font-family: "Nunito Sans", sans-serif;
+}
 .def-box {
   background: #eef5fc;
   border-left: 5px solid #2f6fed;
