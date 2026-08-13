@@ -328,13 +328,13 @@ $$\frac{3}{4}$$
 
 On lit cette fraction *trois quarts*. Dans cette fraction :
 
-- $3$ est le numérateur;
-- $4$ est le dénominateur.
+- \(3\) est le numérateur;
+- \(4\) est le dénominateur.
 
-Mais qu'est-ce que ça veut réellement dire, $\dfrac{3}{4}$? Le dénominateur nous indique en combien de parties égales notre tout va être divisé. Donc, avec $4$ comme dénominateur, on divise notre tout en 4 parties égales. On pourrait, par exemple, prendre un rectangle et le diviser en quatre parties égales. Ensuite, le numérateur nous indique combien de ces parties on prend. Dans notre exemple, le numérateur est $3$. On prend donc 3 des 4 parties.
+Mais qu'est-ce que ça veut réellement dire, $\frac{3}{4}$? Le dénominateur nous indique en combien de parties égales notre tout va être divisé. Donc, avec \(4\) comme dénominateur, on divise notre tout en 4 parties égales. On pourrait, par exemple, prendre un rectangle et le diviser en quatre parties égales. Ensuite, le numérateur nous indique combien de ces parties on prend. Dans notre exemple, le numérateur est \(3\). On prend donc 3 des 4 parties.
 
 <div class="fraction-visual" markdown="1">
-<div class="fraction-visual-title">Représentation de $\frac{3}{4}$</div>
+<div class="fraction-visual-title">Représentation de \(\frac{3}{4}\)</div>
 
 <div class="rectangle-fraction">
   <div class="part filled"></div>
@@ -371,9 +371,9 @@ La barre de fraction représente donc une division. On peut aussi représenter u
 
 $$3\div4$$
 
-Le nombre qui est divisé, $3$, correspond au numérateur.
+Le nombre qui est divisé, \(3\), correspond au numérateur.
 
-Le nombre par lequel on divise, $4$, correspond au dénominateur.
+Le nombre par lequel on divise, \(4\), correspond au dénominateur.
 
 On peut donc retenir :
 
