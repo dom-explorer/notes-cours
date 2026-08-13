@@ -113,6 +113,26 @@ h3 { color: #1e4fb8; }
   );
   position: relative;
 }
+  .pizza-half {
+  background: conic-gradient(
+    #f4b400 0deg 180deg,
+    #fff 180deg 360deg
+  );
+}
+
+.pizza-third {
+  background: conic-gradient(
+    #f4b400 0deg 120deg,
+    #fff 120deg 360deg
+  );
+}
+
+.pizza-fifth {
+  background: conic-gradient(
+    #f4b400 0deg 72deg,
+    #fff 72deg 360deg
+  );
+}
 .pizza-fourths {
   background: conic-gradient(
     #f4b400 0deg 90deg,
@@ -201,6 +221,16 @@ C'est un peu ça, l'idée derrière les fractions : prendre un tout et être cap
 On peut prendre un autre exemple, encore plus simple :
 
 Vous allez au restaurant avec 4 amis et vous commandez une pizza . La pizza complète représente un tout. Mais vous voulez la partager entre vous. Vous allez donc la couper en plusieurs parties pour que chacun puisse en manger une partie.
+
+<div class="fraction-visual">
+  <div class="fraction-visual-title">Une pizza représente un tout</div>
+
+  <div class="pizza"></div>
+
+  <div class="visual-caption">
+    La pizza complète représente une unité.
+  </div>
+</div>
 
 Mais les fractions ne servent pas seulement à partager une pizza!
 
@@ -551,7 +581,45 @@ Toutes ces fractions représentent la même quantité.
 
 ### On peut le voir avec une pizza 
 
-Une moitié de pizza est la même quantité que deux quarts de pizza. Et deux quarts représentent la même quantité que trois sixièmes, ou quatre huitièmes. On peut donc représenter la même quantité de différentes façons.
+Une moitié de pizza est la même quantité que deux quarts de pizza. Et deux quarts représentent la même quantité que trois sixièmes, ou quatre huitièmes. 
+
+<p>Une moitié de pizza est la même quantité que deux quarts de pizza. Et deux quarts représentent la même quantité que trois sixièmes, ou quatre huitièmes.</p>
+
+<div class="fraction-visual">
+  <div class="fraction-visual-title">Des fractions équivalentes</div>
+
+  <div class="visual-comparison">
+
+    <div class="visual-item">
+      <div class="pizza pizza-fourths"></div>
+      <div class="visual-caption">
+        <strong>\(\frac{2}{4}\)</strong>
+      </div>
+    </div>
+
+    <div class="visual-item">
+      <div class="pizza pizza-sixths"></div>
+      <div class="visual-caption">
+        <strong>\(\frac{3}{6}\)</strong>
+      </div>
+    </div>
+
+    <div class="visual-item">
+      <div class="pizza pizza-eighths"></div>
+      <div class="visual-caption">
+        <strong>\(\frac{4}{8}\)</strong>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="visual-caption">
+    Ces trois fractions représentent la même quantité : la moitié de la pizza.
+  </div>
+</div>
+
+<p>On peut donc représenter la même quantité de différentes façons.</p>
+
 
 ### Comment obtenir une fraction équivalente?
 
