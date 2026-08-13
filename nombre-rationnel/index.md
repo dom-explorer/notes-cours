@@ -215,8 +215,6 @@ On les utilise notamment pour :
 
 </div>
 
----
----
 
 ## Notions
 
