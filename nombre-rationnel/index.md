@@ -173,6 +173,8 @@ Les fractions sont donc une façon fondamentale de représenter les nombres rati
 
 </div>
 
+<div class="rational-section" markdown="1">
+
 ## Pourquoi étudier les nombres rationnels?
 
 Les nombres rationnels sont présents partout dans les mathématiques et dans la vie quotidienne.
@@ -188,21 +190,30 @@ On les utilise notamment pour :
 - travailler avec des rapports;
 - effectuer des calculs précis.
 
-Une fraction comme
+<p>Une fraction comme :</p>
 
-$$
-\frac{3}{4}
-$$
+<p class="math-display">
+<span class="fraction">
+  <span class="numerator">3</span>
+  <span class="denominator">4</span>
+</span>
+</p>
 
-peut représenter une partie d'un tout, une division ou simplement un nombre.
+<p>peut représenter une partie d'un tout, une division ou simplement un nombre.</p>
 
-Par exemple :
+<p>Par exemple :</p>
 
-$$
-\frac{3}{4}=3\div4=0{,}75
-$$
+<p class="math-display">
+<span class="fraction">
+  <span class="numerator">3</span>
+  <span class="denominator">4</span>
+</span>
+= 3 ÷ 4 = 0,75
+</p>
 
-Ces trois écritures représentent exactement la même quantité.
+<p>Ces trois écritures représentent exactement la même quantité.</p>
+
+</div>
 
 ---
 
