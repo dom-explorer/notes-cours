@@ -88,6 +88,37 @@ body {
   color: #555;
   font-style: italic;
 }
+  .rational-definition {
+  background: #fff8e1;
+  border-left: 5px solid #f4b400;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 20px 0;
+  text-align: center;
+}
+  .math-display {
+  text-align: center;
+  font-size: 1.4em;
+  margin: 20px 0;
+  font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
+}
+
+.fraction {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.fraction .numerator {
+  border-bottom: 2px solid currentColor;
+  padding: 0 10px 3px 10px;
+}
+
+.fraction .denominator {
+  padding: 3px 10px 0 10px;
+}
 </style>
 
 <div class="rational-home">
@@ -100,43 +131,40 @@ body {
 L'ensemble des nombres rationnels est généralement représenté par le symbole :
 </p>
 
-$$
-\boxed{\mathbb{Q}}
-$$
+<p class="math-display">
+ℚ
+</p>
 
 <p>
 Un nombre rationnel est un nombre qui peut être représenté sous la forme d'une fraction :
 </p>
 
-$$
-\frac{a}{b}
-$$
-
-<p>
-où \(a\) et \(b\) sont des nombres entiers et où :
+<p class="math-display">
+<span class="fraction">
+  <span class="numerator">a</span>
+  <span class="denominator">b</span>
+</span>
 </p>
 
-$$
-b \neq 0
-$$
+<p>
+où <em>a</em> et <em>b</em> sont des nombres entiers et où :
+</p>
+
+<p class="math-display">
+b ≠ 0
+</p>
 
 <p>
 On peut donc définir l'ensemble des nombres rationnels par :
 </p>
 
-$$
-\mathbb{Q}
-=
-\left\{
-\frac{a}{b}
-\;\middle|\;
-a,b\in\mathbb{Z},\ b\neq0
-\right\}
-$$
+<p class="math-display">
+ℚ = { a/b | a, b ∈ ℤ, b ≠ 0 }
+</p>
 
 <p>
-Le symbole \(\mathbb{Q}\) vient du mot <em>quotient</em>, puisqu'un nombre rationnel
-peut être exprimé comme le quotient de deux nombres entiers.
+Le symbole <strong>ℚ</strong> vient du mot <em>quotient</em>, puisqu'un nombre
+rationnel peut être exprimé comme le quotient de deux nombres entiers.
 </p>
 
 <p>
