@@ -9,11 +9,21 @@ layout: default
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
 
 <style>
-body,
-main,
-article,
-.page-content {
+body {
   font-family: "Nunito Sans", sans-serif !important;
+  background-color: #fffaf0;
+}
+
+.def-box {
+  background: #f3f7ff;
+}
+
+.tip-box {
+  background: #fff3cd;
+}
+
+.result-box {
+  background: #eef8f1;
 }
 .def-box {
   background: #eef5fc;
