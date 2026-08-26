@@ -1,0 +1,2318 @@
+\documentclass[11pt,openany]{book}
+
+% ================================================================
+% ENCODAGE ET LANGUE
+% ================================================================
+
+\usepackage{fontspec}
+\usepackage[french]{babel}
+
+\setmainfont{Century Gothic} % Change to your preferred system serif font
+
+\setsansfont{Futura PT}[
+    Weight=300,
+    BoldFont={Futura PT}
+]
+
+\usepackage[acronym,toc]{glossaries}
+\makeglossaries
+
+\newacronym{si}{SI}{Système international (d'unités)}
+
+\newglossaryentry{travail}{
+    name={travail},
+    description={Transfert d'énergie produit par une force lors d'un déplacement}
+}
+
+% ================================================================
+% Définitions du glossaire (à placer dans le préambule de votre document)
+% ================================================================
+
+\newglossaryentry{energie_cinetique}{
+    name={Énergie cinétique ($K$)},
+    description={Grandeur scalaire mesurant l'énergie qu'un corps possède du fait de son mouvement macroscopique. Pour un solide en translation de masse $m$ se déplaçant à la vitesse $v$, elle s'exprime par $K = \frac{1}{2} m v^2$. Unité SI : le joule ($\mathrm{J}$)}
+}
+
+\newglossaryentry{travail_force}{
+    name={Travail d'une force ($W$)},
+    description={Grandeur scalaire mesurant la quantité d'énergie transférée à un système par une force $\vec{F}$ lors d'un déplacement $\vec{s}$. Il est calculé par le produit scalaire $W = \vec{F} \cdot \vec{s} = \|\vec{F}\| \|\vec{s}\| \cos\theta$. Unité SI : le joule ($\mathrm{J}$)}
+}
+
+\newglossaryentry{travail_net}{
+    name={Travail net ($W_{\text{net}}$)},
+    description={Somme algébrique des travaux de l'ensemble des forces extérieures s'exerçant sur un système : $W_{\text{net}} = \sum W_i = \vec{F}_{\text{net}} \cdot \vec{s}$}
+}
+
+\newglossaryentry{travail_moteur}{
+    name={Travail moteur},
+    description={Travail positif ($W > 0$) effectué par une force dont la direction favorise le mouvement ($0^\circ \le \theta < 90^\circ$). Il fournit de l'énergie au système}
+}
+
+\newglossaryentry{travail_resistant}{
+    name={Travail résistant},
+    description={Travail négatif ($W < 0$) effectué par une force qui s'oppose au mouvement ($90^\circ < \theta \le 180^\circ$). Il soutire de l'énergie au système (ex. : force de frottement $\vec{f}_k$)}
+}
+
+\newglossaryentry{travail_nul}{
+    name={Travail nul},
+    description={Situation où le travail d'une force est nul ($W = 0\ \mathrm{J}$), car le déplacement est nul ($\|\vec{s}\| = 0$) ou car la force est perpendiculaire au déplacement ($\theta = 90^\circ$)}
+}
+
+\newglossaryentry{theoreme_energie_cinetique}{
+    name={Théorème de l'énergie cinétique},
+    description={Principe fondamental de la mécanique classique établissant que la variation de l'énergie cinétique ($\Delta K$) d'un corps est égale au travail net ($W_{\text{net}}$) de toutes les forces extérieures s'exerçant sur lui : $\Delta K = K_f - K_i = W_{\text{net}}$}
+}
+
+\newglossaryentry{force_conservative}{
+    name={Force conservative},
+    description={Force dont le travail entre deux points ne dépend que des positions initiale et finale, et non du chemin suivi (ex. : le poids $\vec{P}$)}
+}
+
+\newglossaryentry{force_non_conservative}{
+    name={Force non conservative},
+    description={Force dont le travail dépend du chemin suivi et dissipe généralement de l'énergie mécanique sous forme thermique (ex. : la force de frottement cinétique $\vec{f}_k$)}
+}
+
+
+% ================================================================
+% MATHÉMATIQUES
+% ================================================================
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{enumitem}
+
+\setlist[itemize]{label=$\bullet$}
+
+% ================================================================
+% UNITÉS
+% ================================================================
+
+\usepackage{siunitx}
+
+\sisetup{
+    locale = FR,
+    per-mode = symbol,
+    exponent-product = \cdot
+}
+
+% ================================================================
+% GRAPHIQUES
+% ================================================================
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+\pgfplotsset{
+    compat=1.18
+}
+
+\usetikzlibrary{
+    arrows.meta,
+    calc,
+    decorations.pathreplacing,
+    patterns,
+    positioning,
+    shapes.geometric,
+    angles,
+    quotes
+}
+\usetikzlibrary{patterns, decorations.pathmorphing}
+\usepackage[most]{tcolorbox}
+
+\usepgfplotslibrary{fillbetween}
+% ================================================================
+% MISE EN PAGE
+% ================================================================
+
+\usepackage[
+    margin=2.2cm,
+    headheight=15pt
+]{geometry}
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+
+\fancyhf{}
+
+\fancyhead[LE,RO]{\textit{Physique secondaire 5}}
+\fancyhead[RE,LO]{\leftmark}
+
+\fancyfoot[C]{\thepage}
+
+% ================================================================
+% COULEURS
+% ================================================================
+
+\usepackage{xcolor}
+
+\definecolor{bleu}{RGB}{30,80,140}
+\definecolor{bleupale}{RGB}{235,242,250}
+
+\definecolor{orange}{RGB}{190,100,20}
+\definecolor{orangepale}{RGB}{250,240,225}
+
+\definecolor{vert}{RGB}{30,120,70}
+\definecolor{vertpale}{RGB}{232,246,238}
+
+\definecolor{rouge}{RGB}{170,45,45}
+\definecolor{rougepale}{RGB}{250,235,235}
+
+\definecolor{gris}{RGB}{80,80,80}
+\definecolor{grispale}{RGB}{245,245,245}
+
+\definecolor{jaune}{RGB}{200,150,0}
+\definecolor{jaunepale}{RGB}{255,250,230}
+
+% ================================================================
+% BOÎTES
+% ================================================================
+
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{definition}{
+    colback=bleupale,
+    colframe=bleu,
+    title=\textbf{Définition},
+    fonttitle=\bfseries,
+    breakable
+}
+
+\newtcolorbox{important}{
+    colback=orangepale,
+    colframe=orange,
+    title=\textbf{À retenir},
+    fonttitle=\bfseries,
+    breakable
+}
+
+\newtcolorbox{methode}{
+    colback=vertpale,
+    colframe=vert,
+    title=\textbf{Méthode},
+    fonttitle=\bfseries,
+    breakable
+}
+
+\newtcolorbox{erreur}[1][]{
+    enhanced,
+    breakable,
+    colback=red!5,
+    colframe=red!70!black,
+    boxrule=0.8pt,
+    arc=2mm,
+    left=14mm,
+    right=4mm,
+    top=3mm,
+    bottom=3mm,
+    before skip=10pt,
+    after skip=10pt,
+    title={ERREUR FRÉQUENTE},
+    fonttitle=\bfseries,
+    coltitle=white, % <--- Changed from red!70!black to white
+    overlay={
+        \node[
+            fill=red!70!black,
+            text=white,
+            regular polygon,
+            regular polygon sides=3,
+            minimum size=8mm,
+            inner sep=0pt,
+            font=\bfseries\Large
+        ] at ([xshift=7mm, yshift=-15mm]frame.north west) {!};
+    },
+    #1
+}
+
+\newtcolorbox{idee}{
+    colback=grispale,
+    colframe=gris,
+    title=\textbf{Idée physique},
+    fonttitle=\bfseries,
+    breakable
+}
+
+% ----------------------------------------------------------------
+% Icônes dessinées en TikZ (aucune police externe requise)
+% ----------------------------------------------------------------
+
+% Icône « arrêt » (octogone rouge, point d'exclamation blanc)
+\newcommand{\iconestop}{%
+\tikz[baseline=-0.65ex]{
+    \node[regular polygon, regular polygon sides=8, minimum size=0.5cm,
+          fill=white, inner sep=0pt, draw=white, line width=0.6pt] (o) {};
+    \node[regular polygon, regular polygon sides=8, minimum size=0.42cm,
+          fill=rouge, inner sep=0pt] (i) at (o) {};
+    \node[white, font=\bfseries] at (i) {!};
+}%
+}
+
+% Icône « avertissement » (triangle jaune, point d'exclamation blanc)
+\newcommand{\iconeavertissement}{%
+\tikz[baseline=-0.65ex]{
+    \node[regular polygon, regular polygon sides=3, shape border rotate=60,
+          minimum size=0.62cm, fill=jaune, inner sep=0pt] (t) {};
+    \node[white, font=\bfseries] at ([yshift=-2pt]t) {!};
+}%
+}
+
+% Icône « ampoule » (le saviez-vous?, ampoule verte stylisée)
+\newcommand{\iconeampoule}{%
+\tikz[baseline=-0.65ex]{
+    \draw[fill=vert, draw=vert] (-0.08,-0.30) rectangle (0.08,-0.19);
+    \draw[white, line width=0.4pt] (-0.08,-0.26) -- (0.08,-0.26);
+    \draw[white, line width=0.4pt] (-0.08,-0.22) -- (0.08,-0.22);
+    \draw[fill=vert, draw=vert] (0,0.06) circle (0.26cm);
+    \draw[fill=vert, draw=vert] (-0.07,-0.19) -- (0.07,-0.19)
+        -- (0.09,-0.10) -- (-0.09,-0.10) -- cycle;
+    \draw[white, line width=0.5pt] (-0.07,-0.02) -- (0.07,0.12);
+    \draw[white, line width=0.5pt] (-0.07,0.12) -- (0.07,-0.02);
+}%
+}
+
+% ----------------------------------------------------------------
+% Nouvelles boîtes d'avertissement
+% ----------------------------------------------------------------
+
+% ROUGE — très important / piège fréquent à l'examen
+\newtcolorbox{danger}{
+    colback=rougepale,
+    colframe=rouge,
+    colbacktitle=rouge,
+    coltitle=white,
+    title=\iconestop\ \textbf{Attention --- important},
+    fonttitle=\bfseries,
+    breakable
+}
+
+% JAUNE — à surveiller, moins critique
+\newtcolorbox{avertissement}{
+    colback=jaunepale,
+    colframe=jaune,
+    colbacktitle=jaune,
+    coltitle=white,
+    title=\iconeavertissement\ \textbf{À surveiller},
+    fonttitle=\bfseries,
+    breakable
+}
+
+% VERT — anecdote / fait amusant
+\newtcolorbox{saviezvous}{
+    colback=vertpale,
+    colframe=vert,
+    colbacktitle=vert,
+    coltitle=white,
+    title=\iconeampoule\ \textbf{Le saviez-vous?},
+    fonttitle=\bfseries,
+    breakable
+}
+
+% ================================================================
+% COMMANDES
+% ================================================================
+
+\newcommand{\vect}[1]{\vec{#1}}
+\newcommand{\W}{W}
+\newcommand{\Ec}{E_{\mathrm c}}
+\newcommand{\Eg}{E_{\mathrm g}}
+\newcommand{\Ee}{E_{\mathrm e}}
+\newcommand{\Em}{E_{\mathrm m}}
+\newcommand{\Eth}{E_{\mathrm th}}
+\newcommand{\DeltaE}{\Delta E}
+
+% ================================================================
+% DOCUMENT
+% ================================================================
+
+\begin{document}
+
+% ================================================================
+% PAGE TITRE
+% ================================================================
+
+
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+
+Imaginons que nous nous rendions dans un champ de tir à l’arc. Nous voulons déterminer la vitesse de la flèche. Jusqu’à maintenant, nous avons pu déterminer cette valeur à l’aide des lois de Newton. Mais nous allons rencontrer un problème : dès que l’archer relâche la flèche, la corde de l’arc exerce des forces variables qui dépendent de la position de la flèche.
+
+Par conséquent, nous devons utiliser une autre méthode, tout aussi efficace, pour trouver la solution à ce problème. Nous allons ici introduire deux concepts :
+
+\begin{itemize}
+
+
+\item le \textbf{travail};
+
+\item l'\textbf{énergie}.
+
+\end{itemize}
+
+Ces deux concepts découlent d’une idée fondamentale en physique : la \textit{conservation de l’énergie}.
+
+L’énergie, en physique, est un concept récurrent qui nous permet de modéliser des systèmes allant du plus petit — comme ceux étudiés en mécanique quantique — au plus grand — comme la formation des galaxies et l’évolution de l’Univers. Elle peut même être convertie à partir de la masse, comme l’a démontré Albert Einstein avec sa célèbre équation
+
+$$
+E = mc^2.
+$$
+
+La conservation de l’énergie nous permet notamment de comprendre le lancement de satellites en orbite et de modéliser avec précision le mouvement des planètes. Elle nous permet également de modéliser des processus d’évolution dans de nombreux systèmes physiques.
+
+Bref, ce sont des concepts extrêmement intéressants et importants!
+
+% ================================================================
+% CHAPITRE 4
+% ================================================================
+
+\chapter{Travail et puissance}
+
+\section{Le concept de travail}
+
+Dans le langage courant, le mot «~travail~» désigne toute activité nécessitant un effort physique ou mental, comme déplacer un bureau ou rédiger un texte. En physique classique, le concept de \textbf{travail} possède une définition mathématique et conceptuelle stricte, formalisée au $\text{XIX}^\text{e}$ siècle notamment par l'ingénieur Gaspard-Gustave Coriolis dans le cadre de la mécanique appliquée.
+
+\begin{definition}
+Une force effectue un \textbf{travail} lorsqu'elle s'applique sur un corps en mouvement et qu'au moins une composante de cette force s'exerce parallèlement au déplacement du point d'application. Le travail mesure la quantité d'énergie transférée à un système par l'intermédiaire d'une force extérieure.
+
+Pour une force constante $\vec{F}$ s'appliquant sur un déplacement rectiligne $\vec{s}$, le travail est défini par le produit scalaire :
+\[ W = \vec{F} \cdot \vec{s} = \|\vec{F}\| \|\vec{s}\| \cos(\theta) \]
+
+où :
+\begin{itemize}
+    \item $W$ est le travail (issu de l'anglais \textit{Work}), une grandeur \textbf{scalaire} (qui peut être positive, négative ou nulle) ;
+    \item $\vec{F}$ est le vecteur force appliqué au système, exprimé en newtons ($\mathrm{N}$) ;
+    \item $\vec{s}$ est le vecteur déplacement du point d'application de la force, exprimé en mètres ($\mathrm{m}$) ;
+    \item $\theta$ est l'angle formé entre le vecteur force $\vec{F}$ et le vecteur déplacement $\vec{s}$.
+\end{itemize}
+\end{definition}
+
+Le symbole utilisé pour représenter le travail mécanique est $W$. Son unité dans le Système international \gls{si} est le \textbf{joule} ($\mathrm{J}$), nommé en l'honneur du physicien James Prescott Joule pour ses travaux sur la conservation de l'énergie :
+
+\[
+\boxed{1\ \mathrm{J} = 1\ \mathrm{N \cdot m} = 1\ \mathrm{kg \cdot m^2 \cdot s^{-2}}}
+\]
+
+\textbf{Interprétation physique et transfert d'énergie :}
+
+Le travail n'est pas une forme d'énergie résidant dans un corps, mais un \textbf{mode de transfert d'énergie} en transition (au même titre que le transfert thermique). 
+
+\begin{itemize}
+    \item \textbf{Travail moteur ($W > 0$, $0^\circ \le \theta < 90^\circ$) :} La force favorise le mouvement et fournit de l'énergie au système (augmente son énergie cinétique ou potentielle).
+    \item \textbf{Travail résistant ($W < 0$, $90^\circ < \theta \le 180^\circ$) :} La force s'oppose au mouvement et soutire de l'énergie au système (par exemple, le travail des forces de frottement).
+    \item \textbf{Travail nul ($W = 0$) :} Si la force est perpendiculaire au déplacement ($\theta = 90^\circ$) ou si le déplacement est nul ($\vec{s} = \vec{0}$), aucun travail n'est effectué. Une personne soutenant à bout de bras une lourde charge immobile exerce une force, mais n'effectue aucun travail au sens de la physique.
+\end{itemize}
+
+\subsection{Une condition essentielle}
+
+Pour qu'une force effectue un travail mécanique, deux conditions fondamentales doivent être simultanément remplies :
+
+\begin{enumerate}
+    \item \textbf{Action d'une force :} Une force extérieure doit s'appliquer sur le système étudié ;
+    \item \textbf{Déplacement effectif :} Le point d'application de la force doit subir un déplacement dont la composante selon la direction de la force est non nulle ($\vec{F} \cdot \vec{s} \neq 0$).
+\end{enumerate}
+
+Il est donc tout à fait possible qu'une force s'exerce sur un objet sans effectuer le moindre travail mécanique.
+
+\subsection{Exemple : tenir une boîte immobile}
+
+Considérons une personne tenant une boîte immobile dans ses mains.
+
+La personne exerce une force verticale vers le haut ($\vec{F}_{\mathrm{main}}$) pour compenser le poids de la boîte ($\vec{P}$). Cependant, la boîte demeure parfaitement immobile dans le référentiel d'observation.
+
+Le vecteur déplacement est donc nul :
+\[
+\vec{s} = \vec{0} \quad (\text{ou } \Delta x = 0)
+\]
+
+Par conséquent, le travail mécanique effectué sur la boîte est strictement nul :
+\[
+\boxed{W = 0\ \mathrm{J}}
+\]
+
+Même si la personne ressent une fatigue importante après quelques minutes, la force exercée sur la boîte n'effectue aucun travail mécanique au sens de la physique classique.
+
+\begin{important}
+\textbf{Fatigue biologique $\neq$ travail mécanique.}
+
+Le fait qu'un organisme dépense de l'énergie métabolique sur le plan biologique ne signifie pas qu'un travail mécanique est accompli sur le système étudié. 
+
+Lorsqu'on maintient une charge immobile, les muscles effectuent une \textbf{contraction isométrique}. À l'échelle microscopique, les ponts de myosine se lient et se détachent sans cesse des filaments d'actine dans les fibres musculaires. Cette activité consomme de l'énergie chimique (ATP) et dissipe de la chaleur, mais ne produit aucun déplacement macroscopique. L'énergie biologique est donc intégralement convertie en transfert thermique (chaleur interne), et non en travail mécanique ($W = 0\ \mathrm{J}$).
+\end{important}
+
+% ================================================================
+\section{Travail d'une force constante}
+
+Dans le cas d'une force dont le module, la direction et le sens ne varient pas au cours du mouvement, le travail effectif sur un déplacement rectiligne est donné par l'expression mathématique :
+
+\[
+\boxed{
+W = F \Delta x \cos\theta
+}
+\]
+
+où :
+\begin{itemize}
+    \item $W$ est le travail effectué par la force, exprimé en joules ($\mathrm{J}$) ;
+    \item $F = \|\vec{F}\|$ est le module (la norme) de la force, exprimé en newtons ($\mathrm{N}$) ;
+    \item $\Delta x = \|\Delta \vec{x}\|$ est le module du déplacement rectiligne, exprimé en mètres ($\mathrm{m}$) ;
+    \item $\theta$ est l'angle géométrique formé entre le vecteur force $\vec{F}$ et le vecteur déplacement $\Delta \vec{x}$ ($0^\circ \le \theta \le 180^\circ$).
+\end{itemize}
+
+\subsection*{Interprétation géométrique : la composante efficace}
+
+Cette équation découle directement du produit scalaire entre deux vecteurs : $W = \vec{F} \cdot \Delta \vec{x}$. On peut interpréter cette relation de deux manières équivalentes :
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.55\textwidth]{C:/Users/ddenaultpilon/Downloads/e95d7575-5795-44ea-9a44-db6e32b334c8.png}
+    \caption{Décomposition de la force $\vec{F}$ : seule sa composante parallèle au déplacement $F_\parallel = F \cos\theta$ effectue un travail.}
+    \label{fig:travail_force}
+\end{figure}
+
+\begin{enumerate}
+    \item \textbf{Projection de la force :} $W = (F \cos\theta) \Delta x$. La quantité $F_\parallel = F \cos\theta$ représente la composante de la force parallèle au déplacement. Seule cette composante effectue un travail. La composante perpendiculaire ($F_\perp = F \sin\theta$) ne contribue aucunement au travail mécanique.
+    \item \textbf{Projection du déplacement :} $W = F (\Delta x \cos\theta)$. C'est le produit du module de la force par la projection de la distance parcourue dans la direction de cette force.
+\end{enumerate}
+
+\subsection*{Analyse des cas particuliers}
+
+L'angle $\theta$ détermine la nature et le signe du travail :
+
+\begin{itemize}
+    \item \textbf{Force colinéaire et de même sens ($\theta = 0^\circ$, $\cos(0^\circ) = 1$) :} 
+    Le travail est maximal et positif :
+    \[ W = F \Delta x > 0 \quad (\text{Travail moteur}) \]
+    
+    \item \textbf{Force perpendiculaire au déplacement ($\theta = 90^\circ$, $\cos(90^\circ) = 0$) :} 
+    La force n'aide ni ne s'oppose au mouvement :
+    \[ W = 0\ \mathrm{J} \]
+    \textit{Exemple :} La force normale de soutien subie par un bloc glissant sur une surface horizontale ou la force centripète dans un mouvement circulaire uniforme.
+    
+    \item \textbf{Force colinéaire et de sens opposé ($\theta = 180^\circ$, $\cos(180^\circ) = -1$) :} 
+    Le travail est maximal en valeur absolue mais négatif :
+    \[ W = -F \Delta x < 0 \quad (\text{Travail résistant}) \]
+    \textit{Exemple :} La force de frottement cinétique qui s'oppose systématiquement au glissement.
+\end{itemize}
+
+\begin{important}
+\textbf{Erreur classique à éviter :}
+
+La formule simplifiée :
+\[
+W = F \Delta x
+\]
+n'est utilisable \textbf{que} dans le cas particulier où la force est parfaitement colinéaire et de même sens que le déplacement ($\theta = 0^\circ$).
+
+Dans tous les autres cas, il convient d'utiliser la formule générale :
+\[
+\boxed{W = F \Delta x \cos\theta}
+\]
+\end{important}
+
+% ================================================================
+\section{Signe du travail : travail moteur, nul et résistant}
+
+Le signe du travail dépend de la valeur de l'angle $\theta$ formé entre le vecteur force $\vec{F}$ et le vecteur déplacement $\vec{s}$. D'un point de vue thermodynamique et mécanique, le signe du travail indique le **sens du transfert d'énergie** entre la force et le système étudié.
+
+\subsection{Travail positif ou moteur ($W > 0$)}
+
+Si l'angle $\theta$ est aigu :
+\[
+0^\circ \le \theta < 90^\circ \implies \cos\theta > 0 \implies \boxed{W > 0}
+\]
+
+La force favorise le mouvement. Elle transfère de l'énergie au système (généralement sous forme d'augmentation de l'énergie cinétique ou d'énergie potentielle).
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+    % Sol
+    \draw[thick, color=gray] (-0.5,0) -- (5.5,0);
+    
+    % Objet
+    \draw[fill=blue!10, draw=blue!80!black, thick] (1,0) rectangle (2.5,1);
+    \fill[blue!80!black] (1.75,0.5) circle (2pt) node[below left] {$P$};
+    
+    % Vecteur Déplacement
+    \draw[->, >=stealth, ultra thick, color=red!70!black] (1.75,0.5) -- (4.75,0.5) node[right] {$\vec{s}$};
+    
+    % Vecteur Force
+    \draw[->, >=stealth, ultra thick, color=green!50!black] (1.75,0.5) -- (3.75,1.75) node[above right] {$\vec{F}$};
+    
+    % Axe horizontal de référence (pointillé)
+    \draw[dashed, color=gray] (1.75,0.5) -- (3.75,0.5);
+    
+    % Arc d'angle theta
+    \draw[->, thick, color=orange!90!black] (2.55,0.5) arc (0:32:0.8);
+    \node[color=orange!90!black] at (2.8,0.75) {$\theta$};
+\end{tikzpicture}
+\end{center}
+
+\begin{idee}
+Une force qui possède une composante parallèle orientée dans le même sens que le déplacement effectue un **travail moteur** ($W > 0$).
+\end{idee}
+
+% ================================================================
+\subsection{Travail nul ($W = 0$)}
+
+Si la force est perpendiculaire au déplacement :
+\[
+\theta = 90^\circ \implies \cos 90^\circ = 0 \implies \boxed{W = 0\ \mathrm{J}}
+\]
+
+Une force orthogonale au déplacement modifie la direction de la vitesse (comme la force centripète dans un mouvement circulaire), mais ne modifie pas le module de la vitesse et ne transfère aucune énergie mécanique au système.
+
+\paragraph{Exemple classique :} Un bloc glissant horizontalement sur une surface.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+    % Sol
+    \draw[thick, color=gray] (-0.5,0) -- (6,0);
+    \fill[pattern=north east lines, pattern color=gray!50] (-0.5,-0.2) rectangle (6,0);
+    
+    % Objet
+    \draw[fill=gray!20, draw=black, thick] (2,0) rectangle (3.5,1.2);
+    \fill (2.75,0.6) circle (2pt);
+    
+    % Force Normale
+    \draw[->, >=stealth, ultra thick, color=blue!80!black] (2.75,0.6) -- (2.75,2.1) node[above] {$\vec{N}$};
+    
+    % Poids
+    \draw[->, >=stealth, ultra thick, color=red!70!black] (2.75,0.6) -- (2.75,-0.9) node[below] {$\vec{P}$};
+    
+    % Vitesse / Déplacement
+    \draw[->, >=stealth, ultra thick, color=orange!90!black] (3.5,0.6) -- (5.2,0.6) node[right] {$\vec{s}$};
+    
+    % Indication angle droit
+    \draw[gray, thick] (2.75,0.9) -- (3.0,0.9) -- (3.0,0.6);
+\end{tikzpicture}
+\end{center}
+
+Pour la force normale $\vec{N}$ et le poids $\vec{P}$ lors d'un déplacement strictement horizontal :
+\[
+\theta_N = 90^\circ \implies W_N = N \Delta x \cos 90^\circ = 0\ \mathrm{J}
+\]
+\[
+\theta_P = 90^\circ \implies W_P = P \Delta x \cos 90^\circ = 0\ \mathrm{J}
+\]
+
+% ================================================================
+\subsection{Travail négatif ou résistant ($W < 0$)}
+
+Si l'angle $\theta$ est obtus :
+\[
+90^\circ < \theta \le 180^\circ \implies \cos\theta < 0 \implies \boxed{W < 0}
+\]
+
+La force s'oppose au mouvement et soutire de l'énergie au système étudié. Cette énergie est souvent convertie en énergie thermique (dissipation par frottement) ou emmagasinée sous forme d'énergie potentielle.
+
+\paragraph{Exemple classique :} La force de frottement cinétique $\vec{f}_k$.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+    % Sol
+    \draw[thick, color=gray] (-0.5,0) -- (6.5,0);
+    \fill[pattern=north east lines, pattern color=gray!50] (-0.5,-0.2) rectangle (6.5,0);
+    
+    % Objet
+    \draw[fill=red!10, draw=red!80!black, thick] (2,0) rectangle (3.5,1);
+    \fill[black] (2.75,0.5) circle (2pt);
+    
+    % Vecteur Déplacement
+    \draw[->, >=stealth, ultra thick, color=blue!80!black] (2.75,0.5) -- (5.5,0.5) node[right] {$\vec{s}$};
+    
+    % Vecteur Frottement
+    \draw[->, >=stealth, ultra thick, color=red!80!black] (2.75,0.5) -- (0.5,0.5) node[left] {$\vec{f}_k$};
+    
+    % Arc d'angle 180 degres
+    \draw[->, thick, color=purple] (3.3,0.5) arc (0:180:0.55);
+    \node[color=purple, above] at (2.75,1.1) {$\theta = 180^\circ$};
+\end{tikzpicture}
+\end{center}
+
+Dans le cas d'un frottement opposé au déplacement :
+\[
+\theta = 180^\circ \implies \cos 180^\circ = -1
+\]
+\[
+W_{f_k} = f_k \Delta x \cos 180^\circ \implies \boxed{W_{f_k} = -f_k \Delta x < 0}
+\]
+
+\begin{important}
+\textbf{Synthèse des transferts d'énergie :}
+\begin{itemize}
+    \item \textbf{$W > 0$ (Moteur) :} Le milieu extérieur \textbf{fournit} de l'énergie au système.
+    \item \textbf{$W = 0$ (Nul) :} Aucun transfert d'énergie mécanique n'a lieu.
+    \item \textbf{$W < 0$ (Résistant) :} Le système \textbf{cède} de l'énergie au milieu extérieur (par exemple sous forme de chaleur dissipée).
+\end{itemize}
+\end{important}
+% ================================================================
+\section{Aide-mémoire : le signe du travail}
+
+Le signe du travail mécanique $W$ dépend exclusivement de l'orientation de la force $\vec{F}$ par rapport au vecteur déplacement $\vec{s}$. 
+
+\[
+\boxed{
+\begin{array}{c|c|c|c|c}
+\text{Angle } \theta & \cos\theta & \text{Signe de } W & \text{Nature du travail} & \text{Effet sur la vitesse } v \\
+\hline
+\theta = 0^\circ & +1 & W = +F\Delta x > 0 & \text{Moteur (maximal)} & \text{Accélération maximale} \\
+0^\circ < \theta < 90^\circ & + & W > 0 & \text{Moteur} & \text{Augmente } (v \uparrow) \\
+\theta = 90^\circ & 0 & W = 0\ \mathrm{J} & \text{Nul} & \text{Inchangée } (v = \text{constante}) \\
+90^\circ < \theta < 180^\circ & - & W < 0 & \text{Résistant} & \text{Diminue } (v \downarrow) \\
+\theta = 180^\circ & -1 & W = -F\Delta x < 0 & \text{Résistant (maximal)} & \text{Décélération maximale}
+\end{array}
+}
+\]
+
+\begin{important}
+
+\textbf{Question réflexe à se poser :}
+
+\begin{center}
+\textit{La force aide-t-elle le mouvement, agit-elle perpendiculairement à celui-ci, ou s'y oppose-t-elle ?}
+\end{center}
+
+\[
+\boxed{
+\begin{array}{ccccc}
+\text{La force \textbf{favorise} le mouvement} & \longrightarrow & W > 0 & \longrightarrow & \text{Transfert d'énergie au système} \\
+\text{La force est \textbf{perpendiculaire}} & \longrightarrow & W = 0 & \longrightarrow & \text{Aucun transfert d'énergie} \\
+\text{La force \textbf{s'oppose} au mouvement} & \longrightarrow & W < 0 & \longrightarrow & \text{Extraction d'énergie du système}
+\end{array}
+}
+\]
+
+\end{important}
+
+% ================================================================
+\section{Diagramme de corps libre et travail net}
+
+Le diagramme de corps libre (DCL) est un outil fondamental pour l'analyse des problèmes de travail en mécanique. Il permet de répertorier de manière exhaustive toutes les forces extérieures appliquées à un système afin de déterminer la contribution énergétique de chacune.
+
+\begin{methode}
+\textbf{Procédure de résolution pour les problèmes de travail :}
+
+\begin{enumerate}
+    \item \textbf{Définir le système :} Identifier clairement l'objet ou le système d'objets étudié.
+    \item \textbf{Construire le DCL :} Tracer le diagramme de corps libre en représentant toutes les forces extérieures ($\vec{F}_1, \vec{F}_2, \vec{P}, \vec{N}, \vec{f}_k$, etc.) appliquées au centre de masse du système.
+    \item \textbf{Repérer le déplacement :} Tracer le vecteur déplacement $\vec{s}$ (ou la direction du mouvement) à proximité du DCL.
+    \item \textbf{Déterminer les angles :} Pour chaque force $\vec{F}_i$, mesurer l'angle $\theta_i$ qu'elle forme avec le vecteur déplacement $\vec{s}$.
+    \item \textbf{Calculer les travaux individuels :} Appliquer la formule $W_i = F_i s \cos\theta_i$ à chaque force.
+    \item \textbf{Calculer le travail net :} Sommer algébriquement les travaux individuels pour obtenir le travail total $W_{\text{net}}$.
+\end{enumerate}
+\end{methode}
+
+\subsection*{Exemple visuel : Bloc tiré avec frottement}
+
+Considérons un bloc de masse $m$ tracté sur une surface horizontale rugueuse par une force de tension $\vec{T}$ faisant un angle $\theta$ avec l'horizontale. Le bloc subit un déplacement rectiligne horizontal $\vec{s}$.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.3]
+    % Axes de coordonnées
+    \draw[->, dashed, color=gray] (-2,0) -- (4,0) node[right] {$x$};
+    \draw[->, dashed, color=gray] (0,-1.5) -- (0,2.5) node[above] {$y$};
+    
+    % Centre de masse / Origine
+    \fill[black] (0,0) circle (2.5pt) node[below left] {$O$};
+    
+    % Vecteur Déplacement (sous les axes)
+    \draw[->, >=stealth, ultra thick, color=blue!80!black] (0,-1) -- (3,-1) node[right] {$\vec{s}$};
+    
+    % Forces
+    % 1. Tension T (oblique)
+    \draw[->, >=stealth, ultra thick, color=green!50!black] (0,0) -- (3,1.5) node[above right] {$\vec{T}$};
+    % 2. Frottement f_k (oppose)
+    \draw[->, >=stealth, ultra thick, color=red!80!black] (0,0) -- (-1.8,0) node[above left] {$\vec{f}_k$};
+    % 3. Normal N (vers le haut)
+    \draw[->, >=stealth, ultra thick, color=cyan!80!black] (0,0) -- (0,1.8) node[right] {$\vec{N}$};
+    % 4. Poids P (vers le bas)
+    \draw[->, >=stealth, ultra thick, color=orange!90!black] (0,0) -- (0,-1.5) node[right] {$\vec{P}$};
+    
+    % Arcs et angles
+    \draw[->, thick, color=green!50!black] (0.8,0) arc (0:26.56:0.8);
+    \node[color=green!50!black] at (1.1,0.25) {$\theta_T = \theta$};
+    
+    \draw[->, thick, color=cyan!80!black] (0.5,0) arc (0:90:0.5);
+    \node[color=cyan!80!black] at (0.4,0.6) {\small $90^\circ$};
+    
+    \draw[->, thick, color=red!80!black] (0.6,0) arc (0:180:0.6);
+    \node[color=red!80!black] at (-0.3,0.8) {\small $180^\circ$};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{Calcul du travail net ($W_{\text{net}}$)}
+
+Le travail net (ou travail total) est la somme algébrique du travail effectué par l'ensemble des forces agissant sur le système :
+
+\[
+W_{\text{net}} = \sum W_i = W_T + W_N + W_P + W_{f_k}
+\]
+
+En appliquant la définition du produit scalaire avec les normes des vecteurs ($W = \vec{F} \cdot \vec{s} = \|\vec{F}\| \|\vec{s}\| \cos\theta$) à chaque force du diagramme :
+
+\begin{itemize}
+    \item \textbf{Travail de la tension $\vec{T}$ :} 
+    \[ W_T = \vec{T} \cdot \vec{s} = \|\vec{T}\| \|\vec{s}\| \cos\theta > 0 \quad (\text{Travail moteur}) \]
+    
+    \item \textbf{Travail de la force normale $\vec{N}$ :} 
+    \[ W_N = \vec{N} \cdot \vec{s} = \|\vec{N}\| \|\vec{s}\| \cos(90^\circ) = 0\ \mathrm{J} \]
+    
+    \item \textbf{Travail du poids $\vec{P}$ :} 
+    \[ W_P = \vec{P} \cdot \vec{s} = \|\vec{P}\| \|\vec{s}\| \cos(270^\circ) = 0\ \mathrm{J} \]
+    
+    \item \textbf{Travail de la force de frottement $\vec{f}_k$ :} 
+    \[ W_{f_k} = \vec{f}_k \cdot \vec{s} = \|\vec{f}_k\| \|\vec{s}\| \cos(180^\circ) = -\|\vec{f}_k\| \|\vec{s}\| < 0 \quad (\text{Travail résistant}) \]
+\end{itemize}
+
+On obtient donc l'expression du travail net :
+\[
+\boxed{W_{\text{net}} = \|\vec{T}\| \|\vec{s}\| \cos\theta - \|\vec{f}_k\| \|\vec{s}\|}
+\]
+
+\begin{important}
+\textbf{Lien avec la force résultante et l'énergie cinétique :}
+
+Le travail net $W_{\text{net}}$ est égal au travail de la force résultante $\vec{F}_{\text{net}} = \sum \vec{F}_i$ :
+\[
+W_{\text{net}} = \vec{F}_{\text{net}} \cdot \vec{s}
+\]
+
+D'après le \textbf{Théorème de l'énergie cinétique}, le travail net mesuré sur un système est directement égal à la variation de son énergie cinétique ($\Delta K$) :
+\[
+\boxed{W_{\text{net}} = \Delta K = \frac{1}{2} m v_f^2 - \frac{1}{2} m v_i^2}
+\]
+\begin{itemize}
+    \item Si $W_{\text{net}} > 0$, l'objet accélère ($v_f > v_i$).
+    \item Si $W_{\text{net}} = 0$, la vitesse de l'objet reste constante ($v_f = v_i$).
+    \item Si $W_{\text{net}} < 0$, l'objet ralentit ($v_f < v_i$).
+\end{itemize}
+\end{important}
+
+% ================================================================
+\subsection{Exemple 1 : boîte tirée horizontalement}
+
+Une boîte de masse $m = \SI{10}{kg}$ est tirée horizontalement sur un sol parfaitement lisse par une force constante $F = \SI{50}{N}$. L'objet subit un déplacement rectiligne horizontal $\Delta x = \SI{8}{m}$. On néglige les forces de frottement.
+
+Calculons le travail effectué par chacune des forces individuelles ainsi que le travail net accompli sur le système.
+
+\subsubsection*{Étape 1 : Diagramme de corps libre (DCL)}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+    % Sol
+    \draw[thick, color=gray] (0,0) -- (6,0);
+    \fill[pattern=north east lines, pattern color=gray!40] (0,-0.2) rectangle (6,0);
+    
+    % Boite
+    \draw[fill=blue!10, draw=blue!80!black, thick] (2,0) rectangle (4,1.5);
+    \fill[black] (3,0.75) circle (2pt) node[above left] {$G$};
+    
+    % Force d'entraînement
+    \draw[->, >=stealth, ultra thick, color=green!50!black] (3,0.75) -- (5.5,0.75) node[right] {$\vec{F}$ (\SI{50}{N})};
+    
+    % Force Normale
+    \draw[->, >=stealth, ultra thick, color=cyan!80!black] (3,0.75) -- (3,2.25) node[above] {$\vec{N}$};
+    
+    % Poids / Gravite
+    \draw[->, >=stealth, ultra thick, color=orange!90!black] (3,0.75) -- (3,-0.75) node[below] {$\vec{P}$};
+    
+    % Déplacement
+    \draw[->, >=stealth, ultra thick, color=red!70!black] (2,-0.5) -- (4,-0.5) node[midway, below] {$\Delta \vec{x} = \SI{8}{m}$};
+\end{tikzpicture}
+\end{center}
+
+\subsubsection*{Étape 2 : Travail de la force d'entraînement ($\vec{F}$)}
+
+La force $\vec{F}$ est colinéaire et de même sens que le déplacement $\Delta \vec{x}$ ($\theta = 0^\circ$) :
+\[
+W_F = F \Delta x \cos(0^\circ)
+\]
+\[
+W_F = (\SI{50}{N})(\SI{8}{m})(1)
+\]
+\[
+\boxed{W_F = \SI{400}{J}} \quad (\text{Travail moteur})
+\]
+
+\subsubsection*{Étape 3 : Travail de la pesanteur ($\vec{P}$)}
+
+Le poids $P = mg = (\SI{10}{kg})(\SI{9.81}{m/s^2}) = \SI{98.1}{N}$ s'exerce verticalement vers le bas, alors que le déplacement est horizontal ($\theta = 90^\circ$) :
+\[
+W_P = P \Delta x \cos(90^\circ) = (\SI{98.1}{N})(\SI{8}{m})(0)
+\]
+\[
+\boxed{W_P = \SI{0}{J}}
+\]
+
+\subsubsection*{Étape 4 : Travail de la force normale ($\vec{N}$)}
+
+La surface exerce une force de soutien perpendiculaire au déplacement ($\theta = 90^\circ$) :
+\[
+W_N = N \Delta x \cos(90^\circ)
+\]
+\[
+\boxed{W_N = \SI{0}{J}}
+\]
+
+\subsubsection*{Étape 5 : Bilan du travail net ($W_{\text{net}}$)}
+
+Le travail net est la somme algébrique des travaux de toutes les forces appliquées :
+\[
+W_{\text{net}} = W_F + W_P + W_N = \SI{400}{J} + \SI{0}{J} + \SI{0}{J}
+\]
+\[
+\boxed{W_{\text{net}} = \SI{400}{J}}
+\]
+
+\begin{important}
+\textbf{Interprétation physique :} 
+
+D'après le théorème de l'énergie cinétique ($\Delta K = W_{\text{net}}$), si la boîte était initialement au repos ($v_i = \SI{0}{m/s}$ et $K_i = \SI{0}{J}$), ce travail net de $\SI{400}{J}$ est intégralement converti en énergie cinétique ($K = \frac{1}{2}mv_f^2$). On peut déterminer la vitesse finale de la boîte après ce déplacement de $\SI{8}{m}$ :
+\[
+\frac{1}{2} m v_f^2 = W_{\text{net}} \implies v_f = \sqrt{\frac{2 W_{\text{net}}}{m}} = \sqrt{\frac{2(\SI{400}{J})}{\SI{10}{kg}}} \approx \SI{8.94}{m/s}
+\]
+\end{important}
+
+% ================================================================
+\section{Distinction fondamentale : Force vs Travail}
+
+Il est essentiel de ne pas confondre une \textbf{force} et le \textbf{travail} produit par cette force. Il s'agit de deux grandeurs physiques fondamentales appartenant à des cadres conceptuels et dimensionnels distincts de la mécanique classique.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{p{3.5cm}p{5.5cm}p{5.5cm}}
+\hline
+\textbf{Caractéristique} & \textbf{Force ($\vec{F}$)} & \textbf{Travail ($W$)} \\
+\hline
+Nature physique & Cause d'une modification du mouvement (accélération $\vec{a}$) ou d'une déformation. & Mesure quantitative d'un transfert ou d'une transformation d'énergie. \\
+Type de grandeur & \textbf{Vectorielle} ($\|\vec{F}\|$, direction, sens, point d'application). & \textbf{Scalaire} (valeur algébrique : positive, négative ou nulle). \\
+Dépendance au mouvement & Peut s'exercer sur un corps au repos ($\vec{s} = \vec{0}$). & N'existe que si le point d'application subit un déplacement ($\vec{s} \neq \vec{0}$). \\
+Unité SI & Newton ($\mathrm{N}$) & Joule ($\mathrm{J} = \mathrm{N \cdot m}$) \\
+Équation aux dimensions & $[\mathrm{M \cdot L \cdot T^{-2}}]$ & $[\mathrm{M \cdot L^2 \cdot T^{-2}}]$ \\
+Principe physique associé & Deuxième loi de Newton ($\sum \vec{F} = m\vec{a}$). & Théorème de l'énergie cinétique ($\Delta K = W_{\text{net}}$). \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection*{Remarque sur l'unité $\mathrm{N \cdot m}$ : Travail vs Moment d'une force}
+
+Bien que l'unité du travail soit le joule ($\mathrm{J}$), il est dimensionnellement équivalent au newton-mètre ($\mathrm{N \cdot m}$), car $W = \vec{F} \cdot \vec{s} = \|\vec{F}\| \|\vec{s}\| \cos\theta$. 
+
+Il ne faut cependant pas confondre le **travail** avec le **moment d'une force** ($\vec{\tau}$), qui s'exprime également en newton-mètres ($\mathrm{N \cdot m}$) :
+\begin{itemize}
+    \item Le moment d'une force mesure une capacité à induire une rotation et résulte d'un **produit vectoriel** ($\vec{\tau} = \vec{r} \times \vec{F}$), produisant un vecteur. On conserve l'unité $\mathrm{N \cdot m}$.
+    \item Le travail mesure un transfert d'énergie et résulte d'un **produit scalaire** ($W = \vec{F} \cdot \vec{s}$), produisant un scalaire. On utilise exclusivement le **joule** ($\mathrm{J}$).
+\end{itemize}
+
+Une force peut s'exercer indéfiniment sur un système (par exemple, la tension du câble retenant un pont) sans accomplir aucun travail tant que le déplacement demeure nul ($\|\vec{s}\| = 0$).
+
+\begin{erreur}
+\textbf{Erreurs courantes de notation, de concept et d'unités :}
+
+\begin{itemize}
+    \item \textbf{Incorrect :} $W = \SI{50}{N}$ \quad \textit{(Confusion entre le symbole du travail $W$ et l'unité de force $\mathrm{N}$)}
+    \item \textbf{Incorrect :} $\vec{W} = \SI{400}{J}$ \quad \textit{(Attribution d'une flèche vectorielle au travail : le travail est un scalaire)}
+    \item \textbf{Incorrect :} $W = \|\vec{F}\| \|\vec{s}\|$ systématiquement \quad \textit{(Omission de l'opérateur de produit scalaire $\cdot$ et du facteur $\cos\theta$)}
+    \item \textbf{Correct :} $F = \|\vec{F}\| = \SI{50}{N}$ et $W = \vec{F} \cdot \vec{s} = \|\vec{F}\| \|\vec{s}\| \cos\theta = \SI{400}{J}$
+\end{itemize}
+\end{erreur}
+% ================================================================
+\section{Travail d'une force constante inclinée}
+
+Dans de nombreuses situations physiques, la force appliquée sur un objet ne s'exerce pas de manière parfaitement parallèle à la trajectoire. Lorsqu'une force $\vec{F}$ est inclinée d'un angle $\theta$ par rapport au vecteur déplacement $\vec{s}$, seule la composante de cette force orientée le long de la ligne de déplacement contribue au travail mécanique.
+
+\subsection*{Décomposition vectorielle et composante efficace}
+
+Considérons une boîte subissant un déplacement rectiligne horizontal $\vec{s}$. La force appliquée $\vec{F}$ peut être décomposée en deux composantes orthogonales dans le repère cartésien lié au mouvement :
+
+\begin{itemize}
+    \item \textbf{La composante horizontale (parallèle au déplacement) :} $F_x = \|\vec{F}\| \cos\theta$
+    \item \textbf{La composante verticale (perpendiculaire au déplacement) :} $F_y = \|\vec{F}\| \sin\theta$
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+    % Sol et hachures
+    \draw[thick, color=gray] (-0.5,0) -- (6.5,0);
+    \fill[pattern=north east lines, pattern color=gray!30] (-0.5,-0.2) rectangle (6.5,0);
+
+    % Boite
+    \draw[fill=blue!10, draw=blue!80!black, thick] (1.5,0) rectangle (3.5,1.5);
+    \coordinate (Center) at (2.5,0.75);
+    \fill[black] (Center) circle (2pt) node[below left] {$G$};
+
+    % Composantes de la force en pointillés
+    \draw[dashed, color=gray, thick] (2.5,2.15) -- (4.37,2.15);
+    \draw[dashed, color=gray, thick] (4.37,0.75) -- (4.37,2.15);
+
+    % Composante F_x
+    \draw[->, >=stealth, thick, color=green!60!black] (Center) -- (4.37,0.75) 
+        node[midway, below] {$F_x = \|\vec{F}\|\cos\theta$};
+
+    % Composante F_y
+    \draw[->, >=stealth, thick, color=cyan!80!black] (Center) -- (2.5,2.15) 
+        node[midway, left] {$F_y = \|\vec{F}\|\sin\theta$};
+
+    % Vecteur Force F principal
+    \draw[->, >=stealth, ultra thick, color=green!40!black] (Center) -- (4.37,2.15) 
+        node[above right] {$\vec{F}$};
+
+    % Vecteur Déplacement s (sous le sol pour clarifier)
+    \draw[->, >=stealth, ultra thick, color=red!70!black] (1.5,-0.5) -- (5.0,-0.5) 
+        node[midway, below] {$\vec{s}$ (Déplacement)};
+
+    % Arc de l'angle theta
+    \draw[->, thick, color=orange!90!black] (3.3,0.75) arc (0:36.87:0.8);
+    \node[color=orange!90!black] at (3.6,1.0) {$\theta$};
+\end{tikzpicture}
+\end{center}
+
+En vertu de la distributivité du produit scalaire, le travail accompli par la force $\vec{F}$ s'écrit :
+
+\[
+W_F = \vec{F} \cdot \vec{s} = (\vec{F}_x + \vec{F}_y) \cdot \vec{s} = \vec{F}_x \cdot \vec{s} + \vec{F}_y \cdot \vec{s}
+\]
+
+Comme la composante verticale $\vec{F}_y$ est orthogonale au déplacement $\vec{s}$ ($\theta = 90^\circ$), son travail est nul ($\vec{F}_y \cdot \vec{s} = 0\ \mathrm{J}$). Seule la composante $F_x$ produit du travail :
+
+\[
+W_F = F_x \|\vec{s}\| = (\|\vec{F}\| \cos\theta) \|\vec{s}\|
+\]
+
+D'où la formule fondamentale du travail d'une force constante selon un angle :
+
+\[
+\boxed{W = \|\vec{F}\| \|\vec{s}\| \cos\theta}
+\]
+
+\subsection*{Exemple 2 : Tirage d'une caisse avec force inclinée}
+
+Une caisse de masse $m = \SI{20}{kg}$ est tirée sur une distance $\|\vec{s}\| = \SI{5}{m}$ le long d'un sol horizontal rugueux par un câble exerçant une tension constante $\|\vec{T}\| = \SI{100}{N}$ inclinée d'un angle $\theta = 30^\circ$ au-dessus de l'horizontale. La force de frottement cinétique vaut $\|\vec{f}_k\| = \SI{20}{N}$.
+
+\subsubsection*{1. Calcul du travail de chaque force}
+
+\begin{itemize}
+    \item \textbf{Travail de la tension $\vec{T}$ :}
+    \[
+    W_T = \vec{T} \cdot \vec{s} = \|\vec{T}\| \|\vec{s}\| \cos(30^\circ) = (\SI{100}{N})(\SI{5}{m})\left(\frac{\sqrt{3}}{2}\right) \approx \SI{433.01}{J}
+    \]
+
+    \item \textbf{Travail du frottement $\vec{f}_k$ ($\theta = 180^\circ$) :}
+    \[
+    W_{f_k} = \vec{f}_k \cdot \vec{s} = \|\vec{f}_k\| \|\vec{s}\| \cos(180^\circ) = (\SI{20}{N})(\SI{5}{m})(-1) = \SI{-100}{J}
+    \]
+
+    \item \textbf{Travail du poids $\vec{P}$ et de la normale $\vec{N}$ ($\theta = 90^\circ$) :}
+    \[
+    W_P = \SI{0}{J} \quad \text{et} \quad W_N = \SI{0}{J}
+    \]
+\end{itemize}
+
+\subsubsection*{2. Travail net et variation d'énergie cinétique}
+
+Le travail net $W_{\text{net}}$ accumulé par la caisse s'élève à :
+\[
+W_{\text{net}} = W_T + W_{f_k} + W_P + W_N = \SI{433.01}{J} - \SI{100}{J} + \SI{0}{J} + \SI{0}{J} = \SI{333.01}{J}
+\]
+
+D'après le théorème de l'énergie cinétique ($\Delta K = W_{\text{net}}$), si la caisse part du repos ($K_i = \SI{0}{J}$), son énergie cinétique finale vaut $K_f = \SI{333.01}{J}$. On en déduit sa vitesse finale $v_f$ :
+
+\[
+K_f = \frac{1}{2}m v_f^2 \implies v_f = \sqrt{\frac{2 K_f}{m}} = \sqrt{\frac{2(\SI{333.01}{J})}{\SI{20}{kg}}} \approx \SI{5.77}{m/s}
+\]
+
+% ================================================================
+\section{Décomposition vectorielle et travail}
+
+Lorsqu'une force constante $\vec{F}$ agit sur un objet avec un angle quelconque par rapport au mouvement, l'analyse vectorielle permet de comprendre précisément quelle fraction de cette force accomplit un transfert d'énergie.
+
+Dans un repère cartésien dont l'axe $x$ est aligné avec le vecteur déplacement $\vec{s}$, toute force $\vec{F}$ se décompose en deux composantes orthogonales :
+
+\begin{align*}
+F_x &= \|\vec{F}\| \cos\theta \quad \text{(composante parallèle à la trajectoire)} \\
+F_y &= \|\vec{F}\| \sin\theta \quad \text{(composante perpendiculaire à la trajectoire)}
+\end{align*}
+
+où $\theta$ représente l'angle orienté entre le vecteur force $\vec{F}$ et le vecteur déplacement $\vec{s}$.
+
+\subsection*{Démonstration par la propriété de distributivité}
+
+En exprimant la force sous forme vectorielle $\vec{F} = \vec{F}_x + \vec{F}_y$ et en appliquant la distributivité du produit scalaire par rapport à l'addition vectorielle :
+
+\[
+W = \vec{F} \cdot \vec{s} = (\vec{F}_x + \vec{F}_y) \cdot \vec{s} = \vec{F}_x \cdot \vec{s} + \vec{F}_y \cdot \vec{s}
+\]
+
+En évaluant séparément les deux termes :
+\begin{itemize}
+    \item \textbf{Pour la composante parallèle $\vec{F}_x$ :} Les vecteurs $\vec{F}_x$ et $\vec{s}$ étant colinéaires ($\theta = 0^\circ$), le produit scalaire donne :
+    \[
+    \vec{F}_x \cdot \vec{s} = \|\vec{F}_x\| \|\vec{s}\| \cos(0^\circ) = (\|\vec{F}\| \cos\theta) \|\vec{s}\|
+    \]
+    
+    \item \textbf{Pour la composante orthogonale $\vec{F}_y$ :} Les vecteurs $\vec{F}_y$ et $\vec{s}$ étant perpendiculaires ($\theta = 90^\circ$), le produit scalaire s'annule :
+    \[
+    \vec{F}_y \cdot \vec{s} = \|\vec{F}_y\| \|\vec{s}\| \cos(90^\circ) = 0\ \mathrm{J}
+    \]
+\end{itemize}
+
+On retrouve ainsi la formule scalaire fondamentale du travail :
+\[
+\boxed{W = (\|\vec{F}\| \cos\theta) \|\vec{s}\|}
+\]
+
+\subsection*{Cas particulier : Déplacement le long d'un plan incliné}
+
+Attention à la généralisation abusive des axes $x$ et $y$ ! Sur un plan incliné d'un angle $\alpha$, le repère est souvent choisi parallèle au plan. 
+
+Par exemple, pour le **poids** $\vec{P}$ d'un objet descendant un plan incliné :
+\begin{itemize}
+    \item La composante parallèle au mouvement est $P_{\parallel} = \|\vec{P}\| \sin\alpha$.
+    \item La composante perpendiculaire au plan est $P_{\perp} = \|\vec{P}\| \cos\alpha$.
+\end{itemize}
+
+Seule la composante $P_{\parallel}$ effectue un travail :
+\[
+W_P = P_{\parallel} \|\vec{s}\| = (\|\vec{P}\| \sin\alpha) \|\vec{s}\|
+\]
+
+\begin{center}
+\setlength{\fboxsep}{10pt}
+\fbox{%
+\begin{minipage}{0.9\linewidth}
+\textbf{Principe fondamental :} \\
+Le travail d'une force dépend \textbf{exclusivement de la composante de cette force projetée dans la direction et le sens du déplacement}. La composante orthogonale au déplacement ne produit absoluement aucun travail ($W = 0\ \mathrm{J}$).
+\end{minipage}%
+}
+\end{center}
+% ================================================================
+\section{Erreurs communes dans les problèmes de travail}
+
+L'application des concepts de travail et d'énergie mécanique comporte plusieurs pièges récurrents lors de la résolution de problèmes. Une analyse rigoureuse des grandeurs vectorielles permet d'éviter ces erreurs classiques.
+
+\begin{erreur}
+\textbf{Erreur 1 : Confondre la distance parcourue ($d$) et le module du déplacement ($\|\vec{s}\|$).}
+
+Le travail mécanique est une fonction d'état de la trajectoire qui dépend directement du vecteur déplacement $\vec{s}$ reliant la position initiale à la position finale.
+\begin{itemize}
+    \item \textbf{Le piège :} Utiliser la distance totale parcourue sur un aller-retour ou un trajet courbe au lieu du déplacement rectiligne net.
+    \item \textbf{Exemple :} Si un objet effectue un aller-retour complet et revient à sa position initiale ($\|\vec{s}\| = 0$), le travail accompli par une force conservative comme le poids est exactement nul ($W_P = 0\ \mathrm{J}$), peu importe la distance totale parcourue.
+\end{itemize}
+\end{erreur}
+
+\begin{erreur}
+\textbf{Erreur 2 : Oublier l'angle $\theta$ ou mal l'identifier.}
+
+Lorsque la force $\vec{F}$ n'est pas strictly colinéaire au déplacement $\vec{s}$ :
+\[
+W \neq \|\vec{F}\| \|\vec{s}\|
+\]
+Il faut impérativement projeter la force sur l'axe du mouvement :
+\[
+W = \vec{F} \cdot \vec{s} = \|\vec{F}\| \|\vec{s}\| \cos\theta
+\]
+\begin{itemize}
+    \item \textbf{Le piège :} Utiliser l'angle d'inclinaison de la pente ou l'angle du repère par rapport à l'horizontale au lieu de l'angle $\theta$ \textbf{entre le vecteur force $\vec{F}$ et le vecteur déplacement $\vec{s}$}.
+\end{itemize}
+\end{erreur}
+
+\begin{danger}
+\textbf{Le signe de $\cos\theta$ et le sens du transfert d'énergie :}
+
+Le signe algébrique du produit scalaire est fondamental pour interpréter le sens physique du transfert d'énergie :
+\begin{itemize}
+    \item Si $0^\circ \le \theta < 90^\circ \implies \cos\theta > 0 \implies W > 0$ (\textbf{Travail moteur} : le système gagne de l'énergie cinétique).
+    \item Si $90^\circ < \theta \le 180^\circ \implies \cos\theta < 0 \implies W < 0$ (\textbf{Travail résistant} : le système perd de l'énergie, ex. : frottement $\vec{f}_k$).
+\end{itemize}
+Oublier le signe négatif transforme à tort une force dissipative qui freine le système en une force qui l'accélère. C'est l'une des erreurs les plus lourdement sanctionnées lors des évaluations.
+\end{danger}
+
+\begin{erreur}
+\textbf{Erreur 3 : Supposer que toute force appliquée produit systématiquement un travail.}
+
+L'existence d'une force intense n'implique pas nécessairement l'accomplissement d'un travail. Le travail est nul ($W = 0\ \mathrm{J}$) dans deux cas distincts :
+\begin{enumerate}
+    \item \textbf{Déplacement nul ($\|\vec{s}\| = 0$) :} Pousser contre un mur immobile demande un effort musculaire, mais le travail mécanique transféré au mur est nul.
+    \item \textbf{Force orthogonale ($\theta = 90^\circ$) :} La force normale $\vec{N}$ exercée par une surface plate ou la force centripète d'un mouvement circulaire ne produisent aucun travail ($\cos(90^\circ) = 0$).
+\end{enumerate}
+\end{erreur}
+
+\begin{erreur}
+\textbf{Erreur 4 : Additionner les forces vectoriellement avant de déterminer leur travail sans distinction.}
+
+Même si le travail net peut s'écrire $W_{\text{net}} = \vec{F}_{\text{net}} \cdot \vec{s}$, combiner prématurément des forces qui s'exercent selon des angles différents conduit fréquemment à des erreurs de calcul.
+\begin{itemize}
+    \item \textbf{La méthode sûre :} Analyser et calculer le travail de chaque force \textbf{séparément} ($W_T, W_N, W_P, W_{f_k}$) avant d'effectuer la somme algébrique des travaux :
+    \[
+    W_{\text{net}} = \sum W_i = W_T + W_N + W_P + W_{f_k}
+    \]
+\end{itemize}
+\end{erreur}
+
+\begin{erreur}
+\textbf{Erreur 5 : Attribuer un signe négatif « en double » au travail des frottements.}
+
+Pour la force de frottement cinétique $\vec{f}_k$, l'angle par rapport au déplacement $\vec{s}$ est $\theta = 180^\circ$.
+\begin{itemize}
+    \item \textbf{L'erreur classique :} Écrire $W_{f_k} = -\|\vec{f}_k\| \|\vec{s}\| \cos(180^\circ) = +\|\vec{f}_k\| \|\vec{s}\|$.
+    \item \textbf{La règle :} Le signe négatif provient \textbf{exclusivement} de l'évaluation du cosinus : 
+    \[
+    W_{f_k} = \|\vec{f}_k\| \|\vec{s}\| \cos(180^\circ) = \|\vec{f}_k\| \|\vec{s}\| (-1) = -\|\vec{f}_k\| \|\vec{s}\|
+    \]
+\end{itemize}
+\end{erreur}
+
+% ================================================================
+% 4.2
+% ================================================================
+
+\section{Travail d'une force constante et variable}
+
+Jusqu'à présent, notre étude s'est appuyée sur une hypothèse simplificatrice : la grandeur de la force appliquée restait parfaitement constante tout au long du déplacement. 
+
+Cependant, dans la plupart des systèmes physiques réels, les forces évoluent au cours du mouvement. L'exemple le plus intuitif est celui d'un \textbf{ressort} : plus on l'étire, plus la résistance qu'il oppose augmente. La force requise n'est donc pas fixe, mais varie continuellement en fonction de la position $x$.
+
+Pour comprendre comment calculer le travail dans ces conditions, il convient d'abord d'observer la relation entre la formule vectorielle et sa représentation graphique.
+
+% ================================================================
+\subsection{L'interprétation graphique du travail}
+
+Lorsque l'on trace le graphique de l'intensité d'une force $F(x)$ en fonction de la position $x$, le travail apparaît directement sous une forme géométrique : \textbf{il correspond à l'aire délimitée sous la courbe} entre la position initiale $x_i$ et la position finale $x_f$.
+
+Sur le plan mathématique rigoureux, cette accumulation d'énergie s'exprime par l'intégrale définie :
+
+\[
+\boxed{W = \int_{x_i}^{x_f} F(x) \, \mathrm{d}x}
+\]
+
+De manière très visuelle, nous pouvons analyser cette propriété à travers deux scénarios : la force constante d'une part, et la force variable linéaire d'autre part.
+
+% ================================================================
+\subsection{Cas 1 : La force constante (L'aire rectangulaire)}
+
+Dans le cas d'une force constante $F(x) = F_0$, le graphique prend la forme d'une ligne horizontale d'amplitude $F_0$ sur l'intervalle du déplacement $[x_i, x_f]$.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=10cm,
+    height=5.5cm,
+    xlabel={Position $x$ (m)},
+    ylabel={Force $F$ (N)},
+    xmin=0, xmax=6,
+    ymin=0, ymax=50,
+    axis lines=left,
+    grid=major,
+    xtick={1,5},
+    xticklabels={$x_i$,$x_f$},
+    ytick={40},
+    yticklabels={$F_0$}
+]
+
+% 1. Remplissage de l'aire sous la courbe entre x_i=1 et x_f=5
+\addplot[fill=blue!20, draw=none, opacity=0.7] 
+    coordinates {(1,0) (1,40) (5,40) (5,0)} \closedcycle;
+
+% 2. Lignes verticales projetées aux bornes x_i et x_f (via \addplot native)
+\addplot[dashed, color=blue!80!black, thick] coordinates {(1,0) (1,40)};
+\addplot[dashed, color=blue!80!black, thick] coordinates {(5,0) (5,40)};
+
+% 3. Tracé continu de la force constante F_0 sur tout l'axe
+\addplot[ultra thick, color=blue!80!black, domain=0:5.5] {40};
+
+% 4. Texte explicatif centré dans la zone d'intégration
+\node[color=blue!90!black, font=\bfseries] at (3,20) {Aire = $F_0 \Delta x = W$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+L'aire sous la droite est un simple rectangle dont la hauteur vaut $F_0$ et la largeur correspond au déplacement $\Delta x = x_f - x_i$. On retrouve ainsi naturellement la formule de base :
+
+\[
+W = F_0 \Delta x
+\]
+
+% ================================================================
+\subsection{Cas 2 : La force variable linéaire (L'aire triangulaire)}
+
+Considérons maintenant une force dont l'intensité augmente de manière directement proportionnelle à l'étirement depuis la position d'équilibre ($x_i = 0$), comme dans le cas d'un ressort obéissant à la loi de Hooke : $F(x) = kx$. Le graphique devient alors une droite de pente positive partant de l'origine.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=10cm,
+    height=5.5cm,
+    xlabel={Position $x$ (m)},
+    ylabel={Force $F$ (N)},
+    xmin=0, xmax=5,
+    ymin=0, ymax=50,
+    axis lines=left,
+    grid=major,
+    xtick={0,4},
+    xticklabels={$x_i = 0$,$x_f$},
+    ytick={40},
+    yticklabels={$F_{\text{max}}$}
+]
+
+% 1. Remplissage de l'aire sous la courbe (Triangle)
+\addplot[fill=red!20, draw=none, opacity=0.6] 
+    coordinates {(0,0) (4,40) (4,0)};
+
+% 2. Lignes projetées en pointillés (via \addplot native)
+\addplot[dashed, color=gray!80, thick] coordinates {(4,0) (4,40)};
+\addplot[dashed, color=gray!80, thick] coordinates {(0,40) (4,40)};
+
+% 3. Courbe linéaire F(x) = 10x
+\addplot[ultra thick, color=red!80!black, domain=0:4] {10*x};
+
+% 4. Texte explicatif dans l'aire
+\node[color=red!90!black, font=\bfseries] at (2.7,13) {Aire = $\frac{1}{2} F_{\text{max}} \Delta x = W$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+L'aire sous la courbe forme ici un triangle rectangle dont la base est le déplacement $\Delta x = x_f - x_i$ et la hauteur correspond à la force maximale atteinte $F_{\text{max}} = k \Delta x$. 
+
+En appliquant la formule de l'aire d'un triangle ($\text{Aire} = \frac{1}{2} \times \text{base} \times \text{hauteur}$), on obtient :
+
+\[
+W = \frac{1}{2} F_{\text{max}} \Delta x
+\]
+
+En injectant $F_{\text{max}} = k \Delta x$, on met en évidence le travail emmagasiné sous forme d'énergie potentielle élastique :
+
+\[
+\boxed{W = \frac{1}{2} k (\Delta x)^2}
+\]
+
+% ================================================================
+\subsection{Généralisation : Les graphiques complexes par morceaux}
+
+En pratique, une force peut alterner entre des phases constantes, croissantes ou décroissantes. La méthode reste identique : il suffit de découper le graphique en formes géométriques simples (rectangles, triangles, trapèzes) et d'en faire la somme algébrique.
+
+\begin{center}
+\setlength{\fboxsep}{10pt}
+\fbox{%
+\begin{minipage}{0.9\linewidth}
+\textbf{Règle d'or pour les examens :}
+\begin{itemize}[label=$\bullet$]
+    \item \textbf{Toute aire située AU-DESSUS de l'axe $x$} ($F > 0$) représente un \textbf{travail moteur positif} ($W > 0$). Le système reçoit de l'énergie.
+    \item \textbf{Toute aire située EN DESSOUS de l'axe $x$} ($F < 0$) représente un \textbf{travail résistant négatif} ($W < 0$). Le système perd de l'énergie.
+\end{itemize}
+\end{minipage}%
+}
+\end{center}
+
+% ================================================================
+\subsection*{Exemple d'application concrète}
+
+Un bloc est attaché à un ressort de constante de raideur $k = \SI{150}{N/m}$. On étire progressivement ce ressort sur une distance $x = \SI{0.20}{m}$.
+
+\begin{enumerate}
+    \item \textbf{Force maximale atteinte :}
+    \[
+    F_{\text{max}} = k x = (\SI{150}{N/m})(\SI{0.20}{m}) = \SI{30}{N}
+    \]
+
+    \item \textbf{Travail nécessaire pour étirer le ressort :}
+    \[
+    W = \frac{1}{2} F_{\text{max}} x = \frac{1}{2} (\SI{30}{N})(\SI{0.20}{m}) = \SI{3.0}{J}
+    \]
+\end{enumerate}
+
+% ================================================================
+\subsection{Loi de Hooke}
+
+La loi de Hooke s'écrit en grandeur :
+
+\[
+\boxed{F = kx}
+\]
+
+Sous forme vectorielle, la force exercée par le ressort est :
+
+\[
+\boxed{\vec{F}_{\mathrm{ressort}} = -k\vec{x}}
+\]
+
+Le signe négatif indique que la force du ressort est orientée dans la direction opposée à la déformation.
+
+% --- Schéma TikZ : Ressort horizontal et déformation x ---
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % Support vertical (Mur)
+  \fill[pattern=north east lines] (-0.3,-0.7) rectangle (0,1.2);
+  \draw[thick] (0,-0.7) -- (0,1.2);
+
+  % Position d'équilibre (Ligne pointillée)
+  \draw[dashed, gray!80, thick] (3,-0.8) -- (3,1.3) node[above, black] {\small Position d'équilibre};
+
+  % Ressort
+  \draw[decoration={aspect=0.4, segment length=3mm, amplitude=3mm}, decorate, thick, blue!80!black] 
+    (0,0.3) -- (4.5,0.3);
+
+  % Masse
+  \draw[fill=blue!10, draw=blue!80!black, thick] (4.5,-0.2) rectangle (5.7,0.8);
+  \node at (5.1,0.3) {$m$};
+
+  % Flèche de déformation x
+  \draw[<->, >=stealth, thick, red!80!black] (3,-0.5) -- (5.1,-0.5) node[midway, below] {$\vec{x}$};
+
+  % Flèche de la force de rappel
+  \draw[->, >=stealth, ultra thick, red!80!black] (4.5,0.3) -- (2.8,0.3) node[above] {$\vec{F}_{\text{ressort}}$};
+\end{tikzpicture}
+\end{center}
+
+\textbf{Définition :} La constante $k$ est appelée \textbf{constante de rappel} ou \textbf{constante de raideur} du ressort. Son unité est le newton par mètre ($\mathrm{N/m}$).
+
+\vspace{0.3cm}
+
+\noindent\textbf{Attention :} La variable $x$ représente la \textbf{déformation par rapport à la position d'équilibre} du ressort (l'étirement ou la compression), et non la position absolue de l'objet. Bien identifier ce point de référence avant de calculer $F = kx$.
+
+% ================================================================
+\subsection{Interprétation de la constante $k$}
+
+Un grand $k$ signifie que le ressort est difficile à étirer (ressort raide). Un petit $k$ signifie que le ressort est plus facile à étirer (ressort souple).
+
+\[
+\boxed{k \text{ grand} \rightarrow \text{ressort raide}}
+\quad \text{et} \quad
+\boxed{k \text{ petit} \rightarrow \text{ressort souple}}
+\]
+
+% ================================================================
+\subsection{Graphique de Hooke}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=10cm,
+    height=6cm,
+    xlabel={Déformation $x$ (m)},
+    ylabel={Force $F$ (N)},
+    xmin=0, xmax=0.5,
+    ymin=0, ymax=55,
+    axis lines=left,
+    grid=major
+]
+
+\addplot[
+    ultra thick,
+    color=blue!80!black,
+    domain=0:0.5
+]{100*x};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+La pente du graphique s'exprime par :
+
+\[
+\text{pente} = \frac{\Delta F}{\Delta x}
+\]
+
+Selon la loi de Hooke $F = kx$, on en deduit :
+
+\[
+\boxed{k = \frac{\Delta F}{\Delta x}}
+\]
+
+La pente du graphique $F(x)$ correspond donc directement à la constante de rappel $k$.
+
+% ================================================================
+\section{Déterminer la force gravitationnelle avec un ressort}
+
+Un ressort peut être utilisé pour mesurer une force. Supposons qu'une masse soit suspendue à un ressort.
+
+% --- Inclusion de l'image locale et du diagramme des forces suspendues ---
+\begin{center}
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{C:/Users/ddenaultpilon/Downloads/hooksimage.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.95]
+      % Support horizontal (Plafond)
+      \fill[pattern=north east lines] (-1,3) rectangle (1,3.2);
+      \draw[thick] (-1,3) -- (1,3);
+
+      % Ressort vertical
+      \draw[decoration={aspect=0.3, segment length=2.5mm, amplitude=2.5mm}, decorate, thick, blue!80!black] 
+        (0,3) -- (0,1);
+
+      % Masse suspendue
+      \draw[fill=blue!10, draw=blue!80!black, thick] (-0.5,0.2) rectangle (0.5,1);
+      \node at (0,0.6) {$m$};
+
+      % Centre de masse
+      \fill (0,0.6) circle (2pt);
+
+      % Force de rappel (vers le haut)
+      \draw[->, >=stealth, ultra thick, blue!80!black] (0,0.6) -- (0,2.1) node[right] {$\vec{F}_{\text{ressort}}$};
+
+      % Poids (vers le bas)
+      \draw[->, >=stealth, ultra thick, red!80!black] (0,0.6) -- (0,-0.9) node[right] {$\vec{F}_g = m\vec{g}$};
+    \end{tikzpicture}
+  \end{minipage}
+\end{center}
+
+À l'équilibre ($\sum \vec{F} = \vec{0}$), les deux forces principales se compensent :
+
+\[
+F_{\mathrm{ressort}} = F_g
+\]
+
+Comme $F_{\mathrm{ressort}} = kx$ et $F_g = mg$, nous avons :
+
+\[
+kx = mg \implies \boxed{g = \frac{kx}{m}}
+\]
+
+Cette relation permet notamment d'estimer expérimentalement la valeur de l'accélération gravitationnelle $g$.
+
+% ================================================================
+\subsection*{Exemple : mesurer $g$}
+
+Un objet de masse $m = \mathrm{0{,}500\,kg}$ est suspendu à un ressort dont la constante vaut $k = \mathrm{98\,N/m}$. Le ressort s'allonge de $x = \mathrm{0{,}050\,m}$.
+
+À l'équilibre :
+
+\[
+g = \frac{kx}{m} = \frac{(98)(0{,}050)}{0{,}500}
+\]
+
+Ainsi :
+
+\[
+\boxed{g = \mathrm{9{,}8\,m/s^2}}
+\]
+% ================================================================
+
+% ================================================================
+\section{Travail effectué par un ressort et énergie élastique}
+
+Pour un ressort idéal respectant la loi de Hooke, le module de la force exercée varie de manière linéaire avec la déformation :
+
+\[
+F(x) = kx
+\]
+
+Puisque la force augmente à mesure que le ressort s'étire, le graphique $F(x)$ forme une droite passant par l'origine. 
+
+Le travail $W$ nécessaire pour étirer le ressort d'une position $x = 0$ jusqu'à une position $x$ finale correspond géométriquement à \textbf{l'aire sous la courbe} (l'aire d'un triangle de base $x$ et de hauteur $F = kx$) :
+
+% --- Graphique TikZ : Aire sous la courbe F(x) = kx ---
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=9.5cm,
+    height=5.5cm,
+    xlabel={Déformation $x$ (m)},
+    ylabel={Force $F$ (N)},
+    xmin=0, xmax=0.3,
+    ymin=0, ymax=65,
+    axis lines=left,
+    grid=major,
+    xtick={0,0.2},
+    xticklabels={$0$,$x$},
+    ytick={40},
+    yticklabels={$F = kx$}
+]
+
+% 1. Zone d'intégration (Triangle)
+\addplot[fill=blue!15, draw=none, opacity=0.8] 
+    coordinates {(0,0) (0.2,40) (0.2,0)};
+
+% 2. Projections en pointillés
+\addplot[dashed, color=gray!80, thick] coordinates {(0.2,0) (0.2,40)};
+\addplot[dashed, color=gray!80, thick] coordinates {(0,40) (0.2,40)};
+
+% 3. Courbe de la force F = kx
+\addplot[ultra thick, color=blue!80!black, domain=0:0.25] {200*x};
+
+% 4. Texte explicatif dans l'aire
+\node[color=blue!90!black, font=\bfseries] at (0.13,13) {Aire $= W$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+En calculant l'aire de ce triangle ($\text{Aire} = \frac{1}{2} \times \text{base} \times \text{hauteur}$) :
+
+\[
+W = \frac{1}{2} \cdot x \cdot (kx)
+\]
+
+Ce qui nous donne la formule du travail effectué :
+
+\[
+\boxed{W = \frac{1}{2} k x^2}
+\]
+
+\vspace{0.2cm}
+
+Ce travail est intégralement transféré au système et emmagasiné dans le ressort sous forme d'\textbf{énergie potentielle élastique} $E_e$ :
+
+\[
+\boxed{E_e = \frac{1}{2} k x^2}
+\]
+
+% ================================================================
+\subsection*{Exemple d'application : Calcul de l'énergie emmagasinée}
+
+\noindent\textbf{Énoncé :} Un ressort de constante de raideur $k = \mathrm{200\,N/m}$ est étiré d'une distance $x = \mathrm{0{,}20\,m}$. Quelle est l'énergie potentielle élastique emmagasinée dans le ressort ?
+
+\vspace{0.2cm}
+
+\noindent\textbf{Solution :}
+
+\begin{enumerate}
+    \item \textbf{Formule :} 
+    \[
+    E_e = \frac{1}{2} k x^2
+    \]
+    \item \textbf{Substitution des valeurs :}
+    \[
+    E_e = \frac{1}{2} \, (200) \, (0{,}20)^2
+    \]
+    \item \textbf{Calcul étape par étape :}
+    \[
+    E_e = 100 \times 0{,}040
+    \]
+    \item \textbf{Résultat final :}
+    \[
+    \boxed{E_e = \mathrm{4{,}0\,J}}
+    \]
+\end{enumerate}
+
+Le ressort emmagasine donc une énergie de $\mathrm{4{,}0\,\text{joules}}$, prête à être restituée sous forme d'énergie cinétique si la masse est relâchée.
+% ================================================================
+\section{Fiche de synthèse : Loi de Hooke et énergie}
+
+Voici le récapitulatif des équations fondamentales associées au comportement d'un ressort idéal :
+
+\vspace{0.3cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Grandeur physique} & \textbf{Formule} & \textbf{Unité (S.I.)} \\ \hline
+Force exercée (grandeur) & $F = kx$ & $\text{N}$ (Newton) \\ \hline
+Force de rappel (vectorielle) & $\vec{F}_{\text{ressort}} = -k\vec{x}$ & $\text{N}$ (Newton) \\ \hline
+Constante de raideur & $k = \dfrac{F}{x}$ & $\text{N/m}$ (Newton par mètre) \\ \hline
+Énergie potentielle élastique & $U_e = \dfrac{1}{2} k x^2$ & $\text{J}$ (Joule) \\ \hline
+Travail de la force de rappel & $W_{\text{ressort}} = -\dfrac{1}{2} k x^2$ & $\text{J}$ (Joule) \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{0.4cm}
+
+\subsection*{Comprendre la convention des signes ($W$ vs $U_e$)}
+
+La distinction de signe entre le travail du ressort et l'énergie potentielle stockée s'exprime ainsi :
+
+\begin{itemize}
+    \item \textbf{Le travail effectué par le ressort est négatif ($W_{\text{ressort}} = -\frac{1}{2}kx^2$) :} 
+    Lorsqu'on étire un ressort, sa force de rappel $\vec{F}_{\text{ressort}}$ s'oppose systématiquement au déplacement $\vec{x}$. La force et le déplacement étant de sens contraires, le travail fourni par le ressort est résistant.
+
+    \item \textbf{L'énergie potentielle élastique augmente ($\Delta U_e = +\frac{1}{2}kx^2$) :} 
+    Le travail fourni par la force extérieure est positif. Cette énergie investie est emmagasinée dans le système sous forme d'énergie potentielle $U_e$.
+\end{itemize}
+
+\[
+\boxed{\Delta U_e = - W_{\text{ressort}} = W_{\text{extérieur}}}
+\]
+
+\noindent\textbf{En résumé :} Étirer un ressort augmente son énergie potentielle ($U_e > 0$), tandis que la force de rappel du ressort effectue un travail négatif ($W_{\text{ressort}} < 0$).
+
+% ================================================================
+% 4.3 PUISSANCE
+% ================================================================
+
+\section{La puissance}
+
+Le travail nous indique \textbf{combien d'énergie} a été transférée.
+
+Mais il ne nous indique pas \textbf{à quelle vitesse} cette énergie
+a été transférée.
+
+C'est le rôle de la puissance.
+
+\begin{definition}
+
+La puissance mesure le taux de transfert d'énergie.
+
+Autrement dit, elle indique la quantité d'énergie transférée par unité
+de temps.
+
+\end{definition}
+
+La puissance moyenne est :
+
+\[
+\boxed{
+P=\frac{W}{\Delta t}
+}
+\]
+
+ou, de façon équivalente :
+
+\[
+\boxed{
+P=\frac{\Delta E}{\Delta t}
+}
+\]
+
+L'unité SI de la puissance est le watt :
+
+\[
+\boxed{
+1\mathrm W=1\mathrm{J/s}
+}
+\]
+
+% ================================================================
+\subsection{Interprétation physique}
+
+Une machine qui effectue
+
+\[
+\SI{1000}{J}
+\]
+
+de travail en
+
+\[
+\SI{10}{s}
+\]
+
+a une puissance moyenne :
+
+\[
+P=\frac{1000}{10}
+\]
+
+\[
+\boxed{P=\SI{100}{W}}.
+\]
+
+Une autre machine peut effectuer exactement le même travail mais
+beaucoup plus rapidement.
+
+Par exemple :
+
+\[
+W=\SI{1000}{J}
+\]
+
+en
+
+\[
+\SI{2}{s}.
+\]
+
+Alors :
+
+\[
+P=\frac{1000}{2}
+\]
+
+\[
+\boxed{P=\SI{500}{W}}.
+\]
+
+Les deux machines ont transféré la même énergie, mais la deuxième
+possède une puissance cinq fois plus grande.
+
+% ================================================================
+\section{La puissance}
+
+Le travail $W$ (ou la variation d'énergie $\Delta E$) nous indique \textbf{combien d'énergie} a été transférée au cours d'un processus. Cependant, il ne donne aucune information sur la \textbf{rapidité} avec laquelle ce transfert s'effectue.
+
+C'est précisément le rôle de la \textbf{puissance}.
+
+\vspace{0.2cm}
+
+\textbf{Définition :} La puissance est la mesure du \textbf{taux de transfert d'énergie}. Elle représente la quantité de travail accompli (ou d'énergie transférée) par unité de temps.
+
+\vspace{0.3cm}
+
+\subsection*{Expression mathématique}
+
+La \textbf{puissance moyenne} $P$ s'exprime par la relation :
+
+\[
+\boxed{P = \frac{W}{\Delta t}}
+\quad \text{ou de façon équivalente} \quad
+\boxed{P = \frac{\Delta E}{\Delta t}}
+\]
+
+où :
+\begin{itemize}
+    \item $P$ est la puissance en watts ($\mathrm{W}$) ;
+    \item $W$ (ou $\Delta E$) est le travail ou l'énergie transférée en joules ($\mathrm{J}$) ;
+    \item $\Delta t$ est la durée du transfert en secondes ($\mathrm{s}$).
+\end{itemize}
+
+\vspace{0.2cm}
+
+\noindent\textbf{Unité dans le Système International (S.I.) :} L'unité de puissance est le \textbf{watt} ($\mathrm{W}$), nommé en l'honneur de l'ingénieur écossais James Watt. Un watt correspond à un transfert d'énergie d'un joule par seconde :
+
+\[
+\boxed{1\,\mathrm{W} = 1\,\mathrm{J/s}}
+\]
+
+% ================================================================
+\subsection*{Perspective historique : James Watt et la révolution industrielle}
+
+L'histoire du concept de puissance est intimement liée au développement de la \textbf{révolution industrielle} au XVIII\textsuperscript{e} siècle.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.55\textwidth]{C:/Users/ddenaultpilon/Downloads/wattmachine.jpg}
+  \caption{\textit{Machine à vapeur de James Watt.}}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{L'amélioration de la machine à vapeur :} En 1769, l'inventeur écossais \textbf{James Watt} perfectionne la machine à vapeur de Thomas Newcomen en y ajoutant un condenseur séparé. Cette innovation réduit drastiquement la consommation de charbon tout en multipliant l'efficacité de la machine.
+    
+    \item \textbf{L'invention du cheval-vapeur (\textit{horsepower}) :} Pour convaincre ses clients (principalement des miniers) de remplacer leurs chevaux de trait par ses machines, Watt devait comparer leurs performances. Il estime la puissance d'un cheval de mine travaillant sur une journée et définit ainsi le \textbf{cheval-vapeur} ($\mathrm{hp}$), correspondant à la capacité de lever $33\,000\text{ lb}$ à $1\text{ ft/min}$ :
+    \[
+    \boxed{1\,\mathrm{hp} \approx 746\,\mathrm{W}}
+    \]
+
+    \item \textbf{Adoption internationale :} En 1882, un siècle après les travaux de Watt, l'Association britannique pour l'avancement des sciences donne son nom à l'unité de puissance. Le Système International (SI) l'adopte officiellement en 1948.
+\end{itemize}
+
+% ================================================================
+\subsection*{Relation entre puissance, force et vitesse}
+
+Dans le cas d'une force constante $\vec{F}$ s'appliquant sur un objet se déplaçant à une vitesse vectorielle $\vec{v}$, la puissance instantanée s'écrit sous forme de produit scalaire :
+
+\[
+\boxed{P = \vec{F} \cdot \vec{v} = F \, v \, \cos(\theta)}
+\]
+
+\noindent\textbf{Interprétation :} Pour maintenir une vitesse élevée tout en exerçant une force importante (par exemple une voiture grimpant une côte), le moteur doit développer une puissance mécanique considérable.
+
+% ================================================================
+\subsection*{Interprétation physique : Exemple comparatif}
+
+Considérons deux machines effectuant exactement le même travail ($W = \mathrm{1000\,J}$) mais à des durées différentes :
+
+\vspace{0.3cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Machine} & \textbf{Travail ($W$)} & \textbf{Temps ($\Delta t$)} & \textbf{Puissance ($P = W/\Delta t$)} \\ \hline
+\textbf{Machine A} & $\mathrm{1000\,J}$ & $\mathrm{10\,s}$ & $P = \frac{1000}{10} = \mathbf{100\,\mathrm{W}}$ \\ \hline
+\textbf{Machine B} & $\mathrm{1000\,J}$ & $\mathrm{2\,s}$ & $P = \frac{1000}{2} = \mathbf{500\,\mathrm{W}}$ \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{0.3cm}
+
+\noindent\textbf{Analyse :} La \textbf{Machine B est 5 fois plus puissante} que la Machine A car elle accomplit le même transfert d'énergie 5 fois plus rapidement.
+
+% ================================================================
+\subsection*{Ordres de grandeur usuels}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|r|}
+\hline
+\textbf{Système / Appareil} & \textbf{Puissance typique} \\ \hline
+Cœur humain au repos & $\approx 1{,}2\,\mathrm{W}$ \\ \hline
+Ampoule LED moderne & $9 - 15\,\mathrm{W}$ \\ \hline
+Athlète de haut niveau (effort continu) & $\approx 300 - 400\,\mathrm{W}$ \\ \hline
+Sèche-cheveux / Grille-pain & $1500 - 2000\,\mathrm{W}$ ($1{,}5 - 2\,\mathrm{kW}$) \\ \hline
+Voiture citadine (approx. $100\,\mathrm{hp}$) & $\approx 75\,\mathrm{kW}$ \\ \hline
+TGV (Train à Grande Vitesse) & $\approx 9\,000\,\mathrm{kW}$ ($9\,\mathrm{MW}$) \\ \hline
+\end{tabular}
+\end{center}
+
+% ================================================================
+\section{Puissance mécanique et vitesse}
+
+Dans de nombreuses situations physiques ou industrielles, on s'intéresse à la puissance développée par une force s'appliquant sur un objet déjà en mouvement (comme le moteur d'une automobile, un cycliste ou un monte-charge). Il est alors très utile de relier directement la puissance à la \textbf{vitesse de l'objet}.
+
+\subsection*{Démonstration mathématique}
+
+Considérons une force constante $\vec{F}$ qui déplace un objet sur une distance $\Delta x$ pendant un intervalle de temps $\Delta t$.
+
+\begin{enumerate}
+    \item Par définition, le travail $W$ accompli par cette force s'écrit :
+    \[
+    W = F \, \Delta x \, \cos\theta
+    \]
+    où $\theta$ représente l'angle entre le vecteur force $\vec{F}$ et le vecteur déplacement.
+
+    \item En substituant ce travail dans l'expression de la puissance moyenne $P = \frac{W}{\Delta t}$, nous obtenons :
+    \[
+    P = \frac{F \, \Delta x \, \cos\theta}{\Delta t} = F \, \left( \frac{\Delta x}{\Delta t} \right) \cos\theta
+    \]
+
+    \item En reconnaissant la définition de la vitesse moyenne $v = \frac{\Delta x}{\Delta t}$, la relation devient :
+    \[
+    \boxed{P = F v \cos\theta}
+    \]
+\end{enumerate}
+
+Sous forme vectorielle compacte, cette formule s'exprime par le produit scalaire :
+\[
+\boxed{P = \vec{F} \cdot \vec{v}}
+\]
+
+\vspace{0.2cm}
+
+\noindent\textbf{Cas particulier fondamental (force colinéaire au mouvement) :} \\
+Lorsque la force est appliquée parallèlement et dans le même sens que le déplacement ($\theta = 0^\circ$, donc $\cos 0^\circ = 1$), l'équation se simplifie remarquablement :
+
+\[
+\boxed{P = F v}
+\]
+
+\vspace{0.2cm}
+
+\noindent\textbf{Portée physique :} Cette relation montre une contrainte majeure pour les moteurs : pour maintenir une vitesse élevée $v$ tout en surmontant des forces de frottement ou de gravité importantes $F$, le système doit délivrer une puissance $P$ extrêmement grande.
+
+% ================================================================
+\section{Exemples d'application}
+
+\subsection*{Exemple 1 : Puissance requise par un véhicule à vitesse constante}
+
+\noindent\textbf{Énoncé :} Un moteur exerce une force de traction constante $F = \mathrm{500\,N}$ sur une voiture se déplaçant en ligne droite à une vitesse constante de $v = \mathrm{20\,m/s}$ (soit $72\,\mathrm{km/h}$). On suppose que la force du moteur est parallèle au mouvement. Quelle est la puissance développée par le moteur ?
+
+\vspace{0.2cm}
+
+\noindent\textbf{Solution détaillée :}
+
+\begin{enumerate}
+    \item \textbf{Identification des données :}
+    \[
+    F = \mathrm{500\,N}, \quad v = \mathrm{20\,m/s}, \quad \theta = 0^\circ
+    \]
+    
+    \item \textbf{Choix de la formule :}
+    La force étant parallèle au déplacement, nous utilisons la relation directe :
+    \[
+    P = F v
+    \]
+
+    \item \textbf{Calcul numérique :}
+    \[
+    P = (500) \times (20) = 10\,000\,\mathrm{W}
+    \]
+
+    \item \textbf{Conversion et résultat final :}
+    \[
+    \boxed{P = \mathrm{10\,000\,W = 10\,kW}}
+    \]
+\end{enumerate}
+
+\noindent\textbf{Interprétation :} Le moteur doit fournir continuellement $10\,000\text{ joules}$ chaque seconde pour vaincre la résistance de l'air et le roulement afin de maintenir cette vitesse.
+
+\vspace{0.4cm}
+
+\subsection*{Exemple 2 : Escalade d'une côte (Rôle de l'angle et de la gravité)}
+
+\noindent\textbf{Énoncé :} Un monte-charge soulève verticalement une masse à une vitesse constante de $v = \mathrm{2{,}0\,m/s}$. La force exercée par le câble est orientée vers le haut ($\theta = 0^\circ$) et équilibre exactement le poids de l'objet ($F = mg$). Si la puissance maximale du moteur est de $P = \mathrm{5{,}0\,kW}$, quelle est la masse maximale $m$ qu'il peut soulever ? (Utiliser $g = \mathrm{9{,}8\,m/s^2}$).
+
+\vspace{0.2cm}
+
+\noindent\textbf{Solution détaillée :}
+
+\begin{enumerate}
+    \item \textbf{Formulation générale :}
+    \[
+    P = F v = (m g) v
+    \]
+
+    \item \textbf{Isolement de la masse $m$ :}
+    \[
+    m = \frac{P}{g v}
+    \]
+
+    \item \textbf{Calcul numérique (avec $P = \mathrm{5000\,W}$) :}
+    \[
+    m = \frac{5000}{(9{,}8) \times (2{,}0)} = \frac{5000}{19{,}6}
+    \]
+
+    \item \textbf{Résultat :}
+    \[
+    \boxed{m \approx \mathrm{255\,kg}}
+    \]
+\end{enumerate}
+
+\noindent\textbf{Conclusion :} À cette vitesse de remontée, le moteur ne peut pas soulever une charge supérieure à $255\,\mathrm{kg}$ sans risquer de surchauffer ou d'inverser le mouvement.
+% ================================================================
+\section{Puissance et montée verticale}
+
+Un cas d'application fondamental en mécanique concerne le levage vertical d'une charge (comme un ascenseur, une grue, un monte-charge ou un athlète grimpant une corde).
+
+Lorsqu'une machine ou une personne soulève un objet à \textbf{vitesse constante} $v$, l'accélération est nulle ($\vec{a} = \vec{0}$). Selon la première loi de Newton, la force de traction verticale $\vec{F}_{\text{moteur}}$ doit donc équilibrer exactement la force gravitationnelle $\vec{F}_g$ (le poids de l'objet) :
+
+\[
+F_{\text{moteur}} = F_g = mg
+\]
+
+En combinant ce bilan de forces avec l'expression de la puissance mécanique $P = F v$, nous obtenons directement la puissance minimale requise pour effectuer le levage :
+
+\[
+\boxed{P = mgv}
+\]
+
+où :
+\begin{itemize}
+    \item $P$ est la puissance mécanique minimale développée en watts ($\mathrm{W}$) ;
+    \item $m$ est la masse totale suspendue en kilogrammes ($\mathrm{kg}$) ;
+    \item $g$ est l'accélération gravitationnelle ($\mathrm{m/s^2}$), généralement $9{,}8\,\mathrm{m/s^2}$ ;
+    \item $v$ est la vitesse constante de montée en mètres par seconde ($\mathrm{m/s}$).
+\end{itemize}
+
+% ================================================================
+\subsection*{Modélisation et diagramme des forces}
+
+Le schéma suivant illustre l'équilibre dynamique d'un système de levage montant à vitesse constante $\vec{v}$ :
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+  % Câble de suspension
+  \draw[ultra thick, gray!80!black] (0, 2.5) -- (0, 1.0);
+  
+  % Cabine de l'ascenseur / Masse
+  \draw[fill=blue!10, draw=blue!80!black, ultra thick, rounded corners=2pt] (-1.2, -1.0) rectangle (1.2, 1.0);
+  \node[font=\bfseries, color=blue!90!black] at (0, 0.2) {Masse $m$};
+  \node[font=\small, color=blue!80!black] at (0, -0.3) {($\vec{v} = \text{constante}$)};
+
+  % Centre de masse
+  \fill[black] (0, 0) circle (2.5pt);
+
+  % Flèche de la force de traction (Moteur)
+  \draw[->, >=stealth, ultra thick, green!50!black] (0, 0) -- (0, 2.2) 
+    node[right, font=\bfseries] {$\vec{F}_{\text{moteur}}$ (Traction)};
+
+  % Flèche du poids (Gravité)
+  \draw[->, >=stealth, ultra thick, red!80!black] (0, 0) -- (0, -2.0) 
+    node[right, font=\bfseries] {$\vec{F}_g = m\vec{g}$ (Poids)};
+
+  % Indication de la vitesse (Vecteur à côté)
+  \draw[->, >=stealth, thick, blue!80!black] (1.8, -0.5) -- (1.8, 0.8) 
+    node[midway, right, font=\bfseries] {$\vec{v}$};
+\end{tikzpicture}
+\end{center}
+
+% ================================================================
+\subsection*{Exemple pratique : Calcul de la puissance d'un ascenseur}
+
+\noindent\textbf{Énoncé :} Un ascenseur commercial transportant des passagers possède une masse totale $m = \mathrm{800\,kg}$. Le moteur le fait monter à une vitesse constante $v = \mathrm{2{,}0\,m/s}$. Quelle est la puissance mécanique minimale que le moteur doit fournir ?
+
+\vspace{0.2cm}
+
+\noindent\textbf{Solution détaillée :}
+
+\begin{enumerate}
+    \item \textbf{Données du problème :}
+    \[
+    m = \mathrm{800\,kg}, \quad v = \mathrm{2{,}0\,m/s}, \quad g = \mathrm{9{,}8\,m/s^2}
+    \]
+
+    \item \textbf{Application de la formule :}
+    \[
+    P = mgv
+    \]
+
+    \item \textbf{Calcul numérique étape par étape :}
+    \[
+    P = (800) \times (9{,}8) \times (2{,}0)
+    \]
+    \[
+    P = 7840 \times 2{,}0 = 15\,680\,\mathrm{W}
+    \]
+
+    \item \textbf{Résultat final avec unités adaptées :}
+    \[
+    \boxed{P = \mathrm{15\,680\,W} \approx \mathrm{15{,}7\,kW}}
+    \]
+\end{enumerate}
+
+\noindent\textbf{Analyse :} Le moteur doit délivrer au moins $15{,}7\,\text{kilowatts}$ (ce qui équivaut à environ $21\,\text{chevaux-vapeur}$) uniquement pour soulever la cabine. En pratique, la puissance réelle du moteur devra être supérieure pour surmonter les frottements et garantir l'accélération initiale.
+
+\vspace{0.4cm}
+
+% --- Remplacement de l'environnement \begin{saviezvous} ---
+\noindent\textbf{Le saviez-vous ? (Ordre de grandeur du corps humain)}
+
+\vspace{0.1cm}
+
+\noindent Un être humain au repos consomme une puissance métabolique moyenne d'environ $\mathrm{100\,W}$, soit l'équivalent de la consommation d'une ampoule incandescente classique ! Lors d'un effort physique très intense (comme un sprint ou une montée d'escaliers rapide), la puissance musculaire développée peut atteindre temporairement $\mathrm{1000\,W}$ ($\mathrm{1\,kW}$). Cela reste toutefois loin des $\mathrm{15{,}7\,kW}$ requis par le moteur de cet ascenseur.
+
+% ================================================================
+\section{Puissance instantanée}
+
+Dans de nombreux processus physiques, le transfert d'énergie ne s'effectue pas de manière constante dans le temps. La puissance moyenne $P_{\mathrm{moy}}$ ne donne qu'une vision globale sur un intervalle de temps fini $\Delta t$. 
+
+Pour connaître le taux de transfert d'énergie à un instant précis $t$, on fait tendre l'intervalle de temps vers zéro, introduisant ainsi le concept de \textbf{puissance instantanée}.
+
+\subsection*{Définition différentielle}
+
+La puissance instantanée $P$ est la dérivée temporelle de l'énergie transférée (ou du travail accompli) :
+
+\[
+\boxed{P = \lim_{\Delta t \to 0} \frac{\Delta E}{\Delta t} = \frac{\mathrm{d}E}{\mathrm{d}t} = \frac{\mathrm{d}W}{\mathrm{d}t}}
+\]
+
+où :
+\begin{itemize}
+    \item $P$ est la puissance instantanée en watts ($\mathrm{W}$) ;
+    \item $\mathrm{d}W$ est le travail élémentaire effectué pendant la durée infinitésimale $\mathrm{d}t$.
+\end{itemize}
+
+% ================================================================
+\subsection*{Formulation vectorielle générale en mécanique}
+
+En mécanique, un déplacement infinitésimale $\mathrm{d}\vec{r}$ accompli sous l'action d'une force $\vec{F}$ génère un travail élémentaire :
+
+\[
+\mathrm{d}W = \vec{F} \cdot \mathrm{d}\vec{r}
+\]
+
+En substituant cette expression dans la définition de la puissance instantanée, nous obtenons :
+
+\[
+P = \frac{\mathrm{d}W}{\mathrm{d}t} = \frac{\vec{F} \cdot \mathrm{d}\vec{r}}{\mathrm{d}t} = \vec{F} \cdot \left( \frac{\mathrm{d}\vec{r}}{\mathrm{d}t} \right)
+\]
+
+Puisque la vitesse instantanée est définie par la dérivée de la position $\vec{v} = \frac{\mathrm{d}\vec{r}}{\mathrm{d}t}$, on obtient la relation vectorielle fondamentale :
+
+\[
+\boxed{P = \vec{F} \cdot \vec{v}}
+\]
+
+En développant le produit scalaire, nous parvenons à la forme générale scalaire :
+
+\[
+\boxed{P = F v \cos\theta}
+\]
+
+où $\theta$ est l'angle entre le vecteur force $\vec{F}$ et le vecteur vitesse instantanée $\vec{v}$.
+
+% ================================================================
+\subsection*{Exemple d'application : Accélération d'un véhicule}
+
+\noindent\textbf{Énoncé :} Une voiture sportive subit une force de traction nette $F = \mathrm{4000\,N}$ dans la direction de son mouvement ($\theta = 0^\circ$). Lors de son accélération, sa vitesse passe par $v_1 = \mathrm{10\,m/s}$ puis atteint $v_2 = \mathrm{30\,m/s}$. Calculez la puissance instantanée développée par la force à chacun de ces deux instants.
+
+\vspace{0.2cm}
+
+\noindent\textbf{Solution détaillée :}
+
+\begin{enumerate}
+    \item \textbf{À l'instant $t_1$ ($v_1 = \mathrm{10\,m/s}$) :}
+    \[
+    P_1 = F v_1 \cos(0^\circ) = (4000) \times (10) \times 1 = 40\,000\,\mathrm{W}
+    \]
+    \[
+    \boxed{P_1 = \mathrm{40\,kW}}
+    \]
+
+    \item \textbf{À l'instant $t_2$ ($v_2 = \mathrm{30\,m/s}$) :}
+    \[
+    P_2 = F v_2 \cos(0^\circ) = (4000) \times (30) \times 1 = 120\,000\,\mathrm{W}
+    \]
+    \[
+    \boxed{P_2 = \mathrm{120\,kW}}
+    \]
+\end{enumerate}
+
+\noindent\textbf{Analyse physique :} Même si la force de traction reste constante, la puissance instantanée requise augmente de manière linéaire avec la vitesse. Pour accélérer à haute vitesse, le moteur doit fournir une puissance considérablement plus importante.
+
+% ================================================================
+\section{Le rendement énergétique}
+
+Dans le monde réel, aucun système physique (moteur, appareil électrique, organisme vivant) n'est parfait. Lorsqu'un système reçoit une certaine quantité d'énergie, il ne parvient jamais à la convertir intégralement en travail effectif. 
+
+Une fraction variable de cette énergie est inévitablement dégradée en formes d'énergie dites « non utiles » (principalement de la chaleur due aux frottements ou à l'effet Joule, des vibrations ou du bruit).
+
+\vspace{0.2cm}
+
+\noindent\textbf{Définition :} Le \textbf{rendement} (noté par la lettre grecque $\eta$, prononcée \textit{êta}) est le rapport entre la quantité d'énergie (ou de puissance) utile restituée par un système et la quantité d'énergie (ou de puissance) totale qui lui a été fournie à l'entrée.
+
+\vspace{0.3cm}
+
+\subsection*{Expressions mathématiques}
+
+En fonction de l'énergie :
+\[
+\boxed{\eta = \frac{E_{\mathrm{utile}}}{E_{\mathrm{fournie}}}}
+\]
+
+En fonction de la puissance :
+\[
+\boxed{\eta = \frac{P_{\mathrm{utile}}}{P_{\mathrm{fournie}}}}
+\]
+
+Pour exprimer le rendement sous forme de pourcentage :
+\[
+\boxed{\eta(\%) = \frac{E_{\mathrm{utile}}}{E_{\mathrm{fournie}}} \times 100\%}
+\]
+
+où :
+\begin{itemize}
+    \item $E_{\mathrm{utile}}$ (ou $P_{\mathrm{utile}}$) est la forme d'énergie recherchée pour accomplir la tâche désirée ($\mathrm{J}$ ou $\mathrm{W}$) ;
+    \item $E_{\mathrm{fournie}}$ (ou $P_{\mathrm{fournie}}$) est l'énergie totale consommée à l'entrée par le système ($\mathrm{J}$ ou $\mathrm{W}$).
+\end{itemize}
+
+\vspace{0.2cm}
+
+\noindent\textbf{Principe de conservation de l'énergie :} \\
+En vertu du premier principe de la thermodynamique, l'énergie fournie est la somme de l'énergie utile et de l'énergie perdue :
+\[
+E_{\mathrm{fournie}} = E_{\mathrm{utile}} + E_{\mathrm{perdue}}
+\]
+Comme l'énergie perdue est toujours strictement positive ($E_{\mathrm{perdue}} > 0$), le rendement d'un système réel est toujours inférieur à $1$ (soit $\eta < 100\%$).
+
+\vspace{0.3cm}
+
+% --- Encadré d'avertissement pédagogique ---
+\noindent\textbf{Avertissement :} \\
+Le rendement est une grandeur \textbf{sans unité} (adimensionnelle). Il s'exprime soit sous forme décimale (entre $0$ et $1$), soit en pourcentage. Par exemple, un rendement de $0{,}70$ est rigoureusement égal à $70\%$. Veillez à toujours respecter la forme demandée dans les consignes (décimale ou pourcentage).
+
+% ================================================================
+\subsection*{Exemple 1 : Bilan énergétique d'un moteur}
+
+\noindent\textbf{Énoncé :} Un moteur thermique consomme une énergie carburant de $E_{\mathrm{fournie}} = \mathrm{5000\,J}$. Après combustion, le travail mécanique restitué à l'arbre de transmission s'élève à $E_{\mathrm{utile}} = \mathrm{3500\,J}$. Calculez le rendement de ce moteur et déterminez la quantité d'énergie dissipée.
+
+\vspace{0.2cm}
+
+\noindent\textbf{Solution détaillée :}
+
+\begin{enumerate}
+    \item \textbf{Calcul du rendement :}
+    \[
+    \eta = \frac{E_{\mathrm{utile}}}{E_{\mathrm{fournie}}} = \frac{3500\,\mathrm{J}}{5000\,\mathrm{J}} = 0{,}70
+    \]
+    En pourcentage :
+    \[
+    \boxed{\eta = 70\%}
+    \]
+
+    \item \textbf{Calcul des pertes énergétiques :}
+    \[
+    E_{\mathrm{perdue}} = E_{\mathrm{fournie}} - E_{\mathrm{utile}} = 5000\,\mathrm{J} - 3500\,\mathrm{J} = \mathrm{1500\,J}
+    \]
+\end{enumerate}
+
+\noindent\textbf{Interprétation :} Ce moteur convertit efficacement $70\%$ de l'énergie chimique du carburant en travail mécanique utile. Les $30\%$ restants ($\mathrm{1500\,J}$) sont échappés dans l'environnement sous forme de chaleur thermique et d'ondes sonores.
+
+\vspace{0.4cm}
+
+% ================================================================
+\subsection*{Exemple 2 : Comparaison technologique d'éclairage}
+
+Pour bien comprendre l'importance du rendement, comparons deux technologies produisant le même flux lumineux utile ($P_{\mathrm{lumineuse}} = \mathrm{12\,W}$) :
+
+\vspace{0.3cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Technologie} & \textbf{Puissance fournie ($P_{\mathrm{fournie}}$)} & \textbf{Puissance utile ($P_{\mathrm{lumineuse}}$)} & \textbf{Rendement ($\eta$)} \\ \hline
+\textbf{Ampoule incandescente} & $\mathrm{60\,W}$ & $\mathrm{12\,W}$ & $\frac{12}{60} = \mathbf{20\%}$ \\ \hline
+\textbf{Ampoule LED} & $\mathrm{15\,W}$ & $\mathrm{12\,W}$ & $\frac{12}{15} = \mathbf{80\%}$ \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{0.3cm}
+
+\noindent\textbf{Analyse :} L'ampoule incandescente dissipe $80\%$ de son énergie sous forme de chaleur inutile. À l'inverse, l'ampoule LED a un rendement 4 fois supérieur, nécessitant nettement moins de puissance électrique pour obtenir le même éclairage.
+
+% ================================================================
+\section*{Aide-mémoire : Puissance et Énergie}
+
+Ce récapitulatif regroupe l'ensemble des formules fondamentales, définitions d'unités et pièges à éviter pour les calculs de puissance mécanique et d'énergie.
+
+% ================================================================
+\subsection*{1. Définitions générales de la puissance}
+
+La puissance représente le taux temporel de transfert d'énergie ou d'accomplissement d'un travail.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Formule} & \textbf{Contexte d'utilisation} \\ \hline
+$\boxed{P = \frac{W}{\Delta t}}$ & Puissance moyenne calculée à partir du travail $W$ ($\mathrm{J}$). \\ \hline
+$\boxed{P = \frac{\Delta E}{\Delta t}}$ & Puissance moyenne calculée à partir de la variation d'énergie $\Delta E$ ($\mathrm{J}$). \\ \hline
+$\boxed{P = \frac{\mathrm{d}E}{\mathrm{d}t}}$ & Puissance instantanée (dérivée de l'énergie par rapport au temps). \\ \hline
+$\boxed{E = P \Delta t}$ & Énergie totale consommée ou fournie à puissance constante $P$. \\ \hline
+\end{tabular}
+\end{center}
+
+% ================================================================
+\subsection*{2. Puissance mécanique et mouvement}
+
+Formules adaptées au déplacement d'un objet sous l'action d'une force $\vec{F}$ à une vitesse $\vec{v}$.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Formule} & \textbf{Conditions et hypothèses} \\ \hline
+$\boxed{P = F v \cos\theta}$ & \textbf{Forme générale :} $\theta$ est l'angle entre la force $\vec{F}$ et la vitesse $\vec{v}$. \\ \hline
+$\boxed{P = F v}$ & Force \textbf{parallèle et de même sens} au mouvement ($\theta = 0^\circ$). \\ \hline
+$\boxed{P = mgv}$ & \textbf{Levage vertical :} Montée d'une masse $m$ à vitesse constante $v$ ($\theta = 0^\circ$). \\ \hline
+\end{tabular}
+\end{center}
+
+% ================================================================
+\subsection*{3. Rendement énergétique}
+
+Mesure de l'efficacité de la conversion d'énergie par un système réel ($\eta \le 100\%$).
+
+\[
+\boxed{\eta = \frac{E_{\mathrm{utile}}}{E_{\mathrm{fournie}}}} 
+\qquad \text{ou} \qquad 
+\boxed{\eta(\%) = \frac{P_{\mathrm{utile}}}{P_{\mathrm{fournie}}} \times 100\%}
+\]
+
+% ================================================================
+\subsection*{4. Légende des variables et unités SI}
+
+\begin{itemize}
+    \item $P$ : Puissance, exprimée en \textbf{watts} ($\mathrm{W}$) ou kilowatts ($\mathrm{1\,kW = 1000\,W}$).
+    \item $W$ ou $E$ : Travail ou Énergie, exprimés en \textbf{joules} ($\mathrm{J}$).
+    \item $\Delta t$ : Intervalle de temps, exprimé en \textbf{secondes} ($\mathrm{s}$).
+    \item $F$ : Force appliquée, exprimée en \textbf{newtons} ($\mathrm{N}$).
+    \item $v$ : Vitesse instantanée ou moyenne, exprimée en \textbf{mètres par seconde} ($\mathrm{m/s}$).
+    \item $m$ : Masse de l'objet, exprimée en \textbf{kilogrammes} ($\mathrm{kg}$).
+    \item $g$ : Accélération gravitationnelle, $g \approx 9{,}8\,\mathrm{m/s^2}$ (sur Terre).
+\end{itemize}
+
+% ================================================================
+% --- Bloc de mise en garde pédagogique ---
+\vspace{0.3cm}
+
+\noindent\textbf{Attention : Différence capitale de notation !}
+
+\[
+\boxed{1\,\mathrm{W} = 1\,\mathrm{J/s}}
+\]
+
+\vspace{0.1cm}
+
+\noindent Prenez garde à ne pas confondre le symbole de la grandeur et celui de l'unité :
+\begin{itemize}
+    \item \textbf{La variable $W$ (en italique) :} désigne le \textbf{Travail} (ex: $W = 500\,\mathrm{J}$).
+    \item \textbf{L'unité $\mathrm{W}$ (en romain) :} désigne le \textbf{Watt}, l'unité de puissance (ex: $P = 500\,\mathrm{W}$).
+\end{itemize}
+
+\noindent\textit{Astuce :} Le contexte et la présence de chiffres devant la lettre vous permettent de distinguer immédiatement l'unité ($\mathrm{W}$) de la variable physique ($W$).
+\end{document}
