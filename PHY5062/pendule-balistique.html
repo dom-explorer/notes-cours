@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laboratoire virtuel — Le pendule balistique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Lato:wght@400;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+<style>
+  :root{
+    --bleu-nuit:#0B2036;
+    --bleu-fonce:#153A5B;
+    --bleu-accent:#2E6DA4;
+    --bleu-clair:#EAF2FA;
+    --fond:#F6F8FA;
+    --papier:#FFFFFF;
+    --texte:#1E2A36;
+    --texte-doux:#4B5B6B;
+    --ambre:#DE9A34;
+    --vert:#357A5B;
+    --rouge:#B8452F;
+    --trait:#D8E1E9;
+    --radius:5px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--fond);
+    color:var(--texte);
+    font-family:'Lato', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  h1,h2,h3,h4{
+    font-family:'Poppins', sans-serif;
+    color:var(--bleu-fonce);
+    margin:0 0 .5em 0;
+  }
+  header.top{
+    background:linear-gradient(155deg, var(--bleu-nuit), var(--bleu-fonce) 70%);
+    color:#EAF2FA;
+    padding:2.6rem 1.5rem 2.2rem;
+  }
+  header.top .contenu{max-width:920px;margin:0 auto;}
+  header.top .eyebrow{
+    color:var(--ambre);
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    margin-bottom:.35rem;
+  }
+  header.top h1{color:#FFFFFF;font-size:2rem;margin-bottom:.6rem;}
+  header.top p{color:#C6D6E4;max-width:640px;margin:0;}
+  main{max-width:920px;margin:0 auto;padding:0 1.5rem 4rem;}
+  section{margin-top:2.6rem;}
+  section > h2{
+    font-size:1.35rem;
+    border-bottom:2px solid var(--trait);
+    padding-bottom:.5rem;
+    margin-bottom:1.1rem;
+  }
+  section > h2 .num{color:var(--bleu-accent); margin-right:.4rem;}
+
+  .boite{
+    border-left:4px solid var(--bleu-accent);
+    background:var(--bleu-clair);
+    padding:1rem 1.2rem;
+    border-radius:0 var(--radius) var(--radius) 0;
+    margin:1rem 0;
+  }
+  .boite h3{font-size:1rem;color:var(--bleu-fonce);margin-bottom:.4rem;}
+  .boite.methode{border-color:var(--vert); background:#EAF4EE;}
+  .boite.methode h3{color:#265E45;}
+  .boite.attention{border-color:var(--ambre); background:#FCF2E3;}
+  .boite.attention h3{color:#8A5B18;}
+
+  ul.apparat{columns:2; gap:2rem; padding-left:1.1rem;}
+  ul.apparat li{margin-bottom:.3rem;}
+
+  .labo-grille{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:1.4rem;
+    align-items:start;
+  }
+  @media (max-width:760px){ .labo-grille{grid-template-columns:1fr;} }
+
+  .scene-cadre{
+    background:var(--papier);
+    border:1px solid var(--trait);
+    border-radius:var(--radius);
+    padding:.6rem;
+  }
+  canvas#scene{
+    display:block; width:100%; height:auto;
+    background:linear-gradient(180deg,#0B2036 0%,#12314F 78%, #1B4A6E 100%);
+    border-radius:3px;
+  }
+  .lecture-angle{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:.6rem; font-family:'Roboto Mono',monospace; font-size:.85rem; color:var(--texte-doux);
+  }
+  .lecture-angle b{color:var(--bleu-fonce); font-size:1.05rem;}
+
+  .panneau{
+    background:var(--papier);
+    border:1px solid var(--trait);
+    border-radius:var(--radius);
+    padding:1rem 1.1rem;
+  }
+  .panneau h3{font-size:.95rem;margin-bottom:.7rem;}
+  .champ{margin-bottom:.85rem;}
+  .champ label{display:block; font-size:.82rem; color:var(--texte-doux); margin-bottom:.3rem;}
+  .rangee-mesure{display:flex; gap:.5rem; align-items:center;}
+  .rangee-mesure output{
+    font-family:'Roboto Mono',monospace; font-weight:500;
+    background:#F0F4F8; border:1px solid var(--trait); border-radius:4px;
+    padding:.35rem .55rem; min-width:88px; text-align:center; font-size:.85rem;
+  }
+  .rangee-mesure button.mini{
+    font-size:.76rem; padding:.4rem .55rem; white-space:nowrap;
+  }
+  select, input[type=range]{width:100%;}
+  .spring-select{display:flex; gap:.4rem;}
+  .spring-select button{
+    flex:1; padding:.5rem .3rem; font-size:.82rem;
+    border:1px solid var(--trait); background:#fff; border-radius:4px; cursor:pointer;
+    font-family:'Lato',sans-serif;
+  }
+  .spring-select button.actif{
+    background:var(--bleu-accent); color:#fff; border-color:var(--bleu-accent);
+  }
+  button{
+    cursor:pointer; border:none; border-radius:var(--radius);
+    font-family:'Poppins',sans-serif; font-weight:600; font-size:.9rem;
+    padding:.65rem 1rem; transition:filter .15s ease;
+  }
+  button:hover{filter:brightness(1.07);}
+  button:disabled{opacity:.45; cursor:not-allowed; filter:none;}
+  button.primaire{background:var(--ambre); color:#3A2604; width:100%; margin-top:.4rem;}
+  button.secondaire{background:#fff; color:var(--bleu-fonce); border:1px solid var(--trait); width:100%; margin-top:.5rem;}
+  button.mini{background:#EDF2F6; color:var(--bleu-fonce); border:1px solid var(--trait);}
+  .avertissement{
+    color:var(--rouge); font-size:.82rem; margin-top:.5rem; min-height:1.1em;
+  }
+
+  .table-scroll{overflow-x:auto;}
+  table{width:100%; border-collapse:collapse; font-size:.88rem; min-width:640px;}
+  #graphVitesse, #graphEnergie{background:#fff; border-radius:3px;}
+  th,td{text-align:center; padding:.5rem .4rem; border-bottom:1px solid var(--trait);}
+  th{font-family:'Poppins',sans-serif; font-weight:600; color:var(--bleu-fonce); font-size:.78rem; text-transform:none;}
+  tbody tr:hover{background:#F7FAFC;}
+  td.vide{color:var(--texte-doux); font-style:italic;}
+
+  .stats{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem; margin-top:1.1rem;
+  }
+  @media (max-width:640px){.stats{grid-template-columns:repeat(2,1fr);}}
+  .stat{
+    background:var(--bleu-clair); border-radius:var(--radius); padding:.7rem .5rem; text-align:center;
+  }
+  .stat .valeur{font-family:'Roboto Mono',monospace; font-weight:500; font-size:1.05rem; color:var(--bleu-fonce);}
+  .stat .etiquette{font-size:.72rem; color:var(--texte-doux); margin-top:.15rem;}
+
+  .resultat-final{
+    margin-top:1.3rem; padding:1.1rem 1.3rem; border-radius:var(--radius);
+    background:var(--bleu-fonce); color:#EAF2FA; text-align:center;
+  }
+  .resultat-final .valeur{font-family:'Roboto Mono',monospace; font-size:1.6rem; color:var(--ambre);}
+  .resultat-final .etiquette{font-size:.85rem; color:#B9CBDC; margin-top:.3rem;}
+
+  .toggle-ligne{display:flex; align-items:center; gap:.5rem; margin-top:1rem; font-size:.85rem; color:var(--texte-doux);}
+  .comparaison{font-size:.85rem; color:var(--texte-doux); margin-top:.5rem; text-align:center;}
+
+  .formule-bloc{overflow-x:auto; padding:.3rem 0;}
+
+  footer{
+    text-align:center; color:var(--texte-doux); font-size:.82rem;
+    padding:2rem 1.5rem 3rem;
+  }
+
+  @media print{
+    header.top{background:none; color:#000;}
+    header.top h1, header.top p, header.top .eyebrow{color:#000;}
+    .panneau button, .spring-select, section#labo .labo-grille{display:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="contenu">
+    <div class="eyebrow">Laboratoire virtuel de physique</div>
+    <h1>Le pendule balistique</h1>
+    <p>Analyser une collision inélastique et déterminer la vitesse initiale d'un projectile à partir de la conservation de la quantité de mouvement et de l'énergie.</p>
+  </div>
+</header>
+
+<main>
+
+  <section id="theorie">
+    <h2><span class="num">1.</span>But et théorie</h2>
+
+    <div class="boite">
+      <h3>But</h3>
+      <p>Analyser une collision inélastique et déterminer la vitesse initiale d'un projectile à l'aide d'un pendule balistique.</p>
+    </div>
+
+    <h3>Appareillage</h3>
+    <ul class="apparat">
+      <li>Pendule balistique</li>
+      <li>Balance à trois fléaux</li>
+      <li>Règle métrique</li>
+      <li>Rapporteur d'angle</li>
+      <li>Fil à plomb</li>
+    </ul>
+
+    <h3>Théorie</h3>
+    <p>Un pendule balistique permet de démontrer une collision inélastique : la quantité de mouvement linéaire est conservée pendant le choc, mais l'énergie cinétique ne l'est pas. Une sphère métallique de masse $m$ est propulsée à l'horizontale vers un récepteur de masse $M$, suspendu comme un pendule simple ; la sphère se loge dans le récepteur, qui bascule alors vers l'arrière.</p>
+
+    <p>Comme la quantité de mouvement se conserve durant la collision :</p>
+    <div class="formule-bloc">$$mv = (M+m)V$$</div>
+    <p>où $m$ est la masse de la sphère, $M$ la masse du récepteur, $v$ la vitesse initiale de la sphère et $V$ la vitesse du récepteur (avec la sphère) immédiatement après la collision.</p>
+
+    <p>Après le choc, le récepteur s'élève d'une hauteur $h$. Cette fois, l'énergie mécanique se conserve :</p>
+    <div class="formule-bloc">$$\frac{1}{2}(M+m)V^2 = (M+m)gh$$</div>
+    <p>d'où :</p>
+    <div class="formule-bloc">$$V = \sqrt{2gh}$$</div>
+    <p>En substituant cette expression dans la première équation, on obtient la vitesse initiale de la sphère :</p>
+    <div class="formule-bloc">$$v = \frac{(M+m)\sqrt{2gh}}{m}$$</div>
+
+    <div class="boite methode">
+      <h3>Ce que tu mesures réellement</h3>
+      <p>Le pendule ne te donne pas $h$ directement : un cliquet retient le pendule à l'angle maximal $\theta$ atteint après le tir, lu sur un rapporteur fixé au pivot. La hauteur se retrouve par trigonométrie, avec $L$ la longueur du pendule (du pivot au centre de masse du récepteur) :</p>
+      <div class="formule-bloc">$$h = L(1-\cos\theta)$$</div>
+    </div>
+  </section>
+
+  <section id="labo">
+    <h2><span class="num">2.</span>Manipulation virtuelle</h2>
+    <p>Ajuste la masse de la sphère, la masse du récepteur, la longueur du pendule et la force du ressort, puis tire. Le cliquet capture l'angle maximal — répète l'essai au moins 3 à 5 fois, en variant les réglages si tu veux comparer leur effet.</p>
+
+    <div class="labo-grille">
+      <div class="scene-cadre">
+        <canvas id="scene" width="620" height="420"></canvas>
+        <div class="lecture-angle">
+          <span>Lecture du rapporteur (cliquet) :</span>
+          <b id="lectureAngle">— °</b>
+        </div>
+      </div>
+
+      <div class="panneau">
+        <h3>Réglages de l'appareil</h3>
+
+        <div class="champ">
+          <label>Masse de la sphère, m — <b id="valM">70,0</b> g</label>
+          <input type="range" id="sliderM" min="40" max="100" step="0.1" value="70">
+        </div>
+
+        <div class="champ">
+          <label>Masse du récepteur, M — <b id="valMasse">350,0</b> g</label>
+          <input type="range" id="sliderMasse" min="250" max="450" step="0.1" value="350">
+        </div>
+
+        <div class="champ">
+          <label>Longueur du pendule, L — <b id="valL">25,0</b> cm</label>
+          <input type="range" id="sliderL" min="15" max="35" step="0.1" value="25">
+        </div>
+
+        <div class="champ">
+          <label>Force du ressort (réglage du lanceur)</label>
+          <div class="spring-select" id="reglageRessort">
+            <button data-niveau="faible">Faible</button>
+            <button data-niveau="moyen" class="actif">Moyen</button>
+            <button data-niveau="fort">Fort</button>
+          </div>
+        </div>
+
+        <button class="primaire" id="btnTirer" disabled>Tirer !</button>
+        <button class="secondaire" id="btnReinitialiser">Réinitialiser l'essai</button>
+        <div class="avertissement" id="avertissement"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resultats">
+    <h2><span class="num">3.</span>Résultats des essais</h2>
+    <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Essai</th>
+          <th>θ mesuré (°)</th>
+          <th>h (cm)</th>
+          <th>V récepteur (m/s)</th>
+          <th>v sphère (m/s)</th>
+          <th>Ec avant (mJ)</th>
+          <th>Ec après (mJ)</th>
+          <th>Énergie perdue</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="corpsTable">
+        <tr><td colspan="9" class="vide">Aucun essai enregistré — tire une première fois ci-dessus.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="scene-cadre" style="margin-top:1.2rem;">
+      <h3 style="font-size:.9rem;margin-bottom:.5rem;color:var(--bleu-fonce);">Vitesse initiale par essai</h3>
+      <canvas id="graphVitesse" width="820" height="220" style="width:100%;height:auto;"></canvas>
+    </div>
+
+    <div class="scene-cadre" style="margin-top:1rem;">
+      <h3 style="font-size:.9rem;margin-bottom:.5rem;color:var(--bleu-fonce);">Énergie cinétique — avant et après la collision</h3>
+      <canvas id="graphEnergie" width="820" height="220" style="width:100%;height:auto;"></canvas>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="valeur" id="statN">0</div><div class="etiquette">Essais (n)</div></div>
+      <div class="stat"><div class="valeur" id="statMoyenne">—</div><div class="etiquette">v̄ moyen (m/s)</div></div>
+      <div class="stat"><div class="valeur" id="statEcartType">—</div><div class="etiquette">Écart-type s (m/s)</div></div>
+      <div class="stat"><div class="valeur" id="statSEM">—</div><div class="etiquette">Erreur-type σ<sub>v̄</sub> (m/s)</div></div>
+    </div>
+
+    <div class="resultat-final">
+      <div class="valeur" id="resultatFinal">v = — ± — m/s</div>
+      <div class="etiquette">Vitesse initiale de la sphère, incertitude combinée (voir section 4)</div>
+    </div>
+
+    <div class="toggle-ligne">
+      <input type="checkbox" id="toggleReel">
+      <label for="toggleReel">Afficher la vitesse réelle du lanceur (mode enseignant)</label>
+    </div>
+    <div class="comparaison" id="comparaisonReel"></div>
+  </section>
+
+  <section id="incertitudes">
+    <h2><span class="num">4.</span>Analyse des incertitudes</h2>
+    <p>Chaque instrument a une résolution qui limite la précision de la lecture (on prend, par convention, la moitié de la plus petite division) :</p>
+    <ul>
+      <li>Balance à trois fléaux : $\delta m = \delta M = 0{,}05$ g</li>
+      <li>Règle métrique : $\delta L = 0{,}05$ cm</li>
+      <li>Rapporteur (lecture au cliquet) : $\delta\theta = 0{,}25°$</li>
+    </ul>
+
+    <p>Ces incertitudes se propagent à travers les calculs. Pour $h = L(1-\cos\theta)$ :</p>
+    <div class="formule-bloc">$$\delta h = \sqrt{\left[(1-\cos\theta)\,\delta L\right]^2 + \left[L\sin\theta\,\delta\theta\right]^2}$$</div>
+
+    <p>Pour $V = \sqrt{2gh}$ :</p>
+    <div class="formule-bloc">$$\delta V = \frac{g}{V}\,\delta h$$</div>
+
+    <p>Et enfin pour $v = \dfrac{(M+m)V}{m}$, en combinant les incertitudes relatives en quadrature :</p>
+    <div class="formule-bloc">$$\delta v = v\sqrt{\left(\frac{\sqrt{\delta M^2+\delta m^2}}{M+m}\right)^2 + \left(\frac{\delta m}{m}\right)^2 + \left(\frac{\delta V}{V}\right)^2}$$</div>
+
+    <div class="boite attention">
+      <h3>Calcul appliqué au dernier essai</h3>
+      <p id="propagationTexte">Effectue un essai ci-dessus pour voir le calcul se remplir avec tes propres valeurs.</p>
+    </div>
+
+    <p>Compare $\delta v$ (incertitude instrumentale, calculée ci-dessus) à $\sigma_{\bar v}$ (erreur-type statistique sur la moyenne, section 3). Le résultat final retenu est le plus grand des deux — celui qui domine la précision de ta mesure.</p>
+  </section>
+
+</main>
+
+<footer>
+  Laboratoire virtuel — pendule balistique · à des fins pédagogiques
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  const g = 9.81;
+
+  const vitessesRessort = {
+    faible: 3.0 + Math.random()*0.4,
+    moyen:  5.0 + Math.random()*0.4,
+    fort:   7.2 + Math.random()*0.4
+  };
+  let niveauRessort = 'moyen';
+
+  // masse et longueur réglables directement par l'élève
+  const mesure = { m:70.0, M:350.0, L:25.0 };
+
+  // ---------- éléments ----------
+  const el = id => document.getElementById(id);
+  const sliderM = el('sliderM'), sliderMasse = el('sliderMasse'), sliderL = el('sliderL');
+  const valM = el('valM'), valMasse = el('valMasse'), valL = el('valL');
+  const btnTirer = el('btnTirer'), btnReset = el('btnReinitialiser'), avert = el('avertissement');
+  const corpsTable = el('corpsTable');
+  const lectureAngleEl = el('lectureAngle');
+  const canvas = el('scene'), ctx = canvas.getContext('2d');
+
+  function formaterFr(n){ return n.toFixed(1).replace('.',','); }
+
+  function verifierPret(){
+    btnTirer.disabled = enAnimation;
+  }
+
+  sliderM.addEventListener('input', ()=>{ mesure.m = +sliderM.value; valM.textContent = formaterFr(mesure.m); });
+  sliderMasse.addEventListener('input', ()=>{ mesure.M = +sliderMasse.value; valMasse.textContent = formaterFr(mesure.M); });
+  sliderL.addEventListener('input', ()=>{ mesure.L = +sliderL.value; valL.textContent = formaterFr(mesure.L); });
+
+  document.querySelectorAll('#reglageRessort button').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.querySelectorAll('#reglageRessort button').forEach(x=>x.classList.remove('actif'));
+      b.classList.add('actif');
+      niveauRessort = b.dataset.niveau;
+    });
+  });
+
+  btnReset.addEventListener('click', ()=>{
+    lectureAngleEl.textContent = '— °';
+    avert.textContent = '';
+    thetaCourant = 0;
+    dessiner(0, false);
+    verifierPret();
+  });
+
+  // ---------- essais ----------
+  let essais = [];
+  const RES = { dm:0.05, dM:0.05, dL:0.05, dtheta:0.25 }; // g, g, cm, degrés
+
+  function ajouterEssai(thetaDeg, vraiVUtilise, mmFire, mMFire, LmFire){
+    const thetaRad = thetaDeg*Math.PI/180;
+    const h = LmFire*(1-Math.cos(thetaRad));
+    const V = Math.sqrt(2*g*h);
+    const v = (mMFire+mmFire)*V/mmFire;
+    const ecAvant = 0.5*mmFire*v*v;               // J — énergie cinétique de la bille avant le choc
+    const ecApres = 0.5*(mMFire+mmFire)*V*V;      // J — énergie cinétique juste après le choc
+    const ecPerdue = ecAvant - ecApres;
+    const pctPerdu = 100*ecPerdue/ecAvant;
+    essais.push({thetaDeg, h, V, v, vraiVUtilise, mmFire, mMFire, LmFire, ecAvant, ecApres, ecPerdue, pctPerdu});
+    redessinerTable();
+    calculerPropagation(thetaRad, LmFire, mMFire, mmFire, h, V, v);
+    calculerStats();
+    dessinerGraphiques();
+  }
+
+  function redessinerTable(){
+    if(essais.length===0){
+      corpsTable.innerHTML = '<tr><td colspan="9" class="vide">Aucun essai enregistré — tire une première fois ci-dessus.</td></tr>';
+      return;
+    }
+    corpsTable.innerHTML = essais.map((e,i)=>`
+      <tr>
+        <td>${i+1}</td>
+        <td>${e.thetaDeg.toFixed(2)}</td>
+        <td>${(e.h*100).toFixed(2)}</td>
+        <td>${e.V.toFixed(3)}</td>
+        <td>${e.v.toFixed(3)}</td>
+        <td>${(e.ecAvant*1000).toFixed(1)}</td>
+        <td>${(e.ecApres*1000).toFixed(1)}</td>
+        <td>${e.pctPerdu.toFixed(1)} %</td>
+        <td><button class="mini" data-i="${i}" title="Retirer cet essai">✕</button></td>
+      </tr>`).join('');
+    corpsTable.querySelectorAll('button[data-i]').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        essais.splice(+b.dataset.i,1);
+        redessinerTable(); calculerStats(); dessinerGraphiques();
+      });
+    });
+  }
+
+  function calculerStats(){
+    const n = essais.length;
+    el('statN').textContent = n;
+    if(n===0){
+      el('statMoyenne').textContent='—'; el('statEcartType').textContent='—'; el('statSEM').textContent='—';
+      el('resultatFinal').textContent = 'v = — ± — m/s';
+      return;
+    }
+    const vs = essais.map(e=>e.v);
+    const moy = vs.reduce((a,b)=>a+b,0)/n;
+    el('statMoyenne').textContent = moy.toFixed(3);
+    let s = null, sem = null;
+    if(n>=2){
+      const somme = vs.reduce((a,b)=>a+(b-moy)**2,0);
+      s = Math.sqrt(somme/(n-1));
+      sem = s/Math.sqrt(n);
+      el('statEcartType').textContent = s.toFixed(3);
+      el('statSEM').textContent = sem.toFixed(3);
+    } else {
+      el('statEcartType').textContent='—'; el('statSEM').textContent='(min. 2 essais)';
+    }
+    const dernier = essais[essais.length-1];
+    const incertPropagee = dernierDeltaV;
+    const incertitudeFinale = Math.max(sem||0, incertPropagee||0);
+    el('resultatFinal').textContent = `v = ${moy.toFixed(2)} ± ${incertitudeFinale.toFixed(2)} m/s`;
+    afficherComparaison(moy);
+  }
+
+  let dernierDeltaV = null;
+  function calculerPropagation(thetaRad, Lm, mM, mm, h, V, v){
+    const dL = RES.dL/100, dtheta = RES.dtheta*Math.PI/180, dm = RES.dm/1000, dM = RES.dM/1000;
+    const dh = Math.sqrt(((1-Math.cos(thetaRad))*dL)**2 + (Lm*Math.sin(thetaRad)*dtheta)**2);
+    const dV = (g/V)*dh;
+    const dv = v*Math.sqrt( ((Math.sqrt(dM**2+dm**2))/(mM+mm))**2 + (dm/mm)**2 + (dV/V)**2 );
+    dernierDeltaV = dv;
+    el('propagationTexte').innerHTML =
+      `Avec θ = ${(thetaRad*180/Math.PI).toFixed(2)}°, L = ${(Lm*100).toFixed(2)} cm, M = ${(mM*1000).toFixed(1)} g, m = ${(mm*1000).toFixed(1)} g :<br>`+
+      `δh = ${(dh*100).toFixed(3)} cm &nbsp;→&nbsp; δV = ${dV.toFixed(3)} m/s &nbsp;→&nbsp; <b>δv = ${dv.toFixed(3)} m/s</b> (soit ${(100*dv/v).toFixed(1)} % de v).`;
+  }
+
+  function afficherComparaison(moy){
+    const c = el('comparaisonReel');
+    if(!el('toggleReel').checked || essais.length===0){ c.textContent=''; return; }
+    const vraisUtilises = essais.map(e=>e.vraiVUtilise);
+    const vraiMoy = vraisUtilises.reduce((a,b)=>a+b,0)/vraisUtilises.length;
+    const erreur = 100*Math.abs(moy-vraiMoy)/vraiMoy;
+    c.textContent = `Vitesse réelle moyenne du lanceur sur ces essais : ${vraiMoy.toFixed(3)} m/s — écart avec la valeur expérimentale : ${erreur.toFixed(1)} %.`;
+  }
+  el('toggleReel').addEventListener('change', ()=>calculerStats());
+
+  // ---------- graphiques ----------
+  const cvVitesse = el('graphVitesse'), ctxV = cvVitesse.getContext('2d');
+  const cvEnergie = el('graphEnergie'), ctxE = cvEnergie.getContext('2d');
+
+  function baseGraphique(c){
+    const ctx2 = c.getContext('2d');
+    ctx2.clearRect(0,0,c.width,c.height);
+    ctx2.fillStyle = '#8494A3';
+    ctx2.font = '13px Lato, sans-serif';
+    ctx2.textAlign = 'center';
+    if(essais.length===0){
+      ctx2.fillText("Aucune donnée pour l'instant — effectue un essai.", c.width/2, c.height/2);
+      return false;
+    }
+    return true;
+  }
+
+  function dessinerGraphiques(){
+    dessinerGraphVitesse();
+    dessinerGraphEnergie();
+  }
+
+  function dessinerGraphVitesse(){
+    if(!baseGraphique(cvVitesse)) return;
+    const marge = {g:50, d:20, h:20, b:34};
+    const w = cvVitesse.width, hgt = cvVitesse.height;
+    const largeurZone = w-marge.g-marge.d, hauteurZone = hgt-marge.h-marge.b;
+    const vs = essais.map(e=>e.v);
+    const vMax = Math.max(...vs)*1.15;
+    const moy = vs.reduce((a,b)=>a+b,0)/vs.length;
+
+    ctxV.strokeStyle = '#D8E1E9'; ctxV.lineWidth=1;
+    ctxV.beginPath(); ctxV.moveTo(marge.g, marge.h); ctxV.lineTo(marge.g, hgt-marge.b); ctxV.lineTo(w-marge.d, hgt-marge.b); ctxV.stroke();
+
+    ctxV.fillStyle = '#8494A3'; ctxV.font='11px Lato'; ctxV.textAlign='right';
+    for(let i=0;i<=4;i++){
+      const val = vMax*i/4;
+      const y = hgt-marge.b - hauteurZone*i/4;
+      ctxV.fillText(val.toFixed(1), marge.g-6, y+3);
+      ctxV.strokeStyle='#EEF2F5'; ctxV.beginPath(); ctxV.moveTo(marge.g,y); ctxV.lineTo(w-marge.d,y); ctxV.stroke();
+    }
+
+    const largeurBarre = Math.min(46, largeurZone/vs.length*0.55);
+    const pas = largeurZone/vs.length;
+    vs.forEach((v,i)=>{
+      const x = marge.g + pas*i + pas/2 - largeurBarre/2;
+      const hb = hauteurZone*(v/vMax);
+      const y = hgt-marge.b-hb;
+      ctxV.fillStyle = '#2E6DA4';
+      ctxV.fillRect(x,y,largeurBarre,hb);
+      ctxV.fillStyle = '#4B5B6B'; ctxV.font='10px Lato'; ctxV.textAlign='center';
+      ctxV.fillText('#'+(i+1), x+largeurBarre/2, hgt-marge.b+14);
+    });
+
+    const yMoy = hgt-marge.b - hauteurZone*(moy/vMax);
+    ctxV.strokeStyle = '#DE9A34'; ctxV.setLineDash([5,4]); ctxV.lineWidth=1.5;
+    ctxV.beginPath(); ctxV.moveTo(marge.g,yMoy); ctxV.lineTo(w-marge.d,yMoy); ctxV.stroke(); ctxV.setLineDash([]);
+    ctxV.fillStyle = '#DE9A34'; ctxV.textAlign='left'; ctxV.font='11px Lato';
+    ctxV.fillText('v̄ = '+moy.toFixed(2)+' m/s', marge.g+4, yMoy-5);
+  }
+
+  function dessinerGraphEnergie(){
+    if(!baseGraphique(cvEnergie)) return;
+    const marge = {g:56, d:20, h:20, b:34};
+    const w = cvEnergie.width, hgt = cvEnergie.height;
+    const largeurZone = w-marge.g-marge.d, hauteurZone = hgt-marge.h-marge.b;
+    const maxE = Math.max(...essais.map(e=>e.ecAvant*1000))*1.15;
+    const pas = largeurZone/essais.length;
+    const largeurGroupe = Math.min(60, pas*0.7);
+    const largeurBarre = largeurGroupe/2 - 2;
+
+    ctxE.strokeStyle = '#D8E1E9'; ctxE.lineWidth=1;
+    ctxE.beginPath(); ctxE.moveTo(marge.g, marge.h); ctxE.lineTo(marge.g, hgt-marge.b); ctxE.lineTo(w-marge.d, hgt-marge.b); ctxE.stroke();
+
+    ctxE.fillStyle = '#8494A3'; ctxE.font='11px Lato'; ctxE.textAlign='right';
+    for(let i=0;i<=4;i++){
+      const val = maxE*i/4;
+      const y = hgt-marge.b - hauteurZone*i/4;
+      ctxE.fillText(val.toFixed(0), marge.g-6, y+3);
+      ctxE.strokeStyle='#EEF2F5'; ctxE.beginPath(); ctxE.moveTo(marge.g,y); ctxE.lineTo(w-marge.d,y); ctxE.stroke();
+    }
+
+    essais.forEach((e,i)=>{
+      const xCentre = marge.g + pas*i + pas/2;
+      const hAvant = hauteurZone*(e.ecAvant*1000/maxE);
+      const hApres = hauteurZone*(e.ecApres*1000/maxE);
+      ctxE.fillStyle = '#2E6DA4';
+      ctxE.fillRect(xCentre-largeurGroupe/2, hgt-marge.b-hAvant, largeurBarre, hAvant);
+      ctxE.fillStyle = '#DE9A34';
+      ctxE.fillRect(xCentre+2, hgt-marge.b-hApres, largeurBarre, hApres);
+      ctxE.fillStyle = '#4B5B6B'; ctxE.font='10px Lato'; ctxE.textAlign='center';
+      ctxE.fillText('#'+(i+1), xCentre, hgt-marge.b+14);
+    });
+
+    ctxE.font='11px Lato'; ctxE.textAlign='left';
+    ctxE.fillStyle='#2E6DA4'; ctxE.fillRect(marge.g, 4, 10, 10); ctxE.fillStyle='#4B5B6B'; ctxE.fillText('Ec avant', marge.g+14, 13);
+    ctxE.fillStyle='#DE9A34'; ctxE.fillRect(marge.g+90, 4, 10, 10); ctxE.fillStyle='#4B5B6B'; ctxE.fillText('Ec après', marge.g+104, 13);
+  }
+
+  dessinerGraphiques();
+
+  // ---------- scène / animation ----------
+  let thetaCourant = 0;      // angle courant du pendule (rad), pour dessin
+  let thetaCliquet = 0;      // angle max retenu par le cliquet (rad)
+  let bille = null;          // position x de la bille durant le vol, ou null
+  let enAnimation = false;
+
+  const pivot = {x:430, y:70};
+  const Lpix = 230;
+
+  function dessiner(theta, billeVisible, xBille){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    // support
+    ctx.strokeStyle = '#4A6B87'; ctx.lineWidth = 6;
+    ctx.beginPath(); ctx.moveTo(pivot.x-90,20); ctx.lineTo(pivot.x+90,20); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(pivot.x,20); ctx.lineTo(pivot.x,pivot.y); ctx.stroke();
+
+    // rapporteur (arc gradué)
+    ctx.strokeStyle = 'rgba(234,242,250,0.35)'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(pivot.x, pivot.y, Lpix*0.55, Math.PI/2-1.3, Math.PI/2+0.35); ctx.stroke();
+    for(let d=0; d<=80; d+=10){
+      const a = Math.PI/2 - d*Math.PI/180;
+      const r1 = Lpix*0.5, r2 = Lpix*0.58;
+      const x1 = pivot.x + r1*Math.cos(a), y1 = pivot.y + r1*Math.sin(a);
+      const x2 = pivot.x + r2*Math.cos(a), y2 = pivot.y + r2*Math.sin(a);
+      ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+    }
+
+    // cliquet (angle max retenu), en rouge pointillé
+    if(thetaCliquet>0){
+      const a = Math.PI/2 - thetaCliquet;
+      ctx.save();
+      ctx.strokeStyle = '#D9503A'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(pivot.x,pivot.y);
+      ctx.lineTo(pivot.x + Lpix*0.62*Math.cos(a), pivot.y + Lpix*0.62*Math.sin(a));
+      ctx.stroke(); ctx.restore();
+    }
+
+    // tige + récepteur (angle theta depuis la verticale, vers la gauche)
+    const a = Math.PI/2 - theta;
+    const bx = pivot.x + Lpix*Math.cos(a);
+    const by = pivot.y + Lpix*Math.sin(a);
+    ctx.strokeStyle = '#C7D6E3'; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(pivot.x,pivot.y); ctx.lineTo(bx,by); ctx.stroke();
+
+    ctx.fillStyle = '#DE9A34';
+    ctx.beginPath(); ctx.roundRect ? ctx.roundRect(bx-22,by-16,44,32,6) : ctx.rect(bx-22,by-16,44,32);
+    ctx.fill();
+    ctx.strokeStyle = '#8A5B18'; ctx.lineWidth=1.5; ctx.stroke();
+
+    // lanceur (fixe, à gauche)
+    ctx.fillStyle = '#3A5069';
+    ctx.fillRect(70, by-14, 60, 28);
+    ctx.fillStyle = '#5B7998';
+    ctx.fillRect(120, by-8, 20, 16);
+
+    // support du lanceur
+    ctx.strokeStyle = '#4A6B87'; ctx.lineWidth=6;
+    ctx.beginPath(); ctx.moveTo(100,by+14); ctx.lineTo(100,by+90); ctx.stroke();
+
+    // bille en vol
+    if(billeVisible){
+      ctx.fillStyle = '#F0C674';
+      ctx.beginPath(); ctx.arc(xBille, by, 7, 0, Math.PI*2); ctx.fill();
+      ctx.strokeStyle='#8A5B18'; ctx.lineWidth=1; ctx.stroke();
+    }
+
+    // sol
+    ctx.strokeStyle='rgba(234,242,250,0.25)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(40,by+95); ctx.lineTo(canvas.width-40,by+95); ctx.stroke();
+  }
+  dessiner(0,false);
+
+  function easeOutCubic(t){ return 1-Math.pow(1-t,3); }
+  function easeInOutQuad(t){ return t<0.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2; }
+
+  btnTirer.addEventListener('click', ()=>{
+    if(enAnimation) return;
+    avert.textContent = '';
+    const vVrai = vitessesRessort[niveauRessort] * (0.97 + Math.random()*0.06);
+    const mM = mesure.M/1000, mm = mesure.m/1000, Lm = mesure.L/100;
+    const V = mm*vVrai/(mM+mm);
+    const argument = 1 - (V*V)/(2*g*Lm);
+    if(argument < -1){
+      avert.textContent = "La bille propulse le pendule au-delà de l'horizontale : réduis la force du ressort ou augmente L / M.";
+      return;
+    }
+    const thetaMaxExact = Math.acos(Math.max(-1,argument));
+    enAnimation = true; btnTirer.disabled = true;
+
+    const byRef = pivot.y; // référence non utilisée directement, dessiner() recalcule by
+    const xDepart = 140, xArrivee = pivot.x; // approx, sera recalculé via by dans dessiner
+    const dureeVol = 450, dureeMontee = 750, dureeAttente = 900, dureeDescente = 700;
+    let t0 = null;
+
+    function step(ts){
+      if(t0===null) t0 = ts;
+      const t = ts - t0;
+
+      if(t <= dureeVol){
+        const p = t/dureeVol;
+        const x = xDepart + (xArrivee-140-30)*p; // s'arrête juste avant le récepteur
+        dessiner(0, true, x);
+        requestAnimationFrame(step);
+      } else if(t <= dureeVol+dureeMontee){
+        const p = easeOutCubic((t-dureeVol)/dureeMontee);
+        thetaCourant = thetaMaxExact*p;
+        dessiner(thetaCourant, false);
+        requestAnimationFrame(step);
+      } else if(t <= dureeVol+dureeMontee+dureeAttente){
+        thetaCourant = thetaMaxExact;
+        thetaCliquet = thetaMaxExact;
+        const thetaDeg = thetaMaxExact*180/Math.PI;
+        const lu = Math.round((thetaDeg + (Math.random()-0.5)*0.5)/0.5)*0.5;
+        lectureAngleEl.textContent = lu.toFixed(1) + ' °';
+        dessiner(thetaCourant, false);
+        requestAnimationFrame(step);
+        if(!step.enregistre){
+          step.enregistre = true;
+          step.thetaLu = lu;
+        }
+      } else if(t <= dureeVol+dureeMontee+dureeAttente+dureeDescente){
+        const p = easeInOutQuad((t-dureeVol-dureeMontee-dureeAttente)/dureeDescente);
+        thetaCourant = thetaMaxExact*(1-p);
+        dessiner(thetaCourant, false);
+        requestAnimationFrame(step);
+      } else {
+        thetaCourant = 0; thetaCliquet = 0;
+        dessiner(0,false);
+        enAnimation = false;
+        ajouterEssai(step.thetaLu, vVrai, mm, mM, Lm);
+        verifierPret();
+      }
+    }
+    requestAnimationFrame(step);
+  });
+
+  verifierPret();
+})();
+</script>
+</body>
+</html>
