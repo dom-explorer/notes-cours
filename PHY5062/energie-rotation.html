@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laboratoire virtuel — L'énergie de rotation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Lato:wght@400;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+<style>
+  :root{
+    --bleu-nuit:#0B2036;
+    --bleu-fonce:#153A5B;
+    --bleu-accent:#2E6DA4;
+    --bleu-clair:#EAF2FA;
+    --fond:#F6F8FA;
+    --papier:#FFFFFF;
+    --texte:#1E2A36;
+    --texte-doux:#4B5B6B;
+    --ambre:#DE9A34;
+    --vert:#357A5B;
+    --rouge:#B8452F;
+    --trait:#D8E1E9;
+    --radius:5px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--fond);
+    color:var(--texte);
+    font-family:'Lato', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  h1,h2,h3,h4{
+    font-family:'Poppins', sans-serif;
+    color:var(--bleu-fonce);
+    margin:0 0 .5em 0;
+  }
+  header.top{
+    background:linear-gradient(155deg, var(--bleu-nuit), var(--bleu-fonce) 70%);
+    color:#EAF2FA;
+    padding:2.6rem 1.5rem 2.2rem;
+  }
+  header.top .contenu{max-width:920px;margin:0 auto;}
+  header.top .eyebrow{
+    color:var(--ambre);
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    margin-bottom:.35rem;
+  }
+  header.top h1{color:#FFFFFF;font-size:2rem;margin-bottom:.6rem;}
+  header.top p{color:#C6D6E4;max-width:640px;margin:0;}
+
+  main{max-width:920px;margin:0 auto;padding:0 1.5rem 4rem;}
+  section{margin-top:2.6rem;}
+  section > h2{
+    font-size:1.35rem;
+    border-bottom:2px solid var(--trait);
+    padding-bottom:.5rem;
+    margin-bottom:1.1rem;
+  }
+  section > h2 .num{color:var(--bleu-accent); margin-right:.4rem;}
+
+  .boite{
+    border-left:4px solid var(--bleu-accent);
+    background:var(--bleu-clair);
+    padding:1rem 1.2rem;
+    border-radius:0 var(--radius) var(--radius) 0;
+    margin:1rem 0;
+  }
+  .boite h3{font-size:1rem;color:var(--bleu-fonce);margin-bottom:.4rem;}
+  .boite.methode{border-color:var(--vert); background:#EAF4EE;}
+  .boite.methode h3{color:#265E45;}
+  .boite.attention{border-color:var(--ambre); background:#FCF2E3;}
+  .boite.attention h3{color:#8A5B18;}
+
+  ul.apparat{columns:2; gap:2rem; padding-left:1.1rem;}
+  ul.apparat li{margin-bottom:.3rem;}
+
+  .labo-grille{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:1.4rem;
+    align-items:start;
+  }
+  @media (max-width:760px){ .labo-grille{grid-template-columns:1fr;} }
+
+  .scene-cadre{
+    background:var(--papier);
+    border:1px solid var(--trait);
+    border-radius:var(--radius);
+    padding:.6rem;
+  }
+  canvas#scene{
+    display:block; width:100%; height:auto;
+    background:linear-gradient(180deg,#0B2036 0%,#12314F 78%, #1B4A6E 100%);
+    border-radius:3px;
+  }
+  .lecture-angle{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:.6rem; font-family:'Roboto Mono',monospace; font-size:.85rem; color:var(--texte-doux);
+  }
+  .lecture-angle b{color:var(--bleu-fonce); font-size:1.05rem;}
+
+  .panneau{
+    background:var(--papier);
+    border:1px solid var(--trait);
+    border-radius:var(--radius);
+    padding:1rem 1.1rem;
+  }
+  .panneau h3{font-size:.95rem;margin-bottom:.7rem;}
+  .champ{margin-bottom:.85rem;}
+  .champ label{display:block; font-size:.82rem; color:var(--texte-doux); margin-bottom:.3rem;}
+  select, input[type=range]{width:100%;}
+  button{
+    cursor:pointer; border:none; border-radius:var(--radius);
+    font-family:'Poppins',sans-serif; font-weight:600; font-size:.9rem;
+    padding:.65rem 1rem; transition:filter .15s ease;
+  }
+  button:hover{filter:brightness(1.07);}
+  button:disabled{opacity:.45; cursor:not-allowed; filter:none;}
+  button.primaire{background:var(--ambre); color:#3A2604; width:100%; margin-top:.4rem;}
+  button.secondaire{background:#fff; color:var(--bleu-fonce); border:1px solid var(--trait); width:100%; margin-top:.5rem;}
+  button.mini{background:#EDF2F6; color:var(--bleu-fonce); border:1px solid var(--trait);}
+  .avertissement{
+    color:var(--rouge); font-size:.82rem; margin-top:.5rem; min-height:1.1em;
+  }
+
+  .table-scroll{overflow-x:auto;}
+  table{width:100%; border-collapse:collapse; font-size:.86rem; min-width:760px;}
+  th,td{text-align:center; padding:.5rem .35rem; border-bottom:1px solid var(--trait);}
+  th{font-family:'Poppins',sans-serif; font-weight:600; color:var(--bleu-fonce); font-size:.73rem;}
+  tbody tr:hover{background:#F7FAFC;}
+  td.vide{color:var(--texte-doux); font-style:italic;}
+
+  #graphHV, #graphEnergie{background:#fff; border-radius:3px;}
+
+  .stats{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem; margin-top:1.1rem;
+  }
+  @media (max-width:640px){.stats{grid-template-columns:repeat(2,1fr);}}
+  .stat{
+    background:var(--bleu-clair); border-radius:var(--radius); padding:.7rem .5rem; text-align:center;
+  }
+  .stat .valeur{font-family:'Roboto Mono',monospace; font-weight:500; font-size:1.05rem; color:var(--bleu-fonce);}
+  .stat .etiquette{font-size:.72rem; color:var(--texte-doux); margin-top:.15rem;}
+
+  .resultat-final{
+    margin-top:1.3rem; padding:1.1rem 1.3rem; border-radius:var(--radius);
+    background:var(--bleu-fonce); color:#EAF2FA; text-align:center;
+  }
+  .resultat-final .valeur{font-family:'Roboto Mono',monospace; font-size:1.6rem; color:var(--ambre);}
+  .resultat-final .etiquette{font-size:.85rem; color:#B9CBDC; margin-top:.3rem;}
+
+  .comparaison{font-size:.85rem; color:var(--texte-doux); margin-top:.7rem; text-align:center;}
+
+  .formule-bloc{overflow-x:auto; padding:.3rem 0;}
+
+  footer{
+    text-align:center; color:var(--texte-doux); font-size:.82rem;
+    padding:2rem 1.5rem 3rem;
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="contenu">
+    <div class="eyebrow">Laboratoire virtuel de physique</div>
+    <h1>L'énergie de rotation</h1>
+    <p>Vérifier la loi de conservation de l'énergie en y incluant l'énergie cinétique de rotation d'une sphère qui roule sans glisser sur une rampe courbe, puis quitte une table pour retomber au sol.</p>
+  </div>
+</header>
+
+<main>
+
+  <section id="theorie">
+    <h2><span class="num">1.</span>But et théorie</h2>
+
+    <div class="boite">
+      <h3>But</h3>
+      <p>Vérifier la loi de conservation de l'énergie en incluant l'énergie de rotation, à l'aide d'une sphère qui roule sur une rampe puis effectue un mouvement de projectile en quittant une table.</p>
+    </div>
+
+    <h3>Appareillage</h3>
+    <ul class="apparat">
+      <li>Support à anneau (ring stand)</li>
+      <li>Pince à tube à essai</li>
+      <li>Rampe courbe, sur une table de hauteur $H$</li>
+      <li>Règle métrique</li>
+      <li>Règle</li>
+      <li>Sphère d'acier</li>
+      <li>Ruban de papier ciré</li>
+      <li>Fil à plomb</li>
+      <li>Niveau à bulle</li>
+      <li>Balance à trois fléaux</li>
+    </ul>
+
+    <h3>Théorie — énergie et rotation</h3>
+    <p>La loi de conservation de l'énergie stipule qu'en l'absence de pertes thermiques, la somme de l'énergie cinétique ($K$) et de l'énergie potentielle ($U$) doit demeurer constante. Pour un corps étendu, l'énergie cinétique totale est la somme de l'énergie cinétique de translation du centre de masse et de l'énergie cinétique de rotation pure autour du centre de masse :</p>
+    <div class="formule-bloc">$$K = \frac{1}{2}mv^2 + \frac{1}{2}I\omega^2$$</div>
+
+    <p>Si la sphère roule sur une pente sans pertes dissipatives et descend d'une hauteur verticale $h$ :</p>
+    <div class="formule-bloc">$$mgh = \frac{1}{2}mv^2 + \frac{1}{2}I\omega^2$$</div>
+    <p>Avec la condition de roulement sans glissement $v=\omega R$ et le moment d'inertie d'une sphère uniforme $I=\frac{2}{5}mR^2$ :</p>
+    <div class="formule-bloc">$$mgh = \frac{7}{10}mv^2 \qquad\Longrightarrow\qquad v_{\text{théo}}=\sqrt{\frac{10gh}{7}}$$</div>
+
+    <div class="boite methode">
+      <h3>Une rampe courbe, pas une rampe droite</h3>
+      <p>La rampe est courbée selon une cycloïde — la courbe qui minimise le <em>temps</em> de parcours entre deux points sous l'effet de la gravité (le problème de la <strong>brachistochrone</strong>). On la relie parfois au principe de moindre action, dont elle partage la méthode mathématique (le calcul des variations), même si elle minimise ici le temps plutôt que l'action au sens strict de Lagrange. La sphère atteint donc le bas de la rampe plus vite que sur une pente droite ou toute autre forme — mais l'énergie mécanique dépensée pour une chute verticale $h$ donnée, elle, reste la même.</p>
+    </div>
+
+    <h3>Théorie — mouvement de projectile</h3>
+    <p>La rampe se termine à l'extrémité d'une table de hauteur fixe $H$ ; la sphère quitte donc la table à l'horizontale, avec la vitesse $v$ acquise en bas de la rampe. Une fois dans les airs, elle tombe en chute libre verticale :</p>
+    <div class="formule-bloc">$$H=\frac{1}{2}gt^2 \qquad\Longrightarrow\qquad t=\sqrt{\frac{2H}{g}}$$</div>
+    <p>Pendant ce temps $t$, elle parcourt horizontalement une distance $D$ (la portée) à vitesse constante $v$ :</p>
+    <div class="formule-bloc">$$D=vt \qquad\Longrightarrow\qquad v=\frac{D}{t}=D\sqrt{\frac{g}{2H}}=\sqrt{\frac{D^2g}{2H}}$$</div>
+    <p>Comme le point de chute varie légèrement d'un essai à l'autre, on répète l'expérience plusieurs fois à $h$ et $H$ fixes et on calcule la <strong>portée moyenne</strong> $\bar D$ avant de déterminer $v$ — c'est cette valeur moyenne, plus fiable qu'une seule mesure, qui sert à calculer la vitesse expérimentale.</p>
+
+    <div class="boite">
+      <h3>Quelle part de l'énergie est rotationnelle ?</h3>
+      <p>Avec $K_{trans}=\frac{1}{2}mv^2$ et $K_{rot}=\frac{1}{2}I\omega^2=\frac{1}{5}mv^2$, le rapport $\dfrac{K_{rot}}{K_{total}}=\dfrac{2}{7}\approx 28{,}6\%$ — une constante qui ne dépend ni de $m$, ni de $R$, ni de $v$ pour une sphère pleine uniforme.</p>
+    </div>
+
+    <div class="boite methode">
+      <h3>Un résultat remarquable</h3>
+      <p>Dans $mgh=\frac{7}{10}mv^2$, la masse $m$ s'annule complètement : $v_{\text{théo}}$ ne dépend ni de la masse ni du rayon de la sphère — seulement de $h$. Change la sphère (masse, rayon) dans la manipulation ci-dessous et vérifie si tes données confirment cette prédiction.</p>
+    </div>
+  </section>
+
+  <section id="labo">
+    <h2><span class="num">2.</span>Manipulation virtuelle</h2>
+    <p>Règle la hauteur de la rampe $h$, la hauteur de la table $H$ (garde-la fixe pendant une série d'essais), ainsi que la masse et le rayon de la sphère. Relâche la sphère plusieurs fois de suite avec les mêmes réglages : elle roule sur la rampe courbe, quitte la table à l'horizontale, puis retombe au sol à une distance $D$ que tu mesures.</p>
+
+    <div class="labo-grille">
+      <div class="scene-cadre">
+        <canvas id="scene" width="760" height="420"></canvas>
+        <div class="lecture-angle">
+          <span>Distance d'impact mesurée (D) :</span>
+          <b id="lectureImpact">— cm</b>
+        </div>
+      </div>
+
+      <div class="panneau">
+        <h3>Réglages de l'appareil</h3>
+
+        <div class="champ">
+          <label>Hauteur de la rampe (chute), h — <b id="valH">25,0</b> cm</label>
+          <input type="range" id="sliderH" min="10" max="40" step="0.5" value="25">
+        </div>
+
+        <div class="champ">
+          <label>Hauteur de la table (fixe pendant la série), H — <b id="valTableH">70</b> cm</label>
+          <input type="range" id="sliderTableH" min="40" max="100" step="1" value="70">
+        </div>
+
+        <div class="champ">
+          <label>Masse de la sphère, m — <b id="valM">65,0</b> g</label>
+          <input type="range" id="sliderM" min="20" max="150" step="0.5" value="65">
+        </div>
+
+        <div class="champ">
+          <label>Rayon de la sphère, R — <b id="valR">1,5</b> cm</label>
+          <input type="range" id="sliderR" min="1.0" max="3.0" step="0.1" value="1.5">
+        </div>
+
+        <button class="primaire" id="btnLacher">Relâcher la sphère</button>
+        <button class="secondaire" id="btnReinitialiser">Réinitialiser l'essai</button>
+        <div class="avertissement" id="avertissement"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resultats">
+    <h2><span class="num">3.</span>Résultats des essais</h2>
+    <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Essai</th>
+          <th>h (cm)</th>
+          <th>H (cm)</th>
+          <th>D mesuré (cm)</th>
+          <th>v (m/s)</th>
+          <th>K trans. (mJ)</th>
+          <th>K rot. (mJ)</th>
+          <th>K total (mJ)</th>
+          <th>Ep = mgh (mJ)</th>
+          <th>% conservé</th>
+          <th>% rotation</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="corpsTable">
+        <tr><td colspan="12" class="vide">Aucun essai enregistré — relâche la sphère ci-dessus.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="valeur" id="statN">0</div><div class="etiquette">Essais (n)</div></div>
+      <div class="stat"><div class="valeur" id="statDMoy">—</div><div class="etiquette">Portée moyenne D̄ (cm)</div></div>
+      <div class="stat"><div class="valeur" id="statDEcart">—</div><div class="etiquette">Écart-type σ_D (cm)</div></div>
+      <div class="stat"><div class="valeur" id="statDSEM">—</div><div class="etiquette">Erreur-type σ_D̄ (cm)</div></div>
+    </div>
+
+    <div class="resultat-final">
+      <div class="valeur" id="resultatFinal">v = — ± — m/s</div>
+      <div class="etiquette">Vitesse déterminée à partir de la portée moyenne D̄ et de H — voir section 4</div>
+    </div>
+
+    <div class="comparaison" id="comparaisonEnergie"></div>
+    <div class="avertissement" id="avertissementH"></div>
+
+    <div class="scene-cadre" style="margin-top:1.2rem;">
+      <h3 style="font-size:.9rem;margin-bottom:.5rem;color:var(--bleu-fonce);">v² en fonction de la hauteur h</h3>
+      <canvas id="graphHV" width="820" height="220" style="width:100%;height:auto;"></canvas>
+    </div>
+
+    <div class="scene-cadre" style="margin-top:1rem;">
+      <h3 style="font-size:.9rem;margin-bottom:.5rem;color:var(--bleu-fonce);">Énergie potentielle initiale et énergie cinétique finale</h3>
+      <canvas id="graphEnergie" width="820" height="220" style="width:100%;height:auto;"></canvas>
+    </div>
+  </section>
+
+  <section id="incertitudes">
+    <h2><span class="num">4.</span>Analyse des incertitudes</h2>
+    <p>Résolutions des instruments (la moitié de la plus petite division) :</p>
+    <ul>
+      <li>Règle métrique (hauteurs $h$ et $H$) : $\delta h = \delta H = 0{,}05$ cm</li>
+      <li>Règle (distance d'impact $D$, mesurée au sol) : $\delta D = 0{,}05$ cm</li>
+    </ul>
+
+    <p>La vitesse se calcule à partir de la portée moyenne : $v=\bar D\sqrt{g/(2H)}$. En propageant les incertitudes :</p>
+    <div class="formule-bloc">$$\frac{\delta v}{v} = \sqrt{\left(\frac{\delta \bar D}{\bar D}\right)^2 + \left(\frac{1}{2}\frac{\delta H}{H}\right)^2}$$</div>
+    <p>où $\delta \bar D$ est le plus grand entre l'incertitude instrumentale $\delta D$ et l'erreur-type statistique $\sigma_{\bar D}$ obtenue sur la série d'essais.</p>
+
+    <div class="boite methode">
+      <h3>La masse s'annule aussi dans la fraction d'énergie conservée</h3>
+      <p>$\dfrac{K_{total}}{E_p}=\dfrac{0{,}7\,v^2}{gh}$ ne dépend pas de $m$. Seules les incertitudes sur $v$ (donc sur $D$ et $H$) et sur $h$ influencent la précision du pourcentage d'énergie conservée :</p>
+      <div class="formule-bloc">$$\frac{\delta(\text{fraction})}{\text{fraction}} = \sqrt{\left(\frac{2\,\delta v}{v}\right)^2 + \left(\frac{\delta h}{h}\right)^2}$$</div>
+    </div>
+
+    <div class="boite attention">
+      <h3>Calcul appliqué au dernier essai</h3>
+      <p id="propagationTexte">Effectue un essai ci-dessus pour voir le calcul se remplir avec tes propres valeurs.</p>
+    </div>
+
+    <p>Si le pourcentage d'énergie conservée reste inférieur à 100 % même en tenant compte de $\delta(\text{fraction})$, l'écart provient de pertes réelles non modélisées par la théorie : friction de roulement, résistance de l'air, glissement partiel de la sphère sur la rampe, ou rebond au moment de quitter la table.</p>
+  </section>
+
+</main>
+
+<footer>
+  Laboratoire virtuel — énergie de rotation · à des fins pédagogiques
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  const g = 9.81;
+
+  const reglage = { h:25.0, tableH:70, m:65.0, R:1.5 };
+
+  const el = id => document.getElementById(id);
+  const sliderH = el('sliderH'), sliderTableH = el('sliderTableH'), sliderM = el('sliderM'), sliderR = el('sliderR');
+  const valH = el('valH'), valTableH = el('valTableH'), valM = el('valM'), valR = el('valR');
+  const btnLacher = el('btnLacher'), btnReset = el('btnReinitialiser'), avert = el('avertissement');
+  const corpsTable = el('corpsTable');
+  const lectureImpactEl = el('lectureImpact');
+  const canvas = el('scene'), ctx = canvas.getContext('2d');
+
+  function formaterFr(n,dec){ return n.toFixed(dec).replace('.',','); }
+
+  let enAnimation = false;
+  function verifierPret(){ btnLacher.disabled = enAnimation; }
+
+  sliderH.addEventListener('input', ()=>{ reglage.h = +sliderH.value; valH.textContent = formaterFr(reglage.h,1); });
+  sliderTableH.addEventListener('input', ()=>{ reglage.tableH = +sliderTableH.value; valTableH.textContent = Math.round(reglage.tableH); });
+  sliderM.addEventListener('input', ()=>{ reglage.m = +sliderM.value; valM.textContent = formaterFr(reglage.m,1); });
+  sliderR.addEventListener('input', ()=>{ reglage.R = +sliderR.value; valR.textContent = formaterFr(reglage.R,1); });
+
+  btnReset.addEventListener('click', ()=>{
+    lectureImpactEl.textContent = '— cm';
+    avert.textContent = '';
+    phase = 'attente';
+    dessiner();
+    verifierPret();
+  });
+
+  // ---------- essais ----------
+  let essais = [];
+  const RES = { dh:0.05, dH:0.05, dD:0.05 }; // cm
+
+  function ajouterEssai(hFire, tableHFire, mFire, RFire, dMesureCm){
+    const hM = hFire/100, HM = tableHFire/100, mKg = mFire/1000;
+    const v = (dMesureCm/100)*Math.sqrt(g/(2*HM));
+    const kTrans = 0.5*mKg*v*v;
+    const kRot = 0.2*mKg*v*v;
+    const kTotal = kTrans+kRot;
+    const epInit = mKg*g*hM;
+    const pctConserve = 100*kTotal/epInit;
+    const pctRot = 100*kRot/kTotal;
+    essais.push({hFire, tableHFire, mFire, RFire, dMesureCm, v, kTrans, kRot, kTotal, epInit, pctConserve, pctRot});
+    redessinerTable();
+    calculerStats();
+  }
+
+  function redessinerTable(){
+    if(essais.length===0){
+      corpsTable.innerHTML = '<tr><td colspan="12" class="vide">Aucun essai enregistré — relâche la sphère ci-dessus.</td></tr>';
+      return;
+    }
+    corpsTable.innerHTML = essais.map((e,i)=>`
+      <tr>
+        <td>${i+1}</td>
+        <td>${e.hFire.toFixed(1)}</td>
+        <td>${e.tableHFire.toFixed(0)}</td>
+        <td>${e.dMesureCm.toFixed(2)}</td>
+        <td>${e.v.toFixed(3)}</td>
+        <td>${(e.kTrans*1000).toFixed(2)}</td>
+        <td>${(e.kRot*1000).toFixed(2)}</td>
+        <td>${(e.kTotal*1000).toFixed(2)}</td>
+        <td>${(e.epInit*1000).toFixed(2)}</td>
+        <td>${e.pctConserve.toFixed(1)} %</td>
+        <td>${e.pctRot.toFixed(1)} %</td>
+        <td><button class="mini" data-i="${i}" title="Retirer cet essai">✕</button></td>
+      </tr>`).join('');
+    corpsTable.querySelectorAll('button[data-i]').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        essais.splice(+b.dataset.i,1);
+        redessinerTable(); calculerStats();
+      });
+    });
+  }
+
+  function calculerStats(){
+    const n = essais.length;
+    el('statN').textContent = n;
+    dessinerGraphiques();
+    if(n===0){
+      el('statDMoy').textContent='—'; el('statDEcart').textContent='—'; el('statDSEM').textContent='—';
+      el('resultatFinal').textContent = 'v = — ± — m/s';
+      el('comparaisonEnergie').textContent = '';
+      el('avertissementH').textContent = '';
+      el('propagationTexte').textContent = 'Effectue un essai ci-dessus pour voir le calcul se remplir avec tes propres valeurs.';
+      return;
+    }
+    const ds = essais.map(e=>e.dMesureCm);
+    const dMoy = ds.reduce((a,b)=>a+b,0)/n;
+    el('statDMoy').textContent = dMoy.toFixed(2);
+    let s=null, sem=null;
+    if(n>=2){
+      const somme = ds.reduce((a,b)=>a+(b-dMoy)**2,0);
+      s = Math.sqrt(somme/(n-1));
+      sem = s/Math.sqrt(n);
+      el('statDEcart').textContent = s.toFixed(2);
+      el('statDSEM').textContent = sem.toFixed(2);
+    } else {
+      el('statDEcart').textContent='—'; el('statDSEM').textContent='(min. 2 essais)';
+    }
+
+    const dernier = essais[essais.length-1];
+    const HM = dernier.tableHFire/100;
+    const dDIncert = Math.max(sem||0, RES.dD);
+    const vDetermine = (dMoy/100)*Math.sqrt(g/(2*HM));
+    const dHrel = 0.5*(RES.dH/dernier.tableHFire);
+    const dDrel = dDIncert/dMoy;
+    const dVrel = Math.sqrt(dDrel**2 + dHrel**2);
+    const dV = vDetermine*dVrel;
+    el('resultatFinal').textContent = `v = ${vDetermine.toFixed(3)} ± ${dV.toFixed(3)} m/s`;
+
+    const pcts = essais.map(e=>e.pctConserve);
+    const moyPct = pcts.reduce((a,b)=>a+b,0)/n;
+    el('comparaisonEnergie').textContent = `Énergie mécanique conservée (moyenne des essais) : ${moyPct.toFixed(1)} %.`;
+
+    const tableHs = essais.map(e=>e.tableHFire);
+    if(Math.max(...tableHs)-Math.min(...tableHs) > 0.01){
+      el('avertissementH').textContent = "La hauteur de la table H a changé entre les essais — garde-la fixe pour que la moyenne de D soit valide.";
+    } else {
+      el('avertissementH').textContent = '';
+    }
+
+    calculerPropagation(dernier, dMoy, dDIncert);
+  }
+
+  function calculerPropagation(dernier, dMoy, dDIncert){
+    const hM = dernier.hFire/100, HM = dernier.tableHFire/100;
+    const dh = RES.dh/100, dH = RES.dH/100;
+    const v = (dMoy/100)*Math.sqrt(g/(2*HM));
+    const dv = v*Math.sqrt((dDIncert/dMoy)**2 + (0.5*dH/HM)**2);
+    const fraction = 0.7*v*v/(g*hM);
+    const dFractionRel = Math.sqrt((2*dv/v)**2 + (dh/hM)**2);
+    const dFraction = fraction*dFractionRel;
+    el('propagationTexte').innerHTML =
+      `Avec h = ${dernier.hFire.toFixed(1)} cm, H = ${dernier.tableHFire.toFixed(0)} cm, D̄ = ${dMoy.toFixed(2)} cm :<br>`+
+      `v = ${v.toFixed(3)} m/s, δv = ${dv.toFixed(3)} m/s &nbsp;→&nbsp; fraction conservée = ${(fraction*100).toFixed(1)} % &nbsp;→&nbsp; <b>δ(fraction) = ${(dFraction*100).toFixed(1)} points de %</b>.`;
+  }
+
+  // ---------- graphiques ----------
+  const cvHV = el('graphHV'), ctxHV = cvHV.getContext('2d');
+  const cvE = el('graphEnergie'), ctxE = cvE.getContext('2d');
+
+  function videSiVide(c){
+    const c2 = c.getContext('2d');
+    c2.clearRect(0,0,c.width,c.height);
+    if(essais.length===0){
+      c2.fillStyle='#8494A3'; c2.font='13px Lato, sans-serif'; c2.textAlign='center';
+      c2.fillText("Aucune donnée pour l'instant — effectue un essai.", c.width/2, c.height/2);
+      return false;
+    }
+    return true;
+  }
+
+  function dessinerGraphiques(){ dessinerGraphHV(); dessinerGraphEnergie(); }
+
+  function dessinerGraphHV(){
+    if(!videSiVide(cvHV)) return;
+    const marge={g:56,d:20,h:20,b:34};
+    const w=cvHV.width, hgt=cvHV.height;
+    const zw=w-marge.g-marge.d, zh=hgt-marge.h-marge.b;
+    const hs = essais.map(e=>e.hFire/100), v2s = essais.map(e=>e.v*e.v);
+    const hMax = Math.max(...hs)*1.15, v2Max = Math.max(Math.max(...v2s)*1.15, (10*g/7)*hMax);
+
+    ctxHV.strokeStyle='#D8E1E9'; ctxHV.lineWidth=1;
+    ctxHV.beginPath(); ctxHV.moveTo(marge.g,marge.h); ctxHV.lineTo(marge.g,hgt-marge.b); ctxHV.lineTo(w-marge.d,hgt-marge.b); ctxHV.stroke();
+
+    ctxHV.fillStyle='#8494A3'; ctxHV.font='11px Lato';
+    ctxHV.textAlign='right';
+    for(let i=0;i<=4;i++){
+      const val=v2Max*i/4, y=hgt-marge.b-zh*i/4;
+      ctxHV.fillText(val.toFixed(1), marge.g-6, y+3);
+      ctxHV.strokeStyle='#EEF2F5'; ctxHV.beginPath(); ctxHV.moveTo(marge.g,y); ctxHV.lineTo(w-marge.d,y); ctxHV.stroke();
+    }
+    ctxHV.textAlign='center';
+    for(let i=0;i<=4;i++){
+      const val=hMax*i/4, x=marge.g+zw*i/4;
+      ctxHV.fillText((val*100).toFixed(0), x, hgt-marge.b+16);
+    }
+
+    ctxHV.strokeStyle='#DE9A34'; ctxHV.lineWidth=1.5;
+    ctxHV.beginPath();
+    ctxHV.moveTo(marge.g, hgt-marge.b);
+    const yF = hgt-marge.b-zh*((10*g/7)*hMax/v2Max);
+    ctxHV.lineTo(marge.g+zw, yF);
+    ctxHV.stroke();
+    ctxHV.fillStyle='#DE9A34'; ctxHV.textAlign='left'; ctxHV.font='11px Lato';
+    ctxHV.fillText('théorique : v² = (10g/7)h', marge.g+8, marge.h+12);
+
+    essais.forEach(e=>{
+      const x = marge.g + zw*((e.hFire/100)/hMax);
+      const y = hgt-marge.b - zh*((e.v*e.v)/v2Max);
+      ctxHV.fillStyle='#2E6DA4';
+      ctxHV.beginPath(); ctxHV.arc(x,y,4.5,0,Math.PI*2); ctxHV.fill();
+    });
+
+    ctxHV.fillStyle='#4B5B6B'; ctxHV.textAlign='center'; ctxHV.font='11px Lato';
+    ctxHV.fillText('h (cm)', w/2, hgt-6);
+  }
+
+  function dessinerGraphEnergie(){
+    if(!videSiVide(cvE)) return;
+    const marge={g:56,d:20,h:20,b:34};
+    const w=cvE.width, hgt=cvE.height;
+    const zw=w-marge.g-marge.d, zh=hgt-marge.h-marge.b;
+    const maxE = Math.max(...essais.map(e=>e.epInit*1000))*1.15;
+    const pas = zw/essais.length;
+    const largeurGroupe = Math.min(60,pas*0.7), largeurBarre = largeurGroupe/2-2;
+
+    ctxE.strokeStyle='#D8E1E9'; ctxE.lineWidth=1;
+    ctxE.beginPath(); ctxE.moveTo(marge.g,marge.h); ctxE.lineTo(marge.g,hgt-marge.b); ctxE.lineTo(w-marge.d,hgt-marge.b); ctxE.stroke();
+
+    ctxE.fillStyle='#8494A3'; ctxE.font='11px Lato'; ctxE.textAlign='right';
+    for(let i=0;i<=4;i++){
+      const val=maxE*i/4, y=hgt-marge.b-zh*i/4;
+      ctxE.fillText(val.toFixed(0), marge.g-6, y+3);
+      ctxE.strokeStyle='#EEF2F5'; ctxE.beginPath(); ctxE.moveTo(marge.g,y); ctxE.lineTo(w-marge.d,y); ctxE.stroke();
+    }
+
+    essais.forEach((e,i)=>{
+      const xC = marge.g+pas*i+pas/2;
+      const hEp = zh*(e.epInit*1000/maxE), hEc = zh*(e.kTotal*1000/maxE);
+      ctxE.fillStyle='#2E6DA4'; ctxE.fillRect(xC-largeurGroupe/2, hgt-marge.b-hEp, largeurBarre, hEp);
+      ctxE.fillStyle='#DE9A34'; ctxE.fillRect(xC+2, hgt-marge.b-hEc, largeurBarre, hEc);
+      ctxE.fillStyle='#4B5B6B'; ctxE.font='10px Lato'; ctxE.textAlign='center';
+      ctxE.fillText('#'+(i+1), xC, hgt-marge.b+14);
+    });
+
+    ctxE.font='11px Lato'; ctxE.textAlign='left';
+    ctxE.fillStyle='#2E6DA4'; ctxE.fillRect(marge.g,4,10,10); ctxE.fillStyle='#4B5B6B'; ctxE.fillText('Ep initiale (mgh)', marge.g+14,13);
+    ctxE.fillStyle='#DE9A34'; ctxE.fillRect(marge.g+140,4,10,10); ctxE.fillStyle='#4B5B6B'; ctxE.fillText('K totale finale', marge.g+154,13);
+  }
+
+  dessinerGraphiques();
+
+  // ---------- géométrie de la rampe (cycloïde — brachistochrone) ----------
+  const rampe = { xA:95, yA:55, xB:410, yB:190 };   // départ (haut) → bord de la table (bas)
+  const table = { xEdge:410, yTop:190, yGround:335, xLeft:70 };
+  // échelle FIXE (px par cm) pour la portée D — la même pour tous les essais, afin que les
+  // distances affichées soient directement comparables et honnêtes d'un essai à l'autre.
+  const D_MAX_CM = 115; // portée maximale plausible compte tenu des bornes des curseurs h et H
+  const echelleParCm = (canvas.width - 30 - table.xEdge) / D_MAX_CM;
+
+  function trouverTheta1(ratioCible){
+    let lo = 1e-4, hi = 2*Math.PI - 1e-4;
+    function f(th){ return (th-Math.sin(th))/(1-Math.cos(th)) - ratioCible; }
+    for(let i=0;i<60;i++){
+      const mid = (lo+hi)/2;
+      if(f(mid) > 0) hi = mid; else lo = mid;
+    }
+    return (lo+hi)/2;
+  }
+  const largeurRampe = rampe.xB-rampe.xA, hauteurRampe = rampe.yB-rampe.yA;
+  const theta1 = trouverTheta1(largeurRampe/hauteurRampe);
+  const aCyclo = hauteurRampe/(1-Math.cos(theta1));
+
+  function pointCycloide(theta){
+    return { x: rampe.xA + aCyclo*(theta-Math.sin(theta)), y: rampe.yA + aCyclo*(1-Math.cos(theta)) };
+  }
+
+  // ---------- scène ----------
+  let phase = 'attente';   // attente | descente | vol | fini
+  let posBille = {x:rampe.xA, y:rampe.yA};
+  let angleBille = 0;
+  let impacts = [];        // positions x des impacts précédents (px)
+
+  function dessiner(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    // support (ring stand)
+    ctx.strokeStyle='#4A6B87'; ctx.lineWidth=6;
+    ctx.beginPath(); ctx.moveTo(rampe.xA-15, table.yTop); ctx.lineTo(rampe.xA-15, rampe.yA-15); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(rampe.xA-38, table.yTop); ctx.lineTo(rampe.xA+8, table.yTop); ctx.stroke();
+
+    // table (surface + pieds jusqu'au sol)
+    ctx.strokeStyle='#C7D6E3'; ctx.lineWidth=5;
+    ctx.beginPath(); ctx.moveTo(table.xLeft, table.yTop); ctx.lineTo(table.xEdge, table.yTop); ctx.stroke();
+    ctx.strokeStyle='#3A5069'; ctx.lineWidth=4;
+    ctx.beginPath(); ctx.moveTo(table.xLeft+10, table.yTop); ctx.lineTo(table.xLeft+10, table.yGround); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(table.xEdge-10, table.yTop); ctx.lineTo(table.xEdge-10, table.yGround); ctx.stroke();
+
+    // sol
+    ctx.strokeStyle='rgba(234,242,250,0.35)'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(20, table.yGround); ctx.lineTo(canvas.width-15, table.yGround); ctx.stroke();
+
+    // indication H (fil à plomb)
+    ctx.strokeStyle='rgba(234,242,250,0.5)'; ctx.lineWidth=1; ctx.setLineDash([3,3]);
+    ctx.beginPath(); ctx.moveTo(table.xEdge+14, table.yTop); ctx.lineTo(table.xEdge+14, table.yGround); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle='#9FB6CB'; ctx.font='11px Lato'; ctx.textAlign='left';
+    ctx.fillText('H', table.xEdge+20, (table.yTop+table.yGround)/2);
+
+    // rampe courbe (cycloïde)
+    ctx.strokeStyle='#C7D6E3'; ctx.lineWidth=5; ctx.beginPath();
+    for(let i=0;i<=40;i++){
+      const th = theta1*i/40;
+      const p = pointCycloide(th);
+      if(i===0) ctx.moveTo(p.x,p.y); else ctx.lineTo(p.x,p.y);
+    }
+    ctx.stroke();
+
+    // marques d'impact précédentes
+    ctx.fillStyle = 'rgba(234,242,250,0.5)';
+    impacts.forEach(x=>{ ctx.beginPath(); ctx.arc(x, table.yGround, 3, 0, Math.PI*2); ctx.fill(); });
+
+    // sphère
+    const rPix = 8 + (reglage.R-1.0)*6;
+    ctx.save();
+    ctx.translate(posBille.x, posBille.y-rPix);
+    ctx.rotate(angleBille);
+    ctx.fillStyle='#DE9A34';
+    ctx.beginPath(); ctx.arc(0,0,rPix,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle='#8A5B18'; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(rPix,0); ctx.stroke();
+    ctx.restore();
+
+    // niveau à bulle (décoratif)
+    ctx.fillStyle='#3A5069'; ctx.fillRect(table.xLeft+25, table.yTop-14, 50, 12);
+    ctx.fillStyle='#EAF2FA'; ctx.beginPath(); ctx.arc(table.xLeft+50, table.yTop-8, 3, 0, Math.PI*2); ctx.fill();
+  }
+  dessiner();
+
+  function easeInQuad(t){ return t*t; } // encore utilisée ailleurs au besoin, mais plus pour la descente
+  function clamp(v,lo,hi){ return Math.max(lo,Math.min(hi,v)); }
+
+  btnLacher.addEventListener('click', ()=>{
+    if(enAnimation) return;
+    avert.textContent = '';
+    const hFire = reglage.h, tableHFire = reglage.tableH, mFire = reglage.m, RFire = reglage.R;
+    const hM = hFire/100, HM = tableHFire/100;
+    const vIdeal = Math.sqrt(10*g*hM/7);
+    const perte = 0.02 + Math.random()*0.07;
+    const vTrue = vIdeal*Math.sqrt(1-perte);
+    const tChute = Math.sqrt(2*HM/g);
+    const dTrueCm = vTrue*tChute*100;
+
+    const zoneLargeur = canvas.width-30-table.xEdge;
+    const xLandingPx = clamp(table.xEdge + dTrueCm*echelleParCm, table.xEdge+4, table.xEdge+zoneLargeur+10);
+
+    enAnimation = true; verifierPret();
+    phase = 'descente';
+    let t0=null;
+    // Durées mises à l'échelle avec √h et √H (le vrai temps de descente et de chute varie ainsi) —
+    // bornées pour rester agréables à regarder.
+    const dureeDescente = clamp(700*Math.sqrt(hFire/25), 400, 1200);
+    const dureeVol = clamp(650*Math.sqrt(tableHFire/70), 400, 1100);
+    const rPix = 8 + (RFire-1.0)*6;
+
+    function step(ts){
+      if(t0===null) t0=ts;
+      const t=ts-t0;
+      if(phase==='descente'){
+        if(t<=dureeDescente){
+          // Solution exacte : une sphère qui roule sans glisser, relâchée du sommet d'une
+          // cycloïde (θ=0), voit θ croître à vitesse angulaire constante (propriété de la
+          // tautochrone) — l'interpolation linéaire en θ est donc physiquement exacte, pas une approximation.
+          const p = t/dureeDescente;
+          const th = theta1*p;
+          const pt = pointCycloide(th);
+          posBille = pt;
+          angleBille = (aCyclo*th)/rPix;
+          dessiner();
+          requestAnimationFrame(step);
+        } else {
+          phase='vol'; t0=ts;
+          requestAnimationFrame(step);
+        }
+      } else if(phase==='vol'){
+        if(t<=dureeVol){
+          const p = t/dureeVol;
+          posBille = {
+            x: table.xEdge + (xLandingPx-table.xEdge)*p,
+            y: table.yTop + (table.yGround-table.yTop)*p*p
+          };
+          angleBille += 0.25;
+          dessiner();
+          requestAnimationFrame(step);
+        } else {
+          phase='fini';
+          posBille = {x:xLandingPx, y:table.yGround};
+          impacts.push(xLandingPx);
+          dessiner();
+          enAnimation=false;
+          const dLu = Math.round((dTrueCm + (Math.random()-0.5)*0.1)/0.05)*0.05;
+          lectureImpactEl.textContent = dLu.toFixed(2) + ' cm';
+          verifierPret();
+          ajouterEssai(hFire, tableHFire, mFire, RFire, dLu);
+        }
+      }
+    }
+    requestAnimationFrame(step);
+  });
+
+  verifierPret();
+})();
+</script>
+</body>
+</html>
