@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La population, l'échantillon et le type de caractères — MAT1102-3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ardoise: #223A34;
+  --ardoise-deep: #182922;
+  --papier: #EAEEE9;
+  --papier-2: #E0E5DD;
+  --encre: #1C2B3A;
+  --craie: #D9A441;
+  --craie-deep: #B9832C;
+  --brique: #B5524A;
+  --sapin: #4B7A68;
+  --ligne: rgba(28,43,58,0.14);
+  --white: #FCFBF7;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Literata", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+*{ box-sizing: border-box; margin:0; padding:0; }
+html{ scroll-behavior: smooth; }
+
+body{
+  background: var(--papier);
+  color: var(--encre);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a{ color: inherit; }
+
+.wrap{
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+a:focus-visible, button:focus-visible{
+  outline: 2px solid var(--craie-deep);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+header.site{
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(234,238,233,0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--ligne);
+}
+nav{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+.brand{
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+.brand span{ color: var(--craie-deep); }
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap: 28px;
+  list-style:none;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+}
+.nav-links a{ text-decoration:none; opacity:0.85; }
+.nav-links a:hover{ opacity:1; color: var(--craie-deep); }
+
+.hero{
+  background: var(--ardoise);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.045) 0 1px, transparent 1px 34px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.045) 0 1px, transparent 1px 34px);
+}
+.hero-inner.compact{ padding: 64px 28px 56px; }
+.eyebrow{
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--craie);
+  margin-bottom: 18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap: wrap;
+}
+.eyebrow a{ text-decoration:none; opacity:0.75; }
+.eyebrow a:hover{ opacity:1; }
+.eyebrow .sep{ opacity: 0.5; }
+.hero h1.course-title{
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  max-width: none;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+}
+.hero p.course-description{
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 68ch;
+  margin-top: 18px;
+  color: rgba(252,251,247,0.78);
+}
+
+/* ---- Layout avec table des matières flottante ---- */
+.page-layout{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 48px;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 28px;
+  align-items: start;
+}
+.page-layout > main.wrap{
+  max-width: none;
+  padding: 0;
+  grid-column: 1;
+}
+
+.toc-flottante{
+  grid-column: 2;
+  position: sticky;
+  top: 96px;
+  align-self: start;
+  max-height: calc(100vh - 130px);
+  overflow-y: auto;
+  padding: 20px 20px 22px;
+  background: var(--white);
+  border: 1px solid var(--ligne);
+  border-radius: 8px;
+  font-family: var(--font-display);
+}
+.toc-flottante h2{
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--craie-deep);
+  margin-bottom: 12px;
+}
+.toc-flottante ol{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.toc-flottante li a{
+  display: block;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--encre);
+  opacity: 0.62;
+  padding: 7px 0 7px 14px;
+  border-left: 2px solid var(--ligne);
+  transition: opacity 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  line-height: 1.3;
+}
+.toc-flottante li a:hover{ opacity: 1; }
+.toc-flottante li a.active{
+  opacity: 1;
+  color: var(--ardoise-deep);
+  border-left-color: var(--craie);
+  font-weight: 600;
+}
+.toc-flottante li.toc-sub a{
+  padding-left: 26px;
+  font-size: 13px;
+}
+
+@media (max-width: 1180px){
+  .page-layout{ display: block; padding: 0; }
+  .toc-flottante{ display: none; }
+}
+
+main section{ padding: 56px 0; }
+main section.compact{ padding: 40px 0; }
+.section-head{ margin-bottom: 28px; }
+.section-head .eyebrow{ color: var(--craie-deep); }
+.section-head h2{
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 2.8vw, 1.9rem);
+  letter-spacing: -0.01em;
+}
+.section-head h3{
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  letter-spacing: -0.005em;
+  color: var(--ardoise);
+}
+section, .sous-section{ scroll-margin-top: 96px; }
+.rule{ border: none; border-top: 1px solid var(--ligne); margin: 8px 0 0; }
+.rule-fine{ border: none; border-top: 1px dashed var(--ligne); margin: 36px 0; }
+
+main p{ margin: 0 0 16px; max-width: 68ch; }
+main ul, main ol{ margin: 0 0 20px 22px; max-width: 64ch; }
+main li{ margin: 6px 0; }
+
+.encadre{
+  background: var(--white);
+  border: 1px solid var(--ligne);
+  border-left: 4px solid var(--ardoise);
+  border-radius: 6px;
+  padding: 22px 26px;
+  margin: 24px 0;
+}
+.encadre-label{
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ardoise);
+  margin-bottom: 12px;
+  display: block;
+}
+.encadre p{ margin: 0 0 10px; max-width: none; }
+.encadre p:last-child{ margin-bottom: 0; }
+.encadre ul, .encadre ol{ margin: 0 0 0 20px; max-width: none; }
+
+.encadre-definition{ border-left-color: var(--sapin); }
+.encadre-definition .encadre-label{ color: var(--sapin); }
+
+.encadre-exemple{ background: var(--papier-2); border-left-color: var(--craie-deep); }
+.encadre-exemple .encadre-label{ color: var(--craie-deep); }
+
+.encadre-note{ border-left-color: var(--brique); }
+.encadre-note .encadre-label{ color: var(--brique); }
+
+.encadre-attention{ border-left-color: var(--brique); background: #FBEFEE; }
+.encadre-attention .encadre-label{ color: var(--brique); }
+
+.encadre-methode{ border-left-color: var(--sapin); background: #EEF3F0; }
+.encadre-methode .encadre-label{ color: var(--sapin); }
+
+.encadre-exercice{ border-left-color: var(--ardoise-deep); }
+.encadre-exercice .encadre-label{ color: var(--ardoise-deep); }
+
+.encadre-central{
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ardoise);
+  margin: 14px 0;
+  padding: 10px 18px;
+  border: 1.5px solid var(--ardoise);
+  border-radius: 6px;
+  display: inline-block;
+}
+.encadre-central-wrap{ text-align: center; }
+
+.table-wrap{
+  border: 1px solid var(--ligne);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 20px 0 24px;
+}
+table{
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 15px;
+  background: var(--white);
+}
+th, td{
+  border-bottom: 1px solid var(--ligne);
+  padding: 11px 16px;
+  text-align: left;
+}
+th{
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13.5px;
+  background: var(--ardoise);
+  color: var(--white);
+}
+tr:last-child td{ border-bottom: none; }
+tr:nth-child(even) td{ background: var(--papier); }
+
+.etapes{ list-style: none; margin: 0 0 20px; max-width: 64ch; }
+.etapes li{
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px solid var(--ligne);
+}
+.etapes li:first-child{ border-top: none; padding-top: 0; }
+.etape-num{
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--craie-deep);
+}
+.etape-body strong{ font-family: var(--font-display); font-weight: 600; }
+
+.methode-etapes{ list-style: none; margin: 0; max-width: 64ch; counter-reset: methode; }
+.methode-etapes li{
+  counter-increment: methode;
+  position: relative;
+  padding: 10px 0 10px 40px;
+  border-top: 1px dashed var(--ligne);
+}
+.methode-etapes li:first-child{ border-top: none; padding-top: 0; }
+.methode-etapes li::before{
+  content: counter(methode);
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--sapin);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.methode-etapes .fleche{
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--sapin);
+  font-weight: 600;
+}
+
+.exercice-liste{ list-style: none; margin: 0; max-width: 64ch; counter-reset: ex; }
+.exercice-liste > li{
+  counter-increment: ex;
+  padding: 14px 0 14px 34px;
+  border-top: 1px solid var(--ligne);
+  position: relative;
+}
+.exercice-liste > li:first-child{ border-top: none; padding-top: 0; }
+.exercice-liste > li::before{
+  content: counter(ex) ".";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--ardoise-deep);
+}
+.exercice-liste > li:first-child::before{ top: 0; }
+.reponse-ligne{
+  display: block;
+  height: 34px;
+  margin-top: 6px;
+  border-bottom: 1.5px dashed var(--ligne);
+  max-width: 44ch;
+}
+
+.tags-caracteres{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 20px;
+}
+.tag-caractere{
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--ligne);
+  background: var(--white);
+}
+
+.nav-suivant{
+  background: var(--ardoise-deep);
+  color: var(--white);
+}
+.nav-suivant .wrap{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 36px 28px;
+  flex-wrap: wrap;
+}
+.nav-suivant .label{
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--craie);
+  margin-bottom: 6px;
+  display: block;
+}
+.nav-suivant .titre{
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 13px 22px;
+  border-radius: 3px;
+  text-decoration:none;
+  border: 1px solid transparent;
+  transition: transform 0.12s ease;
+  flex-shrink: 0;
+}
+.btn:hover{ transform: translateY(-1px); }
+.btn-primary{ background: var(--craie); color: var(--ardoise-deep); }
+.btn-primary:hover{ background: #E7B563; }
+.btn-secondaire{ background: transparent; color: var(--white); border-color: rgba(255,255,255,0.4); }
+.btn-secondaire:hover{ background: rgba(255,255,255,0.08); }
+
+footer.site-footer{
+  text-align: center;
+  padding: 2rem 1rem;
+  color: rgba(28,43,58,0.6);
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+}
+
+@media (max-width: 720px){
+  .hero-inner.compact{ padding: 56px 20px 44px; }
+  main section{ padding: 44px 0; }
+  .encadre{ padding: 18px 20px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="wrap">
+    <a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span></a>
+    <ul class="nav-links">
+      <li><a href="https://learnwithdom.page/niveau/secondaire1.html">Sec. 1</a></li>
+      <li><a href="https://learnwithdom.page/cours/mat1102.html">MAT1102-3</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="wrap hero-inner compact">
+    <div class="eyebrow">
+      <a href="https://learnwithdom.page/cours/mat1102.html">MAT1102-3 · Collecte, organisation et interprétation de données</a>
+      <span class="sep">/</span>
+      <a href="etude_statistique.html">L'étude statistique</a>
+    </div>
+    <h1 class="course-title">La population, l'échantillon et le type de caractères</h1>
+    <p class="course-description"></p>
+  </div>
+</div>
+
+<div class="page-layout">
+
+<main class="wrap">
+
+  <section class="compact" id="elements-essentiels">
+    <div class="section-head">
+      <div class="eyebrow">Fondements</div>
+      <h2>Les éléments essentiels d'une étude statistique</h2>
+    </div>
+
+    <p>Lorsqu'on réalise une étude statistique, il faut toujours déterminer trois éléments importants :</p>
+
+    <ol class="etapes">
+      <li>
+        <span class="etape-num">01</span>
+        <span class="etape-body"><strong>La population étudiée</strong></span>
+      </li>
+      <li>
+        <span class="etape-num">02</span>
+        <span class="etape-body"><strong>L'échantillon choisi</strong></span>
+      </li>
+      <li>
+        <span class="etape-num">03</span>
+        <span class="etape-body"><strong>Le caractère observé</strong></span>
+      </li>
+    </ol>
+
+    <p>Ces trois éléments permettent de comprendre précisément ce que l'étude cherche à mesurer.</p>
+  </section>
+
+  <hr class="rule">
+
+  <section id="population">
+    <div class="section-head">
+      <div class="eyebrow">Définition</div>
+      <h2>La population</h2>
+    </div>
+
+    <div class="encadre encadre-definition">
+      <span class="encadre-label">La population</span>
+      <p>La <strong>population</strong> est l'ensemble complet des personnes, objets ou événements que l'on souhaite étudier.</p>
+    </div>
+
+    <p>La population représente donc le groupe auquel on s'intéresse.</p>
+
+    <div class="encadre encadre-exemple">
+      <span class="encadre-label">Exemple — Population d'une école</span>
+      <p>Une école secondaire veut connaître le temps moyen consacré aux devoirs par ses élèves.</p>
+      <p>La population est :</p>
+      <div class="encadre-central-wrap"><span class="encadre-central">Tous les élèves de l'école</span></div>
+      <p>Même si tous les élèves ne répondent pas au questionnaire, c'est ce groupe complet qui intéresse l'étude.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="echantillon">
+    <div class="section-head">
+      <div class="eyebrow">Définition</div>
+      <h2>L'échantillon</h2>
+    </div>
+
+    <div class="encadre encadre-definition">
+      <span class="encadre-label">L'échantillon</span>
+      <p>Un <strong>échantillon</strong> est une partie de la population sélectionnée afin de recueillir des données.</p>
+    </div>
+
+    <p>Il est souvent impossible ou trop coûteux d'étudier toute une population. On utilise donc un groupe plus petit qui doit représenter le groupe complet.</p>
+
+    <div class="encadre encadre-exemple">
+      <span class="encadre-label">Exemple — Sondage auprès des élèves</span>
+      <p>Une école possède 1200 élèves. La direction questionne 100 élèves choisis au hasard sur leurs habitudes de transport.</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Élément</th><th>Réponse</th></tr>
+          <tr><td>Population</td><td>Les 1200 élèves de l'école</td></tr>
+          <tr><td>Échantillon</td><td>Les 100 élèves questionnés</td></tr>
+        </table>
+      </div>
+      <p>Les 100 élèves représentent un échantillon de la population.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="caractere">
+    <div class="section-head">
+      <div class="eyebrow">Définition</div>
+      <h2>Le caractère étudié</h2>
+    </div>
+
+    <div class="encadre encadre-definition">
+      <span class="encadre-label">Le caractère statistique</span>
+      <p>Le <strong>caractère statistique</strong> est l'information que l'on observe ou que l'on mesure chez les individus d'une population.</p>
+    </div>
+
+    <p>Pour trouver le caractère, on doit se demander :</p>
+    <div class="encadre-central-wrap"><span class="encadre-central">Quelle information cherche-t-on à connaître ?</span></div>
+
+    <div class="encadre encadre-exemple">
+      <span class="encadre-label">Exemple — Consommation d'électricité</span>
+      <p>Une compagnie veut connaître la consommation électrique des maisons d'une ville.</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Élément</th><th>Réponse</th></tr>
+          <tr><td>Population</td><td>Toutes les maisons de la ville</td></tr>
+          <tr><td>Échantillon</td><td>300 maisons sélectionnées</td></tr>
+          <tr><td>Caractère</td><td>La consommation d'électricité en kWh</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="qualitatif">
+    <div class="section-head">
+      <div class="eyebrow">Types de caractères · 1 de 2</div>
+      <h2>Le caractère qualitatif</h2>
+    </div>
+
+    <p>Les caractères statistiques se divisent en deux grandes catégories : les caractères <strong>qualitatifs</strong> et les caractères <strong>quantitatifs</strong>.</p>
+
+    <div class="encadre encadre-definition">
+      <span class="encadre-label">Caractère qualitatif</span>
+      <p>Un <strong>caractère qualitatif</strong> décrit une qualité ou une catégorie. Les réponses sont généralement des mots.</p>
+    </div>
+
+    <p>Exemples de caractères qualitatifs :</p>
+    <div class="tags-caracteres">
+      <span class="tag-caractere">Couleur préférée</span>
+      <span class="tag-caractere">Marque de téléphone</span>
+      <span class="tag-caractere">Moyen de transport</span>
+      <span class="tag-caractere">Sport préféré</span>
+      <span class="tag-caractere">Type de logement</span>
+    </div>
+
+    <div class="encadre encadre-exemple">
+      <span class="encadre-label">Exemple — Sondage sur les téléphones</span>
+      <p>Une compagnie demande à ses clients : « Quelle marque de téléphone utilisez-vous ? »</p>
+      <p>Réponses possibles : Apple, Samsung, Google, Autre.</p>
+      <p>Le caractère étudié est :</p>
+      <div class="encadre-central-wrap"><span class="encadre-central">La marque du téléphone</span></div>
+      <p>C'est un caractère qualitatif.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="quantitatif">
+    <div class="section-head">
+      <div class="eyebrow">Types de caractères · 2 de 2</div>
+      <h2>Le caractère quantitatif</h2>
+    </div>
+
+    <div class="encadre encadre-definition">
+      <span class="encadre-label">Caractère quantitatif</span>
+      <p>Un <strong>caractère quantitatif</strong> représente une information numérique. Il peut être mesuré ou compté.</p>
+    </div>
+
+    <p>Exemples : l'âge d'une personne, le salaire annuel, le nombre d'enfants, la distance parcourue, le temps d'attente.</p>
+
+    <p>Les caractères quantitatifs se divisent en deux catégories.</p>
+
+    <hr class="rule-fine">
+
+    <div class="sous-section" id="quantitatif-discret">
+      <div class="section-head">
+        <h3>Le caractère quantitatif discret</h3>
+      </div>
+      <div class="encadre encadre-definition">
+        <span class="encadre-label">Quantitatif discret</span>
+        <p>Un caractère quantitatif discret correspond à une quantité que l'on peut compter. Les valeurs sont généralement des nombres entiers.</p>
+      </div>
+      <p>Exemples : nombre d'enfants dans une famille, nombre de voitures dans un stationnement, nombre de personnes dans une maison, nombre de visites chez le médecin.</p>
+
+      <div class="encadre encadre-exemple">
+        <span class="encadre-label">Exemple — Une famille</span>
+        <p>Une famille répond : nombre d'enfants = 3. On peut compter les enfants.</p>
+        <p>Le caractère est donc :</p>
+        <div class="encadre-central-wrap"><span class="encadre-central">Quantitatif discret</span></div>
+      </div>
+    </div>
+
+    <hr class="rule-fine">
+
+    <div class="sous-section" id="quantitatif-continu">
+      <div class="section-head">
+        <h3>Le caractère quantitatif continu</h3>
+      </div>
+      <div class="encadre encadre-definition">
+        <span class="encadre-label">Quantitatif continu</span>
+        <p>Un caractère quantitatif continu correspond à une mesure pouvant prendre plusieurs valeurs, incluant des nombres décimaux.</p>
+      </div>
+      <p>Exemples : la taille d'une personne, le poids d'un objet, la température, le temps nécessaire pour effectuer une tâche, la consommation d'essence.</p>
+
+      <div class="encadre encadre-exemple">
+        <span class="encadre-label">Exemple — Consommation d'essence</span>
+        <p>Une voiture consomme 7,4 L/100 km. Cette valeur peut changer avec des décimales.</p>
+        <p>Le caractère est donc :</p>
+        <div class="encadre-central-wrap"><span class="encadre-central">Quantitatif continu</span></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="methode">
+    <div class="section-head">
+      <div class="eyebrow">Méthode</div>
+      <h2>Identifier population, échantillon et caractère</h2>
+    </div>
+
+    <div class="encadre encadre-methode">
+      <span class="encadre-label">Méthode</span>
+      <ol class="methode-etapes">
+        <li>Cherche le groupe complet étudié. <span class="fleche">→ Population</span></li>
+        <li>Cherche les individus réellement observés. <span class="fleche">→ Échantillon</span></li>
+        <li>Cherche l'information recueillie. <span class="fleche">→ Caractère</span></li>
+        <li>Détermine si le caractère est qualitatif ou quantitatif.</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="exercices">
+    <div class="section-head">
+      <div class="eyebrow">Pratique</div>
+      <h2>Exercices d'application</h2>
+    </div>
+
+    <div class="encadre encadre-exercice">
+      <span class="encadre-label">Exercice 1 — Identifier population et échantillon</span>
+      <p>Une ville possède 50 000 habitants. Elle questionne 800 habitants afin de connaître leur satisfaction envers les services municipaux.</p>
+      <ol class="exercice-liste">
+        <li>Population :<span class="reponse-ligne"></span></li>
+        <li>Échantillon :<span class="reponse-ligne"></span></li>
+        <li>Caractère étudié :<span class="reponse-ligne"></span></li>
+      </ol>
+    </div>
+
+    <div class="encadre encadre-exercice">
+      <span class="encadre-label">Exercice 2 — Identifier le type de caractère</span>
+      <p>Indique si les caractères suivants sont qualitatifs ou quantitatifs.</p>
+      <ol class="exercice-liste">
+        <li>La couleur d'une voiture :<span class="reponse-ligne"></span></li>
+        <li>Le nombre de frères et sœurs :<span class="reponse-ligne"></span></li>
+        <li>Le poids d'une personne :<span class="reponse-ligne"></span></li>
+        <li>La marque de chaussures :<span class="reponse-ligne"></span></li>
+        <li>Le temps nécessaire pour courir 1 km :<span class="reponse-ligne"></span></li>
+      </ol>
+    </div>
+
+    <div class="encadre encadre-exercice">
+      <span class="encadre-label">Exercice 3 — Situation complète</span>
+      <p>Une entreprise veut connaître le salaire moyen de ses employés. Elle possède 600 employés et sélectionne 50 employés pour participer à l'étude.</p>
+      <ol class="exercice-liste">
+        <li>Quelle est la population ?<span class="reponse-ligne"></span></li>
+        <li>Quel est l'échantillon ?<span class="reponse-ligne"></span></li>
+        <li>Quel est le caractère étudié ?<span class="reponse-ligne"></span></li>
+        <li>Le caractère est-il qualitatif ou quantitatif ?<span class="reponse-ligne"></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="compact" id="resume">
+    <div class="section-head">
+      <div class="eyebrow">Résumé</div>
+      <h2>À retenir</h2>
+    </div>
+
+    <div class="encadre encadre-note">
+      <span class="encadre-label">À retenir</span>
+      <ul>
+        <li>La population est le groupe complet étudié.</li>
+        <li>L'échantillon est une partie de la population.</li>
+        <li>Le caractère est l'information recherchée.</li>
+        <li>Un caractère peut être qualitatif ou quantitatif.</li>
+        <li>Un caractère quantitatif peut être discret ou continu.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<nav class="toc-flottante" aria-label="Table des matières">
+  <h2>Sur cette page</h2>
+  <ol id="toc-list">
+    <li><a href="#elements-essentiels">Les éléments essentiels</a></li>
+    <li><a href="#population">La population</a></li>
+    <li><a href="#echantillon">L'échantillon</a></li>
+    <li><a href="#caractere">Le caractère étudié</a></li>
+    <li><a href="#qualitatif">Caractère qualitatif</a></li>
+    <li><a href="#quantitatif">Caractère quantitatif</a></li>
+    <li class="toc-sub"><a href="#quantitatif-discret">— Discret</a></li>
+    <li class="toc-sub"><a href="#quantitatif-continu">— Continu</a></li>
+    <li><a href="#methode">Méthode</a></li>
+    <li><a href="#exercices">Exercices</a></li>
+    <li><a href="#resume">À retenir</a></li>
+  </ol>
+</nav>
+
+</div>
+
+<div class="nav-suivant">
+  <div class="wrap">
+    <div>
+      <span class="label">Section précédente</span>
+      <span class="titre">L'étude statistique</span>
+    </div>
+    <a class="btn btn-secondaire" href="etude_statistique.html">← Revenir</a>
+  </div>
+</div>
+
+<footer class="site-footer">MAT1102-3 · learnwithdom.page</footer>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-flottante a'));
+  if(!links.length) return;
+  var sections = links.map(function(a){
+    return document.getElementById(a.getAttribute('href').slice(1));
+  }).filter(Boolean);
+
+  function setActive(id){
+    links.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+  }
+
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      if(visible.length){
+        visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; });
+        setActive(visible[0].target.id);
+      }
+    }, { rootMargin: '-100px 0px -70% 0px', threshold: 0 });
+    sections.forEach(function(s){ observer.observe(s); });
+  }
+})();
+</script>
+
+</body>
+</html>
