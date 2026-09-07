@@ -6,373 +6,339 @@
 <title>L'étude statistique — MAT1102-3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,0,7..72,400&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ardoise: #223A34;
-  --ardoise-deep: #182922;
-  --papier: #EAEEE9;
-  --papier-2: #E0E5DD;
-  --encre: #1C2B3A;
-  --craie: #D9A441;
-  --craie-deep: #B9832C;
-  --brique: #B5524A;
-  --sapin: #4B7A68;
-  --ligne: rgba(28,43,58,0.14);
-  --white: #FCFBF7;
-
-  --font-display: "Space Grotesk", sans-serif;
-  --font-body: "Literata", Georgia, serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --ardoise:#223A34;
+  --ardoise-deep:#182922;
+  --papier:#EAEEE9;
+  --papier-2:#E0E5DD;
+  --encre:#1C2B3A;
+  --craie:#D9A441;
+  --craie-deep:#B9832C;
+  --brique:#B5524A;
+  --sapin:#4B7A68;
+  --ligne:rgba(28,43,58,0.14);
+  --white:#FCFBF7;
+  --font-display:"Space Grotesk",sans-serif;
+  --font-body:"Literata",Georgia,serif;
+  --font-mono:"JetBrains Mono",monospace;
 }
-
-*{ box-sizing: border-box; margin:0; padding:0; }
-html{ scroll-behavior: smooth; }
-
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{
-  background: var(--papier);
-  color: var(--encre);
-  font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+  background:var(--papier);
+  color:var(--encre);
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
 }
-
-a{ color: inherit; }
-
-.wrap{
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0 28px;
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+a:focus-visible,button:focus-visible{
+  outline:2px solid var(--craie-deep);
+  outline-offset:3px;
+  border-radius:2px;
 }
-
-a:focus-visible, button:focus-visible{
-  outline: 2px solid var(--craie-deep);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
 header.site{
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  background: rgba(234,238,233,0.92);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--ligne);
+  position:sticky;
+  top:0;
+  z-index:40;
+  background:rgba(234,238,233,0.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--ligne);
 }
 nav{
   display:flex;
   align-items:center;
-  justify-content: space-between;
-  padding: 16px 0;
+  justify-content:space-between;
+  padding:16px 0;
 }
 .brand{
-  font-family: var(--font-mono);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-decoration: none;
+  font-family:var(--font-mono);
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.02em;
+  text-decoration:none;
 }
-.brand span{ color: var(--craie-deep); }
+.brand span{color:var(--craie-deep)}
 .nav-links{
   display:flex;
   align-items:center;
-  gap: 28px;
+  gap:28px;
   list-style:none;
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 500;
+  font-family:var(--font-display);
+  font-size:14px;
+  font-weight:500;
 }
-.nav-links a{ text-decoration:none; opacity:0.85; }
-.nav-links a:hover{ opacity:1; color: var(--craie-deep); }
-
+.nav-links a{text-decoration:none;opacity:.85}
+.nav-links a:hover{opacity:1;color:var(--craie-deep)}
 .hero{
-  background: var(--ardoise);
-  color: var(--white);
-  position: relative;
-  overflow: hidden;
+  background:var(--ardoise);
+  color:var(--white);
+  position:relative;
+  overflow:hidden;
   background-image:
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.045) 0 1px, transparent 1px 34px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.045) 0 1px, transparent 1px 34px);
+    repeating-linear-gradient(0deg,rgba(255,255,255,.045) 0 1px,transparent 1px 34px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.045) 0 1px,transparent 1px 34px);
 }
-.hero-inner.compact{ padding: 64px 28px 56px; }
+.hero-inner.compact{padding:64px 28px 56px}
 .eyebrow{
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--craie);
-  margin-bottom: 18px;
+  font-family:var(--font-mono);
+  font-size:13px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--craie);
+  margin-bottom:18px;
   display:flex;
   align-items:center;
   gap:10px;
 }
-.eyebrow a{ text-decoration:none; opacity:0.75; }
-.eyebrow a:hover{ opacity:1; }
+.eyebrow a{text-decoration:none;opacity:.75}
+.eyebrow a:hover{opacity:1}
 .hero h1.course-title{
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.01em;
-  max-width: none;
-  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-family:var(--font-display);
+  font-weight:700;
+  line-height:1.08;
+  letter-spacing:-.01em;
+  max-width:none;
+  font-size:clamp(1.9rem,4vw,2.8rem);
 }
 .hero p.course-description{
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.65;
-  max-width: 68ch;
-  margin-top: 18px;
-  color: rgba(252,251,247,0.78);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.65;
+  max-width:68ch;
+  margin-top:18px;
+  color:rgba(252,251,247,.78);
 }
-
-/* ---- Layout avec table des matières flottante ---- */
 .page-layout{
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 240px;
-  gap: 48px;
-  max-width: 1360px;
-  margin: 0 auto;
-  padding: 0 28px;
-  align-items: start;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 240px;
+  gap:48px;
+  max-width:1360px;
+  margin:0 auto;
+  padding:0 28px;
+  align-items:start;
 }
 .page-layout > main.wrap{
-  max-width: none;
-  padding: 0;
-  grid-column: 1;
+  max-width:none;
+  padding:0;
+  grid-column:1;
 }
-
 .toc-flottante{
-  grid-column: 2;
-  position: sticky;
-  top: 96px;
-  align-self: start;
-  max-height: calc(100vh - 130px);
-  overflow-y: auto;
-  padding: 20px 20px 22px;
-  background: var(--white);
-  border: 1px solid var(--ligne);
-  border-radius: 8px;
-  font-family: var(--font-display);
+  grid-column:2;
+  position:sticky;
+  top:96px;
+  align-self:start;
+  max-height:calc(100vh - 130px);
+  overflow-y:auto;
+  padding:20px 20px 22px;
+  background:var(--white);
+  border:1px solid var(--ligne);
+  border-radius:8px;
+  font-family:var(--font-display);
 }
 .toc-flottante h2{
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--craie-deep);
-  margin-bottom: 12px;
+  font-family:var(--font-mono);
+  font-size:11.5px;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--craie-deep);
+  margin-bottom:12px;
 }
 .toc-flottante ol{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
 }
 .toc-flottante li a{
-  display: block;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--encre);
-  opacity: 0.62;
-  padding: 7px 0 7px 14px;
-  border-left: 2px solid var(--ligne);
-  transition: opacity 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-  line-height: 1.3;
+  display:block;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:500;
+  color:var(--encre);
+  opacity:.62;
+  padding:7px 0 7px 14px;
+  border-left:2px solid var(--ligne);
+  transition:opacity .15s ease,border-color .15s ease,color .15s ease;
+  line-height:1.3;
 }
-.toc-flottante li a:hover{ opacity: 1; }
+.toc-flottante li a:hover{opacity:1}
 .toc-flottante li a.active{
-  opacity: 1;
-  color: var(--ardoise-deep);
-  border-left-color: var(--craie);
-  font-weight: 600;
+  opacity:1;
+  color:var(--ardoise-deep);
+  border-left-color:var(--craie);
+  font-weight:600;
 }
-
-@media (max-width: 1180px){
-  .page-layout{ display: block; padding: 0; }
-  .toc-flottante{ display: none; }
+@media(max-width:1180px){
+  .page-layout{display:block;padding:0}
+  .toc-flottante{display:none}
 }
-
-main section{ padding: 56px 0; }
-main section.compact{ padding: 40px 0; }
-.section-head{ margin-bottom: 28px; }
-.section-head .eyebrow{ color: var(--craie-deep); }
+main section{padding:56px 0}
+main section.compact{padding:40px 0}
+.section-head{margin-bottom:28px}
+.section-head .eyebrow{color:var(--craie-deep)}
 .section-head h2{
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.5rem, 2.8vw, 1.9rem);
-  letter-spacing: -0.01em;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(1.5rem,2.8vw,1.9rem);
+  letter-spacing:-.01em;
 }
-section{ scroll-margin-top: 96px; }
-.rule{ border: none; border-top: 1px solid var(--ligne); margin: 8px 0 0; }
-
-main p{ margin: 0 0 16px; max-width: 68ch; }
-main ul, main ol{ margin: 0 0 20px 22px; max-width: 64ch; }
-main li{ margin: 6px 0; }
-
+section{scroll-margin-top:96px}
+.rule{border:none;border-top:1px solid var(--ligne);margin:8px 0 0}
+main p{margin:0 0 16px;max-width:68ch}
+main ul,main ol{margin:0 0 20px 22px;max-width:64ch}
+main li{margin:6px 0}
 .encadre{
-  background: var(--white);
-  border: 1px solid var(--ligne);
-  border-left: 4px solid var(--ardoise);
-  border-radius: 6px;
-  padding: 22px 26px;
-  margin: 24px 0;
+  background:var(--white);
+  border:1px solid var(--ligne);
+  border-left:4px solid var(--ardoise);
+  border-radius:6px;
+  padding:22px 26px;
+  margin:24px 0;
 }
 .encadre-label{
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ardoise);
-  margin-bottom: 12px;
-  display: block;
+  font-family:var(--font-mono);
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--ardoise);
+  margin-bottom:12px;
+  display:block;
 }
-.encadre p{ margin: 0 0 10px; max-width: none; }
-.encadre p:last-child{ margin-bottom: 0; }
-.encadre ul{ margin: 0 0 0 20px; max-width: none; }
-
-.encadre-definition{ border-left-color: var(--sapin); }
-.encadre-definition .encadre-label{ color: var(--sapin); }
-
-.encadre-exemple{ background: var(--papier-2); border-left-color: var(--craie-deep); }
-.encadre-exemple .encadre-label{ color: var(--craie-deep); }
-
-.encadre-objectifs{ border-left-color: var(--ardoise); }
-
-.encadre-note{ border-left-color: var(--brique); }
-.encadre-note .encadre-label{ color: var(--brique); }
-
-.encadre-attention{ border-left-color: var(--brique); background: #FBEFEE; }
-.encadre-attention .encadre-label{ color: var(--brique); }
-
-.encadre-methode{ border-left-color: var(--sapin); background: #EEF3F0; }
-.encadre-methode .encadre-label{ color: var(--sapin); }
-
+.encadre p{margin:0 0 10px;max-width:none}
+.encadre p:last-child{margin-bottom:0}
+.encadre ul{margin:0 0 0 20px;max-width:none}
+.encadre-definition{border-left-color:var(--sapin)}
+.encadre-definition .encadre-label{color:var(--sapin)}
+.encadre-exemple{background:var(--papier-2);border-left-color:var(--craie-deep)}
+.encadre-exemple .encadre-label{color:var(--craie-deep)}
+.encadre-objectifs{border-left-color:var(--ardoise)}
+.encadre-note{border-left-color:var(--brique)}
+.encadre-note .encadre-label{color:var(--brique)}
+.encadre-attention{border-left-color:var(--brique);background:#FBEFEE}
+.encadre-attention .encadre-label{color:var(--brique)}
+.encadre-methode{border-left-color:var(--sapin);background:#EEF3F0}
+.encadre-methode .encadre-label{color:var(--sapin)}
 .encadre-central{
-  text-align: center;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.05rem;
-  color: var(--ardoise);
-  margin: 14px 0 0;
+  text-align:center;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1.05rem;
+  color:var(--ardoise);
+  margin:14px 0 0;
 }
-
 .table-wrap{
-  border: 1px solid var(--ligne);
-  border-radius: 6px;
-  overflow: hidden;
-  margin: 20px 0 24px;
+  border:1px solid var(--ligne);
+  border-radius:6px;
+  overflow:hidden;
+  margin:20px 0 24px;
 }
 table{
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 15px;
-  background: var(--white);
+  border-collapse:collapse;
+  width:100%;
+  font-size:15px;
+  background:var(--white);
 }
-th, td{
-  border-bottom: 1px solid var(--ligne);
-  padding: 11px 16px;
-  text-align: left;
+th,td{
+  border-bottom:1px solid var(--ligne);
+  padding:11px 16px;
+  text-align:left;
 }
 th{
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 13.5px;
-  background: var(--ardoise);
-  color: var(--white);
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:13.5px;
+  background:var(--ardoise);
+  color:var(--white);
 }
-tr:last-child td{ border-bottom: none; }
-tr:nth-child(even) td{ background: var(--papier); }
-
-.etapes{ list-style: none; margin: 0 0 20px; max-width: 64ch; }
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:var(--papier)}
+.etapes{list-style:none;margin:0 0 20px;max-width:64ch}
 .etapes li{
-  display: grid;
-  grid-template-columns: 34px 1fr;
-  gap: 14px;
-  padding: 14px 0;
-  border-top: 1px solid var(--ligne);
+  display:grid;
+  grid-template-columns:34px 1fr;
+  gap:14px;
+  padding:14px 0;
+  border-top:1px solid var(--ligne);
 }
-.etapes li:first-child{ border-top: none; padding-top: 0; }
+.etapes li:first-child{border-top:none;padding-top:0}
 .etape-num{
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--craie-deep);
+  font-family:var(--font-mono);
+  font-weight:600;
+  font-size:14px;
+  color:var(--craie-deep);
 }
-.etape-body strong{ font-family: var(--font-display); font-weight: 600; }
-
+.etape-body strong{font-family:var(--font-display);font-weight:600}
 .etapes-statistiques .center-text{
-  text-align: center;
-  color: var(--craie-deep);
-  font-size: 20px;
-  line-height: 1;
-  margin: 2px 0;
+  text-align:center;
+  color:var(--craie-deep);
+  font-size:20px;
+  line-height:1;
+  margin:2px 0;
 }
-
-.nav-suivant{
-  background: var(--ardoise-deep);
-  color: var(--white);
-}
+.nav-suivant{background:var(--ardoise-deep);color:var(--white)}
 .nav-suivant .wrap{
   display:flex;
   align-items:center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 36px 28px;
-  flex-wrap: wrap;
+  justify-content:space-between;
+  gap:20px;
+  padding:36px 28px;
+  flex-wrap:wrap;
 }
 .nav-suivant .label{
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--craie);
-  margin-bottom: 6px;
-  display: block;
+  font-family:var(--font-mono);
+  font-size:12px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--craie);
+  margin-bottom:6px;
+  display:block;
 }
 .nav-suivant .titre{
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.2rem;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1.2rem;
 }
 .btn{
   display:inline-flex;
   align-items:center;
-  gap: 8px;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 15px;
-  padding: 13px 22px;
-  border-radius: 3px;
+  gap:8px;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:15px;
+  padding:13px 22px;
+  border-radius:3px;
   text-decoration:none;
-  border: 1px solid transparent;
-  transition: transform 0.12s ease;
-  flex-shrink: 0;
+  border:1px solid transparent;
+  transition:transform .12s ease;
+  flex-shrink:0;
 }
-.btn:hover{ transform: translateY(-1px); }
-.btn-primary{ background: var(--craie); color: var(--ardoise-deep); }
-.btn-primary:hover{ background: #E7B563; }
-
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--craie);color:var(--ardoise-deep)}
+.btn-primary:hover{background:#E7B563}
 footer.site-footer{
-  text-align: center;
-  padding: 2rem 1rem;
-  color: rgba(28,43,58,0.6);
-  font-size: 0.85rem;
-  font-family: var(--font-mono);
+  text-align:center;
+  padding:2rem 1rem;
+  color:rgba(28,43,58,.6);
+  font-size:.85rem;
+  font-family:var(--font-mono);
 }
-
-@media (max-width: 720px){
-  .hero-inner.compact{ padding: 56px 20px 44px; }
-  main section{ padding: 44px 0; }
-  .encadre{ padding: 18px 20px; }
+@media(max-width:720px){
+  .hero-inner.compact{padding:56px 20px 44px}
+  main section{padding:44px 0}
+  .encadre{padding:18px 20px}
 }
 </style>
 </head>
+
 <body>
 
 <header class="site">
@@ -387,9 +353,16 @@ footer.site-footer{
 
 <div class="hero">
   <div class="wrap hero-inner compact">
-    <div class="eyebrow"><a href="https://learnwithdom.page/cours/mat1102.html">MAT1102-3 · Collecte, organisation et interprétation de données</a></div>
+    <div class="eyebrow">
+      <a href="https://learnwithdom.page/cours/mat1102.html">
+        MAT1102-3 · Collecte, organisation et interprétation de données
+      </a>
+    </div>
     <h1 class="course-title">L'étude statistique</h1>
-    <p class="course-description"></p>
+    <p class="course-description">
+      Comprendre comment une étude statistique est planifiée, réalisée et interprétée
+      afin de tirer des conclusions à partir de données.
+    </p>
   </div>
 </div>
 
@@ -397,236 +370,385 @@ footer.site-footer{
 
 <main class="wrap">
 
+  <!-- =========================================================
+       1. INTRODUCTION
+       ========================================================= -->
   <section class="compact" id="introduction">
-    <p> Dans de nombreuses situations, les populations étudiées sont très importantes, voire trop nombreuses pour qu'il soit possible d'observer chacun de leurs individus. La statistique permet alors d'obtenir de l'information sur une population à partir de l'étude d'un échantillon, c'est-à-dire d'un sous-ensemble de cette population. Cette démarche permet ainsi de tirer des conclusions statistiques sur une population sans avoir à interroger ou à mesurer chacun de ses membres.</p>
-
-<div class="encadre encadre-exemple">
-  <span class="encadre-label">Exemple — Transport des élèves</span>
-
-  <p>
-    Pour savoir comment améliorer le transport scolaire, le ministère de
-    l'Éducation souhaite connaître l'opinion des parents des 1,2 million
-    d'élèves du Québec. Comme il serait trop long et coûteux d'interroger
-    tous les parents, le ministère sélectionne aléatoirement 60 familles
-    afin de recueillir leur opinion sur l'efficacité du transport scolaire.
-    Parmi ces 60 familles, 35 indiquent que l'autobus est souvent en retard.
-    Dans cette situation, la population et l'échantillon sont :
-  </p>
-
-  <ul>
-    <li>
-      <b>Population :</b> les parents des 1,2 million d'élèves du Québec.
-    </li>
-    <li>
-      <b>Échantillon :</b> les 60 familles sélectionnées aléatoirement.
-    </li>
-  </ul>
-</div>
-
-
-<p>
-  Maintenant, nous allons apprendre ce qu'est une <b>étude statistique</b>
-  et comment elle permet de répondre à des questions à l'aide de données.
-</p>
-
-<p>
-  Comme nous l'avons vu dans l'exemple précédent, il arrive souvent que nous
-  devions répondre à des questions en nous appuyant sur des informations
-  recueillies auprès d'une population. Pour répondre à ces questions de
-  manière rigoureuse, nous pouvons réaliser une <b>étude statistique</b>.
-  Celle-ci consiste à recueillir, organiser et analyser des données afin
-  d'obtenir de l'information et de tirer des conclusions sur la situation
-  étudiée.
-</p>
-
-<div class="encadre encadre-definition">
-  <span class="encadre-label">Définition</span>
-
-  <p>
-    Une <strong>étude statistique</strong> est une démarche qui consiste à <strong>recueillir, organiser, analyser et interpréter des données</strong> afin d'obtenir de l'information sur une situation précise et de tirer des conclusions à partir de ces données.
-  </p>
-</div>
-
-<div class="encadre encadre-methode">
-  <span class="encadre-label">Les étapes d'une étude statistique</span>
-
-  <div class="etapes-statistiques">
-    <div class="etape-statistique">
-      <strong>1. Planifier et concevoir l'étude</strong>
-      <p>
-        Définir la question de recherche, déterminer la population étudiée,
-        identifier les variables à observer et choisir une méthode
-        d'échantillonnage appropriée afin d'obtenir des données aussi
-        représentatives que possible.
-      </p>
+    <div class="section-head">
+      <div class="eyebrow">Départ</div>
+      <h2>Pourquoi réaliser une étude statistique ?</h2>
     </div>
 
-        <div aria-hidden="true" class="center-text">&#8595;</div>
+    <p>
+      Dans de nombreuses situations, la population que l'on souhaite étudier est
+      très importante, voire trop nombreuse pour qu'il soit possible d'observer
+      chacun de ses membres. La statistique permet alors d'obtenir de l'information
+      sur une population à partir de données recueillies auprès de celle-ci ou,
+      lorsque cela est approprié, auprès d'un échantillon.
+    </p>
 
-    <div class="etape-statistique">
-      <strong>2. Recueillir les données</strong>
+    <p>
+      Une étude statistique permet ainsi de répondre à une question précise en
+      recueillant, en organisant, en analysant et en interprétant des données.
+      Lorsque l'étude repose sur un échantillon, la qualité de sa conception et
+      de son échantillonnage est essentielle pour que les conclusions puissent
+      être pertinentes pour la population étudiée.
+    </p>
+
+    <div class="encadre encadre-exemple">
+      <span class="encadre-label">Exemple — Transport des élèves</span>
+
       <p>
-        Obtenir les données auprès de l'échantillon à l'aide d'un
-        questionnaire, d'une enquête, d'une observation ou d'une expérience,
-        tout en prenant des précautions pour limiter les biais.
+        Pour savoir comment améliorer le transport scolaire, le ministère de
+        l'Éducation souhaite connaître l'opinion des parents des 1,2 million
+        d'élèves du Québec. Comme il serait long et coûteux d'interroger tous
+        les parents, le ministère sélectionne aléatoirement 60 familles afin
+        de recueillir leur opinion sur l'efficacité du transport scolaire.
       </p>
+
+      <p>
+        Parmi ces 60 familles, 35 indiquent que l'autobus est souvent en retard.
+      </p>
+
+      <p>Dans cette situation :</p>
+
+      <ul>
+        <li>
+          <strong>Population :</strong> l'ensemble des parents des élèves visés
+          par l'étude.
+        </li>
+        <li>
+          <strong>Échantillon :</strong> les 60 familles sélectionnées pour
+          participer à l'étude.
+        </li>
+      </ul>
     </div>
 
-       <div aria-hidden="true" class="center-text">&#8595;</div>
+    <div class="encadre encadre-definition">
+      <span class="encadre-label">Définition</span>
 
-    <div class="etape-statistique">
-      <strong>3. Organiser et résumer les données</strong>
       <p>
-        Présenter les données à l'aide de tableaux, de distributions de
-        fréquences, de diagrammes ou de graphiques. On peut également
-        calculer des mesures statistiques telles que la moyenne, la médiane,
-        le mode ou l'étendue afin de mieux décrire les données.
+        Une <strong>étude statistique</strong> est une démarche organisée qui
+        consiste à recueillir, organiser, analyser et interpréter des données
+        afin de répondre à une question précise et de tirer des conclusions
+        fondées sur ces données.
       </p>
     </div>
-
-        <div aria-hidden="true" class="center-text">&#8595;</div>
-
-    <div class="etape-statistique">
-      <strong>4. Analyser les données</strong>
-      <p>
-        Examiner les données afin de mettre en évidence des tendances,
-        des relations ou des différences. Lorsque l'objectif est de tirer
-        des conclusions sur une population à partir d'un échantillon,
-        des méthodes de statistique inférentielle peuvent être utilisées.
-      </p>
-    </div>
-
-    <div  aria-hidden="true" class="center-text">&#8595;</div>
-
-    <div class="etape-statistique">
-      <strong>5. Interpréter les résultats et tirer une conclusion</strong>
-      <p>
-        Expliquer ce que les résultats signifient dans le contexte de la
-        question initiale et formuler une conclusion fondée sur les données.
-        Il faut également considérer les limites de l'étude, les sources
-        possibles d'erreur et l'incertitude associée aux résultats.
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="encadre encadre-attention">
-  <span class="encadre-label">Attention</span>
-  <p>
-    Un échantillon mal choisi peut fausser complètement les résultats
-    d'une étude statistique, même si le nombre de personnes interrogées
-    semble suffisant. Par exemple, si le ministère avait interrogé
-    uniquement des familles vivant dans un même quartier ou une même
-    ville, l'échantillon ne représenterait plus adéquatement l'ensemble
-    des parents du Québec : on parlerait alors d'un <strong>biais
-    d'échantillonnage</strong>. Une bonne étude statistique doit donc
-    chercher à obtenir un échantillon représentatif de la population
-    étudiée.
-  </p>
-</div>
-
   </section>
 
   <hr class="rule">
 
+  <!-- =========================================================
+       2. ÉTAPES
+       ========================================================= -->
+  <section id="etapes">
+    <div class="section-head">
+      <div class="eyebrow">Démarche</div>
+      <h2>Les étapes d'une étude statistique</h2>
+    </div>
+
+    <p>
+      Une étude statistique suit généralement une démarche en cinq grandes étapes.
+      Ces étapes sont liées entre elles : une erreur commise au début de l'étude
+      peut avoir des conséquences sur les résultats et leur interprétation.
+    </p>
+
+    <div class="encadre encadre-methode">
+      <span class="encadre-label">Les 5 étapes</span>
+
+      <div class="etapes-statistiques">
+
+        <div class="etape-statistique">
+          <strong>1. Planifier et concevoir l'étude</strong>
+          <p>
+            Définir la question de recherche, préciser la population étudiée,
+            déterminer les variables à observer et choisir une méthode
+            d'échantillonnage appropriée lorsque l'étude porte sur un échantillon.
+          </p>
+        </div>
+
+        <div aria-hidden="true" class="center-text">&#8595;</div>
+
+        <div class="etape-statistique">
+          <strong>2. Recueillir les données</strong>
+          <p>
+            Obtenir les données à l'aide d'un questionnaire, d'une enquête,
+            d'une observation, d'une mesure ou d'une expérience, selon la
+            nature de la question étudiée. Il faut chercher à réduire les
+            erreurs et les biais lors de la collecte.
+          </p>
+        </div>
+
+        <div aria-hidden="true" class="center-text">&#8595;</div>
+
+        <div class="etape-statistique">
+          <strong>3. Organiser et résumer les données</strong>
+          <p>
+            Présenter les données à l'aide de tableaux, de distributions de
+            fréquences, de diagrammes ou de graphiques. On peut également
+            calculer des mesures statistiques telles que la moyenne, la médiane,
+            le mode ou l'étendue afin de résumer les données.
+          </p>
+        </div>
+
+        <div aria-hidden="true" class="center-text">&#8595;</div>
+
+        <div class="etape-statistique">
+          <strong>4. Analyser les données</strong>
+          <p>
+            Examiner les données afin de mettre en évidence des tendances,
+            des relations, des différences ou des régularités. Lorsque l'objectif
+            est de tirer des conclusions sur une population à partir d'un
+            échantillon, des méthodes de statistique inférentielle peuvent
+            être utilisées.
+          </p>
+        </div>
+
+        <div aria-hidden="true" class="center-text">&#8595;</div>
+
+        <div class="etape-statistique">
+          <strong>5. Interpréter les résultats et tirer une conclusion</strong>
+          <p>
+            Expliquer ce que les résultats signifient dans le contexte de la
+            question initiale et formuler une conclusion fondée sur les données.
+            Il faut également considérer les limites de l'étude, les sources
+            possibles d'erreur et l'incertitude associée aux résultats.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- =========================================================
+       3. DÉFINITIONS
+       ========================================================= -->
   <section id="definitions">
     <div class="section-head">
       <div class="eyebrow">Fondements</div>
-      <h2>Définitions</h2>
+      <h2>Concepts fondamentaux</h2>
     </div>
 
-    <p>Commençons par quelques définitions.</p>
+    <p>
+      Pour comprendre une étude statistique, il faut distinguer quelques
+      concepts fondamentaux.
+    </p>
 
     <div class="encadre encadre-definition">
       <span class="encadre-label">Définitions</span>
-      <p>Les <strong>données</strong> sont des collections d'observations, comme par exemple les mesures, le genre ou les réponses à différents sondages.</p>
-      <p>La <strong>statistique</strong> est la science qui consiste à recueillir, organiser, analyser et interpréter des données afin d'obtenir de l'information et de prendre des décisions.</p>
-      <p>La <strong>population</strong> est une collection complète de <strong>toutes</strong> les mesures ou données qui sont considérées.</p>
-      <p>Un <strong>recensement</strong> est une collecte de données de <strong>chaque</strong> membre d'une population.</p>
-      <p>Un <strong>échantillon</strong> est une sous-collection de données des membres sélectionnés d'une population.</p>
-    </div>
 
-    <p>Une étude statistique suit généralement quatre grandes étapes :</p>
+      <p>
+        Les <strong>données</strong> sont les observations recueillies au cours
+        d'une étude. Elles peuvent prendre différentes formes : nombres,
+        catégories, mesures, réponses à un questionnaire, observations, etc.
+      </p>
 
-    <ol class="etapes">
-      <li>
-        <span class="etape-num">01</span>
-        <span class="etape-body"><strong>Collecter des données</strong> — On recueille des informations auprès de personnes, d'objets ou d'événements.</span>
-      </li>
-      <li>
-        <span class="etape-num">02</span>
-        <span class="etape-body"><strong>Organiser les données</strong> — On classe les informations dans des tableaux ou des listes.</span>
-      </li>
-      <li>
-        <span class="etape-num">03</span>
-        <span class="etape-body"><strong>Analyser les données</strong> — On cherche des tendances, des ressemblances ou des différences.</span>
-      </li>
-      <li>
-        <span class="etape-num">04</span>
-        <span class="etape-body"><strong>Interpréter les résultats</strong> — On utilise les informations obtenues pour prendre une décision.</span>
-      </li>
-    </ol>
+      <p>
+        La <strong>statistique</strong> est la discipline qui consiste à
+        recueillir, organiser, analyser et interpréter des données afin d'en
+        tirer de l'information utile.
+      </p>
 
-    <div class="encadre encadre-exemple">
-      <span class="encadre-label">Exemple — Consommation d'essence</span>
-      <p>Une personne veut diminuer ses dépenses d'essence. Elle note sa consommation pendant cinq semaines :</p>
-      <p class="encadre-central">45, 52, 48, 55, 50</p>
-      <p>Avec la statistique, elle peut :</p>
-      <ul>
-        <li>calculer sa consommation moyenne ;</li>
-        <li>voir les semaines où elle consomme davantage ;</li>
-        <li>comparer ses habitudes ;</li>
-        <li>prendre des décisions pour économiser.</li>
-      </ul>
+      <p>
+        La <strong>population</strong> est l'ensemble des unités statistiques
+        auxquelles la question de l'étude s'intéresse. Selon la situation,
+        ces unités peuvent être des personnes, des ménages, des objets,
+        des entreprises, des mesures ou des événements.
+      </p>
+
+      <p>
+        Un <strong>recensement</strong> consiste à recueillir des données auprès
+        de l'ensemble des unités de la population visée.
+      </p>
+
+      <p>
+        Un <strong>échantillon</strong> est un sous-ensemble des unités de la
+        population sélectionné pour participer à une étude.
+      </p>
     </div>
 
     <div class="encadre encadre-methode">
       <span class="encadre-label">Méthode — Population ou échantillon ?</span>
-      <p>Pour déterminer si un groupe correspond à la population ou à un échantillon dans une situation donnée, on peut se poser les questions suivantes :</p>
+
+      <p>
+        Pour déterminer si un groupe représente la population ou un échantillon,
+        on peut se poser les questions suivantes :
+      </p>
+
       <ul>
-        <li>Est-ce que <strong>tous</strong> les individus concernés par la question ont été observés ? Si oui, il s'agit de la <strong>population</strong> (ou d'un recensement).</li>
-        <li>Est-ce que seulement une <strong>partie</strong> du groupe a été observée ? Si oui, il s'agit d'un <strong>échantillon</strong>.</li>
-        <li>Quel est le groupe le plus large auquel on souhaite appliquer la conclusion ? C'est la <strong>population</strong> visée par l'étude.</li>
+        <li>
+          Quel est le groupe complet auquel la question de l'étude s'intéresse ?
+          Il s'agit de la <strong>population visée</strong>.
+        </li>
+        <li>
+          Est-ce que toutes les unités de cette population ont été observées ?
+          Si oui, la collecte correspond à un <strong>recensement</strong>.
+        </li>
+        <li>
+          Est-ce qu'une partie seulement de la population a été observée ?
+          Si oui, cette partie constitue un <strong>échantillon</strong>.
+        </li>
+      </ul>
+    </div>
+
+    <div class="encadre encadre-exemple">
+      <span class="encadre-label">Exemple — Consommation d'essence</span>
+
+      <p>
+        Une personne veut diminuer ses dépenses d'essence. Elle note sa
+        consommation pendant cinq semaines :
+      </p>
+
+      <p class="encadre-central">45, 52, 48, 55, 50</p>
+
+      <p>À partir de ces données, elle peut :</p>
+
+      <ul>
+        <li>calculer sa consommation moyenne ;</li>
+        <li>repérer les semaines où sa consommation est plus élevée ;</li>
+        <li>comparer ses habitudes de consommation ;</li>
+        <li>prendre des décisions pour réduire ses dépenses.</li>
       </ul>
     </div>
   </section>
 
   <hr class="rule">
 
+  <!-- =========================================================
+       4. QUALITÉ, BIAIS ET ERREURS
+       ========================================================= -->
+  <section id="qualite">
+    <div class="section-head">
+      <div class="eyebrow">Fiabilité</div>
+      <h2>Qualité des données, biais et erreurs</h2>
+    </div>
+
+    <p>
+      Les résultats d'une étude statistique ne sont pas automatiquement fiables
+      simplement parce qu'ils sont présentés sous forme de nombres, de tableaux
+      ou de graphiques. Il faut aussi examiner la façon dont les données ont
+      été obtenues.
+    </p>
+
+    <div class="encadre encadre-attention">
+      <span class="encadre-label">Attention — Le choix de l'échantillon</span>
+
+      <p>
+        Un échantillon mal choisi peut produire des résultats qui représentent
+        mal la population étudiée. Par exemple, si le ministère interrogeait
+        uniquement des familles vivant dans un même quartier ou une même ville,
+        les résultats pourraient ne pas représenter adéquatement l'ensemble
+        des parents du Québec.
+      </p>
+
+      <p>
+        On parlerait alors d'un <strong>biais d'échantillonnage</strong> si la
+        méthode de sélection introduisait une tendance systématique à
+        surestimer ou à sous-estimer une caractéristique de la population.
+      </p>
+    </div>
+
+    <div class="encadre encadre-methode">
+      <span class="encadre-label">À vérifier avant de faire confiance aux résultats</span>
+
+      <ul>
+        <li>Quelle population l'étude cherche-t-elle à représenter ?</li>
+        <li>Comment les participants ou les unités ont-ils été sélectionnés ?</li>
+        <li>Quelle est la taille de l'échantillon ?</li>
+        <li>Comment les données ont-elles été recueillies ?</li>
+        <li>Y a-t-il eu des personnes qui n'ont pas répondu ?</li>
+        <li>Les questions ou les mesures pouvaient-elles influencer les réponses ?</li>
+        <li>Quelles sont les limites et les sources possibles d'erreur ?</li>
+      </ul>
+    </div>
+
+    <p>
+      Il est important de distinguer l'<strong>erreur d'échantillonnage</strong>
+      des autres sources d'erreur. Une enquête réalisée à partir d'un échantillon
+      peut différer d'un recensement simplement parce qu'elle n'observe qu'une
+      partie de la population. D'autres erreurs peuvent cependant provenir de
+      la couverture de la population, des questions posées, de la non-réponse,
+      de la saisie ou du traitement des données.
+    </p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- =========================================================
+       5. APPLICATIONS
+       ========================================================= -->
   <section id="applications">
     <div class="section-head">
       <div class="eyebrow">Applications</div>
       <h2>La statistique dans la vie réelle</h2>
     </div>
 
-    <p>La statistique est utilisée dans plusieurs domaines.</p>
+    <p>
+      La statistique est utilisée dans de nombreux domaines pour décrire des
+      situations, comparer des résultats, prévoir certains phénomènes et
+      soutenir la prise de décision.
+    </p>
 
     <div class="table-wrap">
       <table>
-        <tr><th>Domaine</th><th>Exemple d'utilisation</th></tr>
-        <tr><td><strong>Santé</strong></td><td>Étudier l'efficacité d'un traitement ou suivre l'évolution d'une maladie.</td></tr>
-        <tr><td><strong>Commerce</strong></td><td>Comprendre les habitudes d'achat des clients.</td></tr>
-        <tr><td><strong>Transport</strong></td><td>Analyser les déplacements et améliorer les routes.</td></tr>
-        <tr><td><strong>Sports</strong></td><td>Comparer les performances des athlètes.</td></tr>
-        <tr><td><strong>Gouvernement</strong></td><td>Planifier des services pour la population.</td></tr>
-        <tr><td><strong>Finance</strong></td><td>Prévoir des dépenses et gérer un budget.</td></tr>
+        <tr>
+          <th>Domaine</th>
+          <th>Exemple d'utilisation</th>
+        </tr>
+        <tr>
+          <td><strong>Santé</strong></td>
+          <td>Étudier l'efficacité d'un traitement ou suivre l'évolution d'une maladie.</td>
+        </tr>
+        <tr>
+          <td><strong>Commerce</strong></td>
+          <td>Comprendre les habitudes d'achat des clients.</td>
+        </tr>
+        <tr>
+          <td><strong>Transport</strong></td>
+          <td>Analyser les déplacements et améliorer les services de transport.</td>
+        </tr>
+        <tr>
+          <td><strong>Sports</strong></td>
+          <td>Comparer les performances des athlètes.</td>
+        </tr>
+        <tr>
+          <td><strong>Gouvernement</strong></td>
+          <td>Planifier des services et comprendre les caractéristiques de la population.</td>
+        </tr>
+        <tr>
+          <td><strong>Finance</strong></td>
+          <td>Analyser des dépenses, comparer des options et gérer un budget.</td>
+        </tr>
       </table>
     </div>
 
     <div class="encadre encadre-exemple">
       <span class="encadre-label">Exemple — Une épicerie</span>
-      <p>Une épicerie analyse les achats de ses clients. Elle remarque que :</p>
+
+      <p>
+        Une épicerie analyse les achats de ses clients. Elle remarque que :
+      </p>
+
       <ul>
-        <li>les fruits sont plus vendus le samedi ;</li>
-        <li>certains produits sont populaires pendant les fêtes ;</li>
-        <li>les clients achètent davantage certains produits en promotion.</li>
+        <li>les fruits sont davantage vendus le samedi ;</li>
+        <li>certains produits sont particulièrement populaires pendant les fêtes ;</li>
+        <li>les clients achètent davantage certains produits lorsqu'ils sont en promotion.</li>
       </ul>
-      <p>L'entreprise utilise ces informations pour mieux gérer ses stocks.</p>
+
+      <p>
+        L'entreprise peut utiliser ces informations pour mieux planifier ses
+        stocks et ses promotions.
+      </p>
     </div>
   </section>
 
   <hr class="rule">
 
+  <!-- =========================================================
+       6. POURQUOI APPRENDRE
+       ========================================================= -->
   <section id="contexte">
     <div class="section-head">
       <div class="eyebrow">Mise en contexte</div>
@@ -634,46 +756,81 @@ footer.site-footer{
     </div>
 
     <div class="encadre encadre-note">
-      <span class="encadre-label">Note</span>
-      <p>La statistique n'est pas seulement une matière scolaire. Elle est un outil permettant de mieux comprendre le monde qui nous entoure.</p>
+      <span class="encadre-label">À retenir</span>
+
+      <p>
+        La statistique n'est pas seulement une matière scolaire. C'est un outil
+        qui permet de mieux comprendre les informations quantitatives et de
+        prendre des décisions plus éclairées.
+      </p>
     </div>
 
-    <p>Dans la vie adulte, nous devons souvent interpréter des informations statistiques :</p>
+    <p>
+      Dans la vie quotidienne, nous devons souvent interpréter des informations
+      statistiques, par exemple pour :
+    </p>
 
     <ul>
-      <li>Lire un graphique dans un journal.</li>
-      <li>Comparer des prix et des offres.</li>
-      <li>Comprendre un sondage.</li>
-      <li>Évaluer un risque.</li>
-      <li>Prendre une décision financière.</li>
+      <li>lire un graphique dans un journal ou sur un site Web ;</li>
+      <li>comparer des prix et des offres ;</li>
+      <li>comprendre les résultats d'un sondage ;</li>
+      <li>évaluer un risque ;</li>
+      <li>prendre une décision financière.</li>
     </ul>
 
     <div class="encadre encadre-exemple">
       <span class="encadre-label">Exemple — Choisir une assurance automobile</span>
-      <p>Une personne compare deux assurances.</p>
+
+      <p>
+        Une personne compare deux assurances automobiles :
+      </p>
+
       <div class="table-wrap">
         <table>
-          <tr><th>Assurance</th><th>Prix annuel</th><th>Satisfaction des clients</th></tr>
-          <tr><td>A</td><td>900 $</td><td>85 %</td></tr>
-          <tr><td>B</td><td>1050 $</td><td>95 %</td></tr>
+          <tr>
+            <th>Assurance</th>
+            <th>Prix annuel</th>
+            <th>Satisfaction des clients</th>
+          </tr>
+          <tr>
+            <td>A</td>
+            <td>900 $</td>
+            <td>85 %</td>
+          </tr>
+          <tr>
+            <td>B</td>
+            <td>1 050 $</td>
+            <td>95 %</td>
+          </tr>
         </table>
       </div>
-      <p>La statistique permet de comparer plusieurs informations avant de choisir. La meilleure décision dépend des besoins de la personne.</p>
+
+      <p>
+        Les données permettent de comparer plusieurs caractéristiques avant de
+        prendre une décision. Cependant, la meilleure décision ne dépend pas
+        nécessairement d'une seule statistique : elle dépend aussi des besoins,
+        des priorités et du contexte de la personne.
+      </p>
     </div>
 
     <div class="encadre encadre-attention">
       <span class="encadre-label">Attention</span>
+
       <p>
-        Une statistique bien présentée n'est pas toujours une statistique
-        fiable. Avant de faire confiance à un résultat, il est utile de se
-        demander : qui a mené l'étude, quelle était la taille de
-        l'échantillon, et comment les données ont-elles été recueillies ?
+        Une statistique correctement calculée n'est pas nécessairement une
+        statistique pertinente pour toutes les situations. Avant de faire
+        confiance à un résultat, il faut examiner la population étudiée,
+        l'échantillon, la méthode de collecte, les mesures utilisées et les
+        limites de l'étude.
       </p>
     </div>
   </section>
 
   <hr class="rule">
 
+  <!-- =========================================================
+       7. RÉSUMÉ
+       ========================================================= -->
   <section class="compact" id="resume">
     <div class="section-head">
       <div class="eyebrow">Résumé</div>
@@ -682,13 +839,37 @@ footer.site-footer{
 
     <div class="encadre encadre-note">
       <span class="encadre-label">À retenir</span>
+
       <ul>
-        <li>La statistique permet de comprendre des informations.</li>
-        <li>Elle utilise des données provenant du monde réel.</li>
-        <li>Elle aide à prendre de meilleures décisions.</li>
-        <li>Nous utilisons la statistique chaque jour sans toujours nous en rendre compte.</li>
-        <li>Une étude statistique suit une démarche claire : planifier, recueillir, organiser, analyser et interpréter.</li>
-        <li>La qualité d'un échantillon détermine la fiabilité des conclusions tirées d'une étude.</li>
+        <li>
+          La <strong>statistique</strong> permet de recueillir, organiser,
+          analyser et interpréter des données.
+        </li>
+        <li>
+          Une <strong>population</strong> est l'ensemble des unités visées
+          par une étude.
+        </li>
+        <li>
+          Un <strong>échantillon</strong> est un sous-ensemble de la population
+          sélectionné pour participer à une étude.
+        </li>
+        <li>
+          Un <strong>recensement</strong> recueille des données auprès de
+          l'ensemble de la population visée.
+        </li>
+        <li>
+          Une étude statistique suit cinq grandes étapes :
+          <strong>planifier, recueillir, organiser et résumer, analyser,
+          puis interpréter et conclure</strong>.
+        </li>
+        <li>
+          La qualité des conclusions dépend notamment de la façon dont
+          l'étude a été conçue et dont les données ont été recueillies.
+        </li>
+        <li>
+          Un échantillon peut être affecté par un <strong>biais</strong>,
+          et une étude peut également comporter d'autres sources d'erreur.
+        </li>
       </ul>
     </div>
   </section>
@@ -699,7 +880,9 @@ footer.site-footer{
   <h2>Sur cette page</h2>
   <ol id="toc-list">
     <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#definitions">Définitions</a></li>
+    <li><a href="#etapes">Les étapes de l'étude</a></li>
+    <li><a href="#definitions">Concepts fondamentaux</a></li>
+    <li><a href="#qualite">Qualité, biais et erreurs</a></li>
     <li><a href="#applications">La statistique dans la vie réelle</a></li>
     <li><a href="#contexte">Pourquoi apprendre la statistique ?</a></li>
     <li><a href="#resume">Résumé de la section</a></li>
@@ -712,37 +895,58 @@ footer.site-footer{
   <div class="wrap">
     <div>
       <span class="label">Section suivante</span>
-      <span class="titre">L'étude statistique</span>
+      <span class="titre">La population, l'échantillon et le type de caractères</span>
     </div>
-    <a class="btn btn-primary" href="https://dom-explorer.github.io/notes-cours/MAT1102/chapitre1/etude_statistique.html">Continuer →</a>
+    <a class="btn btn-primary" href="population_echantillon_caractere.html">
+      Continuer →
+    </a>
   </div>
 </div>
 
-<footer class="site-footer">MAT1102-3 · learnwithdom.page</footer>
+<footer class="site-footer">
+  MAT1102-3 · learnwithdom.page
+</footer>
 
 <script>
 (function(){
-  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-flottante a'));
+  var links = Array.prototype.slice.call(
+    document.querySelectorAll('.toc-flottante a')
+  );
   if(!links.length) return;
+
   var sections = links.map(function(a){
     return document.getElementById(a.getAttribute('href').slice(1));
   }).filter(Boolean);
 
   function setActive(id){
     links.forEach(function(a){
-      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      a.classList.toggle(
+        'active',
+        a.getAttribute('href') === '#' + id
+      );
     });
   }
 
   if('IntersectionObserver' in window){
     var observer = new IntersectionObserver(function(entries){
-      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      var visible = entries.filter(function(e){
+        return e.isIntersecting;
+      });
+
       if(visible.length){
-        visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; });
+        visible.sort(function(a,b){
+          return a.boundingClientRect.top - b.boundingClientRect.top;
+        });
         setActive(visible[0].target.id);
       }
-    }, { rootMargin: '-100px 0px -70% 0px', threshold: 0 });
-    sections.forEach(function(s){ observer.observe(s); });
+    },{
+      rootMargin:'-100px 0px -70% 0px',
+      threshold:0
+    });
+
+    sections.forEach(function(s){
+      observer.observe(s);
+    });
   }
 })();
 </script>
