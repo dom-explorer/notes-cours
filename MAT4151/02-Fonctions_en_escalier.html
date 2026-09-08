@@ -476,22 +476,36 @@ footer, footer.site-footer {
 </nav>
 </header>
 
-<section class="hero">
-  <div class="wrap hero-inner compact">
-    <div class="eyebrow"><a href="/cours/mat4151.html">MAT-4151-1 — Fonctions algébriques</a> · Chapitre 1</div>
-    <h1 class="course-title">Fonctions en escalier et fonctions périodiques</h1>
-    <p class="course-description">
-      Notes de cours complètes pour Secondaire 4, formation générale des adultes.
-      Ce chapitre couvre les fonctions en escalier et les fonctions périodiques :
-      définitions, représentations, propriétés, méthodes de résolution et applications réelles.
-    </p>
+<div class="hero">
+<div class="wrap hero-inner compact">
+<div class="eyebrow">
+<a href="https://learnwithdom.page/cours/mat4151.html">MAT-4151-1 · Modélisation algébrique et graphique en contexte général 1</a>
+</div>
+<h1 class="course-title">1.1 — Fonctions en escalier</h1>
+     <p class="course-description">Comprendre les paliers, les frontières, les représentations et les applications des fonctions en escalier.</p>
   </div>
-</section>
-
+</div>
+<div class="page-layout">
+<main class="wrap">
+<section class="compact" id="introduction">
+<div class="section-head"><div class="eyebrow">1.1.1 · Introduction</div><h2>Quand une quantité change par paliers</h2></div>
+<div class="encadre encadre-exemple"><span class="encadre-label">Idée essentielle</span>
+<p>Certaines quantités ne changent pas continuellement. Elles restent constantes pendant un certain intervalle, puis changent brusquement pour prendre une nouvelle valeur. Le graphique ressemble alors à une série de marches.</p></div>
+<p>Par exemple, une entreprise pourrait facturer <strong>5 $</strong> pour une quantité comprise entre 0 et moins de 10 unités, puis <strong>8 $</strong> entre 10 et moins de 20 unités, puis <strong>12 $</strong> entre 20 et moins de 30 unités.</p>
+<div class="formula">\[ f(x)=\begin{cases}5,&amp;0\le x&lt;10\\8,&amp;10\le x&lt;20\\12,&amp;20\le x&lt;30\end{cases}\]</div>
+<div class="graph"><svg aria-label="Fonction en escalier avec trois paliers" role="img" viewbox="0 0 760 330">
+<line stroke="#1C2B3A" stroke-width="2" x1="65" x2="710" y1="285" y2="285"></line><line stroke="#1C2B3A" stroke-width="2" x1="85" x2="85" y1="305" y2="30"></line>
+<g stroke="#D9DCD7" stroke-dasharray="4 4"><line x1="85" x2="695" y1="235" y2="235"></line><line x1="85" x2="695" y1="175" y2="175"></line><line x1="85" x2="695" y1="95" y2="95"></line><line x1="255" x2="255" y1="30" y2="285"></line><line x1="425" x2="425" y1="30" y2="285"></line><line x1="595" x2="595" y1="30" y2="285"></line></g>
+<line stroke="#4B7A68" stroke-width="7" x1="85" x2="255" y1="235" y2="235"></line><line stroke="#4B7A68" stroke-width="7" x1="255" x2="425" y1="175" y2="175"></line><line stroke="#4B7A68" stroke-width="7" x1="425" x2="595" y1="95" y2="95"></line>
+<circle cx="85" cy="235" fill="#4B7A68" r="7"></circle><circle cx="255" cy="235" fill="#FCFBF7" r="7" stroke="#4B7A68" stroke-width="3"></circle><circle cx="255" cy="175" fill="#4B7A68" r="7"></circle><circle cx="425" cy="175" fill="#FCFBF7" r="7" stroke="#4B7A68" stroke-width="3"></circle><circle cx="425" cy="95" fill="#4B7A68" r="7"></circle><circle cx="595" cy="95" fill="#FCFBF7" r="7" stroke="#4B7A68" stroke-width="3"></circle>
+<text font-family="Space Grotesk" font-size="18" x="704" y="291">x</text><text font-family="Space Grotesk" font-size="18" x="47" y="38">f(x)</text>
+<text font-family="JetBrains Mono" font-size="14" x="78" y="310">0</text><text font-family="JetBrains Mono" font-size="14" x="247" y="310">10</text><text font-family="JetBrains Mono" font-size="14" x="417" y="310">20</text><text font-family="JetBrains Mono" font-size="14" x="586" y="310">30</text>
+<text font-family="JetBrains Mono" font-size="14" x="48" y="240">5</text><text font-family="JetBrains Mono" font-size="14" x="42" y="180">8</text><text font-family="JetBrains Mono" font-size="14" x="35" y="100">12</text>
+</svg></div>
 <div class="wrap chapitre">
 
   <div class="sommaire">
-    <a href="#s10"><span>1.0</span>Des relations aux fonctions</a>
+    <a href="https://dom-explorer.github.io/notes-cours/MAT4151/02-Fonctions_en_escalier.html"><span>1.0</span>Des relations aux fonctions</a>
     <a href="#s11"><span>1.1</span>Les fonctions en escalier</a>
     <a href="#s12"><span>1.2</span>Les fonctions périodiques</a>
     <a href="#s13"><span>1.3</span>Lien entre les deux types</a>
