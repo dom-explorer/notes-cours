@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1.0 — De la relation à la fonction — MAT-4151-1</title>
+<meta name="description" content="Histoire, concept de fonction, représentations, domaine et modélisation algébrique et graphique.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,0,7..72,400&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script>
+window.MathJax = {
+  tex: {inlineMath: [['\\(','\\)'], ['$', '$']], displayMath: [['\\[','\\]'], ['$$','$$']]},
+  svg: {fontCache: 'global'}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{
+  --ardoise:#223A34;
+  --ardoise-deep:#182922;
+  --papier:#EAEEE9;
+  --papier-2:#E0E5DD;
+  --encre:#1C2B3A;
+  --craie:#D9A441;
+  --craie-deep:#B9832C;
+  --brique:#B5524A;
+  --sapin:#4B7A68;
+  --ligne:rgba(28,43,58,0.14);
+  --white:#FCFBF7;
+  --font-display:"Space Grotesk",sans-serif;
+  --font-body:"Literata",Georgia,serif;
+  --font-mono:"JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--papier);
+  color:var(--encre);
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+a:focus-visible,button:focus-visible{
+  outline:2px solid var(--craie-deep);
+  outline-offset:3px;
+  border-radius:2px;
+}
+header.site{
+  position:sticky;
+  top:0;
+  z-index:40;
+  background:rgba(234,238,233,0.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--ligne);
+}
+nav{
+  display:flex;align-items:center;justify-content:space-between;padding:16px 0;
+}
+.brand{
+  font-family:var(--font-mono);font-size:14px;font-weight:600;
+  letter-spacing:.02em;text-decoration:none;
+}
+.brand span{color:var(--craie-deep)}
+.nav-links{
+  display:flex;align-items:center;gap:28px;list-style:none;
+  font-family:var(--font-display);font-size:14px;font-weight:500;
+}
+.nav-links a{text-decoration:none;opacity:.85}
+.nav-links a:hover{opacity:1;color:var(--craie-deep)}
+.hero{
+  background:var(--ardoise);color:var(--white);position:relative;overflow:hidden;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.045) 0 1px,transparent 1px 34px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.045) 0 1px,transparent 1px 34px);
+}
+.hero-inner.compact{padding:64px 28px 56px}
+.eyebrow{
+  font-family:var(--font-mono);font-size:13px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--craie);margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow a{text-decoration:none;opacity:.75}
+.eyebrow a:hover{opacity:1}
+.hero h1.course-title{
+  font-family:var(--font-display);font-weight:700;line-height:1.08;
+  letter-spacing:-.01em;max-width:none;font-size:clamp(1.9rem,4vw,2.8rem);
+}
+.hero p.course-description{
+  font-family:var(--font-body);font-size:16px;line-height:1.65;
+  max-width:68ch;margin-top:18px;color:rgba(252,251,247,.78);
+}
+.page-layout{
+  display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;
+  max-width:1360px;margin:0 auto;padding:0 28px;align-items:start;
+}
+.page-layout > main.wrap{max-width:none;padding:0;grid-column:1}
+.toc-flottante{
+  grid-column:2;position:sticky;top:96px;align-self:start;
+  max-height:calc(100vh - 130px);overflow-y:auto;padding:20px 20px 22px;
+  background:var(--white);border:1px solid var(--ligne);border-radius:8px;
+  font-family:var(--font-display);
+}
+.toc-flottante h2{
+  font-family:var(--font-mono);font-size:11.5px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--craie-deep);margin-bottom:12px;
+}
+.toc-flottante ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.toc-flottante li a{
+  display:block;text-decoration:none;font-size:14px;font-weight:500;color:var(--encre);
+  opacity:.62;padding:7px 0 7px 14px;border-left:2px solid var(--ligne);
+  transition:opacity .15s ease,border-color .15s ease,color .15s ease;line-height:1.3;
+}
+.toc-flottante li a:hover{opacity:1}
+.toc-flottante li a.active{
+  opacity:1;color:var(--ardoise-deep);border-left-color:var(--craie);font-weight:600;
+}
+@media(max-width:1180px){
+  .page-layout{display:block;padding:0}
+  .toc-flottante{display:none}
+}
+main section{padding:56px 0}
+main section.compact{padding:40px 0}
+.section-head{margin-bottom:28px}
+.section-head .eyebrow{color:var(--craie-deep)}
+.section-head h2{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.5rem,2.8vw,1.9rem);letter-spacing:-.01em;
+}
+section{scroll-margin-top:96px}
+.rule{border:none;border-top:1px solid var(--ligne);margin:8px 0 0}
+main p{margin:0 0 16px;max-width:68ch}
+main ul,main ol{margin:0 0 20px 22px;max-width:64ch}
+main li{margin:6px 0}
+h3,h4{
+  font-family:var(--font-display);font-weight:600;margin:28px 0 12px;
+}
+.formula{
+  font-family:var(--font-display);
+  text-align:center;
+  margin:18px 0 20px;
+  color:var(--ardoise);
+  overflow-x:auto;
+}
+.encadre{
+  background:var(--white);border:1px solid var(--ligne);border-left:4px solid var(--ardoise);
+  border-radius:6px;padding:22px 26px;margin:24px 0;
+}
+.encadre-label{
+  font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ardoise);margin-bottom:12px;display:block;
+}
+.encadre p{margin:0 0 10px;max-width:none}
+.encadre p:last-child{margin-bottom:0}
+.encadre ul{margin:0 0 0 20px;max-width:none}
+.encadre-definition{border-left-color:var(--sapin)}
+.encadre-definition .encadre-label{color:var(--sapin)}
+.encadre-exemple{background:var(--papier-2);border-left-color:var(--craie-deep)}
+.encadre-exemple .encadre-label{color:var(--craie-deep)}
+.encadre-objectifs{border-left-color:var(--ardoise)}
+.encadre-note{border-left-color:var(--brique)}
+.encadre-note .encadre-label{color:var(--brique)}
+.encadre-attention{border-left-color:var(--brique);background:#FBEFEE}
+.encadre-attention .encadre-label{color:var(--brique)}
+.encadre-methode{border-left-color:var(--sapin);background:#EEF3F0}
+.encadre-methode .encadre-label{color:var(--sapin)}
+.encadre-central{
+  text-align:center;font-family:var(--font-display);font-weight:600;font-size:1.05rem;
+  color:var(--ardoise);margin:14px 0 0;
+}
+.table-wrap{border:1px solid var(--ligne);border-radius:6px;overflow:auto;margin:20px 0 24px}
+table{border-collapse:collapse;width:100%;font-size:15px;background:var(--white);min-width:620px}
+th,td{border-bottom:1px solid var(--ligne);padding:11px 16px;text-align:left}
+th{
+  font-family:var(--font-display);font-weight:600;font-size:13.5px;
+  background:var(--ardoise);color:var(--white);
+}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:var(--papier)}
+.etapes{list-style:none;margin:0 0 20px;max-width:68ch}
+.etapes li{
+  display:grid;grid-template-columns:34px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--ligne);
+}
+.etapes li:first-child{border-top:none;padding-top:0}
+.etape-num{font-family:var(--font-mono);font-weight:600;font-size:14px;color:var(--craie-deep)}
+.etape-body strong{font-family:var(--font-display);font-weight:600}
+.graph{
+  margin:20px 0 26px;padding:18px;background:var(--white);
+  border:1px solid var(--ligne);border-radius:6px;overflow-x:auto;text-align:center;
+}
+.graph svg{width:100%;max-width:760px;height:auto}
+.callout-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.card-mini{
+  border:1px solid var(--ligne);background:var(--white);border-radius:6px;padding:18px 20px;
+}
+.card-mini h3{margin-top:0;font-size:1.05rem}
+.nav-suivant{background:var(--ardoise-deep);color:var(--white)}
+.nav-suivant .wrap{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:36px 28px;flex-wrap:wrap;
+}
+.nav-suivant .label{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--craie);margin-bottom:6px;display:block;
+}
+.nav-suivant .titre{font-family:var(--font-display);font-weight:600;font-size:1.2rem}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);
+  font-weight:600;font-size:15px;padding:13px 22px;border-radius:3px;text-decoration:none;
+  border:1px solid transparent;transition:transform .12s ease;flex-shrink:0;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--craie);color:var(--ardoise-deep)}
+.btn-primary:hover{background:#E7B563}
+footer.site-footer{
+  text-align:center;padding:2rem 1rem;color:rgba(28,43,58,.6);
+  font-size:.85rem;font-family:var(--font-mono);
+}
+@media(max-width:820px){
+  .callout-row{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .hero-inner.compact{padding:56px 20px 44px}
+  main section{padding:44px 0}
+  .encadre{padding:18px 20px}
+  .wrap{padding-left:20px;padding-right:20px}
+}
+</style>
+</head>
+<body>
+
+
+<header class="site">
+  <nav class="wrap">
+    <a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span></a>
+    <ul class="nav-links">
+      <li><a href="https://learnwithdom.page">Accueil</a></li>
+      <li><a href="https://learnwithdom.page/cours/mat4151.html">MAT-4151-1</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+<div class="hero">
+  <div class="wrap hero-inner compact">
+    <div class="eyebrow">
+      <a href="https://learnwithdom.page/cours/mat4151.html">MAT-4151-1 · Modélisation algébrique et graphique en contexte général 1</a>
+    </div>
+    <h1 class="course-title">1.0 — De la relation à la fonction</h1>
+    <p class="course-description">Histoire, concept de fonction, représentations, domaine et modélisation algébrique et graphique.</p>
+  </div>
+</div>
+
+<div class="page-layout">
+<main class="wrap">
+
+
+  <section id="introduction">
+    <div class="section-head">
+      <div class="eyebrow">Départ</div>
+      <h2>Pourquoi parler de fonctions ?</h2>
+    </div>
+    <p>Une fonction est un outil pour décrire une dépendance : une quantité varie et une autre quantité lui est associée. En MAT-4151-1, l’objectif n’est pas seulement de manipuler des formules : il faut pouvoir <strong>lire, construire, comparer et interpréter</strong> une fonction dans différentes représentations.</p>
+         <div class="encadre encadre-objectifs"><span class="encadre-label">Objectifs d'apprentissage</span>
+         <ul><li>Reconnaître une fonction à partir d'une situation, d'un tableau, d'une règle ou d'un graphique.</li><li>Distinguer variable indépendante, variable dépendante, domaine et image.</li><li>Passer d'une représentation à une autre sans perdre le sens des unités.</li><li>Choisir une famille de fonctions pertinente pour modéliser une situation.</li></ul></div>
+  </section>
+
+<hr class="rule">
+
+  <section id="histoire">
+    <div class="section-head">
+      <div class="eyebrow">Repères</div>
+      <h2>Une histoire sans anachronisme</h2>
+    </div>
+    <p>Le langage moderne des fonctions est le résultat d'une longue évolution. Des mathématiques anciennes contenaient déjà des tableaux, des relations entre grandeurs et des procédures algorithmiques, mais il faut éviter de leur attribuer rétroactivement le concept moderne de fonction.</p>
+         <h3>Mésopotamie : tables et procédures</h3>
+         <p>Les mathématiciens babyloniens utilisaient une numération positionnelle de base 60 et produisaient des tables numériques, notamment de carrés, cubes et inverses. Ces tables peuvent être <em>interprétées aujourd'hui</em> comme des correspondances entrée-sortie, sans pour autant dire qu'elles étaient des « fonctions » au sens moderne.</p>
+         <h3>Antiquité grecque : rapports, courbes et astronomie</h3>
+         <p>Les rapports, proportions, constructions géométriques et tables astronomiques ont contribué à relier quantités et variations. Les travaux astronomiques de Ptolémée offrent des exemples de correspondances numériques, mais leur cadre conceptuel diffère encore de celui des fonctions modernes.</p>
+         <h3>Al-Khwarizmi : naissance d'une méthode algébrique systématique</h3>
+         <p>Au IX<sup>e</sup> siècle, Al-Khwarizmi décrit des méthodes générales pour résoudre des équations linéaires et quadratiques. Son algèbre est principalement <strong>rhétorique</strong> : il écrit les raisonnements avec des mots plutôt qu'avec notre notation symbolique. Cette étape est fondamentale pour l'histoire de l'algèbre et prépare le terrain à la modélisation.</p>
+         <h3>Descartes et Fermat : une équation peut décrire une courbe</h3>
+         <p>Au XVII<sup>e</sup> siècle, la géométrie analytique établit un lien profond entre expressions algébriques et figures géométriques. Une équation permet de décrire un ensemble de points du plan; réciproquement, une courbe peut être étudiée à l'aide de coordonnées et d'équations.</p>
+         <h3>Euler : le langage des fonctions se systématise</h3>
+         <p>Euler joue un rôle majeur dans la diffusion du concept de fonction et de sa notation. MacTutor documente chez Euler un usage de <span class="formula">\(f(x)\)</span> dès 1734. En 1748 puis 1755, Euler développe une présentation plus systématique du concept. Il est donc plus juste de dire qu'il <strong>systématise et popularise</strong> le langage des fonctions que de dire qu'il l'a « inventé ».</p>
+         <h3>XIX<sup>e</sup> siècle et après : vers une définition plus générale</h3>
+         <p>Avec Cauchy, Fourier, Dirichlet et d'autres, le concept se détache progressivement d'une simple formule : une fonction peut être définie de façon différente sur différentes parties de son domaine. Cette évolution explique pourquoi aujourd'hui une fonction peut être présentée par un tableau, une courbe, plusieurs règles ou une relation abstraite.</p>
+  </section>
+
+<hr class="rule">
+
+  <section id="definition">
+    <div class="section-head">
+      <div class="eyebrow">Fondements</div>
+      <h2>Relation et fonction</h2>
+    </div>
+    <div class="encadre encadre-definition"><span class="encadre-label">Définition</span>
+         <p>Une <strong>relation</strong> associe des éléments. Une <strong>fonction</strong> est une relation dans laquelle <strong>chaque entrée admissible possède exactement une sortie</strong>.</p>
+         <div class="formula">\[f:A\to B,\qquad x\mapsto f(x)\]</div>
+         <p>Plusieurs entrées peuvent avoir la même sortie. Ce qui est impossible, c'est qu'une même entrée possède deux sorties différentes.</p></div>
+         <div class="encadre encadre-attention"><span class="encadre-label">Attention</span>
+         <p>Une règle comme « prendre la racine carrée » n'est pas automatiquement une fonction sur tous les réels : le domaine doit être précisé. De même, un graphique peut représenter une relation qui n'est pas une fonction.</p></div>
+  </section>
+
+<hr class="rule">
+
+  <section id="representations">
+    <div class="section-head">
+      <div class="eyebrow">Représentations</div>
+      <h2>Les quatre représentations fondamentales</h2>
+    </div>
+    <div class="table-wrap"><table><tr><th>Représentation</th><th>Exemple</th><th>Question utile</th></tr>
+         <tr><td>Verbale</td><td>« Le coût dépend du nombre d'heures. »</td><td>Que dépend de quoi ?</td></tr>
+         <tr><td>Table</td><td>Couples \((x,f(x))\)</td><td>Quelle sortie obtient-on pour telle entrée ?</td></tr>
+         <tr><td>Algébrique</td><td>\(f(x)=2x+5\)</td><td>Comment calculer toute valeur admissible ?</td></tr>
+         <tr><td>Graphique</td><td>Ensemble de points \((x,f(x))\)</td><td>Quelle tendance, quels intercepts, quels extrêmes ?</td></tr></table></div>
+         <p>Une modélisation solide circule entre ces représentations. Une représentation peut être plus efficace qu'une autre selon la question posée.</p>
+  </section>
+
+<hr class="rule">
+
+  <section id="example">
+    <div class="section-head">
+      <div class="eyebrow">Démonstration</div>
+      <h2>Passer d'une situation à une fonction</h2>
+    </div>
+    <p><strong>Situation :</strong> une station de location demande 12 $ de frais fixes et 4 $ par heure. On note \(x\) le nombre d'heures et \(C(x)\) le coût en dollars.</p>
+         <ol class="etapes">
+           <li><span class="etape-num">01</span><div class="etape-body"><strong>Identifier la variable indépendante.</strong><br>Le nombre d'heures \(x\) est choisi par le client : c'est l'entrée.</div></li>
+           <li><span class="etape-num">02</span><div class="etape-body"><strong>Identifier la variable dépendante.</strong><br>Le coût dépend de la durée : c'est \(C(x)\).</div></li>
+           <li><span class="etape-num">03</span><div class="etape-body"><strong>Construire la règle.</strong><br>Frais fixes de 12 $ + 4 $ par heure : \(C(x)=12+4x\).</div></li>
+           <li><span class="etape-num">04</span><div class="etape-body"><strong>Respecter le domaine contextuel.</strong><br>On ne peut pas louer pour \(-2\) heures. Ici, \(x\ge0\), et si l'entreprise facture à l'heure entière, le domaine peut être discret.</div></li>
+           <li><span class="etape-num">05</span><div class="etape-body"><strong>Vérifier une valeur.</strong><br>Pour 3 heures : \(C(3)=12+4(3)=24\). La valeur est positive et l'unité est cohérente : 24 $.</div></li>
+         </ol>
+         <div class="encadre encadre-methode"><span class="encadre-label">Bonne habitude</span><p>Écrire les unités lors de la modélisation aide à détecter les erreurs de sens. Une formule correcte algébriquement peut être absurde dans le contexte si les unités ou les contraintes sont ignorées.</p></div>
+  </section>
+
+<hr class="rule">
+
+  <section id="vertical">
+    <div class="section-head">
+      <div class="eyebrow">Lecture graphique</div>
+      <h2>Tester si un graphique représente une fonction</h2>
+    </div>
+    <p>Le <strong>test de la droite verticale</strong> permet de vérifier rapidement si un graphique représente \(y=f(x)\) : une droite verticale ne doit jamais couper la courbe en plus d'un point.</p>
+         <div class="graph"><svg viewBox="0 0 760 300" role="img" aria-label="Illustration du test de la droite verticale">
+           <line x1="70" y1="250" x2="710" y2="250" stroke="#1C2B3A" stroke-width="2"/>
+           <line x1="90" y1="270" x2="90" y2="30" stroke="#1C2B3A" stroke-width="2"/>
+           <path d="M140 215 C230 150,280 140,350 125 S500 75,650 45" fill="none" stroke="#4B7A68" stroke-width="5"/>
+           <line x1="455" y1="260" x2="455" y2="25" stroke="#B5524A" stroke-width="4" stroke-dasharray="9 7"/>
+           <circle cx="455" cy="100" r="7" fill="#B5524A"/>
+           <text x="478" y="60" font-family="Space Grotesk" font-size="18">1 intersection → possible fonction</text>
+         </svg></div>
+  </section>
+
+<hr class="rule">
+
+  <section id="mistakes">
+    <div class="section-head">
+      <div class="eyebrow">Vigilance</div>
+      <h2>Erreurs fréquentes à éviter</h2>
+    </div>
+    <div class="encadre encadre-attention"><span class="encadre-label">Erreurs conceptuelles</span><ul>
+         <li>Dire « les Babyloniens avaient le concept moderne de fonction » sans nuance.</li>
+         <li>Dire « Euler a inventé toute la notion de fonction ».</li>
+         <li>Confondre une <strong>fonction</strong> et une <strong>formule</strong> : une fonction inclut son domaine et sa correspondance.</li>
+         <li>Oublier le domaine lorsqu'on manipule des racines ou des dénominateurs.</li>
+         <li>Lire un graphique sans vérifier les axes et les unités.</li>
+         <li>Supposer qu'une relation est une fonction seulement parce qu'elle comporte une équation.</li></ul></div>
+  </section>
+
+
+</main>
+
+<nav class="toc-flottante" aria-label="Table des matières">
+  <h2>Sur cette page</h2>
+  <ol id="toc-list">
+    <li><a href="#introduction">Pourquoi parler de fonctions ?</a></li>
+    <li><a href="#histoire">Une histoire sans anachronisme</a></li>
+    <li><a href="#definition">Relation et fonction</a></li>
+    <li><a href="#representations">Les quatre représentations fondamentales</a></li>
+    <li><a href="#example">Passer d'une situation à une fonction</a></li>
+    <li><a href="#vertical">Tester si un graphique représente une fonction</a></li>
+    <li><a href="#mistakes">Erreurs fréquentes à éviter</a></li>
+  </ol>
+</nav>
+</div>
+
+<div class="nav-suivant">
+  <div class="wrap">
+    <div>
+      <span class="label">Section suivante</span>
+      <span class="titre">1.1 — Fonctions en escalier</span>
+    </div>
+    <a class="btn btn-primary" href="02-fonctions-en-escalier.html">Continuer →</a>
+  </div>
+</div>
+
+<footer class="site-footer">
+  MAT-4151-1 · learnwithdom.page
+</footer>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-flottante a'));
+  if(!links.length) return;
+  var sections = links.map(function(a){
+    return document.getElementById(a.getAttribute('href').slice(1));
+  }).filter(Boolean);
+
+  function setActive(id){
+    links.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+  }
+
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      if(visible.length){
+        visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; });
+        setActive(visible[0].target.id);
+      }
+    },{rootMargin:'-100px 0px -70% 0px',threshold:0});
+    sections.forEach(function(s){ observer.observe(s); });
+  }
+})();
+</script>
+
+</body>
+</html>
