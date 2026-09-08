@@ -487,6 +487,8 @@ footer, footer.site-footer {
 </div>
 <div class="page-layout">
 <main class="wrap">
+<div class="page-layout">
+<main class="wrap">
 <section class="compact" id="introduction">
 <div class="section-head"><div class="eyebrow">1.1.1 · Introduction</div><h2>Quand une quantité change par paliers</h2></div>
 <div class="encadre encadre-exemple"><span class="encadre-label">Idée essentielle</span>
@@ -511,14 +513,6 @@ footer, footer.site-footer {
     <a href="#s13"><span>1.3</span>Lien entre les deux types</a>
   </div>
 
- 
-
-  <!-- ============================================================ -->
-  <!-- 1.1 -->
-  <!-- ============================================================ -->
-  <h2 class="section-titre" id="s11"><span class="section-num">1.1</span>Les fonctions en escalier</h2>
-
-  <div class="sous-titre">1.1.1 — Introduction</div>
   <div class="boite idee">
     <div class="boite-titre"> Idée essentielle</div>
     <p>Certaines quantités ne changent pas continuellement. Elles restent constantes pendant un certain intervalle, puis changent brusquement pour prendre une nouvelle valeur.</p>
@@ -582,12 +576,11 @@ footer, footer.site-footer {
       <circle cx="420" cy="100" r="4" fill="#ffffff" stroke="#d35400" stroke-width="2"/>
     </svg>
   </div>
-
-  <div class="sous-titre">1.1.2 — Définition mathématique</div>
-  <div class="boite definition">
-    <div class="boite-titre"> Définition</div>
-    <p>Une fonction en escalier est une fonction qui est constante sur chacun d'un certain nombre d'intervalles de son domaine et qui peut changer de valeur à certaines frontières.</p>
-  </div>
+<hr class="rule"/>
+<section id="definition">
+  <div class="section-head"><div class="eyebrow">1.1.2 · Définition</div><h2>Définition mathématique</h2></div>
+  
+<div class="encadre encadre-definition"><span class="encadre-label">Définition</span><p>Une <strong>fonction en escalier</strong> est une fonction qui est constante sur chacun d'un certain nombre d'intervalles de son domaine et qui peut changer de valeur à certaines frontières.</p></div>
 
   <p>Par exemple :</p>
   $$ f(x)=   \begin{cases} 2 & 0 \leq x<3 \\ 5 & 3\leq x<7 \\ 1 & 7\leq x\leq10 \end{cases} $$
@@ -636,8 +629,19 @@ footer, footer.site-footer {
     $$ x\longrightarrow f(x) $$
     <p>avec plusieurs valeurs de \(x\) correspondant à une même valeur constante de \(f(x)\).</p>
   </div>
-
-  <div class="sous-titre">1.1.4 — Comprendre les extrémités ouvertes et fermées</div>
+</section>
+<hr class="rule"/>
+<section id="representations">
+<div class="section-head"><div class="eyebrow">1.1.3 · Représentations</div><h2>Les différentes façons de représenter une fonction en escalier</h2></div>
+<div class="encadre encadre-note"><span class="encadre-label">A · Description en mots</span><p>Une compagnie facture 5 $ pour les 10 premières unités, 8 $ pour les 10 suivantes et 12 $ pour les unités de la troisième tranche.</p></div>
+<div class="encadre encadre-note"><span class="encadre-label">B · Tableau de valeurs</span><div class="table-wrap"><table><tr><th>x</th><th>f(x)</th><th>Interprétation</th></tr><tr><td>0</td><td>5</td><td>Premier palier</td></tr><tr><td>5</td><td>5</td><td>Premier palier</td></tr><tr><td>9</td><td>5</td><td>Encore le premier palier</td></tr><tr><td>10</td><td>8</td><td>Nouveau palier</td></tr><tr><td>15</td><td>8</td><td>Deuxième palier</td></tr><tr><td>19</td><td>8</td><td>Juste avant 20</td></tr><tr><td>20</td><td>12</td><td>Troisième palier</td></tr></table></div></div>
+<div class="encadre encadre-note"><span class="encadre-label">C · Expression par morceaux</span><div class="formula">\[f(x)=\begin{cases}5,&amp;0\le x&lt;10\\8,&amp;10\le x&lt;20\\12,&amp;x\ge20\end{cases}\]</div></div>
+<div class="encadre encadre-note"><span class="encadre-label">D · Graphique</span><p>Le graphique montre les paliers horizontaux et les sauts. Il permet de repérer rapidement les valeurs constantes et les changements de tranche.</p></div>
+<div class="encadre encadre-note"><span class="encadre-label">E · Diagramme de correspondance</span><p>Plusieurs valeurs de \(x\) peuvent être envoyées vers une même valeur constante : par exemple, toutes les valeurs de \(x\) dans \([0,10[\) donnent 5.</p></div>
+</section>
+      <hr class="rule"/>
+<section id="bornes">
+<div class="section-head"><div class="eyebrow">1.1.4 · Frontières</div><h2>Extrémités ouvertes et fermées</h2></div>
   <p>C'est une notion essentielle. Par exemple :</p>
   $$ f(x)=  \begin{cases} 3 & 0\leq x<5 \\ 7 & 5\leq x<10 \end{cases} $$
   <p>À \(x=5\), quelle est la valeur ? Ce n'est pas \(3\), car la règle \(x<5\) exclut 5. La deuxième règle contient \(5\leq x\), donc :</p>
@@ -668,9 +672,11 @@ footer, footer.site-footer {
       </g>
     </svg>
   </div>
-
-  <div class="sous-titre">1.1.5 — Cinq exemples détaillés</div>
-
+</section>
+<hr class="rule"/>
+  
+<section id="examples">
+<div class="section-head"><div class="eyebrow">1.1.5 · Applications</div><h2>Cinq exemples détaillés</h2></div>
  <div class="boite exemple">
   <div class="boite-titre">Exemple 1 — Tarif de stationnement</div>
   <p>Une station facture 4 $ pour 0 à 1 heure, 7 $ pour plus de 1 heure jusqu'à 2 heures, 10 $ pour plus de 2 heures jusqu'à 3 heures.</p>
@@ -966,8 +972,10 @@ footer, footer.site-footer {
     </svg>
   </div>
 </div>
-
- <div class="sous-titre">1.1.6 — Propriétés d'une fonction en escalier</div>
+</section>
+<hr class="rule"/>
+<section id="properties">
+<div class="section-head"><div class="eyebrow">1.1.6 · Propriétés</div><h2>Étudier une fonction en escalier</h2></div>
 
   <div class="boite definition">
     <div class="boite-titre">📐 Exemples et diagrammes des propriétés</div>
@@ -1187,8 +1195,11 @@ footer, footer.site-footer {
       </li>
     </ol>
   </div>
-
+</section>
+    <hr class="rule"/>
+    <section id="graph_interactif">
 <div class="container">
+  <div class="section-head"><div class="eyebrow">1.1.6 — Graphique Interactif : Fonction en escalier</div></div>
     <h1>1.1.6 — Graphique Interactif : Fonction en escalier</h1>
     <p>Survolez le graphique avec votre curseur pour observer les valeurs et les propriétés aux frontières.</p>
 
@@ -1381,60 +1392,121 @@ footer, footer.site-footer {
     // Premier dessin au chargement
     drawGraph();
   </script>
+</section>
+<hr class="rule"/>
+  <section id="applications">
+<div class="section-head"><div class="eyebrow">1.1.7 · Applications</div><h2>Où rencontre-t-on ces fonctions ?</h2></div>
+<div class="table-wrap"><table><tr><th>Domaine</th><th>Exemple</th><th>Pourquoi des paliers ?</th></tr>
+<tr><td>Stationnement</td><td>4 $, 7 $, 10 $ selon la durée</td><td>Tarifs fixés par tranches</td></tr>
+<tr><td>Poste</td><td>Prix selon la masse</td><td>Classes tarifaires</td></tr>
+<tr><td>Transport</td><td>Prix selon une zone</td><td>Zones discrètes</td></tr>
+<tr><td>Forfait téléphonique</td><td>Frais selon un niveau de consommation</td><td>Seuils contractuels</td></tr>
+<tr><td>Billetterie</td><td>Prix selon l'âge</td><td>Catégories d'âge</td></tr>
+<tr><td>Électricité</td><td>Tarif par tranche</td><td>Structure tarifaire</td></tr>
+<tr><td>Classification</td><td>Catégories de poids ou de taille</td><td>Découpage en classes</td></tr>
+<tr><td>Contrôle</td><td>Commande ON/OFF ou plusieurs niveaux</td><td>Décisions par seuil</td></tr></table></div>
+<div class="encadre encadre-note"><span class="encadre-label">Idée de modélisation</span><p>Un phénomène continu peut être transformé en valeurs par paliers dès qu'une décision, un tarif ou une catégorie dépend d'un seuil. Le modèle n'est alors pas une description du phénomène physique lui-même, mais de la <strong>règle de décision</strong> appliquée.</p></div>
+</section>
+<hr class="rule"/
 
-  <div class="sous-titre">1.1.7 — Utilisations des fonctions en escalier</div>
-  <div class="boite application">
-    <div class="boite-titre">🌎 Applications réelles</div>
-    <ul>
-      <li>Tarifs de stationnement</li>
-      <li>Tarifs de transport</li>
-      <li>Impôts par catégories</li>
-      <li>Tarifs d'expédition</li>
-      <li>Forfaits téléphoniques</li>
-      <li>Consommation électrique</li>
-      <li>Systèmes numériques</li>
-      <li>Classification par âge</li>
-      <li>Salaires ou primes par paliers</li>
-      <li>Systèmes de contrôle</li>
-      <li>Quantités mesurées par catégories</li>
-    </ul>
-  </div>
-
-  <div class="sous-titre">1.1.8 — Méthode générale pour résoudre une fonction en escalier</div>
-  <div class="boite methode">
-    <div class="boite-titre">🧮 Méthode</div>
-    <ol>
-      <li>Identifier la valeur de \(x\).</li>
-      <li>Trouver l'intervalle auquel \(x\) appartient.</li>
-      <li>Faire attention aux signes : \(<,\ \leq,\ >,\ \geq\).</li>
-      <li>Choisir la bonne règle.</li>
-      <li>Calculer \(f(x)\).</li>
-      <li>Interpréter la réponse dans le contexte.</li>
-    </ol>
-  </div>
-
-  <div class="sous-titre">1.1.9 — Erreurs fréquentes</div>
-  <div class="boite erreur">
-    <div class="boite-titre"> Attention</div>
-    <ol>
-      <li>Confondre \(x<5\) avec \(x\leq5\).</li>
-      <li>Utiliser la mauvaise règle à une frontière.</li>
-      <li>Croire que toute fonction définie « par morceaux » est une fonction en escalier.</li>
-      <li>Confondre domaine et image.</li>
-      <li>Lire incorrectement un cercle ouvert ou fermé.</li>
-      <li>Oublier les unités.</li>
-      <li>Ne pas interpréter le résultat obtenu.</li>
-    </ol>
-  </div>
-
- 
-
-<footer>
-  <div class="wrap footer-grid">
-    <div class="brand-mono">learnwithdom.page</div>
-    <div><a href="/cours/mat4151.html">Retour à MAT-4151-1</a></div>
-  </div>
+  <section id="methode">
+<div class="section-head"><div class="eyebrow">1.1.8 · Méthode générale</div><h2>Résoudre une fonction en escalier pas à pas</h2></div>
+<ol class="etapes">
+<li><span class="etape-num">01</span><div class="etape-body"><strong>Identifier la valeur de \(x\).</strong><br/>Écrire clairement la valeur à calculer.</div></li>
+<li><span class="etape-num">02</span><div class="etape-body"><strong>Repérer l'intervalle.</strong><br/>Comparer \(x\) aux bornes une par une.</div></li>
+<li><span class="etape-num">03</span><div class="etape-body"><strong>Lire les signes des inégalités.</strong><br/>Faire une différence entre \(&lt;\) et \(\le\).</div></li>
+<li><span class="etape-num">04</span><div class="etape-body"><strong>Choisir la bonne règle.</strong><br/>Ne rien calculer avant cette étape.</div></li>
+<li><span class="etape-num">05</span><div class="etape-body"><strong>Calculer la sortie.</strong><br/>Substituer dans la règle sélectionnée.</div></li>
+<li><span class="etape-num">06</span><div class="etape-body"><strong>Vérifier l'admissibilité.</strong><br/>La valeur obtenue doit provenir d'une condition réellement satisfaite.</div></li>
+<li><span class="etape-num">07</span><div class="etape-body"><strong>Interpréter.</strong><br/>Exprimer la réponse avec son unité et son sens dans le contexte.</div></li>
+</ol>
+<div class="encadre encadre-methode"><span class="encadre-label">Exercice modèle</span><p>Soit \(f(x)=\begin{cases}10,&amp;-5\le x&lt;2\\4,&amp;2\le x&lt;7\\9,&amp;7\le x\le12\end{cases}\). Calculer \(f(-3)\), \(f(2)\), \(f(6,9)\), \(f(7)\).</p><p><strong>Réponses :</strong> \(f(-3)=10\), \(f(2)=4\), \(f(6,9)=4\), \(f(7)=9\).</p></div>
+</section>
+  <hr class="rule"/>
+<section id="mistakes">
+<div class="section-head"><div class="eyebrow">1.1.9 · Vigilance</div><h2>Erreurs fréquentes</h2></div>
+<div class="encadre encadre-attention"><span class="encadre-label">Pièges classiques</span><ol>
+<li>Confondre \(x&lt;5\) avec \(x\le5\).</li>
+<li>Utiliser la mauvaise règle à une frontière.</li>
+<li>Oublier qu'un cercle ouvert représente une valeur exclue.</li>
+<li>Confondre fonction en escalier et fonction définie par morceaux.</li>
+<li>Confondre domaine et image.</li>
+<li>Ne pas vérifier que toutes les parties du domaine sont couvertes.</li>
+<li>Attribuer deux valeurs différentes à la même frontière.</li>
+<li>Oublier les unités dans une situation appliquée.</li>
+<li>Lire une valeur sur le mauvais axe.</li>
+<li>Donner une valeur numérique sans l'interpréter.</li>
+</ol></div>
+<div class="encadre encadre-methode"><span class="encadre-label">Réflexe à développer</span><p>Avant tout calcul, demande-toi : <strong>« Dans quel intervalle se trouve ma valeur de \(x\) ? »</strong> C'est cette question, et non la formule seule, qui détermine le calcul.</p></div>
+</section>
+<hr class="rule"/>
+<section class="compact" id="resume">
+<div class="section-head"><div class="eyebrow">Résumé</div><h2>À retenir</h2></div>
+<div class="encadre encadre-note"><span class="encadre-label">Les idées essentielles</span><ul>
+<li>Une fonction en escalier est constante sur des intervalles et change de valeur à certains seuils.</li>
+<li>Les conditions d'intervalles déterminent exactement quelle règle utiliser.</li>
+<li>Un cercle ouvert signifie « exclu »; un cercle plein signifie « inclus ».</li>
+<li>La représentation peut être verbale, tabulaire, algébrique, graphique ou par correspondance.</li>
+<li>Une fonction définie par morceaux n'est pas forcément en escalier.</li>
+<li>Pour résoudre, on repère d'abord l'intervalle, puis on applique la bonne règle.</li>
+<li>Dans un problème réel, la réponse doit être interprétée avec son unité et son contexte.</li>
+</ul></div>
+</section>
+</main>
+<nav aria-label="Table des matières" class="toc-flottante">
+<h2>Sur cette page</h2>
+<ol id="toc-list"><li><a
+href="#introduction">Introduction</a></li><li><a 
+href="#definition">Définition</a></li><li><a 
+href="#representations">Représentations</a></li><li><a
+href="#bornes">Frontières ouvertes/fermées</a></li><li><a 
+href="#examples">5 exemples détaillés</a></li><li><a
+href="#graph_interactif">exemples interactive</a></li><li><a                                                    
+href="#properties">Propriétés</a></li><li><a 
+href="#applications">Applications</a></li><li><a 
+href="#methode">Méthode générale</a></li><li><a 
+href="#mistakes">Erreurs fréquentes</a></li><li><a 
+href="#resume">Résumé</a></li></ol>
+</nav>
+</div>
+<div class="nav-suivant">
+<div class="wrap">
+<div>
+<span class="label">Section suivante</span>
+<span class="titre">1.2 — Fonctions périodiques</span>
+</div>
+<a class="btn btn-primary" href="03-fonctions-periodiques.html">Continuer →</a>
+</div>
+</div>
+<footer class="site-footer">
+  MAT-4151-1 · learnwithdom.page
 </footer>
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-flottante a'));
+  if(!links.length) return;
+  var sections = links.map(function(a){
+    return document.getElementById(a.getAttribute('href').slice(1));
+  }).filter(Boolean);
+
+  function setActive(id){
+    links.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+  }
+
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      if(visible.length){
+        visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; });
+        setActive(visible[0].target.id);
+      }
+    },{rootMargin:'-100px 0px -70% 0px',threshold:0});
+    sections.forEach(function(s){ observer.observe(s); });
+  }
+})();
+</script>
 
 </body>
 </html>
