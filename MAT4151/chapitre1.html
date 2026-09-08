@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MAT-4151-1 — Chapitre 1 : Fonctions en escalier et fonctions périodiques</title>
+<title>MAT-4151-1 — Chapitre 1 :Relations et fonctions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Literata:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
@@ -240,17 +240,17 @@
 
 <header class="site">
   <nav class="wrap">
-    <a class="brand" href="/index.html">learnwith<span>dom</span></a>
+    <a class="brand" href="https://learnwithdom.page/">learnwith<span>dom</span></a>
     <ul class="nav-links">
       <li class="has-dropdown">
         <details class="dropdown">
           <summary>Cours <span class="chev">▾</span></summary>
           <ul class="dropdown-menu">
-            <li><a href="/niveau/secondaire4.html">Secondaire 4</a></li>
+            <li><a href="https://learnwithdom.page/cours/mat4151.html">Secondaire 4</a></li>
           </ul>
         </details>
       </li>
-      <li><a href="/contact.html">Contact</a></li>
+      <li><a href="mailto:dominic.denaultpilon@csshc.gouv.qc.ca?subject=Question - MAT4151">Contact</a></li>
     </ul>
   </nav>
 </header>
@@ -283,7 +283,7 @@
   <h2 class="section-titre" id="s10"><span class="section-num">1.0</span>Introduction : des relations aux fonctions</h2>
 
   <div class="boite idee">
-    <div class="boite-titre">🧠 Idée essentielle</div>
+    <div class="boite-titre"> Idée essentielle</div>
     <p>Avant de parler de fonctions, il faut comprendre ce qu'est une <strong>relation</strong> entre deux quantités : une variable indépendante (celle qu'on choisit) et une variable dépendante (celle qui en résulte).</p>
   </div>
 
@@ -333,7 +333,7 @@
 
 
   <div class="boite application">
-    <div class="boite-titre">🌎 Les fonctions dans la vie actuelle</div>
+    <div class="boite-titre"> Les fonctions dans la vie actuelle</div>
     <ul>
       <li>Télécommunications</li>
       <li>Économie</li>
@@ -420,7 +420,7 @@
 
   <div class="sous-titre">1.1.2 — Définition mathématique</div>
   <div class="boite definition">
-    <div class="boite-titre">📐 Définition</div>
+    <div class="boite-titre"> Définition</div>
     <p>Une fonction en escalier est une fonction qui est constante sur chacun d'un certain nombre d'intervalles de son domaine et qui peut changer de valeur à certaines frontières.</p>
   </div>
 
@@ -437,12 +437,12 @@
   <p>Une fonction en escalier peut être représentée de plusieurs façons :</p>
 
   <div class="boite notation">
-    <div class="boite-titre">🔣 A. Description en mots</div>
+    <div class="boite-titre"> A. Description en mots</div>
     <p>Une compagnie facture 5 $ pour les 10 premières unités, 8 $ pour les 10 suivantes et 12 $ pour les unités suivantes.</p>
   </div>
 
   <div class="boite notation">
-    <div class="boite-titre">🔣 B. Tableau de valeurs</div>
+    <div class="boite-titre"> B. Tableau de valeurs</div>
     <div class="table-wrap">
       <table class="valeurs">
         <tr><th>x</th><th>f(x)</th></tr>
@@ -458,28 +458,28 @@
   </div>
 
   <div class="boite notation">
-    <div class="boite-titre">🔣 C. Expression par morceaux</div>
-    $$ f(x)=  egin{cases} 5 & 0\leq x<10\ 8 & 10\leq x<20\ 12 & x\geq20 \end{cases} $$
+    <div class="boite-titre"> C. Expression par morceaux</div>
+    $$ f(x)=  \begin{cases} 5 & 0\leq x<10\ 8 & 10\leq x<20\ 12 & x\geq20 \end{cases} $$
   </div>
 
   <div class="boite graphique">
-    <div class="boite-titre">📊 D. Graphique</div>
+    <div class="boite-titre"> D. Graphique</div>
     <p>Le graphique montre immédiatement les « marches » : des segments horizontaux qui « sautent » à chaque frontière.</p>
   </div>
 
   <div class="boite notation">
-    <div class="boite-titre">🔣 E. Diagramme de correspondance</div>
+    <div class="boite-titre"> E. Diagramme de correspondance</div>
     $$ x\longrightarrow f(x) $$
     <p>avec plusieurs valeurs de \(x\) correspondant à une même valeur constante de \(f(x)\).</p>
   </div>
 
   <div class="sous-titre">1.1.4 — Comprendre les extrémités ouvertes et fermées</div>
   <p>C'est une notion essentielle. Par exemple :</p>
-  $$ f(x)=  egin{cases} 3 & 0\leq x<5\ 7 & 5\leq x<10 \end{cases} $$
+  $$ f(x)=  \begin{cases} 3 & 0\leq x<5\ 7 & 5\leq x<10 \end{cases} $$
   <p>À \(x=5\), quelle est la valeur ? Ce n'est pas \(3\), car la règle \(x<5\) exclut 5. La deuxième règle contient \(5\leq x\), donc :</p>
-  $$  oxed{f(5)=7} $$
+  $$  \boxed{f(5)=7} $$
   <div class="boite graphique">
-    <div class="boite-titre">📊 Représentation graphique</div>
+    <div class="boite-titre"> Représentation graphique</div>
     <ul>
       <li>Cercle ouvert : valeur exclue</li>
       <li>Cercle plein : valeur incluse</li>
@@ -507,40 +507,301 @@
 
   <div class="sous-titre">1.1.5 — Cinq exemples détaillés</div>
 
-  <div class="boite exemple">
-    <div class="boite-titre">💡 Exemple 1 — Tarif de stationnement</div>
-    <p>Une station facture 4 $ pour 0 à 1 heure, 7 $ pour plus de 1 heure jusqu'à 2 heures, 10 $ pour plus de 2 heures jusqu'à 3 heures.</p>
-    $$ C(t)=  egin{cases} 4 & 0<t\leq1\ 7 & 1<t\leq2\ 10 & 2<t\leq3 \end{cases} $$
-    <p>On détermine ensuite \(C(0,5)\), \(C(1)\), \(C(1,5)\), \(C(2)\), \(C(2,7)\) et on interprète chaque résultat dans le contexte du stationnement.</p>
+ <div class="boite exemple">
+  <div class="boite-titre">Exemple 1 — Tarif de stationnement</div>
+  <p>Une station facture 4 $ pour 0 à 1 heure, 7 $ pour plus de 1 heure jusqu'à 2 heures, 10 $ pour plus de 2 heures jusqu'à 3 heures.</p>
+  
+  $$ C(t) = \begin{cases} 4 & 0 < t \le 1 \\ 7 & 1 < t \le 2 \\ 10 & 2 < t \le 3 \end{cases} $$
+
+  <p>On détermine ensuite \(C(0,5)\), \(C(1)\), \(C(1,5)\), \(C(2)\), \(C(2,7)\) et on interprète chaque résultat dans le contexte du stationnement.</p>
+
+  <!-- Diagramme en escalier -->
+  <div class="diagramme-escalier" style="text-align: center; margin-top: 20px;">
+    <svg width="320" height="220" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif; font-size: 12px;">
+      <!-- Grille de fond -->
+      <path d="M 50 180 L 290 180 M 50 135 L 290 135 M 50 90 L 290 90 M 50 45 L 290 45" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4"/>
+      <path d="M 50 180 L 50 20 M 130 180 L 130 20 M 210 180 L 210 20 M 290 180 L 290 20" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4"/>
+
+      <!-- Axes -->
+      <line x1="50" y1="180" x2="300" y2="180" stroke="#333" stroke-width="2"/>
+      <line x1="50" y1="180" x2="50" y2="20" stroke="#333" stroke-width="2"/>
+
+      <!-- Flèches des axes -->
+      <polygon points="300,177 307,180 300,183" fill="#333"/>
+      <polygon points="47,20 50,13 53,20" fill="#333"/>
+
+      <!-- Étiquettes des axes -->
+      <text x="295" y="198" font-weight="bold">t (h)</text>
+      <text x="25" y="25" font-weight="bold">C(t) ($)</text>
+
+      <!-- Graduations Axe X -->
+      <text x="47" y="195">0</text>
+      <text x="127" y="195">1</text>
+      <text x="207" y="195">2</text>
+      <text x="287" y="195">3</text>
+
+      <!-- Graduations Axe Y -->
+      <text x="35" y="139">4</text>
+      <text x="35" y="94">7</text>
+      <text x="28" y="49">10</text>
+
+      <!-- Étape 1 : ]0, 1] -> 4$ -->
+      <line x1="50" y1="135" x2="130" y2="135" stroke="#007bff" stroke-width="3"/>
+      <circle cx="50" cy="135" r="4" fill="#fff" stroke="#007bff" stroke-width="2"/>
+      <circle cx="130" cy="135" r="4" fill="#007bff"/>
+
+      <!-- Étape 2 : ]1, 2] -> 7$ -->
+      <line x1="130" y1="90" x2="210" y2="90" stroke="#007bff" stroke-width="3"/>
+      <circle cx="130" cy="90" r="4" fill="#fff" stroke="#007bff" stroke-width="2"/>
+      <circle cx="210" cy="90" r="4" fill="#007bff"/>
+
+      <!-- Étape 3 : ]2, 3] -> 10$ -->
+      <line x1="210" y1="45" x2="290" y2="45" stroke="#007bff" stroke-width="3"/>
+      <circle cx="210" cy="45" r="4" fill="#fff" stroke="#007bff" stroke-width="2"/>
+      <circle cx="290" cy="45" r="4" fill="#007bff"/>
+    </svg>
   </div>
+</div>
+
+<div class="boite exemple">
+  <div class="boite-titre">Exemple 2 — Rémunération selon le nombre d'heures</div>
+  <p>Une entreprise paie des montants différents selon une catégorie d'heures travaillées.</p>
+  
+  $$ S(h) = \begin{cases} 
+  16h & 0 \le h \le 20 \\ 
+  18h & 20 < h \le 40 
+  \end{cases} $$
+
+  <p>Attention : cette fonction n'est pas nécessairement une fonction en escalier, puisque chaque morceau varie avec \(h\).</p>
+  <div class="reponse">fonction par morceaux ≠ fonction en escalier</div>
+
+  <!-- Graphique linéaire par morceaux -->
+  <div class="diagramme-morceaux" style="text-align: center; margin-top: 20px;">
+    <svg width="340" height="230" viewBox="0 0 340 230" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif; font-size: 12px;">
+      <!-- Grille de fond -->
+      <path d="M 50 180 L 310 180 M 50 116 L 310 116 M 50 36 L 310 36" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4"/>
+      <path d="M 50 180 L 50 20 M 180 180 L 180 20 M 310 180 L 310 20" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4"/>
+
+      <!-- Axes -->
+      <line x1="50" y1="180" x2="325" y2="180" stroke="#333" stroke-width="2"/>
+      <line x1="50" y1="180" x2="50" y2="20" stroke="#333" stroke-width="2"/>
+
+      <!-- Flèches des axes -->
+      <polygon points="325,177 332,180 325,183" fill="#333"/>
+      <polygon points="47,20 50,13 53,20" fill="#333"/>
+
+      <!-- Étiquettes des axes -->
+      <text x="315" y="198" font-weight="bold">h (h)</text>
+      <text x="20" y="25" font-weight="bold">S(h) ($)</text>
+
+      <!-- Graduations Axe X -->
+      <text x="47" y="195">0</text>
+      <text x="173" y="195">20</text>
+      <text x="303" y="195">40</text>
+
+      <!-- Graduations Axe Y -->
+      <text x="20" y="120">320</text>
+      <text x="20" y="40">720</text>
+
+      <!-- Tronçon 1 : [0, 20] -> 16h (de 0$ à 320$) -->
+      <line x1="50" y1="180" x2="180" y2="116" stroke="#dc3545" stroke-width="3"/>
+      <circle cx="50" cy="180" r="4" fill="#dc3545"/>
+      <circle cx="180" cy="116" r="4" fill="#dc3545"/>
+
+      <!-- Tronçon 2 : ]20, 40] -> 18h (de 360$ exclu à 720$ inclus) -->
+      <!-- Point discontinu en h=20 (S=360$) -->
+      <circle cx="180" cy="108" r="4" fill="#fff" stroke="#dc3545" stroke-width="2"/>
+      <line x1="180" y1="108" x2="310" y2="36" stroke="#dc3545" stroke-width="3"/>
+      <circle cx="310" cy="36" r="4" fill="#dc3545"/>
+    </svg>
+  </div>
+</div>
+
+ <div class="boite exemple">
+  <div class="boite-titre"> Exemple 3 — Température contrôlée</div>
+  <p>Un système de chauffage maintient une température constante pendant différentes périodes :</p>
+
+  $$ T(t) = \begin{cases} 
+  18 & 0 \le t < 6 \\ 
+  21 & 6 \le t < 18 \\ 
+  19 & 18 \le t \le 24 
+  \end{cases} $$
+
+  <p>On interprète : \(T(8)=21\) et \(T(20)=19\).</p>
+
+  <!-- Diagramme en escalier -->
+  <div class="diagramme-escalier" style="text-align: center; margin-top: 20px;">
+    <svg width="360" height="220" viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif; font-size: 12px;">
+      <!-- Grille de fond -->
+      <path d="M 50 180 L 330 180 M 50 135 L 330 135 M 50 90 L 330 90 M 50 45 L 330 45" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4"/>
+      <path d="M 50 180 L 50 20 M 120 180 L 120 20 M 260 180 L 260 20 M 330 180 L 330 20" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4"/>
+
+      <!-- Axes -->
+      <line x1="50" y1="180" x2="340" y2="180" stroke="#333" stroke-width="2"/>
+      <line x1="50" y1="180" x2="50" y2="20" stroke="#333" stroke-width="2"/>
+
+      <!-- Flèches des axes -->
+      <polygon points="340,177 347,180 340,183" fill="#333"/>
+      <polygon points="47,20 50,13 53,20" fill="#333"/>
+
+      <!-- Étiquettes des axes -->
+      <text x="330" y="198" font-weight="bold">t (h)</text>
+      <text x="15" y="25" font-weight="bold">T(t) (°C)</text>
+
+      <!-- Graduations Axe X -->
+      <text x="47" y="195">0</text>
+      <text x="117" y="195">6</text>
+      <text x="254" y="195">18</text>
+      <text x="324" y="195">24</text>
+
+      <!-- Graduations Axe Y -->
+      <text x="28" y="139">18</text>
+      <text x="28" y="116">19</text>
+      <text x="28" y="49">21</text>
+
+      <!-- Palier 1 : [0, 6[ -> 18°C -->
+      <line x1="50" y1="135" x2="120" y2="135" stroke="#fd7e14" stroke-width="3"/>
+      <circle cx="50" cy="135" r="4" fill="#fd7e14"/>
+      <circle cx="120" cy="135" r="4" fill="#fff" stroke="#fd7e14" stroke-width="2"/>
+
+      <!-- Palier 2 : [6, 18[ -> 21°C -->
+      <line x1="120" y1="45" x2="260" y2="45" stroke="#fd7e14" stroke-width="3"/>
+      <circle cx="120" cy="45" r="4" fill="#fd7e14"/>
+      <circle cx="260" cy="45" r="4" fill="#fff" stroke="#fd7e14" stroke-width="2"/>
+
+      <!-- Palier 3 : [18, 24] -> 19°C -->
+      <line x1="260" y1="112" x2="330" y2="112" stroke="#fd7e14" stroke-width="3"/>
+      <circle cx="260" cy="112" r="4" fill="#fd7e14"/>
+      <circle cx="330" cy="112" r="4" fill="#fd7e14"/>
+    </svg>
+  </div>
+</div>
+
+<div class="boite exemple">
+  <div class="boite-titre">Exemple 4 — Tarif postal</div>
+
+  $$ P(m) = \begin{cases} 
+  2,00 & 0 < m \le 100 \\ 
+  3,25 & 100 < m \le 250 \\ 
+  5,00 & 250 < m \le 500 
+  \end{cases} $$
+
+  <p>où \(m\) représente la masse en grammes. On montre pourquoi \(P(100)=2,00\) mais \(P(100,1)=3,25\).</p>
+
+  <!-- Diagramme en escalier -->
+  <div class="diagramme-escalier" style="text-align: center; margin-top: 20px;">
+    <svg width="360" height="220" viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif; font-size: 12px;">
+      <!-- Grille de fond -->
+      <path d="M 50 180 L 330 180 M 50 135 L 330 135 M 50 90 L 330 90 M 50 45 L 330 45" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4"/>
+      <path d="M 50 180 L 50 20 M 106 180 L 106 20 M 190 180 L 190 20 M 330 180 L 330 20" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4"/>
+
+      <!-- Axes -->
+      <line x1="50" y1="180" x2="340" y2="180" stroke="#333" stroke-width="2"/>
+      <line x1="50" y1="180" x2="50" y2="20" stroke="#333" stroke-width="2"/>
+
+      <!-- Flèches des axes -->
+      <polygon points="340,177 347,180 340,183" fill="#333"/>
+      <polygon points="47,20 50,13 53,20" fill="#333"/>
+
+      <!-- Étiquettes des axes -->
+      <text x="330" y="198" font-weight="bold">m (g)</text>
+      <text x="15" y="25" font-weight="bold">P(m) ($)</text>
+
+      <!-- Graduations Axe X -->
+      <text x="47" y="195">0</text>
+      <text x="96" y="195">100</text>
+      <text x="180" y="195">250</text>
+      <text x="320" y="195">500</text>
+
+      <!-- Graduations Axe Y -->
+      <text x="18" y="139">2,00</text>
+      <text x="18" y="94">3,25</text>
+      <text x="18" y="49">5,00</text>
+
+      <!-- Palier 1 : ]0, 100] -> 2,00$ -->
+      <line x1="50" y1="135" x2="106" y2="135" stroke="#6f42c1" stroke-width="3"/>
+      <circle cx="50" cy="135" r="4" fill="#fff" stroke="#6f42c1" stroke-width="2"/>
+      <circle cx="106" cy="135" r="4" fill="#6f42c1"/>
+
+      <!-- Palier 2 : ]100, 250] -> 3,25$ -->
+      <line x1="106" y1="90" x2="190" y2="90" stroke="#6f42c1" stroke-width="3"/>
+      <circle cx="106" cy="90" r="4" fill="#fff" stroke="#6f42c1" stroke-width="2"/>
+      <circle cx="190" cy="90" r="4" fill="#6f42c1"/>
+
+      <!-- Palier 3 : ]250, 500] -> 5,00$ -->
+      <line x1="190" y1="45" x2="330" y2="45" stroke="#6f42c1" stroke-width="3"/>
+      <circle cx="190" cy="45" r="4" fill="#fff" stroke="#6f42c1" stroke-width="2"/>
+      <circle cx="330" cy="45" r="4" fill="#6f42c1"/>
+    </svg>
+  </div>
+</div>
 
   <div class="boite exemple">
-    <div class="boite-titre">💡 Exemple 2 — Rémunération selon le nombre d'heures</div>
-    <p>Une entreprise paie des montants différents selon une catégorie d'heures travaillées.</p>
-    $$ S(h)=  egin{cases} 16h & 0\leq h\leq20\ 18h & 20<h\leq40 \end{cases} $$
-    <p>Attention : cette fonction n'est pas nécessairement une fonction en escalier, puisque chaque morceau varie avec \(h\).</p>
-    <div class="reponse">fonction par morceaux ≠ fonction en escalier</div>
-  </div>
+  <div class="boite-titre">Exemple 5 — Billetterie</div>
+  <p>Un prix dépend d'une catégorie d'âge :</p>
+  
+  $$ P(a) = \begin{cases} 
+  0 & 0 \le a < 6 \\ 
+  8 & 6 \le a < 13 \\ 
+  12 & 13 \le a < 18 \\ 
+  18 & a \ge 18 
+  \end{cases} $$
 
-  <div class="boite exemple">
-    <div class="boite-titre">💡 Exemple 3 — Température contrôlée</div>
-    <p>Un système de chauffage maintient une température constante pendant différentes périodes :</p>
-    $$ T(t)=  egin{cases} 18 & 0\leq t<6\ 21 & 6\leq t<18\ 19 & 18\leq t\leq24 \end{cases} $$
-    <p>On interprète : \(T(8)=21\) et \(T(20)=19\).</p>
-  </div>
+  <p>Cela permet d'introduire le fait qu'une fonction en escalier peut modéliser des catégories.</p>
 
-  <div class="boite exemple">
-    <div class="boite-titre">💡 Exemple 4 — Tarif postal</div>
-    $$ P(m)=  egin{cases} 2,00 & 0<m\leq100\ 3,25 & 100<m\leq250\ 5,00 & 250<m\leq500 \end{cases} $$
-    <p>où \(m\) représente la masse en grammes. On montre pourquoi \(P(100)=2,00\) mais \(P(100,1)=3,25\).</p>
-  </div>
+  <!-- Diagramme en escalier -->
+  <div class="diagramme-escalier" style="text-align: center; margin-top: 20px;">
+    <svg width="360" height="240" viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif; font-size: 12px;">
+      <!-- Grille de fond -->
+      <path d="M 50 200 L 330 200 M 50 160 L 330 160 M 50 115 L 330 115 M 50 70 L 330 70" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4"/>
+      <path d="M 50 200 L 50 20 M 110 200 L 110 20 M 180 200 L 180 20 M 230 200 L 230 20" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4"/>
 
-  <div class="boite exemple">
-    <div class="boite-titre">💡 Exemple 5 — Billetterie</div>
-    <p>Un prix dépend d'une catégorie d'âge :</p>
-    $$ P(a)=  egin{cases} 0 & 0\leq a<6\ 8 & 6\leq a<13\ 12 & 13\leq a<18\ 18 & a\geq18 \end{cases} $$
-    <p>Cela permet d'introduire le fait qu'une fonction en escalier peut modéliser des catégories.</p>
+      <!-- Axes -->
+      <line x1="50" y1="200" x2="340" y2="200" stroke="#333" stroke-width="2"/>
+      <line x1="50" y1="200" x2="50" y2="20" stroke="#333" stroke-width="2"/>
+
+      <!-- Flèches des axes -->
+      <polygon points="340,197 347,200 340,203" fill="#333"/>
+      <polygon points="47,20 50,13 53,20" fill="#333"/>
+
+      <!-- Étiquettes des axes -->
+      <text x="330" y="218" font-weight="bold">a (ans)</text>
+      <text x="15" y="25" font-weight="bold">P(a) ($)</text>
+
+      <!-- Graduations Axe X -->
+      <text x="47" y="215">0</text>
+      <text x="107" y="215">6</text>
+      <text x="174" y="215">13</text>
+      <text x="224" y="215">18</text>
+
+      <!-- Graduations Axe Y -->
+      <text x="35" y="204">0</text>
+      <text x="35" y="164">8</text>
+      <text x="28" y="119">12</text>
+      <text x="28" y="74">18</text>
+
+      <!-- Palier 1 : [0, 6[ -> 0$ -->
+      <line x1="50" y1="200" x2="110" y2="200" stroke="#e83e8c" stroke-width="3"/>
+      <circle cx="50" cy="200" r="4" fill="#e83e8c"/>
+      <circle cx="110" cy="200" r="4" fill="#fff" stroke="#e83e8c" stroke-width="2"/>
+
+      <!-- Palier 2 : [6, 13[ -> 8$ -->
+      <line x1="110" y1="160" x2="180" y2="160" stroke="#e83e8c" stroke-width="3"/>
+      <circle cx="110" cy="160" r="4" fill="#e83e8c"/>
+      <circle cx="180" cy="160" r="4" fill="#fff" stroke="#e83e8c" stroke-width="2"/>
+
+      <!-- Palier 3 : [13, 18[ -> 12$ -->
+      <line x1="180" y1="115" x2="230" y2="115" stroke="#e83e8c" stroke-width="3"/>
+      <circle cx="180" cy="115" r="4" fill="#e83e8c"/>
+      <circle cx="230" cy="115" r="4" fill="#fff" stroke="#e83e8c" stroke-width="2"/>
+
+      <!-- Palier 4 : [18, +inf[ -> 18$ -->
+      <line x1="230" y1="70" x2="315" y2="70" stroke="#e83e8c" stroke-width="3"/>
+      <polygon points="315,67 322,70 315,73" fill="#e83e8c"/>
+      <circle cx="230" cy="70" r="4" fill="#e83e8c"/>
+    </svg>
   </div>
+</div>
 
   <div class="sous-titre">1.1.6 — Propriétés d'une fonction en escalier</div>
   <div class="boite definition">
