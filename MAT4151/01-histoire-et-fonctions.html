@@ -303,6 +303,77 @@ footer.site-footer{
          <p>Plusieurs entrées peuvent avoir la même sortie. Ce qui est impossible, c'est qu'une même entrée possède deux sorties différentes.</p></div>
          <div class="encadre encadre-attention"><span class="encadre-label">Attention</span>
          <p>Une règle comme « prendre la racine carrée » n'est pas automatiquement une fonction sur tous les réels : le domaine doit être précisé. De même, un graphique peut représenter une relation qui n'est pas une fonction.</p></div>
+ <h2 class="section-titre" id="s10"><span class="section-num">1.0</span>Introduction : des relations aux fonctions</h2>
+
+  <div class="boite idee">
+    <div class="boite-titre"> Idée essentielle</div>
+    <p> Avant de parler de fonctions, il faut comprendre ce qu'est une <strong>relation</strong> entre deux quantités : une variable indépendante (celle qu'on choisit) et une variable dépendante (celle qui en résulte).</p>
+  </div>
+
+  <p>Les mathématiques ont développé la notion de fonction pour répondre à un besoin concret : décrire comment une quantité varie en fonction d'une autre.</p>
+
+  <!-- SVG Diagram 1: Relation vs Fonction (Machine à fonction) -->
+  <div class="svg-container">
+    <svg viewBox="0 0 650 200" xmlns="http://www.w3.org/2000/svg" font-family="'Space Grotesk', sans-serif">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#2c3e50"/>
+        </marker>
+      </defs>
+      <!-- Background box -->
+      <rect x="10" y="10" width="630" height="180" rx="8" fill="#fdfbf7" stroke="#e2ded4" stroke-width="1.5"/>
+      
+      <!-- Input -->
+      <g transform="translate(40, 70)">
+        <rect x="0" y="0" width="110" height="60" rx="6" fill="#EEF4F1" stroke="#27ae60" stroke-width="2"/>
+        <text x="55" y="25" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Entrée (x)</text>
+        <text x="55" y="45" text-anchor="middle" font-size="11" fill="#3B6255">Var. indépendante</text>
+      </g>
+      
+      <!-- Arrow 1 -->
+      <line x1="150" y1="100" x2="220" y2="100" stroke="#2c3e50" stroke-width="2.5" marker-end="url(#arrow)"/>
+      
+      <!-- Machine / Process -->
+      <g transform="translate(225, 50)">
+        <rect x="0" y="0" width="200" height="100" rx="10" fill="#2c3e50" stroke="#1a252f" stroke-width="2"/>
+        <text x="100" y="35" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Règle de la fonction</text>
+        <text x="100" y="60" text-anchor="middle" font-size="18" font-weight="600" fill="#f39c12">f(x)</text>
+        <text x="100" y="82" text-anchor="middle" font-size="11" fill="#e2ded4">À chaque x correspond un seul y</text>
+      </g>
+      
+      <!-- Arrow 2 -->
+      <line x1="425" y1="100" x2="495" y2="100" stroke="#2c3e50" stroke-width="2.5" marker-end="url(#arrow)"/>
+      
+      <!-- Output -->
+      <g transform="translate(500, 70)">
+        <rect x="0" y="0" width="110" height="60" rx="6" fill="#FBF4E4" stroke="#d35400" stroke-width="2"/>
+        <text x="55" y="25" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Sortie y = f(x)</text>
+        <text x="55" y="45" text-anchor="middle" font-size="11" fill="#d35400">Var. dépendante</text>
+      </g>
+    </svg>
+  </div>
+
+
+
+  <div class="boite application">
+    <div class="boite-titre"> Les fonctions dans la vie de tous les jours</div>
+    <ul>
+      <li>Télécommunications</li>
+      <li>Économie</li>
+      <li>Informatique</li>
+      <li>Physique</li>
+      <li>Ingénierie</li>
+      <li>Statistiques</li>
+      <li>Modélisation</li>
+      <li>Intelligence artificielle</li>
+    </ul>
+  </div>
+
+  <p>Nous verrons comment passer d'une situation réelle à une fonction mathématique.</p>
+
+
+
+    
   </section>
 
 <hr class="rule">
@@ -358,20 +429,6 @@ footer.site-footer{
 
 <hr class="rule">
 
-  <section id="mistakes">
-    <div class="section-head">
-      <div class="eyebrow">Vigilance</div>
-      <h2>Erreurs fréquentes à éviter</h2>
-    </div>
-    <div class="encadre encadre-attention"><span class="encadre-label">Erreurs conceptuelles</span><ul>
-         <li>Dire « les Babyloniens avaient le concept moderne de fonction » sans nuance.</li>
-         <li>Dire « Euler a inventé toute la notion de fonction ».</li>
-         <li>Confondre une <strong>fonction</strong> et une <strong>formule</strong> : une fonction inclut son domaine et sa correspondance.</li>
-         <li>Oublier le domaine lorsqu'on manipule des racines ou des dénominateurs.</li>
-         <li>Lire un graphique sans vérifier les axes et les unités.</li>
-         <li>Supposer qu'une relation est une fonction seulement parce qu'elle comporte une équation.</li></ul></div>
-  </section>
-
 
 </main>
 
@@ -384,7 +441,6 @@ footer.site-footer{
     <li><a href="#representations">Les quatre représentations fondamentales</a></li>
     <li><a href="#example">Passer d'une situation à une fonction</a></li>
     <li><a href="#vertical">Tester si un graphique représente une fonction</a></li>
-    <li><a href="#mistakes">Erreurs fréquentes à éviter</a></li>
   </ol>
 </nav>
 </div>
