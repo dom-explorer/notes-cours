@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MAT1101 — Chapitre 1 : Les nombres rationnels</title>
+<meta content="Introduction à l'ensemble Q, les fractions, les décimaux, les proportions et les pourcentages." name="description"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,0,7..72,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$', '$$']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+:root {
+  --ardoise: #223A34;
+  --ardoise-deep: #182922;
+  --papier: #EAEEE9;
+  --papier-2: #E0E5DD;
+  --encre: #1C2B3A;
+  --craie: #D9A441;
+  --craie-deep: #B9832C;
+  --brique: #B5524A;
+  --sapin: #4B7A68;
+  --ligne: rgba(28, 43, 58, 0.14);
+  --white: #FCFBF7;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Literata", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--papier);
+  color: var(--encre);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--craie-deep);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+header.site {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(234, 238, 233, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--ligne);
+}
+nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+.brand { font-family: var(--font-mono); font-size: 15px; font-weight: 600; letter-spacing: .02em; text-decoration: none; }
+.brand span { color: var(--craie-deep); }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; font-family: var(--font-display); font-size: 14px; font-weight: 500; }
+.nav-links a { text-decoration: none; opacity: .85; }
+.nav-links a:hover { opacity: 1; color: var(--craie-deep); }
+
+.hero {
+  background: var(--ardoise); color: var(--white); position: relative; overflow: hidden;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px);
+  padding: 56px 0;
+}
+.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--craie); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.eyebrow a { text-decoration: none; opacity: .75; color: inherit; }
+.eyebrow a:hover { opacity: 1; }
+.hero .course-title { font-family: var(--font-display); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; font-size: clamp(1.9rem, 4vw, 2.8rem); margin-bottom: 14px; }
+.hero .course-description { font-family: var(--font-body); font-size: 16px; line-height: 1.65; max-width: 68ch; color: rgba(252, 251, 247, 0.82); }
+
+.page-layout { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 48px; max-width: 1360px; margin: 0 auto; padding: 40px 28px; align-items: start; }
+.page-layout > main.wrap { max-width: none; padding: 0; grid-column: 1; }
+
+.toc-flottante {
+  grid-column: 2; position: sticky; top: 96px; align-self: start;
+  max-height: calc(100vh - 130px); overflow-y: auto; padding: 20px;
+  background: var(--white); border: 1px solid var(--ligne); border-radius: 8px; font-family: var(--font-display);
+}
+.toc-flottante h2 { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--craie-deep); margin-bottom: 12px; }
+.toc-flottante ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.toc-flottante li a { display: block; text-decoration: none; font-size: 13.5px; font-weight: 500; color: var(--encre); opacity: .65; padding: 6px 0 6px 12px; border-left: 2px solid var(--ligne); transition: all .15s ease; line-height: 1.3; }
+.toc-flottante li a:hover { opacity: 1; border-left-color: var(--craie-deep); }
+.toc-flottante li a.active { opacity: 1; color: var(--ardoise-deep); border-left-color: var(--craie-deep); font-weight: 600; }
+
+@media(max-width: 1180px) { .page-layout { display: block; padding: 30px 20px; } .toc-flottante { display: none; } }
+
+.chapitre { padding-bottom: 80px; }
+.section-titre { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.01em; margin: 56px 0 16px; padding-top: 24px; border-top: 1px solid var(--ligne); scroll-margin-top: 96px; }
+.section-titre:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+.section-num { font-family: var(--font-mono); font-size: 13px; color: var(--craie-deep); letter-spacing: 0.06em; display: block; margin-bottom: 6px; text-transform: uppercase; }
+.sous-titre { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; margin: 36px 0 14px; color: var(--ardoise); }
+
+p { margin: 0 0 16px; max-width: 72ch; }
+ul, ol { margin: 0 0 20px 22px; max-width: 68ch; }
+li { margin: 6px 0; }
+
+.sommaire { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 40px; }
+.sommaire a { display: block; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; padding: 14px 18px; text-decoration: none; font-family: var(--font-display); font-size: 14.5px; font-weight: 500; color: var(--encre); transition: border-color 0.15s ease, transform 0.15s ease; }
+.sommaire a:hover { border-color: var(--craie-deep); transform: translateX(3px); }
+.sommaire a span { display: block; font-family: var(--font-mono); font-size: 11.5px; color: var(--craie-deep); margin-bottom: 4px; }
+
+.boite, .encadre { background: var(--white); border: 1px solid var(--ligne); border-left: 4px solid var(--ardoise); border-radius: 6px; padding: 22px 26px; margin: 24px 0; }
+.boite-titre, .encadre-label { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--ardoise); }
+.boite p:last-child, .boite ul:last-child, .boite ol:last-child, .encadre p:last-child, .encadre ul:last-child { margin-bottom: 0; }
+
+.boite.idee { border-left-color: var(--craie-deep); background: #FBF4E4; }
+.boite.idee .boite-titre { color: var(--craie-deep); }
+.boite.definition, .encadre-definition { border-left-color: var(--sapin); }
+.boite.definition .boite-titre, .encadre-definition .encadre-label { color: var(--sapin); }
+.boite.notation, .boite.application, .encadre-methode { border-left-color: var(--sapin); background: #EEF3F0; }
+.boite.notation .boite-titre, .boite.application .boite-titre, .encadre-methode .encadre-label { color: var(--sapin); }
+.boite.graphique { border-left-color: var(--ardoise-deep); background: var(--papier-2); }
+.boite.graphique .boite-titre { color: var(--ardoise-deep); }
+.boite.methode { border-left-color: var(--sapin); }
+.boite.methode .boite-titre { color: var(--sapin); }
+.boite.exemple, .encadre-exemple { border-left-color: var(--craie-deep); background: var(--papier-2); }
+.boite.exemple .boite-titre, .encadre-exemple .encadre-label { color: var(--craie-deep); }
+.boite.erreur, .encadre-attention, .encadre-note { border-left-color: var(--brique); background: #FBEFEE; }
+.boite.erreur .boite-titre, .encadre-attention .encadre-label, .encadre-note .encadre-label { color: var(--brique); }
+.boite.retenir { border-left-color: var(--ardoise); background: var(--ardoise); color: var(--white); }
+.boite.retenir .boite-titre { color: var(--craie); }
+.boite.retenir li { color: rgba(252, 251, 247, 0.92); }
+.boite.avenir { border-left-color: var(--ligne); background: var(--papier); }
+.boite.avenir .boite-titre { color: rgba(28,43,58,.55); }
+.boite.avenir p { color: rgba(28,43,58,.65); font-style: italic; }
+
+.table-wrap { border: 1px solid var(--ligne); border-radius: 6px; overflow-x: auto; margin: 22px 0; }
+table, table.valeurs { border-collapse: collapse; width: 100%; font-size: 15px; background: var(--white); }
+th, td { border-bottom: 1px solid var(--ligne); padding: 11px 16px; text-align: left; }
+table.valeurs th, table.valeurs td { border: 1px solid var(--ligne); text-align: center; font-family: var(--font-mono); }
+th { font-family: var(--font-display); font-weight: 600; font-size: 13.5px; background: var(--ardoise); color: var(--white); }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: var(--papier); }
+
+.canvas-container, .svg-container, .interactif {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  margin: 24px 0; padding: 22px; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+canvas { border: 1px solid var(--ligne); border-radius: 4px; background-color: var(--white); max-width: 100%; height: auto; }
+.graph svg, .svg-container svg { max-width: 100%; height: auto; }
+
+.info-box { background-color: #EEF3F0; border-left: 4px solid var(--sapin); padding: 12px 16px; margin-top: 15px; border-radius: 0 4px 4px 0; font-size: 0.95rem; width: 100%; }
+
+.controles { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; width: 100%; max-width: 480px; margin-bottom: 6px; }
+.controle-item { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 170px; }
+.controle-item label { font-family: var(--font-mono); font-size: 12px; color: var(--ardoise); font-weight: 600; display: flex; justify-content: space-between; }
+.controle-item output { color: var(--craie-deep); }
+input[type="range"] { width: 100%; accent-color: var(--sapin); }
+
+.boutons-contexte { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; justify-content: center; }
+.btn-contexte {
+  font-family: var(--font-display); font-size: 13.5px; font-weight: 600; padding: 9px 18px; border-radius: 20px;
+  border: 1.5px solid var(--ligne); background: var(--white); color: var(--encre); cursor: pointer; transition: all .15s ease;
+}
+.btn-contexte:hover { border-color: var(--craie-deep); }
+.btn-contexte.actif { background: var(--sapin); border-color: var(--sapin); color: var(--white); }
+
+.resultat-fraction { display: flex; align-items: center; gap: 22px; font-family: var(--font-mono); font-size: 1.05rem; margin-top: 14px; flex-wrap: wrap; justify-content: center; }
+.frac-visuelle { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.1; }
+.frac-visuelle .num { border-bottom: 2px solid var(--encre); padding: 0 4px 2px; }
+.frac-visuelle .den { padding-top: 2px; }
+.resultat-fraction .fleche { color: var(--craie-deep); font-weight: 700; }
+
+footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; background: var(--white); font-family: var(--font-mono); font-size: 0.85rem; color: rgba(28, 43, 58, 0.7); text-align: center; }
+
+.nav-suivant { border-top: 1px solid var(--ligne); background: var(--papier-2); }
+.nav-suivant .wrap { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; }
+.nav-suivant .label { display: block; font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--craie-deep); margin-bottom: 4px; }
+.nav-suivant .titre { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+.btn-primary { background: var(--sapin); color: var(--white); text-decoration: none; padding: 11px 20px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+
+@media (max-width: 720px) {
+  .sommaire { grid-template-columns: 1fr; }
+  .boite, .encadre { padding: 18px; }
+  .nav-suivant .wrap { flex-direction: column; gap: 14px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+<nav class="wrap">
+<a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span></a>
+<ul class="nav-links">
+<li><a href="https://learnwithdom.page">Accueil</a></li>
+<li><a href="https://learnwithdom.page/cours/mat1101.html">MAT1101</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="hero">
+<div class="wrap hero-inner compact">
+<div class="eyebrow"><a href="https://learnwithdom.page/cours/mat1101.html">MAT1101 · Introduction aux nombres rationnels</a></div>
+<h1 class="course-title">1 — Les nombres rationnels</h1>
+<p class="course-description">Introduction à l'ensemble Q : ce que sont les fractions, pourquoi on les étudie, et comment elles représentent des quantités.</p>
+</div>
+</div>
+
+<div class="page-layout">
+<main class="wrap">
+<div class="wrap chapitre">
+
+  <div class="sommaire">
+    <a href="#definition"><span>1</span>Les nombres rationnels</a>
+    <a href="#pourquoi"><span>2</span>Pourquoi étudier Q ?</a>
+    <a href="#notions"><span>3</span>Notions</a>
+    <a href="#concept"><span>4</span>Un concept fondamental</a>
+  </div>
+
+  <hr class="rule"/>
+
+  <section id="definition">
+    <div class="section-titre"><span class="section-num">1 · Définition</span>Définition de l'ensemble Q</div>
+
+    <div class="boite definition">
+      <div class="boite-titre">Définition</div>
+      <p>Un <strong>nombre rationnel</strong> est un nombre qui peut être représenté sous la forme d'une fraction :</p>
+      $$ \frac{a}{b} $$
+      <p>où \(a\) et \(b\) sont des nombres entiers et où \(b \neq 0\).</p>
+    </div>
+
+    <p>On définit donc l'ensemble des nombres rationnels, noté \(\mathbb{Q}\), par :</p>
+    $$ \mathbb{Q} = \left\{ \frac{a}{b} \;\middle|\; a, b \in \mathbb{Z},\ b \neq 0 \right\} $$
+
+    <div class="boite idee">
+      <div class="boite-titre">D'où vient le symbole Q ?</div>
+      <p>Le symbole \(\mathbb{Q}\) vient du mot <strong>quotient</strong>, puisqu'un nombre rationnel peut toujours être exprimé comme le quotient de deux nombres entiers. Les fractions sont donc une façon fondamentale de représenter les nombres rationnels.</p>
+    </div>
+
+    <div class="sous-titre">Trois écritures, une seule quantité</div>
+    <p>Une fraction comme \(\dfrac{3}{4}\) peut représenter une partie d'un tout, une division, ou simplement un nombre :</p>
+    $$ \frac{3}{4} = 3 \div 4 = 0{,}75 $$
+    <p>Ces trois écritures représentent exactement la même quantité — c'est cette équivalence que l'outil ci-dessous permet d'explorer.</p>
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item">
+          <label>Numérateur (a) <output id="outNum">3</output></label>
+          <input id="rangeNum" max="12" min="0" type="range" value="3"/>
+        </div>
+        <div class="controle-item">
+          <label>Dénominateur (b) <output id="outDen">4</output></label>
+          <input id="rangeDen" max="12" min="1" type="range" value="4"/>
+        </div>
+      </div>
+      <canvas height="260" id="fractionCanvas" width="260"></canvas>
+      <div class="resultat-fraction">
+        <div class="frac-visuelle"><span class="num" id="fracNum">3</span><span class="den" id="fracDen">4</span></div>
+        <span class="fleche">=</span>
+        <span id="fracDiv">3 ÷ 4</span>
+        <span class="fleche">=</span>
+        <span id="fracDec">0,75</span>
+      </div>
+      <div class="info-box" id="fracInfo">Déplace les curseurs pour changer la fraction et observe le disque se remplir.</div>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="pourquoi">
+    <div class="section-titre"><span class="section-num">2 · Motivation</span>Pourquoi étudier les nombres rationnels ?</div>
+    <p>Dès qu'une quantité doit être partagée, comparée ou exprimée « en partie » plutôt qu'en tout, les nombres entiers ne suffisent plus. Une pizza coupée en parts, un salaire versé à l'heure, une remise sur un prix : dans chacun de ces cas, on a besoin d'un nombre qui se situe <em>entre</em> deux entiers. Les nombres rationnels — et les fractions qui les représentent — sont l'outil qui permet de nommer et de manipuler ces quantités avec précision, que ce soit sous forme de fraction, de division ou de nombre décimal.</p>
+    <div class="boite idee">
+      <div class="boite-titre">À retenir</div>
+      <p>Étudier \(\mathbb{Q}\), c'est se donner les moyens de travailler avec des quantités qui ne sont pas des nombres entiers, tout en gardant un lien exact et non approximatif avec ces quantités.</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="notions">
+    <div class="section-titre"><span class="section-num">3 · Notions</span>Les grandes notions du chapitre</div>
+    <p>Ce chapitre se divise en quatre grandes notions. La première — les fractions — est développée ici; les trois suivantes seront ajoutées au fil du cours.</p>
+
+    <div class="sous-titre" id="fractions">3.1 — Les fractions</div>
+    <div class="boite notation">
+      <div class="boite-titre">Une première introduction aux fractions</div>
+      <p>Cette section présente les concepts fondamentaux nécessaires pour comprendre les fractions :</p>
+      <ul>
+        <li>leur histoire;</li>
+        <li>leur définition;</li>
+        <li>le numérateur;</li>
+        <li>le dénominateur;</li>
+        <li>les différents types de fractions;</li>
+        <li>les fractions équivalentes;</li>
+        <li>les fractions irréductibles.</li>
+      </ul>
+      <p><a href="https://learnwithdom.page/cours/mat1101/fractions.html">Voir les notes sur les fractions →</a></p>
+    </div>
+
+    <div class="sous-titre" id="operations">3.2 — Les opérations avec les fractions</div>
+    <div class="boite avenir">
+      <div class="boite-titre">Additionner, soustraire, multiplier et diviser</div>
+      <p>Nous apprendrons notamment à additionner, soustraire, multiplier et diviser des fractions, ainsi qu'à les mettre sur un même dénominateur lorsque c'est nécessaire.</p>
+      <p>Cette section sera ajoutée prochainement.</p>
+    </div>
+
+    <div class="sous-titre" id="decimaux">3.3 — Les nombres décimaux et les fractions</div>
+    <div class="boite avenir">
+      <div class="boite-titre">Comprendre le lien entre fractions et nombres décimaux</div>
+      <p>Nous étudierons le lien entre les fractions et les nombres décimaux : les nombres décimaux terminants, les nombres décimaux périodiques, ainsi que la conversion d'une fraction en nombre décimal et vice-versa.</p>
+      <p>Cette section sera ajoutée prochainement.</p>
+    </div>
+
+    <div class="sous-titre" id="proportions">3.4 — Les proportions et les pourcentages</div>
+    <div class="boite notation">
+      <div class="boite-titre">Fractions, proportions, taux et pourcentages</div>
+      <p>Les fractions permettent également de comprendre les proportions, les taux et les pourcentages. Par exemple :</p>
+      $$ \frac{25}{100} = 25\% $$
+      <p>Les fractions constituent donc une base importante pour comprendre les pourcentages et les proportions.</p>
+
+      <div class="interactif" style="margin-top:18px;">
+        <div class="controles" style="max-width:100%;">
+          <div class="controle-item" style="min-width:100%;">
+            <label>Numérateur sur 100 <output id="outPct">25</output> / 100</label>
+            <input id="rangePct" max="100" min="0" type="range" value="25"/>
+          </div>
+        </div>
+        <div class="canvas-container" style="border:none; box-shadow:none; padding:8px 0;">
+          <canvas height="180" id="pctCanvas" width="340"></canvas>
+        </div>
+        <div class="info-box" id="pctInfo">25/100 se simplifie en 1/4, soit 25 %.</div>
+      </div>
+      <p style="margin-top:14px;">Cette section sera complétée prochainement.</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="concept">
+    <div class="section-titre"><span class="section-num">4 · Idée clé</span>Un concept fondamental</div>
+    <div class="boite idee">
+      <div class="boite-titre">Une fraction représente une quantité</div>
+      <p>Une des idées les plus importantes à retenir est qu'une fraction n'est pas simplement deux nombres placés l'un au-dessus de l'autre : elle représente une quantité.</p>
+    </div>
+    <p>Considérons \(\dfrac{1}{2}\). Cette fraction peut représenter la moitié d'une pizza, la moitié d'une heure, la moitié d'un dollar, la moitié d'une longueur — la moitié de n'importe quelle quantité. Le contexte change, mais la relation mathématique reste la même.</p>
+
+    <div class="interactif">
+      <div class="boutons-contexte">
+        <button class="btn-contexte actif" data-contexte="pizza">🍕 Pizza</button>
+        <button class="btn-contexte" data-contexte="temps">🕐 Temps</button>
+        <button class="btn-contexte" data-contexte="argent">💲 Argent</button>
+      </div>
+      <div id="contexteSvg"></div>
+      <div class="info-box" id="contexteInfo">1/2 d'une pizza : une moitié partagée, l'autre non.</div>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="resume">
+    <div class="section-titre"><span class="section-num">Résumé</span>À retenir</div>
+    <div class="boite retenir">
+      <div class="boite-titre">Les idées essentielles</div>
+      <ul>
+        <li>Un nombre rationnel s'écrit \(\dfrac{a}{b}\), avec \(a, b \in \mathbb{Z}\) et \(b \neq 0\).</li>
+        <li>Le symbole \(\mathbb{Q}\) vient de « quotient » : toute fraction est aussi une division.</li>
+        <li>Une fraction, une division et un nombre décimal peuvent représenter exactement la même quantité.</li>
+        <li>Les proportions et les pourcentages sont une application directe des fractions (ex. 25/100 = 25 %).</li>
+        <li>Une fraction représente toujours une <strong>quantité</strong> — le contexte change, la relation mathématique reste la même.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="commencer">
+    <div class="section-titre"><span class="section-num">5 · Pour commencer</span>Par où débuter ?</div>
+    <p>Si vous débutez avec les nombres rationnels, commencez par les fractions.</p>
+  </section>
+
+</div>
+</main>
+
+<nav aria-label="Table des matières" class="toc-flottante">
+<h2>Sur cette page</h2>
+<ol id="toc-list">
+<li><a href="#definition">1 · Définition de Q</a></li>
+<li><a href="#pourquoi">2 · Pourquoi étudier Q ?</a></li>
+<li><a href="#notions">3 · Notions</a></li>
+<li><a href="#fractions">3.1 · Les fractions</a></li>
+<li><a href="#operations">3.2 · Opérations</a></li>
+<li><a href="#decimaux">3.3 · Décimaux</a></li>
+<li><a href="#proportions">3.4 · Proportions et %</a></li>
+<li><a href="#concept">4 · Concept fondamental</a></li>
+<li><a href="#resume">Résumé</a></li>
+<li><a href="#commencer">5 · Pour commencer</a></li>
+</ol>
+</nav>
+</div>
+
+<div class="nav-suivant">
+<div class="wrap">
+<div>
+<span class="label">Section suivante</span>
+<span class="titre">Introduction aux fractions</span>
+</div>
+<a class="btn-primary" href="https://learnwithdom.page/cours/mat1101/fractions.html">Commencer les notes sur les fractions →</a>
+</div>
+</div>
+
+<footer class="site-footer">MAT1101 · learnwithdom.page</footer>
+
+<script>
+(function(){
+  // --- TOC active link tracking ---
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-flottante a'));
+  var sections = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  function setActive(id){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); }); }
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      if(visible.length){
+        visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; });
+        setActive(visible[0].target.id);
+      }
+    },{rootMargin:'-100px 0px -70% 0px',threshold:0});
+    sections.forEach(function(s){ observer.observe(s); });
+  }
+
+  // --- Palette ---
+  var ARDOISE = '#223A34', CRAIE = '#D9A441', SAPIN = '#4B7A68', BRIQUE = '#B5524A', PAPIER = '#EAEEE9', LIGNE = '#C9D0C8';
+
+  // --- 1. Explorateur de fraction (numérateur/dénominateur -> disque + division + décimal) ---
+  var rangeNum = document.getElementById('rangeNum');
+  var rangeDen = document.getElementById('rangeDen');
+  var outNum = document.getElementById('outNum');
+  var outDen = document.getElementById('outDen');
+  var fracNumEl = document.getElementById('fracNum');
+  var fracDenEl = document.getElementById('fracDen');
+  var fracDivEl = document.getElementById('fracDiv');
+  var fracDecEl = document.getElementById('fracDec');
+  var fracInfo = document.getElementById('fracInfo');
+  var fracCanvas = document.getElementById('fractionCanvas');
+  var fctx = fracCanvas.getContext('2d');
+
+  function gcd(a,b){ a = Math.abs(a); b = Math.abs(b); while(b){ var t = b; b = a % b; a = t; } return a || 1; }
+
+  function drawFraction(num, den){
+    var w = fracCanvas.width, h = fracCanvas.height;
+    var cx = w/2, cy = h/2, r = Math.min(w,h)/2 - 14;
+    fctx.clearRect(0,0,w,h);
+
+    var start = -Math.PI/2;
+    for(var i=0; i<den; i++){
+      var slice = (Math.PI*2)/den;
+      var a0 = start + i*slice;
+      var a1 = a0 + slice;
+      fctx.beginPath();
+      fctx.moveTo(cx,cy);
+      fctx.arc(cx,cy,r,a0,a1);
+      fctx.closePath();
+      fctx.fillStyle = (i < num) ? SAPIN : '#F4F1E7';
+      fctx.fill();
+      fctx.lineWidth = 2;
+      fctx.strokeStyle = '#FCFBF7';
+      fctx.stroke();
+    }
+    fctx.beginPath();
+    fctx.arc(cx,cy,r,0,Math.PI*2);
+    fctx.lineWidth = 2.5;
+    fctx.strokeStyle = ARDOISE;
+    fctx.stroke();
+  }
+
+  function updateFraction(){
+    var num = parseInt(rangeNum.value,10);
+    var den = parseInt(rangeDen.value,10);
+    if(num > den){ num = den; rangeNum.value = num; }
+    rangeNum.max = den;
+    outNum.textContent = num;
+    outDen.textContent = den;
+    fracNumEl.textContent = num;
+    fracDenEl.textContent = den;
+    fracDivEl.textContent = num + ' ÷ ' + den;
+    var dec = num/den;
+    fracDecEl.textContent = dec.toLocaleString('fr-CA', {maximumFractionDigits: 4});
+    drawFraction(num, den);
+    var g = gcd(num, den);
+    if(g > 1 && num > 0){
+      fracInfo.textContent = num + '/' + den + ' se simplifie en ' + (num/g) + '/' + (den/g) + ' = ' + dec.toLocaleString('fr-CA', {maximumFractionDigits: 4}) + '.';
+    } else if (num === 0) {
+      fracInfo.textContent = '0/' + den + ' : aucune part n\'est coloriée — la quantité est nulle.';
+    } else {
+      fracInfo.textContent = num + '/' + den + ' est déjà une fraction irréductible.';
+    }
+  }
+  rangeNum.addEventListener('input', updateFraction);
+  rangeDen.addEventListener('input', updateFraction);
+  updateFraction();
+
+  // --- 2. Pourcentage (n/100) ---
+  var rangePct = document.getElementById('rangePct');
+  var outPct = document.getElementById('outPct');
+  var pctInfo = document.getElementById('pctInfo');
+  var pctCanvas = document.getElementById('pctCanvas');
+  var pctx = pctCanvas.getContext('2d');
+
+  function drawPct(n){
+    var w = pctCanvas.width, h = pctCanvas.height;
+    pctx.clearRect(0,0,w,h);
+    var cols = 20, rows = 5;
+    var pad = 10;
+    var cw = (w - pad*2) / cols, ch = (h - pad*2) / rows;
+    var total = cols*rows;
+    var filled = Math.round((n/100) * total);
+    for(var i=0; i<total; i++){
+      var col = i % cols, row = Math.floor(i/cols);
+      var x = pad + col*cw, y = pad + row*ch;
+      pctx.fillStyle = (i < filled) ? CRAIE : '#F4F1E7';
+      pctx.fillRect(x+1, y+1, cw-2, ch-2);
+      pctx.strokeStyle = '#FCFBF7';
+      pctx.lineWidth = 1;
+      pctx.strokeRect(x+1, y+1, cw-2, ch-2);
+    }
+  }
+
+  function updatePct(){
+    var n = parseInt(rangePct.value,10);
+    outPct.textContent = n;
+    drawPct(n);
+    var g = gcd(n,100);
+    var simpNum = n/g, simpDen = 100/g;
+    if(n === 0){
+      pctInfo.textContent = '0/100 = 0 %.';
+    } else if (g > 1) {
+      pctInfo.textContent = n + '/100 se simplifie en ' + simpNum + '/' + simpDen + ', soit ' + n + ' %.';
+    } else {
+      pctInfo.textContent = n + '/100 est déjà irréductible, soit ' + n + ' %.';
+    }
+  }
+  rangePct.addEventListener('input', updatePct);
+  updatePct();
+
+  // --- 3. Contexte (pizza / temps / argent) pour 1/2 ---
+  var contexteSvg = document.getElementById('contexteSvg');
+  var contexteInfo = document.getElementById('contexteInfo');
+  var boutons = Array.prototype.slice.call(document.querySelectorAll('.btn-contexte'));
+
+  var svgPizza = '<svg viewBox="0 0 200 200" width="200" height="200">' +
+    '<circle cx="100" cy="100" r="90" fill="#F4F1E7" stroke="' + ARDOISE + '" stroke-width="3"/>' +
+    '<path d="M 100 100 L 100 10 A 90 90 0 0 1 100 190 Z" fill="' + SAPIN + '"/>' +
+    '<line x1="100" y1="10" x2="100" y2="190" stroke="' + ARDOISE + '" stroke-width="2.5"/>' +
+    '<circle cx="70" cy="60" r="5" fill="' + BRIQUE + '"/><circle cx="60" cy="130" r="5" fill="' + BRIQUE + '"/>' +
+    '<circle cx="120" cy="70" r="5" fill="' + BRIQUE + '"/><circle cx="130" cy="140" r="5" fill="' + BRIQUE + '"/>' +
+    '</svg>';
+
+  var svgTemps = '<svg viewBox="0 0 200 200" width="200" height="200">' +
+    '<circle cx="100" cy="100" r="90" fill="#F4F1E7" stroke="' + ARDOISE + '" stroke-width="3"/>' +
+    '<path d="M 100 100 L 100 10 A 90 90 0 0 1 100 190 Z" fill="' + SAPIN + '"/>' +
+    '<line x1="100" y1="10" x2="100" y2="190" stroke="' + ARDOISE + '" stroke-width="2.5"/>' +
+    '<line x1="100" y1="100" x2="100" y2="35" stroke="' + ARDOISE + '" stroke-width="3"/>' +
+    '<line x1="100" y1="100" x2="150" y2="100" stroke="' + ARDOISE + '" stroke-width="2"/>' +
+    '<circle cx="100" cy="100" r="4" fill="' + ARDOISE + '"/>' +
+    '<text x="95" y="24" font-size="12" font-family="JetBrains Mono">12</text>' +
+    '<text x="172" y="104" font-size="12" font-family="JetBrains Mono">6</text>' +
+    '</svg>';
+
+  var svgArgent = '<svg viewBox="0 0 200 200" width="200" height="200">' +
+    '<rect x="20" y="70" width="160" height="60" rx="8" fill="#F4F1E7" stroke="' + ARDOISE + '" stroke-width="3"/>' +
+    '<rect x="20" y="70" width="80" height="60" rx="8" fill="' + SAPIN + '"/>' +
+    '<line x1="100" y1="70" x2="100" y2="130" stroke="' + ARDOISE + '" stroke-width="2.5"/>' +
+    '<circle cx="100" cy="100" r="20" fill="none" stroke="' + ARDOISE + '" stroke-width="2"/>' +
+    '<text x="90" y="107" font-size="18" font-family="JetBrains Mono" font-weight="700" fill="' + ARDOISE + '">$</text>' +
+    '</svg>';
+
+  var contextes = {
+    pizza: { svg: svgPizza, texte: '1/2 d\'une pizza : une moitié partagée, l\'autre non.' },
+    temps: { svg: svgTemps, texte: '1/2 d\'une heure : trente minutes se sont écoulées, trente minutes restent.' },
+    argent: { svg: svgArgent, texte: '1/2 d\'un dollar : cinquante cents, la moitié du montant total.' }
+  };
+
+  function setContexte(key){
+    contexteSvg.innerHTML = contextes[key].svg;
+    contexteInfo.textContent = contextes[key].texte;
+    boutons.forEach(function(b){ b.classList.toggle('actif', b.getAttribute('data-contexte') === key); });
+  }
+  boutons.forEach(function(b){
+    b.addEventListener('click', function(){ setContexte(b.getAttribute('data-contexte')); });
+  });
+  setContexte('pizza');
+})();
+</script>
+
+</body>
+</html>
