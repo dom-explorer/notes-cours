@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MAT1101 — Section 1.1 : Les fractions</title>
+<meta content="Pourquoi les fractions existent, ce qu'elles représentent, leurs types, les fractions équivalentes et irréductibles, et pourquoi on ne peut pas diviser par zéro." name="description"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,0,7..72,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$', '$$']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+:root {
+  --ardoise: #223A34;
+  --ardoise-deep: #182922;
+  --papier: #EAEEE9;
+  --papier-2: #E0E5DD;
+  --encre: #1C2B3A;
+  --craie: #D9A441;
+  --craie-deep: #B9832C;
+  --brique: #B5524A;
+  --sapin: #4B7A68;
+  --ligne: rgba(28, 43, 58, 0.14);
+  --white: #FCFBF7;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Literata", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body { background: var(--papier); color: var(--encre); font-family: var(--font-body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--craie-deep); outline-offset: 3px; border-radius: 2px; }
+
+header.site { position: sticky; top: 0; z-index: 40; background: rgba(234, 238, 233, 0.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--ligne); }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+.brand { font-family: var(--font-mono); font-size: 15px; font-weight: 600; letter-spacing: .02em; text-decoration: none; }
+.brand span { color: var(--craie-deep); }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; font-family: var(--font-display); font-size: 14px; font-weight: 500; }
+.nav-links a { text-decoration: none; opacity: .85; }
+.nav-links a:hover { opacity: 1; color: var(--craie-deep); }
+
+.hero { background: var(--ardoise); color: var(--white); position: relative; overflow: hidden;
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px), repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px);
+  padding: 56px 0; }
+.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--craie); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.eyebrow a { text-decoration: none; opacity: .75; color: inherit; }
+.eyebrow a:hover { opacity: 1; }
+.hero .course-title { font-family: var(--font-display); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; font-size: clamp(1.9rem, 4vw, 2.8rem); margin-bottom: 14px; }
+.hero .course-description { font-family: var(--font-body); font-size: 16px; line-height: 1.65; max-width: 68ch; color: rgba(252, 251, 247, 0.82); }
+
+.page-layout { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 48px; max-width: 1360px; margin: 0 auto; padding: 40px 28px; align-items: start; }
+.page-layout > main.wrap { max-width: none; padding: 0; grid-column: 1; }
+
+.toc-flottante { grid-column: 2; position: sticky; top: 96px; align-self: start; max-height: calc(100vh - 130px); overflow-y: auto; padding: 20px; background: var(--white); border: 1px solid var(--ligne); border-radius: 8px; font-family: var(--font-display); }
+.toc-flottante h2 { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--craie-deep); margin-bottom: 12px; }
+.toc-flottante ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.toc-flottante li a { display: block; text-decoration: none; font-size: 13px; font-weight: 500; color: var(--encre); opacity: .65; padding: 5px 0 5px 12px; border-left: 2px solid var(--ligne); transition: all .15s ease; line-height: 1.3; }
+.toc-flottante li a:hover { opacity: 1; border-left-color: var(--craie-deep); }
+.toc-flottante li a.active { opacity: 1; color: var(--ardoise-deep); border-left-color: var(--craie-deep); font-weight: 600; }
+
+@media(max-width: 1180px) { .page-layout { display: block; padding: 30px 20px; } .toc-flottante { display: none; } }
+
+.chapitre { padding-bottom: 80px; }
+.section-titre { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.4rem, 3vw, 1.9rem); letter-spacing: -0.01em; margin: 56px 0 16px; padding-top: 24px; border-top: 1px solid var(--ligne); scroll-margin-top: 96px; }
+.section-titre:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+.section-num { font-family: var(--font-mono); font-size: 13px; color: var(--craie-deep); letter-spacing: 0.06em; display: block; margin-bottom: 6px; text-transform: uppercase; }
+.sous-titre { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; margin: 32px 0 12px; color: var(--ardoise); }
+
+p { margin: 0 0 16px; max-width: 72ch; }
+ul, ol { margin: 0 0 20px 22px; max-width: 68ch; }
+li { margin: 6px 0; }
+.centre { text-align: center; font-weight: 600; font-family: var(--font-mono); color: var(--ardoise); margin: 10px 0 18px; }
+
+.sommaire { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 40px; }
+.sommaire a { display: block; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; padding: 14px 18px; text-decoration: none; font-family: var(--font-display); font-size: 14px; font-weight: 500; color: var(--encre); transition: border-color 0.15s ease, transform 0.15s ease; }
+.sommaire a:hover { border-color: var(--craie-deep); transform: translateX(3px); }
+.sommaire a span { display: block; font-family: var(--font-mono); font-size: 11.5px; color: var(--craie-deep); margin-bottom: 4px; }
+
+.boite, .encadre { background: var(--white); border: 1px solid var(--ligne); border-left: 4px solid var(--ardoise); border-radius: 6px; padding: 22px 26px; margin: 24px 0; }
+.boite-titre, .encadre-label { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--ardoise); }
+.boite p:last-child, .boite ul:last-child, .boite ol:last-child, .encadre p:last-child, .encadre ul:last-child { margin-bottom: 0; }
+
+.boite.idee { border-left-color: var(--craie-deep); background: #FBF4E4; }
+.boite.idee .boite-titre { color: var(--craie-deep); }
+.boite.definition, .encadre-definition { border-left-color: var(--sapin); }
+.boite.definition .boite-titre, .encadre-definition .encadre-label { color: var(--sapin); }
+.boite.notation, .boite.application, .encadre-methode { border-left-color: var(--sapin); background: #EEF3F0; }
+.boite.notation .boite-titre, .boite.application .boite-titre, .encadre-methode .encadre-label { color: var(--sapin); }
+.boite.graphique { border-left-color: var(--ardoise-deep); background: var(--papier-2); }
+.boite.graphique .boite-titre { color: var(--ardoise-deep); }
+.boite.methode { border-left-color: var(--sapin); }
+.boite.methode .boite-titre { color: var(--sapin); }
+.boite.exemple, .encadre-exemple { border-left-color: var(--craie-deep); background: var(--papier-2); }
+.boite.exemple .boite-titre, .encadre-exemple .encadre-label { color: var(--craie-deep); }
+.boite.erreur, .encadre-attention, .encadre-note { border-left-color: var(--brique); background: #FBEFEE; }
+.boite.erreur .boite-titre, .encadre-attention .encadre-label, .encadre-note .encadre-label { color: var(--brique); }
+.boite.retenir { border-left-color: var(--ardoise); background: var(--ardoise); color: var(--white); }
+.boite.retenir .boite-titre { color: var(--craie); }
+.boite.retenir li { color: rgba(252, 251, 247, 0.92); }
+.boite.histoire { border-left-color: var(--craie-deep); background: #FBF4E4; }
+.boite.histoire .boite-titre { color: var(--craie-deep); }
+
+.table-wrap { border: 1px solid var(--ligne); border-radius: 6px; overflow-x: auto; margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; background: var(--white); }
+th, td { border-bottom: 1px solid var(--ligne); padding: 11px 16px; text-align: left; }
+th { font-family: var(--font-display); font-weight: 600; font-size: 13.5px; background: var(--ardoise); color: var(--white); }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: var(--papier); }
+
+.interactif { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 24px 0; padding: 22px; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+canvas { border: 1px solid var(--ligne); border-radius: 4px; background-color: var(--white); max-width: 100%; height: auto; }
+.info-box { background-color: #EEF3F0; border-left: 4px solid var(--sapin); padding: 12px 16px; margin-top: 15px; border-radius: 0 4px 4px 0; font-size: 0.95rem; width: 100%; }
+.info-box.alerte { background-color: #FBEFEE; border-left-color: var(--brique); }
+
+.controles { display: flex; flex-wrap: wrap; gap: 22px; justify-content: center; width: 100%; max-width: 520px; margin-bottom: 6px; }
+.controle-item { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 160px; }
+.controle-item label { font-family: var(--font-mono); font-size: 12px; color: var(--ardoise); font-weight: 600; display: flex; justify-content: space-between; }
+.controle-item output { color: var(--craie-deep); }
+.controle-item select { font-family: var(--font-mono); font-size: 13px; padding: 6px 8px; border-radius: 4px; border: 1px solid var(--ligne); background: var(--white); }
+input[type="range"] { width: 100%; accent-color: var(--sapin); }
+
+.resultat-fraction { display: flex; align-items: center; gap: 18px; font-family: var(--font-mono); font-size: 1.05rem; margin-top: 14px; flex-wrap: wrap; justify-content: center; }
+.frac-visuelle { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.1; }
+.frac-visuelle .num { border-bottom: 2px solid var(--encre); padding: 0 4px 2px; }
+.frac-visuelle .den { padding-top: 2px; }
+.resultat-fraction .fleche { color: var(--craie-deep); font-weight: 700; }
+
+.pizza-row { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; align-items: flex-start; margin: 6px 0; }
+.pizza-item { display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 13.5px; }
+
+.etapes-simp { font-family: var(--font-mono); font-size: 1rem; text-align: center; line-height: 2.1; }
+
+.icones-op { display: flex; justify-content: center; gap: 24px; margin: 18px 0; flex-wrap: wrap; }
+.icone-op { display: flex; flex-direction: column; align-items: center; gap: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; }
+.icone-op .rond { width: 46px; height: 46px; border-radius: 50%; background: var(--sapin); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; }
+
+footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; background: var(--white); font-family: var(--font-mono); font-size: 0.85rem; color: rgba(28, 43, 58, 0.7); text-align: center; }
+
+.nav-suivant { border-top: 1px solid var(--ligne); background: var(--papier-2); }
+.nav-suivant .wrap { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; gap: 16px; flex-wrap: wrap; }
+.nav-suivant .label { display: block; font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--craie-deep); margin-bottom: 4px; }
+.nav-suivant .titre { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+.btn-primary { background: var(--sapin); color: var(--white); text-decoration: none; padding: 11px 20px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+.btn-secondaire { border: 1.5px solid var(--ligne); color: var(--encre); text-decoration: none; padding: 9px 18px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+
+@media (max-width: 720px) { .sommaire { grid-template-columns: 1fr; } .boite, .encadre { padding: 18px; } .nav-suivant .wrap { flex-direction: column; text-align: center; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+<nav class="wrap">
+<a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span></a>
+<ul class="nav-links">
+<li><a href="https://learnwithdom.page">Accueil</a></li>
+<li><a href="https://learnwithdom.page/cours/mat1101.html">MAT1101</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="hero">
+<div class="wrap hero-inner compact">
+<div class="eyebrow"><a href="01-Les_nombres_rationnels.html">MAT1101 · 1. Les nombres rationnels</a></div>
+<h1 class="course-title">1.1 — Les fractions</h1>
+<p class="course-description">D'où viennent les fractions, ce qu'elles représentent vraiment, leurs différents types, comment les comparer et les simplifier — et pourquoi on ne peut jamais diviser par zéro.</p>
+</div>
+</div>
+
+<div class="page-layout">
+<main class="wrap">
+<div class="wrap chapitre">
+
+  <div class="sommaire">
+    <a href="#pourquoi"><span>1</span>Pourquoi a-t-on besoin des fractions ?</a>
+    <a href="#histoire"><span>2–3</span>Un petit voyage dans l'histoire</a>
+    <a href="#aujourdhui"><span>4</span>Pourquoi est-ce encore important ?</a>
+    <a href="#definition"><span>5–6</span>Qu'est-ce qu'une fraction ?</a>
+    <a href="#types"><span>7</span>Les différents types de fractions</a>
+    <a href="#equivalentes"><span>8</span>Les fractions équivalentes</a>
+    <a href="#irreductibles"><span>9</span>Les fractions irréductibles</a>
+    <a href="#zero"><span>11</span>Pourquoi pas diviser par zéro ?</a>
+  </div>
+
+  <hr class="rule"/>
+
+  <section id="pourquoi">
+    <div class="section-titre"><span class="section-num">1.1.1 · Motivation</span>Les fractions — pourquoi est-ce qu'on en a besoin ?</div>
+
+    <div class="boite idee">
+      <div class="boite-titre">Avant de commencer</div>
+      <p>Pourquoi est-ce qu'on a inventé les fractions ? Imaginez un beau vase en céramique qui tombe et se brise en 1000 morceaux. Pour le réparer, il faut travailler avec chacun de ces petits morceaux — le vase était un tout, maintenant séparé en plusieurs parties.</p>
+    </div>
+
+    <div class="boite definition">
+      <div class="boite-titre">Idée centrale</div>
+      <p>Une fraction permet de prendre un <strong>tout</strong> et de représenter une ou plusieurs des <strong>parties</strong> qui le composent.</p>
+    </div>
+
+    <p>Un exemple plus simple : vous allez au restaurant avec quatre amis et commandez une pizza. La pizza complète représente un tout, mais vous voulez la partager entre vous — il faut donc la couper en plusieurs parties égales.</p>
+
+    <p>Les fractions ne servent pas seulement à partager une pizza. Depuis très longtemps, les humains en ont eu besoin pour :</p>
+    <ul>
+      <li>partager de la nourriture;</li>
+      <li>mesurer des quantités;</li>
+      <li>faire du commerce;</li>
+      <li>calculer des impôts ou des taxes;</li>
+      <li>mesurer des terrains;</li>
+      <li>mesurer le temps.</li>
+    </ul>
+    <p>Les fractions sont apparues très tôt dans l'histoire des mathématiques parce que les humains avaient besoin de quantifier le monde qui les entourait.</p>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="histoire">
+    <div class="section-titre"><span class="section-num">1.1.2 · Histoire</span>Un petit voyage dans l'histoire</div>
+
+    <p>Si on retourne aux premières grandes civilisations, on retrouve déjà des façons de représenter les fractions — chez les Égyptiens, dans la vallée de l'Indus, et en Mésopotamie.</p>
+
+    <div class="sous-titre">Les fractions unitaires des Égyptiens</div>
+    <div class="boite histoire">
+      <div class="boite-titre">Un système différent du nôtre</div>
+      <p>Les Égyptiens travaillaient surtout avec des <strong>fractions unitaires</strong>, c'est-à-dire des fractions dont le numérateur était 1, par exemple \(\dfrac{1}{5}\). Ce système fonctionnait, mais il devenait vite compliqué pour faire des calculs avec plusieurs fractions : il fallait connaître différentes façons de les décomposer et utiliser des tables.</p>
+    </div>
+
+    <div class="sous-titre">Le système sexagésimal des Babyloniens</div>
+    <p>Un peu plus tard, les civilisations de Mésopotamie — les Babyloniens — ont développé un système basé sur 60, appelé <strong>système sexagésimal</strong>. Vous l'utilisez encore aujourd'hui sans nécessairement vous en rendre compte :</p>
+    $$ 1\ \text{min} = 60\ \text{s} \qquad 1\ \text{h} = 60\ \text{min} \qquad 1^{\circ} = 60' \qquad 1' = 60'' $$
+    <p>Cette façon efficace de représenter et de calculer avec les fractions était très utile pour le commerce, l'agriculture, les impôts, les mesures et la gestion des ressources. Un marchand possédant 10 sacs de céréales et voulant en vendre le quart devait être capable de calculer précisément combien de sacs cela représentait, combien il lui en restait, et combien il pourrait vendre plus tard. Les fractions deviennent alors un outil pour organiser et comprendre la réalité.</p>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="aujourdhui">
+    <div class="section-titre"><span class="section-num">1.1.3 · Pertinence</span>Pourquoi est-ce encore important aujourd'hui ?</div>
+
+    <p>« Pourquoi apprendre à faire des fractions ? J'ai une calculatrice ! » C'est vrai — mais une calculatrice donne une réponse sans expliquer ce qu'elle veut dire. Comprendre les fractions permet de saisir les quantités et les relations entre elles. Et les fractions sont partout autour de nous.</p>
+
+    <div class="sous-titre">4.1 — En cuisine</div>
+    <p>Une recette demande \(\dfrac{1}{2}\) tasse de lait ou \(\dfrac{3}{4}\) de tasse de farine. Si vous voulez doubler la recette, vous devez multiplier les quantités par 2 — c'est là qu'interviennent les opérations avec les fractions.</p>
+
+    <div class="sous-titre">4.2 — Dans le temps</div>
+    <p>Une demi-heure correspond à \(\dfrac{1}{2}\times 60 = 30\) minutes. Un quart d'heure correspond à \(\dfrac{1}{4}\times 60 = 15\) minutes. On utilise déjà les fractions dans notre langage de tous les jours, souvent sans même y penser.</p>
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item">
+          <label>Fraction de l'heure</label>
+          <select id="selectHeure">
+            <option value="2">1/2 heure</option>
+            <option value="4">1/4 heure</option>
+            <option value="3">1/3 heure</option>
+            <option value="6">1/6 heure</option>
+            <option value="5">1/5 heure</option>
+            <option value="10">1/10 heure</option>
+          </select>
+        </div>
+      </div>
+      <div class="resultat-fraction" id="heureResultat">1/2 × 60 = 30 minutes</div>
+      <div class="info-box">Change la fraction pour voir combien de minutes elle représente.</div>
+    </div>
+
+    <div class="sous-titre">4.3 — Les fractions sont partout</div>
+    <p>On partage une pizza, on mesure des ingrédients, on partage de l'argent, on calcule une taxe, on mesure une distance. Dans tous ces cas, on prend quelque chose qui représente un tout et on cherche à en représenter une partie — c'est exactement ce que permettent les fractions.</p>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="definition">
+    <div class="section-titre"><span class="section-num">1.1.4 · Définition</span>Qu'est-ce qu'une fraction ?</div>
+
+    <div class="boite definition">
+      <div class="boite-titre">Définition</div>
+      <p>Une fraction est une façon de représenter une partie d'un tout à l'aide de deux nombres : \(\dfrac{a}{b}\). Le nombre du haut, \(a\), s'appelle le <strong>numérateur</strong>. Le nombre du bas, \(b\), s'appelle le <strong>dénominateur</strong>.</p>
+      <p>Règle importante : \(b \neq 0\) — on reviendra plus loin sur la raison pour laquelle on ne peut pas diviser par zéro.</p>
+    </div>
+
+    <p>Le dénominateur indique en combien de parties égales le tout est divisé; le numérateur indique combien de ces parties on prend. Une fraction est aussi une <strong>division</strong> :</p>
+    $$ \frac{3}{4} = 3 \div 4 = 0{,}75 $$
+    <p>Une même quantité peut donc être représentée de plusieurs façons — ce n'est pas seulement deux nombres l'un au-dessus de l'autre, mais une quantité, une partie d'un tout, et une division à la fois.</p>
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item">
+          <label>Numérateur (a) <output id="outNum1">3</output></label>
+          <input id="rangeNum1" max="12" min="0" type="range" value="3"/>
+        </div>
+        <div class="controle-item">
+          <label>Dénominateur (b) <output id="outDen1">4</output></label>
+          <input id="rangeDen1" max="12" min="1" type="range" value="4"/>
+        </div>
+      </div>
+      <canvas height="90" id="rectCanvas1" width="420"></canvas>
+      <div class="resultat-fraction">
+        <div class="frac-visuelle"><span class="num" id="fracNum1">3</span><span class="den" id="fracDen1">4</span></div>
+        <span class="fleche">=</span><span id="fracDiv1">3 ÷ 4</span>
+        <span class="fleche">=</span><span id="fracDec1">0,75</span>
+      </div>
+      <div class="info-box" id="fracInfo1">Le dénominateur détermine la découpe, le numérateur compte les morceaux pris.</div>
+    </div>
+
+    <div class="boite methode">
+      <div class="boite-titre">À retenir</div>
+      <ul>
+        <li>Dénominateur → combien de parties égales ?</li>
+        <li>Numérateur → combien de parties prend-on ?</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="types">
+    <div class="section-titre"><span class="section-num">1.1.5 · Classification</span>Les différents types de fractions</div>
+
+    <div class="sous-titre">Propres, impropres et nombres mixtes</div>
+    <p>Une fraction <strong>propre</strong> a un numérateur plus petit que le dénominateur (elle vaut moins que 1), par exemple \(\tfrac12\), \(\tfrac34\), \(\tfrac58\). Une fraction <strong>impropre</strong> a un numérateur plus grand ou égal au dénominateur (elle vaut 1 ou plus), par exemple \(\tfrac54\), \(\tfrac73\), \(\tfrac{10}{10}\).</p>
+    <p>Un <strong>nombre mixte</strong> combine un entier et une fraction, par exemple \(2\tfrac13 = 2 + \tfrac13\). Pour le convertir en fraction impropre : on multiplie l'entier par le dénominateur, on ajoute le numérateur, et on garde le même dénominateur.</p>
+    $$ 2 \times 3 = 6, \quad 6+1=7 \ \Rightarrow\ 2\tfrac{1}{3} = \frac{7}{3} $$
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item">
+          <label>Dénominateur <output id="outDen2">4</output></label>
+          <input id="selectDen2" max="10" min="2" type="range" value="4"/>
+        </div>
+        <div class="controle-item">
+          <label>Numérateur <output id="outNum2">3</output></label>
+          <input id="rangeNum2" max="20" min="0" type="range" value="3"/>
+        </div>
+      </div>
+      <canvas height="90" id="lineCanvas" width="480"></canvas>
+      <div class="resultat-fraction" id="typeResultat">3/4 est une fraction propre (plus petite que 1).</div>
+      <div class="info-box" id="mixteInfo">Augmente le numérateur au-delà du dénominateur pour voir apparaître un nombre mixte.</div>
+    </div>
+
+    <div class="boite erreur">
+      <div class="boite-titre">Attention</div>
+      <p>Une fraction n'est pas nécessairement entre 0 et 1 ! \(\tfrac12\) l'est, mais \(\tfrac54 > 1\). Une fraction peut représenter une quantité plus petite que 1, égale à 1, ou plus grande que 1.</p>
+    </div>
+
+    <div class="sous-titre">Plus le dénominateur est grand, plus les morceaux sont petits</div>
+    <p>On pourrait penser que \(\tfrac15\) est plus grand que \(\tfrac12\) parce que 5 > 2 — mais c'est l'inverse : \(\tfrac12 > \tfrac13 > \tfrac15\). Plus on divise un tout en morceaux, plus chaque morceau devient petit.</p>
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item">
+          <label>Dénominateur (numérateur = 1) <output id="outDen3">2</output></label>
+          <input id="rangeDen3" max="12" min="1" type="range" value="2"/>
+        </div>
+      </div>
+      <canvas height="70" id="tailleCanvas" width="420"></canvas>
+      <div class="info-box" id="tailleInfo">Avec un dénominateur de 2, chaque morceau vaut 1/2 du tout.</div>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="equivalentes">
+    <div class="section-titre"><span class="section-num">1.1.6 · Équivalence</span>Les fractions équivalentes</div>
+
+    <div class="boite definition">
+      <div class="boite-titre">Définition</div>
+      <p>Deux fractions sont <strong>équivalentes</strong> lorsqu'elles ont une apparence différente mais représentent exactement la même quantité : \(\tfrac12 = \tfrac24 = \tfrac36 = \tfrac48\).</p>
+    </div>
+
+    <p>Pour obtenir une fraction équivalente, on multiplie le numérateur et le dénominateur par le même nombre, puisque \(\tfrac{k}{k}=1\) et que multiplier par 1 ne change pas la valeur :</p>
+    $$ \frac{2}{3} \times \frac{2}{2} = \frac{4}{6} $$
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item">
+          <label>Fraction de départ</label>
+          <select id="selectBase">
+            <option value="1,2">1/2</option>
+            <option value="1,3">1/3</option>
+            <option value="2,3">2/3</option>
+            <option value="1,4">1/4</option>
+            <option value="3,4">3/4</option>
+          </select>
+        </div>
+        <div class="controle-item">
+          <label>Multiplicateur (k) <output id="outK">2</output></label>
+          <input id="rangeK" max="6" min="1" type="range" value="2"/>
+        </div>
+      </div>
+      <div class="pizza-row">
+        <div class="pizza-item"><canvas height="150" id="pizzaBase" width="150"></canvas><span id="labelBase">1/2</span></div>
+        <div class="pizza-item"><canvas height="150" id="pizzaEquiv" width="150"></canvas><span id="labelEquiv">2/4</span></div>
+      </div>
+      <div class="info-box" id="equivInfo">Les deux disques montrent la même quantité coloriée, malgré des découpes différentes.</div>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="irreductibles">
+    <div class="section-titre"><span class="section-num">1.1.7 · Simplification</span>Les fractions irréductibles</div>
+
+    <div class="boite definition">
+      <div class="boite-titre">Définition</div>
+      <p>Une fraction <strong>irréductible</strong> est une fraction qu'on ne peut plus simplifier en divisant son numérateur et son dénominateur par un même nombre entier supérieur à 1.</p>
+    </div>
+    <p>Par exemple, \(\tfrac68\) n'est pas irréductible : 6 et 8 sont tous deux divisibles par 2, donc \(\tfrac68 = \tfrac{6\div2}{8\div2} = \tfrac34\), et \(\tfrac34\) est irréductible.</p>
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item">
+          <label>Numérateur <output id="outNumS">6</output></label>
+          <input id="rangeNumS" max="48" min="1" type="range" value="6"/>
+        </div>
+        <div class="controle-item">
+          <label>Dénominateur <output id="outDenS">8</output></label>
+          <input id="rangeDenS" max="48" min="1" type="range" value="8"/>
+        </div>
+      </div>
+      <div class="etapes-simp" id="simpEtapes">6/8 = (6÷2)/(8÷2) = 3/4</div>
+      <div class="info-box" id="simpInfo">3/4 est irréductible : 3 et 4 n'ont aucun diviseur commun autre que 1.</div>
+    </div>
+
+    <div class="boite idee">
+      <div class="boite-titre">Pourquoi garder les fractions plutôt que toujours utiliser les décimales ?</div>
+      <p>Prenons \(\tfrac13\). En décimale : \(1 \div 3 = 0{,}3333\ldots\), un 3 qui se répète indéfiniment. La fraction \(\tfrac13\) est exacte et plus simple. Preuve : \(\tfrac13+\tfrac13+\tfrac13=1\) exactement, alors que \(0{,}33+0{,}33+0{,}33=0{,}99\) — l'arrondi fait perdre la précision. Les fractions représentent exactement certaines quantités, même lorsque leur écriture décimale est compliquée ou infinie.</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="zero">
+    <div class="section-titre"><span class="section-num">1.1.8 · Règle fondamentale</span>Et pourquoi est-ce qu'on ne peut pas diviser par zéro ?</div>
+
+    <p>Une fraction est aussi une division : \(\tfrac{a}{b} = a \div b\). Prenons \(6 \div 2\) : « combien de groupes de 2 peut-on faire avec 6 ? » La réponse est 3, puisque \(2\times3=6\). Mais \(6 \div 0\) demanderait « combien de groupes de 0 faut-il pour obtenir 6 ? » — et peu importe le nombre choisi, \(\text{nombre} \times 0 = 0\), jamais 6. Il n'existe donc aucun nombre \(x\) tel que \(x \times 0 = 6\).</p>
+
+    <div class="boite erreur">
+      <div class="boite-titre">Distinction importante</div>
+      <p>Diviser par zéro ne donne pas 0. La division n'est tout simplement pas définie.</p>
+    </div>
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item">
+          <label>Partager 10 $ entre... <output id="outN0">2</output> personne(s)</label>
+          <input id="rangeN0" max="6" min="0" type="range" value="2"/>
+        </div>
+      </div>
+      <canvas height="90" id="partageCanvas" width="420"></canvas>
+      <div class="info-box" id="partageInfo">10 $ ÷ 2 = 5 $ par personne.</div>
+    </div>
+    <p>Si vous voulez partager les 10 $ entre zéro personne, la situation n'a tout simplement pas de sens : il n'y a personne avec qui partager l'argent. Le dénominateur ne peut jamais être zéro — jamais. Si un calcul vous y amène un jour, ce n'est pas que les mathématiques cessent de fonctionner : c'est le signal qu'il faut revenir en arrière et trouver l'erreur.</p>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="resume">
+    <div class="section-titre"><span class="section-num">1.1.9 · Et maintenant ?</span>À retenir</div>
+    <div class="boite retenir">
+      <div class="boite-titre">Ce qu'on sait maintenant</div>
+      <ul>
+        <li>Ce qu'est une fraction, et ce que sont le numérateur et le dénominateur.</li>
+        <li>La différence entre une fraction propre et une fraction impropre.</li>
+        <li>Ce qu'est un nombre mixte et comment le convertir.</li>
+        <li>Pourquoi un dénominateur plus grand donne des morceaux plus petits.</li>
+        <li>Ce que sont les fractions équivalentes et irréductibles.</li>
+        <li>Pourquoi certaines fractions sont plus précises que leur écriture décimale.</li>
+        <li>Pourquoi on ne peut jamais diviser par zéro.</li>
+      </ul>
+    </div>
+
+    <p>Dans la prochaine partie, on va commencer à travailler avec les fractions :</p>
+    <div class="icones-op">
+      <div class="icone-op"><div class="rond">+</div>Additionner</div>
+      <div class="icone-op"><div class="rond">−</div>Soustraire</div>
+      <div class="icone-op"><div class="rond">×</div>Multiplier</div>
+      <div class="icone-op"><div class="rond">÷</div>Diviser</div>
+    </div>
+    <p class="centre">« Les fractions ne sont pas seulement des nombres écrits l'un au-dessus de l'autre.<br/>Elles permettent de représenter précisément des quantités et des relations entre elles. »</p>
+  </section>
+
+</div>
+</main>
+
+<nav aria-label="Table des matières" class="toc-flottante">
+<h2>Sur cette page</h2>
+<ol id="toc-list">
+<li><a href="#pourquoi">1 · Pourquoi les fractions ?</a></li>
+<li><a href="#histoire">2–3 · Histoire</a></li>
+<li><a href="#aujourdhui">4 · Aujourd'hui</a></li>
+<li><a href="#definition">5–6 · Qu'est-ce qu'une fraction ?</a></li>
+<li><a href="#types">7 · Types de fractions</a></li>
+<li><a href="#equivalentes">8 · Fractions équivalentes</a></li>
+<li><a href="#irreductibles">9–10 · Irréductibles</a></li>
+<li><a href="#zero">11 · Diviser par zéro</a></li>
+<li><a href="#resume">12 · Résumé</a></li>
+</ol>
+</nav>
+</div>
+
+<div class="nav-suivant">
+<div class="wrap">
+<div><span class="label">Section précédente</span><span class="titre">1. Les nombres rationnels</span></div>
+<a class="btn-secondaire" href="01-Les_nombres_rationnels.html">← Retour</a>
+<div><span class="label">Section suivante</span><span class="titre">1.2 — Les opérations avec les fractions</span></div>
+<a class="btn-primary" href="#">Bientôt disponible →</a>
+</div>
+</div>
+
+<footer class="site-footer">MAT1101 · Section 1.1 · learnwithdom.page</footer>
+
+<script>
+(function(){
+  // TOC actif
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-flottante a'));
+  var sections = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  function setActive(id){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); }); }
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      if(visible.length){ visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; }); setActive(visible[0].target.id); }
+    },{rootMargin:'-100px 0px -70% 0px',threshold:0});
+    sections.forEach(function(s){ observer.observe(s); });
+  }
+
+  var ARDOISE = '#223A34', CRAIE = '#D9A441', SAPIN = '#4B7A68', BRIQUE = '#B5524A';
+  function gcd(a,b){ a=Math.abs(a); b=Math.abs(b); while(b){ var t=b; b=a%b; a=t; } return a||1; }
+
+  // --- 4.2 Fraction d'heure -> minutes ---
+  var selectHeure = document.getElementById('selectHeure');
+  var heureResultat = document.getElementById('heureResultat');
+  function updateHeure(){
+    var d = parseInt(selectHeure.value,10);
+    var min = 60/d;
+    heureResultat.textContent = '1/' + d + ' × 60 = ' + (Number.isInteger(min) ? min : min.toFixed(1)) + ' minutes';
+  }
+  selectHeure.addEventListener('change', updateHeure);
+  updateHeure();
+
+  // --- 1.1.4 Rectangle a/b + division/décimal ---
+  var rangeNum1 = document.getElementById('rangeNum1'), rangeDen1 = document.getElementById('rangeDen1');
+  var outNum1 = document.getElementById('outNum1'), outDen1 = document.getElementById('outDen1');
+  var fracNum1 = document.getElementById('fracNum1'), fracDen1 = document.getElementById('fracDen1');
+  var fracDiv1 = document.getElementById('fracDiv1'), fracDec1 = document.getElementById('fracDec1');
+  var fracInfo1 = document.getElementById('fracInfo1');
+  var rectCanvas1 = document.getElementById('rectCanvas1'), rctx1 = rectCanvas1.getContext('2d');
+
+  function drawRect(canvas, ctx, num, den){
+    var w = canvas.width, h = canvas.height, pad = 10;
+    var cw = (w - pad*2) / den;
+    ctx.clearRect(0,0,w,h);
+    for(var i=0;i<den;i++){
+      var x = pad + i*cw;
+      ctx.fillStyle = (i < num) ? SAPIN : '#F4F1E7';
+      ctx.fillRect(x+1, pad, cw-2, h - pad*2);
+      ctx.strokeStyle = '#FCFBF7';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(x+1, pad, cw-2, h - pad*2);
+    }
+    ctx.strokeStyle = ARDOISE; ctx.lineWidth = 2.5;
+    ctx.strokeRect(pad, pad, w - pad*2, h - pad*2);
+  }
+
+  function updateFrac1(){
+    var num = parseInt(rangeNum1.value,10), den = parseInt(rangeDen1.value,10);
+    rangeNum1.max = den;
+    if(num > den){ num = den; rangeNum1.value = num; }
+    outNum1.textContent = num; outDen1.textContent = den;
+    fracNum1.textContent = num; fracDen1.textContent = den;
+    fracDiv1.textContent = num + ' ÷ ' + den;
+    var dec = num/den;
+    fracDec1.textContent = dec.toLocaleString('fr-CA', {maximumFractionDigits: 4});
+    drawRect(rectCanvas1, rctx1, num, den);
+    var g = gcd(num, den);
+    fracInfo1.textContent = (g > 1 && num > 0)
+      ? num+'/'+den+' se simplifie en '+(num/g)+'/'+(den/g)+'.'
+      : 'Le dénominateur détermine la découpe, le numérateur compte les morceaux pris.';
+  }
+  rangeNum1.addEventListener('input', updateFrac1);
+  rangeDen1.addEventListener('input', updateFrac1);
+  updateFrac1();
+
+  // --- 1.1.5 Droite numérique + type de fraction ---
+  var selectDen2 = document.getElementById('selectDen2'), outDen2 = document.getElementById('outDen2');
+  var rangeNum2 = document.getElementById('rangeNum2'), outNum2 = document.getElementById('outNum2');
+  var lineCanvas = document.getElementById('lineCanvas'), lctx = lineCanvas.getContext('2d');
+  var typeResultat = document.getElementById('typeResultat'), mixteInfo = document.getElementById('mixteInfo');
+
+  function drawLine(num, den){
+    var w = lineCanvas.width, h = lineCanvas.height;
+    lctx.clearRect(0,0,w,h);
+    var pad = 30, x0 = pad, x1 = w - pad, y = h/2 + 10;
+    var maxVal = 2;
+    lctx.strokeStyle = ARDOISE; lctx.lineWidth = 2.5;
+    lctx.beginPath(); lctx.moveTo(x0,y); lctx.lineTo(x1,y); lctx.stroke();
+    for(var i=0;i<=maxVal;i++){
+      var x = x0 + (i/maxVal)*(x1-x0);
+      lctx.beginPath(); lctx.moveTo(x,y-8); lctx.lineTo(x,y+8); lctx.stroke();
+      lctx.fillStyle = ARDOISE; lctx.font = '13px JetBrains Mono';
+      lctx.fillText(i, x-4, y+26);
+    }
+    var val = Math.min(num/den, maxVal);
+    var px = x0 + (val/maxVal)*(x1-x0);
+    lctx.beginPath(); lctx.arc(px, y, 7, 0, Math.PI*2);
+    lctx.fillStyle = CRAIE; lctx.fill();
+    lctx.strokeStyle = ARDOISE; lctx.lineWidth = 2; lctx.stroke();
+    lctx.fillStyle = ARDOISE; lctx.font = '600 13px Space Grotesk';
+    lctx.fillText(num+'/'+den, px-16, y-16);
+  }
+
+  function updateType(){
+    var den = parseInt(selectDen2.value,10);
+    outDen2.textContent = den;
+    rangeNum2.max = den*2;
+    var num = parseInt(rangeNum2.value,10);
+    if(num > den*2){ num = den*2; rangeNum2.value = num; }
+    outNum2.textContent = num;
+    drawLine(num, den);
+    var g = gcd(num,den);
+    var simp = (g>1) ? (num/g)+'/'+(den/g) : num+'/'+den;
+    if(num < den){
+      typeResultat.textContent = num+'/'+den+' est une fraction propre (plus petite que 1).';
+      mixteInfo.textContent = 'Augmente le numérateur au-delà du dénominateur pour voir apparaître un nombre mixte.';
+    } else if (num === den) {
+      typeResultat.textContent = num+'/'+den+' = 1 (numérateur et dénominateur égaux).';
+      mixteInfo.textContent = 'Une fraction égale à 1 correspond à un tout complet.';
+    } else {
+      var entier = Math.floor(num/den);
+      var reste = num - entier*den;
+      typeResultat.textContent = num+'/'+den+' est une fraction impropre (≥ 1), soit '+simp+'.';
+      mixteInfo.textContent = reste === 0
+        ? num+'/'+den+' = '+entier+' (nombre entier).'
+        : num+'/'+den+' = '+entier+' + '+reste+'/'+den+' = '+entier+' '+reste+'/'+den+' (nombre mixte).';
+    }
+  }
+  selectDen2.addEventListener('input', updateType);
+  rangeNum2.addEventListener('input', updateType);
+  updateType();
+
+  // --- 1.1.5 Taille des morceaux selon le dénominateur ---
+  var rangeDen3 = document.getElementById('rangeDen3'), outDen3 = document.getElementById('outDen3');
+  var tailleCanvas = document.getElementById('tailleCanvas'), tctx = tailleCanvas.getContext('2d');
+  var tailleInfo = document.getElementById('tailleInfo');
+
+  function updateTaille(){
+    var den = parseInt(rangeDen3.value,10);
+    outDen3.textContent = den;
+    drawRect(tailleCanvas, tctx, 1, den);
+    tailleInfo.textContent = 'Avec un dénominateur de '+den+', chaque morceau vaut 1/'+den+' du tout — plus '+den+' est grand, plus le morceau est petit.';
+  }
+  rangeDen3.addEventListener('input', updateTaille);
+  updateTaille();
+
+  // --- 1.1.6 Fractions équivalentes (pizzas) ---
+  var selectBase = document.getElementById('selectBase'), rangeK = document.getElementById('rangeK'), outK = document.getElementById('outK');
+  var pizzaBase = document.getElementById('pizzaBase'), pizzaEquiv = document.getElementById('pizzaEquiv');
+  var pbctx = pizzaBase.getContext('2d'), pectx = pizzaEquiv.getContext('2d');
+  var labelBase = document.getElementById('labelBase'), labelEquiv = document.getElementById('labelEquiv');
+  var equivInfo = document.getElementById('equivInfo');
+
+  function drawPizza(ctx, canvas, num, den){
+    var w = canvas.width, h = canvas.height, cx = w/2, cy = h/2, r = Math.min(w,h)/2 - 10;
+    ctx.clearRect(0,0,w,h);
+    var start = -Math.PI/2;
+    for(var i=0;i<den;i++){
+      var slice = (Math.PI*2)/den, a0 = start+i*slice, a1 = a0+slice;
+      ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,r,a0,a1); ctx.closePath();
+      ctx.fillStyle = (i<num) ? SAPIN : '#F4F1E7'; ctx.fill();
+      ctx.lineWidth = 2; ctx.strokeStyle = '#FCFBF7'; ctx.stroke();
+    }
+    ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.lineWidth = 2.5; ctx.strokeStyle = ARDOISE; ctx.stroke();
+  }
+
+  function updateEquiv(){
+    var parts = selectBase.value.split(',');
+    var baseNum = parseInt(parts[0],10), baseDen = parseInt(parts[1],10);
+    var k = parseInt(rangeK.value,10);
+    outK.textContent = k;
+    drawPizza(pbctx, pizzaBase, baseNum, baseDen);
+    drawPizza(pectx, pizzaEquiv, baseNum*k, baseDen*k);
+    labelBase.textContent = baseNum+'/'+baseDen;
+    labelEquiv.textContent = (baseNum*k)+'/'+(baseDen*k);
+    equivInfo.textContent = baseNum+'/'+baseDen+' × '+k+'/'+k+' = '+(baseNum*k)+'/'+(baseDen*k)+' — même quantité, découpe différente.';
+  }
+  selectBase.addEventListener('input', updateEquiv);
+  rangeK.addEventListener('input', updateEquiv);
+  updateEquiv();
+
+  // --- 1.1.7 Simplification ---
+  var rangeNumS = document.getElementById('rangeNumS'), rangeDenS = document.getElementById('rangeDenS');
+  var outNumS = document.getElementById('outNumS'), outDenS = document.getElementById('outDenS');
+  var simpEtapes = document.getElementById('simpEtapes'), simpInfo = document.getElementById('simpInfo');
+
+  function updateSimp(){
+    var num = parseInt(rangeNumS.value,10), den = parseInt(rangeDenS.value,10);
+    outNumS.textContent = num; outDenS.textContent = den;
+    var g = gcd(num, den);
+    if(g > 1){
+      simpEtapes.textContent = num+'/'+den+' = ('+num+'÷'+g+')/('+den+'÷'+g+') = '+(num/g)+'/'+(den/g);
+      simpInfo.textContent = (num/g)+'/'+(den/g)+' est irréductible : aucun diviseur commun autre que 1.';
+    } else {
+      simpEtapes.textContent = num+'/'+den+' — aucune simplification possible';
+      simpInfo.textContent = num+'/'+den+' est déjà irréductible.';
+    }
+  }
+  rangeNumS.addEventListener('input', updateSimp);
+  rangeDenS.addEventListener('input', updateSimp);
+  updateSimp();
+
+  // --- 1.1.8 Partager entre zéro personnes ---
+  var rangeN0 = document.getElementById('rangeN0'), outN0 = document.getElementById('outN0');
+  var partageCanvas = document.getElementById('partageCanvas'), pactx = partageCanvas.getContext('2d');
+  var partageInfo = document.getElementById('partageInfo');
+
+  function drawPartage(n){
+    var w = partageCanvas.width, h = partageCanvas.height;
+    pactx.clearRect(0,0,w,h);
+    if(n === 0) return;
+    var pad = 12, gap = 8;
+    var bw = (w - pad*2 - gap*(n-1)) / n;
+    var montant = 10/n;
+    for(var i=0;i<n;i++){
+      var x = pad + i*(bw+gap);
+      var bh = Math.min(60, montant*6);
+      pactx.fillStyle = CRAIE;
+      pactx.fillRect(x, h - 20 - bh, bw, bh);
+      pactx.strokeStyle = ARDOISE; pactx.lineWidth = 1.5;
+      pactx.strokeRect(x, h - 20 - bh, bw, bh);
+      pactx.fillStyle = ARDOISE; pactx.font = '11px JetBrains Mono'; pactx.textAlign = 'center';
+      pactx.fillText(montant.toFixed(2)+' $', x + bw/2, h - 6);
+    }
+    pactx.textAlign = 'left';
+  }
+
+  function updatePartage(){
+    var n = parseInt(rangeN0.value,10);
+    outN0.textContent = n;
+    drawPartage(n);
+    if(n === 0){
+      partageInfo.textContent = "10 $ ÷ 0 : indéfini — il n'y a personne avec qui partager l'argent.";
+      partageInfo.classList.add('alerte');
+    } else {
+      partageInfo.textContent = '10 $ ÷ '+n+' = '+(10/n).toFixed(2)+' $ par personne.';
+      partageInfo.classList.remove('alerte');
+    }
+  }
+  rangeN0.addEventListener('input', updatePartage);
+  updatePartage();
+})();
+</script>
+
+</body>
+</html>
