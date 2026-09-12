@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MAT1101 — Section 1.3 : Les nombres décimaux</title>
+<meta content="Définition, valeur de position, arrondissement, estimation et comparaison des nombres décimaux." name="description"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,0,7..72,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$', '$$']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+:root {
+  --ardoise: #223A34; --ardoise-deep: #182922; --papier: #EAEEE9; --papier-2: #E0E5DD;
+  --encre: #1C2B3A; --craie: #D9A441; --craie-deep: #B9832C; --brique: #B5524A; --sapin: #4B7A68;
+  --ligne: rgba(28, 43, 58, 0.14); --white: #FCFBF7;
+  --font-display: "Space Grotesk", sans-serif; --font-body: "Literata", Georgia, serif; --font-mono: "JetBrains Mono", monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--papier); color: var(--encre); font-family: var(--font-body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--craie-deep); outline-offset: 3px; border-radius: 2px; }
+
+header.site { position: sticky; top: 0; z-index: 40; background: rgba(234, 238, 233, 0.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--ligne); }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+.brand { font-family: var(--font-mono); font-size: 15px; font-weight: 600; letter-spacing: .02em; text-decoration: none; }
+.brand span { color: var(--craie-deep); }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; font-family: var(--font-display); font-size: 14px; font-weight: 500; }
+.nav-links a { text-decoration: none; opacity: .85; }
+.nav-links a:hover { opacity: 1; color: var(--craie-deep); }
+
+.hero { background: var(--ardoise); color: var(--white); position: relative; overflow: hidden;
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px), repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px);
+  padding: 56px 0; }
+.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--craie); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.eyebrow a { text-decoration: none; opacity: .75; color: inherit; }
+.eyebrow a:hover { opacity: 1; }
+.hero .course-title { font-family: var(--font-display); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; font-size: clamp(1.9rem, 4vw, 2.8rem); margin-bottom: 14px; }
+.hero .course-description { font-family: var(--font-body); font-size: 16px; line-height: 1.65; max-width: 68ch; color: rgba(252, 251, 247, 0.82); }
+
+.page-layout { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 48px; max-width: 1360px; margin: 0 auto; padding: 40px 28px; align-items: start; }
+.page-layout > main.wrap { max-width: none; padding: 0; grid-column: 1; }
+
+.toc-flottante { grid-column: 2; position: sticky; top: 96px; align-self: start; max-height: calc(100vh - 130px); overflow-y: auto; padding: 20px; background: var(--white); border: 1px solid var(--ligne); border-radius: 8px; font-family: var(--font-display); }
+.toc-flottante h2 { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--craie-deep); margin-bottom: 12px; }
+.toc-flottante ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.toc-flottante li a { display: block; text-decoration: none; font-size: 12.7px; font-weight: 500; color: var(--encre); opacity: .65; padding: 5px 0 5px 12px; border-left: 2px solid var(--ligne); transition: all .15s ease; line-height: 1.3; }
+.toc-flottante li a:hover { opacity: 1; border-left-color: var(--craie-deep); }
+.toc-flottante li a.active { opacity: 1; color: var(--ardoise-deep); border-left-color: var(--craie-deep); font-weight: 600; }
+
+@media(max-width: 1180px) { .page-layout { display: block; padding: 30px 20px; } .toc-flottante { display: none; } }
+
+.chapitre { padding-bottom: 80px; }
+.section-titre { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.35rem, 3vw, 1.85rem); letter-spacing: -0.01em; margin: 54px 0 16px; padding-top: 24px; border-top: 1px solid var(--ligne); scroll-margin-top: 96px; }
+.section-titre:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+.section-num { font-family: var(--font-mono); font-size: 13px; color: var(--craie-deep); letter-spacing: 0.06em; display: block; margin-bottom: 6px; text-transform: uppercase; }
+.sous-titre { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin: 30px 0 12px; color: var(--ardoise); }
+
+p { margin: 0 0 16px; max-width: 72ch; }
+ul, ol { margin: 0 0 20px 22px; max-width: 68ch; }
+li { margin: 6px 0; }
+.centre { text-align: center; font-weight: 600; font-family: var(--font-mono); color: var(--ardoise); margin: 10px 0 18px; }
+
+.sommaire { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 40px; }
+.sommaire a { display: block; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; padding: 13px 16px; text-decoration: none; font-family: var(--font-display); font-size: 13.5px; font-weight: 500; color: var(--encre); transition: border-color 0.15s ease, transform 0.15s ease; }
+.sommaire a:hover { border-color: var(--craie-deep); transform: translateX(3px); }
+.sommaire a span { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--craie-deep); margin-bottom: 4px; }
+
+.boite, .encadre { background: var(--white); border: 1px solid var(--ligne); border-left: 4px solid var(--ardoise); border-radius: 6px; padding: 22px 26px; margin: 24px 0; }
+.boite-titre, .encadre-label { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--ardoise); }
+.boite p:last-child, .boite ul:last-child, .boite ol:last-child, .encadre p:last-child, .encadre ul:last-child { margin-bottom: 0; }
+.boite.idee { border-left-color: var(--craie-deep); background: #FBF4E4; } .boite.idee .boite-titre { color: var(--craie-deep); }
+.boite.definition { border-left-color: var(--sapin); } .boite.definition .boite-titre { color: var(--sapin); }
+.boite.notation, .boite.methode { border-left-color: var(--sapin); background: #EEF3F0; } .boite.notation .boite-titre, .boite.methode .boite-titre { color: var(--sapin); }
+.boite.exemple { border-left-color: var(--craie-deep); background: var(--papier-2); } .boite.exemple .boite-titre { color: var(--craie-deep); }
+.boite.erreur { border-left-color: var(--brique); background: #FBEFEE; } .boite.erreur .boite-titre { color: var(--brique); }
+.boite.retenir { border-left-color: var(--ardoise); background: var(--ardoise); color: var(--white); } .boite.retenir .boite-titre { color: var(--craie); } .boite.retenir li { color: rgba(252, 251, 247, 0.92); }
+.boite.strategie { border-left-color: var(--sapin); }
+
+.table-wrap { border: 1px solid var(--ligne); border-radius: 6px; overflow-x: auto; margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; background: var(--white); }
+th, td { border-bottom: 1px solid var(--ligne); padding: 11px 16px; text-align: left; }
+th { font-family: var(--font-display); font-weight: 600; font-size: 13.5px; background: var(--ardoise); color: var(--white); }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: var(--papier); }
+table.valposition th, table.valposition td { text-align: center; font-family: var(--font-mono); }
+table.valposition td.actif { background: var(--craie); color: var(--white); font-weight: 700; }
+
+.interactif { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 24px 0; padding: 22px; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+canvas { border: 1px solid var(--ligne); border-radius: 4px; background-color: var(--white); max-width: 100%; height: auto; }
+.info-box { background-color: #EEF3F0; border-left: 4px solid var(--sapin); padding: 12px 16px; margin-top: 15px; border-radius: 0 4px 4px 0; font-size: 0.95rem; width: 100%; }
+.info-box.alerte { background-color: #FBEFEE; border-left-color: var(--brique); }
+.etapes { background: var(--papier); border-radius: 4px; padding: 14px 18px; margin-top: 14px; width: 100%; font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.9; }
+
+.controles { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; width: 100%; max-width: 560px; margin-bottom: 6px; }
+.controle-item { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 150px; }
+.controle-item label { font-family: var(--font-mono); font-size: 11.5px; color: var(--ardoise); font-weight: 600; display: flex; justify-content: space-between; }
+.controle-item output { color: var(--craie-deep); }
+.controle-item select { font-family: var(--font-mono); font-size: 13px; padding: 6px 8px; border-radius: 4px; border: 1px solid var(--ligne); background: var(--white); }
+input[type="range"] { width: 100%; accent-color: var(--sapin); }
+input[type="checkbox"] { accent-color: var(--sapin); margin-right: 6px; }
+
+.nombre-affiche { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 700; color: var(--ardoise); text-align: center; margin: 10px 0; }
+.nombre-affiche .chiffre { display: inline-block; padding: 2px 4px; border-radius: 3px; }
+.nombre-affiche .chiffre.surligne { background: var(--craie); color: var(--white); }
+
+.strategie-grille { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+.strategie-grille .boite { margin: 0; }
+
+footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; background: var(--white); font-family: var(--font-mono); font-size: 0.85rem; color: rgba(28, 43, 58, 0.7); text-align: center; }
+
+.nav-suivant { border-top: 1px solid var(--ligne); background: var(--papier-2); }
+.nav-suivant .wrap { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; gap: 16px; flex-wrap: wrap; }
+.nav-suivant .label { display: block; font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--craie-deep); margin-bottom: 4px; }
+.nav-suivant .titre { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+.btn-primary { background: var(--sapin); color: var(--white); text-decoration: none; padding: 11px 20px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+.btn-secondaire { border: 1.5px solid var(--ligne); color: var(--encre); text-decoration: none; padding: 9px 18px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+
+@media (max-width: 720px) { .sommaire, .strategie-grille { grid-template-columns: 1fr; } .boite, .encadre { padding: 18px; } .nav-suivant .wrap { flex-direction: column; text-align: center; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+<nav class="wrap">
+<a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span></a>
+<ul class="nav-links">
+<li><a href="https://learnwithdom.page">Accueil</a></li>
+<li><a href="https://learnwithdom.page/cours/mat1101.html">MAT1101</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="hero">
+<div class="wrap hero-inner compact">
+<div class="eyebrow"><a href="03-Operations_fractions.html">MAT1101 · 1.2 Les opérations sur les fractions</a></div>
+<h1 class="course-title">1.3 — Les nombres décimaux</h1>
+<p class="course-description">Définition, valeur de position, arrondissement, estimation et comparaison — comprendre la notation décimale et savoir l'utiliser dans la vie courante.</p>
+</div>
+</div>
+
+<div class="page-layout">
+<main class="wrap">
+<div class="wrap chapitre">
+
+  <div class="sommaire">
+    <a href="#pourquoi"><span>1–2</span>Qu'est-ce qu'un nombre décimal ?</a>
+    <a href="#lire"><span>3–5</span>Lire, écrire, et lien avec les fractions</a>
+    <a href="#arrondir"><span>6–9</span>Arrondissement et monnaie</a>
+    <a href="#estimation"><span>10</span>Estimation</a>
+    <a href="#comparer"><span>11–16</span>Comparer des nombres décimaux</a>
+    <a href="#erreurs"><span>17</span>Erreurs fréquentes</a>
+    <a href="#achats"><span>19</span>Mise en situation : les achats</a>
+    <a href="#aide-memoire"><span>20</span>Aide-mémoire</a>
+  </div>
+
+  <div class="boite idee">
+    <div class="boite-titre">Idée centrale</div>
+    <p>Les nombres décimaux permettent de représenter des quantités qui se situent entre les nombres entiers. Ils sont particulièrement présents lorsqu'on mesure, compare des prix, manipule de l'argent ou cherche une valeur suffisamment précise sans avoir besoin de toute la précision possible.</p>
+  </div>
+
+  <hr class="rule"/>
+
+  <section id="pourquoi">
+    <div class="section-titre"><span class="section-num">1.3.1 · Motivation et définition</span>Qu'est-ce qu'un nombre décimal ?</div>
+    <p>Une personne peut mesurer 1,75 m, un article peut coûter 12,99 $, une voiture peut avoir parcouru 24,6 km, une température peut être de −3,5 °C. Dans chaque cas, la quantité se situe entre deux nombres entiers. On pourrait utiliser une fraction — \(1{,}75=\tfrac{175}{100}=\tfrac74\) — mais l'écriture décimale est souvent plus pratique pour mesurer, communiquer une valeur ou calculer rapidement.</p>
+
+    <div class="boite definition">
+      <div class="boite-titre">Définition</div>
+      <p>Un nombre décimal s'écrit \(a,b\) où \(a\) est la <strong>partie entière</strong> et \(b\) la <strong>partie décimale</strong>. Chaque position après la virgule correspond à une fraction de plus en plus petite de l'unité : \(2{,}37 = 2 + \tfrac{3}{10} + \tfrac{7}{100}\).</p>
+    </div>
+
+    <p>Les nombres décimaux ne sont donc pas une nouvelle sorte de nombre séparée des fractions — ce sont une autre façon de représenter certaines quantités fractionnaires. Chaque déplacement vers la droite divise la valeur de position par 10 : unités → dixièmes → centièmes → millièmes…</p>
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item"><label>Unités <output id="outU">4</output></label><input id="rU" max="9" min="0" type="range" value="4"/></div>
+        <div class="controle-item"><label>Dixièmes <output id="outD1">5</output></label><input id="rD1" max="9" min="0" type="range" value="5"/></div>
+        <div class="controle-item"><label>Centièmes <output id="outD2">8</output></label><input id="rD2" max="9" min="0" type="range" value="8"/></div>
+        <div class="controle-item"><label>Millièmes <output id="outD3">2</output></label><input id="rD3" max="9" min="0" type="range" value="2"/></div>
+      </div>
+      <div class="nombre-affiche" id="nombreAffiche">4,582</div>
+      <div class="table-wrap">
+        <table class="valposition">
+          <tr><th>Unités</th><th>Dixièmes</th><th>Centièmes</th><th>Millièmes</th></tr>
+          <tr id="ligneChiffres"><td>4</td><td>5</td><td>8</td><td>2</td></tr>
+        </table>
+      </div>
+      <div class="etapes" id="decompEtapes">4,582 = 4 + 5/10 + 8/100 + 2/1000</div>
+      <div class="info-box">Chaque curseur change un chiffre à une position précise — la valeur de ce chiffre dépend entièrement de sa position.</div>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="lire">
+    <div class="section-titre"><span class="section-num">1.3.2 · Notation</span>La virgule, la lecture, et le lien avec les fractions</div>
+
+    <div class="sous-titre">La virgule en français, le point en anglais</div>
+    <p>En français, on utilise une virgule comme séparateur décimal (3,75); dans la notation anglaise, on utilise un point (3.75). Ce n'est pas une différence mathématique, c'est une <strong>convention de notation</strong> — les deux représentent exactement la même quantité.</p>
+    <div class="boite erreur">
+      <div class="boite-titre">Attention</div>
+      <p>Ne confondez pas le séparateur décimal avec le séparateur des milliers. Vérifiez toujours la convention attendue par une calculatrice, un logiciel ou un site Web.</p>
+    </div>
+
+    <div class="sous-titre">Lire et écrire</div>
+    <p>7,25 se lit « sept virgule vingt-cinq » ou « sept unités et vingt-cinq centièmes », puisque \(7{,}25=7+\tfrac{25}{100}\). Attention : \(0{,}4 = \tfrac{4}{10}\) (quatre dixièmes) alors que \(0{,}04=\tfrac{4}{100}\) (quatre centièmes) — le chiffre 4 est le même, mais sa position change tout.</p>
+    <div class="boite methode">
+      <div class="boite-titre">Les zéros après la virgule</div>
+      <p>Ajouter des zéros à droite de la partie décimale ne change pas la valeur : \(2{,}7=2{,}70=2{,}700\), puisque \(\tfrac{7}{10}=\tfrac{70}{100}\). Ceci est très utile pour comparer des nombres décimaux.</p>
+    </div>
+
+    <div class="sous-titre">Décimaux et fractions</div>
+    <p>Un nombre décimal fini se transforme en fraction en retirant la virgule, en comptant le nombre de chiffres après la virgule, et en plaçant 10, 100, 1000… au dénominateur, puis en simplifiant.</p>
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item"><label>Partie entière <output id="outFracE">2</output></label><input id="rFracE" max="9" min="0" type="range" value="2"/></div>
+        <div class="controle-item"><label>Chiffres après la virgule</label>
+          <select id="selectFracDigits">
+            <option value="1">1 chiffre (dixièmes)</option>
+            <option value="2" selected="">2 chiffres (centièmes)</option>
+            <option value="3">3 chiffres (millièmes)</option>
+          </select>
+        </div>
+        <div class="controle-item"><label>Partie décimale <output id="outFracDec">35</output></label><input id="rFracDec" max="99" min="0" type="range" value="35"/></div>
+      </div>
+      <div class="etapes" id="fracEtapes">2,35 = 235/100 = 47/20</div>
+      <div class="info-box" id="fracInfoDec">47/20 est la version simplifiée de la fraction.</div>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="arrondir">
+    <div class="section-titre"><span class="section-num">1.3.3 · Arrondissement</span>Pourquoi et comment arrondir ?</div>
+    <div class="boite definition">
+      <div class="boite-titre">Définition</div>
+      <p>Arrondir un nombre signifie remplacer sa valeur exacte par une valeur proche, mais plus simple, en conservant le niveau de précision demandé.</p>
+    </div>
+    <p>On arrondit pour simplifier une réponse, faciliter une estimation mentale, communiquer une mesure de façon pratique, éviter une précision inutile, ou travailler avec des montants monétaires.</p>
+
+    <div class="boite methode">
+      <div class="boite-titre">La règle</div>
+      <ol>
+        <li>Repérer la position demandée.</li>
+        <li>Regarder le chiffre immédiatement à droite.</li>
+        <li>0 à 4 → on conserve le chiffre.</li>
+        <li>5 à 9 → on augmente le chiffre de 1.</li>
+        <li>Supprimer les chiffres qui suivent.</li>
+      </ol>
+    </div>
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item"><label>Nombre <output id="outArr">4,730</output></label><input id="rArr" max="9.999" min="0" step="0.001" type="range" value="4.73"/></div>
+        <div class="controle-item"><label>Arrondir au…</label>
+          <select id="selectPosArr">
+            <option value="1">dixième</option>
+            <option value="2">centième</option>
+          </select>
+        </div>
+      </div>
+      <div class="nombre-affiche" id="arrAffiche">4,7<span class="chiffre surligne">3</span>0</div>
+      <div class="etapes" id="arrEtapes">Chiffre des dixièmes : 7. Chiffre suivant : 3 → on conserve. 4,730 ≈ 4,7</div>
+      <div class="info-box" id="arrInfo">Le chiffre surligné est celui qu'on regarde pour décider si on augmente la position demandée.</div>
+    </div>
+
+    <div class="boite erreur">
+      <div class="boite-titre">Cas particulier : la retenue</div>
+      <p>Pour 5,98 arrondi au dixième, le chiffre des dixièmes (9) suivi de 8 doit augmenter : \(9+1=10\). Le 0 reste aux dixièmes et une unité est reportée à la partie entière : \(5{,}98\approx6{,}0\). Un arrondissement peut donc faire changer la partie entière — ce n'est pas une erreur.</p>
+    </div>
+
+    <div class="sous-titre">La monnaie canadienne : calculer avant d'arrondir</div>
+    <p>Les montants sont généralement exprimés au cent près (0,01 $). Une erreur fréquente est d'arrondir chaque montant trop tôt : trois prix de 4,995 $ arrondis individuellement donnent \(5{,}00\times3=15{,}00\) $, mais en additionnant d'abord (\(14{,}985\)) puis en arrondissant, on obtient <strong>14,99 $</strong> — un résultat différent.</p>
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item"><label>Prix unitaire <output id="outPrixU">4,995</output> $</label><input id="rPrixU" max="9.999" min="0.001" step="0.001" type="range" value="4.995"/></div>
+        <div class="controle-item"><label>Nombre d'articles <output id="outQte">3</output></label><input id="rQte" max="8" min="1" type="range" value="3"/></div>
+      </div>
+      <div class="etapes" id="monnaieEtapes">Méthode A (arrondir puis additionner) : 5,00 × 3 = 15,00 $ — Méthode B (additionner puis arrondir) : 14,985 ≈ 14,99 $</div>
+      <div class="info-box alerte" id="monnaieInfo">Les deux méthodes donnent des résultats différents : mieux vaut calculer d'abord, arrondir à la fin.</div>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="estimation">
+    <div class="section-titre"><span class="section-num">1.3.4 · Vérification</span>Estimation : trouver une réponse raisonnable</div>
+    <div class="boite definition">
+      <div class="boite-titre">Définition</div>
+      <p>Une estimation consiste à trouver rapidement une valeur approximative qui permet de savoir à quoi devrait ressembler la réponse, sans nécessairement effectuer le calcul exact — utile pour vérifier une calculatrice.</p>
+    </div>
+    <p>Exemple : \(19{,}8\times4{,}9\) — on estime \(20\times5=100\). Le calcul exact donne \(97{,}02\), cohérent avec l'estimation. Si une calculatrice affichait 9702, on saurait immédiatement qu'il y a une erreur de saisie.</p>
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item"><label>Article 1 <output id="outA1">19,89</output> $</label><input id="rA1" max="49.99" min="0.99" step="0.01" type="range" value="19.89"/></div>
+        <div class="controle-item"><label>Article 2 <output id="outA2">12,15</output> $</label><input id="rA2" max="49.99" min="0.99" step="0.01" type="range" value="12.15"/></div>
+        <div class="controle-item"><label>Article 3 <output id="outA3">7,92</output> $</label><input id="rA3" max="49.99" min="0.99" step="0.01" type="range" value="7.92"/></div>
+      </div>
+      <div class="resultat-fraction" style="font-family: var(--font-mono); font-size:1.05rem; gap:20px;">
+        <span id="estimTexte">Estimation : 20 + 12 + 8 = 40</span>
+        <span style="color:var(--craie-deep); font-weight:700;">↔</span>
+        <span id="exactTexte">Calcul exact : 39,96 $</span>
+      </div>
+      <div class="info-box" id="estimInfo">L'estimation (arrondi à l'entier le plus proche) confirme que le total exact est raisonnable.</div>
+    </div>
+
+    <div class="boite notation">
+      <div class="boite-titre">Arrondissement ≠ estimation</div>
+      <p>Arrondir modifie un nombre pour obtenir une valeur proche et plus simple (ex. 12,347 ≈ 12,35). Estimer cherche rapidement une valeur approximative pour anticiper ou vérifier un résultat (ex. 19,8 × 4,9 ≈ 20 × 5 = 100). Les deux sont liés, mais ne sont pas identiques.</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="comparer">
+    <div class="section-titre"><span class="section-num">1.3.5 · Comparaison</span>Comparer des nombres décimaux</div>
+    <div class="boite methode">
+      <div class="boite-titre">Méthode générale</div>
+      <ol>
+        <li>Comparer les parties entières.</li>
+        <li>Si elles diffèrent, le plus grand entier donne le plus grand nombre.</li>
+        <li>Si elles sont identiques, comparer les dixièmes, puis les centièmes, puis les millièmes…</li>
+        <li>Ajouter des zéros à droite pour aligner le nombre de décimales.</li>
+      </ol>
+    </div>
+    <div class="boite erreur">
+      <div class="boite-titre">Erreur très fréquente</div>
+      <p>Comparer seulement les chiffres sans les aligner : \(2{,}8\) et \(2{,}35\) — on pourrait croire que 35 > 8 donc que 2,35 > 2,8, mais c'est faux. En alignant : \(2{,}80 > 2{,}35\), car 80 > 35. La <strong>position</strong> des chiffres détermine leur valeur, pas leur apparence.</p>
+    </div>
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item"><label>Nombre A <output id="outCompA">7,4</output></label><input id="rCompA" max="9.999" min="-9.999" step="0.001" type="range" value="7.4"/></div>
+        <div class="controle-item"><label>Nombre B <output id="outCompB">7,35</output></label><input id="rCompB" max="9.999" min="-9.999" step="0.001" type="range" value="7.35"/></div>
+      </div>
+      <canvas height="90" id="compCanvas" width="440"></canvas>
+      <div class="etapes" id="compEtapes">7,400 et 7,350 — parties entières égales (7=7), dixièmes égaux (4=4)... comparer centièmes : 0 &gt; 5 ? Non → 7,4 &gt; 7,35</div>
+      <div class="info-box" id="compInfo">Les deux nombres sont placés sur la droite numérique — celui de droite est le plus grand.</div>
+    </div>
+
+    <div class="boite exemple">
+      <div class="boite-titre">Nombres négatifs</div>
+      <p>Sur une droite numérique, plus on va à gauche, plus le nombre est petit. Ainsi \(-2{,}5 < -2{,}1\), même si \(2{,}5>2{,}1\) — le signe négatif inverse l'ordre apparent. Exemple concret : \(-8{,}5\,°C\) est plus froid que \(-3{,}2\,°C\), donc \(-8{,}5 < -3{,}2\).</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="erreurs">
+    <div class="section-titre"><span class="section-num">1.3.6 · Vigilance</span>Erreurs communes</div>
+    <div class="boite erreur">
+      <div class="boite-titre">Les six pièges les plus fréquents</div>
+      <ol>
+        <li><strong>Oublier la valeur de position :</strong> \(0{,}5 \neq 0{,}05\).</li>
+        <li><strong>Croire que plus de chiffres = un nombre plus grand :</strong> \(4{,}9=4{,}900 > 4{,}125\), même si 4,125 a plus de chiffres.</li>
+        <li><strong>Comparer sans aligner :</strong> \(3{,}7\) et \(3{,}62\) → écrire \(3{,}70\) et \(3{,}62\) d'abord.</li>
+        <li><strong>Arrondir sans regarder le chiffre suivant :</strong> 7,346 arrondi au centième est 7,35 (on regarde le 6 des millièmes), pas 7,34.</li>
+        <li><strong>Arrondir trop tôt</strong> dans une suite de calculs — les petites erreurs s'accumulent.</li>
+        <li><strong>Oublier la convention de notation :</strong> 3,14 et 3.14 représentent la même quantité, mais un logiciel peut interpréter la virgule autrement.</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="strategies">
+    <div class="section-titre"><span class="section-num">1.3.7 · Approche</span>Stratégies de résolution</div>
+    <div class="strategie-grille">
+      <div class="boite strategie"><div class="boite-titre">1 — Regarder les unités</div><p>12,5 ne veut rien dire sans contexte : 12,5 $, 12,5 km, 12,5 kg ? Toujours identifier ce que représente le nombre.</p></div>
+      <div class="boite strategie"><div class="boite-titre">2 — Choisir le bon niveau de précision</div><p>18,347829 °C est inutilement précis dans une conversation; 18,3 °C suffit généralement, sauf en contexte scientifique.</p></div>
+      <div class="boite strategie"><div class="boite-titre">3 — Estimer avant de calculer</div><p>\(38{,}91\times5{,}02\approx40\times5=200\) — un résultat très différent signale une erreur.</p></div>
+      <div class="boite strategie"><div class="boite-titre">4 — Ajouter des zéros pour comparer</div><p>6,3, 6,27, 6,305 → 6,300, 6,270, 6,305 : l'ordre devient immédiat.</p></div>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="achats">
+    <div class="section-titre"><span class="section-num">1.3.8 · Synthèse</span>Mise en situation complète : faire des achats</div>
+    <p>Budget de 60 $, trois articles à 18,95 $, 12,49 $ et 24,75 $.</p>
+    <div class="boite exemple">
+      <div class="boite-titre">Démarche complète</div>
+      <p><strong>1. Estimation :</strong> \(19+12{,}5+25\approx56{,}5\) — on attend un total autour de 56–57 $.</p>
+      <p><strong>2. Calcul exact :</strong> \(18{,}95+12{,}49+24{,}75=56{,}19\) $ — cohérent avec l'estimation.</p>
+      <p><strong>3. Comparaison avec le budget :</strong> \(56{,}19 < 60\) — l'achat respecte le budget.</p>
+      <p><strong>4. Ce qui reste :</strong> \(60-56{,}19=3{,}81\) $.</p>
+    </div>
+    <p class="centre">estimation → calcul → comparaison → interprétation</p>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="aide-memoire">
+    <div class="section-titre"><span class="section-num">1.3.9 · Référence</span>Aide-mémoire</div>
+    <div class="table-wrap">
+      <table class="valposition">
+        <tr><th>Unités</th><th>Dixièmes</th><th>Centièmes</th><th>Millièmes</th><th>Dix-millièmes</th></tr>
+        <tr><td>1</td><td>0,1</td><td>0,01</td><td>0,001</td><td>0,0001</td></tr>
+      </table>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Notion</th><th>Règle</th></tr>
+        <tr><td>Arrondissement</td><td>0 à 4 → on conserve; 5 à 9 → on augmente de 1</td></tr>
+        <tr><td>Comparer</td><td>entiers → dixièmes → centièmes → millièmes; ajouter des zéros pour aligner</td></tr>
+        <tr><td>Notation</td><td>3,75 = 3.75 selon la convention (virgule ou point)</td></tr>
+        <tr><td>Estimation</td><td>arrondir intelligemment → calculer approximativement → vérifier</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="conclusion">
+    <div class="section-titre"><span class="section-num">1.3.10 · Et maintenant ?</span>À retenir</div>
+    <div class="boite retenir">
+      <div class="boite-titre">Vous devriez maintenant être capable de...</div>
+      <ul>
+        <li>Distinguer la partie entière et la partie décimale, et décomposer un nombre décimal.</li>
+        <li>Comprendre le lien entre fractions et nombres décimaux.</li>
+        <li>Arrondir un nombre à la position demandée, en gérant les retenues.</li>
+        <li>Distinguer arrondissement et estimation.</li>
+        <li>Comparer des nombres décimaux, y compris négatifs, en alignant les positions.</li>
+        <li>Reconnaître les erreurs fréquentes liées à la valeur de position.</li>
+      </ul>
+    </div>
+    <p class="centre">Comprendre la position → représenter → arrondir ou estimer → comparer</p>
+  </section>
+
+</div>
+</main>
+
+<nav aria-label="Table des matières" class="toc-flottante">
+<h2>Sur cette page</h2>
+<ol id="toc-list">
+<li><a href="#pourquoi">1–2 · Qu'est-ce qu'un décimal ?</a></li>
+<li><a href="#lire">3–5 · Notation et fractions</a></li>
+<li><a href="#arrondir">6–9 · Arrondissement</a></li>
+<li><a href="#estimation">10 · Estimation</a></li>
+<li><a href="#comparer">11–16 · Comparer</a></li>
+<li><a href="#erreurs">17 · Erreurs fréquentes</a></li>
+<li><a href="#strategies">18 · Stratégies</a></li>
+<li><a href="#achats">19 · Mise en situation</a></li>
+<li><a href="#aide-memoire">20 · Aide-mémoire</a></li>
+<li><a href="#conclusion">21 · Et maintenant ?</a></li>
+</ol>
+</nav>
+</div>
+
+<div class="nav-suivant">
+<div class="wrap">
+<div><span class="label">Section précédente</span><span class="titre">1.2 — Opérations sur les fractions</span></div>
+<a class="btn-secondaire" href="03-Operations_fractions.html">← Retour</a>
+<div><span class="label">Section suivante</span><span class="titre">1.4 — À venir</span></div>
+<a class="btn-primary" href="#">Bientôt disponible →</a>
+</div>
+</div>
+
+<footer class="site-footer">MAT1101 · Section 1.3 · learnwithdom.page</footer>
+
+<script>
+(function(){
+  // --- TOC actif ---
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-flottante a'));
+  var sections = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  function setActive(id){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); }); }
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      if(visible.length){ visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; }); setActive(visible[0].target.id); }
+    },{rootMargin:'-100px 0px -70% 0px',threshold:0});
+    sections.forEach(function(s){ observer.observe(s); });
+  }
+
+  var ARDOISE = '#223A34', CRAIE = '#D9A441', SAPIN = '#4B7A68', BRIQUE = '#B5524A';
+  function gcd(a,b){ a=Math.abs(a); b=Math.abs(b); while(b){ var t=b; b=a%b; a=t; } return a||1; }
+  function virg(x){ return x.toFixed( (x+'').includes('.') ? (x+'').split('.')[1].length : 0 ).replace('.', ','); }
+
+  // ---------- 1. Décomposition et valeur de position ----------
+  var rU=document.getElementById('rU'), rD1=document.getElementById('rD1'), rD2=document.getElementById('rD2'), rD3=document.getElementById('rD3');
+  var outU=document.getElementById('outU'), outD1=document.getElementById('outD1'), outD2=document.getElementById('outD2'), outD3=document.getElementById('outD3');
+  var nombreAffiche=document.getElementById('nombreAffiche'), ligneChiffres=document.getElementById('ligneChiffres'), decompEtapes=document.getElementById('decompEtapes');
+
+  function updateDecomp(){
+    var u=parseInt(rU.value,10), d1=parseInt(rD1.value,10), d2=parseInt(rD2.value,10), d3=parseInt(rD3.value,10);
+    outU.textContent=u; outD1.textContent=d1; outD2.textContent=d2; outD3.textContent=d3;
+    nombreAffiche.textContent = u+','+d1+d2+d3;
+    ligneChiffres.innerHTML = '<td>'+u+'</td><td>'+d1+'</td><td>'+d2+'</td><td>'+d3+'</td>';
+    decompEtapes.textContent = u+','+d1+d2+d3+' = '+u+' + '+d1+'/10 + '+d2+'/100 + '+d3+'/1000';
+  }
+  [rU,rD1,rD2,rD3].forEach(function(el){ el.addEventListener('input', updateDecomp); });
+  updateDecomp();
+
+  // ---------- 2. Décimal -> fraction ----------
+  var rFracE=document.getElementById('rFracE'), outFracE=document.getElementById('outFracE');
+  var selectFracDigits=document.getElementById('selectFracDigits');
+  var rFracDec=document.getElementById('rFracDec'), outFracDec=document.getElementById('outFracDec');
+  var fracEtapes=document.getElementById('fracEtapes'), fracInfoDec=document.getElementById('fracInfoDec');
+
+  function updateFracDec(){
+    var digits = parseInt(selectFracDigits.value,10);
+    var maxDec = Math.pow(10,digits)-1;
+    rFracDec.max = maxDec;
+    var dec = parseInt(rFracDec.value,10);
+    if(dec > maxDec){ dec = maxDec; rFracDec.value = dec; }
+    var entier = parseInt(rFracE.value,10);
+    outFracE.textContent = entier; outFracDec.textContent = dec;
+
+    var den = Math.pow(10,digits);
+    var decStr = String(dec).padStart(digits,'0');
+    var num = entier*den + dec;
+    var g = gcd(num, den);
+    var simpTxt = (g>1) ? ' = '+(num/g)+'/'+(den/g) : '';
+
+    fracEtapes.textContent = entier+','+decStr+' = '+num+'/'+den+simpTxt;
+    fracInfoDec.textContent = (g>1) ? (num/g)+'/'+(den/g)+' est la version simplifiée de la fraction.' : num+'/'+den+' est déjà irréductible.';
+  }
+  [rFracE, rFracDec].forEach(function(el){ el.addEventListener('input', updateFracDec); });
+  selectFracDigits.addEventListener('change', updateFracDec);
+  updateFracDec();
+
+  // ---------- 3. Arrondir ----------
+  var rArr=document.getElementById('rArr'), outArr=document.getElementById('outArr');
+  var selectPosArr=document.getElementById('selectPosArr');
+  var arrAffiche=document.getElementById('arrAffiche'), arrEtapes=document.getElementById('arrEtapes'), arrInfo=document.getElementById('arrInfo');
+
+  function updateArrondir(){
+    var val = parseFloat(rArr.value);
+    outArr.textContent = val.toFixed(3).replace('.', ',');
+    var pos = parseInt(selectPosArr.value,10); // 1 = dixième, 2 = centième
+    var str = val.toFixed(3);
+    var parts = str.split('.');
+    var entierPart = parts[0], decPart = parts[1]; // 3 digits
+    var chiffrePos = decPart[pos-1];
+    var chiffreSuivant = decPart[pos];
+    var nomsPos = ['', 'dixièmes', 'centièmes'];
+
+    // affichage avec surlignage du chiffre-clé (celui juste après la position, qui decide)
+    var avant = entierPart + ',' + decPart.slice(0,pos);
+    var surligne = decPart[pos];
+    var apres = decPart.slice(pos+1);
+    arrAffiche.innerHTML = avant + '<span class="chiffre surligne">'+surligne+'</span>' + apres;
+
+    // Arrondir en manipulant directement les chiffres (aucune multiplication en
+    // virgule flottante) pour que le texte explicatif et le résultat affiché
+    // soient TOUJOURS cohérents, même pour des cas comme 0,145 ou 1,005 où
+    // Math.round(val * 10^pos) / 10^pos peut diverger à cause de l'imprécision
+    // binaire des nombres à virgule flottante.
+    var up = parseInt(chiffreSuivant,10) >= 5;
+    var keptDigits = entierPart + decPart.slice(0,pos);
+    if(up){
+      var digits = keptDigits.split('');
+      var i = digits.length - 1;
+      while(i >= 0){
+        if(digits[i] === '9'){ digits[i] = '0'; i--; }
+        else { digits[i] = String(parseInt(digits[i],10) + 1); break; }
+      }
+      if(i < 0) digits.unshift('1');
+      keptDigits = digits.join('');
+    }
+    var totalLen = keptDigits.length;
+    var newDecPart = keptDigits.slice(totalLen - pos);
+    var newEntierPart = keptDigits.slice(0, totalLen - pos) || '0';
+    var roundedStr = newEntierPart + ',' + newDecPart;
+
+    var decision = up ? 'on augmente' : 'on conserve';
+    arrEtapes.textContent = 'Chiffre des '+nomsPos[pos]+' : '+chiffrePos+'. Chiffre suivant : '+chiffreSuivant+' → '+decision+'. '+val.toFixed(3).replace('.', ',')+' ≈ '+roundedStr;
+
+    var carry = parseInt(newEntierPart,10) !== parseInt(entierPart,10);
+    arrInfo.textContent = carry
+      ? 'Ce cas produit une retenue : la partie entière change après arrondissement — c\'est normal.'
+      : 'Le chiffre surligné est celui qu\'on regarde pour décider si on augmente la position demandée.';
+  }
+  rArr.addEventListener('input', updateArrondir);
+  selectPosArr.addEventListener('change', updateArrondir);
+  updateArrondir();
+
+  // ---------- 4. Monnaie : calculer avant d'arrondir ----------
+  var rPrixU=document.getElementById('rPrixU'), outPrixU=document.getElementById('outPrixU');
+  var rQte=document.getElementById('rQte'), outQte=document.getElementById('outQte');
+  var monnaieEtapes=document.getElementById('monnaieEtapes'), monnaieInfo=document.getElementById('monnaieInfo');
+
+  function updateMonnaie(){
+    var prix = parseFloat(rPrixU.value), qte = parseInt(rQte.value,10);
+    outPrixU.textContent = prix.toFixed(3).replace('.', ',');
+    outQte.textContent = qte;
+
+    var prixArrondi = Math.round(prix*100)/100;
+    var methodeA = prixArrondi * qte;
+    var total = prix * qte;
+    var methodeB = Math.round(total*100)/100;
+
+    monnaieEtapes.textContent = 'Méthode A (arrondir puis additionner) : '+prixArrondi.toFixed(2).replace('.', ',')+' × '+qte+' = '+methodeA.toFixed(2).replace('.', ',')+' $ — Méthode B (additionner puis arrondir) : '+total.toFixed(3).replace('.', ',')+' ≈ '+methodeB.toFixed(2).replace('.', ',')+' $';
+
+    if(Math.abs(methodeA - methodeB) > 0.001){
+      monnaieInfo.textContent = 'Les deux méthodes donnent des résultats différents ('+methodeA.toFixed(2).replace('.', ',')+' $ contre '+methodeB.toFixed(2).replace('.', ',')+' $) : mieux vaut calculer d\'abord, arrondir à la fin.';
+      monnaieInfo.classList.add('alerte');
+    } else {
+      monnaieInfo.textContent = 'Ici, les deux méthodes donnent le même résultat — mais ce n\'est pas garanti en général.';
+      monnaieInfo.classList.remove('alerte');
+    }
+  }
+  [rPrixU, rQte].forEach(function(el){ el.addEventListener('input', updateMonnaie); });
+  updateMonnaie();
+
+  // ---------- 5. Estimation ----------
+  var rA1=document.getElementById('rA1'), rA2=document.getElementById('rA2'), rA3=document.getElementById('rA3');
+  var outA1=document.getElementById('outA1'), outA2=document.getElementById('outA2'), outA3=document.getElementById('outA3');
+  var estimTexte=document.getElementById('estimTexte'), exactTexte=document.getElementById('exactTexte'), estimInfo=document.getElementById('estimInfo');
+
+  function updateEstimation(){
+    var a1=parseFloat(rA1.value), a2=parseFloat(rA2.value), a3=parseFloat(rA3.value);
+    outA1.textContent=a1.toFixed(2).replace('.', ','); outA2.textContent=a2.toFixed(2).replace('.', ','); outA3.textContent=a3.toFixed(2).replace('.', ',');
+
+    var e1=Math.round(a1), e2=Math.round(a2), e3=Math.round(a3);
+    var estimTotal = e1+e2+e3;
+    var exact = a1+a2+a3;
+
+    estimTexte.textContent = 'Estimation : '+e1+' + '+e2+' + '+e3+' = '+estimTotal;
+    exactTexte.textContent = 'Calcul exact : '+exact.toFixed(2).replace('.', ',')+' $';
+    var ecart = Math.abs(exact - estimTotal);
+    estimInfo.textContent = ecart < 2
+      ? 'L\'estimation confirme que le total exact ('+exact.toFixed(2).replace('.', ',')+' $) est raisonnable.'
+      : 'L\'écart entre l\'estimation et le calcul exact est plus grand qu\'attendu — vérifiez le calcul.';
+  }
+  [rA1,rA2,rA3].forEach(function(el){ el.addEventListener('input', updateEstimation); });
+  updateEstimation();
+
+  // ---------- 6. Comparer deux nombres décimaux ----------
+  var rCompA=document.getElementById('rCompA'), rCompB=document.getElementById('rCompB');
+  var outCompA=document.getElementById('outCompA'), outCompB=document.getElementById('outCompB');
+  var compCanvas=document.getElementById('compCanvas'), cctx=compCanvas.getContext('2d');
+  var compEtapes=document.getElementById('compEtapes'), compInfo=document.getElementById('compInfo');
+
+  function updateComparer(){
+    var a=parseFloat(rCompA.value), b=parseFloat(rCompB.value);
+    outCompA.textContent = a.toFixed(3).replace(/0+$/,'').replace(/\,$/,'').replace('.', ',') || a;
+    outCompB.textContent = b.toFixed(3).replace(/0+$/,'').replace(/\,$/,'').replace('.', ',') || b;
+    outCompA.textContent = a.toString().replace('.', ',');
+    outCompB.textContent = b.toString().replace('.', ',');
+
+    var aStr = a.toFixed(3), bStr = b.toFixed(3);
+    var cmpTxt;
+    if(a > b) cmpTxt = aStr.replace('.', ',')+' > '+bStr.replace('.', ',');
+    else if(a < b) cmpTxt = aStr.replace('.', ',')+' < '+bStr.replace('.', ',');
+    else cmpTxt = aStr.replace('.', ',')+' = '+bStr.replace('.', ',');
+    compEtapes.textContent = aStr.replace('.', ',')+' et '+bStr.replace('.', ',')+' (alignés à 3 décimales) → '+cmpTxt;
+
+    // droite numérique
+    var w=compCanvas.width, h=compCanvas.height;
+    cctx.clearRect(0,0,w,h);
+    var minV = -10, maxV = 10, pad=20, x0=pad, x1=w-pad, y=h/2+10;
+    cctx.strokeStyle=ARDOISE; cctx.lineWidth=2.5;
+    cctx.beginPath(); cctx.moveTo(x0,y); cctx.lineTo(x1,y); cctx.stroke();
+    function toX(v){ return x0 + ((v-minV)/(maxV-minV))*(x1-x0); }
+    [minV,0,maxV].forEach(function(v){
+      var x=toX(v);
+      cctx.beginPath(); cctx.moveTo(x,y-6); cctx.lineTo(x,y+6); cctx.stroke();
+      cctx.fillStyle=ARDOISE; cctx.font='11px JetBrains Mono'; cctx.fillText(v, x-8, y+22);
+    });
+    var xa=toX(a), xb=toX(b);
+    cctx.beginPath(); cctx.arc(xa,y,6,0,Math.PI*2); cctx.fillStyle=SAPIN; cctx.fill();
+    cctx.fillStyle=ARDOISE; cctx.font='600 11px Space Grotesk'; cctx.fillText('A', xa-4, y-14);
+    cctx.beginPath(); cctx.arc(xb,y,6,0,Math.PI*2); cctx.fillStyle=CRAIE; cctx.fill();
+    cctx.fillStyle=ARDOISE; cctx.fillText('B', xb-4, y+34);
+
+    compInfo.textContent = 'A ('+aStr.replace('.', ',')+') est '+(a>b?'à droite':(a<b?'à gauche':'au même endroit'))+' de B ('+bStr.replace('.', ',')+') sur la droite — donc '+cmpTxt+'.';
+  }
+  [rCompA, rCompB].forEach(function(el){ el.addEventListener('input', updateComparer); });
+  updateComparer();
+})();
+</script>
+
+</body>
+</html>
