@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MAT3052-2 — 2.2 : Calcul de probabilités</title>
+<meta content="Variables aléatoires discrètes et continues, probabilité classique et probabilité géométrique." name="description"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,0,7..72,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$', '$$']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+:root {
+  --ardoise: #223A34; --ardoise-deep: #182922; --papier: #EAEEE9; --papier-2: #E0E5DD;
+  --encre: #1C2B3A; --craie: #D9A441; --craie-deep: #B9832C; --brique: #B5524A; --sapin: #4B7A68;
+  --rose: #A93226; --rose-clair: #FBEAE8; --teal: #0E6655; --teal-clair: #DCF3EA; --violet: #6C3483; --violet-clair: #EEE3F3;
+  --ligne: rgba(28, 43, 58, 0.14); --white: #FCFBF7;
+  --font-display: "Space Grotesk", sans-serif; --font-body: "Literata", Georgia, serif; --font-mono: "JetBrains Mono", monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--papier); color: var(--encre); font-family: var(--font-body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--craie-deep); outline-offset: 3px; border-radius: 2px; }
+
+header.site { position: sticky; top: 0; z-index: 40; background: rgba(234, 238, 233, 0.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--ligne); }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+.brand { font-family: var(--font-mono); font-size: 15px; font-weight: 600; letter-spacing: .02em; text-decoration: none; }
+.brand span { color: var(--craie-deep); }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; font-family: var(--font-display); font-size: 14px; font-weight: 500; }
+.nav-links a { text-decoration: none; opacity: .85; }
+.nav-links a:hover { opacity: 1; color: var(--craie-deep); }
+
+.hero { background: var(--ardoise); color: var(--white); position: relative; overflow: hidden;
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px), repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px);
+  padding: 56px 0; }
+.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--craie); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.eyebrow a { text-decoration: none; opacity: .75; color: inherit; }
+.eyebrow a:hover { opacity: 1; }
+.hero .course-title { font-family: var(--font-display); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 14px; }
+.hero .course-description { font-family: var(--font-body); font-size: 16px; line-height: 1.65; max-width: 68ch; color: rgba(252, 251, 247, 0.82); }
+
+.page-layout { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 48px; max-width: 1360px; margin: 0 auto; padding: 40px 28px; align-items: start; }
+.page-layout > main.wrap { max-width: none; padding: 0; grid-column: 1; }
+
+.toc-flottante { grid-column: 2; position: sticky; top: 96px; align-self: start; max-height: calc(100vh - 130px); overflow-y: auto; padding: 20px; background: var(--white); border: 1px solid var(--ligne); border-radius: 8px; font-family: var(--font-display); }
+.toc-flottante h2 { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--craie-deep); margin-bottom: 12px; }
+.toc-flottante ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.toc-flottante li a { display: block; text-decoration: none; font-size: 12.5px; font-weight: 500; color: var(--encre); opacity: .65; padding: 5px 0 5px 12px; border-left: 2px solid var(--ligne); transition: all .15s ease; line-height: 1.3; }
+.toc-flottante li a:hover { opacity: 1; border-left-color: var(--craie-deep); }
+.toc-flottante li a.active { opacity: 1; color: var(--ardoise-deep); border-left-color: var(--craie-deep); font-weight: 600; }
+
+@media(max-width: 1180px) { .page-layout { display: block; padding: 30px 20px; } .toc-flottante { display: none; } }
+
+.chapitre { padding-bottom: 80px; }
+.section-titre { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.01em; margin: 50px 0 16px; padding-top: 22px; border-top: 1px solid var(--ligne); scroll-margin-top: 96px; }
+.section-titre:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+.section-num { font-family: var(--font-mono); font-size: 13px; color: var(--craie-deep); letter-spacing: 0.06em; display: block; margin-bottom: 6px; text-transform: uppercase; }
+.sous-titre { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin: 28px 0 12px; color: var(--ardoise); }
+
+p { margin: 0 0 16px; max-width: 74ch; }
+ul, ol { margin: 0 0 20px 22px; max-width: 70ch; }
+li { margin: 6px 0; }
+.centre { text-align: center; font-weight: 600; font-family: var(--font-mono); color: var(--ardoise); margin: 10px 0 18px; }
+
+.sommaire { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 40px; }
+.sommaire a { display: block; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; padding: 13px 16px; text-decoration: none; font-family: var(--font-display); font-size: 13.5px; font-weight: 500; color: var(--encre); transition: border-color 0.15s ease, transform 0.15s ease; }
+.sommaire a:hover { border-color: var(--craie-deep); transform: translateX(3px); }
+.sommaire a span { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--craie-deep); margin-bottom: 4px; }
+
+.boite, .encadre { background: var(--white); border: 1px solid var(--ligne); border-left: 4px solid var(--ardoise); border-radius: 6px; padding: 20px 24px; margin: 22px 0; }
+.boite-titre { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--ardoise); }
+.boite p:last-child, .boite ul:last-child, .boite ol:last-child { margin-bottom: 0; }
+.boite.idee { border-left-color: var(--craie-deep); background: #FBF4E4; } .boite.idee .boite-titre { color: var(--craie-deep); }
+.boite.definition { border-left-color: var(--sapin); background: #EEF3F0; } .boite.definition .boite-titre { color: var(--sapin); }
+.boite.notation, .boite.methode { border-left-color: var(--sapin); background: #EEF3F0; } .boite.notation .boite-titre, .boite.methode .boite-titre { color: var(--sapin); }
+.boite.exemple { border-left-color: var(--craie-deep); background: var(--papier-2); } .boite.exemple .boite-titre { color: var(--craie-deep); }
+.boite.erreur { border-left-color: var(--brique); background: #FBEFEE; } .boite.erreur .boite-titre { color: var(--brique); }
+.boite.retenir { border-left-color: var(--ardoise); background: var(--ardoise); color: var(--white); } .boite.retenir .boite-titre { color: var(--craie); } .boite.retenir li { color: rgba(252, 251, 247, 0.92); }
+.boite.anecdote { border-left-color: var(--rose); background: var(--rose-clair); } .boite.anecdote .boite-titre { color: var(--rose); }
+.boite.farfelu { border-left-color: var(--teal); background: var(--teal-clair); } .boite.farfelu .boite-titre { color: var(--teal); }
+.boite.objectifs { border-left-color: var(--ardoise); background: #E7EEEC; } .boite.objectifs .boite-titre { color: var(--ardoise); }
+
+.table-wrap { border: 1px solid var(--ligne); border-radius: 6px; overflow-x: auto; margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; background: var(--white); }
+th, td { border-bottom: 1px solid var(--ligne); padding: 10px 14px; text-align: left; }
+th { font-family: var(--font-display); font-weight: 600; font-size: 13.5px; background: var(--ardoise); color: var(--white); }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: var(--papier); }
+table.chiffres th, table.chiffres td { text-align: center; font-family: var(--font-mono); }
+
+.interactif { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 24px 0; padding: 22px; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+canvas { border: 1px solid var(--ligne); border-radius: 4px; background-color: var(--white); max-width: 100%; height: auto; }
+.info-box { background-color: #EEF3F0; border-left: 4px solid var(--sapin); padding: 12px 16px; margin-top: 15px; border-radius: 0 4px 4px 0; font-size: 0.95rem; width: 100%; }
+.info-box.alerte { background-color: #FBEFEE; border-left-color: var(--brique); }
+.etapes { background: var(--papier); border-radius: 4px; padding: 14px 18px; margin-top: 14px; width: 100%; font-family: var(--font-mono); font-size: 0.92rem; line-height: 1.85; }
+
+.controles { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; width: 100%; max-width: 560px; margin-bottom: 6px; }
+.controle-item { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 150px; }
+.controle-item label { font-family: var(--font-mono); font-size: 11.5px; color: var(--ardoise); font-weight: 600; display: flex; justify-content: space-between; }
+.controle-item output { color: var(--craie-deep); }
+.controle-item select { font-family: var(--font-mono); font-size: 13px; padding: 6px 8px; border-radius: 4px; border: 1px solid var(--ligne); background: var(--white); }
+input[type="range"] { width: 100%; accent-color: var(--sapin); }
+
+.btn-jeu { font-family: var(--font-display); font-size: 14px; font-weight: 600; padding: 10px 20px; border-radius: 6px; border: none; background: var(--sapin); color: var(--white); cursor: pointer; transition: transform .1s ease, background .15s ease; }
+.btn-jeu:hover { background: var(--ardoise); }
+.btn-jeu:active { transform: scale(0.97); }
+.btn-jeu.secondaire { background: var(--white); color: var(--encre); border: 1.5px solid var(--ligne); }
+.btn-jeu.secondaire:hover { border-color: var(--craie-deep); background: var(--white); }
+.btn-jeu:disabled { opacity: .5; cursor: default; }
+.rangee-boutons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 10px 0; }
+
+.porte { width: 84px; height: 120px; border-radius: 6px 6px 3px 3px; border: 2px solid var(--ardoise); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 15px; cursor: pointer; background: var(--sapin); color: var(--white); transition: transform .15s ease, background .15s ease; user-select: none; }
+.porte:hover { transform: translateY(-3px); }
+.porte.ouverte { background: var(--papier-2); color: var(--encre); cursor: default; }
+.porte.ouverte:hover { transform: none; }
+.porte.gagnante { background: var(--craie); color: var(--ardoise-deep); }
+.porte.choisie { outline: 3px solid var(--brique); outline-offset: 3px; }
+.portes-rangee { display: flex; gap: 24px; justify-content: center; margin: 18px 0; }
+
+.stat-grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; width: 100%; max-width: 520px; margin-top: 14px; }
+.stat-item { background: var(--papier); border-radius: 6px; padding: 10px 14px; text-align: center; font-family: var(--font-mono); }
+.stat-item .val { font-size: 1.4rem; font-weight: 700; color: var(--ardoise-deep); display: block; }
+.stat-item .lbl { font-size: 11px; color: var(--craie-deep); text-transform: uppercase; letter-spacing: .04em; }
+
+.quiz-scenario { background: var(--papier); border-radius: 6px; padding: 16px 20px; margin-bottom: 14px; width: 100%; font-style: italic; }
+.quiz-options { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; margin-bottom: 10px; }
+.quiz-option { font-family: var(--font-display); font-size: 13.5px; font-weight: 600; padding: 10px 16px; border-radius: 6px; border: 1.5px solid var(--ligne); background: var(--white); cursor: pointer; }
+.quiz-option:hover { border-color: var(--craie-deep); }
+.quiz-option.correct { background: #DCF3EA; border-color: var(--sapin); color: var(--teal); }
+.quiz-option.incorrect { background: #FBEFEE; border-color: var(--brique); color: var(--brique); }
+
+.carte-anniv { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; max-width: 480px; margin: 10px 0; }
+.jeton { width: 26px; height: 26px; border-radius: 50%; background: var(--papier-2); border: 1.5px solid var(--ligne); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 10px; }
+.jeton.dup { background: var(--brique); color: var(--white); border-color: var(--brique); }
+
+footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; background: var(--white); font-family: var(--font-mono); font-size: 0.85rem; color: rgba(28, 43, 58, 0.7); text-align: center; }
+
+.nav-suivant { border-top: 1px solid var(--ligne); background: var(--papier-2); }
+.nav-suivant .wrap { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; gap: 16px; flex-wrap: wrap; }
+.nav-suivant .label { display: block; font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--craie-deep); margin-bottom: 4px; }
+.nav-suivant .titre { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+.btn-primary { background: var(--sapin); color: var(--white); text-decoration: none; padding: 11px 20px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+.btn-secondaire { border: 1.5px solid var(--ligne); color: var(--encre); text-decoration: none; padding: 9px 18px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+
+@media (max-width: 720px) { .sommaire { grid-template-columns: 1fr; } .boite, .encadre { padding: 16px; } .nav-suivant .wrap { flex-direction: column; text-align: center; } .portes-rangee { gap: 12px; } .porte { width: 70px; height: 100px; font-size: 13px; } }
+</style>
+
+</head>
+<body>
+
+<header class="site">
+<nav class="wrap">
+<a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span></a>
+<ul class="nav-links">
+<li><a href="https://learnwithdom.page">Accueil</a></li>
+<li><a href="https://learnwithdom.page/cours/mat3052.html">MAT3052-2</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="hero">
+<div class="wrap hero-inner compact">
+<div class="eyebrow"><a href="09-Denombrement.html">MAT3052-2 · 2.1 Dénombrement</a></div>
+<h1 class="course-title">2.2 — Calcul de probabilités</h1>
+<p class="course-description">Variable discrète ou continue? Probabilité classique (cas favorables sur cas possibles) et probabilité géométrique.</p>
+</div>
+</div>
+
+<div class="page-layout">
+<main class="wrap">
+<div class="wrap chapitre">
+
+
+  <p>Nous voici au terme du dénombrement, avec l'outil qui donne son nom au chapitre : la <strong>probabilité</strong> elle-même. Tout ce que nous avons appris — dénombrer, compter des arrangements et des combinaisons — devient maintenant un moyen de répondre précisément à la question qui a lancé cette branche des mathématiques il y a plus de 350 ans : quelle est la <em>chance</em> qu'un événement précis se produise?</p>
+
+  <div class="boite objectifs">
+    <div class="boite-titre">Objectifs de la section</div>
+    <ul>
+      <li>Distinguer une variable aléatoire discrète d'une variable aléatoire continue.</li>
+      <li>Calculer la probabilité d'un événement à l'aide de la définition classique (cas favorables sur cas possibles).</li>
+      <li>Calculer une probabilité géométrique.</li>
+    </ul>
+  </div>
+
+  <div class="sommaire">
+    <a href="#variables"><span>2.2.1</span>Types de variables aléatoires</a>
+    <a href="#classique"><span>2.2.2</span>Probabilité d'un événement</a>
+    <a href="#geometrique"><span>2.2.3</span>Probabilité géométrique</a>
+  </div>
+
+  <hr class="rule"/>
+
+  <section id="variables">
+    <div class="section-titre"><span class="section-num">2.2.1</span>Types de variables aléatoires</div>
+    <div class="boite definition">
+      <div class="boite-titre">Définition</div>
+      <p>Une <strong>variable aléatoire</strong> dépend du résultat d'une expérience aléatoire. On distingue une <strong>variable discrète</strong>, qui ne peut prendre qu'un nombre fini de valeurs isolées (résultat d'un dé), d'une <strong>variable continue</strong>, qui peut prendre n'importe quelle valeur dans un intervalle (temps d'attente, position sur une cible).</p>
+    </div>
+    <div class="boite exemple">
+      <div class="boite-titre">Discrète ou continue?</div>
+      <ul>
+        <li>Nombre de clients dans un magasin en une heure : <strong>discrète</strong>.</li>
+        <li>Endroit exact où une fléchette touche une cible : <strong>continue</strong>.</li>
+        <li>Résultat d'un dé à 6 faces : <strong>discrète</strong>.</li>
+        <li>Temps exact d'arrivée d'un autobus : <strong>continue</strong>.</li>
+      </ul>
+      <p>Cette distinction détermine quelle méthode utiliser : la définition classique pour le cas discret, la probabilité géométrique pour le cas continu.</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="classique">
+    <div class="section-titre"><span class="section-num">2.2.2</span>Probabilité d'un événement</div>
+    <div class="boite definition">
+      <div class="boite-titre">Définition — probabilité classique (Laplace)</div>
+      <p>Lorsque tous les résultats sont <strong>également probables</strong> :</p>
+      $$P(A) = \dfrac{\text{nombre de cas favorables à } A}{\text{nombre de cas possibles}}$$
+      <p>Une probabilité est toujours entre 0 (impossible) et 1 (certain).</p>
+    </div>
+
+    <div class="interactif">
+      <div class="boite-titre" style="margin-bottom:8px;">Jeu de cartes — calculateur de probabilité</div>
+      <div class="controles">
+        <div class="controle-item">
+          <label>Événement</label>
+          <select id="selectCarte">
+            <option value="as">Tirer un as</option>
+            <option value="coeur">Tirer un cœur</option>
+            <option value="asouroi">Tirer un as ou un roi</option>
+            <option value="figure">Tirer une figure (valet, dame, roi)</option>
+          </select>
+        </div>
+      </div>
+      <div class="etapes" id="carteEtapes">P(as) = 4/52 = 1/13 ≈ 7,7%</div>
+      <div class="info-box" id="carteInfo">Un jeu standard contient 52 cartes : 4 couleurs × 13 valeurs.</div>
+    </div>
+
+    <div class="boite exemple">
+      <div class="boite-titre">Probabilité utilisant le dénombrement — comité</div>
+      <p>Comité de 3 personnes choisies parmi 10 (dont 6 femmes et 4 hommes). Quelle est la probabilité que le comité soit entièrement féminin?</p>
+      $$\text{Cas possibles} : C_{10}^3 = 120 \qquad \text{Cas favorables} : C_6^3 = 20$$
+      $$P(\text{comité entièrement féminin}) = \dfrac{20}{120} = \dfrac16 \approx 16{,}7\%$$
+    </div>
+
+    <div class="boite anecdote">
+      <div class="boite-titre">Le problème du chevalier de Méré, résolu</div>
+      <p>Le chevalier de Méré pariait qu'en lançant un dé 4 fois, il obtiendrait au moins un 6 — il gagnait souvent. Mais en modifiant le pari (deux dés, 24 fois, au moins un double-six), il se met à <strong>perdre</strong> plus souvent. Pascal démontre que le premier pari donne environ 51,8% de chances de gagner, alors que le second donne environ 49,1% — un écart minuscule en apparence, mais suffisant, répété des centaines de fois, pour ruiner un joueur imprudent.</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="geometrique">
+    <div class="section-titre"><span class="section-num">2.2.3</span>Probabilité géométrique</div>
+    <div class="boite definition">
+      <div class="boite-titre">Définition</div>
+      <p>Lorsque les résultats possibles forment un ensemble <strong>continu</strong> (longueur, aire, volume) plutôt qu'un nombre fini de cas :</p>
+      $$P(A) = \dfrac{\text{mesure de la région favorable}}{\text{mesure de la région totale}}$$
+    </div>
+
+    <div class="interactif">
+      <div class="boite-titre" style="margin-bottom:8px;">Fléchette sur une cible</div>
+      <div class="controles">
+        <div class="controle-item"><label>Rayon du cœur <output id="outRayonCoeur">5</output> cm</label><input id="rangeRayonCoeur" max="15" min="1" type="range" value="5"/></div>
+        <div class="controle-item"><label>Rayon de la cible <output id="outRayonCible">20</output> cm</label><input id="rangeRayonCible" max="25" min="10" type="range" value="20"/></div>
+      </div>
+      <canvas height="220" id="cibleCanvas" width="220"></canvas>
+      <div class="etapes" id="cibleEtapes">P(cœur) = π(5)² / π(20)² = 25/400 = 1/16 = 6,25%</div>
+    </div>
+
+    <div class="boite exemple">
+      <div class="boite-titre">Temps d'attente</div>
+      <p>Un autobus passe toutes les 15 minutes. Probabilité d'attendre moins de 5 minutes :</p>
+      $$P(\text{attente} < 5) = \dfrac{5}{15} = \dfrac13 \approx 33{,}3\%$$
+      <p>Ici, la « mesure » est une simple <strong>longueur</strong> (intervalle de temps), plutôt qu'une aire.</p>
+    </div>
+
+    <div class="boite erreur">
+      <div class="boite-titre">Erreur fréquente</div>
+      <p>Il ne faut jamais utiliser la formule classique (cas comptés un à un) pour une variable <strong>continue</strong> : il y a une infinité de valeurs possibles. Il faut passer à la <strong>mesure</strong> (longueur, aire, volume) de la région favorable et de la région totale.</p>
+    </div>
+
+    <div class="boite retenir">
+      <div class="boite-titre">Résumé de la section</div>
+      <p>Une variable aléatoire discrète se compte (dénombrement classique : cas favorables sur cas possibles), tandis qu'une variable continue se mesure (probabilité géométrique : longueur, aire ou volume favorable sur le total). La prochaine section applique ces deux méthodes à une foule de jeux de hasard — dés, cartes, poker, roulette, loterie — et à deux énigmes célèbres : le problème des anniversaires et le problème de Monty Hall.</p>
+    </div>
+  </section>
+
+
+</div>
+</main>
+
+<nav aria-label="Table des matières" class="toc-flottante">
+<h2>Sur cette page</h2>
+<ol id="toc-list">
+
+<li><a href="#variables">2.2.1 · Variables aléatoires</a></li>
+<li><a href="#classique">2.2.2 · Probabilité classique</a></li>
+<li><a href="#geometrique">2.2.3 · Probabilité géométrique</a></li>
+
+</ol>
+</nav>
+</div>
+
+<div class="nav-suivant">
+<div class="wrap">
+<div><span class="label">Section précédente</span><span class="titre">2.1 — Dénombrement</span></div>
+<a class="btn-secondaire" href="09-Denombrement.html">← Retour</a>
+<div><span class="label">Section suivante</span><span class="titre">2.3 — Les probabilités dans les jeux</span></div>
+<a class="btn-primary" href="11-Probabilites_jeux.html">Continuer →</a>
+</div>
+</div>
+
+<footer class="site-footer">MAT3052-2 · Statistique et probabilités · learnwithdom.page</footer>
+
+<script>
+
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-flottante a'));
+  var sections = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  function setActive(id){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); }); }
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      if(visible.length){ visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; }); setActive(visible[0].target.id); }
+    },{rootMargin:'-100px 0px -70% 0px',threshold:0});
+    sections.forEach(function(s){ observer.observe(s); });
+  }
+})();
+
+</script>
+<script>
+
+(function(){
+  var ARDOISE = '#223A34', CRAIE = '#D9A441', SAPIN = '#4B7A68';
+
+  // ---- Calculateur de cartes ----
+  var selectCarte = document.getElementById('selectCarte');
+  var carteEtapes = document.getElementById('carteEtapes');
+  var carteInfo = document.getElementById('carteInfo');
+  var evenementsCartes = {
+    as: { fav: 4, texte: 'as', detail: 'Il y a 4 as (un par couleur) parmi 52 cartes.' },
+    coeur: { fav: 13, texte: 'cœur', detail: 'Il y a 13 cœurs (une couleur complète) parmi 52 cartes.' },
+    asouroi: { fav: 8, texte: 'as ou roi', detail: '4 as + 4 rois = 8 cas favorables; ces événements sont incompatibles lors d\'un seul tirage.' },
+    figure: { fav: 12, texte: 'figure (V, D, R)', detail: '3 figures × 4 couleurs = 12 cartes favorables sur 52.' }
+  };
+  function gcd(a,b){ a=Math.abs(a); b=Math.abs(b); while(b){ var t=b; b=a%b; a=t; } return a||1; }
+  function updateCarte(){
+    var ev = evenementsCartes[selectCarte.value];
+    var g = gcd(ev.fav, 52);
+    var simpNum = ev.fav/g, simpDen = 52/g;
+    var pct = (ev.fav/52*100);
+    carteEtapes.textContent = 'P('+ev.texte+') = '+ev.fav+'/52 = '+simpNum+'/'+simpDen+' ≈ '+pct.toFixed(1).replace('.', ',')+'%';
+    carteInfo.textContent = ev.detail;
+  }
+  selectCarte.addEventListener('change', updateCarte);
+  updateCarte();
+
+  // ---- Cible géométrique ----
+  var rangeRayonCoeur = document.getElementById('rangeRayonCoeur'), outRayonCoeur = document.getElementById('outRayonCoeur');
+  var rangeRayonCible = document.getElementById('rangeRayonCible'), outRayonCible = document.getElementById('outRayonCible');
+  var cibleCanvas = document.getElementById('cibleCanvas'), cctx = cibleCanvas.getContext('2d');
+  var cibleEtapes = document.getElementById('cibleEtapes');
+
+  function updateCible(){
+    var rc = parseInt(rangeRayonCoeur.value,10), rt = parseInt(rangeRayonCible.value,10);
+    if(rc > rt){ rc = rt; rangeRayonCoeur.value = rc; }
+    rangeRayonCoeur.max = rt;
+    outRayonCoeur.textContent = rc; outRayonCible.textContent = rt;
+
+    var w = cibleCanvas.width, h = cibleCanvas.height, cx = w/2, cy = h/2;
+    var scale = 95 / rt;
+    cctx.clearRect(0,0,w,h);
+    cctx.beginPath(); cctx.arc(cx,cy, rt*scale, 0, Math.PI*2); cctx.fillStyle = '#D6EAF8'; cctx.fill(); cctx.strokeStyle=ARDOISE; cctx.lineWidth=2; cctx.stroke();
+    cctx.beginPath(); cctx.arc(cx,cy, rc*scale, 0, Math.PI*2); cctx.fillStyle = CRAIE; cctx.fill(); cctx.strokeStyle=ARDOISE; cctx.lineWidth=2; cctx.stroke();
+
+    var p = (rc*rc)/(rt*rt);
+    var g = gcd(rc*rc, rt*rt);
+    cibleEtapes.textContent = 'P(cœur) = π('+rc+')² / π('+rt+')² = '+(rc*rc)+'/'+(rt*rt)+' = '+(p*100).toFixed(2).replace('.', ',')+'%';
+  }
+  [rangeRayonCoeur, rangeRayonCible].forEach(function(el){ el.addEventListener('input', updateCible); });
+  updateCible();
+})();
+
+</script>
+
+</body>
+</html>

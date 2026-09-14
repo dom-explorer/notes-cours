@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MAT3052-2 — Introduction : un peu d'histoire</title>
+<meta content="Histoire de la statistique et des probabilités : Graunt, Pascal, Fermat, Gauss, Quetelet." name="description"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,0,7..72,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$', '$$']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+:root {
+  --ardoise: #223A34; --ardoise-deep: #182922; --papier: #EAEEE9; --papier-2: #E0E5DD;
+  --encre: #1C2B3A; --craie: #D9A441; --craie-deep: #B9832C; --brique: #B5524A; --sapin: #4B7A68;
+  --rose: #A93226; --rose-clair: #FBEAE8; --teal: #0E6655; --teal-clair: #DCF3EA; --violet: #6C3483; --violet-clair: #EEE3F3;
+  --ligne: rgba(28, 43, 58, 0.14); --white: #FCFBF7;
+  --font-display: "Space Grotesk", sans-serif; --font-body: "Literata", Georgia, serif; --font-mono: "JetBrains Mono", monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--papier); color: var(--encre); font-family: var(--font-body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--craie-deep); outline-offset: 3px; border-radius: 2px; }
+
+header.site { position: sticky; top: 0; z-index: 40; background: rgba(234, 238, 233, 0.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--ligne); }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+.brand { font-family: var(--font-mono); font-size: 15px; font-weight: 600; letter-spacing: .02em; text-decoration: none; }
+.brand span { color: var(--craie-deep); }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; font-family: var(--font-display); font-size: 14px; font-weight: 500; }
+.nav-links a { text-decoration: none; opacity: .85; }
+.nav-links a:hover { opacity: 1; color: var(--craie-deep); }
+
+.hero { background: var(--ardoise); color: var(--white); position: relative; overflow: hidden;
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px), repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px);
+  padding: 56px 0; }
+.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--craie); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.eyebrow a { text-decoration: none; opacity: .75; color: inherit; }
+.eyebrow a:hover { opacity: 1; }
+.hero .course-title { font-family: var(--font-display); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 14px; }
+.hero .course-description { font-family: var(--font-body); font-size: 16px; line-height: 1.65; max-width: 68ch; color: rgba(252, 251, 247, 0.82); }
+
+.page-layout { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 48px; max-width: 1360px; margin: 0 auto; padding: 40px 28px; align-items: start; }
+.page-layout > main.wrap { max-width: none; padding: 0; grid-column: 1; }
+
+.toc-flottante { grid-column: 2; position: sticky; top: 96px; align-self: start; max-height: calc(100vh - 130px); overflow-y: auto; padding: 20px; background: var(--white); border: 1px solid var(--ligne); border-radius: 8px; font-family: var(--font-display); }
+.toc-flottante h2 { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--craie-deep); margin-bottom: 12px; }
+.toc-flottante ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.toc-flottante li a { display: block; text-decoration: none; font-size: 12.5px; font-weight: 500; color: var(--encre); opacity: .65; padding: 5px 0 5px 12px; border-left: 2px solid var(--ligne); transition: all .15s ease; line-height: 1.3; }
+.toc-flottante li a:hover { opacity: 1; border-left-color: var(--craie-deep); }
+.toc-flottante li a.active { opacity: 1; color: var(--ardoise-deep); border-left-color: var(--craie-deep); font-weight: 600; }
+
+@media(max-width: 1180px) { .page-layout { display: block; padding: 30px 20px; } .toc-flottante { display: none; } }
+
+.chapitre { padding-bottom: 80px; }
+.section-titre { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.01em; margin: 50px 0 16px; padding-top: 22px; border-top: 1px solid var(--ligne); scroll-margin-top: 96px; }
+.section-titre:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+.section-num { font-family: var(--font-mono); font-size: 13px; color: var(--craie-deep); letter-spacing: 0.06em; display: block; margin-bottom: 6px; text-transform: uppercase; }
+.sous-titre { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin: 28px 0 12px; color: var(--ardoise); }
+
+p { margin: 0 0 16px; max-width: 74ch; }
+ul, ol { margin: 0 0 20px 22px; max-width: 70ch; }
+li { margin: 6px 0; }
+.centre { text-align: center; font-weight: 600; font-family: var(--font-mono); color: var(--ardoise); margin: 10px 0 18px; }
+
+.sommaire { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 40px; }
+.sommaire a { display: block; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; padding: 13px 16px; text-decoration: none; font-family: var(--font-display); font-size: 13.5px; font-weight: 500; color: var(--encre); transition: border-color 0.15s ease, transform 0.15s ease; }
+.sommaire a:hover { border-color: var(--craie-deep); transform: translateX(3px); }
+.sommaire a span { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--craie-deep); margin-bottom: 4px; }
+
+.boite, .encadre { background: var(--white); border: 1px solid var(--ligne); border-left: 4px solid var(--ardoise); border-radius: 6px; padding: 20px 24px; margin: 22px 0; }
+.boite-titre { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--ardoise); }
+.boite p:last-child, .boite ul:last-child, .boite ol:last-child { margin-bottom: 0; }
+.boite.idee { border-left-color: var(--craie-deep); background: #FBF4E4; } .boite.idee .boite-titre { color: var(--craie-deep); }
+.boite.definition { border-left-color: var(--sapin); background: #EEF3F0; } .boite.definition .boite-titre { color: var(--sapin); }
+.boite.notation, .boite.methode { border-left-color: var(--sapin); background: #EEF3F0; } .boite.notation .boite-titre, .boite.methode .boite-titre { color: var(--sapin); }
+.boite.exemple { border-left-color: var(--craie-deep); background: var(--papier-2); } .boite.exemple .boite-titre { color: var(--craie-deep); }
+.boite.erreur { border-left-color: var(--brique); background: #FBEFEE; } .boite.erreur .boite-titre { color: var(--brique); }
+.boite.retenir { border-left-color: var(--ardoise); background: var(--ardoise); color: var(--white); } .boite.retenir .boite-titre { color: var(--craie); } .boite.retenir li { color: rgba(252, 251, 247, 0.92); }
+.boite.anecdote { border-left-color: var(--rose); background: var(--rose-clair); } .boite.anecdote .boite-titre { color: var(--rose); }
+.boite.farfelu { border-left-color: var(--teal); background: var(--teal-clair); } .boite.farfelu .boite-titre { color: var(--teal); }
+.boite.objectifs { border-left-color: var(--ardoise); background: #E7EEEC; } .boite.objectifs .boite-titre { color: var(--ardoise); }
+
+.table-wrap { border: 1px solid var(--ligne); border-radius: 6px; overflow-x: auto; margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; background: var(--white); }
+th, td { border-bottom: 1px solid var(--ligne); padding: 10px 14px; text-align: left; }
+th { font-family: var(--font-display); font-weight: 600; font-size: 13.5px; background: var(--ardoise); color: var(--white); }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: var(--papier); }
+table.chiffres th, table.chiffres td { text-align: center; font-family: var(--font-mono); }
+
+.interactif { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 24px 0; padding: 22px; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+canvas { border: 1px solid var(--ligne); border-radius: 4px; background-color: var(--white); max-width: 100%; height: auto; }
+.info-box { background-color: #EEF3F0; border-left: 4px solid var(--sapin); padding: 12px 16px; margin-top: 15px; border-radius: 0 4px 4px 0; font-size: 0.95rem; width: 100%; }
+.info-box.alerte { background-color: #FBEFEE; border-left-color: var(--brique); }
+.etapes { background: var(--papier); border-radius: 4px; padding: 14px 18px; margin-top: 14px; width: 100%; font-family: var(--font-mono); font-size: 0.92rem; line-height: 1.85; }
+
+.controles { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; width: 100%; max-width: 560px; margin-bottom: 6px; }
+.controle-item { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 150px; }
+.controle-item label { font-family: var(--font-mono); font-size: 11.5px; color: var(--ardoise); font-weight: 600; display: flex; justify-content: space-between; }
+.controle-item output { color: var(--craie-deep); }
+.controle-item select { font-family: var(--font-mono); font-size: 13px; padding: 6px 8px; border-radius: 4px; border: 1px solid var(--ligne); background: var(--white); }
+input[type="range"] { width: 100%; accent-color: var(--sapin); }
+
+.btn-jeu { font-family: var(--font-display); font-size: 14px; font-weight: 600; padding: 10px 20px; border-radius: 6px; border: none; background: var(--sapin); color: var(--white); cursor: pointer; transition: transform .1s ease, background .15s ease; }
+.btn-jeu:hover { background: var(--ardoise); }
+.btn-jeu:active { transform: scale(0.97); }
+.btn-jeu.secondaire { background: var(--white); color: var(--encre); border: 1.5px solid var(--ligne); }
+.btn-jeu.secondaire:hover { border-color: var(--craie-deep); background: var(--white); }
+.btn-jeu:disabled { opacity: .5; cursor: default; }
+.rangee-boutons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 10px 0; }
+
+.porte { width: 84px; height: 120px; border-radius: 6px 6px 3px 3px; border: 2px solid var(--ardoise); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 15px; cursor: pointer; background: var(--sapin); color: var(--white); transition: transform .15s ease, background .15s ease; user-select: none; }
+.porte:hover { transform: translateY(-3px); }
+.porte.ouverte { background: var(--papier-2); color: var(--encre); cursor: default; }
+.porte.ouverte:hover { transform: none; }
+.porte.gagnante { background: var(--craie); color: var(--ardoise-deep); }
+.porte.choisie { outline: 3px solid var(--brique); outline-offset: 3px; }
+.portes-rangee { display: flex; gap: 24px; justify-content: center; margin: 18px 0; }
+
+.stat-grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; width: 100%; max-width: 520px; margin-top: 14px; }
+.stat-item { background: var(--papier); border-radius: 6px; padding: 10px 14px; text-align: center; font-family: var(--font-mono); }
+.stat-item .val { font-size: 1.4rem; font-weight: 700; color: var(--ardoise-deep); display: block; }
+.stat-item .lbl { font-size: 11px; color: var(--craie-deep); text-transform: uppercase; letter-spacing: .04em; }
+
+.quiz-scenario { background: var(--papier); border-radius: 6px; padding: 16px 20px; margin-bottom: 14px; width: 100%; font-style: italic; }
+.quiz-options { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; margin-bottom: 10px; }
+.quiz-option { font-family: var(--font-display); font-size: 13.5px; font-weight: 600; padding: 10px 16px; border-radius: 6px; border: 1.5px solid var(--ligne); background: var(--white); cursor: pointer; }
+.quiz-option:hover { border-color: var(--craie-deep); }
+.quiz-option.correct { background: #DCF3EA; border-color: var(--sapin); color: var(--teal); }
+.quiz-option.incorrect { background: #FBEFEE; border-color: var(--brique); color: var(--brique); }
+
+.carte-anniv { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; max-width: 480px; margin: 10px 0; }
+.jeton { width: 26px; height: 26px; border-radius: 50%; background: var(--papier-2); border: 1.5px solid var(--ligne); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 10px; }
+.jeton.dup { background: var(--brique); color: var(--white); border-color: var(--brique); }
+
+footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; background: var(--white); font-family: var(--font-mono); font-size: 0.85rem; color: rgba(28, 43, 58, 0.7); text-align: center; }
+
+.nav-suivant { border-top: 1px solid var(--ligne); background: var(--papier-2); }
+.nav-suivant .wrap { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; gap: 16px; flex-wrap: wrap; }
+.nav-suivant .label { display: block; font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--craie-deep); margin-bottom: 4px; }
+.nav-suivant .titre { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+.btn-primary { background: var(--sapin); color: var(--white); text-decoration: none; padding: 11px 20px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+.btn-secondaire { border: 1.5px solid var(--ligne); color: var(--encre); text-decoration: none; padding: 9px 18px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+
+@media (max-width: 720px) { .sommaire { grid-template-columns: 1fr; } .boite, .encadre { padding: 16px; } .nav-suivant .wrap { flex-direction: column; text-align: center; } .portes-rangee { gap: 12px; } .porte { width: 70px; height: 100px; font-size: 13px; } }
+</style>
+
+</head>
+<body>
+
+<header class="site">
+<nav class="wrap">
+<a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span></a>
+<ul class="nav-links">
+<li><a href="https://learnwithdom.page">Accueil</a></li>
+<li><a href="https://learnwithdom.page/cours/mat3052.html">MAT3052-2</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="hero">
+<div class="wrap hero-inner compact">
+<div class="eyebrow"><a href="https://learnwithdom.page/cours/mat3052.html">MAT3052-2 · Statistique et probabilités</a></div>
+<h1 class="course-title">Introduction — Un peu d'histoire</h1>
+<p class="course-description">Compter, classer, prévoir : l'histoire de la statistique et des probabilités, des premiers recensements à l'intelligence artificielle.</p>
+</div>
+</div>
+
+<div class="page-layout">
+<main class="wrap">
+<div class="wrap chapitre">
+
+
+  <div class="sommaire">
+    <a href="#compter"><span>1</span>Compter les gens : les premiers recensements</a>
+    <a href="#hasard"><span>2</span>Le hasard prend des mathématiques</a>
+    <a href="#cloche"><span>3</span>L'homme moyen et la courbe en cloche</a>
+    <a href="#moderne"><span>4</span>Vers la statistique moderne</a>
+  </div>
+
+  <p>Compter, classer, prévoir : ces trois gestes, aussi vieux que la civilisation elle-même, sont au cœur de la statistique et des probabilités. Bien avant que ces mots n'existent, des peuples entiers dénombraient déjà leurs récoltes, leurs soldats et leurs habitants. Ce n'est pourtant que très récemment, à l'échelle de l'histoire humaine, que ces pratiques se sont transformées en véritables sciences, capables non seulement de décrire ce qui existe, mais aussi de prédire ce qui pourrait arriver. C'est cette double histoire — celle de la description des données (la statistique) et celle du hasard maîtrisé (les probabilités) — que ce cours te propose d'explorer.</p>
+
+  <div class="interactif">
+    <div class="boite-titre" style="margin-bottom:16px;">Frise interactive — clique sur une date</div>
+    <div class="rangee-boutons" id="friseAns"></div>
+    <div class="etapes" id="friseTexte">Clique sur une date ci-dessus pour découvrir un moment clé de l'histoire de la statistique et des probabilités.</div>
+  </div>
+
+  <hr class="rule"/>
+
+  <section id="compter">
+    <div class="section-titre"><span class="section-num">Introduction · 1</span>Compter les gens : les premiers recensements</div>
+    <p>Les plus anciens exemples de collecte systématique de données remontent à l'Antiquité. Les Babyloniens, les Égyptiens et les Chinois effectuaient déjà des recensements de population il y a plus de 4000 ans, principalement pour lever des impôts ou recruter des soldats. Le mot <strong>statistique</strong> lui-même vient du latin <em>status</em> (l'État) : à l'origine, il désignait simplement la collecte de données <em>par</em> et <em>pour</em> l'État — une pratique administrative, bien avant de devenir une science mathématique rigoureuse.</p>
+    <p>Un moment charnière survient en 1662, lorsque le marchand londonien <strong>John Graunt</strong> publie <em>Natural and Political Observations Made upon the Bills of Mortality</em>, un ouvrage qui analyse systématiquement les registres de décès de Londres. Graunt y découvre des régularités surprenantes : par exemple, la proportion de naissances de garçons et de filles reste étonnamment stable d'une année à l'autre. On considère souvent Graunt comme le père de la <strong>démographie</strong> — la première personne à avoir traité des données humaines avec une rigueur véritablement mathématique.</p>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="hasard">
+    <div class="section-titre"><span class="section-num">Introduction · 2</span>Le hasard prend des mathématiques : Pascal et Fermat</div>
+    <p>L'histoire des probabilités commence, de façon assez inattendue, autour d'une table de jeu. En 1654, un noble français féru de jeux de hasard, le chevalier de Méré, soumet à <strong>Blaise Pascal</strong> un problème qui le tracasse depuis longtemps : le <em>problème des partis</em>. Si une partie de dés est interrompue avant la fin, comment partager équitablement la mise entre les joueurs, selon leurs chances respectives de gagner à ce moment précis?</p>
+    <p>Pascal correspond alors avec <strong>Pierre de Fermat</strong>, et leurs échanges de lettres — aujourd'hui considérés comme l'acte de naissance officiel du calcul des probabilités — posent les fondations mathématiques permettant de quantifier précisément une chance, plutôt que de se fier à l'intuition seule. Ce qui n'était au départ qu'une curiosité pour résoudre des disputes de jeu est devenu, au fil des siècles, un outil essentiel dans des domaines aussi variés que l'assurance, la médecine, la finance et l'intelligence artificielle.</p>
+    <div class="boite idee">
+      <div class="boite-titre">Le savais-tu?</div>
+      <p>Le <strong>triangle de Pascal</strong> — ce triangle de nombres où chaque valeur est la somme des deux nombres au-dessus d'elle — n'a pas été inventé par Pascal! Il était déjà connu des mathématiciens perses, chinois et indiens plusieurs siècles auparavant. Pascal l'a cependant popularisé en Europe et en a fait un usage systématique pour résoudre des problèmes de dénombrement et de probabilités, ce qui explique pourquoi son nom lui est resté associé en Occident.</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="cloche">
+    <div class="section-titre"><span class="section-num">Introduction · 3</span>L'homme moyen et la courbe en cloche</div>
+    <p>Au 19<sup>e</sup> siècle, l'astronome et mathématicien <strong>Carl Friedrich Gauss</strong> étudie les erreurs de mesure en astronomie et développe la fameuse <strong>courbe normale</strong> (ou courbe en cloche), qui décrit comment la plupart des mesures se regroupent autour d'une valeur centrale, avec de moins en moins de valeurs à mesure qu'on s'en éloigne. Cette courbe deviendra l'un des outils les plus puissants de toute la statistique moderne.</p>
+    <p>C'est aussi à cette époque que le Belge <strong>Adolphe Quetelet</strong> a l'idée audacieuse d'appliquer les méthodes statistiques non plus seulement aux étoiles ou aux dés, mais aux êtres humains eux-mêmes. Il invente le concept de l'<em>« homme moyen »</em> — une sorte de portrait statistique d'une population entière — et jette ainsi les bases de la statistique appliquée aux sciences sociales, à la santé publique et à l'économie.</p>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="moderne">
+    <div class="section-titre"><span class="section-num">Introduction · 4</span>Vers la statistique et les probabilités modernes</div>
+    <p>Au 20<sup>e</sup> siècle, des chercheurs comme Ronald Fisher, Karl Pearson et Andreï Kolmogorov ont donné aux probabilités et à la statistique les fondations rigoureuses qu'on leur connaît aujourd'hui, transformant ces disciplines en un langage universel pour analyser l'incertitude. Aujourd'hui, la statistique et les probabilités sont partout : elles guident les sondages électoraux, les essais cliniques de nouveaux médicaments, les prévisions météorologiques, les algorithmes de recommandation en ligne et les systèmes d'intelligence artificielle. Ce cours te donnera les premiers outils de ce langage — une compétence de plus en plus incontournable dans le monde qui t'entoure.</p>
+
+    <div class="boite retenir">
+      <div class="boite-titre">Résumé de l'introduction</div>
+      <ul>
+        <li>Le mot « statistique » vient du latin <em>status</em> (l'État), à l'origine lié aux recensements.</li>
+        <li>John Graunt (1662) est considéré comme le père de la démographie moderne.</li>
+        <li>Pascal et Fermat (1654) ont fondé le calcul des probabilités à partir d'un problème de jeu de dés.</li>
+        <li>Gauss a développé la courbe normale; Quetelet a appliqué la statistique aux populations humaines.</li>
+        <li>La statistique et les probabilités modernes sont omniprésentes dans la science, la technologie et la vie quotidienne.</li>
+      </ul>
+    </div>
+    <p>Garde cette idée en tête tout au long du cours : derrière chaque tableau de données et chaque calcul de probabilité se cache une longue histoire d'êtres humains cherchant à mieux comprendre l'incertitude qui les entoure — et à en tirer des décisions plus éclairées.</p>
+  </section>
+
+
+</div>
+</main>
+
+<nav aria-label="Table des matières" class="toc-flottante">
+<h2>Sur cette page</h2>
+<ol id="toc-list">
+
+<li><a href="#compter">1 · Premiers recensements</a></li>
+<li><a href="#hasard">2 · Pascal et Fermat</a></li>
+<li><a href="#cloche">3 · La courbe en cloche</a></li>
+<li><a href="#moderne">4 · Statistique moderne</a></li>
+
+</ol>
+</nav>
+</div>
+
+<div class="nav-suivant">
+<div class="wrap">
+<div><span class="label">Section précédente</span><span class="titre">Vue d'ensemble du cours</span></div>
+<a class="btn-secondaire" href="https://learnwithdom.page/cours/mat3052.html">← Retour</a>
+<div><span class="label">Section suivante</span><span class="titre">1.1 — Échantillonnage et tableaux</span></div>
+<a class="btn-primary" href="06-Echantillonnage_tableaux.html">Continuer →</a>
+</div>
+</div>
+
+<footer class="site-footer">MAT3052-2 · Statistique et probabilités · learnwithdom.page</footer>
+
+<script>
+
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-flottante a'));
+  var sections = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  function setActive(id){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); }); }
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      if(visible.length){ visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; }); setActive(visible[0].target.id); }
+    },{rootMargin:'-100px 0px -70% 0px',threshold:0});
+    sections.forEach(function(s){ observer.observe(s); });
+  }
+})();
+
+</script>
+<script>
+
+(function(){
+  var evenements = [
+    { annee: "~2000 av. J.-C.", titre: "Premiers recensements", texte: "Babyloniens, Égyptiens et Chinois dénombrent déjà leur population, surtout pour lever des impôts ou recruter des soldats." },
+    { annee: "1654", titre: "Pascal et Fermat", texte: "Le chevalier de Méré soumet à Pascal le « problème des partis ». Sa correspondance avec Fermat pose les fondations du calcul des probabilités." },
+    { annee: "1662", titre: "John Graunt", texte: "Graunt publie une analyse systématique des registres de décès de Londres — on le considère comme le père de la démographie." },
+    { annee: "1713", titre: "Jacob Bernoulli", texte: "Publication posthume de l'Ars Conjectandi, qui établit la loi des grands nombres." },
+    { annee: "19e siècle", titre: "Gauss et Quetelet", texte: "Gauss développe la courbe normale; Quetelet applique la statistique aux populations humaines avec le concept de « l'homme moyen »." },
+    { annee: "1970s", titre: "John Tukey", texte: "Tukey invente le diagramme de quartiles (boîte à moustaches) et popularise « l'analyse exploratoire des données »." },
+    { annee: "20e siècle", titre: "Fisher, Pearson, Kolmogorov", texte: "Ces chercheurs donnent à la statistique et aux probabilités leurs fondations rigoureuses modernes." }
+  ];
+  var friseAns = document.getElementById('friseAns');
+  var friseTexte = document.getElementById('friseTexte');
+  evenements.forEach(function(ev, i){
+    var btn = document.createElement('button');
+    btn.className = 'btn-jeu secondaire';
+    btn.textContent = ev.annee;
+    btn.addEventListener('click', function(){
+      Array.prototype.forEach.call(friseAns.children, function(b){ b.classList.remove('btn-jeu'); b.classList.add('secondaire'); });
+      btn.classList.remove('secondaire');
+      friseTexte.innerHTML = '<strong>' + ev.annee + ' — ' + ev.titre + '</strong><br/>' + ev.texte;
+    });
+    friseAns.appendChild(btn);
+  });
+})();
+
+</script>
+
+</body>
+</html>

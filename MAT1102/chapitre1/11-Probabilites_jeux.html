@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MAT3052-2 — 2.3 : Les probabilités dans les jeux</title>
+<meta content="Dés, cartes, poker, blackjack, roulette, loterie, le problème des anniversaires et le problème de Monty Hall — avec simulateurs interactifs." name="description"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,0,7..72,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$', '$$']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+:root {
+  --ardoise: #223A34; --ardoise-deep: #182922; --papier: #EAEEE9; --papier-2: #E0E5DD;
+  --encre: #1C2B3A; --craie: #D9A441; --craie-deep: #B9832C; --brique: #B5524A; --sapin: #4B7A68;
+  --rose: #A93226; --rose-clair: #FBEAE8; --teal: #0E6655; --teal-clair: #DCF3EA; --violet: #6C3483; --violet-clair: #EEE3F3;
+  --ligne: rgba(28, 43, 58, 0.14); --white: #FCFBF7;
+  --font-display: "Space Grotesk", sans-serif; --font-body: "Literata", Georgia, serif; --font-mono: "JetBrains Mono", monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--papier); color: var(--encre); font-family: var(--font-body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--craie-deep); outline-offset: 3px; border-radius: 2px; }
+
+header.site { position: sticky; top: 0; z-index: 40; background: rgba(234, 238, 233, 0.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--ligne); }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+.brand { font-family: var(--font-mono); font-size: 15px; font-weight: 600; letter-spacing: .02em; text-decoration: none; }
+.brand span { color: var(--craie-deep); }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; font-family: var(--font-display); font-size: 14px; font-weight: 500; }
+.nav-links a { text-decoration: none; opacity: .85; }
+.nav-links a:hover { opacity: 1; color: var(--craie-deep); }
+
+.hero { background: var(--ardoise); color: var(--white); position: relative; overflow: hidden;
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px), repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px);
+  padding: 56px 0; }
+.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--craie); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.eyebrow a { text-decoration: none; opacity: .75; color: inherit; }
+.eyebrow a:hover { opacity: 1; }
+.hero .course-title { font-family: var(--font-display); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 14px; }
+.hero .course-description { font-family: var(--font-body); font-size: 16px; line-height: 1.65; max-width: 68ch; color: rgba(252, 251, 247, 0.82); }
+
+.page-layout { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 48px; max-width: 1360px; margin: 0 auto; padding: 40px 28px; align-items: start; }
+.page-layout > main.wrap { max-width: none; padding: 0; grid-column: 1; }
+
+.toc-flottante { grid-column: 2; position: sticky; top: 96px; align-self: start; max-height: calc(100vh - 130px); overflow-y: auto; padding: 20px; background: var(--white); border: 1px solid var(--ligne); border-radius: 8px; font-family: var(--font-display); }
+.toc-flottante h2 { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--craie-deep); margin-bottom: 12px; }
+.toc-flottante ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.toc-flottante li a { display: block; text-decoration: none; font-size: 12.5px; font-weight: 500; color: var(--encre); opacity: .65; padding: 5px 0 5px 12px; border-left: 2px solid var(--ligne); transition: all .15s ease; line-height: 1.3; }
+.toc-flottante li a:hover { opacity: 1; border-left-color: var(--craie-deep); }
+.toc-flottante li a.active { opacity: 1; color: var(--ardoise-deep); border-left-color: var(--craie-deep); font-weight: 600; }
+
+@media(max-width: 1180px) { .page-layout { display: block; padding: 30px 20px; } .toc-flottante { display: none; } }
+
+.chapitre { padding-bottom: 80px; }
+.section-titre { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.01em; margin: 50px 0 16px; padding-top: 22px; border-top: 1px solid var(--ligne); scroll-margin-top: 96px; }
+.section-titre:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+.section-num { font-family: var(--font-mono); font-size: 13px; color: var(--craie-deep); letter-spacing: 0.06em; display: block; margin-bottom: 6px; text-transform: uppercase; }
+.sous-titre { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin: 28px 0 12px; color: var(--ardoise); }
+
+p { margin: 0 0 16px; max-width: 74ch; }
+ul, ol { margin: 0 0 20px 22px; max-width: 70ch; }
+li { margin: 6px 0; }
+.centre { text-align: center; font-weight: 600; font-family: var(--font-mono); color: var(--ardoise); margin: 10px 0 18px; }
+
+.sommaire { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 40px; }
+.sommaire a { display: block; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; padding: 13px 16px; text-decoration: none; font-family: var(--font-display); font-size: 13.5px; font-weight: 500; color: var(--encre); transition: border-color 0.15s ease, transform 0.15s ease; }
+.sommaire a:hover { border-color: var(--craie-deep); transform: translateX(3px); }
+.sommaire a span { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--craie-deep); margin-bottom: 4px; }
+
+.boite, .encadre { background: var(--white); border: 1px solid var(--ligne); border-left: 4px solid var(--ardoise); border-radius: 6px; padding: 20px 24px; margin: 22px 0; }
+.boite-titre { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--ardoise); }
+.boite p:last-child, .boite ul:last-child, .boite ol:last-child { margin-bottom: 0; }
+.boite.idee { border-left-color: var(--craie-deep); background: #FBF4E4; } .boite.idee .boite-titre { color: var(--craie-deep); }
+.boite.definition { border-left-color: var(--sapin); background: #EEF3F0; } .boite.definition .boite-titre { color: var(--sapin); }
+.boite.notation, .boite.methode { border-left-color: var(--sapin); background: #EEF3F0; } .boite.notation .boite-titre, .boite.methode .boite-titre { color: var(--sapin); }
+.boite.exemple { border-left-color: var(--craie-deep); background: var(--papier-2); } .boite.exemple .boite-titre { color: var(--craie-deep); }
+.boite.erreur { border-left-color: var(--brique); background: #FBEFEE; } .boite.erreur .boite-titre { color: var(--brique); }
+.boite.retenir { border-left-color: var(--ardoise); background: var(--ardoise); color: var(--white); } .boite.retenir .boite-titre { color: var(--craie); } .boite.retenir li { color: rgba(252, 251, 247, 0.92); }
+.boite.anecdote { border-left-color: var(--rose); background: var(--rose-clair); } .boite.anecdote .boite-titre { color: var(--rose); }
+.boite.farfelu { border-left-color: var(--teal); background: var(--teal-clair); } .boite.farfelu .boite-titre { color: var(--teal); }
+.boite.objectifs { border-left-color: var(--ardoise); background: #E7EEEC; } .boite.objectifs .boite-titre { color: var(--ardoise); }
+
+.table-wrap { border: 1px solid var(--ligne); border-radius: 6px; overflow-x: auto; margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; background: var(--white); }
+th, td { border-bottom: 1px solid var(--ligne); padding: 10px 14px; text-align: left; }
+th { font-family: var(--font-display); font-weight: 600; font-size: 13.5px; background: var(--ardoise); color: var(--white); }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: var(--papier); }
+table.chiffres th, table.chiffres td { text-align: center; font-family: var(--font-mono); }
+
+.interactif { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 24px 0; padding: 22px; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+canvas { border: 1px solid var(--ligne); border-radius: 4px; background-color: var(--white); max-width: 100%; height: auto; }
+.info-box { background-color: #EEF3F0; border-left: 4px solid var(--sapin); padding: 12px 16px; margin-top: 15px; border-radius: 0 4px 4px 0; font-size: 0.95rem; width: 100%; }
+.info-box.alerte { background-color: #FBEFEE; border-left-color: var(--brique); }
+.etapes { background: var(--papier); border-radius: 4px; padding: 14px 18px; margin-top: 14px; width: 100%; font-family: var(--font-mono); font-size: 0.92rem; line-height: 1.85; }
+
+.controles { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; width: 100%; max-width: 560px; margin-bottom: 6px; }
+.controle-item { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 150px; }
+.controle-item label { font-family: var(--font-mono); font-size: 11.5px; color: var(--ardoise); font-weight: 600; display: flex; justify-content: space-between; }
+.controle-item output { color: var(--craie-deep); }
+.controle-item select { font-family: var(--font-mono); font-size: 13px; padding: 6px 8px; border-radius: 4px; border: 1px solid var(--ligne); background: var(--white); }
+input[type="range"] { width: 100%; accent-color: var(--sapin); }
+
+.btn-jeu { font-family: var(--font-display); font-size: 14px; font-weight: 600; padding: 10px 20px; border-radius: 6px; border: none; background: var(--sapin); color: var(--white); cursor: pointer; transition: transform .1s ease, background .15s ease; }
+.btn-jeu:hover { background: var(--ardoise); }
+.btn-jeu:active { transform: scale(0.97); }
+.btn-jeu.secondaire { background: var(--white); color: var(--encre); border: 1.5px solid var(--ligne); }
+.btn-jeu.secondaire:hover { border-color: var(--craie-deep); background: var(--white); }
+.btn-jeu:disabled { opacity: .5; cursor: default; }
+.rangee-boutons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 10px 0; }
+
+.porte { width: 84px; height: 120px; border-radius: 6px 6px 3px 3px; border: 2px solid var(--ardoise); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 15px; cursor: pointer; background: var(--sapin); color: var(--white); transition: transform .15s ease, background .15s ease; user-select: none; }
+.porte:hover { transform: translateY(-3px); }
+.porte.ouverte { background: var(--papier-2); color: var(--encre); cursor: default; }
+.porte.ouverte:hover { transform: none; }
+.porte.gagnante { background: var(--craie); color: var(--ardoise-deep); }
+.porte.choisie { outline: 3px solid var(--brique); outline-offset: 3px; }
+.portes-rangee { display: flex; gap: 24px; justify-content: center; margin: 18px 0; }
+
+.stat-grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; width: 100%; max-width: 520px; margin-top: 14px; }
+.stat-item { background: var(--papier); border-radius: 6px; padding: 10px 14px; text-align: center; font-family: var(--font-mono); }
+.stat-item .val { font-size: 1.4rem; font-weight: 700; color: var(--ardoise-deep); display: block; }
+.stat-item .lbl { font-size: 11px; color: var(--craie-deep); text-transform: uppercase; letter-spacing: .04em; }
+
+.quiz-scenario { background: var(--papier); border-radius: 6px; padding: 16px 20px; margin-bottom: 14px; width: 100%; font-style: italic; }
+.quiz-options { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; margin-bottom: 10px; }
+.quiz-option { font-family: var(--font-display); font-size: 13.5px; font-weight: 600; padding: 10px 16px; border-radius: 6px; border: 1.5px solid var(--ligne); background: var(--white); cursor: pointer; }
+.quiz-option:hover { border-color: var(--craie-deep); }
+.quiz-option.correct { background: #DCF3EA; border-color: var(--sapin); color: var(--teal); }
+.quiz-option.incorrect { background: #FBEFEE; border-color: var(--brique); color: var(--brique); }
+
+.carte-anniv { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; max-width: 480px; margin: 10px 0; }
+.jeton { width: 26px; height: 26px; border-radius: 50%; background: var(--papier-2); border: 1.5px solid var(--ligne); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 10px; }
+.jeton.dup { background: var(--brique); color: var(--white); border-color: var(--brique); }
+
+footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; background: var(--white); font-family: var(--font-mono); font-size: 0.85rem; color: rgba(28, 43, 58, 0.7); text-align: center; }
+
+.nav-suivant { border-top: 1px solid var(--ligne); background: var(--papier-2); }
+.nav-suivant .wrap { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; gap: 16px; flex-wrap: wrap; }
+.nav-suivant .label { display: block; font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--craie-deep); margin-bottom: 4px; }
+.nav-suivant .titre { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+.btn-primary { background: var(--sapin); color: var(--white); text-decoration: none; padding: 11px 20px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+.btn-secondaire { border: 1.5px solid var(--ligne); color: var(--encre); text-decoration: none; padding: 9px 18px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+
+@media (max-width: 720px) { .sommaire { grid-template-columns: 1fr; } .boite, .encadre { padding: 16px; } .nav-suivant .wrap { flex-direction: column; text-align: center; } .portes-rangee { gap: 12px; } .porte { width: 70px; height: 100px; font-size: 13px; } }
+</style>
+
+</head>
+<body>
+
+<header class="site">
+<nav class="wrap">
+<a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span></a>
+<ul class="nav-links">
+<li><a href="https://learnwithdom.page">Accueil</a></li>
+<li><a href="https://learnwithdom.page/cours/mat3052.html">MAT3052-2</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="hero">
+<div class="wrap hero-inner compact">
+<div class="eyebrow"><a href="10-Probabilites.html">MAT3052-2 · 2.2 Calcul de probabilités</a></div>
+<h1 class="course-title">2.3 — Les probabilités dans les jeux : cartes, dés et hasard</h1>
+<p class="course-description">Dés, cartes, poker, roulette, loterie — et deux énigmes célèbres : le problème des anniversaires et le problème de Monty Hall.</p>
+</div>
+</div>
+
+<div class="page-layout">
+<main class="wrap">
+<div class="wrap chapitre">
+
+
+  <p>Les jeux de hasard constituent un laboratoire naturel pour comprendre les probabilités. Un jeu de cartes, une paire de dés ou une roulette permet de poser exactement les mêmes questions que dans de nombreuses situations réelles : quelles sont les issues possibles? Quelle est la probabilité d'un événement? Un jeu est-il équitable? Et que se passe-t-il lorsqu'on répète l'expérience un grand nombre de fois?</p>
+  <div class="boite idee">
+    <div class="boite-titre">Une précision</div>
+    <p>L'objectif ici n'est pas d'encourager le jeu d'argent. Les exemples de roulette, de blackjack et de loterie servent à montrer comment les mathématiques permettent de mesurer un risque et de reconnaître l'avantage d'une maison de jeu.</p>
+  </div>
+
+  <div class="sommaire">
+    <a href="#des"><span>Jeu</span>Simulateur de dés (Monte-Carlo)</a>
+    <a href="#cartes"><span>·</span>Cartes, poker, blackjack</a>
+    <a href="#roulette"><span>·</span>Roulette, loterie, craps</a>
+    <a href="#anniversaires"><span>Jeu</span>Le problème des anniversaires</a>
+    <a href="#montyhall"><span>Jeu</span>Le problème de Monty Hall</a>
+    <a href="#equitable"><span>·</span>Jeu équitable ou avantageux?</a>
+  </div>
+
+  <hr class="rule"/>
+
+  <section id="des">
+    <div class="section-titre"><span class="section-num">Simulation</span>Jeux de dés et loi des grands nombres</div>
+    <div class="boite exemple">
+      <div class="boite-titre">Un seul dé, puis deux dés</div>
+      <p>Pour un dé équilibré : \(P(\text{pair}) = \tfrac36 = \tfrac12 = 50\%\). Pour deux dés dont on additionne les résultats, il existe \(6\times6=36\) couples possibles. La somme 7 a 6 façons de sortir — (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) — donc \(P(7)=\tfrac6{36}\approx16{,}7\%\), alors qu'une somme de 2 n'a qu'une seule façon : \(P(2)=\tfrac1{36}\approx2{,}8\%\). Les sommes vont toutes de 2 à 12, mais elles ne sont <strong>pas équiprobables</strong>.</p>
+    </div>
+
+    <div class="interactif">
+      <div class="boite-titre" style="margin-bottom:8px;">Simulateur — lance deux dés et regarde la fréquence s'approcher de la théorie</div>
+      <div class="rangee-boutons">
+        <button class="btn-jeu" id="btnLancer1">Lancer 1 fois</button>
+        <button class="btn-jeu" id="btnLancer100">Lancer 100 fois</button>
+        <button class="btn-jeu" id="btnLancer1000">Lancer 1000 fois</button>
+        <button class="btn-jeu secondaire" id="btnReset">Réinitialiser</button>
+      </div>
+      <canvas height="240" id="desCanvas" width="520"></canvas>
+      <div class="stat-grille">
+        <div class="stat-item"><span class="val" id="statLancers">0</span><span class="lbl">Lancers totaux</span></div>
+        <div class="stat-item"><span class="val" id="statFreq7">0,0%</span><span class="lbl">Fréquence du 7</span></div>
+        <div class="stat-item"><span class="val">16,7%</span><span class="lbl">P(7) théorique</span></div>
+      </div>
+      <div class="info-box" id="desInfo">Les barres claires montrent la probabilité théorique; les barres foncées, la fréquence observée. Plus tu lances, plus elles devraient se ressembler — c'est la <strong>loi des grands nombres</strong>.</div>
+    </div>
+
+    <div class="boite methode">
+      <div class="boite-titre">Craps — la somme de deux dés</div>
+      <div class="table-wrap">
+        <table class="chiffres">
+          <tr><th>Somme</th><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+          <tr><th>Nb. de façons</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td></tr>
+        </table>
+      </div>
+      <p>7 est la somme la plus probable — c'est pour cela qu'elle joue un rôle central dans plusieurs jeux de dés.</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="cartes">
+    <div class="section-titre"><span class="section-num">Cartes et poker</span>Un paquet de 52 cartes</div>
+    <p>Un paquet standard contient \(4 \text{ couleurs} \times 13 \text{ valeurs} = 52\) cartes.</p>
+    <div class="boite exemple">
+      <div class="boite-titre">Deux cartes sans remise</div>
+      <p>On tire deux cartes successivement, sans remise. Probabilité d'obtenir deux as :</p>
+      $$P(A_1)=\frac4{52}, \qquad P(A_2\mid A_1)=\frac3{51}$$
+      $$P(\text{deux as}) = \frac4{52}\times\frac3{51} = \frac1{221} \approx 0{,}45\%$$
+      <p>La probabilité du deuxième tirage a changé parce que la première carte n'a pas été remise dans le paquet.</p>
+    </div>
+    <div class="boite methode">
+      <div class="boite-titre">Poker — la rareté des mains</div>
+      <p>Une main de 5 cartes parmi 52 : \(C_{52}^5 = 2\,598\,960\) mains possibles.</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Main</th><th>Probabilité</th></tr>
+          <tr><td>Une paire</td><td>≈ 42,26%</td></tr>
+          <tr><td>Un carré (4 cartes de même valeur)</td><td>≈ 0,0240% (environ 1 chance sur 416)</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="boite exemple">
+      <div class="boite-titre">Blackjack</div>
+      <p>Un blackjack naturel (un as + une carte de valeur 10) : avec 4 as et 16 cartes de valeur 10,</p>
+      $$P(\text{blackjack naturel}) = \frac{2(4)(16)}{C_{52}^2} = \frac{128}{1326} \approx 9{,}65\%$$
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="roulette">
+    <div class="section-titre"><span class="section-num">Espérance</span>Roulette, loterie et jeux de hasard</div>
+    <div class="boite methode">
+      <div class="boite-titre">Roulette européenne (37 cases)</div>
+      <p>Miser 1$ sur un numéro précis : \(P(\text{gagner})=\tfrac1{37}\approx2{,}70\%\). Si le gain net est 35$ en cas de succès et la perte 1$ sinon :</p>
+      $$E(X) = 35\left(\frac1{37}\right) - 1\left(\frac{36}{37}\right) = -\frac1{37} \approx -0{,}027\ \$$$
+      <p>En moyenne, le joueur perd environ 2,7 cents par dollar misé sur ce pari — c'est <strong>l'avantage de la maison</strong>.</p>
+    </div>
+    <div class="boite exemple">
+      <div class="boite-titre">Loterie — une probabilité extraordinairement petite</div>
+      <p>Choisir 6 numéros parmi 49 : \(C_{49}^6 = 13\,983\,816\) combinaisons. \(P(\text{6 bons numéros}) \approx 0{,}00000715\%\). Une probabilité très petite n'est pas une impossibilité : elle décrit simplement un événement extrêmement rare.</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="anniversaires">
+    <div class="section-titre"><span class="section-num">Énigme classique</span>Le problème des anniversaires</div>
+    <p>Dans un groupe de personnes, quelle est la probabilité qu'au moins deux personnes aient la même date d'anniversaire? Il est plus facile de calculer l'événement contraire : que <strong>personne</strong> ne partage son anniversaire.</p>
+    $$P(\text{tous différents}) = \frac{365}{365}\cdot\frac{364}{365}\cdot\frac{363}{365}\cdots\frac{365-n+1}{365}$$
+
+    <div class="interactif">
+      <div class="controles">
+        <div class="controle-item"><label>Nombre de personnes (n) <output id="outNAnniv">23</output></label><input id="rangeNAnniv" max="60" min="2" type="range" value="23"/></div>
+      </div>
+      <div class="etapes" id="annivEtapes">P(au moins une coïncidence) avec 23 personnes ≈ 50,7%</div>
+      <div class="rangee-boutons"><button class="btn-jeu" id="btnSimulerAnniv">Simuler un groupe au hasard</button></div>
+      <div class="carte-anniv" id="jetonsAnniv"></div>
+      <div class="info-box" id="annivInfo">Avec seulement 23 personnes, il est déjà légèrement plus probable que deux personnes partagent un anniversaire que l'inverse!</div>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="montyhall">
+    <div class="section-titre"><span class="section-num">Énigme classique</span>Le problème de Monty Hall</div>
+    <p>Trois portes. Derrière une porte se trouve un prix, derrière les deux autres, rien. Tu choisis une porte. L'animateur, qui connaît l'emplacement du prix, ouvre ensuite une autre porte qui ne contient pas le prix, et te demande si tu veux <strong>rester</strong> ou <strong>changer</strong> de porte.</p>
+    <div class="boite erreur">
+      <div class="boite-titre">L'intuition trompeuse</div>
+      <p>Il est tentant de penser qu'il reste deux portes, donc une chance sur deux. Pourtant, si l'animateur respecte toujours ces règles, <strong>changer</strong> de porte donne une probabilité de gain de \(\tfrac23\), alors que <strong>rester</strong> donne seulement \(\tfrac13\). L'animateur sait où se trouve le prix et choisit volontairement une porte perdante — son choix n'est pas neutre.</p>
+    </div>
+
+    <div class="interactif">
+      <div class="boite-titre" style="margin-bottom:8px;">Joue toi-même</div>
+      <div class="portes-rangee" id="portesRangee"></div>
+      <div class="info-box" id="montyInfo">Choisis une porte pour commencer.</div>
+      <div class="rangee-boutons" id="montyBoutons" style="display:none;">
+        <button class="btn-jeu" id="btnRester">Rester avec mon choix</button>
+        <button class="btn-jeu" id="btnChanger">Changer de porte</button>
+      </div>
+      <div class="rangee-boutons"><button class="btn-jeu secondaire" id="btnNouvellePartie">Nouvelle partie</button></div>
+      <div class="stat-grille">
+        <div class="stat-item"><span class="val" id="montyResteWin">0/0</span><span class="lbl">Victoires en restant</span></div>
+        <div class="stat-item"><span class="val" id="montyChangeWin">0/0</span><span class="lbl">Victoires en changeant</span></div>
+      </div>
+      <div class="rangee-boutons">
+        <button class="btn-jeu secondaire" id="btnSimuler100Rester">Simuler 200× « rester »</button>
+        <button class="btn-jeu secondaire" id="btnSimuler100Changer">Simuler 200× « changer »</button>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="equitable">
+    <div class="section-titre"><span class="section-num">Espérance mathématique</span>Jeu équitable ou jeu avantageux?</div>
+    <p>Supposons un jeu où l'on paie 2$ pour participer. On lance un dé : si on obtient 6, on reçoit 10$; sinon, rien. Le gain net est de 8$ en cas de 6 et de \(-2\)$ sinon.</p>
+    $$E(X) = 8\left(\frac16\right) - 2\left(\frac56\right) = -\frac13\ \$$$
+    <p>Le joueur perd donc en moyenne environ 0,33$ par partie. Pour rendre le jeu équitable, on cherche le gain net \(x\) qui annule l'espérance :</p>
+    $$x\left(\frac16\right) - 2\left(\frac56\right) = 0 \quad\Rightarrow\quad x = 10$$
+    <p>Le gain net devrait donc être de 10$ (pas 8$) lorsque le joueur obtient un 6, pour que le jeu soit parfaitement équitable.</p>
+
+    <div class="boite farfelu">
+      <div class="boite-titre">Une question à poser avant de jouer</div>
+      <p>Avant de participer à un jeu de hasard, la bonne question n'est pas seulement « est-ce que je peux gagner? », mais plutôt : <strong>« quelle est la probabilité de gagner, combien puis-je gagner ou perdre, et quelle est l'espérance du jeu? »</strong> Les probabilités ne permettent pas de prédire le résultat d'un lancer particulier — elles permettent de comprendre le comportement moyen d'un grand nombre d'expériences.</p>
+    </div>
+
+    <div class="boite anecdote">
+      <div class="boite-titre">La méthode de Monte-Carlo</div>
+      <p>Lorsqu'une expérience est facile à décrire mais difficile à répéter physiquement des milliers de fois, on peut la <strong>simuler</strong> par ordinateur — exactement ce que fait le simulateur de dés plus haut sur cette page. Cette approche, appelée <strong>méthode de Monte-Carlo</strong>, est utilisée en finance, en physique et en intelligence artificielle pour approximer des probabilités trop complexes à calculer directement.</p>
+    </div>
+
+    <div class="boite retenir">
+      <div class="boite-titre">Résumé de la section</div>
+      <p>Peu importe la méthode — calcul direct, diagramme en arbre ou simulation — toutes les approches doivent converger vers la même probabilité, comme l'a démontré Bernoulli avec sa loi des grands nombres. Ces outils, nés d'un problème de dés au 17<sup>e</sup> siècle, sont aujourd'hui au cœur de disciplines aussi variées que l'assurance, la médecine et l'intelligence artificielle.</p>
+    </div>
+
+    <div class="boite idee">
+      <div class="boite-titre">Conclusion — Chapitre 2 et mot de la fin</div>
+      <p>Ce second chapitre t'a fait passer du dénombrement méthodique — permutations, arrangements, combinaisons — au calcul rigoureux de probabilités, qu'elles soient discrètes ou continues. En refermant ce cahier, prends un instant pour repenser au fil qui relie chacune de ses pages : des scribes comptant des récoltes, un marchand londonien analysant des registres de décès, un ingénieur écossais inventant le premier graphique à bandes, deux mathématiciens français réglant une dispute de jeu par lettre, jusqu'à toi, aujourd'hui, capable de lire un diagramme de quartiles ou de calculer la probabilité d'un événement de la vie courante. La statistique et les probabilités sont des outils vivants, construits collectivement au fil des siècles pour mieux comprendre un monde rempli d'incertitude.</p>
+    </div>
+  </section>
+
+
+</div>
+</main>
+
+<nav aria-label="Table des matières" class="toc-flottante">
+<h2>Sur cette page</h2>
+<ol id="toc-list">
+
+<li><a href="#des">Jeu · Simulateur de dés</a></li>
+<li><a href="#cartes">Cartes, poker, blackjack</a></li>
+<li><a href="#roulette">Roulette, loterie</a></li>
+<li><a href="#anniversaires">Jeu · Anniversaires</a></li>
+<li><a href="#montyhall">Jeu · Monty Hall</a></li>
+<li><a href="#equitable">Jeu équitable?</a></li>
+
+</ol>
+</nav>
+</div>
+
+<div class="nav-suivant">
+<div class="wrap">
+<div><span class="label">Section précédente</span><span class="titre">2.2 — Calcul de probabilités</span></div>
+<a class="btn-secondaire" href="10-Probabilites.html">← Retour</a>
+<div><span class="label">Section suivante</span><span class="titre">Fin du parcours — retour à l'accueil</span></div>
+<a class="btn-primary" href="https://learnwithdom.page/cours/mat3052.html">Continuer →</a>
+</div>
+</div>
+
+<footer class="site-footer">MAT3052-2 · Statistique et probabilités · learnwithdom.page</footer>
+
+<script>
+
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-flottante a'));
+  var sections = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  function setActive(id){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); }); }
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      if(visible.length){ visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; }); setActive(visible[0].target.id); }
+    },{rootMargin:'-100px 0px -70% 0px',threshold:0});
+    sections.forEach(function(s){ observer.observe(s); });
+  }
+})();
+
+</script>
+<script>
+
+(function(){
+  var ARDOISE = '#223A34', CRAIE = '#D9A441', SAPIN = '#4B7A66', BRIQUE = '#B5524A';
+
+  // ================= Simulateur de dés (Monte-Carlo) =================
+  var counts = {}; for(var s=2; s<=12; s++) counts[s]=0;
+  var totalLancers = 0;
+  var theorique = {2:1,3:2,4:3,5:4,6:5,7:6,8:5,9:4,10:3,11:2,12:1};
+  var desCanvas = document.getElementById('desCanvas');
+  var dctx = desCanvas.getContext('2d');
+  var statLancers = document.getElementById('statLancers');
+  var statFreq7 = document.getElementById('statFreq7');
+  var desInfo = document.getElementById('desInfo');
+
+  function rollTwoDice(){
+    var d1 = 1 + Math.floor(Math.random()*6);
+    var d2 = 1 + Math.floor(Math.random()*6);
+    return d1 + d2;
+  }
+  function drawDes(){
+    var w = desCanvas.width, h = desCanvas.height, padL = 40, padB = 30, padT = 15;
+    dctx.clearRect(0,0,w,h);
+    var chartW = w - padL - 10, chartH = h - padT - padB;
+    var groupW = chartW / 11;
+    var maxFreqTheo = 6/36;
+    var maxFreqObs = 0;
+    if(totalLancers > 0){
+      for(var s=2; s<=12; s++){ maxFreqObs = Math.max(maxFreqObs, counts[s]/totalLancers); }
+    }
+    var maxFreq = Math.max(maxFreqTheo, maxFreqObs, 0.01) * 1.15;
+
+    dctx.strokeStyle = ARDOISE; dctx.lineWidth = 2;
+    dctx.beginPath(); dctx.moveTo(padL, padT); dctx.lineTo(padL, h-padB); dctx.lineTo(w-10, h-padB); dctx.stroke();
+
+    for(var sum=2; sum<=12; sum++){
+      var i = sum - 2;
+      var x = padL + i*groupW;
+      var theoFreq = theorique[sum]/36;
+      var obsFreq = totalLancers > 0 ? counts[sum]/totalLancers : 0;
+
+      var barW = groupW*0.38;
+      var hTheo = (theoFreq/maxFreq) * chartH;
+      dctx.fillStyle = '#D6EAF8';
+      dctx.fillRect(x + groupW*0.08, h-padB-hTheo, barW, hTheo);
+      dctx.strokeStyle = ARDOISE; dctx.lineWidth = 1; dctx.strokeRect(x + groupW*0.08, h-padB-hTheo, barW, hTheo);
+
+      var hObs = (obsFreq/maxFreq) * chartH;
+      dctx.fillStyle = (sum===7) ? BRIQUE : SAPIN;
+      dctx.fillRect(x + groupW*0.52, h-padB-hObs, barW, hObs);
+      dctx.strokeStyle = ARDOISE; dctx.lineWidth = 1; dctx.strokeRect(x + groupW*0.52, h-padB-hObs, barW, hObs);
+
+      dctx.fillStyle = ARDOISE; dctx.font = '11px JetBrains Mono'; dctx.textAlign = 'center';
+      dctx.fillText(sum, x + groupW/2, h-padB+15);
+    }
+    dctx.textAlign = 'left';
+    dctx.fillStyle = ARDOISE; dctx.font = '11px Space Grotesk';
+    dctx.fillText('clair = théorique   fonc\u00e9 = observ\u00e9', padL, 12);
+  }
+
+  function lancer(nb){
+    for(var i=0;i<nb;i++){
+      var s = rollTwoDice();
+      counts[s]++;
+      totalLancers++;
+    }
+    statLancers.textContent = totalLancers.toLocaleString('fr-CA');
+    var freq7 = totalLancers > 0 ? (counts[7]/totalLancers*100) : 0;
+    statFreq7.textContent = freq7.toFixed(1).replace('.', ',') + '%';
+    drawDes();
+    var ecart = Math.abs(freq7 - 16.67);
+    desInfo.textContent = totalLancers === 0
+      ? 'Les barres claires montrent la probabilité théorique; les barres foncées, la fréquence observée.'
+      : 'Après ' + totalLancers.toLocaleString('fr-CA') + ' lancers, la fréquence du 7 est ' + freq7.toFixed(1).replace('.', ',') + '%, contre 16,7% en théorie — un écart de ' + ecart.toFixed(1).replace('.', ',') + ' points. ' + (totalLancers >= 500 ? 'Remarque comme les barres se ressemblent de plus en plus.' : 'Lance encore pour voir la fréquence se stabiliser (loi des grands nombres).');
+  }
+  document.getElementById('btnLancer1').addEventListener('click', function(){ lancer(1); });
+  document.getElementById('btnLancer100').addEventListener('click', function(){ lancer(100); });
+  document.getElementById('btnLancer1000').addEventListener('click', function(){ lancer(1000); });
+  document.getElementById('btnReset').addEventListener('click', function(){
+    for(var s=2;s<=12;s++) counts[s]=0;
+    totalLancers = 0;
+    statLancers.textContent = '0'; statFreq7.textContent = '0,0%';
+    drawDes();
+    desInfo.textContent = 'Les barres claires montrent la probabilité théorique; les barres foncées, la fréquence observée.';
+  });
+  drawDes();
+
+  // ================= Problème des anniversaires =================
+  var rangeNAnniv = document.getElementById('rangeNAnniv'), outNAnniv = document.getElementById('outNAnniv');
+  var annivEtapes = document.getElementById('annivEtapes'), annivInfo = document.getElementById('annivInfo');
+  var jetonsAnniv = document.getElementById('jetonsAnniv');
+
+  function probaAnniversaires(n){
+    var p = 1;
+    for(var i=0;i<n;i++){ p *= (365-i)/365; }
+    return 1 - p;
+  }
+  function updateAnniv(){
+    var n = parseInt(rangeNAnniv.value,10);
+    outNAnniv.textContent = n;
+    var p = probaAnniversaires(n);
+    annivEtapes.textContent = 'P(au moins une coïncidence) avec ' + n + ' personnes ≈ ' + (p*100).toFixed(1).replace('.', ',') + '%';
+    annivInfo.textContent = n < 23
+      ? 'Avec seulement ' + n + ' personnes, la probabilité d\'une coïncidence est encore sous 50%.'
+      : 'Avec ' + n + ' personnes, il est plus probable qu\'improbable que deux personnes partagent un anniversaire!';
+  }
+  rangeNAnniv.addEventListener('input', updateAnniv);
+  updateAnniv();
+
+  document.getElementById('btnSimulerAnniv').addEventListener('click', function(){
+    var n = parseInt(rangeNAnniv.value,10);
+    var jours = [];
+    for(var i=0;i<n;i++) jours.push(1 + Math.floor(Math.random()*365));
+    var seen = {};
+    var dupJours = {};
+    jours.forEach(function(j){
+      if(seen[j]) dupJours[j] = true;
+      seen[j] = true;
+    });
+    jetonsAnniv.innerHTML = '';
+    jours.forEach(function(j, idx){
+      var jeton = document.createElement('div');
+      jeton.className = 'jeton' + (dupJours[j] ? ' dup' : '');
+      jeton.textContent = 'J' + (idx+1);
+      jeton.title = 'Jour ' + j;
+      jetonsAnniv.appendChild(jeton);
+    });
+    var nbDup = Object.keys(dupJours).length;
+    annivInfo.textContent = nbDup > 0
+      ? 'Coïncidence trouvée! ' + nbDup + ' date(s) d\'anniversaire partagée(s) dans ce groupe simulé de ' + n + ' personnes (en rouge).'
+      : 'Aucune coïncidence dans cette simulation de ' + n + ' personnes — essaie encore, ou augmente n.';
+  });
+
+  // ================= Monty Hall =================
+  var portesRangee = document.getElementById('portesRangee');
+  var montyInfo = document.getElementById('montyInfo');
+  var montyBoutons = document.getElementById('montyBoutons');
+  var montyResteWin = document.getElementById('montyResteWin');
+  var montyChangeWin = document.getElementById('montyChangeWin');
+
+  var statsMonty = { resteWin: 0, resteTotal: 0, changeWin: 0, changeTotal: 0 };
+  var etatJeu = null;
+
+  function updateStatsAffichage(){
+    montyResteWin.textContent = statsMonty.resteWin + '/' + statsMonty.resteTotal;
+    montyChangeWin.textContent = statsMonty.changeWin + '/' + statsMonty.changeTotal;
+  }
+
+  function nouvellePartie(){
+    var gagnante = Math.floor(Math.random()*3);
+    etatJeu = { gagnante: gagnante, choisie: null, ouverte: null, terminee: false };
+    portesRangee.innerHTML = '';
+    for(var i=0;i<3;i++){
+      (function(i){
+        var d = document.createElement('div');
+        d.className = 'porte';
+        d.textContent = 'Porte ' + (i+1);
+        d.addEventListener('click', function(){ choisirPorte(i); });
+        portesRangee.appendChild(d);
+      })(i);
+    }
+    montyInfo.textContent = 'Choisis une porte pour commencer.';
+    montyBoutons.style.display = 'none';
+  }
+
+  function choisirPorte(i){
+    if(etatJeu.choisie !== null) return;
+    etatJeu.choisie = i;
+    // l'animateur ouvre une porte perdante, différente du choix
+    var candidates = [0,1,2].filter(function(x){ return x !== i && x !== etatJeu.gagnante; });
+    etatJeu.ouverte = candidates[Math.floor(Math.random()*candidates.length)];
+    renderPortes();
+    montyInfo.innerHTML = 'Tu as choisi la porte ' + (i+1) + '. L\'animateur ouvre la porte ' + (etatJeu.ouverte+1) + ' — elle est vide. Veux-tu rester ou changer?';
+    montyBoutons.style.display = 'flex';
+  }
+
+  function renderPortes(reveal){
+    Array.prototype.forEach.call(portesRangee.children, function(d, i){
+      d.classList.toggle('choisie', i === etatJeu.choisie && !reveal);
+      if(i === etatJeu.ouverte || reveal){
+        d.classList.add('ouverte');
+        d.textContent = (i === etatJeu.gagnante) ? '🏆' : '🐐';
+        if(reveal && i === etatJeu.choisie) d.classList.add('choisie');
+        if(reveal && i === etatJeu.gagnante) d.classList.add('gagnante');
+      }
+    });
+  }
+
+  function terminerPartie(garder){
+    if(etatJeu.terminee) return;
+    etatJeu.terminee = true;
+    var finalChoix = garder ? etatJeu.choisie : [0,1,2].filter(function(x){ return x !== etatJeu.choisie && x !== etatJeu.ouverte; })[0];
+    var gagne = (finalChoix === etatJeu.gagnante);
+    renderPortes(true);
+    if(garder){ statsMonty.resteTotal++; if(gagne) statsMonty.resteWin++; }
+    else { statsMonty.changeTotal++; if(gagne) statsMonty.changeWin++; }
+    updateStatsAffichage();
+    montyInfo.textContent = (gagne ? 'Gagné! ' : 'Perdu. ') + 'Tu avais choisi de ' + (garder ? 'rester' : 'changer') + ' — le prix était derrière la porte ' + (etatJeu.gagnante+1) + '.';
+    montyBoutons.style.display = 'none';
+  }
+  document.getElementById('btnRester').addEventListener('click', function(){ terminerPartie(true); });
+  document.getElementById('btnChanger').addEventListener('click', function(){ terminerPartie(false); });
+  document.getElementById('btnNouvellePartie').addEventListener('click', nouvellePartie);
+
+  function simulerStrategie(garder, nb){
+    for(var k=0;k<nb;k++){
+      var gagnante = Math.floor(Math.random()*3);
+      var choisie = Math.floor(Math.random()*3);
+      var candidates = [0,1,2].filter(function(x){ return x !== choisie && x !== gagnante; });
+      var ouverte = candidates[Math.floor(Math.random()*candidates.length)];
+      var finalChoix = garder ? choisie : [0,1,2].filter(function(x){ return x !== choisie && x !== ouverte; })[0];
+      var gagne = (finalChoix === gagnante);
+      if(garder){ statsMonty.resteTotal++; if(gagne) statsMonty.resteWin++; }
+      else { statsMonty.changeTotal++; if(gagne) statsMonty.changeWin++; }
+    }
+    updateStatsAffichage();
+  }
+  document.getElementById('btnSimuler100Rester').addEventListener('click', function(){ simulerStrategie(true, 200); });
+  document.getElementById('btnSimuler100Changer').addEventListener('click', function(){ simulerStrategie(false, 200); });
+
+  nouvellePartie();
+})();
+
+</script>
+
+</body>
+</html>

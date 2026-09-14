@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MAT3052-2 — 2.1 : Dénombrement et représentation d'événements</title>
+<meta content="Principe multiplicatif, permutations, arrangements et combinaisons." name="description"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,0,7..72,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$', '$$']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+:root {
+  --ardoise: #223A34; --ardoise-deep: #182922; --papier: #EAEEE9; --papier-2: #E0E5DD;
+  --encre: #1C2B3A; --craie: #D9A441; --craie-deep: #B9832C; --brique: #B5524A; --sapin: #4B7A68;
+  --rose: #A93226; --rose-clair: #FBEAE8; --teal: #0E6655; --teal-clair: #DCF3EA; --violet: #6C3483; --violet-clair: #EEE3F3;
+  --ligne: rgba(28, 43, 58, 0.14); --white: #FCFBF7;
+  --font-display: "Space Grotesk", sans-serif; --font-body: "Literata", Georgia, serif; --font-mono: "JetBrains Mono", monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--papier); color: var(--encre); font-family: var(--font-body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--craie-deep); outline-offset: 3px; border-radius: 2px; }
+
+header.site { position: sticky; top: 0; z-index: 40; background: rgba(234, 238, 233, 0.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--ligne); }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+.brand { font-family: var(--font-mono); font-size: 15px; font-weight: 600; letter-spacing: .02em; text-decoration: none; }
+.brand span { color: var(--craie-deep); }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; font-family: var(--font-display); font-size: 14px; font-weight: 500; }
+.nav-links a { text-decoration: none; opacity: .85; }
+.nav-links a:hover { opacity: 1; color: var(--craie-deep); }
+
+.hero { background: var(--ardoise); color: var(--white); position: relative; overflow: hidden;
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px), repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px);
+  padding: 56px 0; }
+.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--craie); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.eyebrow a { text-decoration: none; opacity: .75; color: inherit; }
+.eyebrow a:hover { opacity: 1; }
+.hero .course-title { font-family: var(--font-display); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 14px; }
+.hero .course-description { font-family: var(--font-body); font-size: 16px; line-height: 1.65; max-width: 68ch; color: rgba(252, 251, 247, 0.82); }
+
+.page-layout { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 48px; max-width: 1360px; margin: 0 auto; padding: 40px 28px; align-items: start; }
+.page-layout > main.wrap { max-width: none; padding: 0; grid-column: 1; }
+
+.toc-flottante { grid-column: 2; position: sticky; top: 96px; align-self: start; max-height: calc(100vh - 130px); overflow-y: auto; padding: 20px; background: var(--white); border: 1px solid var(--ligne); border-radius: 8px; font-family: var(--font-display); }
+.toc-flottante h2 { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--craie-deep); margin-bottom: 12px; }
+.toc-flottante ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.toc-flottante li a { display: block; text-decoration: none; font-size: 12.5px; font-weight: 500; color: var(--encre); opacity: .65; padding: 5px 0 5px 12px; border-left: 2px solid var(--ligne); transition: all .15s ease; line-height: 1.3; }
+.toc-flottante li a:hover { opacity: 1; border-left-color: var(--craie-deep); }
+.toc-flottante li a.active { opacity: 1; color: var(--ardoise-deep); border-left-color: var(--craie-deep); font-weight: 600; }
+
+@media(max-width: 1180px) { .page-layout { display: block; padding: 30px 20px; } .toc-flottante { display: none; } }
+
+.chapitre { padding-bottom: 80px; }
+.section-titre { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.01em; margin: 50px 0 16px; padding-top: 22px; border-top: 1px solid var(--ligne); scroll-margin-top: 96px; }
+.section-titre:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+.section-num { font-family: var(--font-mono); font-size: 13px; color: var(--craie-deep); letter-spacing: 0.06em; display: block; margin-bottom: 6px; text-transform: uppercase; }
+.sous-titre { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin: 28px 0 12px; color: var(--ardoise); }
+
+p { margin: 0 0 16px; max-width: 74ch; }
+ul, ol { margin: 0 0 20px 22px; max-width: 70ch; }
+li { margin: 6px 0; }
+.centre { text-align: center; font-weight: 600; font-family: var(--font-mono); color: var(--ardoise); margin: 10px 0 18px; }
+
+.sommaire { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 40px; }
+.sommaire a { display: block; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; padding: 13px 16px; text-decoration: none; font-family: var(--font-display); font-size: 13.5px; font-weight: 500; color: var(--encre); transition: border-color 0.15s ease, transform 0.15s ease; }
+.sommaire a:hover { border-color: var(--craie-deep); transform: translateX(3px); }
+.sommaire a span { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--craie-deep); margin-bottom: 4px; }
+
+.boite, .encadre { background: var(--white); border: 1px solid var(--ligne); border-left: 4px solid var(--ardoise); border-radius: 6px; padding: 20px 24px; margin: 22px 0; }
+.boite-titre { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--ardoise); }
+.boite p:last-child, .boite ul:last-child, .boite ol:last-child { margin-bottom: 0; }
+.boite.idee { border-left-color: var(--craie-deep); background: #FBF4E4; } .boite.idee .boite-titre { color: var(--craie-deep); }
+.boite.definition { border-left-color: var(--sapin); background: #EEF3F0; } .boite.definition .boite-titre { color: var(--sapin); }
+.boite.notation, .boite.methode { border-left-color: var(--sapin); background: #EEF3F0; } .boite.notation .boite-titre, .boite.methode .boite-titre { color: var(--sapin); }
+.boite.exemple { border-left-color: var(--craie-deep); background: var(--papier-2); } .boite.exemple .boite-titre { color: var(--craie-deep); }
+.boite.erreur { border-left-color: var(--brique); background: #FBEFEE; } .boite.erreur .boite-titre { color: var(--brique); }
+.boite.retenir { border-left-color: var(--ardoise); background: var(--ardoise); color: var(--white); } .boite.retenir .boite-titre { color: var(--craie); } .boite.retenir li { color: rgba(252, 251, 247, 0.92); }
+.boite.anecdote { border-left-color: var(--rose); background: var(--rose-clair); } .boite.anecdote .boite-titre { color: var(--rose); }
+.boite.farfelu { border-left-color: var(--teal); background: var(--teal-clair); } .boite.farfelu .boite-titre { color: var(--teal); }
+.boite.objectifs { border-left-color: var(--ardoise); background: #E7EEEC; } .boite.objectifs .boite-titre { color: var(--ardoise); }
+
+.table-wrap { border: 1px solid var(--ligne); border-radius: 6px; overflow-x: auto; margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; background: var(--white); }
+th, td { border-bottom: 1px solid var(--ligne); padding: 10px 14px; text-align: left; }
+th { font-family: var(--font-display); font-weight: 600; font-size: 13.5px; background: var(--ardoise); color: var(--white); }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: var(--papier); }
+table.chiffres th, table.chiffres td { text-align: center; font-family: var(--font-mono); }
+
+.interactif { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 24px 0; padding: 22px; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+canvas { border: 1px solid var(--ligne); border-radius: 4px; background-color: var(--white); max-width: 100%; height: auto; }
+.info-box { background-color: #EEF3F0; border-left: 4px solid var(--sapin); padding: 12px 16px; margin-top: 15px; border-radius: 0 4px 4px 0; font-size: 0.95rem; width: 100%; }
+.info-box.alerte { background-color: #FBEFEE; border-left-color: var(--brique); }
+.etapes { background: var(--papier); border-radius: 4px; padding: 14px 18px; margin-top: 14px; width: 100%; font-family: var(--font-mono); font-size: 0.92rem; line-height: 1.85; }
+
+.controles { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; width: 100%; max-width: 560px; margin-bottom: 6px; }
+.controle-item { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 150px; }
+.controle-item label { font-family: var(--font-mono); font-size: 11.5px; color: var(--ardoise); font-weight: 600; display: flex; justify-content: space-between; }
+.controle-item output { color: var(--craie-deep); }
+.controle-item select { font-family: var(--font-mono); font-size: 13px; padding: 6px 8px; border-radius: 4px; border: 1px solid var(--ligne); background: var(--white); }
+input[type="range"] { width: 100%; accent-color: var(--sapin); }
+
+.btn-jeu { font-family: var(--font-display); font-size: 14px; font-weight: 600; padding: 10px 20px; border-radius: 6px; border: none; background: var(--sapin); color: var(--white); cursor: pointer; transition: transform .1s ease, background .15s ease; }
+.btn-jeu:hover { background: var(--ardoise); }
+.btn-jeu:active { transform: scale(0.97); }
+.btn-jeu.secondaire { background: var(--white); color: var(--encre); border: 1.5px solid var(--ligne); }
+.btn-jeu.secondaire:hover { border-color: var(--craie-deep); background: var(--white); }
+.btn-jeu:disabled { opacity: .5; cursor: default; }
+.rangee-boutons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 10px 0; }
+
+.porte { width: 84px; height: 120px; border-radius: 6px 6px 3px 3px; border: 2px solid var(--ardoise); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 15px; cursor: pointer; background: var(--sapin); color: var(--white); transition: transform .15s ease, background .15s ease; user-select: none; }
+.porte:hover { transform: translateY(-3px); }
+.porte.ouverte { background: var(--papier-2); color: var(--encre); cursor: default; }
+.porte.ouverte:hover { transform: none; }
+.porte.gagnante { background: var(--craie); color: var(--ardoise-deep); }
+.porte.choisie { outline: 3px solid var(--brique); outline-offset: 3px; }
+.portes-rangee { display: flex; gap: 24px; justify-content: center; margin: 18px 0; }
+
+.stat-grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; width: 100%; max-width: 520px; margin-top: 14px; }
+.stat-item { background: var(--papier); border-radius: 6px; padding: 10px 14px; text-align: center; font-family: var(--font-mono); }
+.stat-item .val { font-size: 1.4rem; font-weight: 700; color: var(--ardoise-deep); display: block; }
+.stat-item .lbl { font-size: 11px; color: var(--craie-deep); text-transform: uppercase; letter-spacing: .04em; }
+
+.quiz-scenario { background: var(--papier); border-radius: 6px; padding: 16px 20px; margin-bottom: 14px; width: 100%; font-style: italic; }
+.quiz-options { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; margin-bottom: 10px; }
+.quiz-option { font-family: var(--font-display); font-size: 13.5px; font-weight: 600; padding: 10px 16px; border-radius: 6px; border: 1.5px solid var(--ligne); background: var(--white); cursor: pointer; }
+.quiz-option:hover { border-color: var(--craie-deep); }
+.quiz-option.correct { background: #DCF3EA; border-color: var(--sapin); color: var(--teal); }
+.quiz-option.incorrect { background: #FBEFEE; border-color: var(--brique); color: var(--brique); }
+
+.carte-anniv { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; max-width: 480px; margin: 10px 0; }
+.jeton { width: 26px; height: 26px; border-radius: 50%; background: var(--papier-2); border: 1.5px solid var(--ligne); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 10px; }
+.jeton.dup { background: var(--brique); color: var(--white); border-color: var(--brique); }
+
+footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; background: var(--white); font-family: var(--font-mono); font-size: 0.85rem; color: rgba(28, 43, 58, 0.7); text-align: center; }
+
+.nav-suivant { border-top: 1px solid var(--ligne); background: var(--papier-2); }
+.nav-suivant .wrap { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; gap: 16px; flex-wrap: wrap; }
+.nav-suivant .label { display: block; font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--craie-deep); margin-bottom: 4px; }
+.nav-suivant .titre { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+.btn-primary { background: var(--sapin); color: var(--white); text-decoration: none; padding: 11px 20px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+.btn-secondaire { border: 1.5px solid var(--ligne); color: var(--encre); text-decoration: none; padding: 9px 18px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+
+@media (max-width: 720px) { .sommaire { grid-template-columns: 1fr; } .boite, .encadre { padding: 16px; } .nav-suivant .wrap { flex-direction: column; text-align: center; } .portes-rangee { gap: 12px; } .porte { width: 70px; height: 100px; font-size: 13px; } }
+</style>
+
+</head>
+<body>
+
+<header class="site">
+<nav class="wrap">
+<a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span></a>
+<ul class="nav-links">
+<li><a href="https://learnwithdom.page">Accueil</a></li>
+<li><a href="https://learnwithdom.page/cours/mat3052.html">MAT3052-2</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="hero">
+<div class="wrap hero-inner compact">
+<div class="eyebrow"><a href="08-Quartiles.html">MAT3052-2 · 1.3 Diagramme de quartiles</a></div>
+<h1 class="course-title">2.1 — Dénombrement et représentation d'événements</h1>
+<p class="course-description">Compter sans énumérer : principe multiplicatif, permutations, arrangements et combinaisons.</p>
+</div>
+</div>
+
+<div class="page-layout">
+<main class="wrap">
+<div class="wrap chapitre">
+
+
+  <p>Le premier chapitre nous a appris à décrire des données déjà recueillies. Ce second chapitre change de perspective : plutôt que de regarder vers le passé, nous allons apprendre à quantifier l'incertitude face à l'avenir. Nous commencerons par les techniques de <strong>dénombrement</strong> — des outils pour compter, souvent très rapidement, un nombre de possibilités qu'il serait autrement impossible d'énumérer une à une.</p>
+
+  <div class="boite objectifs">
+    <div class="boite-titre">Objectifs de la section</div>
+    <ul>
+      <li>Dénombrer les résultats possibles d'une expérience à l'aide du principe multiplicatif, d'un diagramme en arbre ou d'un tableau.</li>
+      <li>Distinguer et calculer des permutations, des arrangements et des combinaisons.</li>
+    </ul>
+  </div>
+
+  <div class="sommaire">
+    <a href="#principe"><span>2.1.1</span>Dénombrement et principe multiplicatif</a>
+    <a href="#permutation"><span>2.1.2</span>Permutation</a>
+    <a href="#arrangement"><span>2.1.3</span>Arrangement</a>
+    <a href="#combinaison"><span>2.1.4</span>Combinaison</a>
+    <a href="#calculateur"><span>Jeu</span>Calculateur et quiz</a>
+  </div>
+
+  <hr class="rule"/>
+
+  <section id="principe">
+    <div class="section-titre"><span class="section-num">2.1.1</span>Dénombrement et principe multiplicatif</div>
+    <div class="boite definition">
+      <div class="boite-titre">Définition</div>
+      <p><strong>Dénombrer</strong>, c'est compter le nombre de résultats possibles d'une expérience, sans nécessairement les énumérer un par un. Le <strong>principe multiplicatif</strong> énonce que si une première étape peut se réaliser de \(m\) façons, et qu'une seconde peut ensuite se réaliser de \(n\) façons, alors les deux étapes ensemble peuvent se réaliser de \(m \times n\) façons.</p>
+    </div>
+    <div class="boite exemple">
+      <div class="boite-titre">Principe multiplicatif — menu de restaurant</div>
+      <p>Un menu offre 4 entrées, 6 plats principaux et 3 desserts. \(4 \times 6 \times 3 = 72\) repas différents possibles.</p>
+    </div>
+    <div class="boite anecdote">
+      <div class="boite-titre">L'Ars Conjectandi de Jacob Bernoulli</div>
+      <p>En 1713, huit ans après sa mort, paraît l'<em>Ars Conjectandi</em> (« L'art de conjecturer ») du mathématicien suisse <strong>Jacob Bernoulli</strong>, premier traité rigoureux sur le dénombrement et les probabilités. Bernoulli y démontre la <strong>loi des grands nombres</strong> : plus on répète une expérience aléatoire, plus la fréquence observée se rapproche de sa probabilité théorique. Il a travaillé sur ce livre pendant plus de 20 ans sans jamais le terminer — c'est son neveu qui l'a publié après sa mort.</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="permutation">
+    <div class="section-titre"><span class="section-num">2.1.2</span>Permutation</div>
+    <div class="boite definition">
+      <div class="boite-titre">Définition</div>
+      <p>Une <strong>permutation</strong> est un arrangement <strong>ordonné</strong> de <strong>tous</strong> les éléments d'un ensemble : \(n! = n \times (n-1) \times \cdots \times 2 \times 1\). Par convention, \(0! = 1\).</p>
+    </div>
+    <div class="boite exemple">
+      <div class="boite-titre">Ordre d'arrivée</div>
+      <p>De combien de façons 5 coureurs peuvent-ils terminer une course? \(5! = 120\) ordres d'arrivée possibles.</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="arrangement">
+    <div class="section-titre"><span class="section-num">2.1.3</span>Arrangement</div>
+    <div class="boite definition">
+      <div class="boite-titre">Définition</div>
+      <p>Un <strong>arrangement</strong> est un choix <strong>ordonné</strong> de \(r\) éléments parmi \(n\) (avec \(r \le n\)), sans répétition : \( A_n^r = \dfrac{n!}{(n-r)!} \).</p>
+    </div>
+    <div class="boite exemple">
+      <div class="boite-titre">Podium olympique</div>
+      <p>8 athlètes, on attribue or/argent/bronze : \( A_8^3 = \dfrac{8!}{5!} = 8\times7\times6 = 336 \).</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="combinaison">
+    <div class="section-titre"><span class="section-num">2.1.4</span>Combinaison</div>
+    <div class="boite definition">
+      <div class="boite-titre">Définition</div>
+      <p>Une <strong>combinaison</strong> est un choix <strong>non ordonné</strong> de \(r\) éléments parmi \(n\) : \( C_n^r = \dfrac{n!}{r!(n-r)!} \). C'est un arrangement dont on a « oublié » l'ordre.</p>
+    </div>
+    <div class="boite exemple">
+      <div class="boite-titre">Comité de travail</div>
+      <p>Parmi 8 employés, un comité de 3 : \( C_8^3 = \dfrac{8\times7\times6}{3\times2\times1} = 56 \) — beaucoup moins que 336, puisque l'ordre ne compte pas.</p>
+    </div>
+    <div class="boite farfelu">
+      <div class="boite-titre">Le tapis rouge — retenir la différence par l'image</div>
+      <p>Une <strong>permutation</strong> : décider l'ordre dans lequel <strong>toute</strong> l'équipe pose pour la photo. Un <strong>arrangement</strong> : décider qui obtient les 3 sièges VIP (siège 1, 2, 3 — l'ordre compte). Une <strong>combinaison</strong> : décider quelles 3 personnes sont invitées à la fête (peu importe l'ordre d'invitation). « Tout le monde, ordre important » (permutation), « quelques-uns, ordre important » (arrangement), « quelques-uns, ordre sans importance » (combinaison).</p>
+    </div>
+    <div class="boite erreur">
+      <div class="boite-titre">Erreur fréquente</div>
+      <p>Le test le plus fiable : demande-toi si <strong>échanger l'ordre de deux éléments choisis donnerait un résultat différent</strong>. Si oui (échanger l'or et le bronze), c'est un <strong>arrangement</strong>. Si non (échanger l'ordre de nomination de deux membres d'un comité), c'est une <strong>combinaison</strong>.</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="calculateur">
+    <div class="section-titre"><span class="section-num">Jeu interactif</span>Calculateur n! / Aⁿᵣ / Cⁿᵣ, et quiz de reconnaissance</div>
+
+    <div class="interactif">
+      <div class="boite-titre" style="margin-bottom:8px;">Calculateur</div>
+      <div class="controles">
+        <div class="controle-item"><label>n <output id="outN">10</output></label><input id="rangeN" max="12" min="1" type="range" value="10"/></div>
+        <div class="controle-item"><label>r <output id="outR">3</output></label><input id="rangeR" max="12" min="0" type="range" value="3"/></div>
+      </div>
+      <div class="etapes" id="calcEtapes">n! = 3 628 800 | Aₙʳ = 720 | Cₙʳ = 120</div>
+      <div class="info-box" id="calcInfo">Ajuste n et r pour voir les trois formules réagir différemment.</div>
+    </div>
+
+    <div class="interactif">
+      <div class="boite-titre" style="margin-bottom:8px;">Quiz — permutation, arrangement ou combinaison?</div>
+      <div class="quiz-scenario" id="denomScenario">Chargement...</div>
+      <div class="quiz-options" id="denomOptions"></div>
+      <div class="info-box" id="denomFeedback">Choisis le bon type de dénombrement.</div>
+      <div class="rangee-boutons"><button class="btn-jeu secondaire" id="denomSuivant">Question suivante →</button></div>
+      <div class="stat-grille">
+        <div class="stat-item"><span class="val" id="denomScore">0</span><span class="lbl">Bonnes réponses</span></div>
+        <div class="stat-item"><span class="val" id="denomTotal">0</span><span class="lbl">Essais</span></div>
+      </div>
+    </div>
+
+    <div class="boite retenir">
+      <div class="boite-titre">Résumé de la section</div>
+      <p>Le principe multiplicatif, le diagramme en arbre et le tableau à double entrée permettent de dénombrer les résultats possibles d'une expérience. Lorsqu'on choisit un sous-ensemble ordonné de tous les éléments disponibles, c'est une permutation (\(n!\)); lorsqu'on choisit un sous-ensemble ordonné d'une partie des éléments, c'est un arrangement (\(A_n^r\)); lorsque l'ordre du choix n'a pas d'importance, c'est une combinaison (\(C_n^r\)). Ces techniques sont le point de départ indispensable du calcul de probabilités, abordé à la section suivante.</p>
+    </div>
+  </section>
+
+
+</div>
+</main>
+
+<nav aria-label="Table des matières" class="toc-flottante">
+<h2>Sur cette page</h2>
+<ol id="toc-list">
+
+<li><a href="#principe">2.1.1 · Principe multiplicatif</a></li>
+<li><a href="#permutation">2.1.2 · Permutation</a></li>
+<li><a href="#arrangement">2.1.3 · Arrangement</a></li>
+<li><a href="#combinaison">2.1.4 · Combinaison</a></li>
+<li><a href="#calculateur">Jeu · Calculateur et quiz</a></li>
+
+</ol>
+</nav>
+</div>
+
+<div class="nav-suivant">
+<div class="wrap">
+<div><span class="label">Section précédente</span><span class="titre">1.3 — Diagramme de quartiles</span></div>
+<a class="btn-secondaire" href="08-Quartiles.html">← Retour</a>
+<div><span class="label">Section suivante</span><span class="titre">2.2 — Calcul de probabilités</span></div>
+<a class="btn-primary" href="10-Probabilites.html">Continuer →</a>
+</div>
+</div>
+
+<footer class="site-footer">MAT3052-2 · Statistique et probabilités · learnwithdom.page</footer>
+
+<script>
+
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-flottante a'));
+  var sections = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  function setActive(id){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); }); }
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      if(visible.length){ visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; }); setActive(visible[0].target.id); }
+    },{rootMargin:'-100px 0px -70% 0px',threshold:0});
+    sections.forEach(function(s){ observer.observe(s); });
+  }
+})();
+
+</script>
+<script>
+
+(function(){
+  function factorial(n){ var r = 1; for(var i=2;i<=n;i++) r*=i; return r; }
+  function fmt(n){ return n.toLocaleString('fr-CA'); }
+
+  // ---- Calculateur ----
+  var rangeN = document.getElementById('rangeN'), outN = document.getElementById('outN');
+  var rangeR = document.getElementById('rangeR'), outR = document.getElementById('outR');
+  var calcEtapes = document.getElementById('calcEtapes'), calcInfo = document.getElementById('calcInfo');
+
+  function updateCalc(){
+    var n = parseInt(rangeN.value,10);
+    rangeR.max = n;
+    var r = parseInt(rangeR.value,10);
+    if(r > n){ r = n; rangeR.value = r; }
+    outN.textContent = n; outR.textContent = r;
+    var nFact = factorial(n);
+    var arrangement = factorial(n) / factorial(n-r);
+    var combinaison = arrangement / factorial(r);
+    calcEtapes.textContent = n+'! = '+fmt(nFact)+'  |  A'+n+'^'+r+' = '+n+'!/('+n+'-'+r+')! = '+fmt(arrangement)+'  |  C'+n+'^'+r+' = A'+n+'^'+r+'/'+r+'! = '+fmt(combinaison);
+    calcInfo.textContent = 'Avec n='+n+' et r='+r+', la combinaison ('+fmt(combinaison)+') est toujours plus petite que l\'arrangement ('+fmt(arrangement)+'), puisqu\'on divise en plus par '+r+'! pour « oublier » l\'ordre.';
+  }
+  [rangeN, rangeR].forEach(function(el){ el.addEventListener('input', updateCalc); });
+  updateCalc();
+
+  // ---- Quiz permutation / arrangement / combinaison ----
+  var questions = [
+    { texte: "De combien de façons peut-on choisir 4 livres à lire parmi 10, sans se soucier de l'ordre de lecture?", reponse: "Combinaison" },
+    { texte: "De combien de façons peut-on attribuer les rôles de capitaine, vice-capitaine et gardien parmi 12 joueurs d'une équipe?", reponse: "Arrangement" },
+    { texte: "De combien de façons peut-on ranger 6 livres différents côte à côte sur une étagère (tous les livres sont utilisés)?", reponse: "Permutation" },
+    { texte: "De combien de façons peut-on former une équipe de 5 joueurs parmi 15, sans attribuer de position particulière?", reponse: "Combinaison" },
+    { texte: "De combien de façons 8 personnes peuvent-elles s'asseoir sur 8 chaises alignées?", reponse: "Permutation" },
+    { texte: "De combien de façons peut-on distribuer l'or, l'argent et le bronze à 3 des 10 finalistes d'une compétition?", reponse: "Arrangement" },
+    { texte: "De combien de façons peut-on choisir 3 desserts à apporter à un pique-nique parmi 8 desserts possibles (aucun rôle distinct)?", reponse: "Combinaison" },
+    { texte: "De combien de façons peut-on assigner un mot de passe à 4 lettres différentes prises dans un alphabet de 26 lettres, sans répétition, où l'ordre des lettres compte?", reponse: "Arrangement" }
+  ];
+  var optionsD = ["Permutation", "Arrangement", "Combinaison"];
+  var currentD = null, scoreD = 0, totalD = 0;
+  var denomScenario = document.getElementById('denomScenario');
+  var denomOptions = document.getElementById('denomOptions');
+  var denomFeedback = document.getElementById('denomFeedback');
+  var denomScore = document.getElementById('denomScore');
+  var denomTotal = document.getElementById('denomTotal');
+
+  function nextQuestionD(){
+    currentD = questions[Math.floor(Math.random()*questions.length)];
+    denomScenario.textContent = currentD.texte;
+    denomFeedback.textContent = "Est-ce une permutation, un arrangement ou une combinaison?";
+    denomFeedback.classList.remove('alerte');
+    denomOptions.innerHTML = '';
+    optionsD.forEach(function(opt){
+      var btn = document.createElement('button');
+      btn.className = 'quiz-option';
+      btn.textContent = opt;
+      btn.addEventListener('click', function(){
+        totalD++; denomTotal.textContent = totalD;
+        if(opt === currentD.reponse){
+          btn.classList.add('correct'); scoreD++; denomScore.textContent = scoreD;
+          denomFeedback.textContent = 'Exact — c\'est bien une ' + currentD.reponse.toLowerCase() + '.';
+        } else {
+          btn.classList.add('incorrect');
+          denomFeedback.textContent = 'Pas tout à fait — la bonne réponse était « ' + currentD.reponse + ' ».';
+          denomFeedback.classList.add('alerte');
+        }
+        Array.prototype.forEach.call(denomOptions.children, function(b){ b.disabled = true; });
+      });
+      denomOptions.appendChild(btn);
+    });
+  }
+  document.getElementById('denomSuivant').addEventListener('click', nextQuestionD);
+  nextQuestionD();
+})();
+
+</script>
+
+</body>
+</html>
