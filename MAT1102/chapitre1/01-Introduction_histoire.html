@@ -154,6 +154,20 @@ footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; backgr
 .btn-secondaire { border: 1.5px solid var(--ligne); color: var(--encre); text-decoration: none; padding: 9px 18px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
 
 @media (max-width: 720px) { .sommaire { grid-template-columns: 1fr; } .boite, .encadre { padding: 16px; } .nav-suivant .wrap { flex-direction: column; text-align: center; } .portes-rangee { gap: 12px; } .porte { width: 70px; height: 100px; font-size: 13px; } }
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Makes the image automatically adjust its size */
+.image-container img {
+  max-width: 100%;    /* Scales the image down if the screen is smaller than the image */
+  height: auto;       /* Maintains the original aspect ratio so it doesn't stretch */
+  display: block;
+}
+
 </style>
 
 </head>
