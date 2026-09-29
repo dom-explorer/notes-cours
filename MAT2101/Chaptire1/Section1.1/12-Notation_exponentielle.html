@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MAT2101-3 — 1.1.1 : La notation exponentielle</title>
+<meta content="Base, exposant, parenthèses, exposants négatifs et nul, notation scientifique — avec explorateurs interactifs." name="description"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,0,7..72,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$', '$$']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+:root {
+  --ardoise: #223A34; --ardoise-deep: #182922; --papier: #EAEEE9; --papier-2: #E0E5DD;
+  --encre: #1C2B3A; --craie: #D9A441; --craie-deep: #B9832C; --brique: #B5524A; --sapin: #4B7A68;
+  --ligne: rgba(28, 43, 58, 0.14); --white: #FCFBF7;
+  --font-display: "Space Grotesk", sans-serif; --font-body: "Literata", Georgia, serif; --font-mono: "JetBrains Mono", monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--papier); color: var(--encre); font-family: var(--font-body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--craie-deep); outline-offset: 3px; border-radius: 2px; }
+
+header.site { position: sticky; top: 0; z-index: 40; background: rgba(234, 238, 233, 0.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--ligne); }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+.brand { font-family: var(--font-mono); font-size: 15px; font-weight: 600; letter-spacing: .02em; text-decoration: none; }
+.brand span { color: var(--craie-deep); }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; font-family: var(--font-display); font-size: 14px; font-weight: 500; }
+.nav-links a { text-decoration: none; opacity: .85; }
+.nav-links a:hover { opacity: 1; color: var(--craie-deep); }
+
+.hero { background: var(--ardoise); color: var(--white); position: relative; overflow: hidden;
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px), repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px);
+  padding: 56px 0; }
+.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--craie); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.eyebrow a { text-decoration: none; opacity: .75; color: inherit; }
+.eyebrow a:hover { opacity: 1; }
+.hero .course-title { font-family: var(--font-display); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 14px; }
+.hero .course-description { font-family: var(--font-body); font-size: 16px; line-height: 1.65; max-width: 68ch; color: rgba(252, 251, 247, 0.82); }
+
+.page-layout { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 48px; max-width: 1360px; margin: 0 auto; padding: 40px 28px; align-items: start; }
+.page-layout > main.wrap { max-width: none; padding: 0; grid-column: 1; }
+
+.toc-flottante { grid-column: 2; position: sticky; top: 96px; align-self: start; max-height: calc(100vh - 130px); overflow-y: auto; padding: 20px; background: var(--white); border: 1px solid var(--ligne); border-radius: 8px; font-family: var(--font-display); }
+.toc-flottante h2 { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--craie-deep); margin-bottom: 12px; }
+.toc-flottante ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.toc-flottante li a { display: block; text-decoration: none; font-size: 12.7px; font-weight: 500; color: var(--encre); opacity: .65; padding: 5px 0 5px 12px; border-left: 2px solid var(--ligne); transition: all .15s ease; line-height: 1.3; }
+.toc-flottante li a:hover { opacity: 1; border-left-color: var(--craie-deep); }
+.toc-flottante li a.active { opacity: 1; color: var(--ardoise-deep); border-left-color: var(--craie-deep); font-weight: 600; }
+
+@media(max-width: 1180px) { .page-layout { display: block; padding: 30px 20px; } .toc-flottante { display: none; } }
+
+.chapitre { padding-bottom: 80px; }
+.section-titre { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.01em; margin: 50px 0 16px; padding-top: 22px; border-top: 1px solid var(--ligne); scroll-margin-top: 96px; }
+.section-titre:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+.section-num { font-family: var(--font-mono); font-size: 13px; color: var(--craie-deep); letter-spacing: 0.06em; display: block; margin-bottom: 6px; text-transform: uppercase; }
+.sous-titre { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin: 28px 0 12px; color: var(--ardoise); }
+
+p { margin: 0 0 16px; max-width: 74ch; }
+ul, ol { margin: 0 0 20px 22px; max-width: 70ch; }
+li { margin: 6px 0; }
+.centre { text-align: center; font-weight: 600; font-family: var(--font-mono); color: var(--ardoise); margin: 10px 0 18px; }
+
+.sommaire { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 40px; }
+.sommaire a { display: block; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; padding: 13px 16px; text-decoration: none; font-family: var(--font-display); font-size: 13.5px; font-weight: 500; color: var(--encre); transition: border-color 0.15s ease, transform 0.15s ease; }
+.sommaire a:hover { border-color: var(--craie-deep); transform: translateX(3px); }
+.sommaire a span { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--craie-deep); margin-bottom: 4px; }
+
+.boite, .encadre { background: var(--white); border: 1px solid var(--ligne); border-left: 4px solid var(--ardoise); border-radius: 6px; padding: 20px 24px; margin: 22px 0; }
+.boite-titre { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--ardoise); }
+.boite p:last-child, .boite ul:last-child, .boite ol:last-child { margin-bottom: 0; }
+.boite.idee { border-left-color: var(--craie-deep); background: #FBF4E4; } .boite.idee .boite-titre { color: var(--craie-deep); }
+.boite.definition { border-left-color: var(--sapin); background: #EEF3F0; } .boite.definition .boite-titre { color: var(--sapin); }
+.boite.notation, .boite.methode { border-left-color: var(--sapin); background: #EEF3F0; } .boite.notation .boite-titre, .boite.methode .boite-titre { color: var(--sapin); }
+.boite.exemple { border-left-color: var(--craie-deep); background: var(--papier-2); } .boite.exemple .boite-titre { color: var(--craie-deep); }
+.boite.erreur { border-left-color: var(--brique); background: #FBEFEE; } .boite.erreur .boite-titre { color: var(--brique); }
+.boite.retenir { border-left-color: var(--ardoise); background: var(--ardoise); color: var(--white); } .boite.retenir .boite-titre { color: var(--craie); } .boite.retenir li { color: rgba(252, 251, 247, 0.92); }
+
+.table-wrap { border: 1px solid var(--ligne); border-radius: 6px; overflow-x: auto; margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; background: var(--white); }
+th, td { border-bottom: 1px solid var(--ligne); padding: 10px 14px; text-align: left; }
+th { font-family: var(--font-display); font-weight: 600; font-size: 13.5px; background: var(--ardoise); color: var(--white); }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: var(--papier); }
+table.chiffres th, table.chiffres td { text-align: center; font-family: var(--font-mono); }
+
+.interactif { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 24px 0; padding: 22px; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+canvas, svg.diagramme { border: 1px solid var(--ligne); border-radius: 4px; background-color: var(--white); max-width: 100%; height: auto; }
+.info-box { background-color: #EEF3F0; border-left: 4px solid var(--sapin); padding: 12px 16px; margin-top: 15px; border-radius: 0 4px 4px 0; font-size: 0.95rem; width: 100%; }
+.info-box.alerte { background-color: #FBEFEE; border-left-color: var(--brique); }
+.etapes { background: var(--papier); border-radius: 4px; padding: 14px 18px; margin-top: 14px; width: 100%; font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.85; text-align: center; }
+
+.controles { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; width: 100%; max-width: 560px; margin-bottom: 6px; }
+.controle-item { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 150px; }
+.controle-item label { font-family: var(--font-mono); font-size: 11.5px; color: var(--ardoise); font-weight: 600; display: flex; justify-content: space-between; }
+.controle-item output { color: var(--craie-deep); }
+.controle-item select { font-family: var(--font-mono); font-size: 13px; padding: 6px 8px; border-radius: 4px; border: 1px solid var(--ligne); background: var(--white); }
+input[type="range"] { width: 100%; accent-color: var(--sapin); }
+
+.puissance-tour { display: flex; align-items: flex-end; justify-content: center; gap: 4px; font-family: var(--font-mono); }
+.puissance-tour .base { font-size: 2.4rem; font-weight: 700; color: var(--ardoise); }
+.puissance-tour .exp { font-size: 1.4rem; font-weight: 700; color: var(--craie-deep); margin-bottom: 18px; }
+
+.deux-colonnes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; margin: 10px 0; }
+.colonne-calc { background: var(--papier); border-radius: 6px; padding: 14px 16px; text-align: center; font-family: var(--font-mono); }
+.colonne-calc.correcte { border: 1.5px solid var(--sapin); }
+.colonne-calc.piege { border: 1.5px solid var(--brique); }
+.colonne-calc .titre-calc { font-family: var(--font-display); font-weight: 700; font-size: 13px; margin-bottom: 8px; }
+
+.echelle-rangee { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 14px 0; }
+.echelle-icone { font-size: 2.6rem; }
+
+footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; background: var(--white); font-family: var(--font-mono); font-size: 0.85rem; color: rgba(28, 43, 58, 0.7); text-align: center; }
+
+.nav-suivant { border-top: 1px solid var(--ligne); background: var(--papier-2); }
+.nav-suivant .wrap { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; gap: 16px; flex-wrap: wrap; }
+.nav-suivant .label { display: block; font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--craie-deep); margin-bottom: 4px; }
+.nav-suivant .titre { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+.btn-primary { background: var(--sapin); color: var(--white); text-decoration: none; padding: 11px 20px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+.btn-secondaire { border: 1.5px solid var(--ligne); color: var(--encre); text-decoration: none; padding: 9px 18px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
+
+@media (max-width: 720px) { .sommaire, .deux-colonnes { grid-template-columns: 1fr; } .boite, .encadre { padding: 16px; } .nav-suivant .wrap { flex-direction: column; text-align: center; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+<nav class="wrap">
+<a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span></a>
+<ul class="nav-links">
+<li><a href="https://learnwithdom.page">Accueil</a></li>
+<li><a href="https://learnwithdom.page/cours/mat2101.html">MAT2101-3</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="hero">
+<div class="wrap hero-inner compact">
+<div class="eyebrow"><a href="https://learnwithdom.page/cours/mat2101.html">MAT2101-3 · Secondaire 2</a></div>
+<h1 class="course-title">1.1.1 — La notation exponentielle</h1>
+<p class="course-description">Base, exposant, parenthèses, exposants négatifs et nul, et notation scientifique — explore chaque idée avec les outils interactifs ci-dessous.</p>
+</div>
+</div>
+
+<div class="page-layout">
+<main class="wrap">
+<div class="wrap chapitre">
+
+  <div class="sommaire">
+    <a href="#exposant"><span>1.1</span>Qu'est-ce qu'un exposant?</a>
+    <a href="#parentheses"><span>1.4</span>Les parenthèses</a>
+    <a href="#negatifs"><span>1.5–1.7</span>Exposants négatifs et nul</a>
+    <a href="#scientifique"><span>1.9–1.10</span>Notation scientifique</a>
+  </div>
+
+  <hr class="rule"/>
+
+  <section id="exposant">
+    <div class="section-titre"><span class="section-num">1.1 · Définition</span>Qu'est-ce qu'un exposant?</div>
+    <p>Les exposants sont une façon simple et efficace d'écrire une multiplication répétée. Lorsqu'un même nombre est multiplié plusieurs fois par lui-même, plutôt que d'écrire toute la multiplication, on peut utiliser une puissance :</p>
+    $$ 2 \times 2 \times 2 = 2^3 = 8 $$
+    <p>On lit « deux à la puissance trois » ou « deux exposant trois ».</p>
+
+    <div class="interactif">
+      <div class="puissance-tour"><span class="base" id="tourBase">2</span><span class="exp" id="tourExp">3</span></div>
+      <div class="info-box" style="margin-top:6px;">
+        <span style="font-family:var(--font-mono); font-size:12px;">
+          <strong id="labelBase">base</strong> = le nombre multiplié par lui-même &nbsp;·&nbsp;
+          <strong id="labelExp">exposant</strong> = combien de fois il apparaît comme facteur
+        </span>
+      </div>
+    </div>
+
+    <div class="boite definition">
+      <div class="boite-titre">Définition</div>
+      <p>Une puissance \(a^n\) représente le produit de \(n\) facteurs égaux à \(a\), lorsque \(n\) est un entier positif : \(a^4 = a \times a \times a \times a\).</p>
+    </div>
+
+    <div class="boite notation">
+      <div class="boite-titre">Un nombre sans exposant</div>
+      <p>Lorsqu'un nombre apparaît seul, il possède un exposant 1 implicite : \(2 = 2^1\) et \(7 = 7^1\). On n'écrit généralement pas le 1, car cela n'apporte rien à l'écriture.</p>
+    </div>
+
+    <div class="interactif">
+      <div class="boite-titre" style="margin-bottom:8px;">Explorateur de puissance</div>
+      <div class="controles">
+        <div class="controle-item"><label>Base (a) <output id="outBase">2</output></label><input id="rangeBase" max="6" min="-6" type="range" value="2"/></div>
+        <div class="controle-item"><label>Exposant (n) <output id="outExp">3</output></label><input id="rangeExp" max="6" min="-4" type="range" value="3"/></div>
+      </div>
+      <div class="etapes" id="expExpansion">2³ = 2 × 2 × 2 = 8</div>
+      <div class="info-box" id="expInfo">Fais varier n de positif à négatif, en passant par 0, pour voir les trois régimes des exposants.</div>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="parentheses">
+    <div class="section-titre"><span class="section-num">1.4 · Piège classique</span>Les exposants et les parenthèses</div>
+    <p>Les parenthèses sont très importantes lorsqu'un exposant s'applique à une expression complète. Elles précisent exactement quelle expression constitue la base :</p>
+    $$ (-2)^3 = (-2)\times(-2)\times(-2) = -8 $$
+
+    <div class="boite erreur">
+      <div class="boite-titre">Un piège classique : \((-2)^2\) contre \(-2^2\)</div>
+      <p>Dans le premier cas, la base est \(-2\) : \((-2)^2 = (-2)\times(-2) = 4\). Dans le deuxième cas, l'exposant s'applique seulement au 2, et le signe négatif reste à l'extérieur : \(-2^2 = -(2^2) = -4\). Ainsi, \((-2)^2 = 4\) mais \(-2^2 = -4\) — une différence très importante en algèbre.</p>
+    </div>
+
+    <div class="interactif">
+      <div class="boite-titre" style="margin-bottom:8px;">Comparateur — (−a)ⁿ contre −aⁿ</div>
+      <div class="controles">
+        <div class="controle-item"><label>a <output id="outPiegeA">2</output></label><input id="rangePiegeA" max="6" min="1" type="range" value="2"/></div>
+        <div class="controle-item"><label>n <output id="outPiegeN">2</output></label><input id="rangePiegeN" max="6" min="1" type="range" value="2"/></div>
+      </div>
+      <div class="deux-colonnes">
+        <div class="colonne-calc correcte">
+          <div class="titre-calc" id="titreGauche">(−2)²</div>
+          <div id="calcGauche">(−2) × (−2) = 4</div>
+        </div>
+        <div class="colonne-calc piege">
+          <div class="titre-calc" id="titreDroite">−2²</div>
+          <div id="calcDroite">−(2 × 2) = −4</div>
+        </div>
+      </div>
+      <div class="info-box" id="piegeInfo">Avec n pair, les deux résultats ont un signe différent — c'est exactement le piège à surveiller.</div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="chiffres">
+        <tr><th>Expression</th><th>La base est...</th><th>Résultat général</th><th>Exemple (a=2)</th></tr>
+        <tr><td>\(a^n\)</td><td>a</td><td>toujours positif</td><td>\(2^3=8\)</td></tr>
+        <tr><td>\((-a)^n\), n pair</td><td>−a</td><td>positif, \(=a^n\)</td><td>\((-2)^4=16\)</td></tr>
+        <tr><td>\((-a)^n\), n impair</td><td>−a</td><td>négatif, \(=-a^n\)</td><td>\((-2)^3=-8\)</td></tr>
+        <tr><td>\(-a^n\)</td><td>a</td><td>négatif si \(a>0\) (le − reste à l'extérieur)</td><td>\(-2^2=-4\)</td></tr>
+      </table>
+    </div>
+
+    <div class="boite methode">
+      <div class="boite-titre">Pourquoi utiliser les parenthèses?</div>
+      <p>Les parenthèses précisent aussi quelle expression constitue la base lorsqu'elle contient plusieurs termes. \((3+2)^2 = 5^2 = 25\) (toute l'expression est élevée au carré), alors que \(3+2^2 = 3+4 = 7\) (seul le 2 est élevé au carré). On rencontrera plus tard des bases comme \((x+3)^2\), \((2x-5)^3\) ou \(\left(\tfrac34\right)^2\), où l'exposant s'applique à tout ce qui se trouve entre les parenthèses.</p>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="negatifs">
+    <div class="section-titre"><span class="section-num">1.5–1.7 · Cas particuliers</span>Exposants négatifs et exposant zéro</div>
+
+    <div class="boite definition">
+      <div class="boite-titre">Exposant négatif</div>
+      <p>Un exposant négatif indique que l'on prend l'inverse de la puissance correspondante : \( a^{-n} = \dfrac{1}{a^n} \) pour \(a \neq 0\). Par exemple, \(5^{-3} = \dfrac{1}{5^3} = \dfrac{1}{125} = 0{,}008\).</p>
+    </div>
+
+    <div class="boite notation">
+      <div class="boite-titre">Les nombres comme fraction</div>
+      <p>Tout nombre peut être représenté comme une fraction : \(2 = \tfrac21\). Cela aide à comprendre les exposants négatifs : \(2^1=2\) alors que \(2^{-1}=\tfrac12\). Le changement de signe de l'exposant correspond à un passage de la base à son inverse.</p>
+    </div>
+
+    <div class="boite exemple">
+      <div class="boite-titre">Pourquoi \(a^0 = 1\)?</div>
+      <p>Lorsqu'on multiplie deux puissances de même base, les exposants s'additionnent : \(8^1 \times 8^{-1} = 8^{1+(-1)} = 8^0\). Or \(8^1 \times 8^{-1} = 8 \times \tfrac18 = \tfrac88 = 1\). Donc \(8^0 = 1\) — ce n'est pas une règle arbitraire, elle découle des propriétés des puissances.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table class="chiffres">
+        <tr><th>Puissance</th><th>Opération</th><th>Équivalent</th><th>Valeur</th></tr>
+        <tr><td>\(5^2\)</td><td>\(5^{1+1}\)</td><td>\(5\times5\)</td><td>25</td></tr>
+        <tr><td>\(5^1\)</td><td>\(5^{1+0}\)</td><td>5</td><td>5</td></tr>
+        <tr><td>\(5^0\)</td><td>\(5^{1-1}\)</td><td>1</td><td>1</td></tr>
+        <tr><td>\(5^{-1}\)</td><td>\(5^{0-1}\)</td><td>\(1 \div 5\)</td><td>1/5</td></tr>
+        <tr><td>\(5^{-2}\)</td><td>\(5^{-1-1}\)</td><td>\(\tfrac15\times\tfrac15\)</td><td>1/25</td></tr>
+      </table>
+    </div>
+    <p>Reviens à l'explorateur de puissance de la section 1.1 : glisse l'exposant jusqu'à 0 ou en négatif pour voir ce tableau prendre vie avec n'importe quelle base.</p>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="scientifique">
+    <div class="section-titre"><span class="section-num">1.9–1.10 · Applications</span>Grands nombres et notation scientifique</div>
+    <p>Les exposants sont particulièrement utiles lorsque les nombres deviennent très grands. Au lieu d'écrire 100 000 000, on peut écrire \(10^8\), car \(10^8 = 100\,000\,000\). Cette notation permet d'économiser beaucoup d'espace et rend les calculs plus faciles à manipuler — particulièrement important en sciences pour représenter le nombre d'étoiles dans une galaxie ou certaines distances astronomiques.</p>
+
+    <div class="boite definition">
+      <div class="boite-titre">Notation scientifique</div>
+      <p>Les puissances de 10 sont à la base de la notation scientifique : \(300\,000\,000 = 3\times10^8\) et \(0{,}0000015 = 1{,}5\times10^{-6}\). Très utilisée en physique, en astronomie et en chimie pour représenter efficacement des nombres extrêmement grands ou petits.</p>
+    </div>
+
+    <div class="interactif">
+      <div class="boite-titre" style="margin-bottom:8px;">Échelle des puissances de 10</div>
+      <div class="controles">
+        <div class="controle-item"><label>Exposant de 10 <output id="outExp10">0</output></label><input id="rangeExp10" max="24" min="-9" type="range" value="0"/></div>
+      </div>
+      <div class="echelle-rangee">
+        <span class="echelle-icone" id="echelleIcone">🧍</span>
+        <div>
+          <div class="etapes" id="echelleTexte" style="margin-top:0;">10⁰ = 1</div>
+        </div>
+      </div>
+      <div class="info-box" id="echelleInfo">Une personne mesure environ 1 mètre (10⁰). Fais glisser vers la gauche ou la droite pour explorer l'infiniment petit et l'infiniment grand.</div>
+    </div>
+
+    <div class="interactif">
+      <div class="boite-titre" style="margin-bottom:8px;">Convertisseur — standard ⇄ scientifique</div>
+      <div class="controles">
+        <div class="controle-item"><label>Mantisse <output id="outMantisse">3,0</output></label><input id="rangeMantisse" max="9.9" min="1" step="0.1" type="range" value="3"/></div>
+        <div class="controle-item"><label>Exposant <output id="outExpConv">8</output></label><input id="rangeExpConv" max="12" min="-9" type="range" value="8"/></div>
+      </div>
+      <div class="etapes" id="convEtapes">3,0 × 10⁸ = 300 000 000</div>
+    </div>
+
+    <div class="boite retenir">
+      <div class="boite-titre">À retenir</div>
+      <p>Une puissance possède une base et un exposant : \(a^n\). L'exposant indique combien de fois la base est utilisée comme facteur, lorsqu'il est un entier positif. Les parenthèses précisent exactement quelle expression constitue la base.</p>
+      <p>Propriétés fondamentales :</p>
+      $$ a^1 = a \qquad a^0 = 1\ (a\neq0) \qquad a^{-n} = \frac{1}{a^n}\ (a\neq0) $$
+      <p>La prochaine partie aborde les opérations sur les exposants — les règles qui permettent de simplifier des expressions contenant plusieurs puissances.</p>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<nav aria-label="Table des matières" class="toc-flottante">
+<h2>Sur cette page</h2>
+<ol id="toc-list">
+<li><a href="#exposant">1.1 · Qu'est-ce qu'un exposant?</a></li>
+<li><a href="#parentheses">1.4 · Les parenthèses</a></li>
+<li><a href="#negatifs">1.5–1.7 · Négatif et zéro</a></li>
+<li><a href="#scientifique">1.9–1.10 · Notation scientifique</a></li>
+</ol>
+</nav>
+</div>
+
+<div class="nav-suivant">
+<div class="wrap">
+<div><span class="label">Section</span><span class="titre">1.1.1 — La notation exponentielle</span></div>
+<a class="btn-secondaire" href="https://learnwithdom.page/cours/mat2101.html">← Vue d'ensemble du cours</a>
+<div><span class="label">Section suivante</span><span class="titre">1.1.2 — Opérations sur les exposants</span></div>
+<a class="btn-primary" href="#">Bientôt disponible →</a>
+</div>
+</div>
+
+<footer class="site-footer">MAT2101-3 · Secondaire 2 · learnwithdom.page</footer>
+
+<script>
+(function(){
+  // --- TOC actif ---
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-flottante a'));
+  var sections = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  function setActive(id){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); }); }
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      if(visible.length){ visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; }); setActive(visible[0].target.id); }
+    },{rootMargin:'-100px 0px -70% 0px',threshold:0});
+    sections.forEach(function(s){ observer.observe(s); });
+  }
+
+  function fmtNombre(n){
+    return n.toLocaleString('fr-CA', {maximumFractionDigits: 10}).replace(/,/g, ' ').replace(/\./,',');
+  }
+
+  // ---------- 1. Tour de puissance (base/exposant) + explorateur ----------
+  var tourBase = document.getElementById('tourBase'), tourExp = document.getElementById('tourExp');
+  var rangeBase = document.getElementById('rangeBase'), outBase = document.getElementById('outBase');
+  var rangeExp = document.getElementById('rangeExp'), outExp = document.getElementById('outExp');
+  var expExpansion = document.getElementById('expExpansion'), expInfo = document.getElementById('expInfo');
+
+  function updateExplorateur(){
+    var a = parseInt(rangeBase.value,10);
+    var n = parseInt(rangeExp.value,10);
+    outBase.textContent = a; outExp.textContent = n;
+    tourBase.textContent = a; tourExp.textContent = n;
+
+    if(a === 0){
+      expExpansion.textContent = '0 élevé à une puissance : cas particulier, non défini si n ≤ 0.';
+      expInfo.textContent = 'La base 0 est un cas à part — on l\'évite généralement pour les exposants négatifs ou nuls.';
+      return;
+    }
+
+    if(n > 0){
+      var facteurs = [];
+      for(var i=0;i<n;i++) facteurs.push(a);
+      var valeur = Math.pow(a, n);
+      expExpansion.textContent = a+'^'+n+' = ' + facteurs.join(' × ') + ' = ' + fmtNombre(valeur);
+      expInfo.textContent = 'Exposant positif : on multiplie ' + n + ' facteur(s) égal(aux) à ' + a + '.';
+    } else if(n === 0){
+      expExpansion.textContent = a+'^0 = 1';
+      expInfo.textContent = 'Tout nombre non nul, élevé à l\'exposant 0, donne exactement 1.';
+    } else {
+      var absN = -n;
+      var facteursNeg = [];
+      for(var j=0;j<absN;j++) facteursNeg.push(a);
+      var denom = Math.pow(a, absN);
+      var valeurNeg = 1/denom;
+      expExpansion.textContent = a+'^('+n+') = 1/('+facteursNeg.join(' × ')+') = 1/'+fmtNombre(denom)+' = '+valeurNeg.toLocaleString('fr-CA', {maximumFractionDigits: 6}).replace('.', ',');
+      expInfo.textContent = 'Exposant négatif : on prend l\'inverse de ' + a + '^' + absN + '.';
+    }
+  }
+  [rangeBase, rangeExp].forEach(function(el){ el.addEventListener('input', updateExplorateur); });
+  updateExplorateur();
+
+  // ---------- 2. Comparateur (-a)^n vs -a^n ----------
+  var rangePiegeA = document.getElementById('rangePiegeA'), outPiegeA = document.getElementById('outPiegeA');
+  var rangePiegeN = document.getElementById('rangePiegeN'), outPiegeN = document.getElementById('outPiegeN');
+  var titreGauche = document.getElementById('titreGauche'), calcGauche = document.getElementById('calcGauche');
+  var titreDroite = document.getElementById('titreDroite'), calcDroite = document.getElementById('calcDroite');
+  var piegeInfo = document.getElementById('piegeInfo');
+
+  function updatePiege(){
+    var a = parseInt(rangePiegeA.value,10);
+    var n = parseInt(rangePiegeN.value,10);
+    outPiegeA.textContent = a; outPiegeN.textContent = n;
+
+    var facteursNeg = [];
+    for(var i=0;i<n;i++) facteursNeg.push('(−'+a+')');
+    var resultGauche = Math.pow(-a, n);
+    titreGauche.textContent = '(−'+a+')^'+n;
+    calcGauche.textContent = facteursNeg.join(' × ') + ' = ' + resultGauche;
+
+    var facteursPos = [];
+    for(var j=0;j<n;j++) facteursPos.push(a);
+    var resultDroite = -Math.pow(a, n);
+    titreDroite.textContent = '−'+a+'^'+n;
+    calcDroite.textContent = '−(' + facteursPos.join(' × ') + ') = ' + resultDroite;
+
+    var pair = (n % 2 === 0);
+    piegeInfo.textContent = pair
+      ? 'n = ' + n + ' est pair : (−'+a+')^'+n+' = '+resultGauche+' (positif) mais −'+a+'^'+n+' = '+resultDroite+' (négatif) — les deux résultats diffèrent!'
+      : 'n = ' + n + ' est impair : (−'+a+')^'+n+' = '+resultGauche+' et −'+a+'^'+n+' = '+resultDroite+' — ici, les deux résultats sont égaux.';
+  }
+  [rangePiegeA, rangePiegeN].forEach(function(el){ el.addEventListener('input', updatePiege); });
+  updatePiege();
+
+  // ---------- 3. Échelle des puissances de 10 ----------
+  var rangeExp10 = document.getElementById('rangeExp10'), outExp10 = document.getElementById('outExp10');
+  var echelleIcone = document.getElementById('echelleIcone'), echelleTexte = document.getElementById('echelleTexte'), echelleInfo = document.getElementById('echelleInfo');
+
+  var echelons = [
+    { max: -8, icone: '⚛️', texte: 'échelle atomique / subatomique' },
+    { max: -6, icone: '🦠', texte: 'un virus ou une grosse molécule' },
+    { max: -3, icone: '🔬', texte: 'visible seulement au microscope' },
+    { max: -1, icone: '🐜', texte: 'la taille d\'une fourmi ou d\'un grain de sable' },
+    { max: 0, icone: '🧍', texte: 'une personne (environ 1 mètre)' },
+    { max: 2, icone: '🏠', texte: 'un immeuble ou un pâté de maisons' },
+    { max: 4, icone: '⛰️', texte: 'une montagne ou une petite ville' },
+    { max: 7, icone: '🌍', texte: 'la taille de la Terre' },
+    { max: 11, icone: '🪐', texte: 'la distance entre planètes du système solaire' },
+    { max: 16, icone: '✨', texte: 'une année-lumière et plus' },
+    { max: 21, icone: '🌌', texte: 'la taille d\'une galaxie' },
+    { max: 24, icone: '🌠', texte: 'l\'échelle de l\'univers observable' }
+  ];
+  function trouverEchelon(n){
+    for(var i=0;i<echelons.length;i++){ if(n <= echelons[i].max) return echelons[i]; }
+    return echelons[echelons.length-1];
+  }
+  function updateEchelle(){
+    var n = parseInt(rangeExp10.value,10);
+    outExp10.textContent = n;
+    var val = Math.pow(10, n);
+    var texteVal = (n >= 0 && n <= 9) ? fmtNombre(val) : ('10^' + n);
+    echelleTexte.textContent = '10^' + n + ' = ' + texteVal + ' mètre(s), pour donner une idée d\'échelle.';
+    var ech = trouverEchelon(n);
+    echelleIcone.textContent = ech.icone;
+    echelleInfo.textContent = 'À cette échelle (10^' + n + '), on est dans l\'ordre de grandeur de : ' + ech.texte + '.';
+  }
+  rangeExp10.addEventListener('input', updateEchelle);
+  updateEchelle();
+
+  // ---------- 4. Convertisseur standard <-> scientifique ----------
+  var rangeMantisse = document.getElementById('rangeMantisse'), outMantisse = document.getElementById('outMantisse');
+  var rangeExpConv = document.getElementById('rangeExpConv'), outExpConv = document.getElementById('outExpConv');
+  var convEtapes = document.getElementById('convEtapes');
+
+  function updateConv(){
+    var m = parseFloat(rangeMantisse.value);
+    var e = parseInt(rangeExpConv.value,10);
+    outMantisse.textContent = m.toFixed(1).replace('.', ',');
+    outExpConv.textContent = e;
+    var valeur = m * Math.pow(10, e);
+    var valeurTexte = Math.abs(e) > 9 ? valeur.toExponential(2).replace('.', ',').replace('e', ' × 10^') : fmtNombre(valeur);
+    convEtapes.textContent = m.toFixed(1).replace('.', ',') + ' × 10^' + e + ' = ' + valeurTexte;
+  }
+  [rangeMantisse, rangeExpConv].forEach(function(el){ el.addEventListener('input', updateConv); });
+  updateConv();
+})();
+</script>
+
+</body>
+</html>
