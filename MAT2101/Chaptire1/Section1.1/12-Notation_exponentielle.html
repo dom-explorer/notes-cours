@@ -34,8 +34,40 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--craie-deep); ou
 
 header.site { position: sticky; top: 0; z-index: 40; background: rgba(234, 238, 233, 0.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--ligne); }
 nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
-.brand { font-family: var(--font-mono); font-size: 15px; font-weight: 600; letter-spacing: .02em; text-decoration: none; }
-.brand span { color: var(--craie-deep); }
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(24,41,34,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.09);
+}
+.topbar-inner{
+  max-width:1380px;
+  margin:auto;
+  min-height:66px;
+  padding:0 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.brand{
+  color:#fff;
+  text-decoration:none;
+  font-family:"Space Grotesk",sans-serif;
+  font-weight:700;
+  letter-spacing:-.03em;
+  font-size:1.05rem;
+}
+.brand span{color:var(--craie)}
+.nav{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
 .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; font-family: var(--font-display); font-size: 14px; font-weight: 500; }
 .nav-links a { text-decoration: none; opacity: .85; }
 .nav-links a:hover { opacity: 1; color: var(--craie-deep); }
@@ -135,14 +167,15 @@ footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; backgr
 </head>
 <body>
 
-<header class="site">
-<nav class="wrap">
-<a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span></a>
-<ul class="nav-links">
-<li><a href="https://learnwithdom.page">Accueil</a></li>
-<li><a href="https://learnwithdom.page/cours/mat2101.html">MAT2101-3</a></li>
-</ul>
-</nav>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span>.page</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="https://learnwithdom.page">Accueil</a>
+      <a href="https://learnwithdom.page/niveau/secondaire2.html">Secondaire 2</a>
+      <a href="https://learnwithdom.page/cours/mat2101.html">MAT-2101</a>
+    </nav>
+  </div>
 </header>
 
 <div class="hero">
