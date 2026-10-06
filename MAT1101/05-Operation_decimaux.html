@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAT-1101 — Les opérations sur les nombres décimaux | learnwithdom.page</title>
+<meta name="description" content="Notes de cours — MAT-1101. Additionner, soustraire, multiplier et diviser des nombres décimaux, les puissances de 10, l'ordre des opérations, l'estimation, et un générateur de problèmes interactif.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)'], ['$', '$']],
+    displayMath: [['\\[','\\]'], ['$$','$$']]
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+:root{
+  --ardoise:#223A34;
+  --ardoise-deep:#182922;
+  --papier:#EAEEE9;
+  --papier-2:#E0E5DD;
+  --encre:#1C2B3A;
+  --craie:#D9A441;
+  --craie-deep:#B9832C;
+  --brique:#B5524A;
+  --sapin:#4B7A68;
+  --ligne:rgba(28,43,58,.14);
+  --white:#FCFBF7;
+  --ombre:0 18px 45px rgba(24,41,34,.12);
+  --rayon:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papier);color:var(--encre);font-family:"Literata",Georgia,serif;line-height:1.75}
+a{color:inherit}
+::selection{background:var(--craie);color:var(--ardoise-deep)}
+
+.topbar{position:sticky;top:0;z-index:1000;background:rgba(24,41,34,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.09)}
+.topbar-inner{max-width:1380px;margin:auto;min-height:66px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{color:#fff;text-decoration:none;font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:-.03em;font-size:1.05rem}
+.brand span{color:var(--craie)}
+.nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.nav a{color:rgba(255,255,255,.78);text-decoration:none;font:500 .82rem "Space Grotesk",sans-serif;padding:8px 11px;border-radius:9px;transition:.2s ease}
+.nav a:hover{color:#fff;background:rgba(255,255,255,.09)}
+
+.hero{background:radial-gradient(circle at 85% 20%,rgba(217,164,65,.18),transparent 28%),linear-gradient(135deg,var(--ardoise-deep),var(--ardoise));color:#fff;padding:64px 24px 72px}
+.hero-inner{max-width:1120px;margin:auto}
+.breadcrumb{font:500 .78rem "JetBrains Mono",monospace;color:rgba(255,255,255,.65);margin-bottom:25px}
+.breadcrumb a{color:rgba(255,255,255,.78);text-decoration:none}
+.breadcrumb a:hover{color:var(--craie)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid rgba(217,164,65,.4);border-radius:999px;color:#f1d38e;font:600 .72rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:20px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--craie)}
+.hero h1{max-width:950px;margin:0;font:700 clamp(2rem,5vw,3.9rem)/1.07 "Space Grotesk",sans-serif;letter-spacing:-.05em}
+.hero-lead{max-width:820px;margin:25px 0 0;color:rgba(255,255,255,.8);font-size:1.08rem}
+.hero-meta{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px}
+.tag{display:inline-block;padding:7px 11px;border-radius:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);font:500 .76rem "JetBrains Mono",monospace;color:rgba(255,255,255,.8)}
+
+.page{max-width:1380px;margin:0 auto;padding:46px 24px 80px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:48px}
+.toc{position:sticky;top:92px;align-self:start;max-height:calc(100vh - 115px);overflow:auto;padding:20px;background:rgba(252,251,247,.72);border:1px solid var(--ligne);border-radius:16px}
+.toc-title{font:700 .72rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.09em;color:var(--ardoise);margin-bottom:12px}
+.toc a{display:block;padding:7px 9px;margin:2px 0;border-left:2px solid transparent;color:#52605b;text-decoration:none;font:500 .74rem/1.4 "Space Grotesk",sans-serif;border-radius:0 7px 7px 0}
+.toc a:hover,.toc a.active{color:var(--ardoise-deep);background:rgba(217,164,65,.13);border-left-color:var(--craie-deep)}
+.content{min-width:0}
+.section{scroll-margin-top:95px;margin-bottom:68px}
+.section-kicker{color:var(--craie-deep);font:700 .74rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+h2{margin:0 0 20px;color:var(--ardoise-deep);font:700 clamp(1.6rem,3vw,2.4rem)/1.12 "Space Grotesk",sans-serif;letter-spacing:-.04em}
+h3{margin:34px 0 12px;color:var(--ardoise);font:700 1.25rem/1.25 "Space Grotesk",sans-serif;letter-spacing:-.025em}
+h4{margin:25px 0 9px;font:700 1rem "Space Grotesk",sans-serif;color:var(--encre)}
+p{margin:0 0 18px}
+.lead{font-size:1.08rem;color:#40504a}
+strong{color:var(--ardoise-deep)}
+
+.definition,.example,.note,.attention,.method{margin:25px 0;padding:22px 24px;border-radius:var(--rayon);border:1px solid var(--ligne);background:var(--white);box-shadow:0 7px 22px rgba(28,43,58,.045)}
+.definition{border-left:5px solid var(--sapin)}
+.example{border-left:5px solid var(--craie-deep)}
+.note{border-left:5px solid var(--ardoise)}
+.attention{border-left:5px solid var(--brique);background:#fbf3f0}
+.method{border-left:5px solid var(--craie);background:#f8f5ea}
+.box-title{display:flex;align-items:center;gap:9px;margin-bottom:8px;color:var(--ardoise-deep);font:700 .76rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.06em}
+.box-title::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.definition .box-title{color:var(--sapin)}
+.example .box-title{color:var(--craie-deep)}
+.note .box-title{color:var(--ardoise)}
+.attention .box-title{color:var(--brique)}
+.method .box-title{color:var(--craie-deep)}
+
+.callout{margin:30px 0;padding:30px;background:var(--ardoise);color:#fff;border-radius:var(--rayon);box-shadow:var(--ombre)}
+.callout .small{color:#e8c979;font:700 .72rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.09em;margin-bottom:8px}
+.callout p:last-child{margin-bottom:0}
+.callout strong{color:#fff}
+
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:25px 0}
+.mini-card{padding:21px;background:var(--white);border:1px solid var(--ligne);border-radius:15px}
+.mini-card h4{margin-top:0}
+
+table{width:100%;border-collapse:collapse;margin:25px 0;background:var(--white);border:1px solid var(--ligne);border-radius:14px;overflow:hidden}
+th,td{padding:13px 15px;border-bottom:1px solid var(--ligne);text-align:left;vertical-align:top}
+th{background:var(--ardoise);color:#fff;font:600 .78rem "Space Grotesk",sans-serif}
+td{font-size:.92rem}
+tr:last-child td{border-bottom:0}
+table.chiffres th, table.chiffres td{ text-align:center; font-family:"JetBrains Mono",monospace; }
+
+.equation{margin:23px 0;padding:20px;text-align:center;background:#f5f2e9;border:1px solid rgba(217,164,65,.28);border-radius:14px;overflow-x:auto}
+
+ul,ol{padding-left:1.35rem}
+li{margin:7px 0}
+
+.keywords{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.keyword{background:var(--papier-2);color:var(--ardoise);border-radius:999px;padding:5px 10px;font:600 .72rem "JetBrains Mono",monospace}
+
+.summary{background:var(--ardoise-deep);color:#fff;padding:30px;border-radius:20px;box-shadow:var(--ombre)}
+.summary h2{color:#fff}
+.summary li{color:rgba(255,255,255,.86)}
+.summary strong{color:#f0d183}
+
+.next{margin-top:55px;padding:24px;border-top:1px solid var(--ligne);display:flex;justify-content:space-between;gap:15px}
+.next a{color:var(--ardoise);text-decoration:none;font:600 .85rem "Space Grotesk",sans-serif}
+.next a:hover{color:var(--craie-deep)}
+
+footer{background:var(--ardoise-deep);color:rgba(255,255,255,.65);padding:35px 24px}
+.footer-inner{max-width:1120px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:#e9c96e;text-decoration:none}
+.footer-brand{font:700 1rem "Space Grotesk",sans-serif;color:#fff}
+.footer-small{font:.75rem "JetBrains Mono",monospace}
+
+/* ===== Composants additionnels pour les outils interactifs ===== */
+.interactif{margin:25px 0;padding:24px;border-radius:var(--rayon);border:1px solid var(--ligne);background:var(--white);box-shadow:0 7px 22px rgba(28,43,58,.045);display:flex;flex-direction:column;align-items:center}
+.interactif-title{align-self:flex-start;color:var(--ardoise);font:700 .76rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+canvas, svg.diagramme{border:1px solid var(--ligne);border-radius:10px;background:var(--white);max-width:100%;height:auto}
+.info-box{background:#EEF3F0;border-left:4px solid var(--sapin);padding:12px 16px;margin-top:15px;border-radius:0 10px 10px 0;font-size:.92rem;width:100%}
+.info-box.alerte{background:#FBEFEE;border-left-color:var(--brique)}
+.info-box.succes{background:#EAF5EE;border-left-color:#2F8F5B}
+.etapes{background:var(--papier);border-radius:10px;padding:14px 18px;margin-top:14px;width:100%;font-family:"JetBrains Mono",monospace;font-size:.92rem;line-height:1.85;text-align:left;white-space:pre-line}
+.controles{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;width:100%;max-width:560px;margin-bottom:6px}
+.controle-item{display:flex;flex-direction:column;gap:6px;flex:1;min-width:150px}
+.controle-item label{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--ardoise);font-weight:600;display:flex;justify-content:space-between}
+.controle-item output{color:var(--craie-deep)}
+.controle-item select{font-family:"JetBrains Mono",monospace;font-size:13px;padding:7px 9px;border-radius:8px;border:1px solid var(--ligne);background:var(--white)}
+.controle-item input[type="text"], .controle-item input[type="number"]{font-family:"JetBrains Mono",monospace;font-size:14px;padding:8px 10px;border-radius:8px;border:1.5px solid var(--ligne);background:var(--white)}
+input[type="range"]{width:100%;accent-color:var(--sapin)}
+.btn-jeu{font-family:"Space Grotesk",sans-serif;font-size:13.5px;font-weight:600;padding:9px 18px;border-radius:9px;border:none;background:var(--sapin);color:#fff;cursor:pointer}
+.btn-jeu:hover{background:var(--ardoise)}
+.btn-jeu.secondaire{background:var(--white);color:var(--encre);border:1.5px solid var(--ligne)}
+.btn-jeu.secondaire:hover{border-color:var(--craie-deep);background:var(--white)}
+.rangee-boutons{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:10px 0}
+.mode-toggle{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;justify-content:center}
+.mode-btn{font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:20px;border:1.5px solid var(--ligne);background:var(--white);cursor:pointer}
+.mode-btn.actif{background:var(--sapin);border-color:var(--sapin);color:#fff}
+.stat-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;width:100%;max-width:520px;margin-top:14px}
+.stat-item{background:var(--papier);border-radius:10px;padding:10px 14px;text-align:center;font-family:"JetBrains Mono",monospace}
+.stat-item .val{font-size:1.2rem;font-weight:700;color:var(--ardoise-deep);display:block}
+.stat-item .lbl{font-size:10.5px;color:var(--craie-deep);text-transform:uppercase;letter-spacing:.04em}
+.pile-nombres{font-family:"JetBrains Mono",monospace;font-size:1.3rem;text-align:right;background:var(--papier);border-radius:10px;padding:16px 20px;width:100%;max-width:320px;line-height:1.7}
+.pile-nombres .op{color:var(--craie-deep);float:left}
+.pile-nombres hr{border:none;border-top:2px solid var(--ardoise);margin:4px 0}
+.probleme-enonce{background:var(--papier);border-radius:10px;padding:16px 20px;width:100%;font-style:italic;margin-bottom:6px;min-height:50px;display:flex;align-items:center}
+
+@media(max-width:1180px){.page{grid-template-columns:1fr}.toc{display:none}}
+@media(max-width:760px){
+  .topbar-inner{padding:0 15px}.nav{display:none}
+  .hero{padding:45px 18px 55px}.page{padding:35px 18px 60px}
+  .grid-2{grid-template-columns:1fr}
+  .definition,.example,.note,.attention,.method,.interactif{padding:18px}
+  .callout,.summary{padding:23px}
+  th,td{padding:10px}
+  .next{flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span>.page</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="https://learnwithdom.page">Accueil</a>
+      <a href="https://learnwithdom.page/niveau/secondaire1.html">Secondaire 1</a>
+      <a href="https://learnwithdom.page/cours/mat1101.html">MAT-1101</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="https://learnwithdom.page">learnwithdom.page</a>
+      &nbsp; / &nbsp;
+      <a href="https://learnwithdom.page/niveau/secondaire1.html">Secondaire 1</a>
+      &nbsp; / &nbsp;
+      MAT-1101
+    </div>
+
+    <div class="eyebrow">MAT-1101 · 1.4</div>
+
+    <h1>Les opérations sur les nombres décimaux</h1>
+
+    <p class="hero-lead">
+      Additionner, soustraire, multiplier et diviser des nombres décimaux, travailler avec les
+      puissances de 10, respecter l'ordre des opérations — et s'entraîner avec un générateur de
+      problèmes qui ne manque jamais d'exemples.
+    </p>
+
+    <div class="hero-meta">
+      <span class="tag">Secondaire 1</span>
+      <span class="tag">Arithmétique</span>
+      <span class="tag">Nombres décimaux</span>
+      <span class="tag">Générateur de problèmes</span>
+    </div>
+  </div>
+</section>
+
+<main class="page">
+
+<aside class="toc" aria-label="Table des matières">
+  <div class="toc-title">Dans cette page</div>
+  <a href="#addition">Additionner</a>
+  <a href="#soustraction">Soustraire</a>
+  <a href="#multiplication">Multiplier</a>
+  <a href="#division">Diviser</a>
+  <a href="#puissances10">Puissances de 10</a>
+  <a href="#ordre">Ordre des opérations</a>
+  <a href="#estimation">Estimation et vérification</a>
+  <a href="#erreurs">Erreurs fréquentes</a>
+  <a href="#applications">Applications</a>
+  <a href="#jeu">Jeu — génère tes problèmes</a>
+  <a href="#retenir">À retenir</a>
+</aside>
+
+<div class="content">
+
+<section class="section" id="addition">
+  <div class="section-kicker">Opération 1</div>
+  <h2>Additionner des nombres décimaux</h2>
+
+  <p class="lead">L'addition de nombres décimaux repose essentiellement sur la valeur de position.</p>
+
+  <div class="method">
+    <div class="box-title">Méthode</div>
+    <ol>
+      <li>Aligner les virgules.</li>
+      <li>Ajouter des zéros si nécessaire pour que les deux nombres aient le même nombre de décimales.</li>
+      <li>Additionner colonne par colonne, de droite à gauche.</li>
+      <li>Placer la virgule dans le résultat, sous les autres virgules.</li>
+    </ol>
+  </div>
+
+  <div class="interactif">
+    <div class="interactif-title">Aligneur de virgules — addition</div>
+    <div class="controles">
+      <div class="controle-item"><label>Premier nombre <output id="outAddA">23,5</output></label><input id="rangeAddA" max="99.99" min="0" step="0.01" type="range" value="23.5"/></div>
+      <div class="controle-item"><label>Deuxième nombre <output id="outAddB">41,38</output></label><input id="rangeAddB" max="99.99" min="0" step="0.01" type="range" value="41.38"/></div>
+    </div>
+    <div class="pile-nombres" id="pileAddition">
+      23,50<br/><span class="op">+</span>41,38<hr/>64,88
+    </div>
+    <div class="info-box" id="addInfo">23,5 = 23,50 — on ajoute un zéro pour aligner le nombre de décimales, puis on additionne colonne par colonne.</div>
+  </div>
+</section>
+
+<section class="section" id="soustraction">
+  <div class="section-kicker">Opération 2</div>
+  <h2>Soustraire des nombres décimaux</h2>
+
+  <p>La soustraction suit la même logique que l'addition : on aligne les virgules, on complète avec des zéros, puis on soustrait colonne par colonne (avec des emprunts si nécessaire).</p>
+
+  <div class="interactif">
+    <div class="interactif-title">Aligneur de virgules — soustraction</div>
+    <div class="controles">
+      <div class="controle-item"><label>Nombre de départ <output id="outSubA">7,368</output></label><input id="rangeSubA" max="99.999" min="0" step="0.001" type="range" value="7.368"/></div>
+      <div class="controle-item"><label>Nombre soustrait <output id="outSubB">1,15</output></label><input id="rangeSubB" max="99.999" min="0" step="0.001" type="range" value="1.15"/></div>
+    </div>
+    <div class="pile-nombres" id="pileSoustraction">
+      7,368<br/><span class="op">−</span>1,150<hr/>6,218
+    </div>
+    <div class="info-box" id="subInfo">Le résultat est positif : le nombre de départ est plus grand que le nombre soustrait.</div>
+  </div>
+
+  <div class="note">
+    <div class="box-title">Déterminer le signe avant de calculer</div>
+    <p>Si le nombre que l'on soustrait est plus grand que le nombre de départ, le résultat est négatif. Par exemple, \(2{,}51-7{,}4\) : puisque \(7{,}4>2{,}51\), on calcule d'abord \(7{,}40-2{,}51=4{,}89\), puis on écrit \(2{,}51-7{,}4=-4{,}89\).</p>
+  </div>
+</section>
+
+<section class="section" id="multiplication">
+  <div class="section-kicker">Opération 3</div>
+  <h2>Multiplier des nombres décimaux</h2>
+
+  <p>La multiplication des décimaux peut être effectuée comme une multiplication de nombres entiers, puis on replace la virgule.</p>
+
+  <div class="method">
+    <div class="box-title">Méthode</div>
+    <ol>
+      <li>Déterminer le signe du résultat.</li>
+      <li>Ignorer temporairement les virgules.</li>
+      <li>Multiplier les nombres comme des entiers.</li>
+      <li>Compter le nombre total de chiffres après les virgules dans les deux facteurs.</li>
+      <li>Placer la virgule dans le produit en comptant ce nombre de chiffres depuis la droite.</li>
+    </ol>
+  </div>
+
+  <div class="interactif">
+    <div class="interactif-title">Compteur de décimales — multiplication</div>
+    <div class="controles">
+      <div class="controle-item"><label>Premier facteur <output id="outMulA">0,3</output></label><input id="rangeMulA" max="9.99" min="0" step="0.01" type="range" value="0.3"/></div>
+      <div class="controle-item"><label>Deuxième facteur <output id="outMulB">0,7</output></label><input id="rangeMulB" max="9.99" min="0" step="0.01" type="range" value="0.7"/></div>
+    </div>
+    <div class="etapes" id="mulEtapes">0,3 × 0,7
+→ sans les virgules : 3 × 7 = 21
+→ décimales au total : 1 + 1 = 2
+→ résultat : 0,21</div>
+    <div class="info-box" id="mulInfo">Pourquoi ça marche : 0,3 × 0,7 = 3/10 × 7/10 = 21/100 = 0,21.</div>
+  </div>
+</section>
+
+<section class="section" id="division">
+  <div class="section-kicker">Opération 4</div>
+  <h2>Diviser des nombres décimaux</h2>
+
+  <p>La division est souvent l'opération qui pose le plus de difficultés. La principale technique consiste à transformer le diviseur en nombre entier.</p>
+
+  <div class="method">
+    <div class="box-title">Méthode</div>
+    <ol>
+      <li>Déterminer le signe du résultat.</li>
+      <li>Déplacer la virgule du diviseur jusqu'à obtenir un entier.</li>
+      <li>Déplacer la virgule du dividende du <strong>même nombre de positions</strong>.</li>
+      <li>Effectuer la division normalement.</li>
+    </ol>
+  </div>
+
+  <div class="interactif">
+    <div class="interactif-title">Transformateur de diviseur — division</div>
+    <div class="controles">
+      <div class="controle-item"><label>Dividende <output id="outDivA">12,6</output></label><input id="rangeDivA" max="200" min="0.1" step="0.1" type="range" value="12.6"/></div>
+      <div class="controle-item"><label>Diviseur <output id="outDivB">0,3</output></label><input id="rangeDivB" max="9.9" min="0.1" step="0.1" type="range" value="0.3"/></div>
+    </div>
+    <div class="etapes" id="divEtapes">12,6 ÷ 0,3
+→ le diviseur a 1 décimale → on multiplie les deux nombres par 10
+→ 126 ÷ 3 = 42</div>
+    <div class="info-box" id="divInfo">On ne « déplace » pas réellement une virgule au hasard : multiplier le dividende et le diviseur par la même puissance de 10 ne change pas le résultat de la division.</div>
+  </div>
+
+  <div class="attention">
+    <div class="box-title">Quand le quotient ne « tombe pas juste »</div>
+    <p>Certaines divisions ne donnent pas un nombre décimal fini : \(10\div3=3{,}3333\ldots\) Dans une situation pratique, on arrondit à la précision demandée — par exemple \(3{,}33\) au centième près.</p>
+  </div>
+</section>
+
+<section class="section" id="puissances10">
+  <div class="section-kicker">Raccourci</div>
+  <h2>Multiplier et diviser par une puissance de 10</h2>
+
+  <p>Multiplier par 10, 100, 1000... déplace la virgule vers la <strong>droite</strong>. Diviser par 10, 100, 1000... déplace la virgule vers la <strong>gauche</strong>. Le nombre de zéros indique le nombre de déplacements.</p>
+
+  <div class="interactif">
+    <div class="interactif-title">Simulateur — déplacer la virgule</div>
+    <div class="controles">
+      <div class="controle-item"><label>Nombre de départ <output id="outP10Base">5,63</output></label><input id="rangeP10Base" max="99.99" min="0.01" step="0.01" type="range" value="5.63"/></div>
+      <div class="controle-item"><label>Puissance de 10 <output id="outP10Exp">× 10</output></label><input id="rangeP10Exp" max="3" min="-3" type="range" value="1"/></div>
+    </div>
+    <div class="etapes" id="p10Etapes">5,63 × 10 = 56,3  (la virgule se déplace de 1 position vers la droite)</div>
+  </div>
+</section>
+
+<section class="section" id="ordre">
+  <div class="section-kicker">Règle de priorité</div>
+  <h2>Ordre des opérations avec des décimaux</h2>
+
+  <p>Les nombres décimaux ne changent pas les règles de priorité des opérations :</p>
+  <div class="equation">\[ \text{parenthèses} \rightarrow \text{exposants} \rightarrow \text{multiplications/divisions} \rightarrow \text{additions/soustractions} \]</div>
+  <p>Lorsque deux opérations ont la même priorité, on travaille de gauche à droite.</p>
+
+  <div class="grid-2">
+    <div class="mini-card">
+      <h4>Sans parenthèses</h4>
+      <div class="equation">\[ 3{,}5+2{,}4\times3 \]</div>
+      <p>On multiplie d'abord : \(2{,}4\times3=7{,}2\). Puis \(3{,}5+7{,}2=\boxed{10{,}7}\).</p>
+    </div>
+    <div class="mini-card">
+      <h4>Avec parenthèses</h4>
+      <div class="equation">\[ (3{,}5+2{,}4)\times3 \]</div>
+      <p>On commence par les parenthèses : \(3{,}5+2{,}4=5{,}9\). Puis \(5{,}9\times3=\boxed{17{,}7}\).</p>
+    </div>
+  </div>
+
+  <div class="attention">
+    <div class="box-title">Erreur fréquente</div>
+    <p>Ne pas calculer les opérations automatiquement dans l'ordre où elles sont écrites. Dans \(3{,}5+2{,}4\times3\), on ne commence <strong>pas</strong> par \(3{,}5+2{,}4\) — la multiplication vient avant l'addition.</p>
+  </div>
+</section>
+
+<section class="section" id="estimation">
+  <div class="section-kicker">Vérification</div>
+  <h2>Estimation et vérification</h2>
+
+  <p>L'estimation permet de vérifier si une réponse est raisonnable, de détecter une erreur de virgule, et de décider si un résultat de calculatrice est plausible.</p>
+
+  <div class="example">
+    <div class="box-title">Estimer avant de calculer</div>
+    <p>Pour \(19{,}8\times4{,}9\), on approxime : \(19{,}8\approx20\) et \(4{,}9\approx5\), donc \(19{,}8\times4{,}9\approx20\times5=100\). Le résultat exact, \(97{,}02\), est cohérent avec cette estimation.</p>
+  </div>
+
+  <div class="attention">
+    <div class="box-title">Détecter une erreur de virgule</div>
+    <p>Si un calcul donne \(19{,}8\times4{,}9=9702\), l'estimation (proche de 100) permet de voir immédiatement qu'une virgule est mal placée — le vrai résultat est \(97{,}02\).</p>
+  </div>
+
+  <div class="note">
+    <div class="box-title">Vérifier par l'opération inverse</div>
+    <p>Si \(7{,}368-1{,}15=6{,}218\), on vérifie avec \(6{,}218+1{,}15=7{,}368\). Pour une multiplication \(4{,}5\times2=9\), on vérifie avec \(9\div2=4{,}5\).</p>
+  </div>
+</section>
+
+<section class="section" id="erreurs">
+  <div class="section-kicker">Pièges classiques</div>
+  <h2>Erreurs fréquentes</h2>
+
+  <div class="attention">
+    <div class="box-title">Les cinq pièges les plus courants</div>
+    <ol>
+      <li><strong>Aligner les chiffres plutôt que les virgules</strong> lors d'une addition ou soustraction écrite en colonne.</li>
+      <li><strong>Croire que \(0{,}8<0{,}75\)</strong> à cause du nombre de chiffres — en réalité \(0{,}8=0{,}80>0{,}75\).</li>
+      <li><strong>Oublier les zéros</strong> : pour \(5-2{,}34\), écrire \(5{,}00-2{,}34\) rend la soustraction beaucoup plus claire.</li>
+      <li><strong>Mal placer la virgule après une multiplication</strong> en oubliant de compter toutes les décimales des deux facteurs.</li>
+      <li><strong>Déplacer seulement la virgule du diviseur</strong> dans une division — il faut déplacer celle du dividende du même nombre de positions.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="applications">
+  <div class="section-kicker">Dans la vraie vie</div>
+  <h2>Applications : argent et mesures</h2>
+
+  <div class="grid-2">
+    <div class="mini-card">
+      <h4>Monnaie</h4>
+      <p>Un achat coûte \(14{,}65\)$. En payant avec \(20{,}00\)$, la monnaie rendue est \(20{,}00-14{,}65=5{,}35\)$.</p>
+    </div>
+    <div class="mini-card">
+      <h4>Mesures</h4>
+      <p>Attention aux unités : \(2{,}5\text{ m}+75\text{ cm}\) ne se calcule pas directement. On convertit \(75\text{ cm}=0{,}75\text{ m}\), puis \(2{,}5+0{,}75=3{,}25\text{ m}\).</p>
+    </div>
+  </div>
+
+  <div class="method">
+    <div class="box-title">Résoudre un problème écrit</div>
+    <p>Lire le problème, déterminer ce que l'on cherche, identifier les données utiles, vérifier les unités, choisir l'opération, écrire le calcul, l'effectuer, arrondir si nécessaire, puis vérifier si la réponse est raisonnable avant d'écrire une phrase-réponse.</p>
+  </div>
+</section>
+
+<section class="section" id="jeu">
+  <div class="section-kicker">Jeu interactif</div>
+  <h2>Génère tes propres problèmes</h2>
+  <p class="lead">Choisis une opération, essaie de résoudre le problème généré, puis vérifie ta réponse.</p>
+
+  <div class="interactif">
+    <div class="interactif-title">Générateur de problèmes de décimaux</div>
+    <div class="mode-toggle">
+      <button class="mode-btn actif" data-op="add" id="btnOpAdd">Addition</button>
+      <button class="mode-btn" data-op="sub" id="btnOpSub">Soustraction</button>
+      <button class="mode-btn" data-op="mul" id="btnOpMul">Multiplication</button>
+      <button class="mode-btn" data-op="div" id="btnOpDiv">Division</button>
+    </div>
+    <div class="mode-toggle">
+      <button class="mode-btn actif" data-mode="calcul" id="btnModeCalcul">Calcul pur</button>
+      <button class="mode-btn" data-mode="probleme" id="btnModeProbleme">Problème écrit</button>
+    </div>
+
+    <div class="probleme-enonce" id="problemeEnonce">3,2 + 4,7 = ?</div>
+
+    <div class="controles">
+      <div class="controle-item"><label>Ta réponse</label><input id="reponseJoueur" placeholder="ex. 7,9" type="text"/></div>
+    </div>
+    <div class="rangee-boutons">
+      <button class="btn-jeu" id="btnVerifierJeu">Vérifier</button>
+      <button class="btn-jeu secondaire" id="btnSolutionJeu">Voir la solution</button>
+      <button class="btn-jeu secondaire" id="btnNouveauJeu">Nouveau problème</button>
+    </div>
+    <div class="info-box" id="jeuFeedback">Choisis une opération et essaie de résoudre le problème ci-dessus.</div>
+    <div class="etapes" id="jeuSolution" style="display:none;"></div>
+    <div class="stat-grille">
+      <div class="stat-item"><span class="val" id="jeuScore">0</span><span class="lbl">Bonnes réponses</span></div>
+      <div class="stat-item"><span class="val" id="jeuTotal">0</span><span class="lbl">Essais</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="retenir">
+  <div class="summary">
+    <div class="section-kicker" style="color:#e7c56d;">Fiche de référence rapide</div>
+    <h2>À retenir</h2>
+    <ul>
+      <li><strong>Addition et soustraction</strong> — aligner les virgules, compléter avec des zéros.</li>
+      <li><strong>Multiplication</strong> — multiplier normalement, puis compter les décimales.</li>
+      <li><strong>Division</strong> — transformer le diviseur en entier (multiplier les deux nombres par la même puissance de 10).</li>
+      <li><strong>Puissances de 10</strong> — \(\times10^n\) déplace la virgule de \(n\) positions à droite; \(\div10^n\), vers la gauche.</li>
+      <li><strong>Ordre des opérations</strong> — parenthèses, puis multiplication/division, puis addition/soustraction.</li>
+      <li><strong>Vérification</strong> — estimer avant ou après le calcul, ou utiliser l'opération inverse.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="next">
+  <a href="04-Nombres_decimaux.html">← 1.3 — Les nombres décimaux</a>
+  <a href="#">1.5 — À venir →</a>
+</div>
+
+</div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">learnwithdom.page</div>
+      <div class="footer-small">MAT-1101 · Nombres décimaux · Secondaire 1</div>
+    </div>
+    <div class="footer-small">Notes de cours · Les opérations sur les nombres décimaux</div>
+  </div>
+</footer>
+
+<script>
+const sections = document.querySelectorAll(".section[id]");
+const links = document.querySelectorAll(".toc a");
+
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        links.forEach(link => link.classList.remove("active"));
+        const active = document.querySelector('.toc a[href="#' + entry.target.id + '"]');
+        if(active) active.classList.add("active");
+      }
+    });
+  }, { rootMargin:"-18% 0px -68% 0px", threshold:0 });
+  sections.forEach(section => observer.observe(section));
+}
+</script>
+
+<script>
+(function(){
+  function fmtFr(n, dec){
+    return n.toFixed(dec).replace('.', ',');
+  }
+  function parseFr(s){
+    if(typeof s !== 'string') return NaN;
+    return parseFloat(s.trim().replace(',', '.').replace(/\s/g,''));
+  }
+
+  // ======================================================
+  // 1. Addition — aligneur de virgules
+  // ======================================================
+  var rangeAddA = document.getElementById('rangeAddA'), outAddA = document.getElementById('outAddA');
+  var rangeAddB = document.getElementById('rangeAddB'), outAddB = document.getElementById('outAddB');
+  var pileAddition = document.getElementById('pileAddition'), addInfo = document.getElementById('addInfo');
+
+  function decCount(n){
+    var s = n.toString();
+    return s.includes('.') ? s.split('.')[1].length : 0;
+  }
+
+  function updateAddition(){
+    var a = parseFloat(rangeAddA.value), b = parseFloat(rangeAddB.value);
+    outAddA.textContent = fmtFr(a,2).replace(/0$/,'').replace(/,$/,''); 
+    outAddA.textContent = a.toString().replace('.', ',');
+    outAddB.textContent = b.toString().replace('.', ',');
+    var maxDec = Math.max(decCount(a), decCount(b), 1);
+    var aStr = a.toFixed(maxDec), bStr = b.toFixed(maxDec);
+    var somme = (a+b).toFixed(maxDec);
+    pileAddition.innerHTML = aStr.replace('.',',') + '<br/><span class="op">+</span>' + bStr.replace('.',',') + '<hr/>' + somme.replace('.',',');
+    addInfo.textContent = a.toString().replace('.',',')+' = '+aStr.replace('.',',')+' et '+b.toString().replace('.',',')+' = '+bStr.replace('.',',')+' — on aligne le nombre de décimales avant d\'additionner colonne par colonne.';
+  }
+  [rangeAddA, rangeAddB].forEach(function(el){ el.addEventListener('input', updateAddition); });
+  updateAddition();
+
+  // ======================================================
+  // 2. Soustraction — aligneur de virgules
+  // ======================================================
+  var rangeSubA = document.getElementById('rangeSubA'), outSubA = document.getElementById('outSubA');
+  var rangeSubB = document.getElementById('rangeSubB'), outSubB = document.getElementById('outSubB');
+  var pileSoustraction = document.getElementById('pileSoustraction'), subInfo = document.getElementById('subInfo');
+
+  function updateSoustraction(){
+    var a = parseFloat(rangeSubA.value), b = parseFloat(rangeSubB.value);
+    outSubA.textContent = a.toString().replace('.', ',');
+    outSubB.textContent = b.toString().replace('.', ',');
+    var maxDec = Math.max(decCount(a), decCount(b), 1);
+    var grand = Math.max(a,b), petit = Math.min(a,b);
+    var diff = (grand - petit).toFixed(maxDec);
+    var negatif = a < b;
+    var gStr = grand.toFixed(maxDec), pStr = petit.toFixed(maxDec);
+    pileSoustraction.innerHTML = gStr.replace('.',',') + '<br/><span class="op">−</span>' + pStr.replace('.',',') + '<hr/>' + (negatif?'−':'') + diff.replace('.',',');
+    subInfo.textContent = negatif
+      ? 'Puisque '+a.toString().replace('.',',')+' < '+b.toString().replace('.',',')+', le résultat est négatif : '+a.toString().replace('.',',')+' − '+b.toString().replace('.',',')+' = −'+diff.replace('.',',')+'.'
+      : 'Le résultat est positif : '+a.toString().replace('.',',')+' ≥ '+b.toString().replace('.',',')+'.';
+  }
+  [rangeSubA, rangeSubB].forEach(function(el){ el.addEventListener('input', updateSoustraction); });
+  updateSoustraction();
+
+  // ======================================================
+  // 3. Multiplication — compteur de décimales
+  // ======================================================
+  var rangeMulA = document.getElementById('rangeMulA'), outMulA = document.getElementById('outMulA');
+  var rangeMulB = document.getElementById('rangeMulB'), outMulB = document.getElementById('outMulB');
+  var mulEtapes = document.getElementById('mulEtapes'), mulInfo = document.getElementById('mulInfo');
+
+  function updateMultiplication(){
+    var a = parseFloat(rangeMulA.value), b = parseFloat(rangeMulB.value);
+    outMulA.textContent = a.toString().replace('.', ',');
+    outMulB.textContent = b.toString().replace('.', ',');
+    var decA = decCount(a), decB = decCount(b);
+    var intA = Math.round(a * Math.pow(10, decA));
+    var intB = Math.round(b * Math.pow(10, decB));
+    var produitEntier = intA * intB;
+    var totalDec = decA + decB;
+    var resultat = produitEntier / Math.pow(10, totalDec);
+    mulEtapes.textContent =
+      a.toString().replace('.',',')+' × '+b.toString().replace('.',',')+
+      '\n→ sans les virgules : '+intA+' × '+intB+' = '+produitEntier+
+      '\n→ décimales au total : '+decA+' + '+decB+' = '+totalDec+
+      '\n→ résultat : '+resultat.toFixed(totalDec).replace('.',',');
+    mulInfo.textContent = 'Pourquoi ça marche : '+a.toString().replace('.',',')+' × '+b.toString().replace('.',',')+' = ('+intA+'/'+Math.pow(10,decA)+') × ('+intB+'/'+Math.pow(10,decB)+') = '+produitEntier+'/'+Math.pow(10,totalDec)+' = '+resultat.toFixed(totalDec).replace('.',',')+'.';
+  }
+  [rangeMulA, rangeMulB].forEach(function(el){ el.addEventListener('input', updateMultiplication); });
+  updateMultiplication();
+
+  // ======================================================
+  // 4. Division — transformateur de diviseur
+  // ======================================================
+  var rangeDivA = document.getElementById('rangeDivA'), outDivA = document.getElementById('outDivA');
+  var rangeDivB = document.getElementById('rangeDivB'), outDivB = document.getElementById('outDivB');
+  var divEtapes = document.getElementById('divEtapes');
+
+  function updateDivision(){
+    var a = parseFloat(rangeDivA.value), b = parseFloat(rangeDivB.value);
+    outDivA.textContent = a.toFixed(1).replace('.', ',');
+    outDivB.textContent = b.toFixed(1).replace('.', ',');
+    var decB = decCount(parseFloat(b.toFixed(2)));
+    var facteur = Math.pow(10, decB);
+    var aEnt = Math.round(a * facteur * 10) / 10; // garder une décimale résiduelle possible
+    var bEnt = Math.round(b * facteur);
+    var quotient = a / b;
+    var quotientTexte = Number.isInteger(Math.round(quotient*1000)/1000) && Math.abs(quotient - Math.round(quotient)) < 1e-9
+      ? Math.round(quotient).toString()
+      : quotient.toFixed(4).replace('.', ',') + '…';
+    divEtapes.textContent =
+      a.toFixed(1).replace('.',',')+' ÷ '+b.toFixed(1).replace('.',',')+
+      '\n→ le diviseur a '+decB+' décimale(s) → on multiplie les deux nombres par '+facteur+
+      '\n→ '+(a*facteur).toFixed(2).replace(/\.?0+$/,'').replace('.',',')+' ÷ '+bEnt+' = '+quotientTexte;
+  }
+  [rangeDivA, rangeDivB].forEach(function(el){ el.addEventListener('input', updateDivision); });
+  updateDivision();
+
+  // ======================================================
+  // 5. Puissances de 10
+  // ======================================================
+  var rangeP10Base = document.getElementById('rangeP10Base'), outP10Base = document.getElementById('outP10Base');
+  var rangeP10Exp = document.getElementById('rangeP10Exp'), outP10Exp = document.getElementById('outP10Exp');
+  var p10Etapes = document.getElementById('p10Etapes');
+
+  function updateP10(){
+    var base = parseFloat(rangeP10Base.value);
+    var exp = parseInt(rangeP10Exp.value, 10);
+    outP10Base.textContent = base.toString().replace('.', ',');
+    var label = exp === 0 ? '× 1' : (exp > 0 ? '× '+Math.pow(10,exp) : '÷ '+Math.pow(10,-exp));
+    outP10Exp.textContent = label;
+    var resultat = base * Math.pow(10, exp);
+    var direction = exp > 0 ? 'droite' : (exp < 0 ? 'gauche' : 'nulle part');
+    var nbDeplacements = Math.abs(exp);
+    p10Etapes.textContent = base.toString().replace('.',',')+' '+label+' = '+resultat.toLocaleString('fr-CA',{maximumFractionDigits:10}).replace('.',',')+
+      (exp !== 0 ? '  (la virgule se déplace de '+nbDeplacements+' position'+(nbDeplacements>1?'s':'')+' vers la '+direction+')' : '  (aucun déplacement)');
+  }
+  [rangeP10Base, rangeP10Exp].forEach(function(el){ el.addEventListener('input', updateP10); });
+  updateP10();
+
+  // ======================================================
+  // 6. JEU — générateur de problèmes
+  // ======================================================
+  var opActuelle = 'add';
+  var modeActuel = 'calcul';
+  var probA, probB, reponseAttendue, decimalesAttendues;
+  var scoreJeu = 0, totalJeu = 0;
+
+  var btnOpAdd = document.getElementById('btnOpAdd'), btnOpSub = document.getElementById('btnOpSub');
+  var btnOpMul = document.getElementById('btnOpMul'), btnOpDiv = document.getElementById('btnOpDiv');
+  var btnModeCalcul = document.getElementById('btnModeCalcul'), btnModeProbleme = document.getElementById('btnModeProbleme');
+  var problemeEnonce = document.getElementById('problemeEnonce');
+  var reponseJoueur = document.getElementById('reponseJoueur');
+  var jeuFeedback = document.getElementById('jeuFeedback');
+  var jeuSolution = document.getElementById('jeuSolution');
+  var jeuScore = document.getElementById('jeuScore'), jeuTotal = document.getElementById('jeuTotal');
+
+  function randDecimal(min, max, decimales){
+    var val = min + Math.random() * (max - min);
+    var f = Math.pow(10, decimales);
+    return Math.round(val * f) / f;
+  }
+
+  var contextesArgent = ['un café', 'un cahier', 'un billet de cinéma', 'un sandwich', 'un stylo', 'un trajet d\'autobus'];
+  var contextesMesure = ['une planche', 'un ruban', 'une corde', 'un tuyau', 'une étagère'];
+
+  function genererProbleme(){
+    opActuelle = document.querySelector('.mode-toggle button[data-op].actif') ? opActuelle : opActuelle;
+    if(opActuelle === 'add'){
+      probA = randDecimal(1, 80, 2);
+      probB = randDecimal(1, 80, 2);
+      reponseAttendue = Math.round((probA+probB)*100)/100;
+      decimalesAttendues = 2;
+    } else if(opActuelle === 'sub'){
+      var x = randDecimal(10, 90, 2);
+      var y = randDecimal(1, x-0.5, 2);
+      probA = x; probB = y;
+      reponseAttendue = Math.round((probA-probB)*100)/100;
+      decimalesAttendues = 2;
+    } else if(opActuelle === 'mul'){
+      probA = randDecimal(1, 12, 1);
+      probB = randDecimal(1, 9, 1);
+      reponseAttendue = Math.round(probA*probB*100)/100;
+      decimalesAttendues = 2;
+    } else { // div
+      var diviseur = randDecimal(2, 9, 0);
+      var quotientVoulu = randDecimal(2, 20, 1);
+      probA = Math.round(diviseur * quotientVoulu * 100) / 100;
+      probB = diviseur;
+      reponseAttendue = Math.round((probA/probB)*100)/100;
+      decimalesAttendues = 2;
+    }
+
+    var symboles = { add: '+', sub: '−', mul: '×', div: '÷' };
+    var texteCalcul = probA.toString().replace('.',',')+' '+symboles[opActuelle]+' '+probB.toString().replace('.',',')+' = ?';
+
+    if(modeActuel === 'calcul'){
+      problemeEnonce.textContent = texteCalcul;
+    } else {
+      var texte = '';
+      if(opActuelle === 'add'){
+        var ctx = contextesArgent[Math.floor(Math.random()*contextesArgent.length)];
+        texte = 'Vous achetez '+ctx+' à '+probA.toFixed(2).replace('.',',')+' $ et un autre article à '+probB.toFixed(2).replace('.',',')+' $. Combien dépensez-vous en tout?';
+      } else if(opActuelle === 'sub'){
+        texte = 'Vous avez '+probA.toFixed(2).replace('.',',')+' $ et vous dépensez '+probB.toFixed(2).replace('.',',')+' $. Combien vous reste-t-il?';
+      } else if(opActuelle === 'mul'){
+        texte = 'Un article coûte '+probB.toFixed(2).replace('.',',')+' $. Combien coûtent '+probA.toFixed(0)+' articles identiques? (arrondis probA si besoin)';
+        texte = 'Un billet coûte '+probA.toFixed(2).replace('.',',')+' $. Combien coûtent '+Math.round(probB)+' billets?';
+      } else {
+        var ctxM = contextesMesure[Math.floor(Math.random()*contextesMesure.length)];
+        texte = 'Une facture de '+probA.toFixed(2).replace('.',',')+' $ est répartie également entre '+Math.round(probB)+' personnes. Combien chaque personne paie-t-elle?';
+      }
+      problemeEnonce.textContent = texte;
+    }
+
+    jeuFeedback.textContent = 'Entre ta réponse, puis clique sur « Vérifier ».';
+    jeuFeedback.className = 'info-box';
+    jeuSolution.style.display = 'none';
+    reponseJoueur.value = '';
+  }
+
+  function afficherSolution(){
+    var symboles = { add: '+', sub: '−', mul: '×', div: '÷' };
+    var texte = '';
+    if(opActuelle === 'add'){
+      var maxDec = Math.max(decCount(probA), decCount(probB), 1);
+      texte = probA.toFixed(maxDec).replace('.',',')+'\n+ '+probB.toFixed(maxDec).replace('.',',')+'\n= '+reponseAttendue.toFixed(decimalesAttendues).replace('.',',');
+    } else if(opActuelle === 'sub'){
+      var maxDec2 = Math.max(decCount(probA), decCount(probB), 1);
+      texte = probA.toFixed(maxDec2).replace('.',',')+'\n− '+probB.toFixed(maxDec2).replace('.',',')+'\n= '+reponseAttendue.toFixed(decimalesAttendues).replace('.',',');
+    } else if(opActuelle === 'mul'){
+      var decA = decCount(probA), decB = decCount(probB);
+      var intA = Math.round(probA*Math.pow(10,decA)), intB = Math.round(probB*Math.pow(10,decB));
+      texte = 'Sans les virgules : '+intA+' × '+intB+' = '+(intA*intB)+'\nDécimales au total : '+decA+' + '+decB+' = '+(decA+decB)+'\nRésultat : '+reponseAttendue.toFixed(decimalesAttendues).replace('.',',');
+    } else {
+      texte = probA.toString().replace('.',',')+' ÷ '+probB.toString().replace('.',',')+' = '+reponseAttendue.toFixed(decimalesAttendues).replace('.',',');
+    }
+    jeuSolution.textContent = texte;
+    jeuSolution.style.display = 'block';
+  }
+
+  function verifierReponse(){
+    var val = parseFr(reponseJoueur.value);
+    totalJeu++;
+    jeuTotal.textContent = totalJeu;
+    if(isNaN(val)){
+      jeuFeedback.textContent = 'Entre un nombre valide (ex. 7,9) avant de vérifier.';
+      jeuFeedback.className = 'info-box alerte';
+      return;
+    }
+    var correct = Math.abs(val - reponseAttendue) < 0.015;
+    if(correct){
+      scoreJeu++;
+      jeuScore.textContent = scoreJeu;
+      jeuFeedback.textContent = 'Exact! La réponse est '+reponseAttendue.toFixed(decimalesAttendues).replace('.',',')+'.';
+      jeuFeedback.className = 'info-box succes';
+    } else {
+      jeuFeedback.textContent = 'Pas tout à fait — la bonne réponse était '+reponseAttendue.toFixed(decimalesAttendues).replace('.',',')+'. Clique sur « Voir la solution » pour les étapes.';
+      jeuFeedback.className = 'info-box alerte';
+    }
+  }
+
+  function setOp(op, btn){
+    opActuelle = op;
+    [btnOpAdd, btnOpSub, btnOpMul, btnOpDiv].forEach(function(b){ b.classList.remove('actif'); });
+    btn.classList.add('actif');
+    genererProbleme();
+  }
+  btnOpAdd.addEventListener('click', function(){ setOp('add', btnOpAdd); });
+  btnOpSub.addEventListener('click', function(){ setOp('sub', btnOpSub); });
+  btnOpMul.addEventListener('click', function(){ setOp('mul', btnOpMul); });
+  btnOpDiv.addEventListener('click', function(){ setOp('div', btnOpDiv); });
+
+  btnModeCalcul.addEventListener('click', function(){
+    modeActuel = 'calcul'; btnModeCalcul.classList.add('actif'); btnModeProbleme.classList.remove('actif');
+    genererProbleme();
+  });
+  btnModeProbleme.addEventListener('click', function(){
+    modeActuel = 'probleme'; btnModeProbleme.classList.add('actif'); btnModeCalcul.classList.remove('actif');
+    genererProbleme();
+  });
+
+  document.getElementById('btnVerifierJeu').addEventListener('click', verifierReponse);
+  document.getElementById('btnSolutionJeu').addEventListener('click', afficherSolution);
+  document.getElementById('btnNouveauJeu').addEventListener('click', genererProbleme);
+
+  genererProbleme();
+})();
+</script>
+
+</body>
+</html>
