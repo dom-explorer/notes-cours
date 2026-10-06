@@ -355,17 +355,190 @@ En alignant ainsi les nombres décimaux, nous pouvons facilement effectuer des a
   <div class="section-kicker">Opération 4</div>
   <h2>Diviser des nombres décimaux</h2>
 
-  <p>La division est souvent l'opération qui pose le plus de difficultés. La principale technique consiste à transformer le diviseur en nombre entier.</p>
+<p> La division de nombres décimaux ressemble beaucoup à la division de nombres entiers. La principale difficulté consiste à savoir <strong>où placer la virgule dans le quotient</strong>. </p>
+<p> Avant de commencer une division longue, il faut toutefois s'assurer que le <strong>diviseur est un nombre entier</strong>. Si le diviseur comporte une virgule, nous pouvons transformer la division en une division équivalente dont le diviseur est entier. </p>
+<div class="idee"> <h3>Une propriété importante</h3>
+<p>
+  Si nous multiplions le dividende et le diviseur par un même nombre
+  non nul, le quotient ne change pas.
+</p>
 
-  <div class="method">
-    <div class="box-title">Méthode</div>
-    <ol>
-      <li>Déterminer le signe du résultat.</li>
-      <li>Déplacer la virgule du diviseur jusqu'à obtenir un entier.</li>
-      <li>Déplacer la virgule du dividende du <strong>même nombre de positions</strong>.</li>
-      <li>Effectuer la division normalement.</li>
-    </ol>
-  </div>
+<div class="math-display">
+  \[
+    \frac{a}{b}
+    =
+    \frac{a\times10}{b\times10}
+    =
+    \frac{a\times100}{b\times100}
+    =
+    \cdots
+  \]
+</div>
+
+<p>
+  Cette propriété nous permet de déplacer la virgule du dividende et du
+  diviseur du même nombre de positions vers la droite.
+</p>
+</div>
+<h3>Transformer le diviseur en nombre entier</h3>
+<p> Considérons la division suivante : </p>
+<div class="math-display"> \[ 12,48\div2,6 \] </div>
+<p> Le diviseur \(2,6\) comporte une décimale. Nous devons donc multiplier <strong>les deux nombres par \(10\)</strong> : </p>
+<div class="math-display"> \[ 12,48\div2,6 = \frac{12,48\times10}{2,6\times10} = \frac{124,8}{26} \] </div>
+<p> Le diviseur est maintenant un nombre entier. Nous pouvons donc effectuer la division longue. </p>
+<div class="math-display"> \[ 124,8\div26=4,8 \] </div>
+<p> Ainsi, </p>
+<div class="math-display"> \[ \boxed{12,48\div2,6=4,8} \] </div>
+<div class="method"> <div class="box-title">Méthode : diviser des nombres décimaux</div>
+<ol>
+  <li>
+    <strong>Déterminer le signe du quotient.</strong>
+    Les règles des signes sont les mêmes que pour les nombres entiers.
+  </li>
+
+  <li>
+    <strong>Transformer le diviseur en nombre entier.</strong>
+    Déplacer la virgule du diviseur vers la droite jusqu'à ce qu'il
+    devienne un nombre entier.
+  </li>
+
+  <li>
+    <strong>Déplacer la virgule du dividende du même nombre de positions.</strong>
+    Il faut multiplier le dividende et le diviseur par la même puissance
+    de \(10\).
+  </li>
+
+  <li>
+    <strong>Effectuer la division longue</strong> comme avec des nombres
+    entiers.
+  </li>
+
+  <li>
+    <strong>Placer la virgule dans le quotient</strong> au moment approprié
+    lors de la division du dividende.
+  </li>
+
+  <li>
+    <strong>Vérifier le résultat</strong> en utilisant une estimation ou
+    la multiplication :
+    \[
+      \text{diviseur}\times\text{quotient}=\text{dividende}.
+    \]
+  </li>
+</ol>
+</div>
+<h3>Exemple 1 — Dividende décimal et diviseur entier</h3>
+<p> Commençons par un cas où le diviseur est déjà un nombre entier : </p>
+<div class="math-display"> \[ 75,6\div3 \] </div>
+<p> Comme le diviseur \(3\) est déjà un nombre entier, nous pouvons commencer directement la division longue. </p>
+<p> Nous divisons d'abord la partie entière : </p>
+<ul> <li> Dans \(7\), le nombre \(3\) entre \(2\) fois. On écrit \(2\) au quotient. </li>
+<li>
+  \(2\times3=6\). Il reste \(1\).
+</li>
+
+<li>
+  On abaisse le \(5\), ce qui donne \(15\).
+</li>
+
+<li>
+  Dans \(15\), le nombre \(3\) entre \(5\) fois.
+  On écrit \(5\) au quotient.
+</li>
+
+<li>
+  \(5\times3=15\). Il reste \(0\).
+</li>
+</ul>
+<p> Nous arrivons maintenant à la virgule du dividende. Nous plaçons donc la virgule dans le quotient, puis nous abaissons le \(6\). </p>
+<div class="math-display"> \[ 75,6\div3=25,2 \] </div>
+<p> Ainsi, </p>
+<div class="math-display"> \[ \boxed{75,6\div3=25,2} \] </div>
+<h3>Exemple 2 — Diviseur décimal</h3>
+<p> Calculons maintenant : </p>
+<div class="math-display"> \[ 45,6\div1,2 \] </div>
+<p> Cette fois, le diviseur \(1,2\) comporte une décimale. Nous devons donc transformer le diviseur en nombre entier. </p>
+<p> Nous déplaçons la virgule d'une position vers la droite dans les <strong>deux nombres</strong> : </p>
+<div class="math-display"> \[ 45,6\div1,2 = 456\div12 \] </div>
+<p> Nous pouvons maintenant effectuer la division longue : </p>
+<div class="math-display"> \[ 456\div12=38 \] </div>
+<p> Donc, </p>
+<div class="math-display"> \[ \boxed{45,6\div1,2=38} \] </div>
+<h3>Exemple 3 — Deux nombres décimaux</h3>
+<p> Calculons : </p>
+<div class="math-display"> \[ 12,48\div2,6 \] </div>
+<p> Le diviseur \(2,6\) comporte une décimale. Nous déplaçons donc sa virgule d'une position vers la droite. Nous devons faire exactement la même chose avec le dividende : </p>
+<div class="math-display"> \[ \begin{aligned} 12,48 &\longrightarrow 124,8\\ 2,6 &\longrightarrow 26 \end{aligned} \] </div>
+<p> La division devient donc : </p>
+<div class="math-display"> \[ 124,8\div26 \] </div>
+<p> Nous pouvons maintenant effectuer la division longue. </p>
+<div class="math-display"> \[ 124,8\div26=4,8 \] </div>
+<p> Ainsi, </p>
+<div class="math-display"> \[ \boxed{12,48\div2,6=4,8} \] </div>
+<div class="retenir"> <h3>À retenir</h3>
+<p>
+  <strong>Le diviseur doit être un nombre entier avant d'effectuer
+  la division longue.</strong>
+</p>
+
+<p>
+  Pour y arriver, on multiplie le dividende et le diviseur par la
+  même puissance de \(10\).
+</p>
+
+<div class="math-display">
+  \[
+    4,56\div1,2
+    =
+    45,6\div12
+    =
+    3,8
+  \]
+</div>
+
+<p>
+  On peut voir cette opération comme un déplacement de la virgule,
+  mais il est important de comprendre que nous sommes en réalité
+  en train de <strong>multiplier les deux nombres par le même nombre</strong>.
+</p>
+</div>
+<h3>Lorsque la division ne donne pas un reste nul</h3>
+<p> Il est possible que la division ne se termine pas exactement. Dans ce cas, nous pouvons continuer la division en ajoutant des zéros au dividende. Ajouter des zéros après la virgule ne change pas la valeur du nombre : </p>
+<div class="math-display"> \[ 5=5,0=5,00=5,000=\cdots \] </div>
+<p> Par exemple, considérons : </p>
+<div class="math-display"> \[ 23\div6 \] </div>
+<p> La division donne \(3\) avec un reste de \(5\). Nous pouvons continuer en écrivant \(23,0\), puis abaisser le zéro. </p>
+<div class="math-display"> \[ 23\div6=3,8333\ldots \] </div>
+<p> Si nous voulons seulement deux décimales, nous pouvons arrêter après avoir obtenu \(3,83\) et arrondir selon la précision demandée. </p>
+<div class="idee"> <h3>Une bonne vérification</h3>
+<p>
+  Pour vérifier une division, nous pouvons utiliser la multiplication.
+  Le produit du diviseur et du quotient devrait redonner le dividende :
+</p>
+
+<div class="math-display">
+  \[
+    \text{diviseur}\times\text{quotient}
+    =
+    \text{dividende}.
+  \]
+</div>
+
+<p>
+  Par exemple :
+</p>
+
+<div class="math-display">
+  \[
+    2,6\times4,8=12,48.
+  \]
+</div>
+
+<p>
+  Notre quotient est donc cohérent.
+</p>
+</div>
+
 
   <div class="interactif">
     <div class="interactif-title">Transformateur de diviseur — division</div>
