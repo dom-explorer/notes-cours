@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAT-1101 — Pourcentages et conversions | learnwithdom.page</title>
+<meta name="description" content="Notes de cours — MAT-1101. Pourcentages, décimaux et fractions, calculer une partie/un taux/le tout, augmentations, diminutions, rabais, et un générateur de problèmes interactif.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)'], ['$', '$']],
+    displayMath: [['\\[','\\]'], ['$$','$$']]
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+:root{
+  --ardoise:#223A34; --ardoise-deep:#182922; --papier:#EAEEE9; --papier-2:#E0E5DD;
+  --encre:#1C2B3A; --craie:#D9A441; --craie-deep:#B9832C; --brique:#B5524A; --sapin:#4B7A68;
+  --ligne:rgba(28,43,58,.14); --white:#FCFBF7; --ombre:0 18px 45px rgba(24,41,34,.12); --rayon:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papier);color:var(--encre);font-family:"Literata",Georgia,serif;line-height:1.75}
+a{color:inherit}
+::selection{background:var(--craie);color:var(--ardoise-deep)}
+
+.topbar{position:sticky;top:0;z-index:1000;background:rgba(24,41,34,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.09)}
+.topbar-inner{max-width:1380px;margin:auto;min-height:66px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{color:#fff;text-decoration:none;font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:-.03em;font-size:1.05rem}
+.brand span{color:var(--craie)}
+.nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.nav a{color:rgba(255,255,255,.78);text-decoration:none;font:500 .82rem "Space Grotesk",sans-serif;padding:8px 11px;border-radius:9px;transition:.2s ease}
+.nav a:hover{color:#fff;background:rgba(255,255,255,.09)}
+
+.hero{background:radial-gradient(circle at 85% 20%,rgba(217,164,65,.18),transparent 28%),linear-gradient(135deg,var(--ardoise-deep),var(--ardoise));color:#fff;padding:64px 24px 72px}
+.hero-inner{max-width:1120px;margin:auto}
+.breadcrumb{font:500 .78rem "JetBrains Mono",monospace;color:rgba(255,255,255,.65);margin-bottom:25px}
+.breadcrumb a{color:rgba(255,255,255,.78);text-decoration:none}
+.breadcrumb a:hover{color:var(--craie)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid rgba(217,164,65,.4);border-radius:999px;color:#f1d38e;font:600 .72rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:20px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--craie)}
+.hero h1{max-width:950px;margin:0;font:700 clamp(2rem,5vw,3.9rem)/1.07 "Space Grotesk",sans-serif;letter-spacing:-.05em}
+.hero-lead{max-width:820px;margin:25px 0 0;color:rgba(255,255,255,.8);font-size:1.08rem}
+.hero-meta{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px}
+.tag{display:inline-block;padding:7px 11px;border-radius:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);font:500 .76rem "JetBrains Mono",monospace;color:rgba(255,255,255,.8)}
+
+.page{max-width:1380px;margin:0 auto;padding:46px 24px 80px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:48px}
+.toc{position:sticky;top:92px;align-self:start;max-height:calc(100vh - 115px);overflow:auto;padding:20px;background:rgba(252,251,247,.72);border:1px solid var(--ligne);border-radius:16px}
+.toc-title{font:700 .72rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.09em;color:var(--ardoise);margin-bottom:12px}
+.toc a{display:block;padding:7px 9px;margin:2px 0;border-left:2px solid transparent;color:#52605b;text-decoration:none;font:500 .74rem/1.4 "Space Grotesk",sans-serif;border-radius:0 7px 7px 0}
+.toc a:hover,.toc a.active{color:var(--ardoise-deep);background:rgba(217,164,65,.13);border-left-color:var(--craie-deep)}
+.content{min-width:0}
+.section{scroll-margin-top:95px;margin-bottom:68px}
+.section-kicker{color:var(--craie-deep);font:700 .74rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+h2{margin:0 0 20px;color:var(--ardoise-deep);font:700 clamp(1.6rem,3vw,2.4rem)/1.12 "Space Grotesk",sans-serif;letter-spacing:-.04em}
+h3{margin:34px 0 12px;color:var(--ardoise);font:700 1.25rem/1.25 "Space Grotesk",sans-serif;letter-spacing:-.025em}
+h4{margin:25px 0 9px;font:700 1rem "Space Grotesk",sans-serif;color:var(--encre)}
+p{margin:0 0 18px}
+.lead{font-size:1.08rem;color:#40504a}
+strong{color:var(--ardoise-deep)}
+
+.definition,.example,.note,.attention,.method{margin:25px 0;padding:22px 24px;border-radius:var(--rayon);border:1px solid var(--ligne);background:var(--white);box-shadow:0 7px 22px rgba(28,43,58,.045)}
+.definition{border-left:5px solid var(--sapin)}
+.example{border-left:5px solid var(--craie-deep)}
+.note{border-left:5px solid var(--ardoise)}
+.attention{border-left:5px solid var(--brique);background:#fbf3f0}
+.method{border-left:5px solid var(--craie);background:#f8f5ea}
+.box-title{display:flex;align-items:center;gap:9px;margin-bottom:8px;color:var(--ardoise-deep);font:700 .76rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.06em}
+.box-title::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.definition .box-title{color:var(--sapin)}
+.example .box-title{color:var(--craie-deep)}
+.note .box-title{color:var(--ardoise)}
+.attention .box-title{color:var(--brique)}
+.method .box-title{color:var(--craie-deep)}
+
+.callout{margin:30px 0;padding:30px;background:var(--ardoise);color:#fff;border-radius:var(--rayon);box-shadow:var(--ombre)}
+.callout .small{color:#e8c979;font:700 .72rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.09em;margin-bottom:8px}
+.callout p:last-child{margin-bottom:0}
+.callout strong{color:#fff}
+
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:25px 0}
+.mini-card{padding:21px;background:var(--white);border:1px solid var(--ligne);border-radius:15px}
+.mini-card h4{margin-top:0}
+
+table{width:100%;border-collapse:collapse;margin:25px 0;background:var(--white);border:1px solid var(--ligne);border-radius:14px;overflow:hidden}
+th,td{padding:13px 15px;border-bottom:1px solid var(--ligne);text-align:left;vertical-align:top}
+th{background:var(--ardoise);color:#fff;font:600 .78rem "Space Grotesk",sans-serif}
+td{font-size:.92rem}
+tr:last-child td{border-bottom:0}
+table.chiffres th, table.chiffres td{ text-align:center; font-family:"JetBrains Mono",monospace; }
+
+.equation{margin:23px 0;padding:20px;text-align:center;background:#f5f2e9;border:1px solid rgba(217,164,65,.28);border-radius:14px;overflow-x:auto}
+
+ul,ol{padding-left:1.35rem}
+li{margin:7px 0}
+
+.keywords{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.keyword{background:var(--papier-2);color:var(--ardoise);border-radius:999px;padding:5px 10px;font:600 .72rem "JetBrains Mono",monospace}
+
+.summary{background:var(--ardoise-deep);color:#fff;padding:30px;border-radius:20px;box-shadow:var(--ombre)}
+.summary h2{color:#fff}
+.summary li{color:rgba(255,255,255,.86)}
+.summary strong{color:#f0d183}
+
+.next{margin-top:55px;padding:24px;border-top:1px solid var(--ligne);display:flex;justify-content:space-between;gap:15px}
+.next a{color:var(--ardoise);text-decoration:none;font:600 .85rem "Space Grotesk",sans-serif}
+.next a:hover{color:var(--craie-deep)}
+
+footer{background:var(--ardoise-deep);color:rgba(255,255,255,.65);padding:35px 24px}
+.footer-inner{max-width:1120px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:#e9c96e;text-decoration:none}
+.footer-brand{font:700 1rem "Space Grotesk",sans-serif;color:#fff}
+.footer-small{font:.75rem "JetBrains Mono",monospace}
+
+/* ===== Composants additionnels pour les outils interactifs ===== */
+.interactif{margin:25px 0;padding:24px;border-radius:var(--rayon);border:1px solid var(--ligne);background:var(--white);box-shadow:0 7px 22px rgba(28,43,58,.045);display:flex;flex-direction:column;align-items:center}
+.interactif-title{align-self:flex-start;color:var(--ardoise);font:700 .76rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+canvas, svg.diagramme{border:1px solid var(--ligne);border-radius:10px;background:var(--white);max-width:100%;height:auto}
+.info-box{background:#EEF3F0;border-left:4px solid var(--sapin);padding:12px 16px;margin-top:15px;border-radius:0 10px 10px 0;font-size:.92rem;width:100%}
+.info-box.alerte{background:#FBEFEE;border-left-color:var(--brique)}
+.info-box.succes{background:#EAF5EE;border-left-color:#2F8F5B}
+.etapes{background:var(--papier);border-radius:10px;padding:14px 18px;margin-top:14px;width:100%;font-family:"JetBrains Mono",monospace;font-size:.92rem;line-height:1.85;text-align:left;white-space:pre-line}
+.controles{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;width:100%;max-width:560px;margin-bottom:6px}
+.controle-item{display:flex;flex-direction:column;gap:6px;flex:1;min-width:150px}
+.controle-item label{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--ardoise);font-weight:600;display:flex;justify-content:space-between}
+.controle-item output{color:var(--craie-deep)}
+.controle-item select{font-family:"JetBrains Mono",monospace;font-size:13px;padding:7px 9px;border-radius:8px;border:1px solid var(--ligne);background:var(--white)}
+.controle-item input[type="text"]{font-family:"JetBrains Mono",monospace;font-size:14px;padding:8px 10px;border-radius:8px;border:1.5px solid var(--ligne);background:var(--white)}
+input[type="range"]{width:100%;accent-color:var(--sapin)}
+.btn-jeu{font-family:"Space Grotesk",sans-serif;font-size:13.5px;font-weight:600;padding:9px 18px;border-radius:9px;border:none;background:var(--sapin);color:#fff;cursor:pointer}
+.btn-jeu:hover{background:var(--ardoise)}
+.btn-jeu.secondaire{background:var(--white);color:var(--encre);border:1.5px solid var(--ligne)}
+.btn-jeu.secondaire:hover{border-color:var(--craie-deep);background:var(--white)}
+.rangee-boutons{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:10px 0}
+.mode-toggle{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;justify-content:center}
+.mode-btn{font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:20px;border:1.5px solid var(--ligne);background:var(--white);cursor:pointer}
+.mode-btn.actif{background:var(--sapin);border-color:var(--sapin);color:#fff}
+.stat-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;width:100%;max-width:520px;margin-top:14px}
+.stat-item{background:var(--papier);border-radius:10px;padding:10px 14px;text-align:center;font-family:"JetBrains Mono",monospace}
+.stat-item .val{font-size:1.15rem;font-weight:700;color:var(--ardoise-deep);display:block}
+.stat-item .lbl{font-size:10.5px;color:var(--craie-deep);text-transform:uppercase;letter-spacing:.04em}
+.probleme-enonce{background:var(--papier);border-radius:10px;padding:16px 20px;width:100%;font-style:italic;margin-bottom:6px;min-height:50px;display:flex;align-items:center}
+.barre-pourcent{width:100%;max-width:420px;height:34px;background:var(--papier-2);border-radius:8px;overflow:hidden;display:flex;margin:10px 0;border:1px solid var(--ligne)}
+.barre-pourcent-remplie{background:var(--sapin);height:100%;display:flex;align-items:center;justify-content:flex-end;color:#fff;font-family:"JetBrains Mono",monospace;font-size:12px;padding-right:8px;transition:width .15s ease;white-space:nowrap}
+
+@media(max-width:1180px){.page{grid-template-columns:1fr}.toc{display:none}}
+@media(max-width:760px){
+  .topbar-inner{padding:0 15px}.nav{display:none}
+  .hero{padding:45px 18px 55px}.page{padding:35px 18px 60px}
+  .grid-2{grid-template-columns:1fr}
+  .definition,.example,.note,.attention,.method,.interactif{padding:18px}
+  .callout,.summary{padding:23px}
+  th,td{padding:10px}
+  .next{flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span>.page</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="https://learnwithdom.page">Accueil</a>
+      <a href="https://learnwithdom.page/niveau/secondaire1.html">Secondaire 1</a>
+      <a href="https://learnwithdom.page/cours/mat1101.html">MAT-1101</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="https://learnwithdom.page">learnwithdom.page</a>
+      &nbsp; / &nbsp;
+      <a href="https://learnwithdom.page/niveau/secondaire1.html">Secondaire 1</a>
+      &nbsp; / &nbsp;
+      MAT-1101
+    </div>
+
+    <div class="eyebrow">MAT-1101 · 1.5</div>
+
+    <h1>Pourcentages et conversions</h1>
+
+    <p class="hero-lead">
+      Fractions, décimaux et pourcentages sont trois façons de représenter la même proportion.
+      Apprends à passer de l'un à l'autre, à calculer une partie, un taux ou un tout, à gérer
+      les augmentations et les rabais — puis entraîne-toi avec un générateur de problèmes.
+    </p>
+
+    <div class="hero-meta">
+      <span class="tag">Secondaire 1</span>
+      <span class="tag">Arithmétique</span>
+      <span class="tag">Pourcentages</span>
+      <span class="tag">Générateur de problèmes</span>
+    </div>
+  </div>
+</section>
+
+<main class="page">
+
+<aside class="toc" aria-label="Table des matières">
+  <div class="toc-title">Dans cette page</div>
+  <a href="#symbole">Le symbole %</a>
+  <a href="#conversions">Convertir entre les trois formes</a>
+  <a href="#partie">Calculer une partie</a>
+  <a href="#taux">Trouver le taux ou le tout</a>
+  <a href="#variation">Augmentation et diminution</a>
+  <a href="#calculmental">Calcul mental</a>
+  <a href="#erreurs">Erreurs fréquentes</a>
+  <a href="#jeu">Jeu — génère tes problèmes</a>
+  <a href="#retenir">À retenir</a>
+</aside>
+
+<div class="content">
+
+<section class="section" id="symbole">
+  <div class="section-kicker">1.5.1 · Idée de base</div>
+  <h2>Comprendre le symbole pourcentage</h2>
+
+  <p class="lead">Le symbole % signifie littéralement « sur 100 ».</p>
+
+  <div class="definition">
+    <div class="box-title">Définition</div>
+    <p>Un <strong>pourcentage</strong> exprime une proportion par rapport à 100 :</p>
+    <div class="equation">\[ p\% = \frac{p}{100} \]</div>
+  </div>
+
+  <p>Un pourcentage peut être inférieur à 100% (une partie du tout), égal à 100% (le tout en entier), ou supérieur à 100% (plus que le tout initial). Par exemple, \(50\% = \tfrac{50}{100} = \tfrac12\) représente la moitié, et \(25\% = \tfrac14\) représente le quart.</p>
+
+  <div class="note">
+    <div class="box-title">Idée importante</div>
+    <p>Les pourcentages, les fractions et les nombres décimaux sont trois façons différentes de représenter <strong>une même proportion</strong>. Pour passer d'un pourcentage à un décimal, on divise par 100; pour passer d'un décimal à un pourcentage, on multiplie par 100.</p>
+  </div>
+</section>
+
+<section class="section" id="conversions">
+  <div class="section-kicker">1.5.2–1.5.5 · Conversions</div>
+  <h2>Convertir entre fraction, décimal et pourcentage</h2>
+
+  <div class="grid-2">
+    <div class="mini-card">
+      <h4>Pourcentage → décimal</h4>
+      <p>On divise par 100 (la virgule se déplace de 2 positions vers la gauche) : \(45\% = \tfrac{45}{100} = 0{,}45\).</p>
+    </div>
+    <div class="mini-card">
+      <h4>Décimal → pourcentage</h4>
+      <p>On multiplie par 100 (la virgule se déplace de 2 positions vers la droite) : \(0{,}37 \times 100 = 37\), donc \(0{,}37 = 37\%\).</p>
+    </div>
+  </div>
+
+  <p>Pour une <strong>fraction</strong>, on la transforme d'abord en décimal, puis en pourcentage : \(\tfrac35 = 0{,}6 \to 0{,}6\times100 = 60\%\).</p>
+
+  <div class="interactif">
+    <div class="interactif-title">Convertisseur triple — fraction ⇄ décimal ⇄ pourcentage</div>
+    <div class="controles">
+      <div class="controle-item"><label>Pourcentage <output id="outConvPct">50</output> %</label><input id="rangeConvPct" max="200" min="0" type="range" value="50"/></div>
+    </div>
+    <div class="barre-pourcent"><div class="barre-pourcent-remplie" id="barreConv" style="width:50%;">50%</div></div>
+    <div class="etapes" id="convEtapes">50% = 50/100 = 1/2 = 0,5</div>
+  </div>
+
+  <table class="chiffres">
+    <thead><tr><th>Fraction</th><th>Décimal</th><th>Pourcentage</th></tr></thead>
+    <tbody>
+      <tr><td>1/2</td><td>0,5</td><td>50%</td></tr>
+      <tr><td>1/4</td><td>0,25</td><td>25%</td></tr>
+      <tr><td>3/4</td><td>0,75</td><td>75%</td></tr>
+      <tr><td>1/10</td><td>0,1</td><td>10%</td></tr>
+      <tr><td>3/5</td><td>0,6</td><td>60%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="attention">
+    <div class="box-title">Erreur fréquente — confondre 0,5% et 50%</div>
+    <p>Ces deux valeurs sont très différentes : \(0{,}5\% = 0{,}005\), alors que \(50\% = 0{,}50\).</p>
+  </div>
+</section>
+
+<section class="section" id="partie">
+  <div class="section-kicker">1.5.6 · Application directe</div>
+  <h2>Calculer un pourcentage d'une quantité</h2>
+
+  <div class="method">
+    <div class="box-title">Méthode</div>
+    <div class="equation">\[ \text{partie} = \text{tout} \times \text{taux décimal} \]</div>
+    <p>Exemple : 20% de 80. On transforme \(20\% = 0{,}20\), puis \(80\times0{,}20=16\).</p>
+  </div>
+
+  <div class="interactif">
+    <div class="interactif-title">Calculateur — partie d'une quantité</div>
+    <div class="controles">
+      <div class="controle-item"><label>Quantité (le tout) <output id="outPartTout">80</output></label><input id="rangePartTout" max="500" min="1" type="range" value="80"/></div>
+      <div class="controle-item"><label>Pourcentage <output id="outPartTaux">20</output>%</label><input id="rangePartTaux" max="150" min="0" type="range" value="20"/></div>
+    </div>
+    <div class="etapes" id="partEtapes">20% de 80 : 20% = 0,20 → 80 × 0,20 = 16</div>
+  </div>
+</section>
+
+<section class="section" id="taux">
+  <div class="section-kicker">1.5.7–1.5.8 · Problèmes inverses</div>
+  <h2>Trouver le taux ou le tout</h2>
+
+  <div class="grid-2">
+    <div class="mini-card">
+      <h4>Trouver le taux</h4>
+      <div class="equation">\[ \text{taux} = \frac{\text{partie}}{\text{tout}} \times 100 \]</div>
+      <p>Exemple : 10 élèves sur 25. \(\tfrac{10}{25}\times100=40\%\).</p>
+    </div>
+    <div class="mini-card">
+      <h4>Trouver le tout</h4>
+      <div class="equation">\[ \text{tout} = \frac{\text{partie}}{\text{taux décimal}} \]</div>
+      <p>Exemple : 18 représente 30% d'une quantité. \(\tfrac{18}{0{,}30}=60\).</p>
+    </div>
+  </div>
+
+  <div class="attention">
+    <div class="box-title">Erreur fréquente</div>
+    <p>Il faut toujours placer la <strong>partie au numérateur</strong> et le <strong>tout au dénominateur</strong>. Pour 12 personnes sur 30 : \(\tfrac{12}{30}\times100=40\%\), et non l'inverse.</p>
+  </div>
+
+  <div class="interactif">
+    <div class="interactif-title">Calculateur universel — partie, tout ou taux</div>
+    <div class="mode-toggle">
+      <button class="mode-btn actif" data-inconnue="partie" id="btnIncPartie">Trouver la partie</button>
+      <button class="mode-btn" data-inconnue="taux" id="btnIncTaux">Trouver le taux</button>
+      <button class="mode-btn" data-inconnue="tout" id="btnIncTout">Trouver le tout</button>
+    </div>
+    <div class="controles" id="universelControles"></div>
+    <div class="etapes" id="universelEtapes"></div>
+  </div>
+</section>
+
+<section class="section" id="variation">
+  <div class="section-kicker">1.5.9–1.5.12 · Variations</div>
+  <h2>Augmentation, diminution et rabais</h2>
+
+  <div class="note">
+    <div class="box-title">Facteurs multiplicatifs</div>
+    <p>Une augmentation de \(p\%\) multiplie par \(\left(1+\tfrac{p}{100}\right)\); une diminution de \(p\%\) multiplie par \(\left(1-\tfrac{p}{100}\right)\). Par exemple, une augmentation de 15% utilise le facteur \(1{,}15\); un rabais de 30% utilise le facteur \(0{,}70\).</p>
+  </div>
+
+  <div class="interactif">
+    <div class="interactif-title">Simulateur d'augmentation / diminution</div>
+    <div class="mode-toggle">
+      <button class="mode-btn actif" data-sens="augmentation" id="btnAugmentation">Augmentation</button>
+      <button class="mode-btn" data-sens="diminution" id="btnDiminution">Diminution</button>
+    </div>
+    <div class="controles">
+      <div class="controle-item"><label>Montant initial <output id="outVarMontant">80</output> $</label><input id="rangeVarMontant" max="2000" min="1" step="1" type="range" value="80"/></div>
+      <div class="controle-item"><label>Pourcentage de variation <output id="outVarPct">15</output>%</label><input id="rangeVarPct" max="100" min="0" type="range" value="15"/></div>
+    </div>
+    <div class="etapes" id="varEtapes">Augmentation de 15% : facteur = 1 + 0,15 = 1,15 → 80 × 1,15 = 92,00 $</div>
+  </div>
+
+  <table class="chiffres">
+    <thead><tr><th>Variation</th><th>Pourcentage restant</th><th>Facteur</th></tr></thead>
+    <tbody>
+      <tr><td>Augmentation de 10%</td><td>110%</td><td>1,10</td></tr>
+      <tr><td>Augmentation de 25%</td><td>125%</td><td>1,25</td></tr>
+      <tr><td>Diminution de 10%</td><td>90%</td><td>0,90</td></tr>
+      <tr><td>Diminution de 25%</td><td>75%</td><td>0,75</td></tr>
+    </tbody>
+  </table>
+
+  <div class="attention">
+    <div class="box-title">Attention — un rabais dépend du prix initial</div>
+    <p>Un rabais de 30% ne signifie pas qu'on soustrait 30 dollars. Le montant retiré dépend toujours du prix de départ : 30% de 60$ fait 18$, pas 30$.</p>
+  </div>
+</section>
+
+<section class="section" id="calculmental">
+  <div class="section-kicker">1.5.13 · Raccourcis</div>
+  <h2>Calcul mental</h2>
+  <p>Quelques pourcentages sont particulièrement utiles à connaître par cœur : \(50\%=\tfrac12\), \(25\%=\tfrac14\), \(10\%=\tfrac1{10}\), \(5\%=\tfrac1{20}\), \(1\%=\tfrac1{100}\).</p>
+
+  <div class="interactif">
+    <div class="interactif-title">Grille de pourcentages usuels</div>
+    <div class="controles">
+      <div class="controle-item"><label>Quantité <output id="outMentalQte">240</output></label><input id="rangeMentalQte" max="1000" min="1" type="range" value="240"/></div>
+    </div>
+    <table class="chiffres" style="margin-top:10px;">
+      <thead><tr><th>50%</th><th>25%</th><th>10%</th><th>5%</th><th>1%</th></tr></thead>
+      <tbody><tr id="ligneMental"><td>120</td><td>60</td><td>24</td><td>12</td><td>2,4</td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section" id="erreurs">
+  <div class="section-kicker">1.5.14 · Pièges classiques</div>
+  <h2>Erreurs fréquentes</h2>
+  <div class="attention">
+    <div class="box-title">Les quatre pièges les plus courants</div>
+    <ol>
+      <li><strong>Oublier de diviser par 100</strong> : \(25\% \neq 25\), mais \(25\%=0{,}25\).</li>
+      <li><strong>Confondre 0,5% et 50%</strong> : \(0{,}5\%=0{,}005\), alors que \(50\%=0{,}50\).</li>
+      <li><strong>Confondre le montant d'une variation et la nouvelle valeur</strong> : si 100$ augmente de 20%, l'augmentation est \(100\times0{,}20=20\), mais le <strong>nouveau prix</strong> est \(100+20=120\).</li>
+      <li><strong>Inverser partie et tout</strong> : le taux est toujours \(\dfrac{\text{partie}}{\text{tout}}\times100\), jamais l'inverse.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="jeu">
+  <div class="section-kicker">Jeu interactif</div>
+  <h2>Génère tes propres problèmes</h2>
+  <p class="lead">Choisis un type de problème, résous-le, puis vérifie ta réponse.</p>
+
+  <div class="interactif">
+    <div class="interactif-title">Générateur de problèmes de pourcentage</div>
+    <div class="mode-toggle">
+      <button class="mode-btn actif" data-type="partie" id="btnTypePartie">Trouver la partie</button>
+      <button class="mode-btn" data-type="taux" id="btnTypeTaux">Trouver le taux</button>
+      <button class="mode-btn" data-type="tout" id="btnTypeTout">Trouver le tout</button>
+      <button class="mode-btn" data-type="variation" id="btnTypeVariation">Augmentation/rabais</button>
+    </div>
+
+    <div class="probleme-enonce" id="problemeEnonce">20% de 80 = ?</div>
+
+    <div class="controles">
+      <div class="controle-item"><label>Ta réponse</label><input id="reponseJoueur" placeholder="ex. 16" type="text"/></div>
+    </div>
+    <div class="rangee-boutons">
+      <button class="btn-jeu" id="btnVerifierJeu">Vérifier</button>
+      <button class="btn-jeu secondaire" id="btnSolutionJeu">Voir la solution</button>
+      <button class="btn-jeu secondaire" id="btnNouveauJeu">Nouveau problème</button>
+    </div>
+    <div class="info-box" id="jeuFeedback">Choisis un type de problème et essaie de le résoudre.</div>
+    <div class="etapes" id="jeuSolution" style="display:none;"></div>
+    <div class="stat-grille">
+      <div class="stat-item"><span class="val" id="jeuScore">0</span><span class="lbl">Bonnes réponses</span></div>
+      <div class="stat-item"><span class="val" id="jeuTotal">0</span><span class="lbl">Essais</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="retenir">
+  <div class="summary">
+    <div class="section-kicker" style="color:#e7c56d;">Fiche de référence rapide</div>
+    <h2>À retenir</h2>
+    <ul>
+      <li>\(p\% = \dfrac{p}{100}\) — un pourcentage est une fraction sur 100.</li>
+      <li><strong>Partie</strong> \(= \text{tout} \times \text{taux décimal}\).</li>
+      <li><strong>Taux</strong> \(= \dfrac{\text{partie}}{\text{tout}} \times 100\).</li>
+      <li><strong>Tout</strong> \(= \dfrac{\text{partie}}{\text{taux décimal}}\).</li>
+      <li><strong>Augmentation de p%</strong> : multiplier par \(\left(1+\tfrac{p}{100}\right)\).</li>
+      <li><strong>Diminution de p%</strong> : multiplier par \(\left(1-\tfrac{p}{100}\right)\).</li>
+    </ul>
+    <p>La compétence importante n'est pas seulement de connaître une formule : c'est de reconnaître quelle quantité représente le <strong>tout</strong>, quelle quantité représente la <strong>partie</strong>, et quelle quantité représente le <strong>taux</strong>.</p>
+  </div>
+</section>
+
+<div class="next">
+  <a href="15-Operations_decimaux.html">← 1.4 — Opérations sur les décimaux</a>
+  <a href="#">1.6 — À venir →</a>
+</div>
+
+</div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">learnwithdom.page</div>
+      <div class="footer-small">MAT-1101 · Pourcentages · Secondaire 1</div>
+    </div>
+    <div class="footer-small">Notes de cours · Pourcentages et conversions</div>
+  </div>
+</footer>
+
+<script>
+const sections = document.querySelectorAll(".section[id]");
+const links = document.querySelectorAll(".toc a");
+
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        links.forEach(link => link.classList.remove("active"));
+        const active = document.querySelector('.toc a[href="#' + entry.target.id + '"]');
+        if(active) active.classList.add("active");
+      }
+    });
+  }, { rootMargin:"-18% 0px -68% 0px", threshold:0 });
+  sections.forEach(section => observer.observe(section));
+}
+</script>
+
+<script>
+(function(){
+  function fmtFr(n, dec){ return n.toFixed(dec).replace('.', ','); }
+  function parseFr(s){
+    if(typeof s !== 'string') return NaN;
+    return parseFloat(s.trim().replace(',', '.').replace(/\s/g,'').replace('%',''));
+  }
+  function gcd(a,b){ a=Math.abs(Math.round(a)); b=Math.abs(Math.round(b)); while(b){ var t=b; b=a%b; a=t; } return a||1; }
+
+  // ======================================================
+  // 1. Convertisseur triple
+  // ======================================================
+  var rangeConvPct = document.getElementById('rangeConvPct'), outConvPct = document.getElementById('outConvPct');
+  var barreConv = document.getElementById('barreConv'), convEtapes = document.getElementById('convEtapes');
+
+  function updateConv(){
+    var p = parseInt(rangeConvPct.value,10);
+    outConvPct.textContent = p;
+    var dec = p/100;
+    var g = gcd(p,100);
+    var fracTexte = (p/g)+'/'+(100/g);
+    var largeur = Math.min(100, p);
+    barreConv.style.width = largeur + '%';
+    barreConv.textContent = p + '%';
+    convEtapes.textContent = p+'% = '+p+'/100 = '+fracTexte+' = '+dec.toFixed(2).replace('.', ',').replace(/0$/,'').replace(/,$/,',0');
+    convEtapes.textContent = p+'% = '+p+'/100 = '+fracTexte+' = '+dec.toLocaleString('fr-CA',{maximumFractionDigits:2}).replace('.', ',');
+  }
+  rangeConvPct.addEventListener('input', updateConv);
+  updateConv();
+
+  // ======================================================
+  // 2. Calculateur — partie d'une quantité
+  // ======================================================
+  var rangePartTout = document.getElementById('rangePartTout'), outPartTout = document.getElementById('outPartTout');
+  var rangePartTaux = document.getElementById('rangePartTaux'), outPartTaux = document.getElementById('outPartTaux');
+  var partEtapes = document.getElementById('partEtapes');
+
+  function updatePart(){
+    var tout = parseInt(rangePartTout.value,10);
+    var taux = parseInt(rangePartTaux.value,10);
+    outPartTout.textContent = tout; outPartTaux.textContent = taux;
+    var dec = taux/100;
+    var resultat = tout * dec;
+    partEtapes.textContent = taux+'% de '+tout+' : '+taux+'% = '+dec.toFixed(2).replace('.', ',')+' → '+tout+' × '+dec.toFixed(2).replace('.', ',')+' = '+resultat.toLocaleString('fr-CA',{maximumFractionDigits:2});
+  }
+  [rangePartTout, rangePartTaux].forEach(function(el){ el.addEventListener('input', updatePart); });
+  updatePart();
+
+  // ======================================================
+  // 3. Calculateur universel (partie / taux / tout)
+  // ======================================================
+  var inconnueActuelle = 'partie';
+  var btnIncPartie = document.getElementById('btnIncPartie'), btnIncTaux = document.getElementById('btnIncTaux'), btnIncTout = document.getElementById('btnIncTout');
+  var universelControles = document.getElementById('universelControles');
+  var universelEtapes = document.getElementById('universelEtapes');
+
+  var uniVals = { partie: 10, tout: 25, taux: 40 };
+
+  function renderUniverselControles(){
+    universelControles.innerHTML = '';
+    var champs = [];
+    if(inconnueActuelle === 'partie'){ champs = [['tout','Tout',1,500],['taux','Taux (%)',0,200]]; }
+    else if(inconnueActuelle === 'taux'){ champs = [['partie','Partie',0,500],['tout','Tout',1,500]]; }
+    else { champs = [['partie','Partie',0,500],['taux','Taux (%)',1,200]]; }
+
+    champs.forEach(function(c){
+      var key = c[0], label = c[1], min = c[2], max = c[3];
+      var div = document.createElement('div');
+      div.className = 'controle-item';
+      div.innerHTML = '<label>'+label+' <output id="outUni_'+key+'">'+uniVals[key]+'</output></label><input id="rangeUni_'+key+'" min="'+min+'" max="'+max+'" value="'+uniVals[key]+'" type="range"/>';
+      universelControles.appendChild(div);
+    });
+    champs.forEach(function(c){
+      var key = c[0];
+      document.getElementById('rangeUni_'+key).addEventListener('input', function(){
+        uniVals[key] = parseFloat(this.value);
+        document.getElementById('outUni_'+key).textContent = uniVals[key];
+        updateUniversel();
+      });
+    });
+    updateUniversel();
+  }
+
+  function updateUniversel(){
+    if(inconnueActuelle === 'partie'){
+      var dec = uniVals.taux/100;
+      var resultat = uniVals.tout * dec;
+      universelEtapes.textContent = 'partie = tout × taux décimal = '+uniVals.tout+' × '+dec.toFixed(2).replace('.', ',')+' = '+resultat.toLocaleString('fr-CA',{maximumFractionDigits:2});
+    } else if(inconnueActuelle === 'taux'){
+      var taux = uniVals.tout > 0 ? (uniVals.partie/uniVals.tout)*100 : 0;
+      universelEtapes.textContent = 'taux = (partie/tout) × 100 = ('+uniVals.partie+'/'+uniVals.tout+') × 100 = '+taux.toLocaleString('fr-CA',{maximumFractionDigits:2})+'%';
+    } else {
+      var decT = uniVals.taux/100;
+      var toutResultat = decT > 0 ? uniVals.partie/decT : 0;
+      universelEtapes.textContent = 'tout = partie / taux décimal = '+uniVals.partie+' / '+decT.toFixed(2).replace('.', ',')+' = '+toutResultat.toLocaleString('fr-CA',{maximumFractionDigits:2});
+    }
+  }
+
+  function setInconnue(val, btn){
+    inconnueActuelle = val;
+    [btnIncPartie, btnIncTaux, btnIncTout].forEach(function(b){ b.classList.remove('actif'); });
+    btn.classList.add('actif');
+    renderUniverselControles();
+  }
+  btnIncPartie.addEventListener('click', function(){ setInconnue('partie', btnIncPartie); });
+  btnIncTaux.addEventListener('click', function(){ setInconnue('taux', btnIncTaux); });
+  btnIncTout.addEventListener('click', function(){ setInconnue('tout', btnIncTout); });
+  renderUniverselControles();
+
+  // ======================================================
+  // 4. Augmentation / diminution
+  // ======================================================
+  var sensActuel = 'augmentation';
+  var btnAugmentation = document.getElementById('btnAugmentation'), btnDiminution = document.getElementById('btnDiminution');
+  var rangeVarMontant = document.getElementById('rangeVarMontant'), outVarMontant = document.getElementById('outVarMontant');
+  var rangeVarPct = document.getElementById('rangeVarPct'), outVarPct = document.getElementById('outVarPct');
+  var varEtapes = document.getElementById('varEtapes');
+
+  function updateVariation(){
+    var montant = parseFloat(rangeVarMontant.value);
+    var pct = parseFloat(rangeVarPct.value);
+    outVarMontant.textContent = montant;
+    outVarPct.textContent = pct;
+    var dec = pct/100;
+    var facteur = sensActuel === 'augmentation' ? (1+dec) : (1-dec);
+    var resultat = montant * facteur;
+    var signe = sensActuel === 'augmentation' ? '+' : '−';
+    varEtapes.textContent = (sensActuel==='augmentation'?'Augmentation':'Diminution')+' de '+pct+'% : facteur = 1 '+signe+' '+dec.toFixed(2).replace('.', ',')+' = '+facteur.toFixed(2).replace('.', ',')+' → '+montant+' × '+facteur.toFixed(2).replace('.', ',')+' = '+resultat.toLocaleString('fr-CA',{minimumFractionDigits:2,maximumFractionDigits:2})+' $';
+  }
+  [rangeVarMontant, rangeVarPct].forEach(function(el){ el.addEventListener('input', updateVariation); });
+  btnAugmentation.addEventListener('click', function(){ sensActuel='augmentation'; btnAugmentation.classList.add('actif'); btnDiminution.classList.remove('actif'); updateVariation(); });
+  btnDiminution.addEventListener('click', function(){ sensActuel='diminution'; btnDiminution.classList.add('actif'); btnAugmentation.classList.remove('actif'); updateVariation(); });
+  updateVariation();
+
+  // ======================================================
+  // 5. Grille de calcul mental
+  // ======================================================
+  var rangeMentalQte = document.getElementById('rangeMentalQte'), outMentalQte = document.getElementById('outMentalQte');
+  var ligneMental = document.getElementById('ligneMental');
+  function updateMental(){
+    var q = parseFloat(rangeMentalQte.value);
+    outMentalQte.textContent = q;
+    var vals = [0.5,0.25,0.10,0.05,0.01].map(function(f){ return (q*f).toLocaleString('fr-CA',{maximumFractionDigits:2}); });
+    ligneMental.innerHTML = vals.map(function(v){ return '<td>'+v+'</td>'; }).join('');
+  }
+  rangeMentalQte.addEventListener('input', updateMental);
+  updateMental();
+
+  // ======================================================
+  // 6. JEU — générateur de problèmes de pourcentage
+  // ======================================================
+  var typeActuel = 'partie';
+  var probDonnees = {};
+  var reponseAttendue, decimalesAttendues = 2;
+  var scoreJeu = 0, totalJeu = 0;
+
+  var btnTypePartie = document.getElementById('btnTypePartie'), btnTypeTaux = document.getElementById('btnTypeTaux');
+  var btnTypeTout = document.getElementById('btnTypeTout'), btnTypeVariation = document.getElementById('btnTypeVariation');
+  var problemeEnonce = document.getElementById('problemeEnonce');
+  var reponseJoueur = document.getElementById('reponseJoueur');
+  var jeuFeedback = document.getElementById('jeuFeedback');
+  var jeuSolution = document.getElementById('jeuSolution');
+  var jeuScore = document.getElementById('jeuScore'), jeuTotal = document.getElementById('jeuTotal');
+
+  function randInt(min, max){ return Math.floor(min + Math.random()*(max-min+1)); }
+  var pourcentagesCourants = [5,10,15,20,25,30,40,50,60,75];
+
+  function genererProbleme(){
+    if(typeActuel === 'partie'){
+      var tout = randInt(2,40)*5;
+      var taux = pourcentagesCourants[randInt(0,pourcentagesCourants.length-1)];
+      probDonnees = { tout: tout, taux: taux };
+      reponseAttendue = Math.round(tout*(taux/100)*100)/100;
+      problemeEnonce.textContent = taux+'% de '+tout+' = ?';
+    } else if(typeActuel === 'taux'){
+      var toutT = randInt(4,20)*5;
+      var partieT = randInt(1, toutT);
+      probDonnees = { partie: partieT, tout: toutT };
+      reponseAttendue = Math.round((partieT/toutT)*10000)/100;
+      problemeEnonce.textContent = partieT+' représente quel pourcentage de '+toutT+' ?';
+    } else if(typeActuel === 'tout'){
+      var tauxO = pourcentagesCourants[randInt(0,pourcentagesCourants.length-1)];
+      var toutVoulu = randInt(2,40)*5;
+      var partieO = Math.round(toutVoulu*(tauxO/100)*100)/100;
+      probDonnees = { partie: partieO, taux: tauxO };
+      reponseAttendue = toutVoulu;
+      problemeEnonce.textContent = partieO+' représente '+tauxO+'% de quelle quantité ?';
+    } else { // variation
+      var montantV = randInt(10,300);
+      var pctV = pourcentagesCourants[randInt(0,pourcentagesCourants.length-1)];
+      var sens = Math.random() < 0.5 ? 'augmente' : 'diminue';
+      probDonnees = { montant: montantV, pct: pctV, sens: sens };
+      var facteurV = sens === 'augmente' ? (1+pctV/100) : (1-pctV/100);
+      reponseAttendue = Math.round(montantV*facteurV*100)/100;
+      problemeEnonce.textContent = 'Un prix de '+montantV+' $ '+sens+' de '+pctV+'%. Quel est le nouveau prix?';
+    }
+
+    jeuFeedback.textContent = 'Entre ta réponse, puis clique sur « Vérifier ».';
+    jeuFeedback.className = 'info-box';
+    jeuSolution.style.display = 'none';
+    reponseJoueur.value = '';
+  }
+
+  function afficherSolution(){
+    var texte = '';
+    if(typeActuel === 'partie'){
+      var dec = probDonnees.taux/100;
+      texte = probDonnees.taux+'% = '+dec.toFixed(2).replace('.',',')+'\n'+probDonnees.tout+' × '+dec.toFixed(2).replace('.',',')+' = '+reponseAttendue.toLocaleString('fr-CA',{maximumFractionDigits:2});
+    } else if(typeActuel === 'taux'){
+      texte = '('+probDonnees.partie+' / '+probDonnees.tout+') × 100 = '+reponseAttendue.toLocaleString('fr-CA',{maximumFractionDigits:2})+'%';
+    } else if(typeActuel === 'tout'){
+      var decT = probDonnees.taux/100;
+      texte = probDonnees.taux+'% = '+decT.toFixed(2).replace('.',',')+'\n'+probDonnees.partie+' / '+decT.toFixed(2).replace('.',',')+' = '+reponseAttendue.toLocaleString('fr-CA',{maximumFractionDigits:2});
+    } else {
+      var facteurTxt = probDonnees.sens === 'augmente' ? (1+probDonnees.pct/100) : (1-probDonnees.pct/100);
+      texte = 'Facteur : 1 '+(probDonnees.sens==='augmente'?'+':'−')+' '+(probDonnees.pct/100).toFixed(2).replace('.',',')+' = '+facteurTxt.toFixed(2).replace('.',',')+'\n'+probDonnees.montant+' × '+facteurTxt.toFixed(2).replace('.',',')+' = '+reponseAttendue.toLocaleString('fr-CA',{maximumFractionDigits:2});
+    }
+    jeuSolution.textContent = texte;
+    jeuSolution.style.display = 'block';
+  }
+
+  function verifierReponse(){
+    var val = parseFr(reponseJoueur.value);
+    totalJeu++;
+    jeuTotal.textContent = totalJeu;
+    if(isNaN(val)){
+      jeuFeedback.textContent = 'Entre un nombre valide avant de vérifier.';
+      jeuFeedback.className = 'info-box alerte';
+      return;
+    }
+    var correct = Math.abs(val - reponseAttendue) < 0.06;
+    if(correct){
+      scoreJeu++;
+      jeuScore.textContent = scoreJeu;
+      jeuFeedback.textContent = 'Exact! La réponse est '+reponseAttendue.toLocaleString('fr-CA',{maximumFractionDigits:2})+(typeActuel==='taux'?'%':'')+'.';
+      jeuFeedback.className = 'info-box succes';
+    } else {
+      jeuFeedback.textContent = 'Pas tout à fait — la bonne réponse était '+reponseAttendue.toLocaleString('fr-CA',{maximumFractionDigits:2})+(typeActuel==='taux'?'%':'')+'. Clique sur « Voir la solution ».';
+      jeuFeedback.className = 'info-box alerte';
+    }
+  }
+
+  function setType(t, btn){
+    typeActuel = t;
+    [btnTypePartie, btnTypeTaux, btnTypeTout, btnTypeVariation].forEach(function(b){ b.classList.remove('actif'); });
+    btn.classList.add('actif');
+    genererProbleme();
+  }
+  btnTypePartie.addEventListener('click', function(){ setType('partie', btnTypePartie); });
+  btnTypeTaux.addEventListener('click', function(){ setType('taux', btnTypeTaux); });
+  btnTypeTout.addEventListener('click', function(){ setType('tout', btnTypeTout); });
+  btnTypeVariation.addEventListener('click', function(){ setType('variation', btnTypeVariation); });
+
+  document.getElementById('btnVerifierJeu').addEventListener('click', verifierReponse);
+  document.getElementById('btnSolutionJeu').addEventListener('click', afficherSolution);
+  document.getElementById('btnNouveauJeu').addEventListener('click', genererProbleme);
+
+  genererProbleme();
+})();
+</script>
+
+</body>
+</html>
