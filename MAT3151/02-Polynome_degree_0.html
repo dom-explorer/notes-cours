@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAT-3051 · 1.2 — Les polynômes de degré 0</title>
+  <meta name="description"
+        content="MAT-3051 — Les polynômes de degré 0 : définition, fonction constante, représentation graphique, domaine, image, zéro, variations et propriétés, avec simulations interactives.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$','$']],
+        displayMath: [['\\[','\\]'], ['$$','$$']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+  </script>
+  <style>
+    :root {
+      --ardoise: #223A34;
+      --ardoise-deep: #182922;
+      --papier: #EAEEE9;
+      --papier-2: #E0E5DD;
+      --encre: #1C2B3A;
+      --craie: #D9A441;
+      --craie-deep: #B9832C;
+      --brique: #B5524A;
+      --sapin: #4B7A68;
+      --white: #FCFBF7;
+      --ombre: 0 18px 50px rgba(24, 41, 34, 0.10);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--papier);
+      color: var(--encre);
+      font-family: "Literata", serif;
+      line-height: 1.72;
+    }
+    a { color: inherit; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 5vw;
+      background: rgba(24, 41, 34, 0.96);
+      color: var(--white);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+    }
+    .brand {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav {
+      display: flex;
+      gap: 1.25rem;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.88rem;
+    }
+    .nav a { color: var(--white); text-decoration: none; opacity: 0.82; }
+    .nav a:hover { opacity: 1; color: var(--craie); }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 5.5rem 7vw 5rem;
+      background: linear-gradient(135deg, var(--ardoise-deep), var(--ardoise));
+      color: var(--white);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 34px 34px;
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 1100px; margin: auto; }
+    .breadcrumb { margin-bottom: 1.2rem; font-family: "JetBrains Mono", monospace; font-size: 0.78rem; color: var(--craie); letter-spacing: 0.04em; }
+    .eyebrow { margin-bottom: 0.75rem; font-family: "JetBrains Mono", monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: #C7D4CC; }
+    h1 { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; letter-spacing: -0.055em; }
+    .hero-lead { max-width: 760px; margin-top: 1.7rem; font-size: 1.18rem; color: #DDE5DF; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.8rem; }
+    .tag { padding: 0.42rem 0.75rem; border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; font-family: "JetBrains Mono", monospace; font-size: 0.74rem; color: #EEF3EF; background: rgba(255,255,255,0.06); }
+    .page { display: grid; grid-template-columns: 240px minmax(0, 900px); gap: 3.5rem; max-width: 1350px; margin: 0 auto; padding: 4rem 5vw 6rem; }
+    .toc { position: sticky; top: 90px; align-self: start; font-family: "Space Grotesk", sans-serif; font-size: 0.87rem; }
+    .toc-title { margin-bottom: 0.8rem; font-family: "JetBrains Mono", monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--sapin); }
+    .toc a { display: block; padding: 0.4rem 0.7rem; border-left: 2px solid transparent; text-decoration: none; color: #52635C; transition: 0.2s ease; }
+    .toc a:hover, .toc a.active { color: var(--ardoise); border-left-color: var(--craie); background: rgba(217,164,65,0.08); }
+    main { min-width: 0; }
+    section { scroll-margin-top: 110px; margin-bottom: 5rem; }
+    h2 { margin-top: 0; font-family: "Space Grotesk", sans-serif; font-size: 2.2rem; line-height: 1.1; letter-spacing: -0.035em; color: var(--ardoise); }
+    h3 { margin-top: 2.2rem; font-family: "Space Grotesk", sans-serif; font-size: 1.4rem; color: var(--ardoise); }
+    h4 { font-family: "Space Grotesk", sans-serif; color: var(--ardoise); }
+    p { max-width: 780px; }
+    .lead { font-size: 1.1rem; color: #3f4f49; }
+    strong { color: var(--ardoise); }
+    code { font-family: "JetBrains Mono", monospace; font-size: 0.88em; }
+    .boite, .idee, .definition, .erreur, .retenir, .methode {
+      margin: 1.7rem 0; padding: 1.35rem 1.5rem; border-radius: var(--radius); box-shadow: 0 7px 25px rgba(24,41,34,0.05);
+    }
+    .definition { border-left: 5px solid var(--sapin); background: rgba(75,122,104,0.09); }
+    .idee { border-left: 5px solid var(--craie); background: rgba(217,164,65,0.10); }
+    .erreur { border-left: 5px solid var(--brique); background: rgba(181,82,74,0.08); }
+    .retenir { border-left: 5px solid var(--ardoise); background: rgba(34,58,52,0.08); }
+    .methode { border-left: 5px solid #536B82; background: rgba(83,107,130,0.08); }
+    .boite-title { margin-bottom: 0.5rem; font-family: "JetBrains Mono", monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--sapin); }
+    .erreur .boite-title { color: var(--brique); }
+    .retenir .boite-title { color: var(--ardoise); }
+    .equation { margin: 1.5rem 0; padding: 1.3rem; border-radius: 14px; background: var(--white); text-align: center; box-shadow: inset 0 0 0 1px rgba(34,58,52,0.07); }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.8rem 0; }
+    .card { padding: 1.35rem; border-radius: 16px; background: var(--white); box-shadow: 0 8px 30px rgba(24,41,34,0.06); }
+    .card h3 { margin-top: 0; font-size: 1.15rem; }
+    .table-wrap { overflow-x: auto; margin: 1.7rem 0; }
+    table { width: 100%; border-collapse: collapse; background: var(--white); }
+    th, td { padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--papier-2); text-align: left; }
+    th { font-family: "Space Grotesk", sans-serif; color: var(--ardoise); background: var(--papier-2); }
+    .interactif { margin: 2rem 0; padding: 1.5rem; border-radius: 20px; background: var(--white); box-shadow: var(--ombre); }
+    .interactif-header { margin-bottom: 1.1rem; }
+    .interactif-title { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: 1.25rem; color: var(--ardoise); }
+    .interactif-subtitle { margin-top: 0.25rem; font-size: 0.9rem; color: #65746E; }
+    canvas { display: block; width: 100%; max-width: 700px; height: auto; margin: 1rem auto; border-radius: 12px; background: #F9FAF8; border: 1px solid var(--papier-2); }
+    .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1rem; }
+    .controls label { font-family: "Space Grotesk", sans-serif; font-weight: 600; }
+    input[type="range"] { width: min(420px, 100%); accent-color: var(--craie-deep); }
+    .value { min-width: 90px; padding: 0.4rem 0.7rem; border-radius: 8px; font-family: "JetBrains Mono", monospace; text-align: center; background: var(--papier); }
+    button { padding: 0.65rem 0.9rem; border: 0; border-radius: 9px; font-family: "Space Grotesk", sans-serif; font-weight: 600; cursor: pointer; background: var(--ardoise); color: var(--white); }
+    button:hover { background: var(--sapin); }
+    button.secondaire { background: var(--white); color: var(--ardoise); border: 1.5px solid var(--papier-2); }
+    button.secondaire:hover { background: var(--papier); }
+    .keyword { display: inline-block; margin: 0.15rem 0.2rem 0.15rem 0; padding: 0.25rem 0.55rem; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 0.78rem; background: var(--papier-2); color: var(--ardoise); }
+    .resume { padding: 2rem; border-radius: 20px; background: linear-gradient(135deg, rgba(34,58,52,0.10), rgba(217,164,65,0.10)); }
+    .resume ul { margin-bottom: 0; }
+    .quiz-enonce { margin: 1.3rem 0; padding: 1.2rem 1.4rem; border-radius: 14px; background: var(--papier); font-style: italic; }
+    .quiz-boutons { display: flex; gap: 0.7rem; flex-wrap: wrap; margin: 0.8rem 0; }
+    .quiz-feedback { padding: 0.9rem 1.1rem; border-radius: 10px; background: rgba(75,122,104,0.1); border-left: 4px solid var(--sapin); font-size: 0.95rem; }
+    .quiz-feedback.incorrect { background: rgba(181,82,74,0.08); border-left-color: var(--brique); }
+    footer { padding: 3rem 5vw; background: var(--ardoise-deep); color: #DDE5DF; text-align: center; font-family: "Space Grotesk", sans-serif; font-size: 0.85rem; }
+    footer strong { color: var(--craie); }
+    @media (max-width: 1180px) { .page { display: block; max-width: 950px; } .toc { display: none; } }
+    @media (max-width: 700px) {
+      .topbar { padding: 0.8rem 4vw; } .nav { display: none; }
+      .hero { padding: 4rem 6vw; } .page { padding: 3rem 6vw 5rem; }
+      .grid { grid-template-columns: 1fr; } h2 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="https://learnwithdom.page">learnwithdom.page</a>
+    <nav class="nav">
+      <a href="https://learnwithdom.page">Accueil</a>
+      <a href="https://learnwithdom.page/niveau/secondaire2.html">Secondaire</a>
+      <a href="https://learnwithdom.page/cours/mat3051.html">MAT-3051</a>
+    </nav>
+  </header>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="breadcrumb">MAT-3051 · Fonctions</div>
+      <div class="eyebrow">Section 1.2</div>
+      <h1>Les polynômes<br>de degré 0</h1>
+      <p class="hero-lead">
+        Comprendre les fonctions constantes : leur forme algébrique, leur représentation
+        graphique, leur domaine, leur image et leurs principales propriétés — à travers
+        des exemples concrets et des simulations interactives.
+      </p>
+      <div class="tags">
+        <span class="tag">polynôme</span>
+        <span class="tag">degré 0</span>
+        <span class="tag">fonction constante</span>
+        <span class="tag">variation nulle</span>
+        <span class="tag">graphique</span>
+        <span class="tag">quiz</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="page">
+    <aside class="toc">
+      <div class="toc-title">Dans cette section</div>
+      <a href="#intro">0. Dans la vraie vie</a>
+      <a href="#idee">1. L'idée</a>
+      <a href="#definition">2. Définition</a>
+      <a href="#representations">3. Représentations</a>
+      <a href="#graphique">4. Graphique</a>
+      <a href="#proprietes">5. Propriétés</a>
+      <a href="#zero">6. Zéro du polynôme</a>
+      <a href="#variations">7. Variation nulle</a>
+      <a href="#interactif">8. Explorateur</a>
+      <a href="#attention">9. Attention</a>
+      <a href="#quiz">10. Mini-quiz</a>
+      <a href="#resume">11. À retenir</a>
+    </aside>
+
+    <main>
+      <!-- =====================================================
+           0. INTRODUCTION — ACCROCHE
+           ===================================================== -->
+      <section id="intro">
+        <h2>0. Tu connais déjà cette idée</h2>
+        <p class="lead">Avant même d'écrire une seule formule, tu as déjà croisé une fonction constante — probablement ce mois-ci.</p>
+        <p>
+          Pense à un forfait de téléphone à prix fixe : que tu utilises 10 minutes ou 400 minutes,
+          la facture reste identique. Pense à un abonnement mensuel de streaming, à un tarif
+          d'entrée au musée, ou à un café qui coûte toujours le même prix peu importe l'heure
+          à laquelle tu le commandes. Dans chacun de ces cas, une quantité change librement
+          (le temps, l'heure, l'usage) pendant qu'une autre reste parfaitement figée.
+          C'est exactement le comportement d'un <strong>polynôme de degré 0</strong>.
+        </p>
+        <div class="interactif">
+          <div class="interactif-header">
+            <h3 class="interactif-title">Simulateur — forfait téléphonique à prix fixe</h3>
+            <p class="interactif-subtitle">Fais varier les minutes utilisées — observe ce qui ne bouge jamais.</p>
+          </div>
+          <div class="controls">
+            <label for="minutesSlider">Minutes utilisées</label>
+            <input id="minutesSlider" type="range" min="0" max="500" step="10" value="120">
+            <div class="value" id="minutesValue">120 min</div>
+          </div>
+          <div class="controls">
+            <label>Facture totale</label>
+            <div class="value" id="factureValue" style="background:var(--craie-deep);color:#fff;font-weight:700;">45 $</div>
+          </div>
+          <p class="interactif-subtitle" id="forfaitInfo" style="margin-top:0.8rem;">Peu importe le nombre de minutes (de 0 à 500), la facture reste à 45 $ — exactement le comportement de f(minutes) = 45.</p>
+        </div>
+        <p>Dans les sections qui suivent, nous allons donner un nom et une forme précise à cette idée, puis explorer toutes ses propriétés : son graphique, son domaine, son image, et ce qui se passe à son « zéro ».</p>
+      </section>
+
+      <!-- =====================================================
+           1. IDÉE
+           ===================================================== -->
+      <section id="idee">
+        <h2>1. Une fonction qui ne change jamais</h2>
+        <p>
+          Imagine une situation dans laquelle la valeur de sortie reste exactement la même,
+          peu importe la valeur donnée à la variable indépendante — un peu comme la facture
+          de notre simulateur ci-dessus.
+        </p>
+        <p>
+          Par exemple, supposons qu'une machine retourne toujours le nombre \(4\).
+        </p>
+        <div class="equation">$$ f(x)=4 $$</div>
+        <p>
+          Si on lui donne \(x=2\), elle retourne \(4\). Si on lui donne \(x=10\), elle retourne
+          encore \(4\). Si on lui donne \(x=-100\), elle retourne toujours \(4\).
+        </p>
+        <div class="boite idee">
+          <div class="boite-title">Idée fondamentale</div>
+          <p>La variable \(x\) peut changer, mais la valeur de \(f(x)\) ne change pas.</p>
+          <p>C'est pourquoi on parle de <strong>variation nulle</strong> ou de <strong>fonction constante</strong>.</p>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           2. DÉFINITION
+           ===================================================== -->
+      <section id="definition">
+        <h2>2. Définition du polynôme de degré 0</h2>
+        <p>Donnons maintenant à cette idée intuitive une définition algébrique précise.</p>
+        <p>Un polynôme général peut s'écrire sous la forme</p>
+        <div class="equation">$$ f(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0. $$</div>
+        <p>Le degré correspond à la plus grande puissance de la variable dont le coefficient est non nul.</p>
+        <p>Pour un polynôme de degré \(0\), il n'y a aucune puissance positive de \(x\). Il reste seulement une constante :</p>
+        <div class="equation">$$ \boxed{f(x)=b} $$</div>
+        <div class="boite definition">
+          <div class="boite-title">Définition</div>
+          <p>Un <strong>polynôme de degré 0</strong> est un polynôme constant non nul de la forme</p>
+          <div class="equation">$$ f(x)=b, \qquad b\neq0. $$</div>
+          <p>La fonction correspondante est appelée <strong>fonction constante</strong>.</p>
+        </div>
+        <h3>Pourquoi le degré est-il 0 ?</h3>
+        <p>On peut écrire une constante sous la forme</p>
+        <div class="equation">$$ b=bx^0 $$</div>
+        <p>puisque \(x^0=1\) pour \(x\neq0\). Le terme contient donc une puissance \(0\) de la variable.</p>
+        <div class="boite retenir">
+          <div class="boite-title">À retenir</div>
+          <p>Le polynôme de degré 0 contient seulement un <strong>terme constant</strong>.</p>
+          <div class="equation">$$ \boxed{f(x)=b} $$</div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           3. REPRÉSENTATIONS
+           ===================================================== -->
+      <section id="representations">
+        <h2>3. Les différentes représentations</h2>
+        <p>Comme pour toute fonction, une fonction constante peut être représentée de plusieurs façons — et elles racontent toutes la même histoire.</p>
+        <div class="grid">
+          <div class="card">
+            <h3>Règle</h3>
+            <div class="equation">$$ f(x)=5 $$</div>
+            <p>La règle indique directement la valeur de sortie.</p>
+          </div>
+          <div class="card">
+            <h3>Table de valeurs</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>\(x\)</th><th>\(f(x)\)</th></tr></thead>
+                <tbody>
+                  <tr><td>\(-3\)</td><td>\(5\)</td></tr>
+                  <tr><td>\(-1\)</td><td>\(5\)</td></tr>
+                  <tr><td>\(0\)</td><td>\(5\)</td></tr>
+                  <tr><td>\(2\)</td><td>\(5\)</td></tr>
+                  <tr><td>\(7\)</td><td>\(5\)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Diagramme de correspondance</h3>
+            <p>Toutes les valeurs de \(x\) sont envoyées vers la même valeur \(5\).</p>
+            <div class="equation">$$ x\longmapsto5 $$</div>
+          </div>
+          <div class="card">
+            <h3>Graphique</h3>
+            <p>Tous les points ont la même coordonnée verticale.</p>
+            <div class="equation">$$ y=5 $$</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           4. GRAPHIQUE
+           ===================================================== -->
+      <section id="graphique">
+        <h2>4. Le graphique d'une fonction constante</h2>
+        <p>La dernière carte ci-dessus l'annonçait déjà : voyons maintenant pourquoi ce graphique prend toujours la même forme.</p>
+        <p>Considérons la fonction</p>
+        <div class="equation">$$ f(x)=3. $$</div>
+        <p>Pour chaque valeur de \(x\), la coordonnée \(y\) vaut \(3\). Tous les points sont donc de la forme</p>
+        <div class="equation">$$ (x,3). $$</div>
+        <p>Le graphique est ainsi une droite horizontale.</p>
+        <div class="boite idee">
+          <div class="boite-title">Observation graphique</div>
+          <p>Une fonction polynomiale de degré 0 est représentée graphiquement par une <strong>droite horizontale</strong>, donc une droite parallèle à l'axe des \(x\).</p>
+        </div>
+        <div class="interactif">
+          <div class="interactif-header">
+            <h3 class="interactif-title">Explorateur : déplacer la fonction constante</h3>
+            <p class="interactif-subtitle">Modifie la valeur de \(b\) et observe le déplacement vertical de \(f(x)=b\).</p>
+          </div>
+          <canvas id="constantGraph" width="760" height="430"></canvas>
+          <div class="controls">
+            <label for="bSlider">Valeur de \(b\)</label>
+            <input id="bSlider" type="range" min="-5" max="5" step="1" value="3">
+            <div class="value" id="bValue">\(b=3\)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           5. PROPRIÉTÉS
+           ===================================================== -->
+      <section id="proprietes">
+        <h2>5. Les propriétés d'une fonction de degré 0</h2>
+        <p>La simplicité de la fonction constante permet de déterminer très rapidement plusieurs de ses propriétés.</p>
+        <h3>Domaine</h3>
+        <p>Comme il n'y a aucune restriction provenant de la règle \(f(x)=b\), on peut utiliser n'importe quel nombre réel comme valeur de \(x\).</p>
+        <div class="equation">$$ \boxed{\operatorname{Dom}(f)=\mathbb{R}} $$</div>
+        <h3>Image</h3>
+        <p>Peu importe la valeur de \(x\), la fonction retourne toujours \(b\).</p>
+        <div class="equation">$$ \boxed{\operatorname{Im}(f)=\{b\}} $$</div>
+        <h3>Ordonnée à l'origine</h3>
+        <p>Pour trouver l'ordonnée à l'origine, on calcule \(f(0)\).</p>
+        <div class="equation">$$ f(0)=b. $$</div>
+        <p>Le graphique coupe donc l'axe des \(y\) au point</p>
+        <div class="equation">$$ \boxed{(0,b)}. $$</div>
+        <h3>Taux de variation</h3>
+        <p>Si \(x\) augmente, \(f(x)\) ne change pas. Le taux de variation est donc nul.</p>
+        <div class="equation">$$ \boxed{0} $$</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Propriété</th><th>Fonction \(f(x)=b\)</th></tr></thead>
+            <tbody>
+              <tr><td>Degré</td><td>\(0\), si \(b\neq0\)</td></tr>
+              <tr><td>Forme</td><td>\(f(x)=b\)</td></tr>
+              <tr><td>Domaine</td><td>\(\mathbb{R}\)</td></tr>
+              <tr><td>Image</td><td>\(\{b\}\)</td></tr>
+              <tr><td>Graphique</td><td>Droite horizontale</td></tr>
+              <tr><td>Taux de variation</td><td>\(0\)</td></tr>
+              <tr><td>Ordonnée à l'origine</td><td>\((0,b)\)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           6. ZÉRO
+           ===================================================== -->
+      <section id="zero">
+        <h2>6. Le zéro d'un polynôme de degré 0</h2>
+        <p>Le tableau précédent affirmait que le taux de variation est toujours nul — mais qu'en est-il du <em>zéro</em> de la fonction elle-même? C'est une question différente, et la réponse dépend entièrement de la valeur de \(b\).</p>
+        <p>Un zéro d'une fonction est une valeur de \(x\) pour laquelle</p>
+        <div class="equation">$$ f(x)=0. $$</div>
+        <p>Pour une fonction constante \(f(x)=b\), cela donne</p>
+        <div class="equation">$$ b=0. $$</div>
+        <p>On obtient donc deux situations différentes.</p>
+        <div class="grid">
+          <div class="card">
+            <h3>\(b\neq0\)</h3>
+            <div class="equation">$$ f(x)=b $$</div>
+            <p>La droite est située au-dessus ou au-dessous de l'axe des \(x\).</p>
+            <p>Elle ne rencontre jamais l'axe des \(x\).</p>
+            <strong>Aucun zéro.</strong>
+          </div>
+          <div class="card">
+            <h3>\(b=0\)</h3>
+            <div class="equation">$$ f(x)=0 $$</div>
+            <p>Le graphique correspond à l'axe des \(x\) lui-même.</p>
+            <p>Chaque valeur de \(x\) donne \(f(x)=0\).</p>
+            <strong>Tous les réels sont des zéros.</strong>
+          </div>
+        </div>
+
+        <div class="interactif">
+          <div class="interactif-header">
+            <h3 class="interactif-title">Explorateur du zéro</h3>
+            <p class="interactif-subtitle">Glisse jusqu'à \(b=0\) pour voir la droite « tomber » exactement sur l'axe des x.</p>
+          </div>
+          <canvas id="zeroGraph" width="760" height="430"></canvas>
+          <div class="controls">
+            <label for="zeroSlider">Valeur de \(b\)</label>
+            <input id="zeroSlider" type="range" min="-5" max="5" step="1" value="3">
+            <div class="value" id="zeroValue">\(b=3\)</div>
+          </div>
+          <div class="quiz-feedback" id="zeroInfo" style="margin-top:1rem;">b ≠ 0 : la droite ne touche jamais l'axe des x — aucun zéro.</div>
+        </div>
+
+        <div class="boite erreur">
+          <div class="boite-title">Attention à une nuance importante</div>
+          <p>Dans la convention usuelle en algèbre, le polynôme nul \(f(x)=0\) est traité séparément : son degré n'est généralement <strong>pas défini</strong>.</p>
+          <p>Il ne faut donc pas automatiquement dire que « \(0\) est un polynôme de degré 0 ».</p>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           7. VARIATION NULLE
+           ===================================================== -->
+      <section id="variations">
+        <h2>7. Pourquoi parle-t-on de variation nulle ?</h2>
+        <p>Nous avons vu que le <em>taux</em> de variation est nul. Voyons maintenant, concrètement, pourquoi — en suivant deux points qui se promènent librement sur la droite.</p>
+        <p>Prenons deux valeurs quelconques \(x_1\) et \(x_2\). Pour une fonction constante,</p>
+        <div class="equation">$$ f(x_1)=b \qquad\text{et}\qquad f(x_2)=b. $$</div>
+        <p>La variation de la variable dépendante est donc</p>
+        <div class="equation">$$ \Delta y = f(x_2)-f(x_1) = b-b = 0. $$</div>
+        <p>Peu importe la variation de \(x\), la variation de \(y\) est toujours nulle.</p>
+        <div class="boite retenir">
+          <div class="boite-title">À retenir</div>
+          <div class="equation">$$ \boxed{\Delta y=0} $$</div>
+          <p>Une fonction constante possède donc une <strong>variation nulle</strong>.</p>
+        </div>
+        <h3>Exemple</h3>
+        <p>Pour</p>
+        <div class="equation">$$ f(x)=7, $$</div>
+        <p>si \(x\) passe de \(2\) à \(100\), alors</p>
+        <div class="equation">$$ \Delta x=100-2=98, $$</div>
+        <p>mais</p>
+        <div class="equation">$$ \Delta y=7-7=0. $$</div>
+        <p>Le changement horizontal peut être très grand sans produire le moindre changement vertical.</p>
+
+        <div class="interactif">
+          <div class="interactif-header">
+            <h3 class="interactif-title">Deux points, une seule hauteur</h3>
+            <p class="interactif-subtitle">Déplace \(x_1\) et \(x_2\) sur \(f(x)=7\) — observe Δx changer librement, pendant que Δy reste figé.</p>
+          </div>
+          <canvas id="variationGraph" width="760" height="430"></canvas>
+          <div class="controls">
+            <label for="x1Slider">\(x_1\)</label>
+            <input id="x1Slider" type="range" min="-8" max="8" step="0.5" value="-4">
+            <div class="value" id="x1Value">-4</div>
+          </div>
+          <div class="controls">
+            <label for="x2Slider">\(x_2\)</label>
+            <input id="x2Slider" type="range" min="-8" max="8" step="0.5" value="5">
+            <div class="value" id="x2Value">5</div>
+          </div>
+          <div class="controls">
+            <label>Δx</label>
+            <div class="value" id="deltaXValue">9</div>
+            <label>Δy</label>
+            <div class="value" id="deltaYValue" style="background:var(--sapin);color:#fff;font-weight:700;">0</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           8. INTERACTIF
+           ===================================================== -->
+      <section id="interactif">
+        <h2>8. Explorer le paramètre \(b\)</h2>
+        <p>Nous avons vu \(b\) jouer le rôle de hauteur dans plusieurs simulations déjà. Comparons maintenant deux fonctions constantes côte à côte pour bien voir ce que \(b\) change — et ce qu'il ne change jamais.</p>
+        <p>Dans \[ f(x)=b, \] le nombre \(b\) détermine la hauteur de la droite.</p>
+        <p>Il ne modifie pas sa pente : toutes les fonctions constantes ont une droite horizontale.</p>
+        <div class="interactif">
+          <div class="interactif-header">
+            <h3 class="interactif-title">Compare différentes fonctions constantes</h3>
+            <p class="interactif-subtitle">Déplace les valeurs de \(b\) pour voir comment le graphique change.</p>
+          </div>
+          <canvas id="compareGraph" width="760" height="430"></canvas>
+          <div class="controls">
+            <label for="b1">\(b_1\)</label>
+            <input id="b1" type="range" min="-5" max="5" value="4">
+            <span class="value" id="b1Value">4</span>
+          </div>
+          <div class="controls">
+            <label for="b2">\(b_2\)</label>
+            <input id="b2" type="range" min="-5" max="5" value="-2">
+            <span class="value" id="b2Value">-2</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           9. ATTENTION
+           ===================================================== -->
+      <section id="attention">
+        <h2>9. Erreurs fréquentes</h2>
+        <p>Avant de passer au résumé, voici les pièges qui reviennent le plus souvent chez les élèves qui découvrent les polynômes de degré 0.</p>
+        <h3>Erreur 1 — Confondre degré et nombre de termes</h3>
+        <p>Le nombre de termes ne détermine pas le degré. C'est la plus grande puissance de la variable qui détermine le degré.</p>
+        <div class="equation">$$ 7 $$</div>
+        <p>possède un seul terme et est de degré \(0\).</p>
+        <h3>Erreur 2 — Croire que \(f(x)=b\) dépend de \(x\)</h3>
+        <p>Le symbole \(x\) apparaît dans \(f(x)\), mais la règle ne contient aucune puissance positive de \(x\).</p>
+        <div class="equation">$$ f(x)=5 $$</div>
+        <p>signifie simplement :</p>
+        <div class="equation">$$ \text{« peu importe }x,\text{ la sortie vaut }5\text{ ».} $$</div>
+        <h3>Erreur 3 — Confondre \(f(x)=0\) avec un degré 0</h3>
+        <p>Le nombre \(0\) est particulier. Le <strong>polynôme nul</strong> est généralement défini comme n'ayant pas de degré.</p>
+        <h3>Erreur 4 — Penser qu'une droite horizontale est une droite sans fonction</h3>
+        <p>Une droite horizontale passe le test de la droite verticale : chaque valeur de \(x\) correspond à une seule valeur de \(y\).</p>
+        <div class="boite retenir">
+          <div class="boite-title">À retenir</div>
+          <p>Toute droite horizontale de la forme</p>
+          <div class="equation">$$ y=b $$</div>
+          <p>représente une fonction constante.</p>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           10. QUIZ
+           ===================================================== -->
+      <section id="quiz">
+        <h2>10. Mini-quiz : polynôme de degré 0 ou non?</h2>
+        <p class="lead">Pour chaque expression, décide si elle représente un polynôme de degré 0.</p>
+        <div class="interactif">
+          <div class="interactif-header">
+            <h3 class="interactif-title">Teste ta compréhension</h3>
+          </div>
+          <div class="quiz-enonce" id="quizEnonce">\( f(x) = 9 \)</div>
+          <div class="quiz-boutons">
+            <button id="quizOuiBtn">Degré 0</button>
+            <button class="secondaire" id="quizNonBtn">Pas degré 0</button>
+          </div>
+          <div class="quiz-feedback" id="quizFeedback">Choisis une réponse.</div>
+          <div class="quiz-boutons" style="margin-top:1rem;">
+            <button class="secondaire" id="quizSuivantBtn">Expression suivante →</button>
+          </div>
+          <div class="controls" style="margin-top:1rem;">
+            <label>Score</label>
+            <div class="value" id="quizScoreValue">0 / 0</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           11. RÉSUMÉ
+           ===================================================== -->
+      <section id="resume">
+        <h2>11. À retenir</h2>
+        <div class="resume">
+          <p>Une fonction polynomiale de degré 0 est une fonction constante.</p>
+          <ul>
+            <li>Sa forme est <strong>\(f(x)=b\)</strong>.</li>
+            <li>Le nombre \(b\) est une constante.</li>
+            <li>La fonction ne varie jamais lorsque \(x\) change.</li>
+            <li>Son taux de variation est nul.</li>
+            <li>Son graphique est une droite horizontale.</li>
+            <li>Son domaine est \(\mathbb{R}\).</li>
+            <li>Son image est \(\{b\}\).</li>
+            <li>Son ordonnée à l'origine est \((0,b)\).</li>
+            <li>Si \(b\neq0\), la fonction n'a aucun zéro.</li>
+            <li>Le polynôme nul \(f(x)=0\) est un cas particulier dont le degré est généralement considéré comme non défini.</li>
+          </ul>
+        </div>
+        <h3>Mots-clés</h3>
+        <div>
+          <span class="keyword">polynôme</span>
+          <span class="keyword">degré 0</span>
+          <span class="keyword">fonction constante</span>
+          <span class="keyword">variation nulle</span>
+          <span class="keyword">constante</span>
+          <span class="keyword">domaine</span>
+          <span class="keyword">image</span>
+          <span class="keyword">zéro</span>
+          <span class="keyword">ordonnée à l'origine</span>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <strong>MAT-3051</strong> · Fonctions et polynômes · learnwithdom.page
+  </footer>
+
+  <script>
+    /* =========================================================
+       TABLE DES MATIÈRES ACTIVE
+       ========================================================= */
+    const sections = document.querySelectorAll("main section");
+    const tocLinks = document.querySelectorAll(".toc a");
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            tocLinks.forEach(link => link.classList.remove("active"));
+            const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+            if (active) active.classList.add("active");
+          }
+        });
+      },
+      { rootMargin: "-25% 0px -65% 0px" }
+    );
+    sections.forEach(section => observer.observe(section));
+
+    /* =========================================================
+       OUTILS GRAPHIQUES
+       ========================================================= */
+    function drawAxes(ctx, width, height) {
+      const padding = 55;
+      const xMin = -8;
+      const xMax = 8;
+      const yMin = -6;
+      const yMax = 6;
+      const xScale = (width - 2 * padding) / (xMax - xMin);
+      const yScale = (height - 2 * padding) / (yMax - yMin);
+      function px(x) { return padding + (x - xMin) * xScale; }
+      function py(y) { return height - padding - (y - yMin) * yScale; }
+      ctx.clearRect(0, 0, width, height);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "#E0E5DD";
+      for (let x = xMin; x <= xMax; x++) {
+        ctx.beginPath(); ctx.moveTo(px(x), padding); ctx.lineTo(px(x), height - padding); ctx.stroke();
+      }
+      for (let y = yMin; y <= yMax; y++) {
+        ctx.beginPath(); ctx.moveTo(padding, py(y)); ctx.lineTo(width - padding, py(y)); ctx.stroke();
+      }
+      ctx.strokeStyle = "#223A34";
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(px(xMin), py(0)); ctx.lineTo(px(xMax), py(0)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(px(0), py(yMin)); ctx.lineTo(px(0), py(yMax)); ctx.stroke();
+      ctx.fillStyle = "#223A34";
+      ctx.beginPath(); ctx.moveTo(px(xMax), py(0)); ctx.lineTo(px(xMax) - 10, py(0) - 5); ctx.lineTo(px(xMax) - 10, py(0) + 5); ctx.closePath(); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(px(0), py(yMax)); ctx.lineTo(px(0) - 5, py(yMax) + 10); ctx.lineTo(px(0) + 5, py(yMax) + 10); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = "#52635C";
+      ctx.font = "13px 'JetBrains Mono'";
+      for (let x = -8; x <= 8; x += 2) { if (x !== 0) ctx.fillText(x, px(x) - 5, py(0) + 20); }
+      for (let y = -6; y <= 6; y += 2) { if (y !== 0) ctx.fillText(y, px(0) + 9, py(y) + 4); }
+      ctx.fillStyle = "#223A34";
+      ctx.font = "bold 14px 'Space Grotesk'";
+      ctx.fillText("x", px(xMax) - 8, py(0) - 12);
+      ctx.fillText("y", px(0) + 12, py(yMax) + 10);
+      return { px, py };
+    }
+
+    /* =========================================================
+       0. SIMULATEUR FORFAIT (nouveau)
+       ========================================================= */
+    const minutesSlider = document.getElementById("minutesSlider");
+    const minutesValue = document.getElementById("minutesValue");
+    const factureValue = document.getElementById("factureValue");
+    function updateForfait(){
+      minutesValue.textContent = minutesSlider.value + " min";
+      factureValue.textContent = "45 $";
+    }
+    minutesSlider.addEventListener("input", updateForfait);
+    updateForfait();
+
+    /* =========================================================
+       GRAPHIQUE PRINCIPAL
+       ========================================================= */
+    const canvas = document.getElementById("constantGraph");
+    const ctx = canvas.getContext("2d");
+    const slider = document.getElementById("bSlider");
+    const bValue = document.getElementById("bValue");
+    function drawConstant() {
+      const b = Number(slider.value);
+      bValue.textContent = `b=${b}`;
+      const { px, py } = drawAxes(ctx, canvas.width, canvas.height);
+      ctx.strokeStyle = "#B9832C";
+      ctx.lineWidth = 5;
+      ctx.beginPath(); ctx.moveTo(px(-8), py(b)); ctx.lineTo(px(8), py(b)); ctx.stroke();
+      ctx.fillStyle = "#B9832C";
+      ctx.font = "bold 17px 'Space Grotesk'";
+      ctx.fillText(`f(x) = ${b}`, px(2.5), py(b) - 12);
+    }
+    slider.addEventListener("input", drawConstant);
+    drawConstant();
+
+    /* =========================================================
+       6b. EXPLORATEUR DU ZÉRO (nouveau)
+       ========================================================= */
+    const zeroCanvas = document.getElementById("zeroGraph");
+    const zeroCtx = zeroCanvas.getContext("2d");
+    const zeroSlider = document.getElementById("zeroSlider");
+    const zeroValueEl = document.getElementById("zeroValue");
+    const zeroInfo = document.getElementById("zeroInfo");
+    function drawZero(){
+      const b = Number(zeroSlider.value);
+      zeroValueEl.textContent = `b=${b}`;
+      const { px, py } = drawAxes(zeroCtx, zeroCanvas.width, zeroCanvas.height);
+      zeroCtx.strokeStyle = b === 0 ? "#B5524A" : "#B9832C";
+      zeroCtx.lineWidth = 6;
+      zeroCtx.beginPath(); zeroCtx.moveTo(px(-8), py(b)); zeroCtx.lineTo(px(8), py(b)); zeroCtx.stroke();
+      zeroCtx.fillStyle = b === 0 ? "#B5524A" : "#B9832C";
+      zeroCtx.font = "bold 17px 'Space Grotesk'";
+      zeroCtx.fillText(`f(x) = ${b}`, px(2.5), py(b) - 14);
+      if(b === 0){
+        zeroInfo.textContent = "b = 0 : la droite coïncide exactement avec l'axe des x — chaque valeur de x est un zéro de la fonction.";
+        zeroInfo.className = "quiz-feedback";
+      } else {
+        zeroInfo.textContent = "b ≠ 0 : la droite ne touche jamais l'axe des x — aucun zéro.";
+        zeroInfo.className = "quiz-feedback incorrect";
+      }
+    }
+    zeroSlider.addEventListener("input", drawZero);
+    drawZero();
+
+    /* =========================================================
+       7b. VARIATION NULLE — DEUX POINTS MOBILES (nouveau)
+       ========================================================= */
+    const variationCanvas = document.getElementById("variationGraph");
+    const variationCtx = variationCanvas.getContext("2d");
+    const x1Slider = document.getElementById("x1Slider");
+    const x2Slider = document.getElementById("x2Slider");
+    const x1ValueEl = document.getElementById("x1Value");
+    const x2ValueEl = document.getElementById("x2Value");
+    const deltaXValueEl = document.getElementById("deltaXValue");
+    const deltaYValueEl = document.getElementById("deltaYValue");
+    const B_FIXE = 3.5;
+    function drawVariation(){
+      const x1 = Number(x1Slider.value);
+      const x2 = Number(x2Slider.value);
+      x1ValueEl.textContent = x1;
+      x2ValueEl.textContent = x2;
+      const deltaX = x2 - x1;
+      deltaXValueEl.textContent = deltaX.toFixed(1).replace(/\.0$/,'');
+      deltaYValueEl.textContent = "0";
+
+      const { px, py } = drawAxes(variationCtx, variationCanvas.width, variationCanvas.height);
+      variationCtx.strokeStyle = "#B9832C";
+      variationCtx.lineWidth = 5;
+      variationCtx.beginPath(); variationCtx.moveTo(px(-8), py(B_FIXE)); variationCtx.lineTo(px(8), py(B_FIXE)); variationCtx.stroke();
+      variationCtx.fillStyle = "#B9832C";
+      variationCtx.font = "bold 15px 'Space Grotesk'";
+      variationCtx.fillText(`f(x) = ${B_FIXE}`, px(5.2), py(B_FIXE) - 12);
+
+      // points x1, x2
+      [ [x1,'x\u2081'], [x2,'x\u2082'] ].forEach(function(pair){
+        const xx = pair[0], lbl = pair[1];
+        variationCtx.fillStyle = "#223A34";
+        variationCtx.beginPath();
+        variationCtx.arc(px(xx), py(B_FIXE), 6, 0, 2*Math.PI);
+        variationCtx.fill();
+        variationCtx.font = "13px 'JetBrains Mono'";
+        variationCtx.fillText(lbl, px(xx)-4, py(B_FIXE)+26);
+      });
+
+      // ligne pointillee delta x
+      variationCtx.save();
+      variationCtx.setLineDash([6,5]);
+      variationCtx.strokeStyle = "#4B7A68";
+      variationCtx.lineWidth = 2;
+      variationCtx.beginPath();
+      variationCtx.moveTo(px(x1), py(B_FIXE)+22);
+      variationCtx.lineTo(px(x2), py(B_FIXE)+22);
+      variationCtx.stroke();
+      variationCtx.restore();
+      variationCtx.fillStyle = "#4B7A68";
+      variationCtx.font = "bold 13px 'JetBrains Mono'";
+      variationCtx.fillText("\u0394x = "+deltaX.toFixed(1).replace(/\.0$/,''), px((x1+x2)/2)-20, py(B_FIXE)+40);
+    }
+    x1Slider.addEventListener("input", drawVariation);
+    x2Slider.addEventListener("input", drawVariation);
+    drawVariation();
+
+    /* =========================================================
+       COMPARAISON
+       ========================================================= */
+    const canvas2 = document.getElementById("compareGraph");
+    const ctx2 = canvas2.getContext("2d");
+    const slider1 = document.getElementById("b1");
+    const slider2 = document.getElementById("b2");
+    const value1 = document.getElementById("b1Value");
+    const value2 = document.getElementById("b2Value");
+    function drawComparison() {
+      const b1 = Number(slider1.value);
+      const b2 = Number(slider2.value);
+      value1.textContent = b1;
+      value2.textContent = b2;
+      const { px, py } = drawAxes(ctx2, canvas2.width, canvas2.height);
+      ctx2.strokeStyle = "#B9832C";
+      ctx2.lineWidth = 5;
+      ctx2.beginPath(); ctx2.moveTo(px(-8), py(b1)); ctx2.lineTo(px(8), py(b1)); ctx2.stroke();
+      ctx2.strokeStyle = "#4B7A68";
+      ctx2.beginPath(); ctx2.moveTo(px(-8), py(b2)); ctx2.lineTo(px(8), py(b2)); ctx2.stroke();
+      ctx2.font = "bold 15px 'Space Grotesk'";
+      ctx2.fillStyle = "#B9832C";
+      ctx2.fillText(`f(x) = ${b1}`, px(3), py(b1) - 12);
+      ctx2.fillStyle = "#4B7A68";
+      ctx2.fillText(`g(x) = ${b2}`, px(3), py(b2) - 12);
+    }
+    slider1.addEventListener("input", drawComparison);
+    slider2.addEventListener("input", drawComparison);
+    drawComparison();
+
+    /* =========================================================
+       10b. MINI-QUIZ (nouveau)
+       ========================================================= */
+    const quizQuestions = [
+      { texte: "f(x) = 9", degre0: true, explication: "Aucune puissance positive de x — c'est une constante." },
+      { texte: "f(x) = 3x + 1", degre0: false, explication: "Le terme 3x contient x à la puissance 1 : c'est un polynôme de degré 1." },
+      { texte: "f(x) = -7", degre0: true, explication: "Une constante négative reste un polynôme de degré 0." },
+      { texte: "f(x) = x^2", degre0: false, explication: "La puissance 2 de x fait de ce polynôme un degré 2." },
+      { texte: "f(x) = 0", degre0: false, explication: "Le polynôme nul est un cas particulier : son degré n'est généralement pas défini." },
+      { texte: "y = 12", degre0: true, explication: "Une droite horizontale y = b représente toujours une fonction constante." }
+    ];
+    let quizIndex = 0;
+    let quizScore = 0;
+    let quizTotal = 0;
+    const quizEnonce = document.getElementById("quizEnonce");
+    const quizFeedback = document.getElementById("quizFeedback");
+    const quizScoreValue = document.getElementById("quizScoreValue");
+
+    function afficherQuizQuestion(){
+      const q = quizQuestions[quizIndex];
+      quizEnonce.innerHTML = "\\(" + q.texte.replace(/\^2/, "^2") + "\\)";
+      quizFeedback.textContent = "Choisis une réponse.";
+      quizFeedback.className = "quiz-feedback";
+      if(window.MathJax) MathJax.typesetPromise();
+    }
+    function repondreQuiz(reponseDegre0){
+      const q = quizQuestions[quizIndex];
+      quizTotal++;
+      if(reponseDegre0 === q.degre0){
+        quizScore++;
+        quizFeedback.textContent = "Bonne réponse! " + q.explication;
+        quizFeedback.className = "quiz-feedback";
+      } else {
+        quizFeedback.textContent = "Pas tout à fait. " + q.explication;
+        quizFeedback.className = "quiz-feedback incorrect";
+      }
+      quizScoreValue.textContent = quizScore + " / " + quizTotal;
+    }
+    document.getElementById("quizOuiBtn").addEventListener("click", function(){ repondreQuiz(true); });
+    document.getElementById("quizNonBtn").addEventListener("click", function(){ repondreQuiz(false); });
+    document.getElementById("quizSuivantBtn").addEventListener("click", function(){
+      quizIndex = (quizIndex + 1) % quizQuestions.length;
+      afficherQuizQuestion();
+    });
+    afficherQuizQuestion();
+  </script>
+</body>
+</html>
