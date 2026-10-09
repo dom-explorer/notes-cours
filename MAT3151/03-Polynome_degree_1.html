@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAT-3051 · 1.3 — Les polynômes de degré 1</title>
+  <meta name="description" content="MAT-3051 — Les polynômes de degré 1 : pente, ordonnée à l'origine, graphique, propriétés et formes d'une droite, avec simulations interactives.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$','$']],
+        displayMath: [['\\[','\\]'], ['$$','$$']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --ardoise: #223A34; --ardoise-deep: #182922; --papier: #EAEEE9; --papier-2: #E0E5DD;
+      --encre: #1C2B3A; --craie: #D9A441; --craie-deep: #B9832C; --brique: #B5524A; --sapin: #4B7A68;
+      --white: #FCFBF7; --ombre: 0 18px 50px rgba(24, 41, 34, 0.10); --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--papier); color: var(--encre); font-family: "Literata", serif; line-height: 1.72; }
+    a { color: inherit; }
+    .topbar { position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 5vw; background: rgba(24, 41, 34, 0.96); color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px); }
+    .brand { font-family: "Space Grotesk", sans-serif; font-weight: 700; text-decoration: none; letter-spacing: -0.02em; }
+    .nav { display: flex; gap: 1.25rem; font-family: "Space Grotesk", sans-serif; font-size: 0.88rem; }
+    .nav a { color: var(--white); text-decoration: none; opacity: 0.82; }
+    .nav a:hover { opacity: 1; color: var(--craie); }
+    .hero { position: relative; overflow: hidden; padding: 5.5rem 7vw 5rem; background: linear-gradient(135deg, var(--ardoise-deep), var(--ardoise)); color: var(--white); }
+    .hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size: 34px 34px; pointer-events: none; }
+    .hero-content { position: relative; z-index: 1; max-width: 1100px; margin: auto; }
+    .breadcrumb { margin-bottom: 1.2rem; font-family: "JetBrains Mono", monospace; font-size: 0.78rem; color: var(--craie); letter-spacing: 0.04em; }
+    .eyebrow { margin-bottom: 0.75rem; font-family: "JetBrains Mono", monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: #C7D4CC; }
+    h1 { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; letter-spacing: -0.055em; }
+    .hero-lead { max-width: 780px; margin-top: 1.7rem; font-size: 1.18rem; color: #DDE5DF; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.8rem; }
+    .tag { padding: 0.42rem 0.75rem; border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; font-family: "JetBrains Mono", monospace; font-size: 0.74rem; color: #EEF3EF; background: rgba(255,255,255,0.06); }
+    .page { display: grid; grid-template-columns: 240px minmax(0, 900px); gap: 3.5rem; max-width: 1350px; margin: 0 auto; padding: 4rem 5vw 6rem; }
+    .toc { position: sticky; top: 90px; align-self: start; font-family: "Space Grotesk", sans-serif; font-size: 0.87rem; }
+    .toc-title { margin-bottom: 0.8rem; font-family: "JetBrains Mono", monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--sapin); }
+    .toc a { display: block; padding: 0.4rem 0.7rem; border-left: 2px solid transparent; text-decoration: none; color: #52635C; transition: 0.2s ease; }
+    .toc a:hover, .toc a.active { color: var(--ardoise); border-left-color: var(--craie); background: rgba(217,164,65,0.08); }
+    main { min-width: 0; }
+    section { scroll-margin-top: 110px; margin-bottom: 5rem; }
+    h2 { margin-top: 0; font-family: "Space Grotesk", sans-serif; font-size: 2.2rem; line-height: 1.1; letter-spacing: -0.035em; color: var(--ardoise); }
+    h3 { margin-top: 2.2rem; font-family: "Space Grotesk", sans-serif; font-size: 1.4rem; color: var(--ardoise); }
+    h4 { font-family: "Space Grotesk", sans-serif; color: var(--ardoise); }
+    p { max-width: 780px; }
+    .lead { font-size: 1.1rem; color: #3f4f49; }
+    strong { color: var(--ardoise); }
+    .boite, .idee, .definition, .erreur, .retenir, .methode { margin: 1.7rem 0; padding: 1.35rem 1.5rem; border-radius: var(--radius); box-shadow: 0 7px 25px rgba(24,41,34,0.05); }
+    .definition { border-left: 5px solid var(--sapin); background: rgba(75,122,104,0.09); }
+    .idee { border-left: 5px solid var(--craie); background: rgba(217,164,65,0.10); }
+    .erreur { border-left: 5px solid var(--brique); background: rgba(181,82,74,0.08); }
+    .retenir { border-left: 5px solid var(--ardoise); background: rgba(34,58,52,0.08); }
+    .methode { border-left: 5px solid #536B82; background: rgba(83,107,130,0.08); }
+    .boite-title { margin-bottom: 0.5rem; font-family: "JetBrains Mono", monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--sapin); }
+    .erreur .boite-title { color: var(--brique); }
+    .retenir .boite-title { color: var(--ardoise); }
+    .equation { margin: 1.5rem 0; padding: 1.3rem; border-radius: 14px; background: var(--white); text-align: center; box-shadow: inset 0 0 0 1px rgba(34,58,52,0.07); }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.8rem 0; }
+    .card { padding: 1.35rem; border-radius: 16px; background: var(--white); box-shadow: 0 8px 30px rgba(24,41,34,0.06); }
+    .card h3 { margin-top: 0; font-size: 1.15rem; }
+    .table-wrap { overflow-x: auto; margin: 1.7rem 0; }
+    table { width: 100%; border-collapse: collapse; background: var(--white); }
+    th, td { padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--papier-2); text-align: left; }
+    th { font-family: "Space Grotesk", sans-serif; color: var(--ardoise); background: var(--papier-2); }
+    .interactif { margin: 2rem 0; padding: 1.5rem; border-radius: 20px; background: var(--white); box-shadow: var(--ombre); }
+    .interactif-header { margin-bottom: 1.1rem; }
+    .interactif-title { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: 1.25rem; color: var(--ardoise); }
+    .interactif-subtitle { margin-top: 0.25rem; font-size: 0.9rem; color: #65746E; }
+    canvas { display: block; width: 100%; max-width: 760px; height: auto; margin: 1rem auto; border-radius: 12px; background: #F9FAF8; border: 1px solid var(--papier-2); }
+    .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1rem; }
+    .controls label { font-family: "Space Grotesk", sans-serif; font-weight: 600; }
+    input[type="range"] { width: min(420px, 100%); accent-color: var(--craie-deep); }
+    .value { min-width: 95px; padding: 0.4rem 0.7rem; border-radius: 8px; font-family: "JetBrains Mono", monospace; text-align: center; background: var(--papier); }
+    button { padding: 0.65rem 0.9rem; border: 0; border-radius: 9px; font-family: "Space Grotesk", sans-serif; font-weight: 600; cursor: pointer; background: var(--ardoise); color: var(--white); }
+    button:hover { background: var(--sapin); }
+    button.secondaire { background: var(--white); color: var(--ardoise); border: 1.5px solid var(--papier-2); }
+    button.secondaire:hover { background: var(--papier); }
+    .formula-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1.8rem 0; }
+    .formula { padding: 1.2rem; border-radius: 15px; background: var(--white); text-align: center; box-shadow: 0 7px 25px rgba(24,41,34,0.05); }
+    .formula-label { margin-bottom: 0.5rem; font-family: "JetBrains Mono", monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sapin); }
+    .keyword { display: inline-block; margin: 0.15rem 0.2rem 0.15rem 0; padding: 0.25rem 0.55rem; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 0.78rem; background: var(--papier-2); color: var(--ardoise); }
+    .resume { padding: 2rem; border-radius: 20px; background: linear-gradient(135deg, rgba(34,58,52,0.10), rgba(217,164,65,0.10)); }
+    .resume ul { margin-bottom: 0; }
+    .quiz-enonce { margin: 1.3rem 0; padding: 1.2rem 1.4rem; border-radius: 14px; background: var(--papier); font-style: italic; }
+    .quiz-boutons { display: flex; gap: 0.7rem; flex-wrap: wrap; margin: 0.8rem 0; }
+    .quiz-feedback { padding: 0.9rem 1.1rem; border-radius: 10px; background: rgba(75,122,104,0.1); border-left: 4px solid var(--sapin); font-size: 0.95rem; }
+    .quiz-feedback.incorrect { background: rgba(181,82,74,0.08); border-left-color: var(--brique); }
+    footer { padding: 3rem 5vw; background: var(--ardoise-deep); color: #DDE5DF; text-align: center; font-family: "Space Grotesk", sans-serif; font-size: 0.85rem; }
+    footer strong { color: var(--craie); }
+    @media (max-width: 1180px) { .page { display: block; max-width: 950px; } .toc { display: none; } }
+    @media (max-width: 780px) { .formula-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 700px) {
+      .topbar { padding: 0.8rem 4vw; } .nav { display: none; }
+      .hero { padding: 4rem 6vw; } .page { padding: 3rem 6vw 5rem; }
+      .grid { grid-template-columns: 1fr; } h2 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="https://learnwithdom.page">learnwithdom.page</a>
+    <nav class="nav">
+      <a href="https://learnwithdom.page">Accueil</a>
+      <a href="https://learnwithdom.page/niveau/secondaire2.html">Secondaire</a>
+      <a href="https://learnwithdom.page/cours/mat3051.html">MAT-3051</a>
+    </nav>
+  </header>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="breadcrumb">MAT-3051 · Fonctions et polynômes</div>
+      <div class="eyebrow">Section 1.3</div>
+      <h1>Les polynômes<br>de degré 1</h1>
+      <p class="hero-lead">
+        Passer de la variation nulle du degré 0 à une variation constante : comprendre les
+        fonctions de la forme \(f(x)=ax+b\), leur pente, leur graphique et leurs propriétés —
+        à travers des exemples concrets et des simulations interactives.
+      </p>
+      <div class="tags">
+        <span class="tag">polynôme de degré 1</span>
+        <span class="tag">fonction affine</span>
+        <span class="tag">pente</span>
+        <span class="tag">taux de variation</span>
+        <span class="tag">ordonnée à l'origine</span>
+        <span class="tag">droite</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="page">
+    <aside class="toc">
+      <div class="toc-title">Dans cette section</div>
+      <a href="#intro">0. Dans la vraie vie</a>
+      <a href="#transition">1. Du degré 0 au degré 1</a>
+      <a href="#definition">2. Définition</a>
+      <a href="#a">3. Le rôle de \(a\)</a>
+      <a href="#b">4. Le rôle de \(b\)</a>
+      <a href="#representations">5. Représentations</a>
+      <a href="#pente">6. La pente</a>
+      <a href="#graphique">7. Construire le graphique</a>
+      <a href="#proprietes">8. Propriétés</a>
+      <a href="#formes">9. Formes d'une droite</a>
+      <a href="#interactif">10. Explorateur</a>
+      <a href="#erreurs">11. Erreurs fréquentes</a>
+      <a href="#quiz">12. Mini-quiz</a>
+      <a href="#resume">13. À retenir</a>
+    </aside>
+    <main>
+      <!-- =====================================================
+           0. INTRODUCTION — ACCROCHE
+           ===================================================== -->
+      <section id="intro">
+        <h2>0. Dans la vraie vie</h2>
+        <p class="lead">Monte dans un taxi, et tu es déjà à l'intérieur d'un polynôme de degré 1.</p>
+        <p>
+          La course commence avec des frais de prise en charge fixes, puis le prix augmente
+          régulièrement à chaque kilomètre parcouru. Le même schéma apparaît dans un
+          abonnement de salle de sport avec des frais d'inscription uniques, ou dans
+          l'altitude d'un randonneur qui monte à un rythme constant. Dans chacun de ces
+          cas, il y a une valeur de départ fixe, et un rythme de changement constant.
+          C'est exactement ce que capture la forme \(f(x)=ax+b\).
+        </p>
+        <div class="interactif">
+          <div class="interactif-header">
+            <h3 class="interactif-title">Simulateur — tarif de taxi</h3>
+            <p class="interactif-subtitle">Frais de base : 4 $. Tarif : 2 $/km. Fais varier la distance.</p>
+          </div>
+          <div class="controls">
+            <label for="distanceSlider">Distance parcourue</label>
+            <input id="distanceSlider" type="range" min="0" max="20" step="0.5" value="5">
+            <div class="value" id="distanceValue">5 km</div>
+          </div>
+          <div class="controls">
+            <label>Prix total</label>
+            <div class="value" id="prixTaxiValue" style="background:var(--craie-deep);color:#fff;font-weight:700;">14 $</div>
+          </div>
+          <p class="interactif-subtitle" id="taxiInfo" style="margin-top:0.8rem;">prix = 4 + 2 × distance — le 4 $ ne bouge jamais (c'est b), alors que le 2 $/km détermine à quelle vitesse le prix grimpe (c'est a).</p>
+        </div>
+        <p>Dans ce qui suit, nous allons formaliser cette idée, apprendre à lire \(a\) et \(b\) directement dans une expression, et construire le graphique correspondant.</p>
+      </section>
+
+      <!-- =====================================================
+           1. TRANSITION
+           ===================================================== -->
+      <section id="transition">
+        <h2>1. Du degré 0 au degré 1</h2>
+        <p>Dans la section précédente, nous avons étudié les polynômes de degré 0.</p>
+        <p>Une fonction constante a la forme</p>
+        <div class="equation">$$ f(x)=b. $$</div>
+        <p>Quelle que soit la valeur de \(x\), la sortie ne change jamais — exactement comme les frais de base de notre taxi, pris isolément.</p>
+        <p>Pour obtenir le prochain degré, on ajoute maintenant un terme contenant \(x\) :</p>
+        <div class="equation">$$ \boxed{f(x)=ax+b} $$</div>
+        <p>Cette petite modification change complètement le comportement de la fonction : la valeur de sortie peut maintenant augmenter ou diminuer lorsque \(x\) change.</p>
+        <div class="boite idee">
+          <div class="boite-title">L'idée</div>
+          <p>Le coefficient \(a\) contrôle <strong>la variation</strong> de la fonction, tandis que \(b\) détermine <strong>sa valeur lorsque \(x=0\)</strong>.</p>
+        </div>
+        <div class="formula-grid">
+          <div class="formula"><div class="formula-label">degré 0</div>$$ f(x)=b $$<p>variation nulle</p></div>
+          <div class="formula"><div class="formula-label">degré 1</div>$$ f(x)=ax+b $$<p>variation constante</p></div>
+          <div class="formula"><div class="formula-label">condition</div>$$ a\neq0 $$<p>pour être de degré 1</p></div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           2. DÉFINITION
+           ===================================================== -->
+      <section id="definition">
+        <h2>2. Définition du polynôme de degré 1</h2>
+        <p>Donnons maintenant à cette idée une forme algébrique précise.</p>
+        <p>Un polynôme général s'écrit sous la forme</p>
+        <div class="equation">$$ f(x) = a_nx^n+\cdots+a_2x^2+a_1x+a_0. $$</div>
+        <p>Pour obtenir un polynôme de degré 1, la plus grande puissance de \(x\) doit être \(1\).</p>
+        <div class="equation">$$ \boxed{f(x)=ax+b} \qquad a\neq0. $$</div>
+        <div class="boite definition">
+          <div class="boite-title">Définition</div>
+          <p>Un <strong>polynôme de degré 1</strong> est un polynôme de la forme</p>
+          <div class="equation">$$ f(x)=ax+b $$</div>
+          <p>où \(a\) et \(b\) sont des constantes et <strong>\(a\neq0\)</strong>.</p>
+          <p>Une fonction de cette forme est une <strong>fonction affine</strong>.</p>
+        </div>
+        <h3>Pourquoi faut-il avoir \(a\neq0\) ?</h3>
+        <p>Si \(a=0\), alors</p>
+        <div class="equation">$$ f(x)=0x+b=b. $$</div>
+        <p>On retrouve une fonction constante, donc un polynôme de degré 0 plutôt qu'un polynôme de degré 1 — exactement le cas où notre taxi n'aurait aucun tarif au kilomètre, seulement des frais fixes.</p>
+        <div class="boite erreur">
+          <div class="boite-title">Attention</div>
+          <p>Écrire \(f(x)=ax+b\) ne suffit pas à garantir que le polynôme est de degré 1.</p>
+          <p>Il faut aussi vérifier :</p>
+          <div class="equation">$$ \boxed{a\neq0}. $$</div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           3. RÔLE DE A
+           ===================================================== -->
+      <section id="a">
+        <h2>3. Le rôle du coefficient \(a\)</h2>
+        <p>Nous savons maintenant que \(a\) doit être non nul. Voyons précisément ce qu'il contrôle.</p>
+        <p>Dans \[ f(x)=ax+b, \] le coefficient \(a\) indique à quelle vitesse la sortie change lorsque l'entrée change.</p>
+        <p>On l'appelle la <strong>pente</strong> ou le <strong>coefficient directeur</strong> de la droite.</p>
+        <div class="grid">
+          <div class="card"><h3>\(a>0\)</h3><p>Lorsque \(x\) augmente, \(f(x)\) augmente.</p><div class="equation">$$ \text{fonction croissante} $$</div></div>
+          <div class="card"><h3>\(a<0\)</h3><p>Lorsque \(x\) augmente, \(f(x)\) diminue.</p><div class="equation">$$ \text{fonction décroissante} $$</div></div>
+          <div class="card"><h3>\(a=0\)</h3><p>La fonction ne varie pas.</p><div class="equation">$$ f(x)=b $$</div><p>C'est le degré 0.</p></div>
+          <div class="card"><h3>\(|a|\) grand</h3><p>La droite est plus inclinée.</p><div class="equation">$$ |a|\uparrow $$</div></div>
+        </div>
+        <div class="boite retenir">
+          <div class="boite-title">À retenir</div>
+          <p>Le signe de \(a\) détermine le sens de variation :</p>
+          <div class="equation">$$ \begin{aligned} a>0 &\Rightarrow \text{croissante},\\ a<0 &\Rightarrow \text{décroissante},\\ a=0 &\Rightarrow \text{constante}. \end{aligned} $$</div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           4. RÔLE DE B
+           ===================================================== -->
+      <section id="b">
+        <h2>4. Le rôle de \(b\)</h2>
+        <p>Après avoir isolé le rôle de \(a\), tournons-nous vers son complément : \(b\).</p>
+        <p>Le nombre \(b\) représente la valeur de la fonction lorsque \(x=0\).</p>
+        <div class="equation">$$ f(0)=a(0)+b=b. $$</div>
+        <p>Le point</p>
+        <div class="equation">$$ \boxed{(0,b)} $$</div>
+        <p>est donc l'<strong>ordonnée à l'origine</strong> de la droite.</p>
+        <div class="boite idee">
+          <div class="boite-title">Interprétation</div>
+          <p>\(b\) est la valeur initiale lorsque la variable indépendante vaut zéro.</p>
+          <p>Modifier \(b\) déplace la droite verticalement, sans changer sa pente.</p>
+        </div>
+        <h3>Exemple</h3>
+        <div class="equation">$$ f(x)=3x+2 $$</div>
+        <p>Ici,</p>
+        <div class="equation">$$ a=3 \qquad\text{et}\qquad b=2. $$</div>
+        <p>La pente est donc \(3\) et la droite coupe l'axe des \(y\) au point</p>
+        <div class="equation">$$ (0,2). $$</div>
+      </section>
+
+      <!-- =====================================================
+           5. REPRÉSENTATIONS
+           ===================================================== -->
+      <section id="representations">
+        <h2>5. Les différentes représentations</h2>
+        <p>Maintenant que \(a\) et \(b\) n'ont plus de secret, voyons comment la même fonction peut prendre plusieurs visages.</p>
+        <p>Une fonction de degré 1 peut être représentée de plusieurs façons. Ces représentations décrivent toutes la même relation entre \(x\) et \(y\).</p>
+        <div class="grid">
+          <div class="card"><h3>Description</h3><p>Une quantité augmente de \(3\) unités pour chaque augmentation de \(1\) unité de \(x\), en partant d'une valeur initiale de \(2\).</p></div>
+          <div class="card"><h3>Règle</h3><div class="equation">$$ f(x)=3x+2 $$</div></div>
+          <div class="card">
+            <h3>Table</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>\(x\)</th><th>\(f(x)\)</th></tr></thead>
+                <tbody>
+                  <tr><td>\(-2\)</td><td>\(-4\)</td></tr>
+                  <tr><td>\(-1\)</td><td>\(-1\)</td></tr>
+                  <tr><td>\(0\)</td><td>\(2\)</td></tr>
+                  <tr><td>\(1\)</td><td>\(5\)</td></tr>
+                  <tr><td>\(2\)</td><td>\(8\)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card"><h3>Graphique</h3><p>Les points sont alignés sur une droite.</p><div class="equation">$$ y=3x+2 $$</div></div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           6. PENTE
+           ===================================================== -->
+      <section id="pente">
+        <h2>6. La pente et le taux de variation</h2>
+        <p>La table précédente permet déjà de deviner la pente : chaque ligne y gagne 3. Formalisons ce calcul.</p>
+        <p>La pente mesure la variation verticale produite par une variation horizontale.</p>
+        <div class="equation">$$ \boxed{ a= \frac{\Delta y}{\Delta x} } $$</div>
+        <p>Si une droite passe par deux points \((x_1,y_1)\) et \((x_2,y_2)\), alors</p>
+        <div class="equation">$$ \boxed{ a= \frac{y_2-y_1}{x_2-x_1} } $$</div>
+        <p>à condition que \(x_2\neq x_1\).</p>
+        <h3>Exemple</h3>
+        <p>Prenons les points</p>
+        <div class="equation">$$ (1,5) \qquad\text{et}\qquad (3,11). $$</div>
+        <p>La variation verticale est</p>
+        <div class="equation">$$ \Delta y=11-5=6. $$</div>
+        <p>La variation horizontale est</p>
+        <div class="equation">$$ \Delta x=3-1=2. $$</div>
+        <p>Donc</p>
+        <div class="equation">$$ a= \frac{6}{2} = 3. $$</div>
+        <p>Pour chaque déplacement de \(1\) unité vers la droite, la droite monte de \(3\) unités.</p>
+
+        <div class="interactif">
+          <div class="interactif-header">
+            <h3 class="interactif-title">Calculateur de pente à partir de deux points</h3>
+            <p class="interactif-subtitle">Déplace les quatre curseurs — la pente se recalcule en direct.</p>
+          </div>
+          <canvas id="penteGraph" width="760" height="420"></canvas>
+          <div class="controls">
+            <label for="x1Slider">\(x_1\)</label>
+            <input id="x1Slider" type="range" min="-8" max="8" step="1" value="1">
+            <div class="value" id="x1Value">1</div>
+            <label for="y1Slider">\(y_1\)</label>
+            <input id="y1Slider" type="range" min="-8" max="8" step="1" value="5">
+            <div class="value" id="y1Value">5</div>
+          </div>
+          <div class="controls">
+            <label for="x2Slider">\(x_2\)</label>
+            <input id="x2Slider" type="range" min="-8" max="8" step="1" value="3">
+            <div class="value" id="x2Value">3</div>
+            <label for="y2Slider">\(y_2\)</label>
+            <input id="y2Slider" type="range" min="-8" max="8" step="1" value="-2">
+            <div class="value" id="y2Value">-2</div>
+          </div>
+          <div class="equation" id="penteResultat">a = (11 − 5)/(3 − 1) = 6/2 = 3</div>
+        </div>
+
+        <div class="boite methode">
+          <div class="boite-title">Méthode — trouver la pente</div>
+          <ol>
+            <li>Choisir deux points distincts.</li>
+            <li>Calculer la variation verticale : \(y_2-y_1\).</li>
+            <li>Calculer la variation horizontale : \(x_2-x_1\).</li>
+            <li>Diviser : \[ a= \frac{y_2-y_1}{x_2-x_1}. \]</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           7. GRAPHIQUE
+           ===================================================== -->
+      <section id="graphique">
+        <h2>7. Construire le graphique</h2>
+        <p>Pente en main, nous avons maintenant tout ce qu'il faut pour tracer une droite à partir de rien de plus que son équation.</p>
+        <p>Pour tracer \[ f(x)=ax+b, \] on peut utiliser deux informations essentielles :</p>
+        <ol>
+          <li>\(b\) donne l'ordonnée à l'origine.</li>
+          <li>\(a\) donne la pente.</li>
+        </ol>
+        <h3>Exemple : \(f(x)=2x-1\)</h3>
+        <p>Premièrement, \[ b=-1. \] Le premier point est donc \[ (0,-1). \]</p>
+        <p>Ensuite, \[ a=2=\frac{2}{1}. \] À partir de \((0,-1)\), on peut donc avancer de \(1\) unité vers la droite et monter de \(2\) unités.</p>
+        <p>On obtient le deuxième point : \[ (1,1). \]</p>
+        <p>Deux points suffisent pour déterminer une droite.</p>
+        <div class="boite retenir">
+          <div class="boite-title">À retenir</div>
+          <p>Dans la forme \[ \boxed{f(x)=ax+b}, \] \(a\) indique <strong>l'inclinaison</strong> de la droite et \(b\) indique <strong>sa position verticale</strong>.</p>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           8. PROPRIÉTÉS
+           ===================================================== -->
+      <section id="proprietes">
+        <h2>8. Les propriétés d'un polynôme de degré 1</h2>
+        <p>Construire un graphique point par point fonctionne toujours, mais plusieurs propriétés se calculent directement à partir de \(a\) et \(b\), sans tracer quoi que ce soit.</p>
+        <h3>Domaine</h3>
+        <p>Une fonction polynomiale de degré 1 ne contient ni dénominateur variable, ni racine paire, ni autre restriction algébrique.</p>
+        <div class="equation">$$ \boxed{\operatorname{Dom}(f)=\mathbb{R}} $$</div>
+        <h3>Image</h3>
+        <p>Puisque \(a\neq0\), la droite monte ou descend sans limite lorsque \(x\) parcourt les nombres réels.</p>
+        <div class="equation">$$ \boxed{\operatorname{Im}(f)=\mathbb{R}} $$</div>
+        <h3>Ordonnée à l'origine</h3>
+        <div class="equation">$$ f(0)=b. $$</div>
+        <p>Le point d'intersection avec l'axe des \(y\) est donc</p>
+        <div class="equation">$$ \boxed{(0,b)}. $$</div>
+        <h3>Zéro de la fonction</h3>
+        <p>Pour trouver le zéro, on cherche \(x\) tel que \[ f(x)=0. \] Donc \[ ax+b=0. \] En isolant \(x\), \[ ax=-b \] \[ \boxed{x=-\frac{b}{a}}. \]</p>
+        <p>Comme \(a\neq0\), cette valeur existe toujours et est unique — c'est le kilométrage exact où la course de taxi commencerait à coûter 0 $, si on extrapolait la droite vers l'arrière.</p>
+
+        <div class="interactif">
+          <div class="interactif-header">
+            <h3 class="interactif-title">Explorateur du zéro</h3>
+            <p class="interactif-subtitle">Ajuste \(a\) et \(b\) — regarde le point x = −b/a se déplacer sur l'axe des x.</p>
+          </div>
+          <canvas id="zeroGraph" width="760" height="420"></canvas>
+          <div class="controls">
+            <label for="zaSlider">\(a\)</label>
+            <input id="zaSlider" type="range" min="-4" max="4" step="0.5" value="2">
+            <div class="value" id="zaValue">2</div>
+            <label for="zbSlider">\(b\)</label>
+            <input id="zbSlider" type="range" min="-8" max="8" step="1" value="4">
+            <div class="value" id="zbValue">4</div>
+          </div>
+          <div class="equation" id="zeroResultat">x = −4/2 = −2</div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Propriété</th><th>Résultat</th></tr></thead>
+            <tbody>
+              <tr><td>Degré</td><td>\(1\)</td></tr>
+              <tr><td>Forme</td><td>\(f(x)=ax+b,\ a\neq0\)</td></tr>
+              <tr><td>Domaine</td><td>\(\mathbb{R}\)</td></tr>
+              <tr><td>Image</td><td>\(\mathbb{R}\)</td></tr>
+              <tr><td>Pente</td><td>\(a\)</td></tr>
+              <tr><td>Ordonnée à l'origine</td><td>\((0,b)\)</td></tr>
+              <tr><td>Zéro</td><td>\(-b/a\)</td></tr>
+              <tr><td>Graphique</td><td>Droite non horizontale</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           9. FORMES
+           ===================================================== -->
+      <section id="formes">
+        <h2>9. Les différentes formes d'une droite</h2>
+        <p>La forme \(f(x)=ax+b\) n'est pas la seule façon d'écrire une droite — selon l'information de départ, une autre forme peut être plus pratique.</p>
+        <p>Une même fonction peut être écrite de différentes façons. Il est important de savoir reconnaître ce que chaque forme permet de lire rapidement.</p>
+        <h3>Forme fonctionnelle ou pente-ordonnée</h3>
+        <div class="equation">$$ \boxed{y=ax+b} $$</div>
+        <p>Cette forme permet de lire directement :</p>
+        <div class="grid">
+          <div class="card"><h3>Pente</h3>$$ a $$</div>
+          <div class="card"><h3>Ordonnée à l'origine</h3>$$ b $$</div>
+        </div>
+        <h3>Forme point-pente</h3>
+        <p>Si on connaît la pente \(a\) et un point \((x_1,y_1)\) de la droite, on peut écrire</p>
+        <div class="equation">$$ \boxed{ y-y_1=a(x-x_1) } $$</div>
+        <p>Cette forme est particulièrement utile lorsque l'ordonnée à l'origine n'est pas connue directement.</p>
+        <h3>Forme générale</h3>
+        <p>Une droite peut également être écrite sous la forme</p>
+        <div class="equation">$$ \boxed{Ax+By+C=0}. $$</div>
+        <p>Cette forme est très générale, mais elle ne permet pas toujours de lire immédiatement la pente et l'ordonnée à l'origine.</p>
+        <div class="boite idee">
+          <div class="boite-title">Conseil</div>
+          <p>Pour analyser rapidement une fonction de degré 1, la forme \[ y=ax+b \] est souvent la plus informative.</p>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           10. INTERACTEUR
+           ===================================================== -->
+      <section id="interactif">
+        <h2>10. Explorer \(f(x)=ax+b\)</h2>
+        <p>Après avoir vu \(a\) et \(b\) séparément dans plusieurs petites simulations, réunissons-les dans un seul grand explorateur.</p>
+        <p>Les deux paramètres \(a\) et \(b\) jouent des rôles différents. Utilise les curseurs pour les observer séparément.</p>
+        <div class="interactif">
+          <div class="interactif-header">
+            <h3 class="interactif-title">La pente et l'ordonnée à l'origine</h3>
+            <p class="interactif-subtitle">Modifie \(a\) et \(b\). Observe ce qui change et ce qui reste identique.</p>
+          </div>
+          <canvas id="linearGraph" width="760" height="440"></canvas>
+          <div class="controls">
+            <label for="aSlider">\(a\)</label>
+            <input id="aSlider" type="range" min="-4" max="4" step="0.5" value="2">
+            <div class="value" id="aValue">\(a=2\)</div>
+          </div>
+          <div class="controls">
+            <label for="bSlider">\(b\)</label>
+            <input id="bSlider" type="range" min="-5" max="5" step="1" value="1">
+            <div class="value" id="bValue">\(b=1\)</div>
+          </div>
+          <div class="equation">
+            $$ f(x)=ax+b $$<br>
+            <strong id="functionText">\(f(x)=2x+1\)</strong>
+          </div>
+        </div>
+        <h3>Une observation importante</h3>
+        <p>Si on fait varier \(b\) tout en gardant \(a\) constant, toutes les droites obtenues sont parallèles.</p>
+        <p>Si on fait varier \(a\), l'inclinaison change.</p>
+        <div class="boite retenir">
+          <div class="boite-title">Deux paramètres, deux rôles</div>
+          <div class="equation">$$ \boxed{ a=\text{pente} } \qquad \boxed{ b=\text{ordonnée à l'origine} } $$</div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           11. ERREURS
+           ===================================================== -->
+      <section id="erreurs">
+        <h2>11. Erreurs fréquentes</h2>
+        <p>Avant le quiz de révision, voici les pièges les plus fréquents à surveiller.</p>
+        <h3>Erreur 1 — Oublier la condition \(a\neq0\)</h3>
+        <p>La forme \(ax+b\) peut représenter un polynôme de degré 0 si \(a=0\).</p>
+        <div class="equation">$$ 0x+4=4. $$</div>
+        <p>Il faut donc toujours vérifier le coefficient du terme de plus haut degré.</p>
+        <h3>Erreur 2 — Confondre \(a\) et \(b\)</h3>
+        <div class="equation">$$ f(x)=5x-3 $$</div>
+        <p>Ici, \[ a=5 \qquad\text{et}\qquad b=-3. \] La pente est \(5\), tandis que l'ordonnée à l'origine est \(-3\).</p>
+        <h3>Erreur 3 — Confondre pente et ordonnée à l'origine</h3>
+        <p>Dans \[ y=2x+7, \] le nombre \(2\) est la pente et \(7\) est l'ordonnée à l'origine.</p>
+        <h3>Erreur 4 — Croire qu'une pente négative signifie une valeur négative de \(y\)</h3>
+        <p>Une pente négative signifie seulement que la fonction <strong>diminue lorsque \(x\) augmente</strong>.</p>
+        <p>Par exemple, \[ f(x)=-2x+10 \] possède une pente négative, mais \(f(0)=10\) est positif.</p>
+        <h3>Erreur 5 — Utiliser la formule de la pente à l'envers</h3>
+        <p>La pente est \[ a= \frac{\Delta y}{\Delta x}. \] Il faut donc placer la variation de \(y\) au numérateur et la variation de \(x\) au dénominateur.</p>
+        <div class="boite erreur">
+          <div class="boite-title">Attention</div>
+          <p>Ne pas écrire $$ \frac{\Delta x}{\Delta y} $$ lorsqu'on cherche la pente.</p>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           12. MINI-QUIZ
+           ===================================================== -->
+      <section id="quiz">
+        <h2>12. Mini-quiz : croissante, décroissante ou constante?</h2>
+        <p class="lead">Pour chaque fonction, identifie son sens de variation à partir du signe de \(a\).</p>
+        <div class="interactif">
+          <div class="interactif-header">
+            <h3 class="interactif-title">Teste ta compréhension</h3>
+          </div>
+          <div class="quiz-enonce" id="quizEnonce">\( f(x) = 3x - 2 \)</div>
+          <div class="quiz-boutons">
+            <button id="quizCroissanteBtn">Croissante</button>
+            <button id="quizDecroissanteBtn">Décroissante</button>
+            <button class="secondaire" id="quizConstanteBtn">Constante</button>
+          </div>
+          <div class="quiz-feedback" id="quizFeedback">Choisis une réponse.</div>
+          <div class="quiz-boutons" style="margin-top:1rem;">
+            <button class="secondaire" id="quizSuivantBtn">Expression suivante →</button>
+          </div>
+          <div class="controls" style="margin-top:1rem;">
+            <label>Score</label>
+            <div class="value" id="quizScoreValue">0 / 0</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           13. RÉSUMÉ
+           ===================================================== -->
+      <section id="resume">
+        <h2>13. À retenir</h2>
+        <div class="resume">
+          <p>Un polynôme de degré 1 possède la forme</p>
+          <div class="equation">$$ \boxed{f(x)=ax+b} \qquad \boxed{a\neq0}. $$</div>
+          <ul>
+            <li>\(a\) est la <strong>pente</strong> ou le <strong>coefficient directeur</strong>.</li>
+            <li>\(b\) est l'<strong>ordonnée à l'origine</strong>.</li>
+            <li>Le graphique est une <strong>droite</strong>.</li>
+            <li>Si \(a>0\), la fonction est croissante.</li>
+            <li>Si \(a<0\), la fonction est décroissante.</li>
+            <li>Si \(a=0\), on retombe sur une fonction constante de degré 0.</li>
+            <li>Le domaine est \(\mathbb{R}\).</li>
+            <li>L'image est \(\mathbb{R}\).</li>
+            <li>L'ordonnée à l'origine est \((0,b)\).</li>
+            <li>Le zéro est \[ x=-\frac{b}{a}. \]</li>
+            <li>Le taux de variation est constant et égal à \(a\).</li>
+          </ul>
+        </div>
+        <h3>La relation fondamentale</h3>
+        <div class="equation">$$ \boxed{ a= \frac{\Delta y}{\Delta x} = \frac{y_2-y_1}{x_2-x_1} } $$</div>
+        <h3>Mots-clés</h3>
+        <div>
+          <span class="keyword">polynôme de degré 1</span>
+          <span class="keyword">fonction affine</span>
+          <span class="keyword">droite</span>
+          <span class="keyword">pente</span>
+          <span class="keyword">coefficient directeur</span>
+          <span class="keyword">taux de variation</span>
+          <span class="keyword">ordonnée à l'origine</span>
+          <span class="keyword">zéro</span>
+          <span class="keyword">fonction croissante</span>
+          <span class="keyword">fonction décroissante</span>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <strong>MAT-3051</strong> · Fonctions et polynômes · learnwithdom.page
+  </footer>
+
+  <script>
+    /* =========================================================
+       TOC ACTIVE
+       ========================================================= */
+    const sections = document.querySelectorAll("main section");
+    const tocLinks = document.querySelectorAll(".toc a");
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            tocLinks.forEach(link => link.classList.remove("active"));
+            const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+            if (active) active.classList.add("active");
+          }
+        });
+      },
+      { rootMargin: "-25% 0px -65% 0px" }
+    );
+    sections.forEach(section => observer.observe(section));
+
+    /* =========================================================
+       OUTILS DE GRAPHIQUE
+       ========================================================= */
+    function createAxes(ctx, width, height) {
+      const padding = 55;
+      const xMin = -8, xMax = 8, yMin = -8, yMax = 8;
+      const xScale = (width - 2 * padding) / (xMax - xMin);
+      const yScale = (height - 2 * padding) / (yMax - yMin);
+      function px(x) { return padding + (x - xMin) * xScale; }
+      function py(y) { return height - padding - (y - yMin) * yScale; }
+      ctx.clearRect(0, 0, width, height);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "#E0E5DD";
+      for (let x = xMin; x <= xMax; x++) { ctx.beginPath(); ctx.moveTo(px(x), padding); ctx.lineTo(px(x), height - padding); ctx.stroke(); }
+      for (let y = yMin; y <= yMax; y++) { ctx.beginPath(); ctx.moveTo(padding, py(y)); ctx.lineTo(width - padding, py(y)); ctx.stroke(); }
+      ctx.strokeStyle = "#223A34";
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(px(xMin), py(0)); ctx.lineTo(px(xMax), py(0)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(px(0), py(yMin)); ctx.lineTo(px(0), py(yMax)); ctx.stroke();
+      ctx.fillStyle = "#52635C";
+      ctx.font = "12px 'JetBrains Mono'";
+      for (let x = -8; x <= 8; x += 2) { if (x !== 0) ctx.fillText(x, px(x) - 5, py(0) + 20); }
+      for (let y = -8; y <= 8; y += 2) { if (y !== 0) ctx.fillText(y, px(0) + 8, py(y) + 4); }
+      ctx.fillStyle = "#223A34";
+      ctx.font = "bold 14px 'Space Grotesk'";
+      ctx.fillText("x", px(xMax) - 8, py(0) - 12);
+      ctx.fillText("y", px(0) + 12, py(yMax) + 10);
+      return { px, py };
+    }
+
+    /* =========================================================
+       0. SIMULATEUR TAXI (nouveau)
+       ========================================================= */
+    const distanceSlider = document.getElementById("distanceSlider");
+    const distanceValue = document.getElementById("distanceValue");
+    const prixTaxiValue = document.getElementById("prixTaxiValue");
+    const TARIF_BASE = 4, TARIF_KM = 2;
+    function updateTaxi(){
+      const d = Number(distanceSlider.value);
+      distanceValue.textContent = d + " km";
+      const prix = TARIF_BASE + TARIF_KM * d;
+      prixTaxiValue.textContent = prix.toLocaleString('fr-CA', {minimumFractionDigits:2, maximumFractionDigits:2}) + " $";
+    }
+    distanceSlider.addEventListener("input", updateTaxi);
+    updateTaxi();
+
+    /* =========================================================
+       6b. CALCULATEUR DE PENTE A DEUX POINTS (nouveau)
+       ========================================================= */
+    const penteCanvas = document.getElementById("penteGraph");
+    const penteCtx = penteCanvas.getContext("2d");
+    const px1 = document.getElementById("x1Slider"), py1 = document.getElementById("y1Slider");
+    const px2 = document.getElementById("x2Slider"), py2 = document.getElementById("y2Slider");
+    const x1ValueEl = document.getElementById("x1Value"), y1ValueEl = document.getElementById("y1Value");
+    const x2ValueEl = document.getElementById("x2Value"), y2ValueEl = document.getElementById("y2Value");
+    const penteResultat = document.getElementById("penteResultat");
+
+    function drawPenteGraph(){
+      const x1 = Number(px1.value), y1 = Number(py1.value);
+      const x2 = Number(px2.value), y2 = Number(py2.value);
+      x1ValueEl.textContent = x1; y1ValueEl.textContent = y1;
+      x2ValueEl.textContent = x2; y2ValueEl.textContent = y2;
+
+      const { px, py } = createAxes(penteCtx, penteCanvas.width, penteCanvas.height);
+
+      if(x2 !== x1){
+        const a = (y2 - y1) / (x2 - x1);
+        // extend line across the visible range
+        const xLeft = -8, xRight = 8;
+        const yLeft = y1 + a*(xLeft - x1);
+        const yRight = y1 + a*(xRight - x1);
+        penteCtx.strokeStyle = "#B9832C";
+        penteCtx.lineWidth = 4;
+        penteCtx.beginPath();
+        penteCtx.moveTo(px(xLeft), py(Math.max(-8,Math.min(8,yLeft))));
+        penteCtx.lineTo(px(xRight), py(Math.max(-8,Math.min(8,yRight))));
+        penteCtx.stroke();
+        penteResultat.innerHTML = "a = ("+y2+" − "+y1+")/("+x2+" − "+x1+") = "+(y2-y1)+"/"+(x2-x1)+" = "+(Math.round(a*100)/100);
+      } else {
+        penteResultat.textContent = "x₁ = x₂ : ce n'est pas le graphique d'une fonction (droite verticale) — la pente n'est pas définie.";
+      }
+
+      [[x1,y1,'(x\u2081,y\u2081)'],[x2,y2,'(x\u2082,y\u2082)']].forEach(function(p){
+        const xx=p[0], yy=p[1], lbl=p[2];
+        if(xx>=-8 && xx<=8 && yy>=-8 && yy<=8){
+          penteCtx.fillStyle = "#B5524A";
+          penteCtx.beginPath();
+          penteCtx.arc(px(xx), py(yy), 6, 0, 2*Math.PI);
+          penteCtx.fill();
+          penteCtx.font = "12px 'JetBrains Mono'";
+          penteCtx.fillText(lbl, px(xx)+9, py(yy)-9);
+        }
+      });
+    }
+    [px1,py1,px2,py2].forEach(function(el){ el.addEventListener("input", drawPenteGraph); });
+    drawPenteGraph();
+
+    /* =========================================================
+       8b. EXPLORATEUR DU ZERO (nouveau)
+       ========================================================= */
+    const zeroCanvas = document.getElementById("zeroGraph");
+    const zeroCtx = zeroCanvas.getContext("2d");
+    const zaSlider = document.getElementById("zaSlider"), zbSlider = document.getElementById("zbSlider");
+    const zaValueEl = document.getElementById("zaValue"), zbValueEl = document.getElementById("zbValue");
+    const zeroResultat = document.getElementById("zeroResultat");
+
+    function drawZeroGraph(){
+      let a = Number(zaSlider.value);
+      const b = Number(zbSlider.value);
+      if(a === 0){ a = 0.5; zaSlider.value = 0.5; } // eviter la division par zero dans ce widget
+      zaValueEl.textContent = a; zbValueEl.textContent = b;
+
+      const { px, py } = createAxes(zeroCtx, zeroCanvas.width, zeroCanvas.height);
+      const xLeft = -8, xRight = 8;
+      zeroCtx.strokeStyle = "#B9832C";
+      zeroCtx.lineWidth = 4;
+      zeroCtx.beginPath();
+      zeroCtx.moveTo(px(xLeft), py(Math.max(-8,Math.min(8, a*xLeft+b))));
+      zeroCtx.lineTo(px(xRight), py(Math.max(-8,Math.min(8, a*xRight+b))));
+      zeroCtx.stroke();
+
+      const xZero = -b/a;
+      if(xZero >= -8 && xZero <= 8){
+        zeroCtx.fillStyle = "#4B7A68";
+        zeroCtx.beginPath();
+        zeroCtx.arc(px(xZero), py(0), 7, 0, 2*Math.PI);
+        zeroCtx.fill();
+        zeroCtx.font = "bold 13px 'JetBrains Mono'";
+        zeroCtx.fillStyle = "#4B7A68";
+        zeroCtx.fillText("x = "+(Math.round(xZero*100)/100), px(xZero)-20, py(0)+22);
+      }
+      zeroResultat.textContent = "x = −"+b+"/"+a+" = "+(Math.round(xZero*100)/100);
+    }
+    [zaSlider,zbSlider].forEach(function(el){ el.addEventListener("input", drawZeroGraph); });
+    drawZeroGraph();
+
+    /* =========================================================
+       GRAPHIQUE f(x)=ax+b (section 10)
+       ========================================================= */
+    const graph = document.getElementById("linearGraph");
+    const ctx = graph.getContext("2d");
+    const aSlider = document.getElementById("aSlider");
+    const bSlider = document.getElementById("bSlider");
+    const aValue = document.getElementById("aValue");
+    const bValue = document.getElementById("bValue");
+    const functionText = document.getElementById("functionText");
+    function formatNumber(value) {
+      if (value === 0) return "0";
+      if (value > 0) return `+${value}`;
+      return `${value}`;
+    }
+    function drawLinearGraph() {
+      const a = Number(aSlider.value);
+      const b = Number(bSlider.value);
+      aValue.textContent = `a=${a}`;
+      bValue.textContent = `b=${b}`;
+      let expression = `f(x)=${a}x${formatNumber(b)}`;
+      if (a === 0) expression = `f(x)=${b}`;
+      functionText.textContent = expression;
+      const { px, py } = createAxes(ctx, graph.width, graph.height);
+      ctx.strokeStyle = "#B9832C";
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      const xLeft = -8, xRight = 8;
+      ctx.moveTo(px(xLeft), py(a * xLeft + b));
+      ctx.lineTo(px(xRight), py(a * xRight + b));
+      ctx.stroke();
+      const interceptY = b;
+      if (interceptY >= -8 && interceptY <= 8) {
+        ctx.fillStyle = "#B5524A";
+        ctx.beginPath();
+        ctx.arc(px(0), py(interceptY), 6, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.fillStyle = "#B5524A";
+        ctx.font = "bold 14px 'Space Grotesk'";
+        ctx.fillText(`(0, ${b})`, px(0) + 10, py(b) - 10);
+      }
+      if (a !== 0 && b >= -8 && b <= 8) {
+        const x1 = 0, y1 = b, x2 = 1, y2 = a + b;
+        if (y2 >= -8 && y2 <= 8) {
+          ctx.fillStyle = "#4B7A68";
+          ctx.beginPath();
+          ctx.arc(px(x2), py(y2), 6, 0, 2 * Math.PI);
+          ctx.fill();
+          ctx.strokeStyle = "#4B7A68";
+          ctx.lineWidth = 2;
+          ctx.setLineDash([6, 5]);
+          ctx.beginPath();
+          ctx.moveTo(px(x1), py(y1));
+          ctx.lineTo(px(x2), py(y1));
+          ctx.lineTo(px(x2), py(y2));
+          ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.fillStyle = "#4B7A68";
+          ctx.font = "12px 'JetBrains Mono'";
+          ctx.fillText("1", px(0.5) - 4, py(y1) + 18);
+          ctx.fillText(`Δy=${a}`, px(1) + 8, py((y1 + y2) / 2));
+        }
+      }
+    }
+    aSlider.addEventListener("input", drawLinearGraph);
+    bSlider.addEventListener("input", drawLinearGraph);
+    drawLinearGraph();
+
+    /* =========================================================
+       12b. MINI-QUIZ (nouveau)
+       ========================================================= */
+    const quizQuestions = [
+      { texte: "f(x) = 3x - 2", type: "croissante", explication: "a = 3 > 0, donc la fonction est croissante." },
+      { texte: "f(x) = -4x + 1", type: "decroissante", explication: "a = -4 < 0, donc la fonction est décroissante." },
+      { texte: "f(x) = 7", type: "constante", explication: "Il n'y a aucun terme en x (a = 0) : la fonction est constante, donc de degré 0." },
+      { texte: "y = 0.5x + 10", type: "croissante", explication: "a = 0.5 > 0, donc la fonction est croissante, même si la pente est petite." },
+      { texte: "f(x) = -x", type: "decroissante", explication: "a = -1 < 0, donc la fonction est décroissante." },
+      { texte: "f(x) = 2 - 5x", type: "decroissante", explication: "Réécrite f(x) = -5x + 2, on voit que a = -5 < 0 : la fonction est décroissante." }
+    ];
+    let quizIndex = 0, quizScore = 0, quizTotal = 0;
+    const quizEnonce = document.getElementById("quizEnonce");
+    const quizFeedback = document.getElementById("quizFeedback");
+    const quizScoreValue = document.getElementById("quizScoreValue");
+    function afficherQuizQuestion(){
+      const q = quizQuestions[quizIndex];
+      quizEnonce.innerHTML = "\\(" + q.texte + "\\)";
+      quizFeedback.textContent = "Choisis une réponse.";
+      quizFeedback.className = "quiz-feedback";
+      if(window.MathJax) MathJax.typesetPromise();
+    }
+    function repondreQuiz(reponse){
+      const q = quizQuestions[quizIndex];
+      quizTotal++;
+      if(reponse === q.type){
+        quizScore++;
+        quizFeedback.textContent = "Bonne réponse! " + q.explication;
+        quizFeedback.className = "quiz-feedback";
+      } else {
+        quizFeedback.textContent = "Pas tout à fait. " + q.explication;
+        quizFeedback.className = "quiz-feedback incorrect";
+      }
+      quizScoreValue.textContent = quizScore + " / " + quizTotal;
+    }
+    document.getElementById("quizCroissanteBtn").addEventListener("click", function(){ repondreQuiz("croissante"); });
+    document.getElementById("quizDecroissanteBtn").addEventListener("click", function(){ repondreQuiz("decroissante"); });
+    document.getElementById("quizConstanteBtn").addEventListener("click", function(){ repondreQuiz("constante"); });
+    document.getElementById("quizSuivantBtn").addEventListener("click", function(){
+      quizIndex = (quizIndex + 1) % quizQuestions.length;
+      afficherQuizQuestion();
+    });
+    afficherQuizQuestion();
+  </script>
+</body>
+</html>
