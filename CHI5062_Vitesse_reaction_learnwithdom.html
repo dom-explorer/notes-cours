@@ -1,0 +1,800 @@
+<!doctype html><html lang="fr-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="CHI-5062 — vitesse de réaction, théorie des collisions, catalyse, graphiques et exercices interactifs."><title>CHI-5062 — Vitesse de réaction | learnwithdom.page</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><script>window.MathJax={tex:{inlineMath:[['\(','\)']],displayMath:[['\[','\]']]},svg:{fontCache:'global'}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><style>
+:root{--ardoise:#223A34;--deep:#182922;--papier:#EAEEE9;--papier2:#E0E5DD;--encre:#1C2B3A;--craie:#D9A441;--brique:#B5524A;--sapin:#4B7A68;--white:#FCFBF7;--ligne:rgba(28,43,58,.14)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--papier);color:var(--encre);font:16px/1.8 'Literata',Georgia,serif}a{color:var(--ardoise)}.topbar{position:sticky;top:0;z-index:20;background:rgba(24,41,34,.97);color:#fff}.topin{max-width:1380px;margin:auto;padding:13px 25px;display:flex;gap:22px;justify-content:space-between;align-items:center}.brand{font:700 18px 'Space Grotesk',sans-serif;text-decoration:none;color:#fff}.brand span{color:var(--craie)}nav a{color:#e0e8df;text-decoration:none;margin-left:18px;font:500 13px 'Space Grotesk',sans-serif}.hero{background:radial-gradient(circle at 80% 15%,rgba(217,164,65,.2),transparent 32%),linear-gradient(120deg,var(--deep),var(--ardoise));color:#fff;padding:70px 25px}.hero-in{max-width:1130px;margin:auto}.eyebrow,.kicker{font:700 12px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--craie)}h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;line-height:1.18;letter-spacing:-.025em}h1{font-size:clamp(2.4rem,5vw,4rem);max-width:900px;margin:19px 0}h2{font-size:clamp(1.65rem,3vw,2.35rem);color:var(--deep)}h3{font-size:1.28rem;color:var(--ardoise);margin-top:29px}.lead{max-width:850px;color:#dde7df;font-size:1.1rem}.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:23px}.tags span{font:500 12px 'JetBrains Mono',monospace;border:1px solid #ffffff42;border-radius:8px;padding:7px 10px}.page{max-width:1380px;margin:auto;display:grid;grid-template-columns:245px minmax(0,1fr);gap:44px;padding:45px 24px}.toc{position:sticky;top:88px;align-self:start;max-height:calc(100vh - 105px);overflow:auto;background:#fcfbf7;border:1px solid var(--ligne);border-radius:15px;padding:19px}.toc b{font:700 12px 'JetBrains Mono',monospace}.toc a{display:block;text-decoration:none;font:500 13px/1.4 'Space Grotesk',sans-serif;padding:8px;border-left:2px solid var(--papier2)}.toc a:hover{background:#eef2e8;border-color:var(--craie)}main{min-width:0}.section{margin:0 0 70px;scroll-margin-top:92px}p{margin:0 0 15px}.box,.lab,.exercise,.quiz{background:var(--white);border:1px solid var(--ligne);border-radius:17px;padding:23px;margin:23px 0;box-shadow:0 7px 22px #1829220b}.box.def{border-left:5px solid var(--sapin)}.box.ex{border-left:5px solid var(--craie)}.box.warn{border-left:5px solid var(--brique)}.box-title{font:700 12px 'JetBrains Mono',monospace;color:var(--ardoise);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}.eq{background:#f5f2e9;border:1px solid #d9a44142;padding:16px;border-radius:11px;margin:17px 0;overflow:auto;text-align:center}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.card{background:#fff;border:1px solid var(--ligne);border-radius:14px;padding:20px}.card h3{margin:0 0 9px}button,select,input{font:600 14px 'Space Grotesk',sans-serif}button{cursor:pointer;border:0;background:var(--sapin);color:#fff;border-radius:9px;padding:10px 15px}button:hover{background:var(--ardoise)}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--craie)}button.alt{background:var(--papier2);color:var(--ardoise)}input[type=range]{accent-color:var(--sapin);width:100%}input[type=number],select{padding:9px;border:1px solid #aaa;border-radius:8px;background:#fff;width:100%}.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin:18px 0}.controls label{font:600 12px 'JetBrains Mono',monospace}.controls output{font-size:13px;color:var(--ardoise)}svg.viz{width:100%;height:auto;background:#fff;border:1px solid var(--ligne);border-radius:12px}.result{background:#eef3f0;padding:13px 17px;border-left:4px solid var(--sapin);border-radius:7px;min-height:34px}.exercise details,.page-source{border:1px solid var(--ligne);border-radius:9px;padding:11px;margin:8px 0;background:#f7f8f4}summary{cursor:pointer;font:600 14px 'Space Grotesk',sans-serif}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.6 'JetBrains Mono',monospace}table{border-collapse:collapse;width:100%;background:#fff}td,th{border:1px solid var(--ligne);padding:10px;text-align:left}th{background:var(--ardoise);color:#fff;font:600 13px 'Space Grotesk',sans-serif}.choice{display:block;text-align:left;width:100%;margin:8px 0;background:#e6ebe4;color:#223A34}.choice:hover{background:#d5e4d7}.correct{background:#d9f0df!important}.incorrect{background:#f7dddd!important}.muted{color:#506258;font-size:13px}.small{font-size:12px}.source-links li{margin-bottom:8px}.archive{max-height:650px;overflow:auto}footer{background:var(--deep);color:#dde5db;padding:30px 24px;text-align:center;font:13px 'JetBrains Mono',monospace}@media(max-width:1050px){.page{display:block}.toc{position:relative;top:auto;max-height:none;margin-bottom:26px}.toc .toclinks{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}}@media(max-width:700px){.grid{grid-template-columns:1fr}.hero{padding:50px 17px}.page{padding:25px 15px}.box,.lab,.exercise,.quiz{padding:17px}nav{display:none}}
+</style></head><body>
+<header class="topbar"><div class="topin"><a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span>.page</a><nav><a href="#mesure">Mesurer</a><a href="#collisions">Collisions</a><a href="#lois">Lois cinétiques</a><a href="#exercices">S’exercer</a></nav></div></header>
+<section class="hero"><div class="hero-in"><div class="eyebrow">CHI-5062 · Chimie secondaire 5 · Cinétique chimique</div><h1>La vitesse de réaction : peut-on contrôler le temps de la chimie?</h1><p class="lead">Pourquoi le fer rouille-t-il lentement alors que certaines combustions sont presque instantanées? Explore les collisions moléculaires, mesure les vitesses, modifie les conditions d’une réaction et résous une enquête scientifique.</p><div class="tags"><span>Graphiques interactifs</span><span>Théorie et exemples</span><span>Défis autocorrigés</span><span>Sources et documents intégraux</span></div></div></section>
+<div class="page"><aside class="toc"><b>Sur cette page</b><div class="toclinks"><a href="#intro">00 · L’énigme</a><a href="#mesure">01 · Mesurer la vitesse</a><a href="#collisions">02 · Collisions et activation</a><a href="#facteurs">03 · Facteurs cinétiques</a><a href="#lois">04 · Lois de vitesse</a><a href="#mecanismes">05 · Mécanismes</a><a href="#applications">06 · Applications</a><a href="#exercices">07 · Enquête et exercices</a><a href="#approfondir">08 · Approfondir</a><a href="#sources">09 · Bibliographie et PDF</a></div></aside><main>
+<section class="section" id="intro"><div class="kicker">Avant de commencer</div><h2>Deux réactions, deux échelles de temps</h2><p>Un clou laissé à l’humidité s’oxyde lentement. Une combustion, lorsqu’elle est amorcée et alimentée, peut transformer les réactifs en quelques secondes. Comment expliquer cette différence? La <strong>cinétique chimique</strong> étudie précisément la rapidité des transformations et les mécanismes qui les rendent possibles.</p><div class="grid"><div class="card"><h3>Réaction lente</h3><p>Corrosion, vieillissement chimique d’un médicament, certaines décompositions.</p></div><div class="card"><h3>Réaction rapide</h3><p>Combustion, précipitation ionique, réactions catalysées dans des conditions appropriées.</p></div></div><div class="box def"><div class="box-title">À retenir</div>La vitesse dépend de la réaction et des conditions expérimentales. <strong>Rapide ne signifie pas nécessairement très exothermique</strong> : énergie libérée et vitesse sont deux notions différentes.</div><p>Historiquement, Svante Arrhenius (1889) a contribué à relier la température et la vitesse des réactions. Eyring, Evans et Polanyi ont ensuite développé des descriptions de l’état de transition dans les années 1930.</p></section>
+<section class="section" id="mesure"><div class="kicker">01 · Lecture de données</div><h2>Définition et mesure de la vitesse</h2><p>On suit, pendant un intervalle de temps, la concentration d’un réactif qui disparaît ou d’un produit qui apparaît. Une <strong>vitesse moyenne</strong> est la pente d’une sécante; une <strong>vitesse instantanée</strong> correspond à la pente de la tangente à un instant précis.</p><div class="eq">\[v_{\mathrm{moy},A}=-\frac{\Delta[A]}{\Delta t}\qquad v_{\mathrm{inst},A}=-\frac{d[A]}{dt}\]</div><div class="box warn"><div class="box-title">Attention au signe et à la stœchiométrie</div>Pour un réactif, la concentration diminue : le signe moins rend sa vitesse de disparition positive. Pour une réaction générale \(aA\to pP\), la vitesse de réaction définie rigoureusement tient compte des coefficients : \(v=-\frac1a\frac{d[A]}{dt}=\frac1p\frac{d[P]}{dt}\).</div>
+<div class="lab"><div class="box-title">Laboratoire 1 · Une courbe, deux vitesses</div><p>Déplace les instants A et B. La sécante représente la vitesse moyenne de disparition. Le curseur P indique une vitesse instantanée. La courbe suit ici un <strong>modèle pédagogique</strong> d’ordre un, avec \([A](t)=1,00e^{-0,18t}\).</p><div class="controls"><div><label for="ta">Instant A · <output id="ota">1</output> s</label><input type="range" id="ta" min="0" max="15" step="1" value="1"></div><div><label for="tb">Instant B · <output id="otb">10</output> s</label><input type="range" id="tb" min="1" max="20" step="1" value="10"></div><div><label for="tp">Tangente au temps · <output id="otp">5</output> s</label><input type="range" id="tp" min="0" max="20" step="1" value="5"></div></div><svg id="graphV" class="viz" viewBox="0 0 780 335" role="img" aria-label="Concentration en fonction du temps avec une sécante et une tangente"></svg><div id="vInfo" class="result" aria-live="polite"></div></div>
+<div class="box ex"><div class="box-title">Exemple guidé</div><p>Une concentration passe de 0,80 à 0,50 mol/L en 15 s. Quelle est la vitesse moyenne de disparition du réactif?</p><div class="eq">\[v=-\frac{0,50-0,80}{15}=0,020\;\mathrm{mol\,L^{-1}\,s^{-1}}\]</div><p>On précise l’espèce suivie et les unités. La pente brute du graphe de concentration est négative; la vitesse de disparition est positive.</p></div></section>
+<section class="section" id="collisions"><div class="kicker">02 · À l’échelle moléculaire</div><h2>Collisions efficaces et énergie d’activation</h2><p>Pour qu’une réaction ait lieu, les particules doivent interagir dans des conditions favorables. La théorie des collisions insiste sur la fréquence des rencontres, l’énergie suffisante et l’orientation appropriée. Une collision n’est donc pas automatiquement une réaction.</p><div class="box def"><div class="box-title">Énergie d’activation, \(E_a\)</div>Barrière énergétique associée au chemin réactionnel. L’état de transition correspond à une configuration de haute énergie. Un catalyseur propose une autre voie qui demande généralement une énergie d’activation moindre.</div>
+<div class="lab"><div class="box-title">Laboratoire 2 · Profil énergétique</div><p>Déplace le niveau de la barrière ou active la catalyse. Observe que l’énergie des réactifs et des produits demeure identique dans les deux parcours : un catalyseur ne change pas \(\Delta H\).</p><div class="controls"><div><label for="barriere">Barrière sans catalyseur · <output id="obarriere">80</output> kJ/mol</label><input id="barriere" type="range" min="40" max="130" value="80"></div><div><label for="catalyse">Catalyseur</label><select id="catalyse"><option value="off">Absent</option><option value="on">Présent</option></select></div></div><svg id="graphE" class="viz" viewBox="0 0 780 330" role="img" aria-label="Deux chemins réactionnels, avec et sans catalyseur"></svg><div class="result" id="eInfo"></div></div><div class="box ex"><div class="box-title">Une idée à tester</div><p>« Chauffer une réaction fournit automatiquement un catalyseur. » Faux : la température modifie la distribution des énergies disponibles, tandis qu’un catalyseur change le chemin réactionnel.</p></div></section>
+<section class="section" id="facteurs"><div class="kicker">03 · Les paramètres à contrôler</div><h2>Ce qui modifie la vitesse</h2><div class="grid"><div class="card"><h3>Nature des réactifs</h3><p>Les espèces et leurs liaisons chimiques déterminent les mécanismes possibles et leur rapidité.</p></div><div class="card"><h3>Concentration</h3><p>Modifier les concentrations peut changer la fréquence des rencontres et la vitesse, selon la loi de vitesse mesurée.</p></div><div class="card"><h3>Température</h3><p>Souvent, augmenter la température augmente la proportion de collisions franchissant la barrière d’activation.</p></div><div class="card"><h3>Surface de contact</h3><p>Une poudre solide présente généralement davantage de surface réactive qu’un bloc de même masse.</p></div><div class="card"><h3>Catalyseur</h3><p>Il accélère une réaction en offrant un autre mécanisme et n’est pas consommé globalement.</p></div><div class="card"><h3>Inhibiteur</h3><p>Il ralentit la transformation par différents mécanismes, par exemple en bloquant un site actif.</p></div></div>
+<div class="lab"><div class="box-title">Laboratoire 3 · Contrôle d’un réacteur fictif</div><p>Ce modèle compare des vitesses <strong>relatives</strong> pour illustrer les tendances. Ce n’est pas une prédiction expérimentale universelle.</p><div class="controls"><div><label for="temp">Température · <output id="otemp">25</output> °C</label><input id="temp" type="range" min="5" max="85" step="5" value="25"></div><div><label for="conc">Concentration relative · <output id="oconc">1,0</output> ×</label><input id="conc" type="range" min="0.5" max="3" step="0.1" value="1"></div><div><label for="surf">Surface relative · <output id="osurf">1,0</output> ×</label><input id="surf" type="range" min="1" max="5" step="0.5" value="1"></div><div><label for="cat">Catalyseur (modèle)</label><select id="cat"><option value="1">Non</option><option value="4">Oui</option></select></div></div><svg class="viz" id="graphF" viewBox="0 0 780 175" role="img" aria-label="Barres des facteurs relatifs de vitesse"></svg><div id="fInfo" class="result"></div></div><div class="box warn"><div class="box-title">Sécurité</div>La réaction de « génie dans la bouteille » décrite dans le document source fait intervenir du peroxyde d’hydrogène concentré et une forte libération de chaleur. Elle <strong>n’est pas une activité à reproduire par les élèves</strong>. Les simulations de cette page sont des alternatives sans réactifs.</div></section>
+<section class="section" id="lois"><div class="kicker">04 · Modélisation</div><h2>Lois de vitesse et ordre de réaction</h2><p>Les mesures expérimentales permettent de déterminer la relation entre vitesse et concentrations. Pour un modèle de réaction avec A et B :</p><div class="eq">\[v=k[A]^m[B]^n\qquad \text{ordre global}=m+n\]</div><p>Les exposants \(m\) et \(n\) sont les <strong>ordres partiels</strong>. Sauf pour une étape véritablement élémentaire, on ne les lit pas directement dans les coefficients stœchiométriques de l’équation globale.</p>
+<div class="lab"><div class="box-title">Laboratoire 4 · Découvre la loi cinétique</div><p>Fais varier indépendamment les concentrations et les ordres dans un modèle. Vois comment la vitesse change, notamment lors du doublement d’un réactif.</p><div class="controls"><div><label for="ca">[A] · <output id="oca">0,20</output> mol/L</label><input id="ca" type="range" min="0.1" max="1" step="0.05" value="0.2"></div><div><label for="cb">[B] · <output id="ocb">0,10</output> mol/L</label><input id="cb" type="range" min="0.1" max="1" step="0.05" value="0.1"></div><div><label for="ma">Ordre de A</label><select id="ma"><option>0</option><option selected>1</option><option>2</option></select></div><div><label for="mb">Ordre de B</label><select id="mb"><option>0</option><option selected>1</option><option>2</option></select></div></div><svg id="graphL" class="viz" viewBox="0 0 780 180" role="img" aria-label="Comparaison de vitesse pour les concentrations et leur doublement"></svg><div id="lInfo" class="result"></div></div>
+<h3>Méthode des vitesses initiales</h3><p>On fait varier un réactif à la fois, toutes choses égales par ailleurs, puis on mesure la vitesse juste après le mélange. Si doubler [A] multiplie la vitesse par 4, alors l’ordre de A vaut 2 dans le modèle de puissance étudié.</p><table><thead><tr><th>Essai</th><th>[A] (mol/L)</th><th>[B] (mol/L)</th><th>Vitesse (mol/L/s)</th></tr></thead><tbody><tr><td>1</td><td>0,10</td><td>0,10</td><td>0,0020</td></tr><tr><td>2</td><td>0,20</td><td>0,10</td><td>0,0080</td></tr><tr><td>3</td><td>0,10</td><td>0,20</td><td>0,0040</td></tr></tbody></table><p>De 1 à 2, [A] double et la vitesse quadruple : \(m=2\). De 1 à 3, [B] double et la vitesse double : \(n=1\). La loi est donc \(v=k[A]^2[B]\), d’ordre global 3.</p><div class="box ex"><div class="box-title">Exemple du diaporama : A + 2B → C (étape supposée élémentaire)</div><div class="eq">\[v=k[A][B]^2=0,25(0,40)(0,20)^2=0,0040\;\mathrm{mol\,L^{-1}\,s^{-1}}\]</div><p>Ces données proviennent des diapositives 29–30. Les unités de \(k\) dépendent de l’ordre global.</p></div></section>
+<section class="section" id="mecanismes"><div class="kicker">05 · Comprendre les étapes</div><h2>Intermédiaires et mécanismes réactionnels</h2><p>Une transformation globale peut passer par plusieurs étapes. Une espèce produite puis consommée dans la suite du mécanisme est un <strong>intermédiaire réactionnel</strong>. Une étape particulièrement lente peut limiter la vitesse globale, mais le mécanisme doit être examiné avant de conclure.</p><div class="box def"><div class="box-title">Attention : étape élémentaire ≠ équation globale</div>Dans une véritable étape élémentaire, les exposants de la loi de vitesse peuvent correspondre à sa molecularité. Pour une réaction globale, c’est l’expérience qui permet de déterminer la loi. Les exemples d’étapes élémentaires de ton diaporama sont à lire comme des hypothèses pédagogiques de mécanisme.</div><h3>Approfondissement : cinétique intégrée</h3><p>Le document écrit présente les lois intégrées d’ordres 1 et 2, destinées aux élèves désirant aller plus loin.</p><div class="eq">\[\text{Ordre 1 : }[A](t)=[A]_0e^{-kt}\qquad \text{Ordre 2 : }\frac{1}{[A]}=kt+\frac{1}{[A]_0}\]</div><p class="muted">Les expressions intégrées supposent les modèles de disparition respectifs \(-d[A]/dt=k[A]\) et \(-d[A]/dt=k[A]^2\).</p><h3>Approfondissement : Arrhenius</h3><div class="eq">\[k(T)=A\exp\!\left(-\frac{E_a}{RT}\right)\]</div><p>La relation permet d’étudier quantitativement la dépendance de la constante de vitesse à la température. Elle prolonge l’explication qualitative de la théorie des collisions.</p></section>
+<section class="section" id="applications"><div class="kicker">06 · La chimie dans le monde réel</div><h2>De la cuisine à l’industrie</h2><div class="grid"><div class="card"><h3>Conservation des aliments</h3><p>Le froid ralentit fréquemment des transformations de dégradation et la croissance microbienne.</p></div><div class="card"><h3>Horloge à l’iode</h3><p>Le temps d’apparition de la couleur révèle l’influence des concentrations sur les étapes en compétition.</p></div><div class="card"><h3>Haber–Bosch</h3><p>La fabrication d’ammoniac exploite la catalyse et un compromis entre cinétique, pression, température et équilibre.</p></div><div class="card"><h3>Médicaments</h3><p>La stabilité, la dégradation et les réactions de synthèse nécessitent un contrôle cinétique.</p></div><div class="card"><h3>Pot catalytique</h3><p>Des surfaces actives favorisent la conversion de certains polluants dans les gaz d’échappement.</p></div><div class="card"><h3>Ozone stratosphérique</h3><p>Des cycles catalytiques impliquant des radicaux halogénés peuvent accélérer la destruction de l’ozone.</p></div></div></section>
+<section class="section" id="exercices"><div class="kicker">07 · Évaluation formative</div><h2>Mission : enquête cinétique</h2><p>Réponds aux six questions. Une explication apparaît après chaque réponse. Aucun réactif dangereux n’est nécessaire.</p><div class="quiz"><div id="quizProgress" class="muted">Question 1 / 6</div><h3 id="quizQ"></h3><div id="quizChoices"></div><div id="quizFeedback" class="result" aria-live="polite">Choisis une réponse.</div><p><button id="quizNext" type="button">Question suivante</button> <button class="alt" id="quizReset" type="button">Recommencer</button></p><div id="quizScore" class="muted"></div></div><h3>Exercices développés</h3><div class="exercise"><details><summary>1 · Concentration d’un réactif : 0,90 à 0,54 mol/L en 12 s</summary>\(v=-\Delta[A]/\Delta t=-(0,54-0,90)/12=0,030\;\mathrm{mol\,L^{-1}\,s^{-1}}\).</details><details><summary>2 · Pourquoi la température accélère-t-elle souvent une réaction?</summary>Elle augmente la proportion de particules dont l’énergie et les conditions de collision permettent de franchir la barrière d’activation. L’effet n’est pas un simple doublement universel tous les 10 °C.</details><details><summary>3 · Si \(v=k[A]^2[B]\), que fait le doublement de [A] seule?</summary>La vitesse est multipliée par \(2^2=4\), tant que \(k\) et [B] demeurent constantes.</details><details><summary>4 · Quel est l’ordre global de \(v=k[A]^2[B]\)?</summary>Il vaut \(2+1=3\).</details><details><summary>5 · Un catalyseur change-t-il \(\Delta H\)?</summary>Non. Il change le mécanisme et abaisse généralement la barrière d’activation, mais ne modifie pas les énergies initiale et finale de la réaction.</details><details><summary>6 · À quoi correspond une sécante sur un graphique de concentration?</summary>À une variation moyenne de concentration entre deux instants; pour une disparition, son opposé fournit une vitesse moyenne positive.</details></div></section>
+<section class="section" id="approfondir"><div class="kicker">08 · Aller plus loin</div><h2>Notions plus avancées des documents</h2><p>Les deux documents contiennent aussi des concepts de chimie physique plus avancés : dérivées, logarithmes, distributions d’énergie de Maxwell–Boltzmann, facteur stérique, équations intégrées, théorie de l’état de transition et calculs d’Arrhenius. Ces notions sont présentées en <strong>approfondissement facultatif</strong>, pas comme prérequis pour toutes les activités de secondaire 5.</p><div class="box"><div class="box-title">Exemple : calcul d’une énergie d’activation à partir d’une pente</div><p>Dans le document écrit, une pente de \(-5000\;\mathrm{K}\) sur le tracé \(\ln k\) selon \(1/T\) donne :</p><div class="eq">\[E_a=-mR=5000\times8,314\simeq41,6\;\mathrm{kJ/mol}\]</div></div></section>
+<section class="section" id="sources"><div class="kicker">09 · Références et archives</div><h2>Sources et documents de départ</h2><p>Cette page est une adaptation pédagogique des deux documents fournis. Les démonstrations et formulations ont été organisées pour la lecture en ligne; les transcriptions complètes ci-dessous permettent de retrouver le matériel source page par page, notamment les approfondissements industriels et les calculs avancés.</p><ol class="source-links"><li><strong>Vitesse de réaction, Chimie</strong>, document fourni, 12 pages (mars 2025).</li><li><strong>Vitesse de réaction (chapitre 5)</strong>, diaporama fourni, 54 pages.</li><li><a href="https://goldbook.iupac.org/terms/view/R05156">IUPAC, Gold Book — Rate of reaction</a> : définition et coefficients stœchiométriques.</li><li><a href="https://openstax.org/books/chemistry-2e/pages/12-5-collision-theory">OpenStax Chemistry 2e — Collision Theory</a> : collision, activation et Arrhenius.</li><li><a href="https://openstax.org/books/chemistry-2e/pages/12-summary">OpenStax Chemistry 2e — Chapter 12 Summary</a> : facteurs et lois de vitesse.</li><li>Arrhenius, S. (1889), <em>Zeitschrift für Physikalische Chemie</em>, 4, 226–248 (référence du document fourni).</li><li>Atkins, de Paula et Keeler, <em>Atkins' Physical Chemistry</em>, 9e éd. (référence du document fourni).</li></ol><details><summary>Consulter la transcription du document de cours — 12 pages</summary><div class="archive"><details class="page-source"><summary>Page 1</summary><pre>Vitesse de réaction, Chimie
+Dominic Denault Pilon
+March 2025
+1
+Définitions et concepts fondamentaux
+La vitesse de réaction chimique désigne la rapidité avec laquelle des réactifs
+se transforment en produits. Plus formellement, elle peut s’exprimer comme la
+variation de la concentration d’un produit par unité de temps (ou l’opposée de
+la variation d’un réactif).
+Par exemple, la formation de rouille (oxydation du fer) est un processus
+extrêmement lent, pouvant prendre des années, alors que la combustion du bois
+ou du butane s’effectue en quelques secondes. La vitesse n’est pas constante au
+cours du temps : typiquement, elle décroît à mesure que les réactifs s’épuisent.
+La discipline qui étudie les vitesses de réaction est la cinétique chimique, une
+branche de la chimie physique.
+Comprendre et maîtriser la vitesse des réactions est crucial, tant pour élu-
+cider les mécanismes réactionnels que pour les applications pratiques en labo-
+ratoire et en industrie. En effet, les concepts de cinétique s’appliquent à de
+nombreux domaines (génie chimique, enzymologie, science de l’environnement,
+etc.).
+Dans l’industrie, la capacité à contrôler la cinétique des réactions chimiques
+conditionne l’efficacité des procédés et la qualité des produits. Comme l’a souli-
+gné la National Academy of Sciences, « le contrôle des processus chimiques est
+tout aussi important que la compréhension de la chimie elle-même » – illustrant
+l’importance d’optimiser les vitesses de réaction pour accroître la productivité,
+réduire les coûts et assurer la sécurité des opérations.
+2
+Théorie de la vitesse de réaction
+Plusieurs théories fondamentales permettent d’expliquer pourquoi une réac-
+tion chimique se déroule à une certaine vitesse. La théorie des collisions propose
+que, pour réagir, les molécules doivent d’abord entrer en collision. Toutefois,
+toutes les collisions ne produisent pas de transformation chimique.
+Une collision est efficace (c’est-à-dire qu’elle aboutit à la formation de pro-
+duits) seulement si les molécules possèdent une énergie suffisante au moment
+de l’impact – appelée énergie d’activation – et si leur orientation mutuelle est
+propice à la réorganisation des liaisons [3].
+1</pre></details><details class="page-source"><summary>Page 2</summary><pre>En d’autres termes, les entités doivent franchir une barrière d’énergie pour
+que la réaction ait lieu. Ce concept d’énergie d’activation, introduit par Svante
+Arrhenius, correspond à l’énergie caractéristique de la barrière que les réactifs
+doivent franchir pour se transformer en produits. Arrhenius a montré qu’à une
+température donnée, seule une fraction des molécules possède une énergie suf-
+fisante pour franchir cette barrière. Il a relié cette fraction à la température,
+expliquant ainsi pourquoi les réactions s’accélèrent fortement quand on chauffe
+[1].
+Par ailleurs, la théorie de l’état de transition (ou du complexe activé), dé-
+veloppée vers 1935 par Eyring, Evans et Polanyi, fournit une description plus
+détaillée du déroulement de la réaction. Selon cette théorie, au cours de la ré-
+action, les réactifs passent par une configuration transitoire très énergétique
+appelée état de transition (ou complexe activé), correspondant au sommet de la
+barrière d’énergie potentielle [4].
+La différence d’énergie entre les réactifs de départ et cet état de transition
+correspond à la barrière d’activation de la réaction : c’est l’apport d’énergie
+nécessaire pour atteindre le complexe activé.
+L’état de transition est supposé en quasi-équilibre avec les réactifs dans la
+théorie de l’état de transition. Sa formation constitue une étape déterminante
+pour la vitesse de réaction. La vitesse à laquelle les produits se forment dépend
+alors de la population des configurations activées et de leur évolution vers les
+produits.
+La théorie de l’état de transition permet ainsi de relier la constante de vitesse
+à des propriétés moléculaires (fréquence de vibrations, entropie d’activation,
+etc.) et conduit à l’équation d’Eyring, complémentaire de l’équation d’Arrhenius
+pour interpréter les données cinétiques.
+3
+Équations et lois cinétiques
+Loi de vitesse
+La vitesse de réaction d’une transformation donnée dépend généralement
+de la concentration des réactifs selon une loi empirique appelée loi de vitesse
+(ou loi cinétique). Pour de nombreuses réactions chimiques, la vitesse instanta-
+née v dépend du produit des concentrations des réactifs, chacune affectée d’un
+exposant.
+Par exemple, si l’on considère une réaction hypothétique
+aA + bB −→produits,
+la loi de vitesse peut s’écrire :
+v = k[A]x[B]y
+Dans cette expression, [A] et [B] représentent les concentrations de A et
+B, k est la constante de vitesse (ou coefficient cinétique) caractéristique de la
+réaction, et x et y sont les ordres partiels par rapport à A et B, respectivement.
+2</pre></details><details class="page-source"><summary>Page 3</summary><pre>L’ordre partiel quantifie comment la concentration d’un réactif affecte la
+vitesse : par exemple, x = 1 signifie que la vitesse est proportionnelle à [A]
+(ordre un), tandis que x = 2 signifie une proportionnalité à [A]2 (ordre deux),
+etc.
+L’ordre global de la réaction est la somme de ces exposants :
+n = x + y
+Ces ordres de réaction sont souvent des entiers positifs (0, 1, 2, . . .), mais
+peuvent dans certains cas être non entiers ou même négatifs, car ils découlent
+du mécanisme réactionnel effectif et doivent être déterminés expérimentalement.
+Détermination expérimentale
+On détermine la loi de vitesse en mesurant la vitesse pour différentes condi-
+tions. La méthode la plus courante est la méthode des vitesses initiales : on
+réalise une série d’expériences en faisant varier la concentration initiale d’un
+réactif (A) tandis que les autres sont maintenus constantes, et on mesure la
+vitesse initiale v0 juste après le début de la réaction.
+En comparant deux expériences où [A]0 change, on peut déduire l’ordre
+x par la variation de v0. Mathématiquement, on exploite souvent la relation
+logarithmique :
+ln v0 = ln k + x ln[A]0 + y ln[B]0 + · · ·
+Cette écriture suppose que les concentrations et la vitesse sont exprimées
+dans des unités cohérentes. Plus rigoureusement, les logarithmes devraient por-
+ter sur des grandeurs sans dimension.
+Ainsi, en traçant ln v0 en fonction de ln[A]0, tout en maintenant les autres
+concentrations constantes, on obtient une droite de pente x. La pente de ce
+graphe donne directement l’ordre partiel par rapport à A. On répète l’opération
+pour chaque réactif afin de déterminer tous les ordres de réaction.
+Une fois la loi de vitesse proposée, on peut la vérifier par la méthode inté-
+grale : on mesure l’évolution de la concentration des réactifs ou des produits
+au cours du temps et on vérifie que les données sont compatibles avec la forme
+intégrée de la loi de vitesse.
+Par exemple, pour une réaction du premier ordre,
+v = k[A],
+la disparition de A est décrite par
+−d[A]
+dt
+= k[A].
+L’intégration conduit à une décroissance exponentielle :
+ln[A] = −kt + ln[A]0
+3</pre></details><details class="page-source"><summary>Page 4</summary><pre>ou, de façon équivalente,
+[A] = [A]0e−kt
+Si l’on trace ln[A] en fonction du temps t, on doit obtenir une droite – signe
+que la réaction suit une cinétique d’ordre 1. La pente de cette droite est égale à
+−k.
+De même, une cinétique du deuxième ordre pour une réaction 2A −→
+produits, avec
+−d[A]
+dt
+= k[A]2,
+peut être vérifiée en testant si 1/[A] varie linéairement avec t :
+1
+[A] = kt +
+1
+[A]0
+Équation d’Arrhenius
+La constante de vitesse k dépend généralement de la température : la plupart
+des réactions s’accélèrent lorsqu’on élève la température. Cette dépendance est
+décrite par l’équation d’Arrhenius, établie empiriquement par Svante Arrhenius
+en 1889 [1].
+Elle s’écrit :
+k(T) = A exp
+
+−Ea
+RT
+
+où Ea est l’énergie d’activation, R la constante des gaz parfaits, T la tem-
+pérature absolue en kelvins et A le facteur préexponentiel (aussi appelé facteur
+de fréquence).
+Ce dernier est une constante approximativement indépendante de T sur un
+intervalle de température donné. Il est lié à la fréquence des événements réac-
+tionnels et, selon le modèle, aux facteurs d’orientation.
+L’équation d’Arrhenius montre que la constante k croît généralement avec la
+température T, ce qui quantifie l’augmentation souvent drastique de la vitesse
+lorsque l’on chauffe une réaction.
+On peut prendre le logarithme de l’équation pour obtenir une forme linéaire :
+ln k = ln A −Ea
+R
+1
+T
+Ainsi, en effectuant des mesures de k à différentes températures et en repré-
+sentant ln k en fonction de 1/T, on obtient généralement une droite (appelée
+droite d’Arrhenius) dont la pente vaut
+m = −Ea
+R
+4</pre></details><details class="page-source"><summary>Page 5</summary><pre>et l’ordonnée à l’origine vaut
+b = ln A
+Ce procédé est couramment utilisé pour déterminer expérimentalement Ea
+d’une réaction à partir de mesures cinétiques et pour extrapoler la constante k
+à d’autres températures.
+Par exemple, si la pente mesurée est
+m = −5000/K,
+alors
+Ea = −mR
+= 5000 K × 8,314 J/(mol K)
+≈41,6 kJ/mol.
+Notons que certaines réactions présentent des écarts à la loi d’Arrhenius
+simple (par exemple si le facteur A dépend légèrement de T). Néanmoins, cette
+formule reste d’une importance fondamentale pour relier cinétique et tempéra-
+ture.
+4
+Facteurs influençant la vitesse de réaction
+Plusieurs paramètres expérimentaux influencent grandement la vitesse d’une
+réaction chimique.
+Concentration des réactifs
+Une concentration initiale plus élevée augmente la fréquence des collisions
+entre molécules, ce qui tend à accélérer la réaction. En général, plus les réactifs
+sont concentrés, plus la vitesse initiale est grande.
+Par exemple, une pièce de calcaire (carbonate de calcium) se dissout plus
+rapidement dans une atmosphère riche en dioxyde de soufre (air pollué) que dans
+de l’air moins pollué, en raison de la concentration plus forte en SO2 réactif.
+Dans la loi de vitesse, cet effet est reflété par l’ordre de réaction : si un
+réactif apparaît avec un ordre n &gt; 0, augmenter sa concentration accélère la
+transformation.
+Température
+L’élévation de la température augmente l’énergie cinétique des molécules et
+donc la fraction de collisions possédant au moins l’énergie d’activation requise.
+En conséquence, la vitesse de réaction croît souvent de manière drastique avec
+la température.
+Une règle empirique bien connue est que, pour de nombreuses réactions chi-
+miques, une augmentation de 10 ◦C environ double la vitesse de réaction (bien
+que ce ne soit qu’une approximation).
+5</pre></details><details class="page-source"><summary>Page 6</summary><pre>Cet effet de la température est quantitativement décrit par l’équation d’Ar-
+rhenius vue plus haut. À l’inverse, refroidir un mélange réactionnel ralentit la
+réaction en cours en réduisant l’énergie des collisions.
+Surface de contact
+Lorsqu’une réaction implique un solide (métal, minéral, catalyseur hétéro-
+gène, etc.), la vitesse dépend de la surface du solide exposée aux autres réactifs.
+Plus la surface de contact est grande, plus la réaction est rapide.
+Ainsi, une même masse de solide réagira beaucoup plus vite si elle est fine-
+ment divisée (poudre, particules) que sous forme d’un gros bloc. La poudre offre
+en effet une aire totale bien supérieure, donc davantage de sites où les molécules
+peuvent se heurter au solide pour réagir.
+Par exemple, du fer en poudre réagit vigoureusement avec un acide dilué,
+alors qu’un gros clou de fer est attaqué bien plus lentement dans les mêmes
+conditions. De même, du bois en copeaux brûle plus rapidement (et même de
+façon explosive lorsqu’il est en poussière très fine) qu’un gros morceau de bois
+équivalent, car la surface de combustion disponible est beaucoup plus grande.
+Catalyseurs
+Un catalyseur est une substance qui accélère la réaction sans être consom-
+mée globalement. Il fournit une voie réactionnelle alternative ayant une énergie
+d’activation plus faible, ce qui augmente la vitesse de réaction [5].
+En abaissant la barrière énergétique, le catalyseur augmente la constante
+de vitesse k à température donnée. Pour une réaction réversible, il accélère la
+réaction directe et la réaction inverse, sans modifier la constante d’équilibre
+chimique.
+Par exemple, la décomposition du peroxyde d’hydrogène H2O2 est très lente
+à froid en l’absence de catalyseur, mais l’ajout d’une petite quantité de dioxyde
+de manganèse MnO2 la fait bouillonner immédiatement.
+Le MnO2 catalyse la réaction en fournissant un mécanisme alternatif avec
+une énergie d’activation plus faible. La valeur précise de l’énergie d’activation
+dépend des conditions expérimentales et du mécanisme étudié.
+De manière générale, la présence d’un catalyseur peut multiplier la vitesse
+d’une réaction par des facteurs énormes (parfois 106 ou plus dans le cas des
+enzymes biologiques).
+Il convient de noter qu’un catalyseur n’affecte pas l’enthalpie de réaction
+∆H (il ne « donne » pas d’énergie), mais il modifie le mécanisme réactionnel
+pour rendre plus accessibles les étapes limitantes.
+Inhibiteurs
+À l’opposé d’un catalyseur, un inhibiteur ralentit la vitesse de réaction. On
+parle parfois de catalyseur négatif. Un inhibiteur peut agir de différentes façons :
+6</pre></details><details class="page-source"><summary>Page 7</summary><pre>par exemple en se fixant sur un réactif ou un catalyseur (empoisonnement ca-
+talytique) et en bloquant ainsi la progression de la réaction, ou en modifiant le
+mécanisme de sorte que la vitesse globale soit diminuée.
+Dans le domaine biomédical, certaines molécules médicamenteuses agissent
+comme des inhibiteurs d’enzymes pour ralentir des réactions indésirables dans
+l’organisme.
+Un exemple courant d’inhibition est l’ajout de conservateurs alimentaires
+qui bloquent le développement de bactéries ou de moisissures : ces substances
+ralentissent les réactions biochimiques de dégradation, ce qui retarde le processus
+d’altération des aliments.
+Grâce aux inhibiteurs, on peut ainsi contrôler voire stopper certaines ré-
+actions (comme la corrosion, l’oxydation, la polymérisation intempestive, etc.)
+pour protéger des matériaux ou stabiliser des produits.
+5
+Exemples expérimentaux et études de cas
+De nombreuses expériences classiques illustrent les principes de la cinétique
+chimique et comment les facteurs précédents modifient la vitesse.
+L’une des plus célèbres est la réaction dite de l’horloge à l’iode. Il s’agit d’une
+démonstration où l’on mélange deux solutions incolores et, après un certain
+délai, le mélange vire soudainement au bleu foncé (formation d’un complexe
+amidon–iode).
+Ce délai, facilement observable à l’œil nu, est directement lié à la vitesse des
+réactions en jeu : dans la version classique (horloge de Landolt), du peroxyde
+d’hydrogène en présence d’ions iodure génère lentement du diiode I2, lequel est
+aussitôt consommé par des ions thiosulfate jusqu’à épuisement de ces derniers.
+Lorsque le thiosulfate vient à manquer, le I2 accumulé réagit avec l’amidon
+et colore la solution en bleu.
+La durée du délai avant la coloration permet d’appréhender la cinétique : on
+constate qu’elle diminue fortement si l’on augmente la concentration en peroxyde
+d’hydrogène, en ions I– ou en acide (ce qui accélère la formation de I2), alors
+qu’elle augmente si l’on ajoute une plus grande quantité initiale de thiosulfate
+(qui consomme le I2 et retarde l’apparition de la couleur).
+Cette expérience illustre de façon ludique l’effet de la concentration des ré-
+actifs sur la vitesse, ainsi que la compétition entre réactions (production et
+consommation d’un intermédiaire).
+Une autre démonstration spectaculaire de cinétique est la réaction connue
+sous le nom du « Génie dans la bouteille ». Dans cette expérience, on verse du
+peroxyde d’hydrogène concentré (H2O2 à 30%) dans un flacon, puis on ajoute
+quelques grains de dioxyde de manganèse MnO2.
+Le MnO2 catalyse immédiatement la décomposition du H2O2 en eau et en
+oxygène, réaction très exothermique qui produit un bouillonnement intense et
+un jaillissement de vapeur d’eau blanche hors du flacon.
+La quantité d’énergie libérée peut faire chauffer fortement le mélange, d’où
+le nuage visible – que l’on assimile à la « fumée » du génie sortant de sa lampe.
+7</pre></details><details class="page-source"><summary>Page 8</summary><pre>Sans catalyseur, le H2O2 se décompose beaucoup plus lentement à tempéra-
+ture ambiante, mais ici la réaction se déroule rapidement, montrant l’effet d’un
+catalyseur sur la vitesse.
+Une expérience similaire, appelée dentifrice d’éléphant, utilise un catalyseur
+iodé et du savon pour produire une abondante mousse d’oxygène, là encore dans
+le but pédagogique de visualiser la rapidité d’une réaction catalysée.
+La cinétique chimique trouve également des illustrations dans des situations
+quotidiennes. Par exemple, nous exploitons l’effet de la température sur la vi-
+tesse de réaction pour conserver les aliments : une nourriture laissée à tem-
+pérature ambiante peut s’altérer en quelques heures, alors qu’au réfrigérateur
+(environ 4 ◦C) elle se garde plusieurs jours.
+La raison en est que les réactions biochimiques de décomposition (proliféra-
+tion bactérienne, dégradation enzymatique, etc.) sont généralement plus lentes
+à basse température.
+De même, un morceau de viande cuit en quelques minutes dans une poêle
+chaude, alors qu’il mettrait infiniment plus de temps à « cuire » à froid – ceci
+parce que les réactions de Maillard et autres processus chimiques qui brunissent
+et modifient les aliments nécessitent une certaine température pour se dérouler
+à une vitesse appréciable.
+Un autre exemple : le flash d’un appareil photo argentique repose sur une
+réaction très vive (oxydation rapide du magnésium, autrefois) libérant instan-
+tanément assez d’énergie pour produire un éclair de lumière.
+À l’inverse, les feux d’artifice doivent leur fonctionnement à des réactions de
+combustion extrêmement rapides (de l’ordre de la milliseconde pour certaines
+étapes) une fois initiées, alors que le ternissement d’un métal (formation de
+patine) est dû à une réaction d’oxydation très lente s’étalant sur des mois ou
+des années.
+Ces exemples montrent comment la cinétique chimique se manifeste de ma-
+nière concrète, avec des vitesses variant du quasi-instantané au quasi-imperceptible.
+6
+Applications industrielles et technologiques
+En chimie appliquée, la maîtrise de la cinétique des réactions est un en-
+jeu crucial. De la production pharmaceutique à la pétrochimie, en passant par
+l’ingénierie environnementale, optimiser les vitesses de réaction conduit à d’im-
+portants bénéfices économiques et technologiques.
+Cela permet d’augmenter les rendements et la productivité, de réduire les
+coûts et les déchets, d’améliorer la sécurité des procédés et de garantir la qualité
+constante des produits finis.
+On présente ci-dessous quelques domaines où les principes de la cinétique
+chimique sont mis en œuvre de manière déterminante.
+8</pre></details><details class="page-source"><summary>Page 9</summary><pre>Procédés chimiques industriels
+L’exemple emblématique est le procédé Haber–Bosch de synthèse de l’am-
+moniac NH3 à partir du diazote N2 et du dihydrogène H2. La réaction globale
+est :
+N2 + 3 H2 −−⇀
+↽−−2 NH3
+Cette réaction est exothermique et thermodynamiquement favorisée à basse
+température, mais elle devient alors cinétiquement trop lente. Le succès du pro-
+cédé Haber a reposé sur l’utilisation d’un catalyseur hétérogène (à base de fer
+métallique) et de conditions opératoires optimisées – température élevée (en-
+viron 500 ◦C) et haute pression (environ 150 bar à 200 bar) – qui accélèrent
+suffisamment la réaction tout en maintenant un rendement acceptable.
+Le catalyseur à base de fer facilite la réaction à sa surface et permet à la
+transformation de se dérouler à une vitesse exploitable. Ce procédé produit des
+quantités considérables d’ammoniac, alimentant la fabrication mondiale d’en-
+grais azotés et d’autres produits.
+De manière générale, dans l’industrie chimique, l’ingénieur chimiste ajuste
+les paramètres (température, pression, catalyse, temps de séjour) pour optimiser
+la vitesse de réaction dans les réacteurs, afin d’obtenir un compromis optimal
+entre taux de conversion, sélectivité et coût énergétique.
+Par exemple, dans les procédés de craquage catalytique en raffinerie (conver-
+sion d’hydrocarbures lourds en essences légères), la cinétique rapide des réactions
+de rupture de chaînes carbonées sur des catalyseurs solides permet des cadences
+de production très élevées.
+Production pharmaceutique
+L’élaboration de principes actifs et de médicaments met souvent en jeu des
+synthèses organiques multi-étapes qui doivent être rendues le plus efficaces pos-
+sible. La cinétique intervient à plusieurs niveaux.
+D’une part, pour le développement d’un procédé, connaître les vitesses rela-
+tives des réactions concurrentes aide à choisir les conditions qui privilégient la
+formation du produit désiré plutôt que des sous-produits.
+Par exemple, le fait d’ajouter un catalyseur acide ou d’augmenter la tempé-
+rature peut accélérer une étape-clé lente et ainsi augmenter le rendement global.
+L’optimisation cinétique des conditions (température, solvants, concentrations,
+catalyseurs) permet d’augmenter les rendements et de réduire les impuretés for-
+mées.
+Ceci se traduit par des procédés plus économiques et plus propres. D’autre
+part, la cinétique intervient dans la mise à l’échelle industrielle (scale-up) : une
+réaction pouvant être plus ou moins rapide à grande échelle (par exemple à
+cause de limitations de transfert de chaleur ou de matière), il faut ajuster les
+paramètres pour reproduire à l’usine les performances observées en laboratoire.
+Les autorités réglementaires (FDA, EMA, etc.) exigent aujourd’hui une ap-
+proche Quality by Design, où la compréhension fine des paramètres cinétiques
+fait partie intégrante du contrôle qualité du procédé.
+9</pre></details><details class="page-source"><summary>Page 10</summary><pre>Enfin, au niveau du produit fini, la cinétique est impliquée dans la conception
+des médicaments : par exemple, les comprimés à libération prolongée utilisent
+des excipients formulés de telle sorte que le principe actif ne se diffuse qu’à
+une vitesse bien maîtrisée dans l’organisme (sur plusieurs heures), ce qui re-
+pose sur l’étude de la cinétique de dissolution du comprimé et de diffusion du
+médicament.
+De même, la stabilité d’un médicament (sa durée de conservation) est déter-
+minée par la cinétique de dégradation du principe actif ; les industriels procèdent
+à des tests de stabilité accélérés (à température élevée) pour modéliser la vitesse
+de décomposition et garantir une durée de vie suffisante des lots.
+Ainsi, de la synthèse à la formulation, la cinétique chimique est un pilier de
+l’industrie pharmaceutique moderne.
+Catalyse hétérogène et environnement
+De nombreux procédés industriels de dépollution reposent sur la cinétique
+chimique et l’utilisation de catalyseurs.
+Un exemple marquant est le pot catalytique automobile, dispositif de post-
+traitement des gaz d’échappement. Il contient des métaux précieux (platine,
+palladium, rhodium) dispersés sur une céramique à structure alvéolaire, offrant
+une grande surface de contact.
+Ces métaux catalysent à chaud les réactions d’oxydation du monoxyde de
+carbone (CO) en dioxyde de carbone (CO2) et de réduction des oxydes d’azote
+(NOx) en diazote (N2), réactions qui seraient trop lentes à la température des
+gaz d’échappement sans catalyseur [5].
+Un autre procédé environnemental est la réduction catalytique sélective
+(SCR) des NOx dans les effluents industriels ou des moteurs diesel : on in-
+jecte de l’ammoniac NH3 et on fait passer les gaz sur un catalyseur solide (par
+exemple à base de V2O5 sur TiO2 ou de zéolithes dopées au cuivre), ce qui
+accélère la réaction :
+4 NO + 4 NH3 + O2 −−→4 N2 + 6 H2O
+Cette réaction permet d’éliminer efficacement les oxydes d’azote à des tem-
+pératures modérées. Sans catalyseur, elle serait trop lente dans les conditions
+des fumées, mais avec la cinétique appropriée, on obtient des taux d’épuration
+très élevés.
+Enfin, la compréhension des mécanismes cinétiques a été cruciale dans le
+domaine de la chimie atmosphérique – par exemple pour expliquer et résoudre
+le problème de la destruction de la couche d’ozone stratosphérique.
+Des études ont révélé que des cycles catalytiques impliquant des radicaux
+chlore et brome peuvent accélérer énormément la décomposition de l’ozone O3.
+Un seul atome de chlore issu de CFC peut détruire de nombreuses molécules
+d’ozone avant d’être piégé, en raison d’un cycle catalytique du radical chlore.
+Ce phénomène cinétique, mis en évidence dans les années 1970, a conduit à
+des mesures internationales (Protocole de Montréal) visant à éliminer les com-
+posés chlorés anthropiques.
+10</pre></details><details class="page-source"><summary>Page 11</summary><pre>C’est un exemple frappant où la cinétique (ici, la vitesse des réactions ra-
+dicalaires dans la haute atmosphère) a des implications globales : elle a permis
+d’identifier la cause d’un problème environnemental majeur et d’y apporter des
+solutions [11].
+En somme, la cinétique chimique est omniprésente dès que l’on cherche à
+contrôler une réaction : qu’il s’agisse d’accélérer une réaction bénéfique (synthèse
+industrielle, dépollution) ou au contraire de ralentir une réaction indésirable
+(corrosion, dégradation, explosion), la compréhension des facteurs cinétiques et
+des mécanismes réactionnels sous-jacents est essentielle.
+L’ingénieur ou le chimiste doit tenir compte de ces aspects pour concevoir des
+procédés efficaces et sûrs. La littérature scientifique et les retours d’expérience
+industrielle abondent en études cinétiques permettant d’optimiser les conditions
+opératoires. À l’avenir, les outils de modélisation et de simulation, ainsi que le
+développement de catalyseurs toujours plus sélectifs, continueront de s’appuyer
+sur la cinétique pour améliorer les procédés technologiques dans une optique à
+la fois économique et environnementale.
+Références
+[1] Arrhenius, S. (1889). Über die Reaktionsgeschwindigkeit bei der Inversion
+von Rohrzucker durch Säuren. Zeitschrift für Physikalische Chemie, 4, 226–
+248.
+[2] Atkins, P. W., de Paula, J., &amp; Keeler, J. (2010). Atkins’ Physical Chemistry
+(9th ed.). Oxford University Press.
+[3] Encyclopaedia Britannica. Collision theory. Disponible à : https://www.
+britannica.com/science/collision-theory
+[4] Encyclopaedia Britannica. Transition-state theory. Disponible à : https:
+//www.britannica.com/science/transition-state-theory
+[5] Encyclopaedia
+Britannica.
+Catalysis.
+Disponible
+à
+:
+https://www.
+britannica.com/science/catalysis
+[6] Clark, J. Factors affecting rates of reaction. Chemguide. Disponible à :
+https://www.chemguide.co.uk/
+[7] Chemistry LibreTexts. The Arrhenius Law – Activation Energies. Dispo-
+nible à : https://chem.libretexts.org/
+[8] International Union of Pure and Applied Chemistry (IUPAC). Compen-
+dium of Chemical Terminology (the Gold Book). Entrée : Rate of reaction.
+Disponible à : https://goldbook.iupac.org/
+[9] Laidler, K. J. (1987). Chemical Kinetics (3rd ed.). Harper &amp; Row.
+[10] McMurry, J. E., et al. (2015). Chemistry (7th ed.). Pearson.
+[11] National Oceanic and Atmospheric Administration (NOAA) &amp; United Na-
+tions Environment Programme (UNEP). (2010). Scientific Assessment of
+Ozone Depletion. World Meteorological Organization.
+11</pre></details><details class="page-source"><summary>Page 12</summary><pre>[12] Walling, C. (1986). Arrhenius equation. Journal of Chemical Education, 63,
+633.
+12</pre></details></div></details><details><summary>Consulter la transcription du diaporama — 54 pages</summary><div class="archive"><details class="page-source"><summary>Page 1</summary><pre>Vitesse de reaction (chapitre 5)
+1</pre></details><details class="page-source"><summary>Page 2</summary><pre>Introduction</pre></details><details class="page-source"><summary>Page 3</summary><pre>D´efinition de la vitesse de r´eaction
+• La vitesse de r´eaction mesure la variation de concentration des
+r´eactifs ou produits au cours du temps.
+• Elle peut ˆetre calcul´ee de deux mani`eres : moyenne et instantan´ee.
+2</pre></details><details class="page-source"><summary>Page 4</summary><pre>Vitesse de R´eaction Moyenne</pre></details><details class="page-source"><summary>Page 5</summary><pre>D´efinition et Calcul
+• La vitesse moyenne est donn´ee par :
+vmoy = ∆[C]
+∆t
+(1)
+• Elle est calcul´ee en prenant deux points sur la courbe de
+concentration en fonction du temps.
+• Repr´esent´ee graphiquement par la pente d’une s´ecante.
+3</pre></details><details class="page-source"><summary>Page 6</summary><pre>Repr´esentation Graphique - Vitesse Moyenne
+t
+[C]
+S´ecante
+A
+B
+4</pre></details><details class="page-source"><summary>Page 7</summary><pre>Vitesse de R´eaction Instantan´ee</pre></details><details class="page-source"><summary>Page 8</summary><pre>D´efinition et Calcul
+• La vitesse instantan´ee est la vitesse `a un instant pr´ecis.
+• Elle est donn´ee par la d´eriv´ee de la concentration :
+vinst = d[C]
+dt
+(2)
+• Graphiquement, elle correspond `a la pente de la tangente `a la
+courbe.
+5</pre></details><details class="page-source"><summary>Page 9</summary><pre>Repr´esentation Graphique - Vitesse Instantan´ee
+t
+[C]
+Tangente
+P
+6</pre></details><details class="page-source"><summary>Page 10</summary><pre>Facteurs Influant sur la Vitesse de
+R´eaction</pre></details><details class="page-source"><summary>Page 11</summary><pre>Facteurs Principaux
+• Concentration des r´eactifs : une concentration plus ´elev´ee augmente
+la vitesse.
+• Temp´erature : une temp´erature plus ´elev´ee acc´el`ere la r´eaction.
+• Catalyseurs : augmentent la vitesse sans ˆetre consomm´es.
+• Nature des r´eactifs : certaines substances r´eagissent plus rapidement.
+7</pre></details><details class="page-source"><summary>Page 12</summary><pre>Conclusion</pre></details><details class="page-source"><summary>Page 13</summary><pre>R´esum´e et Applications
+• La vitesse de r´eaction peut ˆetre d´etermin´ee de mani`ere moyenne ou
+instantan´ee.
+• Ces concepts sont essentiels en laboratoire et en industrie.
+• L’analyse graphique permet une meilleure compr´ehension des
+ph´enom`enes r´eactionnels.
+8</pre></details><details class="page-source"><summary>Page 14</summary><pre>La th´eorie des collisions</pre></details><details class="page-source"><summary>Page 15</summary><pre>Introduction
+• La th´eorie des collisions explique comment les collisions entre particules
+influencent la vitesse des r´eactions chimiques.
+• Elle est fondamentale pour comprendre les m´ecanismes r´eactionnels
+et la cin´etique chimique.
+9</pre></details><details class="page-source"><summary>Page 16</summary><pre>Principes de base
+• Pour qu’une r´eaction chimique se produise, les mol´ecules des r´eactifs
+doivent entrer en collision.
+• Seules les collisions efficaces, c’est- `a-dire celles avec une orientation
+appropri´ee et une ´energie suffisante, conduisent `a une r´eaction.
+• L’´energie minimale requise pour qu’une collision soit efficace est
+appel´ee ´energie d’activation.
+10</pre></details><details class="page-source"><summary>Page 17</summary><pre>´Energie d’activation et distribution de Maxwell-Boltzmann
+• Une collision est efficace si les r´eactifs poss`edent une ´energie cin´etique
+suffisante pour atteindre l’´etat de transition.
+• L’´energie d’activation (Ea) est l’´energie minimale requise pour qu’une
+r´eaction chimique se produise.
+• La r´epartition des ´energies des particules suit la distribution de
+Maxwell-Boltzmann :
+f(E) = Ae−E/(kBT)
+o`u kB est la constante de Boltzmann et T la temp´erature.
+• Seules les particules ayant une ´energie E ≥Ea participent `a la r´eaction.
+11</pre></details><details class="page-source"><summary>Page 18</summary><pre>Distribution Maxwell-Boltzmann
+Figure 1: Distribution de Maxwell-Boltzmann et fraction de mol´ecules avec E ≥Ea
+12</pre></details><details class="page-source"><summary>Page 19</summary><pre>Orientation spatiale des r´eactifs (g´eom´etrie de collision)
+• Mˆeme si une collision poss`ede l’´energie requise, elle doit aussi se
+produire dans une orientation favorable.
+• Le facteur st´erique (ρ) est la probabilit´e qu’une collision ait la bonne
+orientation pour conduire `a une r´eaction :
+k = Zρe−Ea/RT
+• Exemples :
+• Dans une r´eaction entre H2 et I2, la collision doit aligner correctement les
+atomes d’hydrog`ene et d’iode pour former HI.
+• Dans des mol´ecules complexes, seules certaines orientations permettent
+aux orbitales de r´eagir efficacement.
+13</pre></details><details class="page-source"><summary>Page 20</summary><pre>L’energie d’activation
+14</pre></details><details class="page-source"><summary>Page 21</summary><pre>Conditions pour une collision efficace
+• Pour qu’une collision m`ene `a une r´eaction chimique, trois conditions
+doivent ˆetre remplies :
+1. ´Energie suffisante : Ecin ≥Ea (distribution de Maxwell-Boltzmann).
+2. Orientation correcte : les mol´ecules doivent ˆetre bien align´ees pour
+permettre la formation des produits.
+3. Fr´equence des collisions : un grand nombre de collisions augmente la
+probabilit´e d’une r´eaction.
+• La vitesse de r´eaction est proportionnelle au nombre de collisions
+efficaces :
+v ∝nombre de collisions efficaces
+∆t
+15</pre></details><details class="page-source"><summary>Page 22</summary><pre>Collision
+Figure 2: Collisions effectives et ineffectives
+16</pre></details><details class="page-source"><summary>Page 23</summary><pre>M´ecanisme r´eactionnel et vitesse de r´eaction
+• Une r´eaction chimique suit un m´ecanisme r´eactionnel, une s´erie
+d’´etapes ´el´ementaires menant aux produits.
+• Chaque ´etape correspond `a une r´eaction ´el´ementaire, impliquant la
+collision de mol´ecules en une seule transformation.
+• La vitesse de la r´eaction globale d´epend de l’´etape la plus lente du
+m´ecanisme.
+17</pre></details><details class="page-source"><summary>Page 24</summary><pre>R´eactions ´el´ementaires
+• Une r´eaction ´el´ementaire est une ´etape unique qui ne peut ˆetre
+d´ecompos´ee en sous-´etapes.
+• Chaque r´eaction ´el´ementaire poss`ede son propre coefficient de
+vitesse k.
+• Exemple :
+NO2 + CO →NO + CO2
+est une r´eaction ´el´ementaire.
+• La vitesse d’une r´eaction ´el´ementaire suit la loi de vitesse :
+v = k[r´eactif1]m[r´eactif2]n
+o`u m et n sont les coefficients de l’´equation ´el´ementaire.
+18</pre></details><details class="page-source"><summary>Page 25</summary><pre>Exemple 1 — Une r´eaction ´el´ementaire bimol´eculaire
+Consid´erons la r´eaction ´el´ementaire suivante :
+NO2 + CO −→NO + CO2
+1. ´Etablir la loi de vitesse
+Pour une r´eaction ´el´ementaire, les exposants correspondent aux
+coefficients stœchiom´etriques des r´eactifs.
+v = k[NO2][CO]
+La r´eaction est :
+• d’ordre 1 par rapport `a NO2 ;
+• d’ordre 1 par rapport `a CO;
+• d’ordre global 1 + 1 = 2.
+19</pre></details><details class="page-source"><summary>Page 26</summary><pre>Exemple 1
+2. Application num´erique
+Si k = 0,50 L mol−1 s−1, [NO2] = 0,20 mol L−1 et [CO] = 0,10 mol L−1 :
+v = 0,50(0,20)(0,10)
+= 0,010 mol L−1 s−1
+20</pre></details><details class="page-source"><summary>Page 27</summary><pre>Exemple 2 — Une r´eaction ´el´ementaire trimol´eculaire
+Consid´erons la r´eaction ´el´ementaire :
+2NO + O2 −→2NO2
+1. ´Etablir la loi de vitesse
+v = k[NO]2[O2]
+On en d´eduit que la r´eaction est :
+• d’ordre 2 par rapport `a NO;
+• d’ordre 1 par rapport `a O2 ;
+• d’ordre global 2 + 1 = 3.
+21</pre></details><details class="page-source"><summary>Page 28</summary><pre>exemple 2
+2. Effet d’une variation de concentration
+Si la concentration de NO double, tandis que celle de O2 reste constante :
+v′
+v = k(2[NO])2[O2]
+k[NO]2[O2]
+= 22
+v′ = 4v
+Conclusion : doubler [NO] quadruple la vitesse.
+22</pre></details><details class="page-source"><summary>Page 29</summary><pre>Exemple 3 — D´eterminer la vitesse d’une r´eaction
+Consid´erons la r´eaction ´el´ementaire :
+A + 2B −→C
+La loi de vitesse est :
+v = k[A][B]2
+Donn´ees :
+k = 0,25 L2 mol−2 s−1
+[A] = 0,40 mol L−1
+[B] = 0,20 mol L−1
+23</pre></details><details class="page-source"><summary>Page 30</summary><pre>Exemple 3
+Calcul :
+v = k[A][B]2
+= 0,25(0,40)(0,20)2
+= 0,25(0,40)(0,04)
+= 0,0040 mol L−1 s−1
+`A retenir : l’ordre global est 1 + 2 = 3.
+24</pre></details><details class="page-source"><summary>Page 31</summary><pre>Que signifie l’ordre global d’une r´eaction?
+L’ordre global d´ecrit comment la vitesse d’une r´eaction d´epend des
+concentrations de ses r´eactifs.
+Consid´erons la loi de vitesse :
+v = k[A]m[B]n
+L’ordre global est la somme des exposants :
+p = m + n
+Interpr´etation chimique
+L’ordre global permet de pr´evoir comment la vitesse de r´eaction change
+lorsque les concentrations des r´eactifs sont modifi´ees.
+25</pre></details><details class="page-source"><summary>Page 32</summary><pre>attention
+Attention : l’ordre global ne correspond pas n´ecessairement `a un
+coefficient de l’´equation chimique. Les exposants de la loi de vitesse
+doivent g´en´eralement ˆetre d´etermin´es exp´erimentalement.
+26</pre></details><details class="page-source"><summary>Page 33</summary><pre>Exemple 1 — Une r´eaction d’ordre 1
+Consid´erons la loi de vitesse :
+v = k[A]
+Supposons que la concentration de A double.
+La vitesse initiale est :
+v = k[A]
+La nouvelle vitesse est :
+v′ = k(2[A]) = 2k[A]
+Puisque v = k[A], on obtient :
+27</pre></details><details class="page-source"><summary>Page 34</summary><pre>Interpr´etation
+Si la concentration de A double, la vitesse double ´egalement.
+28</pre></details><details class="page-source"><summary>Page 35</summary><pre>Exemple 2 — Une r´eaction d’ordre 2
+Consid´erons la loi de vitesse :
+v = k[A]2
+Supposons que la concentration de A double.
+La nouvelle vitesse est :
+v′ = k(2[A])2
+D´eveloppons le carr´e :
+v′ = 4k[A]2
+29</pre></details><details class="page-source"><summary>Page 36</summary><pre>Puisque v = k[A]2, on obtient :
+v′ = 4v
+Interpr´etation
+Si la concentration de A double, la vitesse est multipli´ee par quatre.
+30</pre></details><details class="page-source"><summary>Page 37</summary><pre>Exemple 3 — Une r´eaction d’ordre 3
+Consid´erons la loi de vitesse :
+v = k[A]2[B]
+Supposons que les concentrations de A et de B doublent simultan´ement.
+La nouvelle vitesse est :
+v′ = k(2[A])2(2[B])
+En simplifiant :
+v′ = 4k[A]2 × 2[B]
+31</pre></details><details class="page-source"><summary>Page 38</summary><pre>Donc :
+v′ = 8v
+Interpr´etation
+Lorsque les deux concentrations doublent simultan´ement, la vitesse est
+multipli´ee par huit.
+32</pre></details><details class="page-source"><summary>Page 39</summary><pre>Application — R´eaction entre NO et O2
+Consid´erons le mod`ele de r´eaction ´el´ementaire :
+2NO + O2 −→2NO2
+Sa loi de vitesse est :
+v = k[NO]2[O2]
+L’ordre par rapport `a chaque r´eactif est :
+Ordre en NO = 2
+Ordre en O2 = 1
+33</pre></details><details class="page-source"><summary>Page 40</summary><pre>L’ordre global est donc :
+p = 2 + 1 = 3
+Question : que se passe-t-il si les deux concentrations doublent
+simultan´ement?
+34</pre></details><details class="page-source"><summary>Page 41</summary><pre>Application — Solution
+La loi de vitesse initiale est :
+v = k[NO]2[O2]
+Apr`es avoir doubl´e les deux concentrations :
+v′ = k(2[NO])2(2[O2])
+En d´eveloppant :
+v′ = 4k[NO]2 × 2[O2]
+35</pre></details><details class="page-source"><summary>Page 42</summary><pre>Ainsi :
+v′ = 8v
+36</pre></details><details class="page-source"><summary>Page 43</summary><pre>Conclusion
+Conclusion
+Doubler simultan´ement les concentrations de NO et de O2 multiplie la
+vitesse par huit, selon cette loi de vitesse.
+L’ordre global d´ecrit la d´ependance de la vitesse aux concentrations; il ne
+signifie pas que la r´eaction consomme trois fois plus de r´eactifs.
+37</pre></details><details class="page-source"><summary>Page 44</summary><pre>Interm´ediaires r´eactionnels
+• Un interm´ediaire r´eactionnel est une esp`ece chimique form´ee dans
+une ´etape interm´ediaire mais qui disparaˆıt avant la fin de la r´eaction.
+• Exemple :
+Cl + O3 →ClO + O2
+ClO + O →Cl + O2
+L’interm´ediaire est ClO, car il n’apparaˆıt pas dans l’´equation globale.
+• Les interm´ediaires influencent la vitesse de r´eaction mais ne figurent
+pas dans l’´equation globale.
+38</pre></details><details class="page-source"><summary>Page 45</summary><pre>´Etape d´eterminante et vitesse globale
+• Dans un m´ecanisme r´eactionnel, certaines ´etapes sont plus lentes que
+d’autres.
+• L’´etape la plus lente est appel´ee ´etape d´eterminante car elle limite la
+vitesse globale de la r´eaction.
+• Exemple :
+NO2 + NO2 →NO3 + NO
+(lente)
+NO3 + CO →NO2 + CO2
+(rapide)
+• La vitesse de la r´eaction globale est d´etermin´ee par la premi`ere
+´etape :
+v = k[NO2]2
+39</pre></details><details class="page-source"><summary>Page 46</summary><pre>Conclusion
+• Un m´ecanisme r´eactionnel est constitu´e d’´etapes ´el´ementaires
+formant une r´eaction globale.
+• Les interm´ediaires r´eactionnels apparaissent temporairement mais
+influencent la r´eaction.
+• La r´eaction globale ne peut pas ˆetre plus rapide que son ´etape
+d´eterminante (la plus lente).
+• L’´etude des m´ecanismes r´eactionnels est essentielle en chimie
+cin´etique et en catalyse.
+40</pre></details><details class="page-source"><summary>Page 47</summary><pre>Les facteurs influenc¸ ant la vitesse
+de r´eaction</pre></details><details class="page-source"><summary>Page 48</summary><pre>Introduction
+• La vitesse d’une r´eaction chimique est influenc´ee par plusieurs
+facteurs.
+• Comprendre ces facteurs permet de contrˆoler et d’optimiser les
+r´eactions en laboratoire et dans l’industrie.
+41</pre></details><details class="page-source"><summary>Page 49</summary><pre>Nature des r´eactifs
+• La structure mol´eculaire et l’´etat physique des r´eactifs influencent leur
+r´eactivit´e.
+• Exemple :
+• Une r´eaction entre des ions en solution (Na+ + Cl−) est plus rapide qu’une
+r´eaction entre mol´ecules covalentes (CH4 + O2).
+42</pre></details><details class="page-source"><summary>Page 50</summary><pre>Concentration des r´eactifs
+• Une concentration plus ´elev´ee augmente la fr´equence des collisions
+entre mol´ecules.
+• Exemple :
+• Une bougie brˆule lentement dans l’air (21% d’oxyg`ene), mais brˆule
+beaucoup plus rapidement dans du dioxyg`ene pur (100% d’oxyg`ene).
+43</pre></details><details class="page-source"><summary>Page 51</summary><pre>Temp´erature
+• Une augmentation de temp´erature accroˆıt l’´energie cin´etique des
+mol´ecules, ce qui favorise les collisions efficaces.
+• Exemple :
+• La d´ecomposition du peroxyde d’hydrog`ene (H2O2) est plus rapide `a
+chaud qu’ `a froid.
+44</pre></details><details class="page-source"><summary>Page 52</summary><pre>Surface de contact
+• Une plus grande surface de contact augmente la vitesse de r´eaction,
+car davantage de particules sont expos´ees aux collisions.
+• Exemple :
+• Le sucre en poudre se dissout plus vite que le sucre en morceaux.
+• Une feuille de papier brˆule plus lentement qu’une fine poussi`ere de
+papier.
+45</pre></details><details class="page-source"><summary>Page 53</summary><pre>Pr´esence d’un catalyseur
+• Un catalyseur acc´el`ere la r´eaction en abaissant l’´energie d’activation
+sans ˆetre consomm´e.
+• Exemple :
+• Les enzymes digestives comme l’amylase acc´el`erent la d´egradation des
+aliments dans le corps.
+• La platine est utilis´ee dans les pots catalytiques des voitures pour
+acc´el´erer la conversion des gaz polluants.
+46</pre></details><details class="page-source"><summary>Page 54</summary><pre>Conclusion
+• La maˆıtrise des facteurs influenc¸ ant la vitesse de r´eaction est essentielle
+en chimie.
+• Cela permet de contrˆoler les processus chimiques pour des
+applications sp´ecifiques, qu’il s’agisse d’acc´el´erer ou de ralentir une
+r´eaction.
+47</pre></details></div></details><p class="muted">Les transcriptions sont issues de l’extraction textuelle des PDF : certains symboles, ligatures ou dispositions graphiques peuvent différer de l’original. Conserve les PDF pour consulter les images et diagrammes d’origine.</p></section>
+</main></div><footer>learnwithdom.page · CHI-5062 · Cinétique chimique · Ressource pédagogique</footer>
+<script>
+const $=id=>document.getElementById(id);const ns='http://www.w3.org/2000/svg';function elem(svg,tag,attrs,txt){const n=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs||{}))n.setAttribute(k,v);if(txt!==undefined)n.textContent=txt;svg.appendChild(n);return n}function fmt(n,d=3){return Number(n).toFixed(d).replace('.',',')}function axes(s,title,maxY=1){s.replaceChildren();elem(s,'line',{x1:65,y1:285,x2:744,y2:285,stroke:'#223A34','stroke-width':2});elem(s,'line',{x1:65,y1:285,x2:65,y2:32,stroke:'#223A34','stroke-width':2});elem(s,'text',{x:350,y:319,fill:'#223A34','font-size':13},title);elem(s,'text',{x:12,y:24,fill:'#223A34','font-size':13},'Concentration (mol/L)');for(let i=0;i<=4;i++){let y=285-i*61;elem(s,'line',{x1:65,y1:y,x2:744,y2:y,stroke:'#dae2db'});elem(s,'text',{x:24,y:y+4,'font-size':11,fill:'#52635c'},fmt(i*maxY/4,2))}}function rate(){let a=+$('ta').value,b=+$('tb').value,t=+$('tp').value;if(a===b){b=Math.min(20,a+1);if(a===20)a=19}for(const [id,v] of [['ota',a],['otb',b],['otp',t]])$(id).textContent=v;const s=$('graphV');axes(s,'Temps (s)');const X=t=>65+t/20*679,Y=v=>285-v*235;const C=t=>Math.exp(-.18*t);let points=[];for(let i=0;i<=200;i++)points.push(X(i/10)+','+Y(C(i/10)));elem(s,'polyline',{points:points.join(' '),fill:'none',stroke:'#4B7A68','stroke-width':4});let sec=(C(b)-C(a))/(b-a),inst=-.18*C(t);elem(s,'line',{x1:X(a),y1:Y(C(a)),x2:X(b),y2:Y(C(b)),stroke:'#B5524A','stroke-width':3});let left=Math.max(0,t-3),right=Math.min(20,t+3);elem(s,'line',{x1:X(left),y1:Y(C(t)+inst*(left-t)),x2:X(right),y2:Y(C(t)+inst*(right-t)),stroke:'#D9A441','stroke-width':3});for(let q of [a,b])elem(s,'circle',{cx:X(q),cy:Y(C(q)),r:6,fill:'#B5524A'});elem(s,'circle',{cx:X(t),cy:Y(C(t)),r:6,fill:'#C39A32'});$('vInfo').textContent='Vitesse moyenne de disparition : '+fmt(-sec,4)+' mol/L/s · instantanée à t = '+t+' s : '+fmt(-inst,4)+' mol/L/s.'}['ta','tb','tp'].forEach(id=>$(id).addEventListener('input',rate));rate();
+function energy(){const s=$('graphE');s.replaceChildren();const ea=+$('barriere').value,cat=$('catalyse').value==='on';$('obarriere').textContent=ea;const Y=e=>270-e*1.8;const X=x=>70+x*620;elem(s,'line',{x1:70,y1:283,x2:735,y2:283,stroke:'#223A34','stroke-width':2});elem(s,'line',{x1:70,y1:283,x2:70,y2:25,stroke:'#223A34','stroke-width':2});elem(s,'text',{x:360,y:316,'font-size':14},'Progression de la réaction');elem(s,'text',{x:8,y:19,'font-size':13},'Énergie');function curve(peak,color){let pp=[];for(let i=0;i<=100;i++){let x=i/100,e=35-30*x+(peak-35)*Math.sin(Math.PI*x)**2;pp.push(X(x)+','+Y(e))}elem(s,'polyline',{points:pp.join(' '),fill:'none',stroke:color,'stroke-width':4})}curve(ea,'#B5524A');if(cat)curve(Math.max(22,ea*.54),'#4B7A68');elem(s,'text',{x:550,y:48,fill:'#B5524A','font-size':13},'Sans catalyseur');if(cat)elem(s,'text',{x:550,y:68,fill:'#4B7A68','font-size':13},'Avec catalyseur');$('eInfo').textContent='Barrière illustrée : '+ea+' kJ/mol'+(cat?' · avec catalyseur : '+fmt(Math.max(22,ea*.54),1)+' kJ/mol':'')+' · ΔH inchangé.'}['barriere','catalyse'].forEach(id=>$(id).addEventListener('input',energy));energy();
+function bars(s,labels,vals){s.replaceChildren();let mx=Math.max(...vals,1);labels.forEach((txt,i)=>{let y=28+i*48;elem(s,'text',{x:14,y:y+12,'font-size':13,fill:'#223A34'},txt);elem(s,'rect',{x:180,y:y-3,width:540,height:24,rx:5,fill:'#e1e6de'});elem(s,'rect',{x:180,y:y-3,width:540*vals[i]/mx,height:24,rx:5,fill:['#4B7A68','#B9832C'][i%2]});elem(s,'text',{x:190,y:y+14,'font-size':12,fill:'#182922'},fmt(vals[i],2)+' ×')})}function factors(){let t=+$('temp').value,c=+$('conc').value,s=+$('surf').value,cat=+$('cat').value;for(let [id,n,d] of [['otemp',t,0],['oconc',c,1],['osurf',s,1]])$(id).textContent=fmt(n,d);let temp=Math.exp(.045*(t-25));let factor=temp*c*s*cat;bars($('graphF'),['Base','Conditions'],[1,factor]);$('fInfo').textContent='Vitesse relative du modèle : '+fmt(factor,2)+' × la vitesse de référence. Hypothèses simplifiées et non universelles.'}['temp','conc','surf','cat'].forEach(id=>$(id).addEventListener('input',factors));factors();function laws(){let a=+$('ca').value,b=+$('cb').value,m=+$('ma').value,n=+$('mb').value;for(let[id,v] of [['oca',a],['ocb',b]])$(id).textContent=fmt(v,2);let k=.5,v=k*a**m*b**n,mult=2**(m+n);bars($('graphL'),['Départ','A et B × 2'],[1,mult]);$('lInfo').textContent='v = '+fmt(v,5)+' mol/L/s avec k = 0,5 (unités adaptées à l’ordre). Ordre global '+(m+n)+'. Si les deux concentrations doublent, la vitesse est multipliée par '+mult+'.'}['ca','cb','ma','mb'].forEach(id=>$(id).addEventListener('input',laws));laws();
+const qs=[['Une concentration de réactif diminue de 0,80 à 0,50 mol/L en 15 s. Quelle est sa vitesse moyenne de disparition?',['0,020 mol/L/s','−0,020 mol/L/s','0,30 mol/L/s'],0,'La concentration baisse de 0,30 mol/L : v = −(−0,30)/15 = 0,020 mol/L/s.'],['Une collision possède assez d’énergie, mais une mauvaise orientation.',['Elle réagit certainement.','Elle peut ne pas produire de réaction.','La température devient nulle.'],1,'L’énergie et l’orientation doivent toutes deux être favorables.'],['Dans le modèle v = k[A]², doubler [A] multiplie la vitesse par…',['2','4','8'],1,'Le rapport est (2[A])²/[A]² = 4.'],['Quel facteur modifie généralement la barrière d’activation?',['Un catalyseur','Un chronomètre','Un graphique'],0,'Un catalyseur fournit une autre voie réactionnelle.'],['Pour une réaction globale, peut-on toujours déduire les ordres de son équation équilibrée?',['Oui, sans mesure.','Non, il faut une détermination expérimentale.','Oui, si les réactifs sont gazeux.'],1,'Les coefficients ne donnent directement la loi de vitesse que pour une étape élémentaire établie.'],['Que représente la pente d’une tangente sur [A](t)?',['La vitesse instantanée de variation de [A].','Le rendement final.','La masse du réactif.'],0,'La tangente décrit la variation locale de la concentration; la vitesse de disparition prend son opposé.']];let qi=0,score=0,answered=false;function showQ(){if(qi>=qs.length){$('quizQ').textContent='Mission terminée';$('quizChoices').replaceChildren();$('quizFeedback').textContent='Bilan : '+score+'/'+qs.length+'. Recommence pour consolider les notions.';$('quizProgress').textContent='Fin de parcours';return}answered=false;const q=qs[qi];$('quizProgress').textContent='Question '+(qi+1)+' / '+qs.length;$('quizQ').textContent=q[0];$('quizChoices').replaceChildren();$('quizFeedback').textContent='Choisis une réponse.';q[1].forEach((x,j)=>{let b=document.createElement('button');b.className='choice';b.textContent=x;b.onclick=()=>{if(answered)return;answered=true;let yes=j===q[2];if(yes)score++;b.classList.add(yes?'correct':'incorrect');$('quizFeedback').textContent=(yes?'Bonne réponse. ':'À revoir. ')+q[3];$('quizScore').textContent='Réussites : '+score;};$('quizChoices').append(b)})}$('quizNext').onclick=()=>{if(qi<qs.length){qi++;showQ()}};$('quizReset').onclick=()=>{qi=0;score=0;$('quizScore').textContent='';showQ()};showQ();
+</script></body></html>
