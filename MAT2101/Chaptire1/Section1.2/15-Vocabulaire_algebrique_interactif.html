@@ -1,187 +1,841 @@
-<!DOCTYPE html>
-<html lang="fr-CA">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="MAT-2101-3 — Le langage de l’algèbre : cours intégral, vocabulaire, variables, coefficients, substitution, histoire, 7 activités interactives et missions de révision.">
-<title>MAT-2101-3 — Le langage de l’algèbre | learnwithdom.page</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<!doctype html>
+<html lang="fr-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAT-2101-3 — Le langage de l’algèbre | learnwithdom.page</title><meta name="description" content="Cours interactif sur le vocabulaire algébrique : variables, termes, coefficients, substitution et traduction mathématique.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Literata:opsz,wght@18..144,400;18..144,500;18..144,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)'],['$','$']],displayMath:[['\\[','\\]'],['$$','$$']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <style>
-:root{--ardoise:#223A34;--ardoise-deep:#182922;--papier:#EAEEE9;--papier-2:#E0E5DD;--encre:#1C2B3A;--craie:#D9A441;--craie-deep:#B9832C;--brique:#B5524A;--sapin:#4B7A68;--ligne:rgba(28,43,58,.14);--white:#FCFBF7;--ombre:0 15px 42px rgba(24,41,34,.09);--rayon:18px;--font-display:"Space Grotesk",sans-serif;--font-body:"Literata",Georgia,serif;--font-mono:"JetBrains Mono",monospace}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--papier);color:var(--encre);font:16px/1.77 var(--font-body);-webkit-font-smoothing:antialiased}a{color:inherit}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--craie);outline-offset:3px}button,input,select{font:inherit}button{cursor:pointer}::selection{background:#f0da9f;color:var(--ardoise-deep)}
-.topbar{position:sticky;top:0;z-index:40;background:rgba(24,41,34,.97);backdrop-filter:blur(12px);border-bottom:1px solid #ffffff20}.topbar-inner{max-width:1420px;min-height:68px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;margin:auto;gap:16px}.brand{font:700 17px var(--font-display);letter-spacing:-.05em;color:#fff;text-decoration:none}.brand span{color:var(--craie)}.nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.nav a{font:500 13px var(--font-display);color:#ffffffc8;text-decoration:none;padding:9px 12px;border-radius:10px}.nav a:hover{background:#ffffff17;color:#fff}.nav a.current{background:#ffffff13;color:#f0d28a}
-.hero{background:radial-gradient(circle at 83% 16%,rgba(217,164,65,.18),transparent 31%),linear-gradient(120deg,var(--ardoise-deep),var(--ardoise));color:#fff;padding:66px 24px 70px;overflow:hidden;position:relative}.hero::after{content:"a + bx = c";position:absolute;bottom:-50px;right:1%;font:700 clamp(70px,13vw,180px) var(--font-display);letter-spacing:-.1em;color:#ffffff0b;pointer-events:none;white-space:nowrap}.hero-inner{max-width:1140px;margin:auto;position:relative;z-index:1}.breadcrumb{font:500 12px var(--font-mono);color:#ffffffab;margin-bottom:23px}.breadcrumb a{text-decoration:none}.breadcrumb a:hover{color:var(--craie)}.eyebrow{display:inline-flex;align-items:center;gap:10px;border:1px solid #d9a44180;padding:7px 12px;border-radius:40px;color:#f3d88e;text-transform:uppercase;letter-spacing:.075em;font:600 11px var(--font-mono);margin-bottom:20px}.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--craie)}.hero h1{font:700 clamp(2.2rem,5vw,4.3rem)/1.05 var(--font-display);letter-spacing:-.053em;max-width:800px;margin:0}.hero p{max-width:770px;color:#ffffffd8;font-size:1.07rem;margin:22px 0 0}.tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:27px}.tag{padding:6px 11px;background:#ffffff10;border:1px solid #ffffff20;border-radius:8px;font:500 11px var(--font-mono);color:#ffffffc7}
-.shell{max-width:1420px;padding:48px 24px 84px;margin:auto;display:grid;grid-template-columns:256px minmax(0,1fr);gap:45px}.toc{position:sticky;top:88px;align-self:start;max-height:calc(100vh - 108px);overflow-y:auto;border-radius:17px;background:rgba(252,251,247,.76);border:1px solid var(--ligne);padding:20px}.toc-title{color:var(--ardoise);font:700 11px var(--font-mono);letter-spacing:.075em;text-transform:uppercase;margin:10px 4px}.toc a{display:block;color:#52615b;font:500 12px/1.36 var(--font-display);text-decoration:none;padding:9px 10px;border-left:2px solid transparent;border-radius:0 9px 9px 0}.toc a:hover,.toc a.active{border-left-color:var(--craie-deep);color:var(--ardoise-deep);background:#d9a44120}.toc .sub{padding-left:22px;font-size:11px}.main{min-width:0;max-width:970px}.section{margin-bottom:69px;scroll-margin-top:95px}.section-kicker{font:700 11px var(--font-mono);color:var(--craie-deep);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}h2{color:var(--ardoise-deep);font:700 clamp(1.65rem,3vw,2.45rem)/1.15 var(--font-display);letter-spacing:-.038em;margin:0 0 23px}h3{color:var(--ardoise);font:700 clamp(1.14rem,2.2vw,1.36rem)/1.28 var(--font-display);letter-spacing:-.022em;margin:36px 0 14px;scroll-margin-top:90px}h4{font:700 1rem var(--font-display);margin:15px 0 11px}p{margin:0 0 17px}strong{color:var(--ardoise-deep)}.lead{font-size:1.09rem;color:#40534b}.definition,.example,.note,.attention,.method,.activity,.history,.game-panel,.exercise-box{border:1px solid var(--ligne);background:var(--white);border-radius:var(--rayon);padding:23px 25px;margin:25px 0;box-shadow:0 6px 20px #1c2b3a08}.definition{border-left:5px solid var(--sapin)}.example{border-left:5px solid var(--craie-deep)}.note{border-left:5px solid var(--ardoise)}.attention{border-left:5px solid var(--brique);background:#fcf5f1}.method{border-left:5px solid var(--craie);background:#faf6ea}.history{border-left:5px solid #957cb5;background:#f8f5fb}.box-title{font:700 11px var(--font-mono);text-transform:uppercase;letter-spacing:.055em;color:var(--ardoise);display:flex;gap:9px;align-items:center;margin-bottom:13px}.box-title::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}.definition .box-title{color:var(--sapin)}.example .box-title{color:var(--craie-deep)}.attention .box-title{color:var(--brique)}.history .box-title{color:#7a6099}.activity,.game-panel{border-top:4px solid var(--craie);overflow:hidden}.activity .box-title,.game-panel .box-title{color:var(--craie-deep)}.callout{background:var(--ardoise);color:white;border-radius:var(--rayon);padding:27px;margin:25px 0}.callout strong{color:#f2d88d}.callout p:last-child,.definition p:last-child,.note p:last-child,.method p:last-child,.history p:last-child,.example p:last-child{margin-bottom:0}.equation{padding:17px 20px;margin:22px 0;background:#f7f2e7;border:1px solid #d9a44147;border-radius:12px;text-align:center;overflow-x:auto;font-size:1.17rem}.eq-multi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}.eq-multi .equation{margin:0}.columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px;margin:23px 0}.mini-card{background:var(--white);border:1px solid var(--ligne);border-radius:14px;padding:21px}.mini-card p:last-child{margin-bottom:0}ul,ol{padding-left:24px}li{margin:7px 0}.keywords{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.keyword{font:600 11px var(--font-mono);padding:6px 10px;background:var(--papier-2);border-radius:22px;color:var(--ardoise)}table{border-collapse:collapse;width:100%;font-size:.91rem;margin:23px 0;background:var(--white);overflow:hidden;border-radius:13px;border:1px solid var(--ligne)}th,td{padding:12px 14px;border-bottom:1px solid var(--ligne);vertical-align:top;text-align:left}th{font:600 .85rem var(--font-display);background:var(--ardoise);color:#fff}tr:last-child td{border-bottom:0}.table-scroll{max-width:100%;overflow-x:auto}.table-scroll table{min-width:530px}.small{font-size:.88rem;color:#52605b}.term-name{font-weight:700;font-family:var(--font-display)}
-.controls{display:flex;flex-wrap:wrap;align-items:end;gap:16px;margin:16px 0}.control{min-width:145px;flex:1;display:flex;flex-direction:column;gap:5px;font:600 12px var(--font-mono);color:var(--ardoise)}.control label{display:flex;justify-content:space-between;gap:6px;align-items:center}.control output{color:var(--craie-deep);font-weight:700}.control input[type=range]{width:100%;accent-color:var(--sapin)}.control input[type=number],.control input[type=text],.control select{width:100%;border:1px solid #81958a7d;border-radius:9px;background:#fff;padding:9px 12px;font:500 14px var(--font-mono);color:var(--encre)}.button-row{display:flex;flex-wrap:wrap;gap:9px;margin:17px 0}.btn{border:0;padding:10px 17px;border-radius:9px;background:var(--sapin);color:#fff;font:600 13px var(--font-display);transition:background .15s,transform .15s}.btn:hover{background:var(--ardoise);transform:translateY(-1px)}.btn.secondary{background:var(--white);color:var(--ardoise);border:1px solid var(--ligne)}.btn.secondary:hover{background:var(--papier-2)}.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}.output-card{padding:15px 17px;border-radius:11px;background:#eef3f0;border-left:4px solid var(--sapin);margin:15px 0;font-size:.93rem;min-height:48px}.output-card.error{background:#fff0ed;border-left-color:var(--brique)}.output-card.success{background:#e9f5ed;border-left-color:#34845c}.output-card p:last-child{margin-bottom:0}.steps{background:var(--papier);border-radius:11px;padding:17px;line-height:1.9;margin:16px 0;font:500 13px/1.9 var(--font-mono);white-space:pre-wrap}.formula-display{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:18px;background:#f8f5ea;border-radius:13px;font:600 clamp(1.15rem,2.5vw,1.65rem) var(--font-mono);justify-content:center}.chip{border:2px solid transparent;border-radius:9px;padding:10px 9px;background:var(--papier-2);font:inherit;color:var(--encre);transition:.13s}.chip:hover,.chip.selected{border-color:var(--craie-deep);background:#fff7e3}.chip.var{color:#24604c}.chip.coeff{color:#78551d}.chip.constant{color:#9f403c}.chip.term{background:#fff}.legend-chips{display:flex;gap:13px;flex-wrap:wrap;font:500 12px var(--font-mono);color:#52605b;margin:10px 0}.legend-chips span::before{content:"";display:inline-block;width:9px;height:9px;background:var(--sapin);border-radius:50%;margin-right:6px}.legend-chips span:nth-child(2)::before{background:var(--craie-deep)}.legend-chips span:nth-child(3)::before{background:var(--brique)}.viz{width:100%;height:auto;border:1px solid var(--ligne);border-radius:12px;background:#fff}.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}.mini-graph{max-width:100%;height:auto;display:block;border:1px solid var(--ligne);border-radius:12px;background:#fff}.question{margin:16px 0;padding:16px;border:1px solid var(--ligne);border-radius:13px;background:var(--papier)}.question-label{font:600 14px var(--font-display);margin-bottom:10px}.choices{display:grid;grid-template-columns:1fr 1fr;gap:9px}.choice{padding:11px 10px;text-align:left;font:600 13px var(--font-display);border:1.5px solid var(--ligne);background:var(--white);color:var(--encre);border-radius:9px}.choice:hover{border-color:var(--craie-deep)}.choice.correct{border-color:#2e8b58;background:#e5f6eb}.choice.wrong{border-color:var(--brique);background:#faeae7}.choice:disabled{cursor:default}.game-head{display:flex;align-items:start;justify-content:space-between;gap:15px;flex-wrap:wrap}.xp-badge{font:700 12px var(--font-mono);background:#edf5ef;color:var(--ardoise);border:1px solid var(--ligne);border-radius:12px;padding:8px 12px}.progress{height:11px;border-radius:30px;background:#dee5dd;overflow:hidden;margin:13px 0 8px}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sapin),var(--craie));transition:width .3s}.badge-grid{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.mission{background:var(--white);border:1px solid var(--ligne);border-radius:13px;padding:17px;margin:12px 0}.mission.locked{opacity:.57}.mission.done{border-color:#4b7a6899;background:#eef6ee}.mission h4{margin:0 0 6px}.mission p{margin-bottom:8px}.hidden{display:none!important}details.reponse{margin:12px 0;background:var(--white);padding:13px 17px;border:1px solid var(--ligne);border-radius:12px}details.reponse summary{cursor:pointer;font:600 .94rem var(--font-display)}details.reponse p{margin:13px 0 0}.muted{color:#56665d}.line{height:1px;background:var(--ligne);margin:27px 0}.source-note{color:#5a6b61;font-size:.84rem;border-top:1px solid var(--ligne);padding-top:21px}.summary-box{padding:27px 28px;background:var(--ardoise-deep);border-radius:18px;color:#fff;box-shadow:var(--ombre)}.summary-box h2{color:#fff}.summary-box li{color:#ffffffe0}.summary-box strong{color:#f0d88a}.endnav{display:flex;justify-content:space-between;gap:14px;padding:24px 0;border-top:1px solid var(--ligne);flex-wrap:wrap}.endnav a{text-decoration:none;color:var(--ardoise);font:600 13px var(--font-display)}footer{background:var(--ardoise-deep);padding:34px 24px;color:#ffffffae;font:500 12px var(--font-mono)}footer .foot{max-width:1140px;margin:auto;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}footer .brand{font-size:14px}.noscript{border-left:4px solid var(--brique);padding:10px;background:#fff4f0;margin:20px 0}.skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:12px;top:78px;z-index:200;background:white;padding:10px}
-@media(max-width:1180px){.shell{grid-template-columns:1fr;max-width:1000px}.toc{position:relative;top:0;max-height:230px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}.toc-title{grid-column:1/-1}}@media(max-width:700px){.topbar-inner{padding:10px 16px}.topbar-inner .nav{gap:3px}.nav a{font-size:11px;padding:7px}.hero{padding:48px 18px 55px}.shell{padding:28px 16px 60px;gap:26px}.toc{display:block;max-height:185px}.section{margin-bottom:52px}.definition,.example,.note,.attention,.method,.activity,.history,.game-panel,.exercise-box{padding:18px}.columns,.split,.eq-multi{grid-template-columns:1fr}.choices{grid-template-columns:1fr}.hero h1{letter-spacing:-.03em}.formula-display{font-size:1.04rem}.controls{gap:11px}.control{min-width:110px}.table-scroll table{font-size:.82rem}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
-</style>
-</head>
-<body>
-<a class="skip" href="#contenu">Aller au contenu</a>
-<header class="topbar"><div class="topbar-inner"><a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span>.page</a><nav class="nav" aria-label="Navigation principale"><a href="https://learnwithdom.page">Accueil</a><a href="https://learnwithdom.page/cours/mat2101.html" class="current">MAT-2101</a><a href="#missions">Défis</a><a href="#glossaire">Glossaire</a></nav></div></header>
-<section class="hero"><div class="hero-inner"><div class="breadcrumb"><a href="https://learnwithdom.page">Accueil</a> &nbsp;/&nbsp; <a href="https://learnwithdom.page/cours/mat2101.html">MAT-2101-3</a> &nbsp;/&nbsp; 1.2.1 — Le vocabulaire algébrique</div><div class="eyebrow">Secondaire 2 · MAT-2101-3 · Section 1.2.1</div><h1>Le langage de l’algèbre</h1><p>Et si une simple lettre pouvait représenter une infinité de nombres? Apprends à lire les expressions algébriques, à les traduire et à les utiliser — avec des expériences, des graphiques et un défi final.</p><div class="tags"><span class="tag">Variables et coefficients</span><span class="tag">Substitution</span><span class="tag">Équations</span><span class="tag">Jeux interactifs</span><span class="tag">Histoire</span></div></div></section>
-<div class="shell"><aside class="toc" aria-label="Table des matières"><div class="toc-title">Dans cette leçon</div><a href="#accroche">Avant de commencer · L’énigme</a><a href="#langage">1 · Le langage de l’algèbre</a><a class="sub" href="#lettres">1.2 · Lettres et variables</a><a class="sub" href="#xyz">1.3 · Pourquoi x, y et z?</a><a class="sub" href="#temps">1.4 · La lettre t et le temps</a><a class="sub" href="#dependance">1.5 · Variables dépendantes</a><a href="#structure">2 · Lire une expression</a><a href="#conventions">3 · Conventions d’écriture</a><a href="#substitution">4 · Évaluer une expression</a><a href="#prerequis">5 · Liens avec les acquis</a><a href="#traduction">6 · Mots et symboles</a><a href="#raisonnement">7 · Du calcul au raisonnement</a><a href="#histoire">8 · Histoire de la notation</a><a href="#symboles">9 · Pourquoi des symboles?</a><a href="#retenir">10 · À retenir</a><a href="#idee">11 · La grande idée</a><a href="#glossaire">12 · Glossaire</a><div class="toc-title">Pour s'entraîner</div><a href="#missions">Missions · Académie algèbre</a><a href="#exercices">Exercices complémentaires</a></aside>
-<main id="contenu" class="main">
-<section id="accroche" class="section"><div class="section-kicker">Avant de commencer · Une énigme</div><h2>Je peux deviner ton résultat… sans connaître ton nombre!</h2><p class="lead">Choisis n'importe quel nombre. Double-le, ajoute 6, divise le résultat par 2, puis soustrais ton nombre de départ. Je parie que tu obtiendras toujours 3.</p>
-<div class="activity"><div class="box-title">Expérience 0 · Le nombre mystère</div><div class="controls"><div class="control"><label for="mystN">Mon nombre <output id="mystOut">7</output></label><input id="mystN" type="range" min="-20" max="30" value="7" step="1"></div></div><div class="steps" id="mystSteps">7 → 14 → 20 → 10 → 3</div><div class="button-row"><button type="button" class="btn" id="mystReveal">Révéler le secret mathématique</button></div><div id="mystSecret" class="output-card hidden">À la place de ton nombre, utilisons la lettre <strong>n</strong> :<br>n → 2n → 2n + 6 → (2n + 6)/2 = n + 3 → (n + 3) − n = <strong>3</strong>. Ce résultat est vrai pour toutes les valeurs de n.</div></div><p>Ce n'est pas de la magie. C'est de l'<strong>algèbre</strong> : une façon d'exprimer une relation qui fonctionne pour de nombreux nombres, sans tout recommencer à chaque fois.</p></section>
-<section id="langage" class="section"><div class="section-kicker">01 · Les fondations</div><h2>1. Le langage de l’algèbre</h2><p>Jusqu’à maintenant, nous avons principalement travaillé avec des nombres. Nous avons appris à effectuer différentes opérations, à utiliser les exposants, les carrés, les cubes, les racines et la priorité des opérations.</p><p>Avec l’algèbre, nous allons maintenant franchir une nouvelle étape : <strong>nous allons utiliser des lettres pour représenter des quantités.</strong></p><p>L’algèbre ne remplace donc pas l’arithmétique. Elle la généralise. En arithmétique, nous travaillons généralement avec des nombres dont la valeur est connue. Par exemple :</p><div class="eq-multi"><div class="equation">\(3+5=8\)</div><div class="equation">\(x+5\)</div></div><p>En algèbre, nous pouvons écrire <strong>\(x+5\)</strong>. La lettre \(x\) représente une quantité dont nous ne connaissons pas nécessairement la valeur. Elle peut représenter une inconnue, mais également une quantité qui varie selon le problème étudié.</p><p>C'est l'une des grandes différences entre l'arithmétique et l'algèbre : au lieu de simplement calculer une réponse à partir de nombres connus, nous pouvons utiliser des symboles pour représenter des quantités et étudier les relations qui existent entre elles.</p><div class="definition"><div class="box-title">Une nouvelle façon de penser</div><p>L’arithmétique travaille principalement avec des nombres connus. L’algèbre permet de travailler avec des nombres connus, des nombres inconnus et des quantités qui peuvent varier.</p></div>
-<h3>1.1 L’algèbre comme langage</h3><p>On peut voir l’algèbre comme un véritable langage mathématique. Une expression comme</p><div class="equation">\(3x^2+5x-7\)</div><p>n'est pas simplement une suite de symboles. Elle possède une structure que nous pouvons apprendre à reconnaître et à décrire. Plus nous avancerons en algèbre, plus cette façon de lire les expressions deviendra importante. Notre objectif n'est donc pas seulement de savoir effectuer des calculs, mais également de comprendre la structure de ce que nous écrivons.</p>
-<h3 id="lettres">1.2 Les lettres et les variables</h3><p>En algèbre, une lettre peut représenter une quantité. On appelle généralement cette quantité une <strong>variable</strong>. Les lettres les plus courantes sont \(x,y,z,a,b,c,t\), mais rien ne nous empêche d’utiliser \(m,n,p,q\).</p><p>La lettre choisie sert avant tout à identifier la quantité que nous étudions. Ce qui est important n'est pas la lettre elle-même, mais son rôle dans l'expression ou le problème. Dans \(x+3\), la lettre \(x\) représente une quantité. On pourrait écrire \(m+3\) : la structure mathématique resterait exactement la même.</p><p>On peut considérer une variable comme une sorte de nom mathématique donné à une quantité. Le choix de ce nom dépend souvent du contexte.</p><div class="definition"><div class="box-title">À retenir</div><p>Une variable peut être représentée par n’importe quelle lettre. \(x,y,z\) sont simplement des conventions courantes. Ce n’est pas la lettre qui donne un sens mathématique à la variable : c’est le contexte dans lequel elle est utilisée.</p></div>
-<div class="activity"><div class="box-title">Expérience 1 · Change le nom, pas la règle</div><p>La valeur varie, mais le calcul reste le même. Change la lettre, puis la valeur : l'expression conserve sa structure.</p><div class="controls"><div class="control"><label for="variableName">Choisir une lettre</label><select id="variableName"><option>x</option><option>m</option><option>t</option><option>q</option></select></div><div class="control"><label for="variableVal">Valeur de la variable <output id="variableOut">4</output></label><input id="variableVal" type="range" min="-10" max="15" step="1" value="4"></div></div><div class="formula-display" id="variableFormula">x + 3 = 4 + 3 = 7</div><div class="output-card">La lettre est une <strong>étiquette</strong>. Changer seulement son nom ne change pas le calcul.</div></div>
-<h3 id="xyz">1.3 Pourquoi utilise-t-on souvent \(x\), \(y\) et \(z\)?</h3><p>Dans les mathématiques modernes, \(x,y,z\) servent fréquemment à représenter des variables ou des inconnues, notamment dans les équations, les fonctions et la géométrie analytique :</p><div class="equation">\(y=2x+1\)</div><p>Dans cette relation, \(x\) et \(y\) désignent deux quantités liées. La valeur de \(y\) dépend de la valeur choisie pour \(x\). On pourrait tout aussi bien écrire \(y=2t+1\) ou \(q=2m+1\). La relation mathématique demeure la même.</p><p>Ces lettres sont particulièrement courantes en géométrie parce qu'elles représentent traditionnellement les coordonnées d'un point. Dans un plan, les axes \(x\) et \(y\) décrivent un point \(P(x,y)\). La première coordonnée indique sa position sur l'axe \(x\), la deuxième sur l'axe \(y\). Par exemple, \(P(2,3)\) se situe à 2 unités suivant l’axe \(x\) et à 3 unités suivant l’axe \(y\).</p><p>L'idée peut être étendue à trois dimensions. Avec trois axes \(x,y,z\), le point \(P(x,y,z)\) est repéré dans l’espace, chaque variable donnant une position dans une direction différente.</p>
-<div class="activity"><div class="box-title">Expérience 2 · Explore les coordonnées en 2D et en 3D</div><div class="split"><div><h4>Dans le plan : P(x, y)</h4><svg id="plane2d" class="mini-graph" viewBox="0 0 360 300" role="img" aria-label="Repère cartésien montrant un point mobile"></svg></div><div><h4>Dans l'espace : P(x, y, z)</h4><svg id="space3d" class="mini-graph" viewBox="0 0 360 300" role="img" aria-label="Projection en perspective d'un point en trois dimensions"></svg></div></div><div class="controls"><div class="control"><label for="coordX">x <output id="coordXOut">2</output></label><input id="coordX" type="range" min="-4" max="4" value="2" step="1"></div><div class="control"><label for="coordY">y <output id="coordYOut">3</output></label><input id="coordY" type="range" min="-4" max="4" value="3" step="1"></div><div class="control"><label for="coordZ">z <output id="coordZOut">2</output></label><input id="coordZ" type="range" min="-4" max="4" value="2" step="1"></div></div><div class="output-card" id="coordsReadout">Dans le plan : P(2, 3). Dans l’espace : P(2, 3, 2).</div></div>
-<div class="note"><div class="box-title">Pourquoi x, y et z?</div><p>Ce sont des conventions utiles pour communiquer. Il serait possible d’utiliser d’autres lettres, comme \(a,b,c\). Il faut toujours déterminer leur signification à partir du contexte.</p></div>
-<h3 id="temps">1.4 La lettre \(t\) et le temps</h3><p>Dans certaines disciplines, certaines lettres sont devenues très courantes. En physique, \(t\) sert souvent à représenter le temps. Par exemple, pour un déplacement à vitesse constante :</p><div class="equation">\(d=vt\)</div><p>où \(d\) représente la distance, \(v\) la vitesse et \(t\) le temps. Pour une voiture à 80 km/h pendant 2 h :</p><div class="equation">\(d=(80)(2)=160\ \text{km}\)</div><p>Mais \(t\) pourrait représenter autre chose dans un autre problème : c’est une convention, pas une obligation. Il faut également différencier les lettres minuscules et majuscules, qui peuvent désigner des quantités complètement différentes.</p><div class="table-scroll"><table><thead><tr><th>Notation</th><th>Utilisation fréquente en sciences</th></tr></thead><tbody><tr><td>\(t\)</td><td>Temps</td></tr><tr><td>\(T\)</td><td>Température</td></tr><tr><td>\(m\)</td><td>Masse</td></tr><tr><td>\(M\)</td><td>Masse molaire</td></tr></tbody></table></div><div class="attention"><div class="box-title">À retenir</div><p>\(t\) et \(T\) sont <strong>deux variables différentes</strong>. Une lettre prend son sens selon son contexte, jamais seulement selon sa forme.</p></div>
-<h3 id="dependance">1.5 Les variables indépendantes et dépendantes</h3><p>Lorsque deux variables sont liées, on distingue souvent leurs rôles. Considérons :</p><div class="equation">\(y=2x+3\)</div><p>Nous choisissons généralement \(x\), puis sa valeur détermine \(y\). On appelle donc \(x\) la <strong>variable indépendante</strong> et \(y\) la <strong>variable dépendante</strong>.</p><p>Si \(x=1\), alors \(y=2(1)+3=5\). Si \(x=4\), alors \(y=2(4)+3=11\). On résume : variable indépendante → variable dépendante. Cette distinction sera particulièrement importante dans l'étude des fonctions.</p>
-<div class="activity"><div class="box-title">Expérience 3 · Qui dépend de qui?</div><p>Choisis \(x\) et observe automatiquement \(y=2x+3\) sur le graphique.</p><svg id="lineGraph" class="viz" viewBox="0 0 660 300" role="img" aria-label="Droite y égale 2x plus 3 avec un point mobile"></svg><div class="controls"><div class="control"><label for="lineX">Variable indépendante : x <output id="lineXOut">1</output></label><input id="lineX" type="range" min="-5" max="5" value="1" step="1"></div></div><div class="output-card" id="lineReadout">Quand x = 1, y = 5.</div></div>
-</section>
-<section id="structure" class="section"><div class="section-kicker">02 · Reconnaître les éléments</div><h2>2. Construire et lire une expression algébrique</h2><p>Maintenant que nous savons ce qu'est une variable, nous pouvons commencer à examiner la structure des expressions algébriques. Considérons :</p><div class="equation">\(3x^2+5x-7\)</div><p>Cette expression contient plusieurs éléments importants.</p>
-<h3>2.1 La variable</h3><p>Dans \(3x^2+5x-7\), la variable est \(x\). Elle représente une quantité qui peut varier ou dont la valeur peut être inconnue.</p>
-<h3>2.2 Le coefficient</h3><p>Dans \(3x^2\), le nombre 3 est le coefficient de \(x^2\). Dans \(5x\), le nombre 5 est le coefficient de \(x\).</p><p>Le coefficient indique combien de fois nous prenons la quantité représentée par le reste du terme. Par exemple :</p><div class="equation">\(5x=x+x+x+x+x\)</div><p>De la même façon : \(3x^2=3(x^2)\).</p>
-<h3>2.3 La constante</h3><p>Dans l'expression \(3x^2+5x-7\), le nombre \(-7\) est une <strong>constante</strong>. Il ne contient aucune variable et sa valeur demeure fixe dans l'expression.</p>
-<h3>2.4 Les termes</h3><p>Les parties séparées par une addition ou une soustraction sont appelées des <strong>termes</strong>. Dans \(3x^2+5x-7\), nous avons trois termes : \(3x^2\), \(5x\) et \(-7\). Cette terminologie sera particulièrement importante pour les polynômes.</p>
-<h3>2.5 Expression algébrique et équation</h3><p>Une <strong>expression algébrique</strong> est une combinaison de nombres, de variables et d'opérations. Par exemple : \(3x^2+5x-7\). Une expression ne contient pas nécessairement de signe d'égalité. Une <strong>équation</strong>, quant à elle, affirme que deux expressions ont la même valeur :</p><div class="equation">\(2x+5=17\)</div><p>Nous apprendrons à résoudre les équations dans les prochaines sections du cours.</p>
-<div class="activity"><div class="box-title">Expérience 4 · Autopsie d'une expression</div><p>Clique sur chaque morceau de l'expression pour découvrir son rôle. Puis active une autre vue pour voir les termes complets.</p><div class="formula-display" aria-label="Expression 3x au carré plus 5x moins 7"><button class="chip coeff" type="button" data-part="coef3">3</button><button class="chip var" type="button" data-part="x2">x²</button><span> + </span><button class="chip coeff" type="button" data-part="coef5">5</button><button class="chip var" type="button" data-part="x1">x</button><span> − </span><button class="chip constant" type="button" data-part="const7">7</button></div><div class="button-row"><button type="button" class="btn secondary" id="showTerms">Voir les trois termes</button><button type="button" class="btn secondary" id="showEquation">Transformer en équation</button></div><div class="output-card" id="anatomyFeedback" aria-live="polite">Sélectionne un élément pour voir son explication.</div></div>
-<div class="columns"><div class="mini-card"><h4>Une expression</h4><div class="equation">\(2x+5\)</div><p>On peut l'évaluer lorsque \(x\) est connu. Elle ne contient ici aucun signe d'égalité.</p></div><div class="mini-card"><h4>Une équation</h4><div class="equation">\(2x+5=17\)</div><p>Elle affirme que deux expressions sont égales. On peut chercher les valeurs de \(x\) qui la rendent vraie.</p></div></div></section>
-<section id="conventions" class="section"><div class="section-kicker">03 · Écrire plus simplement</div><h2>3. Les conventions d’écriture en algèbre</h2><p>L’algèbre possède plusieurs conventions d’écriture qui permettent de rendre les expressions plus compactes et plus faciles à lire.</p>
-<h3>3.1 La multiplication en algèbre</h3><p>En arithmétique, nous avons souvent utilisé le symbole \(\times\) : \(3\times4=12\). En algèbre, nous utilisons fréquemment le point centré : \(3\cdot4=12\). Lorsque le contexte est clair, nous pouvons aussi supprimer le signe de multiplication entre un nombre et une lettre :</p><div class="equation">\(3\times x=3\cdot x=3x\)</div><p>Ces trois écritures représentent la même multiplication. En algèbre, on évite souvent \(\times\) au profit du point ou de la juxtaposition.</p>
-<h3>3.2 Pourquoi écrit-on \(3x\) plutôt que \(x3\)?</h3><p>Dans une multiplication, l'ordre des facteurs ne change pas le résultat : \(3\times x=x\times3\). Cependant, la convention algébrique place généralement le <strong>coefficient avant la variable</strong> : on écrit \(3x\), pas \(x3\). Cela rend les expressions plus faciles à lire.</p><div class="equation">\(5x,\quad -2y,\quad 7a,\quad \tfrac12z\)</div><div class="attention"><div class="box-title">Attention à l'écriture</div><p>Écrire « x3 » sans signe est déconseillé : dans une expression algébrique, on place le coefficient devant la lettre pour éviter les ambiguïtés. On privilégie \(3x\).</p></div>
-<h3>3.3 La division et les fractions</h3><p>En arithmétique, nous écrivons souvent \(8\div2=4\). En algèbre, la notation fractionnaire est particulièrement pratique, car elle distingue immédiatement le numérateur et le dénominateur :</p><div class="eq-multi"><div class="equation">\(x\div3=\dfrac{x}{3}\)</div><div class="equation">\(a\div b=\dfrac{a}{b}\)</div></div><p>Nous utiliserons très souvent des fractions plutôt que le symbole de division. <span class="small">Précision : pour \(a/b\), le dénominateur \(b\) doit être non nul.</span></p>
-<div class="activity"><div class="box-title">Expérience 5 · L'écriture algébrique, trois visages</div><p>Change le coefficient et la variable : les trois écritures restent équivalentes.</p><div class="controls"><div class="control"><label for="writeCoeff">Coefficient <output id="writeCoeffOut">3</output></label><input id="writeCoeff" type="range" min="1" max="10" value="3" step="1"></div><div class="control"><label for="writeLetter">Lettre</label><select id="writeLetter"><option>x</option><option>y</option><option>a</option><option>m</option></select></div></div><div id="writeVariants" class="formula-display" aria-live="polite">3 × x = 3 · x = 3x</div><div class="output-card">Une expression plus courte ne change pas le résultat de l'opération.</div></div></section>
-<section id="substitution" class="section"><div class="section-kicker">04 · Donner une valeur aux lettres</div><h2>4. Évaluer une expression algébrique</h2><p>Maintenant que nous connaissons le vocabulaire et les conventions d'écriture, nous pouvons utiliser les expressions algébriques. <strong>Évaluer une expression</strong> signifie remplacer une variable par une valeur donnée, puis calculer le résultat. Cette opération est également appelée <strong>substitution</strong>.</p>
-<h3>4.1 Un premier exemple</h3><p>Évaluons \(3x^2+5x-7\) pour \(x=2\). On remplace chaque \(x\) par 2, puis on respecte la priorité des opérations :</p><div class="method"><div class="box-title">Exemple détaillé : x = 2</div><div class="equation">\[\begin{aligned}3x^2+5x-7 &= 3(2)^2+5(2)-7\\ &=3(4)+5(2)-7\\ &=12+10-7\\ &=\boxed{15}\end{aligned}\]</div></div>
-<h3>4.2 Le piège des nombres négatifs</h3><p>L'évaluation est plus délicate lorsque la variable est négative. Pour \(x=-2\), la règle d'or est la suivante : <strong>on remplace toujours la variable par sa valeur entre parenthèses.</strong></p><div class="method"><div class="box-title">Exemple détaillé : x = −2</div><div class="equation">\[\begin{aligned}3x^2+5x-7&=3(-2)^2+5(-2)-7\\ &=3(4)-10-7\\ &=12-10-7\\ &=\boxed{-5}\end{aligned}\]</div></div><div class="attention"><div class="box-title">Attention : les parenthèses changent tout!</div><div class="eq-multi"><div class="equation">\((-2)^2=4\)</div><div class="equation">\(-2^2=-4\)</div></div><p>Dans le premier cas, le signe négatif fait partie de la base élevée au carré. Dans le deuxième, le carré est calculé avant le signe « moins ».</p></div>
-<div class="activity"><div class="box-title">Expérience 6 · Laboratoire de substitution</div><p>Déplace le curseur : chaque étape de l'évaluation se met à jour, y compris lorsque le nombre est négatif.</p><div class="controls"><div class="control"><label for="subX">Valeur de x <output id="subXOut">2</output></label><input id="subX" type="range" min="-6" max="6" step="1" value="2"></div></div><div class="formula-display">3x² + 5x − 7</div><div id="subSteps" class="steps" aria-live="polite">3(2)² + 5(2) − 7
-= 3(4) + 5(2) − 7
-= 12 + 10 − 7
-= 15</div><div class="output-card" id="subTip">Les parenthèses rendent la substitution plus claire.</div></div>
-<h3>4.3 Évaluer une expression avec plusieurs variables</h3><p>La même idée s'applique avec plusieurs variables. Évaluons \(2a+3b\) pour \(a=4\) et \(b=-1\) :</p><div class="equation">\[2(4)+3(-1)=8-3=\boxed{5}\]</div>
-<h3>4.4 Pourquoi la substitution est-elle importante?</h3><p>Évaluer une expression permet de vérifier des formules, de tester des hypothèses et de résoudre des problèmes concrets. Ainsi, pour la distance à vitesse constante \(d=vt\), avec \(v=90\) km/h et \(t=2\) h :</p><div class="equation">\(d=(90)(2)=180\ \text{km}\)</div><p>Cette même logique — remplacer une lettre par un nombre, puis appliquer la priorité des opérations — sera utilisée constamment dans les chapitres à venir.</p></section>
-<section id="prerequis" class="section"><div class="section-kicker">05 · Réinvestir les connaissances</div><h2>5. Le lien avec ce que nous avons déjà appris</h2><p>L’algèbre ne commence pas à partir de zéro. Elle réutilise plusieurs notions que nous avons déjà étudiées.</p>
-<h3>5.1 Les exposants</h3><p>Nous avons déjà vu \(x^2\), les exposants négatifs et fractionnaires. Ils deviennent maintenant des outils du langage algébrique :</p><div class="eq-multi"><div class="equation">\(x^{-1}=\dfrac{1}{x}\)</div><div class="equation">\(x^{1/2}=\sqrt{x}\)</div><div class="equation">\(x^{1/3}=\sqrt[3]{x}\)</div><div class="equation">\(x^2=x\cdot x\)</div></div><div class="note"><div class="box-title">Précisions utiles</div><p>Dans les nombres réels, \(x^{-1}\) exige \(x\neq0\), et \(x^{1/2}\) exige \(x\geq0\). La racine cubique d’un nombre négatif est possible.</p></div>
-<h3>5.2 La priorité des opérations</h3><p>Quand nous évaluons \(3x^2+5x-7\), nous continuons de respecter la priorité des opérations. Pour \(x=2\), on effectue le carré avant les produits, puis l'addition et la soustraction. L’algèbre ne remplace donc pas les règles apprises : elle les utilise dans des expressions plus générales.</p></section>
-<section id="traduction" class="section"><div class="section-kicker">06 · Parler deux langues</div><h2>6. Traduire entre les mots et les symboles</h2><p>Un langage se parle dans les deux sens. Nous devons apprendre à <strong>lire une expression algébrique</strong>, mais aussi à <strong>construire une expression à partir d'une phrase</strong>. C'est essentiel pour résoudre des problèmes écrits.</p>
-<h3>6.1 Le vocabulaire de la traduction</h3><div class="table-scroll"><table><thead><tr><th>Expression en mots</th><th>Traduction algébrique</th></tr></thead><tbody><tr><td>La somme de \(x\) et 7</td><td>\(x+7\)</td></tr><tr><td>Le double d'un nombre</td><td>\(2x\)</td></tr><tr><td>Le triple d'un nombre</td><td>\(3x\)</td></tr><tr><td>La moitié d'un nombre</td><td>\(\frac{x}{2}\)</td></tr><tr><td>Le carré d'un nombre</td><td>\(x^2\)</td></tr><tr><td>Le produit de \(a\) et \(b\)</td><td>\(ab\)</td></tr><tr><td>Le quotient de \(a\) par \(b\)</td><td>\(\frac{a}{b}\)</td></tr></tbody></table></div>
-<h3>6.2 Le piège de l'ordre des mots</h3><p>L'addition et la multiplication sont généralement plus faciles à traduire puisque l'ordre des termes ou des facteurs ne change pas leur résultat. La soustraction et la division sont différentes.</p><div class="table-scroll"><table><thead><tr><th>Phrase</th><th>Traduction</th></tr></thead><tbody><tr><td>Un nombre diminué de 5</td><td>\(x-5\)</td></tr><tr><td>5 diminué d'un nombre</td><td>\(5-x\)</td></tr><tr><td>5 de moins qu'un nombre</td><td>\(x-5\)</td></tr><tr><td>Un nombre de moins que 5</td><td>\(5-x\)</td></tr></tbody></table></div><div class="attention"><div class="box-title">Le piège classique</div><p>« <strong>5 de moins que x</strong> » se traduit par \(x-5\) et non par \(5-x\). Stratégie fiable : demande-toi <strong>qui subit l'opération</strong>. Ici, c'est \(x\) qui perd 5.</p></div>
-<h3>6.3 Le piège des parenthèses</h3><p>La place des parenthèses peut complètement changer le sens d'une expression.</p><div class="table-scroll"><table><thead><tr><th>Phrase</th><th>Traduction</th></tr></thead><tbody><tr><td>Le double d'un nombre, diminué de 3</td><td>\(2x-3\)</td></tr><tr><td>Le double de la différence entre un nombre et 3</td><td>\(2(x-3)\)</td></tr><tr><td>Le carré d'un nombre, augmenté de 5</td><td>\(x^2+5\)</td></tr><tr><td>Le carré de la somme d'un nombre et 5</td><td>\((x+5)^2\)</td></tr></tbody></table></div><p>Les parenthèses indiquent qu'une opération doit être effectuée sur l'ensemble de l'expression. Ainsi, \((3+2)^2\) n'est pas la même chose que \(3+2^2\).</p>
-<h3>6.4 Traduire une phrase complète</h3><div class="example"><div class="box-title">Exemple 1</div><p>« Le double d’un nombre auquel on ajoute cinq est égal à dix-sept. »</p><div class="equation">\(2x+5=17\)</div></div><div class="example"><div class="box-title">Exemple 2</div><p>« Le carré d’un nombre, diminué du triple de ce même nombre, donne quatre. »</p><p>Le carré d'un nombre → \(x^2\) ; diminué du triple de ce nombre → \(-3x\) ; donne quatre → \(=4\).</p><div class="equation">\(x^2-3x=4\)</div><p>Nous apprendrons à résoudre ce type d'équation plus tard.</p></div>
-<h3>6.5 Traduire dans l'autre sens</h3><p>La traduction fonctionne dans les deux directions. L'expression \(\frac{x+4}{2}\) se lit « la moitié de la somme d'un nombre et de 4 », tandis que \(2x^2-1\) se lit « le double du carré d'un nombre, diminué de 1 ».</p><div class="activity"><div class="box-title">Expérience 7 · Traducteur algébrique</div><p>Lis la phrase, puis choisis l'expression correspondante. Chaque réponse s'accompagne d'une explication, même en cas d'erreur.</p><div class="question"><div class="question-label" id="translatePrompt">5 de moins que x</div><div id="translateOptions" class="choices"></div><div id="translateFeedback" class="output-card" aria-live="polite">Choisis une expression.</div></div><div class="button-row"><button type="button" class="btn secondary" id="translateHint">Un indice</button><button type="button" class="btn" id="translateNext">Autre phrase →</button></div><div class="small" id="translateScore">0 bonne réponse sur 0 essai</div></div>
-</section>
-<section id="raisonnement" class="section"><div class="section-kicker">07 · La prochaine étape</div><h2>7. Passer du calcul au raisonnement</h2><p>En arithmétique, on peut écrire \(3+5=?\). Nous connaissons les nombres et nous cherchons le résultat. En algèbre, nous rencontrons plutôt :</p><div class="equation">\(x+5=8\)</div><p>Cette fois, nous connaissons le résultat et nous cherchons une quantité inconnue. Nous devons remonter le raisonnement pour déterminer la valeur de \(x\). Nous obtenons \(x=3\).</p><div class="callout"><p>En algèbre, nous ne faisons plus seulement des calculs : <strong>nous cherchons, transformons et raisonnons</strong>. Nous étudions les relations entre les quantités.</p></div></section>
-<section id="histoire" class="section"><div class="section-kicker">08 · L'histoire des mathématiques</div><h2>8. Un peu d’histoire de la notation algébrique</h2><p>L’idée de représenter une quantité inconnue est très ancienne. Bien avant l'algèbre moderne, les mathématiciens résolvaient déjà des problèmes qui pourraient aujourd'hui s'écrire sous forme d'équations.</p><p>En <strong>Babylonie</strong>, en <strong>Égypte</strong>, en <strong>Inde</strong>, en <strong>Chine</strong>, dans le <strong>monde grec</strong> et plus tard dans le <strong>monde islamique</strong>, différentes méthodes furent développées pour déterminer des quantités inconnues. Les approches variaient, mais l'idée fondamentale était déjà présente : trouver une quantité inconnue à partir des informations dont on dispose.</p><p>Ce qui a changé beaucoup plus tard, c'est surtout la manière de l'écrire. Pendant longtemps, les problèmes étaient exprimés avec des mots. Une écriture compacte comme \(2x+5=17\) pouvait être remplacée par une longue phrase. Les mathématiciens ont progressivement utilisé des abréviations, des symboles pour les opérations, puis des lettres pour les quantités.</p>
-<div class="history"><div class="box-title">Deux figures de l'écriture algébrique</div><div class="columns"><div><h4>François Viète · Fin du 16e siècle</h4><p>Le mathématicien français a contribué à développer une notation utilisant systématiquement des lettres pour représenter des quantités connues ou inconnues. Cela permettait de décrire des relations générales plutôt qu'un seul problème particulier.</p></div><div><h4>René Descartes · 17e siècle</h4><p>Il a contribué à populariser l'usage de lettres du début de l'alphabet, comme \(a,b,c\), pour certaines quantités connues, et de lettres de la fin, comme \(x,y,z\), pour les inconnues.</p></div></div></div><div class="equation">\(ax+b=c\qquad\quad y=2x+1\)</div><p>Les lettres \(x,y,z\) n'ont aucune propriété qui les oblige à représenter des inconnues. Leur emploi est une convention héritée de l'histoire. On les retrouve aussi dans les coordonnées en deux et trois dimensions. Ce qui compte est la quantité qu'une lettre représente et la relation qu'elle entretient avec les autres quantités.</p></section>
-<section id="symboles" class="section"><div class="section-kicker">09 · Un langage universel</div><h2>9. Pourquoi utilise-t-on des symboles?</h2><p>Les symboles permettent de condenser beaucoup d'information dans une petite expression. Prenons la phrase : « Le double d’un nombre auquel on ajoute cinq est égal à dix-sept. »</p><div class="equation">\(2x+5=17\)</div><p>La phrase devient alors une écriture que l'on peut manipuler. C'est l'une des grandes forces de l'algèbre :</p><div class="callout"><p style="text-align:center;margin:0"><strong>Problème en mots → Expression mathématique → Raisonnement</strong></p></div><p>Nous pouvons ensuite transformer l'expression pour découvrir la valeur inconnue.</p></section>
-<section id="retenir" class="section"><div class="section-kicker">10 · Synthèse</div><div class="summary-box"><h2>10. À retenir</h2><ul><li>Une <strong>variable</strong> est une lettre qui représente une quantité pouvant varier ou une quantité inconnue.</li><li>\(x,y,z\) sont très courantes, mais n’importe quelle lettre peut être utilisée comme variable.</li><li>\(t\) représente souvent le temps, selon le contexte.</li><li>Un <strong>coefficient</strong> est le nombre qui multiplie une variable : 5 dans \(5x\).</li><li>Une <strong>constante</strong> est une quantité qui ne contient pas de variable.</li><li>Un <strong>terme</strong> est une partie d'une expression séparée par une addition ou une soustraction.</li><li>Une <strong>expression algébrique</strong> combine nombres, variables et opérations. Une <strong>équation</strong> affirme que deux expressions ont la même valeur.</li><li><strong>Évaluer</strong> signifie substituer les valeurs des variables, puis respecter la priorité des opérations.</li><li>La multiplication s'écrit \(3\cdot x=3x\) ; la division s'écrit volontiers \(a\div b=\frac ab\).</li><li>La <strong>variable indépendante</strong> est celle que l'on choisit ou fait varier ; la <strong>variable dépendante</strong> dépend d'elle.</li><li>La traduction entre mots et symboles exige de surveiller l'ordre des mots et les parenthèses.</li></ul></div></section>
-<section id="idee" class="section"><div class="section-kicker">11 · Voir la structure</div><h2>11. La grande idée</h2><p>L'objectif de cette section n'est pas de mémoriser une longue liste de mots : il s'agit de commencer à <strong>parler le langage de l'algèbre</strong>. Quand nous écrivons :</p><div class="equation">\(2x^2+3x-7\)</div><p>nous devons progressivement reconnaître sa structure : des <strong>coefficients, des variables, des exposants, des termes et des opérations</strong> organisés selon des règles précises.</p><p>C'est ce langage que nous allons apprendre à utiliser pour décrire, transformer et résoudre des problèmes.</p></section>
-<section id="glossaire" class="section"><div class="section-kicker">12 · Référence rapide</div><h2>12. Glossaire du vocabulaire algébrique</h2><p>Voici les principaux mots rencontrés dans ce chapitre, regroupés en un seul endroit. Ce glossaire ne constitue pas une liste à mémoriser par cœur : c'est un outil de référence.</p><div class="table-scroll"><table><thead><tr><th>Terme</th><th>Définition</th><th>Exemple</th></tr></thead><tbody>
-<tr><td class="term-name">Variable</td><td>Une lettre qui représente une quantité qui peut varier ou dont la valeur est inconnue.</td><td>\(x\) dans \(3x+5\)</td></tr>
-<tr><td class="term-name">Coefficient</td><td>Le nombre qui multiplie une variable.</td><td>3 dans \(3x^2\)</td></tr>
-<tr><td class="term-name">Constante</td><td>Un terme qui ne contient aucune variable.</td><td>\(-7\) dans \(3x^2+5x-7\)</td></tr>
-<tr><td class="term-name">Terme</td><td>Une partie d'une expression, séparée des autres par une addition ou une soustraction.</td><td>\(5x\) dans \(3x^2+5x-7\)</td></tr>
-<tr><td class="term-name">Expression algébrique</td><td>Une combinaison de variables, de coefficients, de constantes et d'opérations, sans signe d'égalité dans l'exemple étudié.</td><td>\(3x^2+5x-7\)</td></tr>
-<tr><td class="term-name">Équation</td><td>Une égalité entre deux expressions. Elle contient généralement une ou plusieurs variables dont on cherche la valeur.</td><td>\(2x+5=17\)</td></tr>
-<tr><td class="term-name">Évaluer</td><td>Remplacer chaque variable par une valeur donnée, puis calculer le résultat.</td><td>\(3(2)^2+5(2)-7=15\)</td></tr>
-<tr><td class="term-name">Variable indépendante</td><td>La variable dont on choisit généralement la valeur ou que l'on fait varier.</td><td>\(x\) dans \(y=2x+3\)</td></tr>
-<tr><td class="term-name">Variable dépendante</td><td>La variable dont la valeur est déterminée par une autre variable.</td><td>\(y\) dans \(y=2x+3\)</td></tr>
-</tbody></table></div><div class="note"><div class="box-title">À noter</div><p>D'autres termes liés aux exposants, aux carrés et aux racines — base, exposant, carré parfait, racine principale, etc. — ont déjà été définis dans les chapitres précédents et peuvent être regroupés dans un glossaire général du cours.</p></div></section>
-<section id="missions" class="section"><div class="section-kicker">Défi final · Apprentissage par le jeu</div><h2>Académie algèbre : cinq missions à débloquer</h2><p class="lead">Tu es maintenant un apprenti décodeur. Chaque mission contient deux défis de difficulté progressive. Réussis-les pour gagner 100 points d'expérience, puis débloquer la mission suivante.</p><div class="game-panel"><div class="game-head"><div><div class="box-title">Tableau de bord du laboratoire</div><strong id="gameRank">Grade : recrue de l'algèbre</strong><div class="small" id="gameStatus">0 mission réussie sur 5</div></div><div class="xp-badge" id="xpCount">0 / 500 XP</div></div><div class="progress" aria-label="Progression générale"><span id="xpBar"></span></div><div id="missionList"></div><div id="gameVictory" class="output-card success hidden"><strong>Mission accomplie!</strong> Tu as terminé l'Académie algèbre. Tu sais identifier, évaluer et traduire les expressions algébriques. Tu peux maintenant consolider tes acquis avec les exercices écrits ci-dessous.</div><div class="button-row"><button type="button" class="btn secondary" id="gameReset">Recommencer les missions</button></div><div class="small">Les réponses erronées n'enlèvent aucun XP. Tu peux consulter un indice et essayer à nouveau. La progression est enregistrée dans ce navigateur lorsque le stockage local est disponible.</div></div></section>
-<section id="exercices" class="section"><div class="section-kicker">Exercices supplémentaires · Réponses développées</div><h2>À toi de jouer sur papier</h2><p>Ces douze questions supplémentaires prolongent le document original. Essaie de répondre avant d'ouvrir le corrigé, puis explique ton raisonnement.</p><div class="exercise-box"><ol>
-<li>Explique avec tes mots la différence entre l'arithmétique et l'algèbre.<details class="reponse"><summary>Voir le corrigé</summary><p>L'arithmétique calcule généralement avec des nombres donnés. L'algèbre peut représenter des quantités inconnues ou variables à l'aide de lettres et étudier des relations générales. Exemple : \(3+5=8\) comparé à \(x+5\).</p></details></li>
-<li>Dans \(7m^2-4m+9\), identifie la variable, les coefficients des termes contenant la variable, la constante et le nombre de termes.<details class="reponse"><summary>Voir le corrigé</summary><p>Variable : \(m\). Coefficients : 7 dans \(7m^2\), et \(-4\) dans \(-4m\). Constante : 9. Termes : \(7m^2\), \(-4m\), \(9\), donc trois termes.</p></details></li>
-<li>Explique pourquoi \(t\) et \(T\) ne doivent pas être confondus dans une formule scientifique.<details class="reponse"><summary>Voir le corrigé</summary><p>Ce sont deux symboles différents. Ils peuvent représenter respectivement le temps et la température, mais leur sens exact dépend du problème.</p></details></li>
-<li>Une personne marche à une vitesse constante de 5 km/h pendant 3 heures. Écris la formule utilisant \(d\), \(v\) et \(t\), puis calcule la distance.<details class="reponse"><summary>Voir le corrigé</summary><p>\(d=vt=(5\ \text{km/h})(3\ \text{h})=15\ \text{km}\).</p></details></li>
-<li>Dans \(y=2x+3\), quelle est la variable indépendante? Calcule \(y\) pour \(x=-1\).<details class="reponse"><summary>Voir le corrigé</summary><p>La variable indépendante est \(x\), et \(y\) est la variable dépendante. \(y=2(-1)+3=1\).</p></details></li>
-<li>Écris trois façons équivalentes de représenter le produit de 8 et d'une variable \(q\).<details class="reponse"><summary>Voir le corrigé</summary><p>\(8\times q=8\cdot q=8q\).</p></details></li>
-<li>Transforme \(p\div7\) et \(a\div b\) en fractions. Quelle restriction faut-il respecter pour la deuxième expression?<details class="reponse"><summary>Voir le corrigé</summary><p>\(p/7\) et \(a/b\). Dans \(a/b\), il faut \(b\neq0\).</p></details></li>
-<li>Évalue \(3x^2+5x-7\) pour \(x=-3\). Écris toutes les étapes.<details class="reponse"><summary>Voir le corrigé</summary><p>\(3(-3)^2+5(-3)-7=3(9)-15-7=27-22=5\).</p></details></li>
-<li>Évalue \(2a+3b\) avec \(a=-2\) et \(b=5\).<details class="reponse"><summary>Voir le corrigé</summary><p>\(2(-2)+3(5)=-4+15=11\).</p></details></li>
-<li>Traduis « le triple de la somme d'un nombre et de 4 » en écriture algébrique.<details class="reponse"><summary>Voir le corrigé</summary><p>\(3(x+4)\). Les parenthèses regroupent toute la somme à tripler. \(3x+4\) représenterait une autre situation.</p></details></li>
-<li>Traduis « sept de moins que le double d'un nombre » et « le double d'un nombre diminué de sept ».<details class="reponse"><summary>Voir le corrigé</summary><p>Les deux formulations donnent ici \(2x-7\). Ce n'est pas la même chose que \(2(x-7)\), soit le double d'un nombre déjà diminué de sept.</p></details></li>
-<li>Écris une équation pour « les frais fixes de 5 $ et 2 $ par séance donnent une facture de 17 $ ». Quel nombre de séances faut-il?<details class="reponse"><summary>Voir le corrigé</summary><p>Si \(x\) représente le nombre de séances : \(5+2x=17\). Alors \(2x=12\), d'où \(x=6\) séances.</p></details></li>
-</ol></div></section>
-<div class="source-note"><strong>À propos de cette page :</strong> contenu pédagogique et organisation des sections 1 à 12 adaptés du document transmis « Secondaire 2 — MAT2101-3 — Le langage de l'algèbre », 22 pages. Les jeux, graphiques manipulables, défis et exercices complémentaires sont de nouveaux ajouts. Des précisions de notation ont été ajoutées explicitement, sans changer les notions du document original.</div>
-<div class="endnav"><a href="https://learnwithdom.page/cours/mat2101.html">← Retour au cours MAT-2101-3</a><a href="#accroche">↑ Revenir au début</a></div>
-</main></div>
-<footer><div class="foot"><span class="brand">learnwith<span>dom</span>.page</span><span>MAT-2101-3 · Le langage de l’algèbre · Notes de cours interactives</span></div></footer>
-<noscript><div class="noscript">Les notes de cours restent accessibles, mais les simulations et les jeux nécessitent JavaScript.</div></noscript>
+:root{--ardoise:#223A34;--deep:#182922;--papier:#EAEEE9;--papier2:#E0E5DD;--encre:#1C2B3A;--craie:#D9A441;--brique:#B5524A;--sapin:#4B7A68;--line:#d0d8d1;--white:#fcfbf7}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--papier);color:var(--encre);font:17px/1.78 'Literata',Georgia,serif}h1,h2,h3,h4,button,label,.nav,.eyebrow,.chip,.metric,.tabs{font-family:'Space Grotesk',sans-serif}h1,h2,h3,h4{line-height:1.2;letter-spacing:-.035em}h2{font-size:clamp(1.8rem,3vw,2.5rem);margin:0 0 1rem}h3{font-size:1.25rem;margin:1.5rem 0 .6rem}p{margin:.55rem 0 1.2rem}a{color:#1c675c}a:hover{text-decoration-thickness:2px}.top{background:var(--deep);color:white;position:sticky;top:0;z-index:10;box-shadow:0 3px 14px #0002}.top nav{max-width:1200px;margin:auto;padding:13px 22px;display:flex;gap:18px;justify-content:space-between;align-items:center;font:600 14px 'Space Grotesk'}.top a{color:#fff;text-decoration:none}.brand{font-weight:700;font-size:1.2rem}.brand span{color:var(--craie)}.top .action{border:1px solid #ffffff65;padding:7px 12px;border-radius:7px}.hero{color:white;background:radial-gradient(circle at 85% 10%,#5a8270 0,transparent 34%),linear-gradient(135deg,#182922,#284a40);padding:76px 24px 62px}.hero-inner{max-width:1100px;margin:auto}.eyebrow{font:600 12px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--craie)}.hero h1{font-size:clamp(2.5rem,6vw,5rem);max-width:800px;margin:14px 0}.hero p{max-width:780px;color:#e3eae4}.hero .tag{display:inline-block;border:1px solid #ffffff50;padding:5px 12px;border-radius:99px;font:12px 'JetBrains Mono';margin-right:5px}.layout{max-width:1200px;margin:auto;display:grid;grid-template-columns:235px minmax(0,1fr);gap:38px;padding:36px 22px}.toc{position:sticky;top:75px;align-self:start;padding:22px 18px;background:var(--deep);border-radius:13px;color:white;max-height:calc(100vh - 95px);overflow:auto}.toc h2{font:700 13px 'Space Grotesk';margin:0 0 12px;color:var(--craie)}.toc a{display:block;color:#e1eae4;font:14px/1.6 'Space Grotesk';text-decoration:none;padding:5px 3px}.toc a:hover{color:var(--craie)}.content{min-width:0}.section{background:var(--white);border:1px solid var(--line);padding:clamp(22px,3vw,42px);border-radius:14px;margin-bottom:26px;scroll-margin-top:85px;box-shadow:0 6px 24px #1c2b3a07}.section .num{font:700 12px 'JetBrains Mono';letter-spacing:.1em;color:#8b6922;text-transform:uppercase}.call{border-left:5px solid var(--sapin);padding:14px 18px;background:#e8f1ea;border-radius:0 9px 9px 0;margin:18px 0}.call.warn{border-color:var(--brique);background:#f8eae7}.call.idea{border-color:var(--craie);background:#faf2d9}.call strong{font-family:'Space Grotesk'}.formula{background:#eef1ed;border:1px solid var(--line);border-radius:10px;padding:20px;text-align:center;font-size:1.15rem;overflow-x:auto}.step{background:#f2f5f0;padding:12px 15px;margin:8px 0;border-radius:8px}.step b{color:#2c6555}.lab{border:1px solid #b6cfc3;border-radius:12px;padding:22px;background:#f1f7f3;margin:24px 0}.lab h3{margin-top:0}.lab-label{font:700 12px 'JetBrains Mono';color:#3e6c5d;text-transform:uppercase}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:12px 0}.field{display:flex;flex-direction:column;gap:5px;flex:1;min-width:125px}.field label{font-weight:600;font-size:14px}.field input,.field select,.field textarea,.search{border:1px solid #adc4b7;padding:11px 12px;border-radius:8px;font:16px 'Space Grotesk';background:white;color:var(--encre);width:100%}button{font-size:14px;font-weight:700;padding:10px 15px;background:var(--ardoise);color:white;border:0;border-radius:8px;cursor:pointer}button:hover{background:#386352}button.alt{background:#deeadf;color:#183c30;border:1px solid #9eb8a8}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--craie);outline-offset:2px}.result{border-radius:9px;background:white;padding:13px 17px;margin-top:12px;border:1px solid var(--line);min-height:55px}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid #bdd0c6;border-radius:99px;padding:5px 11px;background:#f0f5ef;font-size:13px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.small-card{background:#f1f4f0;border:1px solid #d6e0d6;padding:15px;border-radius:10px}.small-card h4{margin:0 0 8px}.tablewrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font:15px/1.55 'Space Grotesk';min-width:450px;margin:15px 0}th,td{text-align:left;padding:11px;border:1px solid #d3ded4}th{background:#e3ebe4}.axes{max-width:100%;height:auto;display:block;margin:8px auto}.quiz{background:#fff9ec;border:1px solid #ead59b;border-radius:12px;padding:22px;margin:24px 0}.quiz .q{border-bottom:1px solid #e5d9ba;padding:15px 0}.quiz .q:last-child{border:0}.quiz .q button{margin:5px 6px 5px 0}.feedback{font:15px/1.55 'Space Grotesk';margin-top:8px;min-height:21px}.ok{color:#155d49}.no{color:#a53c33}.xp{font:700 17px 'Space Grotesk';color:#755215}.bar{height:12px;background:#e9dbc0;border-radius:20px;overflow:hidden}.bar>div{height:100%;background:var(--craie);width:0%;transition:width .3s}.glossary{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:12px}.glossary article{background:#f3f5f1;border:1px solid #d5dcd5;padding:15px;border-radius:9px}.glossary h4{margin:0 0 5px}.page-source summary{cursor:pointer;font-family:'Space Grotesk';padding:9px;background:#eef2ed;margin:4px 0}.page-source pre{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.5 'JetBrains Mono';padding:14px;background:white;border:1px solid #d3ddd3;max-height:450px;overflow:auto}details>summary{cursor:pointer;font:600 15px 'Space Grotesk';padding:10px 0}footer{background:var(--deep);color:#e9efe8;padding:28px 22px;text-align:center;font:14px 'Space Grotesk'}@media(max-width:850px){.layout{display:block;padding:20px 12px}.toc{position:static;max-height:none;margin-bottom:20px}.toc .links{display:grid;grid-template-columns:repeat(2,1fr);gap:0 12px}.section{padding:22px 17px}.hero{padding:48px 20px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head><body>
+<header class="top"><nav><a class="brand" href="https://learnwithdom.page">learnwithdom<span>.page</span></a><span>MAT-2101-3 · Secondaire 2</span><a class="action" href="https://learnwithdom.page/webwork2">WeBWorK ↗</a></nav></header>
+<div class="hero"><div class="hero-inner"><div class="eyebrow">MAT-2101-3 · 1.2.1 · Modélisation algébrique</div><h1>Le langage de l’algèbre</h1><p>Des nombres aux lettres, puis des mots aux expressions. Une leçon pour apprendre à lire, écrire, interpréter et utiliser le vocabulaire algébrique.</p><div><span class="tag">12 parties du document</span><span class="tag">4 laboratoires</span><span class="tag">500 XP</span><span class="tag">Glossaire</span></div></div></div>
+<div class="layout"><aside class="toc"><h2>TABLE DES MATIÈRES</h2><div class="links"><a href="#intro">1. Langage et variables</a><a href="#conventions">2. Lettres et conventions</a><a href="#dependance">3. Variables liées</a><a href="#structure">4. Structure algébrique</a><a href="#ecriture">5. Écriture en algèbre</a><a href="#evaluer">6. Substitution</a><a href="#acquis">7. Notions déjà connues</a><a href="#traduire">8. Traduction</a><a href="#raisonner">9. Raisonnement</a><a href="#histoire">10. Histoire</a><a href="#missions">11. Défis et exercices</a><a href="#glossaire">12. Glossaire</a><a href="#source">Document source</a></div></aside><main class="content">
+<section class="section" id="intro"><div class="num">Partie 1 · Pages 1–2 du PDF</div><h2>Le langage de l’algèbre</h2><p>En arithmétique, nous calculons souvent avec des nombres connus, par exemple <strong>3 + 5 = 8</strong>. L’algèbre généralise ce travail : une lettre représente une quantité dont la valeur est inconnue ou peut varier.</p><div class="formula">\(3+5=8\qquad\longrightarrow\qquad x+5\)</div><p>Une expression comme \(3x^2+5x-7\) possède une structure : des termes, des coefficients, une variable, une constante et des opérations. L’objectif n’est pas de retenir des symboles isolés, mais de comprendre comment ils s’assemblent.</p><div class="call idea"><strong>Une nouvelle façon de penser.</strong> L’algèbre ne remplace pas l’arithmétique : elle permet aussi de représenter ce qu’on ne connaît pas encore et les relations entre quantités.</div><h3>La variable : un nom pour une quantité</h3><p>Dans \(x+3\), la lettre \(x\) pourrait être remplacée par \(m\). La structure mathématique serait la même. On rencontre souvent \(x\), \(y\), \(z\), \(a\), \(b\), \(c\) ou \(t\), mais la lettre choisie n’a pas de pouvoir particulier.</p><div class="grid"><div class="small-card"><h4>Inconnue</h4><p>Dans \(x+5=8\), on cherche une valeur de \(x\).</p></div><div class="small-card"><h4>Quantité variable</h4><p>Dans \(y=2x+1\), les valeurs peuvent changer ensemble.</p></div></div></section>
+<section class="section" id="conventions"><div class="num">Partie 1.3–1.4 · Pages 2–6</div><h2>Pourquoi certaines lettres reviennent-elles?</h2><p>Les lettres \(x\), \(y\) et \(z\) servent souvent à identifier les coordonnées d’un point. Dans le plan, on écrit \(P(x,y)\); dans l’espace, \(P(x,y,z)\). Ce sont des conventions, et non des obligations.</p><svg viewBox="0 0 470 240" role="img" aria-label="Plan cartésien présentant le point P de coordonnées (2, 3)" class="axes"><line x1="45" y1="200" x2="435" y2="200" stroke="#253b34" stroke-width="2"/><line x1="65" y1="220" x2="65" y2="12" stroke="#253b34" stroke-width="2"/><path d="M435 200l-9-5v10zM65 12l-5 9h10z" fill="#253b34"/><g stroke="#ccd8d0" stroke-dasharray="3 5"><line x1="155" y1="28" x2="155" y2="200"/><line x1="65" y1="65" x2="155" y2="65"/></g><circle cx="155" cy="65" r="7" fill="#b5524a"/><g font-size="16" font-family="Space Grotesk" fill="#1c2b3a"><text x="441" y="205">x</text><text x="50" y="14">y</text><text x="48" y="219">0</text><text x="146" y="222">2</text><text x="40" y="70">3</text><text x="170" y="60">P(2, 3)</text></g></svg><p>En sciences, \(t\) représente souvent le <strong>temps</strong>, tandis que \(T\) peut représenter la <strong>température</strong>. On peut rencontrer \(d=vt\), où \(d\) est la distance, \(v\) la vitesse et \(t\) le temps.</p><div class="step"><b>Exemple.</b> À 80 km/h pendant 2 h : \(d=vt=80\times2=160\text{ km}\).</div><div class="call warn"><strong>Attention à la casse.</strong> Les variables \(t\) et \(T\) sont différentes. Leur signification dépend toujours du contexte.</div></section>
+<section class="section" id="dependance"><div class="num">Partie 1.5 · Pages 6–7</div><h2>Variables indépendantes et dépendantes</h2><p>Dans la relation \(y=2x+3\), on choisit \(x\) puis on calcule \(y\). La variable \(x\) est dite <strong>indépendante</strong>; \(y\) est dite <strong>dépendante</strong>.</p><div class="lab"><div class="lab-label">Laboratoire 1 · Fais varier x</div><h3>Une relation entre deux quantités</h3><div class="controls"><div class="field"><label for="xslide">Choisis la valeur de x</label><input id="xslide" type="range" min="-5" max="10" step="1" value="2"></div></div><div class="result" id="xyout" aria-live="polite"></div><svg id="xyplot" viewBox="0 0 560 270" role="img" aria-label="Graphique interactif de y égal 2x plus 3" class="axes"></svg><p><small>Observe comment la valeur de \(y\) est déterminée par celle de \(x\).</small></p></div></section>
+<section class="section" id="structure"><div class="num">Partie 2 · Pages 7–8</div><h2>Construire et lire une expression</h2><div class="formula">\(\underbrace{3x^2}_{\text{terme}}+\underbrace{5x}_{\text{terme}}\underbrace{-7}_{\text{terme}}\)</div><div class="grid"><div class="small-card"><h4>Variable</h4>La lettre \(x\) représente une quantité.</div><div class="small-card"><h4>Coefficient</h4>Dans \(3x^2\), le coefficient est <strong>3</strong>; dans \(5x\), il est <strong>5</strong>.</div><div class="small-card"><h4>Constante</h4>Le terme \(-7\) ne contient aucune variable.</div><div class="small-card"><h4>Termes</h4>Les trois termes sont \(3x^2\), \(5x\) et \(-7\).</div></div><p>Une <strong>expression algébrique</strong> combine des nombres, des variables et des opérations, par exemple \(3x^2+5x-7\). Une <strong>équation</strong> affirme une égalité, par exemple \(2x+5=17\).</p><div class="lab"><div class="lab-label">Laboratoire 2 · Décode l’expression</div><h3>Reconnais ses éléments</h3><div class="controls"><div class="field"><label for="parttype">Élément à repérer</label><select id="parttype"><option value="variable">Variable</option><option value="coeff">Coefficients</option><option value="constant">Constante</option><option value="terms">Termes</option></select></div></div><div class="result" id="partout" aria-live="polite"></div></div></section>
+<section class="section" id="ecriture"><div class="num">Partie 3 · Pages 8–10</div><h2>Les conventions d’écriture</h2><h3>La multiplication</h3><p>Quand il n’y a pas d’ambiguïté, on préfère une écriture plus concise : \(3\times x=3\cdot x=3x\). Par convention, on place le coefficient avant la variable : \(3x\) plutôt que \(x3\).</p><div class="call idea"><strong>À retenir.</strong> \(5x=x+x+x+x+x\). De même, \(3x^2=3(x^2)\) : le coefficient ne devient pas un exposant.</div><h3>La division</h3><p>On utilise généralement une fraction plutôt que le symbole \(\div\) : \(x\div3=\frac{x}{3}\) et \(a\div b=\frac ab\), avec \(b\ne0\).</p><div class="tablewrap"><table><thead><tr><th>Écriture</th><th>Écriture algébrique privilégiée</th></tr></thead><tbody><tr><td>3 × x</td><td>\(3x\)</td></tr><tr><td>x × x</td><td>\(x^2\)</td></tr><tr><td>x ÷ 3</td><td>\(\frac x3\)</td></tr><tr><td>a ÷ b</td><td>\(\frac ab\)</td></tr></tbody></table></div></section>
+<section class="section" id="evaluer"><div class="num">Partie 4 · Pages 10–13</div><h2>Évaluer une expression : la substitution</h2><p>Évaluer une expression, c’est remplacer les variables par des nombres, puis respecter la priorité des opérations.</p><div class="step"><b>Exemple 1.</b> Si \(x=2\), alors \(3x^2+5x-7=3(2)^2+5(2)-7=12+10-7=15\).</div><div class="step"><b>Exemple 2.</b> Si \(x=-2\), alors \(3(-2)^2+5(-2)-7=12-10-7=-5\).</div><div class="call warn"><strong>Piège des signes.</strong> \((-2)^2=4\), mais \(-2^2=-4\). Lorsque tu remplaces une variable par un nombre négatif, utilise des parenthèses.</div><div class="step"><b>Exemple 3.</b> Pour \(2a+3b\) avec \(a=4\) et \(b=-1\) : \(2(4)+3(-1)=8-3=5\).</div><div class="lab"><div class="lab-label">Laboratoire 3 · Substitution instantanée</div><h3>À toi de calculer</h3><p>Évalue \(3x^2+5x-7\) pour plusieurs valeurs de \(x\).</p><div class="controls"><div class="field"><label for="xnumber">Valeur de x</label><input type="number" id="xnumber" value="-2" min="-20" max="20" step="1"></div><button id="evalbtn">Calculer</button></div><div class="result" id="evalout" aria-live="polite"></div></div></section>
+<section class="section" id="acquis"><div class="num">Partie 5 · Pages 13–14</div><h2>Réutiliser les notions déjà acquises</h2><p>L’algèbre s’appuie sur l’arithmétique : exposants, racines et priorité des opérations. Ces règles restent essentielles lorsqu’on remplace les lettres par des nombres.</p><div class="grid"><div class="small-card"><h4>Exposant positif</h4>\(x^2=x\cdot x\)</div><div class="small-card"><h4>Exposant négatif</h4>\(x^{-1}=\frac1x\), si \(x\ne0\).</div><div class="small-card"><h4>Exposant fractionnaire</h4>\(x^{1/2}=\sqrt x\) pour \(x\ge0\) dans les réels.</div><div class="small-card"><h4>Racine cubique</h4>\(x^{1/3}=\sqrt[3]x\).</div></div><div class="call">Même dans \(3(2)^2+5(2)-7\), on calcule les puissances avant les multiplications, puis les additions et soustractions.</div></section>
+<section class="section" id="traduire"><div class="num">Partie 6 · Pages 14–16</div><h2>Traduire entre les mots et les symboles</h2><p>Un langage se comprend dans les deux sens. Tu dois apprendre à écrire une expression à partir d’une phrase et à expliquer une expression avec des mots.</p><div class="tablewrap"><table><thead><tr><th>Phrase</th><th>Expression</th></tr></thead><tbody><tr><td>La somme de x et 7</td><td>\(x+7\)</td></tr><tr><td>Le double d’un nombre</td><td>\(2x\)</td></tr><tr><td>Le triple d’un nombre</td><td>\(3x\)</td></tr><tr><td>La moitié d’un nombre</td><td>\(\frac x2\)</td></tr><tr><td>Le carré d’un nombre</td><td>\(x^2\)</td></tr><tr><td>Le produit de a et b</td><td>\(ab\)</td></tr><tr><td>Le quotient de a par b</td><td>\(\frac ab\)</td></tr></tbody></table></div><h3>L’ordre des mots compte</h3><div class="grid"><div class="small-card">« Un nombre diminué de 5 »<div class="formula">\(x-5\)</div></div><div class="small-card">« 5 diminué d’un nombre »<div class="formula">\(5-x\)</div></div></div><p>« 5 de moins que \(x\) » signifie \(x-5\), car c’est la quantité \(x\) qui perd 5. Demande-toi : <strong>qui subit l’opération?</strong></p><h3>Les parenthèses changent le sens</h3><div class="tablewrap"><table><thead><tr><th>Phrase</th><th>Traduction</th></tr></thead><tbody><tr><td>Le double d’un nombre, diminué de 3</td><td>\(2x-3\)</td></tr><tr><td>Le double de la différence entre un nombre et 3</td><td>\(2(x-3)\)</td></tr><tr><td>Le carré d’un nombre, augmenté de 5</td><td>\(x^2+5\)</td></tr><tr><td>Le carré de la somme d’un nombre et 5</td><td>\((x+5)^2\)</td></tr></tbody></table></div><p>Une phrase complète peut conduire à une équation : « Le double d’un nombre auquel on ajoute cinq est égal à dix-sept » devient \(2x+5=17\). « Le carré d’un nombre diminué du triple de ce même nombre donne quatre » devient \(x^2-3x=4\).</p><div class="lab"><div class="lab-label">Laboratoire 4 · Traducteur algébrique</div><h3>Choisis la bonne traduction</h3><p id="translateQuestion">Chargement…</p><div id="translateOptions" class="controls"></div><div id="translateFeedback" class="result" aria-live="polite"></div><button class="alt" id="translateNext">Autre phrase ↻</button></div><div class="call idea"><strong>Dans l’autre sens.</strong> \(\frac{x+4}{2}\) se lit « la moitié de la somme d’un nombre et de 4 »; \(2x^2-1\) se lit « le double du carré d’un nombre, diminué de 1 ».</div></section>
+<section class="section" id="raisonner"><div class="num">Parties 7 et 9 · Pages 17 et 19</div><h2>Du calcul au raisonnement</h2><p>En arithmétique, on peut demander \(3+5=?\). En algèbre, on peut plutôt demander \(x+5=8\). On cherche alors une inconnue : \(x=3\).</p><p>Grâce aux symboles, des phrases longues deviennent des relations que l’on peut analyser, vérifier, transformer et résoudre. C’est la grande idée de ce chapitre : <strong>voir la structure derrière les symboles</strong>.</p></section>
+<section class="section" id="histoire"><div class="num">Partie 8 · Pages 17–19</div><h2>Un peu d’histoire de la notation algébrique</h2><p>Avant l’écriture symbolique moderne, des civilisations comme la Babylonie, l’Égypte, l’Inde, la Chine et le monde grec ont développé des méthodes pour raisonner sur des inconnues. Pendant longtemps, ces problèmes étaient décrits principalement avec des mots.</p><p>Au fil du temps, des abréviations et des symboles ont été introduits. Au XVIe siècle, <strong>François Viète</strong> a joué un rôle important en utilisant systématiquement des lettres pour représenter des quantités. Au XVIIe siècle, <strong>René Descartes</strong> a contribué à populariser certaines conventions, dont l’utilisation fréquente de \(x\), \(y\), \(z\) pour des inconnues.</p><div class="call idea"><strong>Pourquoi utiliser des symboles?</strong> Ils condensent beaucoup d’information. Une phrase comme « le double d’un nombre auquel on ajoute cinq est égal à dix-sept » se traduit par \(2x+5=17\).</div></section>
+<section class="section" id="missions"><div class="num">Activités · Consolidation</div><h2>Mission : parle algèbre</h2><p>Cinq défis progressifs, avec explications après chaque réponse. Tu peux refaire les missions autant de fois que nécessaire.</p><div class="quiz"><p class="xp" id="xpText">0 / 500 XP</p><div class="bar"><div id="xpBar"></div></div><div id="quizArea"></div><button id="resetQuiz" class="alt">Recommencer les missions</button></div><h3>Exercices à réponse développée</h3><p>Essaie chaque exercice avant d’ouvrir la solution. Les étapes sont détaillées pour t’aider à comprendre la démarche.</p><div id="practiceArea"></div></section>
+<section class="section" id="glossaire"><div class="num">Parties 10–12 · Pages 20–22</div><h2>À retenir et glossaire</h2><p>Le glossaire reprend les mots essentiels du document. Utilise le champ de recherche pour retrouver rapidement une définition.</p><input class="search" id="glossSearch" aria-label="Rechercher une définition" placeholder="Chercher : coefficient, équation, variable…"><div class="glossary" id="glossaryList"></div><div class="call">L’objectif n’est pas d’apprendre une liste de mots par cœur, mais de savoir reconnaître et expliquer les éléments d’une expression comme \(2x^2+3x-7\).</div></section>
+<section class="section" id="source"><div class="num">Annexe · Source fournie</div><h2>Texte du PDF original</h2><p>Pour faciliter la vérification et ne perdre aucun détail du document de départ, voici la transcription textuelle consultable des 22 pages. Les figures et la disposition graphique du PDF ne sont pas reproduites à l’identique dans cette annexe.</p><details class="page-source"><summary>Page 1 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+1
+1
+Le langage de l’algèbre
+Jusqu’à maintenant, nous avons principalement travaillé avec des nombres.
+Nous avons appris à effectuer différentes opérations, à utiliser les exposants, les
+carrés, les cubes, les racines et la priorité des opérations.
+Avec l’algèbre, nous allons maintenant franchir une nouvelle étape :
+nous allons utiliser des lettres pour représenter des quantités.
+L’algèbre ne remplace donc pas l’arithmétique. Elle la généralise. En arith‐
+métique, nous travaillons généralement avec des nombres dont la valeur est
+connue. Par exemple :
+3 + 5 = 8.
+En algèbre, nous pouvons plutôt écrire :
+𝑥+ 5.
+La lettre 𝑥représente alors une quantité dont nous ne connaissons pas né‐
+cessairement la valeur. Elle peut représenter une inconnue, mais également une
+quantité qui varie selon le problème étudié.
+C’est l’une des grandes différences entre l’arithmétique et l’algèbre : au lieu
+de simplement calculer une réponse à partir de nombres connus, nous pouvons
+utiliser des symboles pour représenter des quantités et étudier les relations qui
+existent entre elles.
+Une nouvelle façon de penser
+L’arithmétique travaille principalement avec des nombres connus.
+L’algèbre permet de travailler avec des nombres connus, des nombres in‐
+connus et des quantités qui peuvent varier.
+1.1
+L’algèbre comme langage
+On peut maintenant commencer à voir l’algèbre comme un véritable langage
+mathématique. Une expression comme
+3𝑥2 + 5𝑥−7
+n’est pas simplement une suite de symboles. Elle possède une structure que
+nous pouvons apprendre à reconnaître et à décrire. Plus nous avancerons en
+algèbre, plus cette façon de lire les expressions deviendra importante. Notre ob‐
+jectif n’est donc pas seulement de savoir effectuer des calculs, mais également
+de comprendre la structure de ce que nous écrivons.
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 2 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+2
+1.2
+Les lettres et les variables
+En algèbre, une lettre peut représenter une quantité. On appelle générale‐
+ment cette quantité une variable. Les lettres les plus couramment utilisées sont
+notamment :
+𝑥,
+𝑦,
+𝑧,
+𝑎,
+𝑏,
+𝑐,
+𝑡.
+Mais aucune règle mathématique ne nous oblige à choisir une lettre particu‐
+lière. On pourrait tout aussi bien utiliser :
+𝑚,
+𝑛,
+𝑝,
+𝑞.
+La lettre choisie sert avant tout à identifier la quantité que nous étudions.
+Ce qui est important n’est donc pas la lettre elle‐même, mais le rôle qu’elle joue
+dans l’expression ou dans le problèmeé. Par exemple, dans
+𝑥+ 3,
+la lettre 𝑥représente une quantité. Nous pourrions remplacer 𝑥par 𝑚et
+écrire :
+𝑚+ 3.
+La structure mathématique reste exactement la même. Seule la lettre utilisée
+pour identifier la variable a changé.
+On peut donc considérer une variable comme une sorte de nom mathéma‐
+tique donné à une quantité. Le choix de ce nom dépend souvent du contexte
+dans lequel nous travaillons.
+À retenir
+Une variable peut être représentée par n’importe quelle lettre. Les lettres
+𝑥, 𝑦et 𝑧sont simplement des conventions très courantes. Ce n’est pas
+la lettre qui donne un sens mathématique à la variable : c’est le contexte
+dans lequel elle est utilisée.
+1.3
+Pourquoi utilise‐t‐on souvent 𝑥, 𝑦et 𝑧?
+Dans les mathématiques modernes, les lettres 𝑥, 𝑦et 𝑧sont très souvent
+utilisées pour représenter des variables ou des inconnues. On les rencontre no‐
+tamment dans les équations, les fonctions et la géométrie analytique.
+Par exemple :
+𝑦= 2𝑥+ 1.
+Dans cette relation, 𝑥et 𝑦représentent deux quantités liées l’une à l’autre.
+La valeur de 𝑦dépend ici de la valeur choisie pour 𝑥. Il est toutefois important de
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 3 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+3
+comprendre que la lettre 𝑥n’a aucune propriété mathématique spéciale. Nous
+pourrions tout aussi bien écrire :
+𝑦= 2𝑡+ 1
+ou :
+𝑞= 2𝑚+ 1.
+La relation mathématique demeure la même. Les lettres constituent simple‐
+ment un système de notation qui nous permet d’identifier différentes quanti‐
+tés. Les lettres 𝑥, 𝑦et 𝑧sont toutefois devenues particulièrement courantes en
+géométrie parce qu’elles servent traditionnellement à représenter les coordon‐
+nées d’un point. Dans un plan à deux dimensions, nous avons généralement deux
+axes :
+𝑥
+et
+𝑦.
+Un point peut alors être décrit par deux coordonnées :
+𝑃(𝑥, 𝑦).
+La première coordonnée indique la position du point dans la direction de l’axe
+𝑥, tandis que la deuxième indique sa position dans la direction de l’axe 𝑦.
+𝑥
+𝑦
+𝑂
+𝑃(𝑥, 𝑦)
+𝑥
+𝑦
+Ce système permet donc de décrire la position d’un point à l’aide de nombres.
+Par exemple, le point
+𝑃(2, 3)
+se trouve à 2 unités dans la direction de l’axe 𝑥et à 3 unités dans la direction
+de l’axe 𝑦. L’idée peut être étendue à trois dimensions. Dans l’espace, nous uti‐
+lisons généralement trois axes, que nous appelons 𝑥, 𝑦et 𝑧. Un point peut alors
+être représenté par trois coordonnées :
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 4 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+4
+𝑃(𝑥, 𝑦, 𝑧).
+On peut ainsi utiliser 𝑥, 𝑦et 𝑧pour décrire la position d’un objet dans l’espace.
+𝑥
+𝑦
+𝑧
+𝑃(𝑥, 𝑦, 𝑧)
+𝑂
+On obtient alors :
+𝑃(𝑥, 𝑦, 𝑧)
+où chaque variable indique une position dans une direction différente.
+Pourquoi 𝑥, 𝑦et 𝑧?
+Les lettres 𝑥, 𝑦et 𝑧sont devenues des conventions particulièrement cou‐
+rantes pour représenter les coordonnées.
+Dans un plan :
+𝑃(𝑥, 𝑦)
+et dans l’espace :
+𝑃(𝑥, 𝑦, 𝑧).
+Cependant, il serait parfaitement possible d’utiliser d’autres lettres. La no‐
+tation mathématique pourrait, par exemple, utiliser 𝑎, 𝑏et 𝑐. Ce sont les
+conventions qui rendent les mathématiques plus faciles à lire et à com‐
+muniquer.
+Ainsi, lorsque nous rencontrons 𝑥, 𝑦ou 𝑧, nous devons toujours regarder le
+contexte pour déterminer ce que ces lettres représentent.
+1.4
+La lettre 𝑡et le temps
+Certaines lettres sont devenues particulièrement courantes dans certains do‐
+maines des mathématiques et des sciences. Par exemple, la lettre 𝑡est très sou‐
+vent utilisée pour représenter le temps. Cette convention est particulièrement
+fréquente en physique. On peut alors rencontrer une relation comme :
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 5 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+5
+𝑑= 𝑣𝑡,
+où :
+• 𝑑représente une distance;
+• 𝑣représente une vitesse;
+• 𝑡représente le temps.
+Par exemple, si une voiture se déplace à une vitesse constante de 80 km/h
+pendant 2 h, on peut écrire :
+𝑑= 𝑣𝑡
+et donc :
+𝑑= (80)(2) = 160 km.
+Encore une fois, le choix de 𝑡n’est pas une obligation mathématique. Il s’agit
+d’une convention qui facilite la lecture et la communication des mathématiques.
+Il faut également faire attention à la différence entre une lettre minuscule et une
+lettre majuscule. Elles peuvent représenter des quantités complètement diffé‐
+rentes.
+Par exemple, dans un même problème, on pourrait utiliser :
+𝑡= temps
+alors que :
+𝑇= température.
+Ainsi, même si 𝑡et 𝑇sont visuellement semblables, ils représentent deux va‐
+riables différentes. Cette distinction est particulièrement importante en sciences,
+où les lettres majuscules et minuscules sont souvent utilisées pour représenter
+des grandeurs différentes. On peut, par exemple, rencontrer les notations sui‐
+vantes :
+𝑡= temps,
+𝑇= température,
+𝑚= masse,
+𝑀= masse molaire.
+Il faut donc toujours identifier une variable à partir de son contexte, et non
+simplement en fonction de la lettre utilisée.
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 6 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+6
+À retenir
+Une lettre possède généralement un sens qui dépend du contexte.
+Par exemple :
+𝑡→temps
+est une convention fréquente, mais 𝑡pourrait représenter autre chose
+dans un autre problème. De même, 𝑡et 𝑇doivent être considérés comme
+deux variables différentes, même si leurs noms sont semblables.
+1.5
+Les variables indépendantes et dépendantes
+Lorsque deux variables sont liées par une relation, il est souvent utile de dis‐
+tinguer leur rôle. Considérons :
+𝑦= 2𝑥+ 3.
+Nous choisissons généralement la valeur de 𝑥, puis la valeur de 𝑦est déter‐
+minée par cette valeur.
+On dit alors que :
+• 𝑥est la variable indépendante;
+• 𝑦est la variable dépendante.
+La valeur de 𝑦dépend donc de la valeur choisie pour 𝑥.
+Par exemple, si :
+𝑥= 1,
+alors :
+𝑦= 2(1) + 3 = 5.
+Si :
+𝑥= 4,
+alors :
+𝑦= 2(4) + 3 = 11.
+On peut représenter cette relation simplement :
+𝑥⟶𝑦
+ou :
+variable indépendante ⟶variable dépendante
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 7 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+7
+Cette distinction deviendra particulièrement importante lorsque nous étu‐
+dierons les fonctions.
+2
+Construire et lire une expression algébrique
+Maintenant que nous savons ce qu’est une variable, nous pouvons commen‐
+cer à examiner la structure des expressions algébriques.
+Considérons :
+3𝑥2 + 5𝑥−7.
+Cette expression contient plusieurs éléments importants.
+2.1
+La variable
+Dans
+3𝑥2 + 5𝑥−7,
+la variable est 𝑥.
+Elle représente une quantité qui peut varier ou dont la valeur peut être in‐
+connue.
+2.2
+Le coefficient
+Dans
+3𝑥2,
+le nombre 3 est le coefficient de 𝑥2.
+Dans
+5𝑥,
+le nombre 5 est le coefficient de 𝑥.
+Le coefficient indique combien de fois nous prenons la quantité représentée
+par la variable.
+Par exemple :
+5𝑥= 𝑥+ 𝑥+ 𝑥+ 𝑥+ 𝑥.
+De la même façon :
+3𝑥2 = 3(𝑥2).
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 8 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+8
+2.3
+La constante
+Dans
+3𝑥2 + 5𝑥−7,
+le nombre −7 est une constante.
+Il ne contient aucune variable.
+Dans l’expression considérée, sa valeur demeure fixe.
+2.4
+Les termes
+Les parties séparées par une addition ou une soustraction sont appelées des
+termes.
+Dans
+3𝑥2 + 5𝑥−7,
+nous avons trois termes :
+3𝑥2
+5𝑥
+−7 .
+Cette terminologie deviendra particulièrement importante lorsque nous com‐
+mencerons à travailler avec les polynômes.
+2.5
+Expression algébrique et équation
+Une expression algébrique est une combinaison de nombres, variables et
+opérations.
+Par exemple :
+3𝑥2 + 5𝑥−7.
+Une expression ne contient pas nécessairement de signe d’égalité. Une équa‐
+tion, quant à elle, affirme que deux expressions ont la même valeur.
+Par exemple :
+2𝑥+ 5 = 17.
+Nous apprendrons à résoudre les équations dans les prochaines sections du
+cours.
+3
+Les conventions d’écriture en algèbre
+L’algèbre possède plusieurs conventions d’écriture qui permettent de rendre
+les expressions plus compactes et plus faciles à lire.
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 9 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+9
+3.1
+La multiplication en algèbre
+En arithmétique, nous avons souvent utilisé le symbole × :
+3 × 4 = 12.
+En algèbre, nous utiliserons progressivement davantage le point centré :
+3 ⋅4 = 12.
+Mais lorsque le contexte est suffisamment clair, nous pouvons souvent sup‐
+primer complètement le symbole de multiplication :
+3 ⋅𝑥= 3𝑥.
+Ainsi :
+3 × 𝑥= 3 ⋅𝑥= 3𝑥.
+Ces trois écritures représentent la même multiplication.
+Une convention importante
+En algèbre, lorsque le contexte est clair, on évite souvent le symbole ×.
+On utilise plutôt :
+3 ⋅𝑥
+ou, plus simplement :
+3𝑥.
+3.2
+Pourquoi écrit‐on 3𝑥plutôt que 𝑥3?
+En multiplication, l’ordre des facteurs ne change pas le résultat :
+3 × 𝑥= 𝑥× 3.
+On pourrait donc écrire 𝑥3.
+Cependant, la convention algébrique veut généralement que le coefficient
+soit placé avant la variable :
+3𝑥
+plutôt que :
+𝑥3.
+Cette convention rend les expressions plus faciles à lire.
+Par exemple :
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 10 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+10
+5𝑥,
+−2𝑦,
+7𝑎,
+1
+2𝑧.
+3.3
+La division et les fractions
+En arithmétique, nous pouvons écrire :
+8 ÷ 2 = 4.
+En algèbre, il est souvent beaucoup plus pratique d’utiliser une fraction :
+8
+2 = 4.
+Avec des variables :
+𝑥÷ 3 = 𝑥
+3
+et :
+𝑎÷ 𝑏= 𝑎
+𝑏.
+La notation fractionnaire permet de voir immédiatement le numérateur et le
+dénominateur.
+En algèbre
+Nous utiliserons très souvent les fractions plutôt que le symbole ÷.
+𝑎÷ 𝑏
+⟶
+𝑎
+𝑏.
+4
+Évaluer une expression algébrique
+Maintenant que nous connaissons le vocabulaire et les conventions d’écri‐
+ture, nous pouvons commencer à utiliser les expressions algébriques.
+Évaluer une expression signifie remplacer une variable par une valeur don‐
+née, puis calculer le résultat.
+Cette opération est également appelée substitution.
+4.1
+Un premier exemple
+Évaluons :
+3𝑥2 + 5𝑥−7
+pour :
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 11 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+11
+𝑥= 2.
+On remplace chaque 𝑥par 2 :
+3(2)2 + 5(2) −7.
+On applique ensuite la priorité des opérations :
+3(4) + 5(2) −7
+puis :
+12 + 10 −7 = 15.
+Donc :
+3𝑥2 + 5𝑥−7 = 15
+lorsque 𝑥= 2.
+4.2
+Le piège des nombres négatifs
+L’évaluation devient plus délicate lorsque la valeur substituée est négative.
+Évaluons la même expression pour :
+𝑥= −2.
+La règle d’or est la suivante :
+on remplace toujours une variable par sa valeur entre parenthèses.
+Nous écrivons donc :
+3(−2)2 + 5(−2) −7.
+On calcule d’abord l’exposant :
+(−2)2 = 4.
+Puis :
+3(4) + 5(−2) −7
+= 12 −10 −7
+= −5.
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 12 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+12
+Attention!
+Il faut distinguer :
+(−2)2 = 4
+de :
+−22 = −4.
+Les parenthèses indiquent que le signe négatif fait partie du nombre qui
+est élevé au carré.
+C’est pourquoi une valeur négative doit être placée entre parenthèses
+lorsqu’on la substitue dans une expression.
+4.3
+Évaluer une expression avec plusieurs variables
+La même idée s’applique lorsqu’une expression contient plusieurs variables.
+Évaluons :
+2𝑎+ 3𝑏
+pour :
+𝑎= 4,
+𝑏= −1.
+On obtient :
+2(4) + 3(−1).
+Donc :
+8 −3 = 5.
+Ainsi :
+2𝑎+ 3𝑏= 5
+lorsque 𝑎= 4 et 𝑏= −1.
+4.4
+Pourquoi la substitution est‐elle importante?
+Évaluer une expression permet de vérifier des formules, de tester des hypo‐
+thèses et de résoudre des problèmes concrets.
+Par exemple, si :
+𝑑= 𝑣𝑡
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 13 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+13
+représente une distance parcourue à vitesse constante, nous pouvons sub‐
+stituer :
+𝑣= 90,
+𝑡= 2.
+Nous obtenons :
+𝑑= (90)(2) = 180.
+Cette même logique — remplacer une lettre par un nombre, puis appliquer la
+priorité des opérations — sera utilisée constamment dans les chapitres à venir.
+5
+Le lien avec ce que nous avons déjà appris
+L’algèbre ne commence pas à partir de zéro.
+Elle réutilise plusieurs notions que nous avons déjà étudiées.
+5.1
+Les exposants
+Nous avons déjà vu :
+𝑥2.
+Nous avons également étudié les exposants négatifs :
+𝑥−1 = 1
+𝑥.
+Et les exposants fractionnaires :
+𝑥
+1
+2 = √𝑥
+et :
+𝑥
+1
+3 =
+3√𝑥.
+Ces notions deviennent maintenant des outils du langage algébrique.
+5.2
+La priorité des opérations
+Lorsque nous évaluons une expression comme :
+3𝑥2 + 5𝑥−7,
+nous devons encore respecter la priorité des opérations.
+Par exemple, pour 𝑥= 2 :
+3(2)2 + 5(2) −7
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 14 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+14
+doit être calculé dans le bon ordre.
+L’algèbre ne remplace donc pas les règles que nous avons déjà apprises. Elle
+nous permet de les utiliser dans des expressions plus générales.
+6
+Traduire entre les mots et les symboles
+Un langage se parle dans les deux sens.
+Nous devons être capables de lire une expression algébrique, mais également
+de construire une expression à partir d’une phrase.
+Cette compétence est particulièrement importante lorsqu’on résout des pro‐
+blèmes écrits.
+6.1
+Le vocabulaire de la traduction
+Certains mots correspondent fréquemment à certaines opérations.
+Expression en mots
+Traduction algébrique
+la somme de 𝑥et 7
+𝑥+ 7
+le double d’un nombre
+2𝑥
+le triple d’un nombre
+3𝑥
+la moitié d’un nombre
+𝑥
+2
+le carré d’un nombre
+𝑥2
+le produit de 𝑎et 𝑏
+𝑎𝑏
+le quotient de 𝑎par 𝑏
+𝑎
+𝑏
+6.2
+Le piège de l’ordre des mots
+L’addition et la multiplication sont généralement faciles à traduire, car l’ordre
+ne change pas le résultat.
+La soustraction et la division sont différentes.
+Comparons :
+Phrase
+Traduction
+un nombre diminué de 5
+𝑥−5
+5 diminué d’un nombre
+5 −𝑥
+5 de moins qu’un nombre
+𝑥−5
+un nombre de moins que 5
+5 −𝑥
+Le piège classique est :
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 15 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+15
+«5 de moins que 𝑥»
+La bonne traduction est :
+𝑥−5.
+Une stratégie fiable
+Pour éviter les erreurs, demandez‐vous :
+Qui subit l’opération?
+Dans «5 de moins que 𝑥», c’est 𝑥qui perd 5.
+Donc :
+𝑥−5.
+6.3
+Le piège des parenthèses
+La place des parenthèses peut également changer complètement le sens
+d’une expression.
+Comparons :
+Phrase
+Traduction
+le double d’un nombre, diminué de 3
+2𝑥−3
+le double de la différence entre un nombre et 3
+2(𝑥−3)
+le carré d’un nombre, augmenté de 5
+𝑥2 + 5
+le carré de la somme d’un nombre et 5
+(𝑥+ 5)2
+Les parenthèses indiquent qu’une opération doit être effectuée sur l’ensemble
+de l’expression.
+C’est la même idée que celle rencontrée précédemment avec les exposants :
+(3 + 2)2
+n’est pas la même chose que :
+3 + 22.
+6.4
+Traduire une phrase complète
+Considérons :
+«Le double d’un nombre auquel on ajoute cinq est égal à dix‐sept.»
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 16 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+16
+Nous pouvons traduire cette phrase par :
+2𝑥+ 5 = 17.
+Un autre exemple :
+«Le carré d’un nombre, diminué du triple de ce même nombre, donne
+quatre.»
+On traduit chaque morceau :
+• le carré d’un nombre ⟶𝑥2 ;
+• diminué du triple de ce même nombre ⟶−3𝑥;
+• donne quatre ⟶= 4.
+Nous obtenons :
+𝑥2 −3𝑥= 4 .
+Nous apprendrons à résoudre ce type d’équation plus tard.
+6.5
+Traduire dans l’autre sens
+La traduction fonctionne également dans l’autre direction.
+Par exemple :
+𝑥+ 4
+2
+peut se lire :
+«la moitié de la somme d’un nombre et de 4».
+De même :
+2𝑥2 −1
+peut se lire :
+«le double du carré d’un nombre, diminué de 1».
+Être capable de traduire dans les deux sens signifie que nous commençons
+réellement à parler le langage de l’algèbre.
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 17 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+17
+7
+Une nouvelle étape : passer du calcul au raisonne‐
+ment
+En arithmétique, nous pouvons poser une question comme :
+3 + 5 = ?
+Nous connaissons les nombres et nous cherchons le résultat.
+En algèbre, nous pouvons plutôt rencontrer :
+𝑥+ 5 = 8.
+Cette fois, nous connaissons le résultat et nous cherchons une quantité in‐
+connue.
+Nous devons donc utiliser les règles de l’algèbre pour remonter le raisonne‐
+ment et déterminer la valeur de 𝑥.
+On obtient :
+𝑥= 3.
+C’est ici que l’algèbre devient particulièrement intéressante.
+Nous ne faisons plus seulement des calculs :
+nous cherchons, transformons et raisonnons.
+L’algèbre nous permet donc de passer du simple calcul à l’étude des relations
+entre différentes quantités.
+8
+Un peu d’histoire de la notation algébrique
+L’idée de représenter une quantité inconnue est loin d’être nouvelle. Bien
+avant l’apparition de l’algèbre sous sa forme moderne, les mathématiciens cher‐
+chaient déjà à résoudre des problèmes qui, aujourd’hui, pourraient être traduits
+sous la forme d’équations.
+En Babylonie, en Égypte, en Inde, en Chine, dans le monde grec et plus tard
+dans le monde islamique, les mathématiciens ont développé différentes mé‐
+thodes pour raisonner sur des quantités inconnues et résoudre des problèmes
+numériques. Les méthodes variaient d’une civilisation à l’autre, mais l’idée fon‐
+damentale était déjà présente : déterminer une quantité que l’on ne connaît pas
+encore à partir des informations dont on dispose.
+Ce qui a beaucoup plus tard changé, ce n’est donc pas l’idée d’une inconnue,
+mais la façon de l’écrire.
+Pendant une grande partie de l’histoire des mathématiques, les problèmes
+étaient exprimés principalement avec des mots. Au lieu d’écrire simplement
+2𝑥+ 5 = 17,
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 18 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+18
+un mathématicien pouvait décrire le problème entièrement avec une phrase.
+Peu à peu, les mathématiciens ont commencé à raccourcir ces descriptions.
+Des mots ont d’abord été abrégés, puis des symboles ont été introduits pour
+représenter les opérations et, progressivement, des lettres ont été utilisées pour
+représenter les quantités.
+C’est cette évolution qui a progressivement transformé l’algèbre en un véri‐
+table langage symbolique.
+À la fin du XVIe siècle, le mathématicien français François Viète a joué un
+rôle particulièrement important dans cette évolution. Il a contribué à développer
+une notation dans laquelle les lettres pouvaient représenter systématiquement
+des quantités connues ou inconnues. Les mathématiques pouvaient ainsi com‐
+mencer à décrire non seulement un problème particulier, mais également des
+relations générales.
+Au XVIIe siècle, le mathématicien français René Descartes a ensuite contri‐
+bué à populariser une convention qui allait devenir extrêmement influente : uti‐
+liser les premières lettres de l’alphabet, comme 𝑎, 𝑏et 𝑐, pour certaines quantités
+connues, et les dernières lettres, notamment 𝑥, 𝑦et 𝑧, pour les inconnues.
+C’est en partie grâce à cette évolution historique que nous rencontrons si
+souvent aujourd’hui des expressions comme
+𝑎𝑥+ 𝑏= 𝑐
+ou
+𝑦= 2𝑥+ 1.
+Il est toutefois important de comprendre que 𝑥, 𝑦et 𝑧ne possèdent aucune
+propriété mathématique particulière qui les obligerait à représenter des incon‐
+nues. Leur utilisation est devenue une convention.
+Autrement dit, lorsque nous écrivons 𝑥, 𝑦ou 𝑧, nous suivons une tradition
+mathématique qui s’est construite progressivement au fil des siècles.
+Cette histoire permet aussi de comprendre pourquoi certaines lettres sont
+aujourd’hui associées à certains concepts. Par exemple, 𝑥et 𝑦sont très souvent
+utilisées pour les coordonnées dans un plan, tandis que 𝑥, 𝑦et 𝑧peuvent repré‐
+senter les trois directions d’un espace à trois dimensions.
+Les lettres que nous utilisons en algèbre sont des conventions héritées
+de l’histoire des mathématiques.
+Elles auraient pu être différentes. Ce qui compte en mathématiques, ce n’est
+donc pas la lettre choisie, mais la quantité qu’elle représente et la relation qu’elle
+entretient avec les autres quantités.
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 19 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+19
+9
+Pourquoi utilise‐t‐on des symboles?
+Les symboles permettent de condenser beaucoup d’information dans une
+petite expression.
+Prenons une phrase comme :
+«Le double d’un nombre auquel on ajoute cinq est égal à dix‐sept.»
+En algèbre, nous pouvons simplement écrire :
+2𝑥+ 5 = 17.
+La phrase devient alors une expression que nous pouvons manipuler.
+C’est l’une des grandes forces de l’algèbre :
+problème en mots ⟶expression mathématique
+Nous pouvons ensuite transformer cette expression pour découvrir la valeur
+inconnue.
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 20 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+20
+10
+À retenir
+Les mots essentiels de l’algèbre
+• Une variable est une lettre qui représente une quantité pouvant
+varier ou une quantité inconnue.
+• Les lettres 𝑥, 𝑦et 𝑧sont très courantes, mais n’importe quelle lettre
+peut représenter une variable.
+• La lettre 𝑡est souvent utilisée pour représenter le temps, selon le
+contexte.
+• Un coefficient est le nombre qui multiplie une variable.
+5𝑥
+contient le coefficient 5.
+• Une constante est une quantité qui ne contient pas de variable.
+• Un terme est une partie d’une expression séparée des autres par
+une addition ou une soustraction.
+• Une expression algébrique est une combinaison de nombres, va‐
+riables et opérations.
+• Une équation affirme que deux expressions ont la même valeur.
+• Évaluer une expression signifie remplacer chaque variable par une
+valeur donnée, puis appliquer la priorité des opérations.
+• En algèbre, on utilise souvent le point ou la juxtaposition pour re‐
+présenter une multiplication :
+3 ⋅𝑥= 3𝑥.
+• On utilise souvent une fraction plutôt que le symbole de division :
+𝑎÷ 𝑏= 𝑎
+𝑏.
+• Une variable indépendante est généralement la quantité que nous
+choisissons ou faisons varier.
+• Une variable dépendante est une quantité dont la valeur dépend
+d’une autre variable.
+• Traduire un problème en mots vers l’algèbre demande une attention
+particulière à l’ordre des mots et à la place des parenthèses.
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 21 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+21
+11
+La grande idée
+L’objectif de cette section n’est pas de mémoriser une longue liste de mots.
+L’objectif est de commencer à parler le langage de l’algèbre. Lorsque nous écri‐
+vons :
+2𝑥2 + 3𝑥−7,
+nous devons progressivement être capables de regarder cette expression et
+de comprendre sa structure. Nous ne voyons plus simplement une série de sym‐
+boles. Nous voyons :
+des coefficients, des variables, des exposants, des termes et des opérations
+organisés selon des règles précises.
+C’est ce langage que nous allons maintenant apprendre à utiliser pour décrire,
+transformer et résoudre des problèmes.
+12
+Glossaire du vocabulaire algébrique
+Voici, en un seul endroit, les principaux mots rencontrés dans ce chapitre.
+Ce glossaire n’est pas une liste à mémoriser par cœur. Il sert plutôt de référence
+rapide à consulter lorsqu’un terme devient moins clair.
+learnwithdom.page
+</pre></details>
+<details class="page-source"><summary>Page 22 du document original</summary><pre>Secondaire 2 — MAT2101‐3 — Le langage de l’algèbre
+22
+Terme
+Définition
+Exemple
+Variable
+Une lettre qui représente une quantité qui peut
+varier ou dont la valeur est inconnue.
+𝑥dans 3𝑥+ 5
+Coefficient
+Le nombre qui multiplie une variable.
+3 dans 3𝑥2
+Constante
+Un terme qui ne contient aucune variable.
+−7 dans 3𝑥2 +
+5𝑥−7
+Terme
+Une partie d’une expression, séparée des autres
+par une addition ou une soustraction.
+5𝑥dans 3𝑥2+5𝑥−
+7
+Expression
+algé‐
+brique
+Une combinaison de variables, de coefficients, de
+constantes et d’opérations, sans signe d’égalité.
+3𝑥2 + 5𝑥−7
+Équation
+Une égalité entre deux expressions. Elle contient
+généralement une ou plusieurs variables dont on
+cherche la valeur.
+2𝑥+ 5 = 17
+Évaluer
+Remplacer chaque variable par une valeur don‐
+née, puis calculer le résultat.
+3(2)2 +5(2)−7 =
+15
+Variable
+indépen‐
+dante
+La variable dont on choisit généralement la va‐
+leur ou que l’on fait varier.
+𝑥dans 𝑦= 2𝑥+ 3
+Variable
+dépen‐
+dante
+La variable dont la valeur est déterminée par une
+autre variable.
+𝑦dans 𝑦= 2𝑥+ 3
+À noter
+Ce glossaire couvre le vocabulaire essentiel de ce chapitre. D’autres
+termes reliés aux exposants, aux carrés et aux racines (base, exposant,
+carré parfait, racine principale, etc.) ont déjà été définis dans les chapitres
+précédents et peuvent être regroupés dans un glossaire général du cours.
+learnwithdom.page
+</pre></details></section>
+</main></div><footer>learnwithdom.page · CEA Coaticook · MAT-2101-3 · Adapté à partir du document de cours fourni</footer>
 <script>
-(function(){'use strict';
+'use strict';
 const $=id=>document.getElementById(id);
-const fmt=n=>String(n).replace(/-/g,'−').replace('.',',');
-const svgNS='http://www.w3.org/2000/svg';
-function el(tag,attrs={},text=''){const n=document.createElementNS(svgNS,tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined&&text!=='')n.textContent=text;return n}
-function line(svg,x1,y1,x2,y2,color='#dbe2de',w=1,dash=''){const p=el('line',{x1,y1,x2,y2,stroke:color,'stroke-width':w});if(dash)p.setAttribute('stroke-dasharray',dash);svg.appendChild(p);return p}
-function txt(svg,x,y,t,fill='#40534b',size=12,anchor='middle',weight='500'){svg.appendChild(el('text',{x,y,fill,'font-size':size,'font-family':'JetBrains Mono, monospace','font-weight':weight,'text-anchor':anchor},t))}
-function circle(svg,cx,cy,r,fill='#b9832c',stroke='#fff'){svg.appendChild(el('circle',{cx,cy,r,fill,stroke,'stroke-width':2}))}
-function reset(svg){while(svg.firstChild)svg.removeChild(svg.firstChild)}
-// Accroche : nombre mystère
-function mystery(){const n=Number($('mystN').value);$('mystOut').textContent=fmt(n);$('mystSteps').textContent=`Ton nombre : ${fmt(n)}\n× 2 → ${fmt(2*n)}\n+ 6 → ${fmt(2*n+6)}\n÷ 2 → ${fmt(n+3)}\n− ton nombre → 3`}
-$('mystN').addEventListener('input',mystery);mystery();$('mystReveal').addEventListener('click',()=>{const s=$('mystSecret');s.classList.toggle('hidden');$('mystReveal').textContent=s.classList.contains('hidden')?'Révéler le secret mathématique':'Masquer le secret'});
-// Variable = nom
-function updateVariable(){let l=$('variableName').value,n=Number($('variableVal').value);$('variableOut').textContent=fmt(n);$('variableFormula').textContent=`${l} + 3 = ${fmt(n)} + 3 = ${fmt(n+3)}`}
-$('variableName').addEventListener('change',updateVariable);$('variableVal').addEventListener('input',updateVariable);updateVariable();
-// Repères 2D et 3D : projection géométrique pédagogique
-function drawCoordinates(){let x=+$('coordX').value,y=+$('coordY').value,z=+$('coordZ').value;for(const k of ['X','Y','Z'])$('coord'+k+'Out').textContent=fmt(+$('coord'+k).value);
-const p=$('plane2d');reset(p);const sx=a=>180+a*29,sy=a=>150-a*29;
-for(let i=-5;i<=5;i++){line(p,sx(i),15,sx(i),285,'#e3eae4');line(p,20,sy(i),340,sy(i),'#e3eae4')}
-line(p,20,150,340,150,'#223A34',2);line(p,180,285,180,16,'#223A34',2);txt(p,334,142,'x','#223A34',14);txt(p,190,23,'y','#223A34',14,'start');txt(p,167,167,'0','#40534b',11);
-line(p,sx(x),150,sx(x),sy(y),'#b9832c',1.8,'5 4');line(p,180,sy(y),sx(x),sy(y),'#4b7a68',1.8,'5 4');circle(p,sx(x),sy(y),7);txt(p,Math.min(325,Math.max(42,sx(x)+12)),Math.max(24,sy(y)-11),`P(${x}, ${y})`,'#7c5416',11,x>2?'end':'start','700');
-const s=$('space3d');reset(s);const proj=(a,b,c)=>[170+a*26-b*17,208+a*7+b*9-c*29];let o=proj(0,0,0),px=proj(4.5,0,0),py=proj(0,4.5,0),pz=proj(0,0,5.3);
-for(const [end,col] of [[px,'#223A34'],[py,'#4B7A68'],[pz,'#b9832c']])line(s,o[0],o[1],end[0],end[1],col,2.6);
-txt(s,px[0]+7,px[1]+4,'x','#223A34',13);txt(s,py[0]-11,py[1]+10,'y','#4b7a68',13);txt(s,pz[0]-3,pz[1]-8,'z','#b9832c',13);txt(s,o[0]+10,o[1]+17,'O','#40534b',11);
-const a=proj(x,y,z),ground=proj(x,y,0),xbase=proj(x,0,0),ybase=proj(0,y,0);line(s,ground[0],ground[1],a[0],a[1],'#b9832c',2,'5 4');line(s,o[0],o[1],xbase[0],xbase[1],'#abbab2',1.6,'5 4');line(s,xbase[0],xbase[1],ground[0],ground[1],'#abbab2',1.6,'5 4');line(s,o[0],o[1],ybase[0],ybase[1],'#abbab2',1.6,'5 4');circle(s,a[0],a[1],7);let labx=Math.min(340,Math.max(15,a[0]+10)),laby=Math.min(284,Math.max(18,a[1]-14));txt(s,labx,laby,`P(${x},${y},${z})`,'#795519',11,labx>275?'end':'start','700');
-$('coordsReadout').textContent=`Dans le plan : P(${fmt(x)}, ${fmt(y)}). Dans l’espace : P(${fmt(x)}, ${fmt(y)}, ${fmt(z)}). Les mêmes lettres repèrent une position dans deux ou trois directions.`}
-for(const k of ['X','Y','Z'])$('coord'+k).addEventListener('input',drawCoordinates);drawCoordinates();
-// y = 2x + 3, graphique et point mobile
-function graphLine(){const svg=$('lineGraph');reset(svg);const vx=+$('lineX').value,vy=2*vx+3;const sx=x=>68+(x+6)*43.5,sy=y=>260-(y+12)*8.1;
-for(let i=-6;i<=6;i+=2){line(svg,sx(i),24,sx(i),270,'#e6ece8');txt(svg,sx(i),288,String(i),'#65756d',11)}for(let j=-10;j<=16;j+=5){line(svg,50,sy(j),612,sy(j),'#e6ece8');txt(svg,38,sy(j)+4,String(j),'#65756d',10,'end')}
-line(svg,50,sy(0),612,sy(0),'#223A34',1.8);line(svg,sx(0),24,sx(0),270,'#223A34',1.8);txt(svg,623,sy(0)-7,'x','#223A34',13);txt(svg,sx(0)+11,21,'y','#223A34',13);
-line(svg,sx(-6),sy(-9),sx(6),sy(15),'#4b7a68',3.8);line(svg,sx(vx),sy(0),sx(vx),sy(vy),'#c9a55b',2,'5 4');line(svg,sx(0),sy(vy),sx(vx),sy(vy),'#c9a55b',2,'5 4');circle(svg,sx(vx),sy(vy),6.5,'#b5524a');txt(svg,sx(vx)+(vx>=3?-10:10),sy(vy)-13,`(${vx}, ${vy})`,'#9a433b',12,vx>=3?'end':'start','700');$('lineXOut').textContent=fmt(vx);$('lineReadout').innerHTML=`Quand <strong>x = ${fmt(vx)}</strong>, y = 2(${fmt(vx)}) + 3 = <strong>${fmt(vy)}</strong>. Le choix de x détermine y.`}
-$('lineX').addEventListener('input',graphLine);graphLine();
-// Anatomie
-const parts={coef3:'Le nombre 3 est le coefficient de x² : il multiplie le carré de la variable.',x2:'x² signifie x multiplié par lui-même. x est la variable; 2 est l’exposant.',coef5:'Le nombre 5 est le coefficient de x : dans 5x, nous avons cinq fois x.',x1:'x est la même variable que dans le premier terme. Son exposant, non écrit, est 1.',const7:'Le terme constant est −7, pas +7 : son signe fait partie du terme.'};
-document.querySelectorAll('[data-part]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-part]').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');$('anatomyFeedback').textContent=parts[b.dataset.part]}));
-$('showTerms').addEventListener('click',()=>{$('anatomyFeedback').textContent='Les trois termes sont 3x² ; +5x ; −7. Les signes font partie des termes. Le deuxième terme est +5x et le troisième −7.'});$('showEquation').addEventListener('click',()=>{$('anatomyFeedback').textContent='3x² + 5x − 7 est une expression. Si on ajoute « = 0 », on obtient l’équation 3x² + 5x − 7 = 0. Ce ne sont pas le même type d’objet mathématique.'});
-// Multiplication
-function writing(){const n=+$('writeCoeff').value,c=$('writeLetter').value;$('writeCoeffOut').textContent=n;$('writeVariants').textContent=`${n} × ${c} = ${n} · ${c} = ${n}${c}`}$('writeCoeff').addEventListener('input',writing);$('writeLetter').addEventListener('change',writing);writing();
-// substitution
-function substitution(){const x=+$('subX').value,x2=x*x,a=3*x2,b=5*x,res=a+b-7,par=x<0?`(${x})`:`(${x})`;$('subXOut').textContent=fmt(x);$('subSteps').textContent=`3${par}² + 5${par} − 7\n= 3(${x2}) + 5${par} − 7\n= ${fmt(a)} ${b>=0?'+':'−'} ${Math.abs(b)} − 7\n= ${fmt(res)}`;$('subTip').innerHTML=x<0?`Quand x est négatif, il faut écrire <strong>(${fmt(x)})²</strong>. Son carré vaut ${fmt(x2)}, un nombre positif.`:`Pour x = ${fmt(x)}, le carré vaut ${fmt(x2)}. On effectue l'exposant avant les multiplications.`}
-$('subX').addEventListener('input',substitution);substitution();
-// Traducteur
-const trans=[
-{q:'5 de moins que x',opts:['x − 5','5 − x','5x','x + 5'],a:0,h:'Quel nombre est diminué de 5?',why:'« 5 de moins que x » signifie que l’on retire 5 à x.'},
-{q:'Le double de la différence entre un nombre et 3',opts:['2x − 3','2(x − 3)','x − 6','(2x − 3)²'],a:1,h:'Quelle opération doit être appliquée à l’ensemble de la différence?',why:'La différence (x − 3) doit être doublée au complet : 2(x − 3).'},
-{q:'Le carré de la somme d’un nombre et de 5',opts:['x² + 5','(x + 5)²','5x²','x + 25'],a:1,h:'Le carré porte-t-il sur le nombre seulement ou sur toute la somme?',why:'On élève toute la somme au carré : (x + 5)².'},
-{q:'La moitié de la somme d’un nombre et de 4',opts:['x + 4/2','x/2 + 4','(x + 4)/2','2(x + 4)'],a:2,h:'La moitié concerne toute la somme.',why:'On divise x + 4 au complet par 2 : (x + 4)/2.'},
-{q:'Le triple du carré d’un nombre, diminué de 1',opts:['3x² − 1','(3x − 1)²','3(x − 1)²','3x − 1'],a:0,h:'Le carré appartient au nombre, puis on le triple.',why:'Le triple du carré est 3x², puis on diminue le résultat de 1 : 3x² − 1.'},
-{q:'Le produit de a et b',opts:['a + b','a/b','a − b','ab'],a:3,h:'« Produit » désigne une opération particulière.',why:'En algèbre, juxtaposer a et b représente leur produit : ab.'},
-{q:'Un nombre de moins que 5',opts:['x − 5','5 − x','5x','x/5'],a:1,h:'Quel est le nombre de départ, et qu’en retire-t-on?',why:'On soustrait le nombre inconnu à 5 : 5 − x.'},
-{q:'Le carré d’un nombre, augmenté de 5',opts:['(x + 5)²','5x²','x² + 5','x + 25'],a:2,h:'Le carré est calculé avant l’ajout de 5.',why:'On élève x au carré, puis on ajoute 5 : x² + 5.'}
-];
-let trIndex=0,trScore=0,trTotal=0,trAnswered=false;
-function showTranslation(){const q=trans[trIndex];$('translatePrompt').textContent=q.q;$('translateOptions').replaceChildren();$('translateFeedback').className='output-card';$('translateFeedback').textContent='Choisis une expression.';trAnswered=false;q.opts.forEach((s,i)=>{const b=document.createElement('button');b.type='button';b.className='choice';b.textContent=s;b.addEventListener('click',()=>{if(trAnswered)return;trAnswered=true;trTotal++;if(i===q.a){trScore++;b.classList.add('correct');$('translateFeedback').className='output-card success';$('translateFeedback').textContent='Bien vu! '+q.why}else{b.classList.add('wrong');$('translateFeedback').className='output-card error';$('translateFeedback').textContent='Pas tout à fait. '+q.why}Array.from($('translateOptions').children).forEach((ch,k)=>{ch.disabled=true;if(k===q.a)ch.classList.add('correct')});$('translateScore').textContent=`${trScore} bonne${trScore>1?'s':''} réponse${trScore>1?'s':''} sur ${trTotal} essai${trTotal>1?'s':''}`});$('translateOptions').appendChild(b)})}
-$('translateNext').addEventListener('click',()=>{trIndex=(trIndex+1)%trans.length;showTranslation()});$('translateHint').addEventListener('click',()=>{if(!trAnswered){$('translateFeedback').textContent='Indice : '+trans[trIndex].h;$('translateFeedback').className='output-card'}});showTranslation();
-// Académie : cinq missions de deux étapes, validation, rétroaction, sauvegarde
-const missions=[
-{title:'Le laboratoire des symboles',desc:'Reconnais coefficients, variables et constantes.',steps:[{q:'Dans 4p + 9, quel nombre est le coefficient de p?',type:'choice',opts:['4','9','p','13'],a:'4',hint:'Observe le facteur numérique placé devant la lettre.',why:'4 multiplie p, c’est donc le coefficient.'},{q:'Quel est le terme constant de 7m² − 6m + 2?',type:'choice',opts:['7','−6','2','m'],a:'2',hint:'Cherche le terme qui ne contient aucune lettre.',why:'Le nombre 2 ne contient aucune variable : il est constant.'}]},
-{title:'La station des variables',desc:'Distingue les rôles et utilise les relations.',steps:[{q:'Si y = 2x + 3 et x = −2, quelle est la valeur de y?',type:'number',a:-1,hint:'Substitue −2 à x dans la relation.',why:'y = 2(−2) + 3 = −4 + 3 = −1.'},{q:'À 70 km/h pendant 3 h, quelle distance d, en kilomètres, donne d = vt?',type:'number',a:210,hint:'Remplace la vitesse et le temps dans la formule.',why:'d = (70 km/h)(3 h) = 210 km.'}]},
-{title:'L’épreuve de substitution',desc:'Fais les calculs dans le bon ordre.',steps:[{q:'Évalue 3x² + 5x − 7 pour x = −2.',type:'number',a:-5,hint:'Place −2 entre parenthèses avant de calculer le carré.',why:'3(−2)² + 5(−2) − 7 = 12 − 10 − 7 = −5.'},{q:'Évalue 2a + 3b pour a = 4 et b = −1.',type:'number',a:5,hint:'Remplace séparément a et b, puis calcule les produits.',why:'2(4) + 3(−1) = 8 − 3 = 5.'}]},
-{title:'L’atelier des traducteurs',desc:'Attention à l’ordre des mots et aux parenthèses.',steps:[{q:'Traduis « 5 de moins que x ».',type:'choice',opts:['5 − x','x − 5','5x','x + 5'],a:'x − 5',hint:'Quel nombre subit une diminution de 5?',why:'C’est x qui perd 5, donc x − 5.'},{q:'Traduis « le double de la différence entre un nombre et 3 ».',type:'choice',opts:['2x − 3','2(x − 3)','(x − 3)/2','x − 6'],a:'2(x − 3)',hint:'On veut doubler toute la différence.',why:'Les parenthèses entourent x − 3 avant la multiplication par 2.'}]},
-{title:'Le message final',desc:'Passe des mots au raisonnement.',steps:[{q:'Quel énoncé correspond à (x + 5)²?',type:'choice',opts:['Le carré d’un nombre plus 5','Le carré de la somme d’un nombre et de 5','Le double de la somme d’un nombre et de 5','La somme d’un carré et de 25'],a:'Le carré de la somme d’un nombre et de 5',hint:'Regarde quelle partie est entre parenthèses.',why:'Toute la somme x + 5 est élevée au carré.'},{q:'Un club demande 5 $ fixes plus 2 $ par séance. Si la facture est de 17 $, combien de séances?',type:'number',a:6,hint:'Écris le total avec x séances, puis retire les frais fixes.',why:'5 + 2x = 17, donc 2x = 12 et x = 6 séances.'}]}
-];
-const storageKey='lwd-mat2101-langage-v1';let completed=0;try{const n=parseInt(localStorage.getItem(storageKey),10);if(Number.isInteger(n)&&n>=0&&n<=5)completed=n}catch(e){}let currentStep=0,waiting=false;
-function persist(){try{localStorage.setItem(storageKey,String(completed))}catch(e){}}
-function gameRender(){const list=$('missionList');list.replaceChildren();$('xpCount').textContent=`${completed*100} / 500 XP`;$('xpBar').style.width=`${completed*20}%`;$('gameStatus').textContent=`${completed} mission${completed>1?'s':''} réussie${completed>1?'s':''} sur 5`;
-$('gameRank').textContent=completed===5?'Grade : maître du langage algébrique':completed>=3?'Grade : explorateur algébrique':completed>=1?'Grade : apprenti décodeur':'Grade : recrue de l’algèbre';$('gameVictory').classList.toggle('hidden',completed!==5);
-missions.forEach((m,i)=>{const card=document.createElement('div');card.className='mission'+(i<completed?' done':i>completed?' locked':'');card.innerHTML=`<h4>${i<completed?'✓ ':i>completed?'🔒 ':''}Mission ${i+1} — ${m.title} <span class="small">· 100 XP</span></h4><p>${m.desc}</p>`;
-if(i<completed){const r=document.createElement('div');r.className='small';r.textContent='Réussie · 100 XP obtenus';card.appendChild(r)}else if(i===completed){const step=m.steps[currentStep];const head=document.createElement('div');head.className='question-label';head.textContent=`Étape ${currentStep+1}/2 — ${step.q}`;card.appendChild(head);const wrap=document.createElement('div');wrap.className='choices';wrap.id='gameOptions';if(step.type==='choice')step.opts.forEach(opt=>{const b=document.createElement('button');b.type='button';b.className='choice';b.textContent=opt;b.addEventListener('click',()=>gameAnswer(opt,b));wrap.appendChild(b)});else{wrap.className='controls';const inp=document.createElement('input');inp.type='number';inp.step='any';inp.id='gameNumber';inp.placeholder='Ta réponse (un nombre)';inp.setAttribute('aria-label','Réponse numérique');inp.className='control';inp.style.padding='10px';inp.style.minWidth='180px';const btn=document.createElement('button');btn.type='button';btn.className='btn';btn.textContent='Vérifier';btn.addEventListener('click',()=>gameAnswer(inp.value,btn));inp.addEventListener('keydown',e=>{if(e.key==='Enter')gameAnswer(inp.value,btn)});wrap.append(inp,btn)}card.appendChild(wrap);const msg=document.createElement('div');msg.className='output-card';msg.id='gameFeedback';msg.setAttribute('aria-live','polite');msg.textContent='Réponds au défi pour progresser.';card.appendChild(msg);const actions=document.createElement('div');actions.className='button-row';const hint=document.createElement('button');hint.type='button';hint.className='btn secondary';hint.textContent='Indice';hint.addEventListener('click',()=>{$('gameFeedback').textContent='Indice : '+step.hint});actions.appendChild(hint);const next=document.createElement('button');next.type='button';next.className='btn hidden';next.textContent=currentStep===1?'Terminer la mission →':'Étape suivante →';next.id='gameContinue';next.addEventListener('click',()=>{if(!waiting)return;waiting=false;if(currentStep===1){completed++;currentStep=0;persist()}else currentStep=1;gameRender()});actions.appendChild(next);card.appendChild(actions)}else{const lock=document.createElement('div');lock.className='small';lock.textContent='Débloque la mission précédente pour continuer.';card.appendChild(lock)}list.appendChild(card)})}
-function gameAnswer(raw,button){if(waiting||completed===5)return;const step=missions[completed].steps[currentStep];const valid=step.type==='number'?String(raw).trim()!==''&&Number.isFinite(Number(String(raw).replace(',','.')))&&Math.abs(Number(String(raw).replace(',','.'))-step.a)<1e-7:raw===step.a;const fb=$('gameFeedback');if(valid){waiting=true;fb.className='output-card success';fb.textContent='Bien joué! '+step.why;const next=$('gameContinue');next.classList.remove('hidden');$('gameOptions').querySelectorAll('button').forEach(b=>b.disabled=true);if(step.type==='number')$('gameNumber').disabled=true;button.classList.add('correct')}else{fb.className='output-card error';fb.textContent='Pas encore. Essaie de nouveau. Indice : '+step.hint;if(button.classList.contains('choice')){button.classList.add('wrong');button.disabled=true}}}
-$('gameReset').addEventListener('click',()=>{if(completed>0&&!confirm('Recommencer les cinq missions? Ton score sera remis à zéro.'))return;completed=0;currentStep=0;waiting=false;persist();gameRender()});gameRender();
-// Navigation active sur défilement
-const sections=document.querySelectorAll('.section[id]'),links=document.querySelectorAll('.toc a[href^="#"]');if('IntersectionObserver' in window){const ob=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.remove('active'));const a=document.querySelector(`.toc a[href="#${e.target.id}"]`);if(a)a.classList.add('active')}})},{rootMargin:'-12% 0px -74% 0px'});sections.forEach(s=>ob.observe(s))}
-})();
-</script>
-</body></html>
+const fmt=n=>String(Number(n.toFixed(2))).replace('.',',');
+function drawXY(){const x=Number($('xslide').value),y=2*x+3;$('xyout').innerHTML=`<strong>x = ${x}</strong> → y = 2 × (${x}) + 3 = <strong>${y}</strong>. La variable dépendante y change lorsque x change.`;const s=$('xyplot');const X=v=>55+(v+6)*31,Y=v=>236-(v+10)*7.1;let o='<g stroke="#dbe5de" stroke-width="1">';for(let v=-5;v<=10;v+=5)o+=`<line x1="${X(v)}" y1="12" x2="${X(v)}" y2="244"/>`;for(let v=-10;v<=30;v+=10)o+=`<line x1="35" y1="${Y(v)}" x2="545" y2="${Y(v)}"/>`;o+='</g><path d="M35 '+Y(0)+'H545 M'+X(0)+' 12V244" stroke="#324c42" fill="none" stroke-width="2"/><path d="';for(let v=-5;v<=10;v++)o+='';o+=`M ${X(-5)} ${Y(-7)} L ${X(10)} ${Y(23)}" stroke="#b9832c" stroke-width="3" fill="none"/><circle cx="${X(x)}" cy="${Y(y)}" r="7" fill="#b5524a"/><text x="${Math.min(X(x)+10,470)}" y="${Math.max(25,Y(y)-12)}" font-size="15" font-family="Space Grotesk">(${x}, ${y})</text><text x="534" y="${Y(0)-7}" font-size="15">x</text><text x="${X(0)+8}" y="20" font-size="15">y</text>`;s.innerHTML=o;} $('xslide').addEventListener('input',drawXY);drawXY();
+const elem={variable:'La variable est x. Elle représente une quantité inconnue ou qui peut varier.',coeff:'Les coefficients sont 3 devant x² et 5 devant x. Ils multiplient les expressions correspondantes.',constant:'La constante est −7 : elle ne contient pas de variable.',terms:'Il y a trois termes : 3x², 5x et −7. Le signe négatif appartient au troisième terme.'};function part(){ $('partout').textContent=elem[$('parttype').value];}$('parttype').addEventListener('change',part);part();
+function evaluate(){let x=Number($('xnumber').value);if(!Number.isFinite(x))return;$('evalout').innerHTML=`Pour <strong>x = ${fmt(x)}</strong> :<br>3(${fmt(x)})² + 5(${fmt(x)}) − 7 = 3(${fmt(x*x)}) + ${fmt(5*x)} − 7 = <strong>${fmt(3*x*x+5*x-7)}</strong>.<br><small>Les parenthèses sont particulièrement importantes si x est négatif.</small>`;}$('evalbtn').addEventListener('click',evaluate);$('xnumber').addEventListener('input',evaluate);evaluate();
+const translations=[{q:'« 5 de moins qu’un nombre »',a:['5 − x','x − 5','5x'],correct:1,why:'C’est le nombre x qui diminue de 5 : x − 5.'},{q:'« Le double de la différence entre un nombre et 3 »',a:['2x − 3','2(x − 3)','x − 6'],correct:1,why:'On double toute la différence x − 3 : les parenthèses sont nécessaires.'},{q:'« Le carré de la somme d’un nombre et 5 »',a:['x² + 5','x + 25','(x + 5)²'],correct:2,why:'C’est toute la somme x + 5 qu’on élève au carré.'},{q:'« Le quotient d’un nombre par 3 »',a:['3/x','x/3','3x'],correct:1,why:'x est le dividende et 3 le diviseur.'},{q:'« Le triple d’un nombre, augmenté de 4 »',a:['3x + 4','3(x + 4)','x + 12'],correct:0,why:'On triple x, puis on ajoute 4.'},{q:'« Le carré d’un nombre, diminué du triple de ce nombre »',a:['(x − 3x)²','x² − 3x','2x − 3x'],correct:1,why:'Le carré de x est x²; le triple de x est 3x.'}];let ti=0;function trans(){let q=translations[ti];$('translateQuestion').textContent=q.q;$('translateOptions').innerHTML='';$('translateFeedback').textContent='Choisis une proposition.';q.a.forEach((a,i)=>{const b=document.createElement('button');b.className='alt';b.textContent=a;b.addEventListener('click',()=>{$('translateFeedback').innerHTML=`<strong class="${i===q.correct?'ok':'no'}">${i===q.correct?'Bonne réponse!':'Réessaie.'}</strong> ${q.why}`});$('translateOptions').appendChild(b)})}$('translateNext').addEventListener('click',()=>{ti=(ti+1)%translations.length;trans()});trans();
+const missions=[{q:'Dans 4m + 9, quelle lettre est la variable?',a:['4','m','9'],c:1,why:'m est la variable; 4 est un coefficient et 9 est une constante.'},{q:'Dans 3x² + 5x − 7, quel est le terme constant?',a:['3','5x','−7'],c:2,why:'−7 ne contient aucune variable.'},{q:'Pour x = −2, combien vaut x²?',a:['−4','4','2'],c:1,why:'(−2)² = (−2) × (−2) = 4.'},{q:'Que signifie « le double de la somme d’un nombre et 5 »?',a:['2x + 5','2(x + 5)','x + 10'],c:1,why:'Il faut doubler toute la somme; on utilise donc les parenthèses.'},{q:'Dans y = 2x + 3, quelle variable dépend généralement de l’autre?',a:['y dépend de x','x dépend toujours de y','Aucune relation'],c:0,why:'Lorsque x est choisi, la formule détermine y.'}];let passed=Array(missions.length).fill(false);function renderQuiz(){let root=$('quizArea');root.innerHTML='';missions.forEach((q,idx)=>{let article=document.createElement('div');article.className='q';let title=document.createElement('h3');title.textContent=`Mission ${idx+1} — ${q.q}`;article.appendChild(title);const choices=document.createElement('div');const fb=document.createElement('div');fb.className='feedback';choices.className='controls';q.a.forEach((a,j)=>{let b=document.createElement('button');b.className='alt';b.textContent=a;b.disabled=passed[idx];b.addEventListener('click',()=>{if(j===q.c){passed[idx]=true;fb.innerHTML=`<span class="ok"><strong>Bonne réponse (+100 XP).</strong> ${q.why}</span>`;choices.querySelectorAll('button').forEach(el=>el.disabled=true);updateXP();}else fb.innerHTML=`<span class="no"><strong>Pas tout à fait.</strong> ${q.why}</span>`});choices.appendChild(b)});article.append(choices,fb);root.appendChild(article)});updateXP()}function updateXP(){const xp=passed.filter(Boolean).length*100;$('xpText').textContent=`${xp} / 500 XP`;$('xpBar').style.width=(xp/5)+'%';} $('resetQuiz').addEventListener('click',()=>{passed=Array(missions.length).fill(false);renderQuiz()});renderQuiz();
+const practice=[['Repère les termes de 7x² − 4x + 6.','Les trois termes sont 7x², −4x et +6. Les coefficients sont 7 et −4; la constante est 6.'],['Quelle est la différence entre 3x et x³?','3x signifie 3 × x. x³ signifie x × x × x. Le coefficient et l’exposant ne jouent pas le même rôle.'],['Évalue 3x² + 5x − 7 pour x = 3.','3(3)² + 5(3) − 7 = 3 × 9 + 15 − 7 = 27 + 15 − 7 = 35.'],['Évalue 3x² + 5x − 7 pour x = −1.','3(−1)² + 5(−1) − 7 = 3 − 5 − 7 = −9.'],['Évalue 2a + 3b pour a = −2 et b = 5.','2(−2) + 3(5) = −4 + 15 = 11.'],['Traduis « 7 de moins que le triple d’un nombre ».','Le triple est 3x; on enlève ensuite 7 : 3x − 7.'],['Traduis « le triple de la différence entre un nombre et 7 ».','La différence est x − 7; le triple est 3(x − 7).'],['Traduis « la moitié de la somme d’un nombre et de 8 ».','La somme est x + 8. On prend sa moitié : (x + 8)/2.'],['Traduis « le carré d’un nombre augmenté de 4 » et « le carré de la somme d’un nombre et 4 ».','Premier cas : x² + 4. Deuxième cas : (x + 4)². Les parenthèses changent le sens.'],['Une voiture roule à 90 km/h durant 2 h. Écris la formule et calcule la distance.','d = vt. En remplaçant : d = 90 × 2 = 180 km.'],['Explique la différence entre une expression et une équation.','Une expression, telle que 4x + 9, combine des nombres et des opérations. Une équation, telle que 4x + 9 = 21, affirme une égalité.'],['Dans y = 2x + 3, calcule y lorsque x = 4 et explique les rôles de x et y.','y = 2(4) + 3 = 11. On choisit x (variable indépendante); la valeur de y dépend de ce choix.']];$('practiceArea').innerHTML=practice.map((p,i)=>`<details><summary>Exercice ${i+1} — ${p[0]}</summary><div class="step"><b>Corrigé.</b> ${p[1]}</div></details>`).join('');
+const gloss=[['Variable','Lettre représentant une quantité inconnue ou qui varie.','x dans 3x + 5'],['Coefficient','Nombre qui multiplie une variable ou une puissance de variable.','3 dans 3x²'],['Constante','Terme sans variable.','−7 dans 3x² + 5x − 7'],['Terme','Partie d’une expression séparée par des additions ou soustractions.','5x dans 3x² + 5x − 7'],['Expression algébrique','Combinaison de nombres, de variables et d’opérations.','3x² + 5x − 7'],['Équation','Égalité entre deux expressions.','2x + 5 = 17'],['Évaluer','Remplacer une variable par une valeur puis calculer.','x = 2 → 3x + 1 = 7'],['Variable indépendante','Variable choisie ou que l’on fait varier.','x dans y = 2x + 3'],['Variable dépendante','Variable dont la valeur dépend d’une autre.','y dans y = 2x + 3'],['Substitution','Remplacement d’une variable par un nombre.','3(−2)²'],['Exposant','Indique la puissance appliquée à une base.','2 dans x²'],['Parenthèses','Délimitent une expression à traiter comme un tout.','2(x − 3)']];function glossary(){let t=$('glossSearch').value.toLocaleLowerCase('fr');$('glossaryList').innerHTML=gloss.filter(g=>g.join(' ').toLocaleLowerCase('fr').includes(t)).map(g=>`<article><h4>${g[0]}</h4><p>${g[1]}</p><small><strong>Exemple :</strong> ${g[2]}</small></article>`).join('')||'<p>Aucun terme trouvé.</p>'}$('glossSearch').addEventListener('input',glossary);glossary();
+</script></body></html>
