@@ -973,51 +973,2485 @@
             <li><strong>Vérifier</strong> l’unité, le signe, le sens physique et la cohérence du résultat.</li>
           </ol>
           <div class="panel note">
-            <div class="pmark">Pour aller plus loin — Universitaire</div>
+            <div class="pmark">Pour aller plus loin </div>
             <p>La première loi définit aussi ce qu’est un référentiel inertiel. Un véhicule qui accélère constitue un référentiel non inertiel : il faut alors distinguer forces réelles et descriptions apparentes.</p>
-            <p>Cette précision dépasse parfois les calculs exigés en FGA : elle sert à comprendre <em>pourquoi</em> nos équations sont utilisables et dans quelles conditions.</p>
           </div>
         </section>
         <section class="section" id="exemples">
           <div class="sectiontag">La démarche en action</div>
           <h2>Trois exemples entièrement résolus</h2>
-          <p>Je te propose de commencer par lire l'énoncé et d'essayer de prévoir la réponse. Ouvre ensuite le raisonnement. À chaque étape, demande-toi quelle loi nous utilisons et pourquoi.</p>
-          <article class="panel note">
-            <div class="pmark">Exemple guidé 1 · du simple au complexe</div>
-            <h3>Patin sur glace</h3>
-            <p>Un palet avance à 4,0 m/s sur une glace idéale, parfaitement sans frottement, pendant 6,0 s.</p>
-            <ol class="steps">
-              <li>Modèle : résultante horizontale nulle.</li>
-              <li>La vitesse reste 4,0 m/s pendant l’intervalle.</li>
-              <li>La distance parcourue est v·t = 4,0 × 6,0.</li>
-              <li>On obtient 24 m en ligne droite.</li>
-            </ol>
-            <div class="answer">Interprétation : Sans frottement, le palet conserve sa vitesse : 24 m en 6 s.</div>
-          </article>
-          <article class="panel note">
-            <div class="pmark">Exemple guidé 2 · du simple au complexe</div>
-            <h3>Freinage d’un vélo</h3>
-            <p>Un cycliste se déplace à 8,0 m/s et freine avec une décélération constante de 2,0 m/s².</p>
-            <ol class="steps">
-              <li>Choisissons l’avant positif, donc a = −2,0 m/s².</li>
-              <li>Avec v = v₀ + at, posons v = 0 pour l’arrêt.</li>
-              <li>0 = 8,0 − 2,0t donc t = 4,0 s.</li>
-              <li>La distance d’arrêt dans ce modèle est (8,0 + 0)/2 × 4,0 = 16 m.</li>
-            </ol>
-            <div class="answer">Interprétation : Temps d’arrêt : 4,0 s; distance : 16 m.</div>
-          </article>
-          <article class="panel note">
-            <div class="pmark">Exemple guidé 3 · du simple au complexe</div>
-            <h3>Ceinture de sécurité</h3>
-            <p>Un passager se déplace avec l’autobus à 12 m/s lorsqu’il freine.</p>
-            <ol class="steps">
-              <li>Avant le freinage, le passager et l’autobus ont la même vitesse.</li>
-              <li>Lors du freinage, l’autobus ralentit, mais le corps du passager tend à garder sa vitesse.</li>
-              <li>La ceinture exerce alors une force vers l’arrière sur le passager.</li>
-              <li>Cette force change sa vitesse pour qu’il ralentisse avec le véhicule.</li>
-            </ol>
-            <div class="answer">Interprétation : La ceinture n’annule pas l’inertie : elle fournit la force nécessaire pour ralentir.</div>
-          </article>
+          <p>Je te propose de commencer par lire l'énoncé et d'essayer de prévoir la réponse.</p>
+         
+<article class="panel note">
+
+  <div class="pmark">Exemple guidé 1</div>
+  <h3>Un palet sur la glace</h3>
+
+  <p>
+    Un palet de hockey se déplace en ligne droite
+    sur une surface glacée idéale, parfaitement
+    horizontale et sans frottement.
+  </p>
+
+  <p>
+    Sa vitesse initiale est de
+    <strong>4,0 m/s</strong> vers la droite.
+    Nous observons son mouvement pendant
+    <strong>6,0 secondes</strong>.
+  </p>
+
+<!-- PHOTOGRAPHIE DE LA MISE EN SITUATION -->
+<figure style="margin:1.5rem auto;max-width:760px;">
+
+  <img
+    src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Ice_hockey_puck_on_ice_20180112.jpg/960px-Ice_hockey_puck_on_ice_20180112.jpg"
+    alt="Palet de hockey posé sur une surface glacée."
+    width="960"
+    height="721"
+    loading="lazy"
+    style="
+      display:block;
+      width:100%;
+      height:auto;
+      border-radius:12px;
+    "
+  >
+
+  <figcaption style="
+    text-align:center;
+    font-size:.9rem;
+    line-height:1.6;
+    margin-top:.75rem;
+  ">
+    <strong>Figure — Un palet sur la glace.</strong>
+    Dans notre modèle physique, nous supposons
+    que la surface est parfaitement sans frottement.
+
+    <span style="display:block;font-size:.8rem;margin-top:.35rem;">
+      Photographie :
+      <a
+        href="https://commons.wikimedia.org/wiki/File:Ice_hockey_puck_on_ice_20180112.jpg"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Santeri Viinamäki / Wikimedia Commons</a>
+      —
+      <a
+        href="https://creativecommons.org/licenses/by-sa/4.0/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >CC BY-SA 4.0</a>.
+    </span>
+  </figcaption>
+
+</figure>
+
+  <p>
+    <strong>Question :</strong>
+    Quelle distance le palet parcourt-il
+    pendant cet intervalle de temps?
+    Expliquez pourquoi sa vitesse demeure constante.
+  </p>
+
+  <!-- ÉTAPE 1 : REPRÉSENTATION VISUELLE -->
+  <h4>1. Représentation de la situation</h4>
+
+  <p>
+    Commençons par représenter le déplacement
+    du palet sur la glace.
+  </p>
+
+  <figure style="margin:1.5rem auto;max-width:800px;">
+
+    <svg viewBox="0 0 800 310"
+         xmlns="http://www.w3.org/2000/svg"
+         role="img"
+         aria-labelledby="titre-palet description-palet"
+         style="width:100%;height:auto;">
+
+      <title id="titre-palet">
+        Déplacement d'un palet sur la glace
+      </title>
+
+      <desc id="description-palet">
+        Un palet se déplace de gauche à droite à
+        une vitesse constante de 4,0 mètres par seconde.
+        Après 6,0 secondes, il a parcouru 24 mètres.
+      </desc>
+
+      <defs>
+        <marker id="palet-fleche-v"
+                markerWidth="10" markerHeight="8"
+                refX="9" refY="4"
+                orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z"
+                fill="#2563eb"/>
+        </marker>
+
+        <marker id="palet-fleche-distance"
+                markerWidth="8" markerHeight="7"
+                refX="7" refY="3.5"
+                orient="auto-start-reverse">
+          <path d="M0,0 L8,3.5 L0,7 Z"
+                fill="#7c3aed"/>
+        </marker>
+      </defs>
+
+      <!-- SURFACE GLACÉE -->
+      <rect x="35" y="185"
+            width="730" height="48"
+            rx="5"
+            fill="#bfdbfe"
+            opacity=".4"/>
+
+      <line x1="35" y1="185"
+            x2="765" y2="185"
+            stroke="#60a5fa"
+            stroke-width="3"/>
+
+      <text x="400" y="255"
+            text-anchor="middle"
+            font-size="16"
+            fill="currentColor">
+        Surface glacée idéale — aucun frottement
+      </text>
+
+      <!-- POSITION INITIALE -->
+      <ellipse cx="145" cy="175"
+               rx="29" ry="11"
+               fill="#64748b"
+               stroke="#334155"
+               stroke-width="2.5"/>
+
+      <ellipse cx="145" cy="170"
+               rx="29" ry="11"
+               fill="#94a3b8"
+               stroke="#334155"
+               stroke-width="2"/>
+
+      <text x="145" y="135"
+            text-anchor="middle"
+            font-size="17"
+            font-weight="bold"
+            fill="currentColor">
+        Départ
+      </text>
+
+      <text x="145" y="155"
+            text-anchor="middle"
+            font-size="15"
+            fill="currentColor">
+        t = 0 s
+      </text>
+
+      <!-- POSITION FINALE -->
+      <ellipse cx="635" cy="175"
+               rx="29" ry="11"
+               fill="#64748b"
+               stroke="#334155"
+               stroke-width="2.5"/>
+
+      <ellipse cx="635" cy="170"
+               rx="29" ry="11"
+               fill="#94a3b8"
+               stroke="#334155"
+               stroke-width="2"/>
+
+      <text x="635" y="135"
+            text-anchor="middle"
+            font-size="17"
+            font-weight="bold"
+            fill="currentColor">
+        Arrivée
+      </text>
+
+      <text x="635" y="155"
+            text-anchor="middle"
+            font-size="15"
+            fill="currentColor">
+        t = 6,0 s
+      </text>
+
+      <!-- VECTEUR VITESSE -->
+      <line x1="170" y1="175"
+            x2="410" y2="175"
+            stroke="#2563eb"
+            stroke-width="5"
+            marker-end="url(#palet-fleche-v)"/>
+
+      <text x="285" y="145"
+            text-anchor="middle"
+            font-size="19"
+            font-weight="bold"
+            fill="#2563eb">
+        v = 4,0 m/s
+      </text>
+
+      <!-- DISTANCE -->
+      <line x1="145" y1="282"
+            x2="635" y2="282"
+            stroke="#7c3aed"
+            stroke-width="2.5"
+            marker-start="url(#palet-fleche-distance)"
+            marker-end="url(#palet-fleche-distance)"/>
+
+      <line x1="145" y1="243"
+            x2="145" y2="294"
+            stroke="#7c3aed"
+            stroke-width="1.5"
+            stroke-dasharray="5 4"/>
+
+      <line x1="635" y1="243"
+            x2="635" y2="294"
+            stroke="#7c3aed"
+            stroke-width="1.5"
+            stroke-dasharray="5 4"/>
+
+      <text x="390" y="274"
+            text-anchor="middle"
+            font-size="17"
+            font-weight="bold"
+            fill="#7c3aed">
+        Distance à déterminer
+      </text>
+
+    </svg>
+
+    <figcaption style="text-align:center;font-size:.9rem;">
+      Le palet se déplace en ligne droite.
+      Sa vitesse reste constante pendant
+      les 6,0 secondes d'observation.
+    </figcaption>
+
+  </figure>
+
+  <p>
+    Pour comprendre pourquoi sa vitesse
+    demeure constante, analysons maintenant
+    les forces exercées sur le palet.
+  </p>
+
+  <!-- DIAGRAMME DE CORPS LIBRE -->
+  <h4>Diagramme de corps libre (DCL)</h4>
+
+  <figure style="margin:1.5rem auto;max-width:600px;">
+
+    <svg viewBox="0 0 600 320"
+         xmlns="http://www.w3.org/2000/svg"
+         role="img"
+         aria-labelledby="titre-dcl-palet desc-dcl-palet"
+         style="width:100%;height:auto;">
+
+      <title id="titre-dcl-palet">
+        Forces exercées sur le palet
+      </title>
+
+      <desc id="desc-dcl-palet">
+        Le palet subit un poids vers le bas
+        et une force normale de même grandeur
+        vers le haut. Aucune force horizontale
+        n'agit sur lui.
+      </desc>
+
+      <defs>
+        <marker id="dcl-palet-bleu"
+                markerWidth="10" markerHeight="8"
+                refX="9" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z"
+                fill="#2563eb"/>
+        </marker>
+
+        <marker id="dcl-palet-rouge"
+                markerWidth="10" markerHeight="8"
+                refX="9" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z"
+                fill="#dc2626"/>
+        </marker>
+      </defs>
+
+      <!-- PALET ISOLÉ -->
+      <ellipse cx="260" cy="160"
+               rx="38" ry="15"
+               fill="#94a3b8"
+               stroke="#334155"
+               stroke-width="2.5"/>
+
+      <circle cx="260" cy="160" r="4"
+              fill="#1e293b"/>
+
+      <!-- NORMALE -->
+      <line x1="260" y1="160"
+            x2="260" y2="50"
+            stroke="#2563eb"
+            stroke-width="5"
+            marker-end="url(#dcl-palet-bleu)"/>
+
+      <text x="280" y="83"
+            font-size="19"
+            font-weight="bold"
+            fill="#2563eb">
+        N
+      </text>
+
+      <!-- POIDS -->
+      <line x1="260" y1="160"
+            x2="260" y2="270"
+            stroke="#dc2626"
+            stroke-width="5"
+            marker-end="url(#dcl-palet-rouge)"/>
+
+      <text x="280" y="250"
+            font-size="19"
+            font-weight="bold"
+            fill="#dc2626">
+        P
+      </text>
+
+      <!-- NOTE -->
+      <text x="430" y="148"
+            text-anchor="middle"
+            font-size="16"
+            fill="currentColor">
+        Aucune force
+      </text>
+
+      <text x="430" y="170"
+            text-anchor="middle"
+            font-size="16"
+            fill="currentColor">
+        horizontale
+      </text>
+
+      <text x="430" y="192"
+            text-anchor="middle"
+            font-size="16"
+            fill="currentColor">
+        appliquée
+      </text>
+
+      <text x="260" y="307"
+            text-anchor="middle"
+            font-size="15"
+            fill="currentColor">
+        Forces verticales équilibrées
+      </text>
+
+    </svg>
+
+    <figcaption style="text-align:center;font-size:.9rem;">
+      Le poids et la force normale se compensent.
+      Aucune force horizontale n'agit sur le palet.
+    </figcaption>
+
+  </figure>
+
+  <p>
+    <strong>Observation :</strong>
+    le palet subit deux forces verticales :
+  </p>
+
+  <ul>
+    <li>
+      Son poids \(\vec P\), dirigé vers le bas.
+    </li>
+    <li>
+      La force normale \(\vec N\), exercée
+      par la glace et dirigée vers le haut.
+    </li>
+  </ul>
+
+  <p>
+    Puisque le palet ne subit aucune accélération
+    verticale, ces forces se compensent.
+  </p>
+
+  <p>
+    De plus, la surface est parfaitement
+    sans frottement et aucune autre force
+    horizontale n'est appliquée.
+  </p>
+
+  <p>
+    La résultante horizontale est donc nulle.
+  </p>
+
+  <!-- ÉTAPE 2 : DONNÉES -->
+  <h4>2. Identification des données</h4>
+
+  <p><strong>Les données connues :</strong></p>
+
+  <ul>
+    <li>
+      Vitesse initiale :
+      \(v_i=4{,}0\,\mathrm{m/s}\), vers la droite.
+    </li>
+    <li>
+      Durée du mouvement observé :
+      \(\Delta t=6{,}0\,\mathrm{s}\).
+    </li>
+    <li>
+      Force résultante horizontale :
+      \(F_{\mathrm{rés},x}=0\,\mathrm{N}\).
+    </li>
+    <li>
+      La trajectoire est rectiligne.
+    </li>
+  </ul>
+
+  <p><strong>Les inconnues :</strong></p>
+
+  <ul>
+    <li>
+      Accélération horizontale :
+      \(a_x=?\)
+    </li>
+    <li>
+      Vitesse finale :
+      \(v_f=?\)
+    </li>
+    <li>
+      Distance parcourue :
+      \(d=?\)
+    </li>
+  </ul>
+
+  <!-- ÉTAPE 3 : ANALYSE -->
+  <h4>3. Analyse physique de la situation</h4>
+
+  <p>
+    Nous choisissons l'axe horizontal \(x\)
+    comme axe de référence, avec le sens
+    positif orienté vers la droite.
+  </p>
+
+  <p>
+    Puisqu'aucune force horizontale
+    n'agit sur le palet :
+  </p>
+
+  \[
+    \sum F_x=0
+  \]
+
+  <p>
+    Selon la deuxième loi de Newton :
+  </p>
+
+  \[
+    \sum F_x=ma_x
+  \]
+
+  <p>
+    Nous pouvons donc écrire :
+  </p>
+
+  \[
+    0=ma_x
+  \]
+
+  <p>
+    Puisque la masse du palet est
+    non nulle :
+  </p>
+
+  \[
+    \boxed{a_x=0\,\mathrm{m/s^2}}
+  \]
+
+  <p>
+    L'accélération horizontale est nulle.
+    Cela signifie que la vitesse du palet
+    ne change pas.
+  </p>
+
+  <p>
+    C'est une application de la
+    <strong>première loi de Newton</strong>,
+    également appelée
+    <strong>principe d'inertie</strong>.
+  </p>
+
+  <p>
+    Un objet conserve son état de repos
+    ou de mouvement rectiligne uniforme
+    lorsque la force résultante exercée
+    sur lui est nulle.
+  </p>
+
+  <!-- ÉTAPE 4 : FORMULES -->
+  <h4>4. Choix des formules mathématiques</h4>
+
+  <p>
+    Nous savons que l'accélération
+    du palet est nulle.
+  </p>
+
+  <p>
+    Pour vérifier sa vitesse finale,
+    nous utilisons :
+  </p>
+
+  \[
+    \boxed{v_f=v_i+a_x\Delta t}
+  \]
+
+  <p>
+    Pour calculer son déplacement
+    horizontal dans le cas d'une
+    vitesse constante, nous utilisons :
+  </p>
+
+  \[
+    \boxed{\Delta x=v_x\Delta t}
+  \]
+
+  <p>
+    Puisque le palet se déplace toujours
+    en ligne droite vers la droite,
+    sans changer de sens, la distance
+    parcourue correspond à la grandeur
+    de son déplacement :
+  </p>
+
+  \[
+    \boxed{d=v\Delta t}
+  \]
+
+  <!-- ÉTAPE 5 : RÉSOLUTION -->
+  <h4>5. Résolution mathématique</h4>
+
+  <p>
+    <strong>
+      Partie A — Vérification de la vitesse finale
+    </strong>
+  </p>
+
+  <p>
+    <strong>
+      Étape 1 — Écrire la formule générale.
+    </strong>
+  </p>
+
+  \[
+    v_f=v_i+a_x\Delta t
+  \]
+
+  <p>
+    <strong>
+      Étape 2 — Remplacer par les valeurs connues.
+    </strong>
+  </p>
+
+  \[
+    v_f=
+    4{,}0\,\mathrm{m/s}
+    +(0\,\mathrm{m/s^2})(6{,}0\,\mathrm{s})
+  \]
+
+  <p>
+    <strong>
+      Étape 3 — Effectuer la multiplication.
+    </strong>
+  </p>
+
+  \[
+    v_f=
+    4{,}0\,\mathrm{m/s}
+    +0\,\mathrm{m/s}
+  \]
+
+  <p>
+    <strong>
+      Étape 4 — Simplifier l'expression.
+    </strong>
+  </p>
+
+  \[
+    \boxed{v_f=4{,}0\,\mathrm{m/s}}
+  \]
+
+  <p>
+    Le palet conserve donc la même
+    vitesse pendant tout l'intervalle.
+  </p>
+
+  <p>
+    <strong>
+      Partie B — Calcul de la distance parcourue
+    </strong>
+  </p>
+
+  <p>
+    <strong>
+      Étape 1 — Écrire la formule.
+    </strong>
+  </p>
+
+  \[
+    d=v\Delta t
+  \]
+
+  <p>
+    <strong>
+      Étape 2 — Remplacer les variables
+      par les valeurs connues.
+    </strong>
+  </p>
+
+  \[
+    d=(4{,}0\,\mathrm{m/s})(6{,}0\,\mathrm{s})
+  \]
+
+  <p>
+    <strong>
+      Étape 3 — Regrouper les valeurs numériques
+      et les unités.
+    </strong>
+  </p>
+
+  \[
+    d=(4{,}0\times6{,}0)
+    \left(\frac{\mathrm{m}}{\mathrm{s}}
+    \times\mathrm{s}\right)
+  \]
+
+  <p>
+    <strong>
+      Étape 4 — Simplifier les unités.
+    </strong>
+  </p>
+
+  \[
+    \frac{\mathrm{m}}{\mathrm{s}}
+    \times\mathrm{s}
+    =\mathrm{m}
+  \]
+
+  <p>
+    <strong>
+      Étape 5 — Effectuer la multiplication.
+    </strong>
+  </p>
+
+  \[
+    d=24\,\mathrm{m}
+  \]
+
+  <p>
+    <strong>
+      Étape 6 — Écrire le résultat final.
+    </strong>
+  </p>
+
+  \[
+    \boxed{d=24\,\mathrm{m}}
+  \]
+
+  <!-- ÉTAPE 6 : RÉPONSE FINALE -->
+  <h4>6. Réponse finale</h4>
+
+  <div class="answer">
+
+    <p>
+      Pendant les 6,0 secondes d'observation,
+      le palet parcourt une distance de
+      <strong>24 mètres</strong>.
+    </p>
+
+    \[
+      \boxed{d=24\,\mathrm{m}}
+    \]
+
+    <p>
+      Sa vitesse demeure constante :
+    </p>
+
+    \[
+      \boxed{v_f=4{,}0\,\mathrm{m/s}}
+    \]
+
+    <p>
+      Son accélération horizontale est :
+    </p>
+
+    \[
+      \boxed{a_x=0\,\mathrm{m/s^2}}
+    \]
+
+    <p>
+      <strong>
+        Conclusion :
+      </strong>
+      Le palet se déplace de 24 m vers
+      la droite en 6,0 s, sans accélérer
+      ni ralentir.
+    </p>
+
+  </div>
+
+  <!-- ÉTAPE 7 : INTERPRÉTATION -->
+  <h4>7. Interprétation physique</h4>
+
+  <p>
+    Le palet continue de se déplacer
+    même si aucune force horizontale
+    n'est exercée sur lui.
+  </p>
+
+  <p>
+    Cela peut sembler surprenant,
+    puisque dans la vie quotidienne,
+    les objets finissent généralement
+    par ralentir et s'arrêter.
+  </p>
+
+  <p>
+    Cependant, dans notre environnement,
+    des forces comme le frottement
+    et la résistance de l'air
+    s'opposent souvent au mouvement.
+  </p>
+
+  <p>
+    Dans notre modèle idéal,
+    ces forces sont absentes.
+  </p>
+
+  <p>
+    La force résultante est donc nulle :
+  </p>
+
+  \[
+    \sum\vec F=\vec 0
+  \]
+
+  <p>
+    Par conséquent, l'accélération
+    est également nulle :
+  </p>
+
+  \[
+    \vec a=\vec 0
+  \]
+
+  <p>
+    Le palet conserve alors sa vitesse
+    initiale de 4,0 m/s.
+  </p>
+
+  <p>
+    <strong>À retenir :</strong>
+    il n'est pas nécessaire d'exercer
+    une force pour maintenir un objet
+    en mouvement à vitesse constante.
+  </p>
+
+  <p>
+    Une force résultante non nulle
+    est nécessaire pour
+    <strong>modifier sa vitesse</strong>,
+    que ce soit sa grandeur,
+    sa direction ou les deux.
+  </p>
+
+  <p>
+    <strong>Attention :</strong>
+    une force résultante nulle ne
+    signifie pas que la vitesse
+    de l'objet est nulle.
+    Elle signifie que son
+    <strong>accélération est nulle</strong>.
+  </p>
+
+</article>
+
+         
+<article class="panel note">
+
+  <div class="pmark">Exemple guidé 2</div>
+  <h3>Freinage d’un vélo</h3>
+
+  <!-- MISE EN SITUATION -->
+  <p>
+    Un cycliste roule en ligne droite sur une route
+    horizontale à une vitesse initiale de
+    <strong>8,0 m/s</strong>.
+  </p>
+
+  <p>
+    Lorsqu'il actionne ses freins, le vélo subit une
+    décélération constante de
+    <strong>2,0 m/s²</strong>, jusqu'à son arrêt complet.
+  </p>
+
+  <p>
+    <strong>Questions :</strong>
+    Combien de temps faut-il au cycliste pour s'arrêter?
+    Quelle distance parcourt-il pendant le freinage?
+  </p>
+
+  <!-- PHOTOGRAPHIE -->
+  <figure style="margin:1.5rem auto;max-width:760px;">
+
+    <img
+      src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Cycling_pressing_brakes_on_bicycle.jpg/960px-Cycling_pressing_brakes_on_bicycle.jpg"
+      alt="Cycliste actionnant les leviers de frein de son vélo."
+      width="960"
+      height="640"
+      loading="lazy"
+      style="
+        display:block;
+        width:100%;
+        height:auto;
+        border-radius:12px;
+      "
+    >
+
+    <figcaption style="
+      text-align:center;
+      font-size:.9rem;
+      line-height:1.6;
+      margin-top:.75rem;
+    ">
+      <strong>Figure — Freinage d'un vélo.</strong>
+      Le cycliste actionne les leviers de frein
+      pour ralentir son vélo.
+
+      <span style="
+        display:block;
+        font-size:.8rem;
+        margin-top:.4rem;
+      ">
+        Photographie :
+        <a
+          href="https://commons.wikimedia.org/wiki/File:Cycling_pressing_brakes_on_bicycle.jpg"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Alextredz / Tredz — Wikimedia Commons</a>
+        —
+        <a
+          href="https://creativecommons.org/licenses/by-sa/4.0/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >CC BY-SA 4.0</a>.
+        Image non modifiée.
+      </span>
+    </figcaption>
+  </figure>
+
+  <!-- ÉTAPE 1 -->
+  <h4>1. Représentation de la situation</h4>
+
+  <p>
+    Représentons le vélo au début du freinage
+    et lorsqu'il est complètement arrêté.
+  </p>
+
+  <figure style="margin:1.5rem auto;max-width:820px;">
+
+    <svg viewBox="0 0 820 350"
+         xmlns="http://www.w3.org/2000/svg"
+         role="img"
+         aria-labelledby="titre-freinage desc-freinage"
+         style="width:100%;height:auto;">
+
+      <title id="titre-freinage">
+        Schéma du freinage d'un vélo
+      </title>
+
+      <desc id="desc-freinage">
+        Le vélo se déplace initialement vers la droite
+        à 8 mètres par seconde. Son accélération est
+        orientée vers la gauche et vaut moins
+        2 mètres par seconde carrée.
+        Après 4 secondes, le vélo est arrêté.
+      </desc>
+
+      <defs>
+        <marker id="velo-v"
+                markerWidth="10" markerHeight="8"
+                refX="9" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z"
+                fill="#2563eb"/>
+        </marker>
+
+        <marker id="velo-a"
+                markerWidth="10" markerHeight="8"
+                refX="9" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z"
+                fill="#dc2626"/>
+        </marker>
+
+        <marker id="velo-d"
+                markerWidth="8" markerHeight="7"
+                refX="7" refY="3.5"
+                orient="auto-start-reverse">
+          <path d="M0,0 L8,3.5 L0,7 Z"
+                fill="#7c3aed"/>
+        </marker>
+
+        <g id="velo-dessin"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="3"
+           stroke-linejoin="round"
+           stroke-linecap="round">
+
+          <!-- Roues -->
+          <circle cx="-39" cy="0" r="22"/>
+          <circle cx="43" cy="0" r="22"/>
+
+          <!-- Cadre -->
+          <path d="M-39,0 L-8,-37 L10,0 Z"/>
+          <path d="M-8,-37 L29,-37 L10,0"/>
+          <path d="M29,-37 L43,0"/>
+
+          <!-- Guidon -->
+          <path d="M29,-37 L23,-53 L43,-53"/>
+
+          <!-- Selle -->
+          <path d="M-8,-37 L-12,-47"/>
+          <path d="M-24,-47 L0,-47"/>
+
+          <!-- Pédalier -->
+          <circle cx="10" cy="0" r="5"/>
+        </g>
+      </defs>
+
+      <!-- TITRE DU SCHÉMA -->
+      <text x="410" y="30"
+            text-anchor="middle"
+            font-size="18"
+            font-weight="bold"
+            fill="currentColor">
+        Mouvement rectiligne avec accélération constante
+      </text>
+
+      <!-- SURFACE -->
+      <rect x="35" y="245"
+            width="750" height="30"
+            rx="3"
+            fill="#94a3b8"
+            opacity=".2"/>
+
+      <line x1="35" y1="245"
+            x2="785" y2="245"
+            stroke="#64748b"
+            stroke-width="3"/>
+
+      <!-- VÉLO INITIAL -->
+      <g transform="translate(150,225)"
+         color="#2563eb">
+        <use href="#velo-dessin"/>
+      </g>
+
+      <text x="150" y="110"
+            text-anchor="middle"
+            font-size="17"
+            font-weight="bold"
+            fill="currentColor">
+        Début du freinage
+      </text>
+
+      <text x="150" y="132"
+            text-anchor="middle"
+            font-size="16"
+            fill="currentColor">
+        t = 0 s
+      </text>
+
+      <!-- VÉLO FINAL -->
+      <g transform="translate(665,225)"
+         color="#64748b">
+        <use href="#velo-dessin"/>
+      </g>
+
+      <text x="665" y="110"
+            text-anchor="middle"
+            font-size="17"
+            font-weight="bold"
+            fill="currentColor">
+        Arrêt complet
+      </text>
+
+      <text x="665" y="132"
+            text-anchor="middle"
+            font-size="16"
+            fill="currentColor">
+        v = 0 m/s
+      </text>
+
+      <!-- VITESSE INITIALE -->
+      <line x1="220" y1="176"
+            x2="360" y2="176"
+            stroke="#2563eb"
+            stroke-width="5"
+            marker-end="url(#velo-v)"/>
+
+      <text x="290" y="158"
+            text-anchor="middle"
+            font-size="17"
+            font-weight="bold"
+            fill="#2563eb">
+        vᵢ = 8,0 m/s
+      </text>
+
+      <!-- ACCÉLÉRATION OPPOSÉE -->
+      <line x1="565" y1="176"
+            x2="415" y2="176"
+            stroke="#dc2626"
+            stroke-width="5"
+            marker-end="url(#velo-a)"/>
+
+      <text x="490" y="158"
+            text-anchor="middle"
+            font-size="17"
+            font-weight="bold"
+            fill="#dc2626">
+        a = −2,0 m/s²
+      </text>
+
+      <!-- DISTANCE D'ARRÊT -->
+      <line x1="150" y1="308"
+            x2="665" y2="308"
+            stroke="#7c3aed"
+            stroke-width="2.5"
+            marker-start="url(#velo-d)"
+            marker-end="url(#velo-d)"/>
+
+      <line x1="150" y1="251"
+            x2="150" y2="320"
+            stroke="#7c3aed"
+            stroke-width="1.5"
+            stroke-dasharray="5 4"/>
+
+      <line x1="665" y1="251"
+            x2="665" y2="320"
+            stroke="#7c3aed"
+            stroke-width="1.5"
+            stroke-dasharray="5 4"/>
+
+      <text x="408" y="298"
+            text-anchor="middle"
+            font-size="18"
+            font-weight="bold"
+            fill="#7c3aed">
+        Distance de freinage : d = ?
+      </text>
+
+      <text x="408" y="337"
+            text-anchor="middle"
+            font-size="15"
+            fill="currentColor">
+        Sens positif de l'axe x : vers la droite
+      </text>
+
+    </svg>
+
+    <figcaption style="
+      text-align:center;
+      font-size:.9rem;
+    ">
+      La vitesse du vélo est orientée vers la droite,
+      tandis que son accélération est orientée vers
+      la gauche. Le vélo ralentit jusqu'à l'arrêt.
+      Schéma non à l'échelle.
+    </figcaption>
+  </figure>
+
+  <p>
+    <strong>Observation :</strong>
+    l'accélération est opposée à la vitesse.
+    La grandeur de la vitesse diminue donc
+    progressivement.
+  </p>
+
+  <!-- ÉTAPE 2 -->
+  <h4>2. Identification des données</h4>
+
+  <p><strong>Les données connues :</strong></p>
+
+  <ul>
+    <li>
+      Vitesse initiale :
+      \(v_i=8{,}0\,\mathrm{m/s}\)
+    </li>
+    <li>
+      Vitesse finale :
+      \(v_f=0\,\mathrm{m/s}\)
+    </li>
+    <li>
+      Grandeur de la décélération :
+      \(2{,}0\,\mathrm{m/s^2}\)
+    </li>
+    <li>
+      L'accélération est constante.
+    </li>
+    <li>
+      Le mouvement est rectiligne.
+    </li>
+  </ul>
+
+  <p><strong>Les inconnues :</strong></p>
+
+  <ul>
+    <li>
+      Le temps nécessaire pour s'arrêter :
+      \(\Delta t=?\)
+    </li>
+    <li>
+      La distance parcourue pendant
+      le freinage : \(d=?\)
+    </li>
+  </ul>
+
+  <!-- ÉTAPE 3 -->
+  <h4>3. Choix du système de référence</h4>
+
+  <p>
+    Nous choisissons l'axe horizontal \(x\)
+    comme axe de référence.
+  </p>
+
+  <p>
+    Le sens positif correspond au sens
+    initial du mouvement, vers l'avant.
+  </p>
+
+  <ul>
+    <li>
+      Vers l'avant (droite) :
+      signe positif.
+    </li>
+    <li>
+      Vers l'arrière (gauche) :
+      signe négatif.
+    </li>
+  </ul>
+
+  <p>
+    La vitesse initiale est positive :
+  </p>
+
+  \[
+    v_i=+8{,}0\,\mathrm{m/s}
+  \]
+
+  <p>
+    Puisque l'accélération est opposée
+    au mouvement, elle est négative :
+  </p>
+
+  \[
+    \boxed{a_x=-2{,}0\,\mathrm{m/s^2}}
+  \]
+
+  <p>
+    <strong>Attention :</strong>
+    une accélération négative ne signifie
+    pas automatiquement qu'un objet ralentit.
+    Dans cet exemple, le vélo ralentit parce
+    que l'accélération et la vitesse sont
+    de signes opposés.
+  </p>
+
+  <!-- ÉTAPE 4 -->
+  <h4>4. Choix des formules mathématiques</h4>
+
+  <p>
+    Nous étudions un mouvement rectiligne
+    à accélération constante.
+  </p>
+
+  <p>
+    Pour calculer le temps de freinage,
+    nous utilisons :
+  </p>
+
+  \[
+    \boxed{v_f=v_i+a_x\Delta t}
+  \]
+
+  <p>
+    Pour calculer la distance parcourue,
+    nous pouvons utiliser l'équation
+    du déplacement :
+  </p>
+
+  \[
+    \boxed{
+      \Delta x=v_i\Delta t+
+      \frac{1}{2}a_x(\Delta t)^2
+    }
+  \]
+
+  <p>
+    Une autre méthode consiste à
+    utiliser la vitesse moyenne,
+    puisque l'accélération est constante :
+  </p>
+
+  \[
+    \boxed{
+      v_{\mathrm{moy}}=
+      \frac{v_i+v_f}{2}
+    }
+  \]
+
+  <p>
+    Et ensuite :
+  </p>
+
+  \[
+    \boxed{
+      \Delta x=v_{\mathrm{moy}}\Delta t
+    }
+  \]
+
+  <!-- ÉTAPE 5 -->
+  <h4>5. Résolution mathématique</h4>
+
+  <p>
+    <strong>
+      Partie A — Calcul du temps d'arrêt
+    </strong>
+  </p>
+
+  <p>
+    <strong>Étape 1 — Écrire la formule.</strong>
+  </p>
+
+  \[
+    v_f=v_i+a_x\Delta t
+  \]
+
+  <p>
+    <strong>
+      Étape 2 — Isoler l'inconnue \(\Delta t\).
+    </strong>
+  </p>
+
+  \[
+    v_f-v_i=a_x\Delta t
+  \]
+
+  \[
+    \Delta t=\frac{v_f-v_i}{a_x}
+  \]
+
+  <p>
+    <strong>
+      Étape 3 — Remplacer par les valeurs connues.
+    </strong>
+  </p>
+
+  \[
+    \Delta t=
+    \frac{
+      0\,\mathrm{m/s}
+      -8{,}0\,\mathrm{m/s}
+    }{
+      -2{,}0\,\mathrm{m/s^2}
+    }
+  \]
+
+  <p>
+    <strong>
+      Étape 4 — Simplifier le numérateur.
+    </strong>
+  </p>
+
+  \[
+    \Delta t=
+    \frac{
+      -8{,}0\,\mathrm{m/s}
+    }{
+      -2{,}0\,\mathrm{m/s^2}
+    }
+  \]
+
+  <p>
+    <strong>
+      Étape 5 — Effectuer la division.
+    </strong>
+  </p>
+
+  \[
+    \Delta t=
+    \frac{-8{,}0}{-2{,}0}
+    \left(
+      \frac{\mathrm{m/s}}{\mathrm{m/s^2}}
+    \right)
+  \]
+
+  <p>
+    En simplifiant les unités :
+  </p>
+
+  \[
+    \frac{\mathrm{m/s}}{\mathrm{m/s^2}}
+    =\mathrm{s}
+  \]
+
+  <p>
+    Nous obtenons :
+  </p>
+
+  \[
+    \boxed{\Delta t=4{,}0\,\mathrm{s}}
+  \]
+
+  <p>
+    Le cycliste met donc 4,0 secondes
+    pour s'arrêter complètement.
+  </p>
+
+  <!-- DISTANCE : MÉTHODE 1 -->
+  <p>
+    <strong>
+      Partie B — Calcul de la distance
+      (première méthode)
+    </strong>
+  </p>
+
+  <p>
+    Utilisons l'équation du déplacement
+    avec une accélération constante.
+  </p>
+
+  <p>
+    <strong>Étape 1 — Écrire la formule.</strong>
+  </p>
+
+  \[
+    \Delta x=v_i\Delta t+
+    \frac{1}{2}a_x(\Delta t)^2
+  \]
+
+  <p>
+    <strong>
+      Étape 2 — Remplacer les valeurs connues.
+    </strong>
+  </p>
+
+  \[
+    \begin{aligned}
+    \Delta x
+    &=(8{,}0\,\mathrm{m/s})(4{,}0\,\mathrm{s})\\
+    &\quad+
+    \frac{1}{2}
+    (-2{,}0\,\mathrm{m/s^2})
+    (4{,}0\,\mathrm{s})^2
+    \end{aligned}
+  \]
+
+  <p>
+    <strong>
+      Étape 3 — Calculer le carré du temps.
+    </strong>
+  </p>
+
+  \[
+    (4{,}0\,\mathrm{s})^2
+    =16\,\mathrm{s^2}
+  \]
+
+  <p>
+    <strong>
+      Étape 4 — Effectuer les multiplications.
+    </strong>
+  </p>
+
+  \[
+    \Delta x=
+    32\,\mathrm{m}
+    +\frac{1}{2}
+    (-2{,}0\,\mathrm{m/s^2})
+    (16\,\mathrm{s^2})
+  \]
+
+  \[
+    \Delta x=
+    32\,\mathrm{m}-16\,\mathrm{m}
+  \]
+
+  <p>
+    <strong>
+      Étape 5 — Effectuer la soustraction.
+    </strong>
+  </p>
+
+  \[
+    \Delta x=16\,\mathrm{m}
+  \]
+
+  <p>
+    Comme le vélo ne change pas de sens,
+    la distance parcourue est égale
+    à la grandeur du déplacement.
+  </p>
+
+  \[
+    \boxed{d=16\,\mathrm{m}}
+  \]
+
+  <!-- DISTANCE : MÉTHODE 2 -->
+  <p>
+    <strong>
+      Partie C — Vérification avec
+      une deuxième méthode
+    </strong>
+  </p>
+
+  <p>
+    Puisque l'accélération est constante,
+    nous pouvons utiliser la vitesse moyenne.
+  </p>
+
+  <p>
+    <strong>
+      Étape 1 — Écrire la formule
+      de la vitesse moyenne.
+    </strong>
+  </p>
+
+  \[
+    v_{\mathrm{moy}}=
+    \frac{v_i+v_f}{2}
+  \]
+
+  <p>
+    <strong>
+      Étape 2 — Remplacer les valeurs connues.
+    </strong>
+  </p>
+
+  \[
+    v_{\mathrm{moy}}=
+    \frac{
+      8{,}0\,\mathrm{m/s}
+      +0\,\mathrm{m/s}
+    }{2}
+  \]
+
+  <p>
+    <strong>
+      Étape 3 — Effectuer le calcul.
+    </strong>
+  </p>
+
+  \[
+    v_{\mathrm{moy}}=
+    \frac{8{,}0\,\mathrm{m/s}}{2}
+  \]
+
+  \[
+    \boxed{
+      v_{\mathrm{moy}}=4{,}0\,\mathrm{m/s}
+    }
+  \]
+
+  <p>
+    <strong>
+      Étape 4 — Calculer le déplacement.
+    </strong>
+  </p>
+
+  \[
+    \Delta x=v_{\mathrm{moy}}\Delta t
+  \]
+
+  \[
+    \Delta x=
+    (4{,}0\,\mathrm{m/s})(4{,}0\,\mathrm{s})
+  \]
+
+  \[
+    \Delta x=16\,\mathrm{m}
+  \]
+
+  <p>
+    Nous obtenons le même résultat
+    avec les deux méthodes :
+  </p>
+
+  \[
+    \boxed{d=16\,\mathrm{m}}
+  \]
+
+  <!-- ÉTAPE 6 -->
+  <h4>6. Réponse finale</h4>
+
+  <div class="answer">
+
+    <p>
+      Le cycliste met
+      <strong>4,0 secondes</strong>
+      pour s'arrêter complètement.
+    </p>
+
+    \[
+      \boxed{\Delta t=4{,}0\,\mathrm{s}}
+    \]
+
+    <p>
+      Pendant ce freinage, il parcourt
+      une distance de
+      <strong>16 mètres</strong>.
+    </p>
+
+    \[
+      \boxed{d=16\,\mathrm{m}}
+    \]
+
+    <p>
+      <strong>Conclusion :</strong>
+      Avec une vitesse initiale de
+      8,0 m/s et une décélération constante
+      de 2,0 m/s², le cycliste s'arrête
+      après 4,0 s, en parcourant 16 m.
+    </p>
+
+  </div>
+
+  <!-- ÉTAPE 7 -->
+  <h4>7. Interprétation physique</h4>
+
+  <p>
+    Lorsque le cycliste actionne ses freins,
+    ceux-ci exercent un couple qui s'oppose
+    à la rotation des roues.
+  </p>
+
+  <p>
+    Le contact entre les pneus et la route
+    permet alors l'apparition d'une force
+    horizontale de freinage, orientée
+    à l'opposé du mouvement.
+  </p>
+
+  <p>
+    Selon la deuxième loi de Newton :
+  </p>
+
+  \[
+    \sum \vec F=m\vec a
+  \]
+
+  <p>
+    La force résultante horizontale est
+    orientée vers l'arrière, ce qui produit
+    une accélération opposée à la vitesse
+    initiale du vélo.
+  </p>
+
+  <p>
+    La vitesse diminue donc progressivement :
+  </p>
+
+  <ul>
+    <li>
+      Après 0 s : \(v=8{,}0\,\mathrm{m/s}\)
+    </li>
+    <li>
+      Après 1 s : \(v=6{,}0\,\mathrm{m/s}\)
+    </li>
+    <li>
+      Après 2 s : \(v=4{,}0\,\mathrm{m/s}\)
+    </li>
+    <li>
+      Après 3 s : \(v=2{,}0\,\mathrm{m/s}\)
+    </li>
+    <li>
+      Après 4 s : \(v=0\,\mathrm{m/s}\)
+    </li>
+  </ul>
+
+  <p>
+    La vitesse diminue de 2,0 m/s
+    chaque seconde.
+  </p>
+
+  <p>
+    Cependant, le vélo continue
+    de se déplacer vers l'avant
+    pendant toute la période de freinage.
+  </p>
+
+  <p>
+    <strong>À retenir :</strong>
+    une accélération orientée à l'opposé
+    de la vitesse entraîne une diminution
+    de la grandeur de cette vitesse.
+  </p>
+
+  <p>
+    <strong>Attention :</strong>
+    la distance de 16 m calculée ici
+    représente uniquement la
+    <strong>distance de freinage</strong>.
+  </p>
+
+  <p>
+    Dans une situation réelle, il faut
+    également considérer la distance
+    parcourue pendant le temps de réaction
+    du cycliste, avant même qu'il commence
+    à freiner.
+  </p>
+
+  <p>
+    La distance d'arrêt totale réelle
+    serait donc généralement supérieure
+    à la distance de freinage seule.
+  </p>
+
+</article>
+
+          
+<article class="panel note">
+
+  <div class="pmark">Exemple guidé 3</div>
+  <h3>Ceinture de sécurité</h3>
+
+  <!-- MISE EN SITUATION -->
+  <p>
+    Un passager est assis dans un autobus qui se déplace
+    en ligne droite à une vitesse de
+    <strong>12 m/s</strong>.
+  </p>
+
+  <p>
+    Soudainement, le conducteur actionne les freins.
+    L'autobus ralentit, mais le corps du passager
+    tend à conserver sa vitesse initiale.
+  </p>
+
+  <p>
+    Heureusement, le passager porte sa ceinture
+    de sécurité, qui contribue à le ralentir
+    avec le véhicule.
+  </p>
+
+  <p>
+    <strong>Questions :</strong>
+    Pourquoi le passager tend-il à poursuivre son
+    mouvement vers l'avant? Quel est le rôle de
+    la ceinture de sécurité? Comment les lois de
+    Newton permettent-elles d'expliquer le phénomène?
+  </p>
+
+  <!-- PHOTOGRAPHIE LIBRE DE DROITS -->
+  <figure style="margin:1.5rem auto;max-width:760px;">
+
+    <img
+      src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/HK_YLD_%E5%85%83%E6%9C%97%E5%8D%80_Yuen_Long_District_%E8%90%BD%E9%A6%AC%E6%B4%B2%E8%B7%AF_Lok_Ma_Chau_Road_%E5%B7%B4%E5%A3%AB%E7%B8%BD%E7%AB%99_bus_terminus_%E4%B9%9D%E5%B7%B4%E8%BB%8A%E7%AE%B1_KMB_B1_bus_interior_%E5%BA%A7%E4%BD%8D%E5%AE%89%E5%85%A8%E5%B8%B6_seat_belt_November_2023_R12S_04.jpg/960px-thumbnail.jpg"
+      alt="Intérieur d'un autobus équipé de ceintures de sécurité pour les passagers."
+      width="960"
+      height="720"
+      loading="lazy"
+      style="
+        display:block;
+        width:100%;
+        height:auto;
+        border-radius:12px;
+      "
+    >
+
+    <figcaption style="
+      text-align:center;
+      font-size:.9rem;
+      line-height:1.6;
+      margin-top:.75rem;
+    ">
+      <strong>Figure — Ceintures de sécurité dans un autobus.</strong>
+      Les ceintures permettent de retenir les passagers
+      et de contribuer à leur ralentissement
+      lors d'un freinage.
+
+      <span style="
+        display:block;
+        font-size:.8rem;
+        margin-top:.35rem;
+      ">
+        Photographie :
+        Fenguang Chisingh 3800 /
+        <a
+          href="https://commons.wikimedia.org/wiki/File:HK_YLD_元朗區_Yuen_Long_District_落馬洲路_Lok_Ma_Chau_Road_巴士總站_bus_terminus_九巴車箱_KMB_B1_bus_interior_座位安全帶_seat_belt_November_2023_R12S_04.jpg"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Wikimedia Commons</a>
+        — Domaine public (CC0 1.0).
+      </span>
+    </figcaption>
+
+  </figure>
+
+  <!-- ÉTAPE 1 -->
+  <h4>1. Représentation de la situation</h4>
+
+  <p>
+    Comparons deux moments : avant le freinage,
+    puis pendant le freinage de l'autobus.
+  </p>
+
+  <figure style="margin:1.5rem auto;max-width:820px;">
+
+    <svg viewBox="0 0 820 345"
+         xmlns="http://www.w3.org/2000/svg"
+         role="img"
+         aria-labelledby="titre-ceinture desc-ceinture"
+         style="width:100%;height:auto;">
+
+      <title id="titre-ceinture">
+        Passager avant et pendant le freinage
+      </title>
+
+      <desc id="desc-ceinture">
+        Avant le freinage, le passager se déplace vers
+        la droite à 12 mètres par seconde. Pendant
+        le freinage, la ceinture exerce une force
+        dont la composante horizontale est orientée
+        vers la gauche, opposée au mouvement.
+      </desc>
+
+      <defs>
+        <marker id="ceinture-bleu"
+                markerWidth="10" markerHeight="8"
+                refX="9" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z"
+                fill="#2563eb"/>
+        </marker>
+
+        <marker id="ceinture-rouge"
+                markerWidth="10" markerHeight="8"
+                refX="9" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z"
+                fill="#dc2626"/>
+        </marker>
+
+        <g id="passager-assis">
+          <!-- Siège -->
+          <rect x="-65" y="-55"
+                width="18" height="115"
+                rx="6"
+                fill="#64748b"/>
+
+          <rect x="-65" y="45"
+                width="115" height="18"
+                rx="6"
+                fill="#64748b"/>
+
+          <!-- Tête -->
+          <circle cx="-7" cy="-65" r="22"
+                  fill="#d6ad86"
+                  stroke="#805e45"
+                  stroke-width="2"/>
+
+          <!-- Corps -->
+          <path d="M-20,-38 L30,32 L-20,45 L-47,-15 Z"
+                fill="#2563eb"
+                stroke="#1e3a8a"
+                stroke-width="2"/>
+
+          <!-- Jambe -->
+          <path d="M10,44 L54,53 L63,88"
+                fill="none"
+                stroke="#475569"
+                stroke-width="13"
+                stroke-linecap="round"/>
+
+          <!-- Ceinture -->
+          <path d="M-42,-20 L23,40"
+                stroke="#f59e0b"
+                stroke-width="7"
+                stroke-linecap="round"/>
+
+          <circle cx="23" cy="40" r="5"
+                  fill="#fbbf24"
+                  stroke="#92400e"
+                  stroke-width="1.5"/>
+        </g>
+      </defs>
+
+      <!-- TITRES -->
+      <text x="205" y="35"
+            text-anchor="middle"
+            font-size="19"
+            font-weight="bold"
+            fill="currentColor">
+        Avant le freinage
+      </text>
+
+      <text x="615" y="35"
+            text-anchor="middle"
+            font-size="19"
+            font-weight="bold"
+            fill="currentColor">
+        Pendant le freinage
+      </text>
+
+      <!-- Séparation -->
+      <line x1="410" y1="53"
+            x2="410" y2="318"
+            stroke="#94a3b8"
+            stroke-width="1.5"
+            stroke-dasharray="6 6"/>
+
+      <!-- PLANCHERS -->
+      <line x1="30" y1="277" x2="385" y2="277"
+            stroke="#64748b" stroke-width="3"/>
+
+      <line x1="435" y1="277" x2="790" y2="277"
+            stroke="#64748b" stroke-width="3"/>
+
+      <!-- PASSAGER 1 -->
+      <g transform="translate(175,175)">
+        <use href="#passager-assis"/>
+      </g>
+
+      <!-- PASSAGER 2 -->
+      <g transform="translate(590,175)">
+        <use href="#passager-assis"/>
+      </g>
+
+      <!-- VITESSE INITIALE -->
+      <line x1="170" y1="83"
+            x2="345" y2="83"
+            stroke="#2563eb"
+            stroke-width="5"
+            marker-end="url(#ceinture-bleu)"/>
+
+      <text x="257" y="70"
+            text-anchor="middle"
+            font-size="17"
+            font-weight="bold"
+            fill="#2563eb">
+        v = 12 m/s
+      </text>
+
+      <!-- VITESSE PENDANT FREINAGE -->
+      <line x1="590" y1="83"
+            x2="700" y2="83"
+            stroke="#2563eb"
+            stroke-width="5"
+            marker-end="url(#ceinture-bleu)"/>
+
+      <text x="650" y="69"
+            text-anchor="middle"
+            font-size="16"
+            font-weight="bold"
+            fill="#2563eb">
+        v diminue
+      </text>
+
+      <!-- FORCE HORIZONTALE -->
+      <line x1="565" y1="160"
+            x2="450" y2="160"
+            stroke="#dc2626"
+            stroke-width="5"
+            marker-end="url(#ceinture-rouge)"/>
+
+      <text x="506" y="146"
+            text-anchor="middle"
+            font-size="16"
+            font-weight="bold"
+            fill="#dc2626">
+        Force vers l'arrière
+      </text>
+
+      <!-- LÉGENDES -->
+      <text x="205" y="304"
+            text-anchor="middle"
+            font-size="15"
+            fill="currentColor">
+        Le passager et l'autobus
+      </text>
+
+      <text x="205" y="323"
+            text-anchor="middle"
+            font-size="15"
+            fill="currentColor">
+        se déplacent à la même vitesse.
+      </text>
+
+      <text x="615" y="304"
+            text-anchor="middle"
+            font-size="15"
+            fill="currentColor">
+        La ceinture contribue
+      </text>
+
+      <text x="615" y="323"
+            text-anchor="middle"
+            font-size="15"
+            fill="currentColor">
+        au ralentissement du passager.
+      </text>
+
+    </svg>
+
+    <figcaption style="
+      text-align:center;
+      font-size:.9rem;
+    ">
+      Schéma simplifié : la vitesse initiale est
+      orientée vers l'avant, tandis que la composante
+      horizontale de la force exercée par la ceinture
+      est orientée vers l'arrière.
+    </figcaption>
+
+  </figure>
+
+  <p>
+    <strong>Observation :</strong>
+    lorsque l'autobus commence à freiner,
+    le passager tend à poursuivre son mouvement
+    vers l'avant.
+  </p>
+
+  <p>
+    Il ne s'agit pas d'une force qui pousse
+    son corps vers l'avant : c'est une
+    manifestation de son <strong>inertie</strong>.
+  </p>
+
+  <!-- ÉTAPE 2 -->
+  <h4>2. Identification des données</h4>
+
+  <p><strong>Les données connues :</strong></p>
+
+  <ul>
+    <li>
+      Vitesse initiale du passager :
+      \(v_i=12\,\mathrm{m/s}\), vers l'avant.
+    </li>
+    <li>
+      Le passager et l'autobus ont initialement
+      la même vitesse.
+    </li>
+    <li>
+      L'autobus ralentit lors du freinage.
+    </li>
+    <li>
+      Le passager porte une ceinture
+      de sécurité attachée au véhicule.
+    </li>
+  </ul>
+
+  <p><strong>Les inconnues :</strong></p>
+
+  <ul>
+    <li>
+      Le sens de l'accélération du passager.
+    </li>
+    <li>
+      Le sens de la force horizontale
+      nécessaire pour le ralentir.
+    </li>
+    <li>
+      La grandeur de cette force,
+      si suffisamment de données
+      étaient disponibles.
+    </li>
+  </ul>
+
+  <p>
+    <strong>Données manquantes :</strong>
+    nous ne connaissons pas la masse du
+    passager, son accélération ni
+    la durée de son ralentissement.
+  </p>
+
+  <!-- ÉTAPE 3 -->
+  <h4>3. Choix du système de référence</h4>
+
+  <p>
+    Nous choisissons l'axe horizontal
+    \(x\), avec le sens positif
+    orienté vers l'avant de l'autobus.
+  </p>
+
+  <ul>
+    <li>
+      Vers l'avant : signe positif.
+    </li>
+    <li>
+      Vers l'arrière : signe négatif.
+    </li>
+  </ul>
+
+  <p>
+    La vitesse initiale du passager est :
+  </p>
+
+  \[
+    v_i=+12\,\mathrm{m/s}
+  \]
+
+  <p>
+    Pour ralentir sans changer immédiatement
+    de sens, son accélération doit être
+    opposée à sa vitesse :
+  </p>
+
+  \[
+    \boxed{a_x<0}
+  \]
+
+  <p>
+    La force résultante horizontale
+    nécessaire au ralentissement est
+    donc orientée vers l'arrière.
+  </p>
+
+  <!-- ÉTAPE 4 -->
+  <h4>4. Choix des formules mathématiques</h4>
+
+  <p>
+    Pour expliquer le mouvement du passager,
+    nous utilisons d'abord la
+    <strong>première loi de Newton</strong>.
+  </p>
+
+  <p>
+    Lorsqu'un objet ne subit aucune
+    force résultante :
+  </p>
+
+  \[
+    \boxed{\sum\vec F=\vec 0}
+  \]
+
+  <p>
+    Son accélération est nulle
+    et sa vitesse demeure constante.
+  </p>
+
+  <p>
+    Pour comprendre comment la ceinture
+    ralentit le passager, nous utilisons
+    ensuite la <strong>deuxième loi de Newton</strong> :
+  </p>
+
+  \[
+    \boxed{\sum\vec F=m\vec a}
+  \]
+
+  <p>
+    Selon l'axe horizontal :
+  </p>
+
+  \[
+    \boxed{\sum F_x=ma_x}
+  \]
+
+  <p>
+    Nous pouvons aussi exprimer
+    l'accélération moyenne par :
+  </p>
+
+  \[
+    \boxed{
+      a_{\mathrm{moy},x}
+      =\frac{v_f-v_i}{\Delta t}
+    }
+  \]
+
+  <p>
+    Cette dernière formule permet de
+    relier la variation de vitesse
+    au temps nécessaire pour ralentir.
+  </p>
+
+  <!-- ÉTAPE 5 -->
+  <h4>5. Résolution mathématique</h4>
+
+  <p>
+    <strong>
+      Partie A — Avant le freinage
+    </strong>
+  </p>
+
+  <p>
+    Supposons que l'autobus se déplace
+    en ligne droite à vitesse constante.
+  </p>
+
+  <p>
+    <strong>
+      Étape 1 — Écrire la deuxième loi de Newton.
+    </strong>
+  </p>
+
+  \[
+    \sum F_x=ma_x
+  \]
+
+  <p>
+    <strong>
+      Étape 2 — Utiliser le fait que
+      l'accélération est nulle.
+    </strong>
+  </p>
+
+  \[
+    \sum F_x=m(0)
+  \]
+
+  <p>
+    <strong>
+      Étape 3 — Simplifier.
+    </strong>
+  </p>
+
+  \[
+    \boxed{\sum F_x=0}
+  \]
+
+  <p>
+    Puisque la force résultante
+    est nulle, la vitesse demeure
+    constante :
+  </p>
+
+  \[
+    \boxed{v_x=12\,\mathrm{m/s}}
+  \]
+
+  <p>
+    Le passager conserve donc sa vitesse
+    tant qu'aucune force résultante
+    horizontale ne la modifie.
+  </p>
+
+  <p>
+    <strong>
+      Partie B — Pendant le freinage
+    </strong>
+  </p>
+
+  <p>
+    Lorsque le conducteur freine,
+    l'autobus ralentit.
+  </p>
+
+  <p>
+    Si le passager n'était pas retenu,
+    il tendrait à conserver sa vitesse
+    initiale et à avancer par rapport
+    à l'habitacle.
+  </p>
+
+  <p>
+    La ceinture exerce alors sur lui
+    une force dont une composante
+    est dirigée vers l'arrière.
+  </p>
+
+  <p>
+    <strong>
+      Étape 1 — Écrire la deuxième loi
+      de Newton selon l'axe horizontal.
+    </strong>
+  </p>
+
+  \[
+    \sum F_x=ma_x
+  \]
+
+  <p>
+    <strong>
+      Étape 2 — Identifier le sens
+      de l'accélération.
+    </strong>
+  </p>
+
+  <p>
+    Puisque le passager ralentit :
+  </p>
+
+  \[
+    a_x<0
+  \]
+
+  <p>
+    <strong>
+      Étape 3 — En déduire le sens
+      de la force résultante.
+    </strong>
+  </p>
+
+  \[
+    \sum F_x=ma_x
+  \]
+
+  <p>
+    Comme la masse est positive
+    et que l'accélération est négative :
+  </p>
+
+  \[
+    \boxed{\sum F_x<0}
+  \]
+
+  <p>
+    La force résultante horizontale
+    doit donc être orientée vers l'arrière.
+  </p>
+
+  <p>
+    <strong>
+      Partie C — Peut-on calculer
+      la grandeur de la force?
+    </strong>
+  </p>
+
+  <p>
+    Supposons que la ceinture fournisse
+    toute la force horizontale responsable
+    du ralentissement et que l'accélération
+    soit constante.
+  </p>
+
+  <p>
+    <strong>
+      Étape 1 — Écrire la relation
+      entre accélération et variation
+      de vitesse.
+    </strong>
+  </p>
+
+  \[
+    a_x=\frac{v_f-v_i}{\Delta t}
+  \]
+
+  <p>
+    <strong>
+      Étape 2 — Remplacer
+      la vitesse initiale.
+    </strong>
+  </p>
+
+  \[
+    a_x=
+    \frac{v_f-12\,\mathrm{m/s}}{\Delta t}
+  \]
+
+  <p>
+    <strong>
+      Étape 3 — Supposer que
+      le passager est amené au repos.
+    </strong>
+  </p>
+
+  \[
+    v_f=0\,\mathrm{m/s}
+  \]
+
+  <p>
+    Nous obtenons :
+  </p>
+
+  \[
+    a_x=
+    \frac{
+      0\,\mathrm{m/s}-12\,\mathrm{m/s}
+    }{\Delta t}
+  \]
+
+  \[
+    \boxed{
+      a_x=
+      -\frac{12\,\mathrm{m/s}}{\Delta t}
+    }
+  \]
+
+  <p>
+    <strong>
+      Étape 4 — Utiliser la
+      deuxième loi de Newton.
+    </strong>
+  </p>
+
+  \[
+    \sum F_x=ma_x
+  \]
+
+  <p>
+    <strong>
+      Étape 5 — Substituer
+      l'expression de l'accélération.
+    </strong>
+  </p>
+
+  \[
+    \sum F_x=
+    m\left(
+      -\frac{12\,\mathrm{m/s}}{\Delta t}
+    \right)
+  \]
+
+  <p>
+    <strong>
+      Étape 6 — Simplifier l'expression.
+    </strong>
+  </p>
+
+  \[
+    \boxed{
+      \sum F_x=
+      -\frac{m(12\,\mathrm{m/s})}{\Delta t}
+    }
+  \]
+
+  <p>
+    La force résultante est négative,
+    donc orientée vers l'arrière.
+  </p>
+
+  <p>
+    Cependant, puisque la masse du passager
+    et la durée du freinage sont inconnues,
+    nous ne pouvons pas calculer sa
+    grandeur numériquement.
+  </p>
+
+  <p>
+    Dans la réalité, la ceinture n'est
+    pas nécessairement la seule source
+    de force horizontale : le siège
+    et d'autres points de contact
+    peuvent également contribuer
+    au ralentissement.
+  </p>
+
+  <!-- ÉTAPE 6 -->
+  <h4>6. Réponse finale</h4>
+
+  <div class="answer">
+
+    <p>
+      Avant le freinage, le passager
+      se déplace à la même vitesse
+      que l'autobus :
+    </p>
+
+    \[
+      \boxed{v_i=12\,\mathrm{m/s}}
+    \]
+
+    <p>
+      Lors du freinage, son corps
+      tend à conserver cette vitesse
+      en raison de son inertie.
+    </p>
+
+    <p>
+      La ceinture de sécurité exerce
+      une force qui contribue à produire
+      une accélération opposée
+      au mouvement.
+    </p>
+
+    \[
+      \boxed{a_x<0}
+    \]
+
+    \[
+      \boxed{\sum F_x<0}
+    \]
+
+    <p>
+      <strong>Conclusion :</strong>
+      la ceinture permet au passager
+      de ralentir avec l'autobus.
+      La grandeur de la force ne peut
+      pas être déterminée avec les
+      données disponibles.
+    </p>
+
+  </div>
+
+  <!-- ÉTAPE 7 -->
+  <h4>7. Interprétation physique</h4>
+
+  <p>
+    L'inertie est la propriété
+    d'un objet de résister
+    aux changements de sa vitesse.
+  </p>
+
+  <p>
+    Lorsque l'autobus freine,
+    sa vitesse diminue en raison
+    des forces de freinage.
+  </p>
+
+  <p>
+    Cependant, le corps du passager
+    ne ralentit pas automatiquement
+    simplement parce que l'autobus
+    ralentit.
+  </p>
+
+  <p>
+    Une force doit agir sur lui
+    pour modifier sa vitesse.
+  </p>
+
+  <p>
+    La ceinture fournit une partie
+    importante de cette force.
+    Elle retient le passager et
+    l'aide à ralentir avec le véhicule.
+  </p>
+
+  <p>
+    <strong>
+      À retenir :
+    </strong>
+    la ceinture de sécurité n'annule
+    pas l'inertie. Elle fournit
+    une force qui permet de modifier
+    la vitesse du passager.
+  </p>
+
+  <p>
+    <strong>
+      Attention :
+    </strong>
+    lorsque le passager semble être
+    projeté vers l'avant pendant
+    le freinage, cela ne signifie
+    pas qu'une nouvelle force
+    le pousse vers l'avant.
+  </p>
+
+  <p>
+    Son corps tend simplement
+    à poursuivre son mouvement
+    initial.
+  </p>
+
+  <p>
+    Dans un freinage très brusque,
+    les forces nécessaires pour
+    ralentir le passager peuvent
+    devenir importantes.
+  </p>
+
+  <p>
+    C'est pourquoi une ceinture
+    de sécurité correctement portée
+    est essentielle : elle limite
+    le déplacement du passager
+    par rapport à l'habitacle et
+    contribue à réduire le risque
+    de blessures.
+  </p>
+
+</article>
+
         </section>
         <section class="section" id="laboratoire">
           <div class="sectiontag">Expérimenter et argumenter</div>
