@@ -1168,43 +1168,1130 @@
       <p>Je te propose de commencer par lire l'énoncé et d'essayer de prévoir la réponse. Ouvre ensuite le raisonnement. À chaque étape, demande-toi quelle loi nous utilisons et pourquoi.</p>
 
       <article class="panel note">
-        <div class="pmark">Exemple guidé 1 · du simple au complexe</div>
-        <h3>Une caisse poussée des deux côtés</h3>
-        <p>Une personne pousse une caisse vers la droite à 75 N; une autre la pousse vers la gauche à 45 N.</p>
-        <ol class="steps">
-          <li>Choisissons la droite comme sens positif.</li>
-          <li>Première force : +75 N; seconde force : −45 N.</li>
-          <li>Résultante : 75 − 45 = +30 N.</li>
-          <li>La résultante pointe vers la droite : la caisse accélère dans ce sens si aucune autre force horizontale ne contribue à la somme.</li>
-        </ol>
-        <div class="answer">Interprétation : Résultante : 30 N vers la droite.</div>
-      </article>
+        <div class="pmark">Exemple guidé 1 </div>
+       
+  <h3>Une caisse poussée des deux côtés</h3>
 
-      <article class="panel note">
-        <div class="pmark">Exemple guidé 2 · du simple au complexe</div>
-        <h3>Deux forces perpendiculaires</h3>
-        <p>Une luge subit 30 N vers l'est et 40 N vers le nord.</p>
-        <ol class="steps">
-          <li>Représentons les deux forces à angle droit.</li>
-          <li>La norme vaut √(30² + 40²).</li>
-          <li>√2500 = 50 N.</li>
-          <li>L’angle par rapport à l’est est arctan(40/30) ≈ 53,1°.</li>
-        </ol>
-        <div class="answer">Interprétation : 50 N à environ 53,1° au nord de l’est.</div>
-      </article>
+  <p>
+    Une personne pousse une caisse vers la droite avec une
+    force de 75 N. Simultanément, une deuxième personne
+    pousse la même caisse vers la gauche avec une force
+    de 45 N.
+  </p>
 
-      <article class="panel note">
-        <div class="pmark">Exemple guidé 3 · du simple au complexe</div>
-        <h3>Une force qui n’agit pas seule</h3>
-        <p>Un livre au repos sur une table subit un poids de 12 N vers le bas.</p>
-        <ol class="steps">
-          <li>Isolons le livre, pas la table.</li>
-          <li>La Terre exerce le poids, 12 N vers le bas.</li>
-          <li>Le support exerce une force normale vers le haut.</li>
-          <li>Puisque le livre ne subit aucune accélération verticale, cette normale vaut 12 N.</li>
-        </ol>
-        <div class="answer">Interprétation : La résultante verticale est nulle malgré la présence de deux forces.</div>
-      </article>
+  <p>
+    <strong>Question :</strong> Quelle est la grandeur et
+    l'orientation de la force résultante exercée sur
+    la caisse selon l'axe horizontal?
+  </p>
+
+  <!-- ÉTAPE 1 : REPRÉSENTATION VISUELLE -->
+  <h4>1. Représentation de la situation</h4>
+
+  <figure style="margin:1.5rem auto;max-width:680px;">
+    <svg viewBox="0 0 680 270"
+         xmlns="http://www.w3.org/2000/svg"
+         role="img"
+         aria-labelledby="titre-caisse description-caisse"
+         style="width:100%;height:auto;">
+
+      <title id="titre-caisse">
+        Diagramme des forces horizontales
+      </title>
+
+      <desc id="description-caisse">
+        Une caisse subit une force de 75 newtons vers
+        la droite et une force de 45 newtons vers
+        la gauche. Le sens positif est vers la droite.
+      </desc>
+
+      <defs>
+        <marker id="fleche-droite"
+                markerWidth="10" markerHeight="8"
+                refX="9" refY="4"
+                orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z"
+                fill="#2563eb"/>
+        </marker>
+
+        <marker id="fleche-gauche"
+                markerWidth="10" markerHeight="8"
+                refX="9" refY="4"
+                orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z"
+                fill="#ea580c"/>
+        </marker>
+
+        <marker id="fleche-axe"
+                markerWidth="8" markerHeight="7"
+                refX="7" refY="3.5"
+                orient="auto">
+          <path d="M0,0 L8,3.5 L0,7 Z"
+                fill="currentColor"/>
+        </marker>
+      </defs>
+
+      <!-- Caisse -->
+      <rect x="295" y="105" width="90" height="90"
+            rx="5"
+            fill="#b8a187"
+            stroke="#66513e"
+            stroke-width="2.5"/>
+
+      <path d="M295,105 L385,195 M385,105 L295,195"
+            stroke="#806c56"
+            stroke-width="2"
+            opacity=".45"/>
+
+      <text x="340" y="158"
+            text-anchor="middle"
+            font-size="17"
+            font-weight="bold"
+            fill="#292524">Caisse</text>
+
+      <!-- Forces : origine au centre de la caisse -->
+      <line x1="340" y1="150" x2="565" y2="150"
+            stroke="#2563eb"
+            stroke-width="5"
+            marker-end="url(#fleche-droite)"/>
+
+      <line x1="340" y1="150" x2="205" y2="150"
+            stroke="#ea580c"
+            stroke-width="5"
+            marker-end="url(#fleche-gauche)"/>
+
+      <!-- Étiquettes -->
+      <text x="475" y="125"
+            text-anchor="middle"
+            font-size="19"
+            font-weight="bold"
+            fill="#2563eb">75 N</text>
+
+      <text x="230" y="125"
+            text-anchor="middle"
+            font-size="19"
+            font-weight="bold"
+            fill="#ea580c">45 N</text>
+
+      <!-- Axe positif -->
+      <line x1="340" y1="235"
+            x2="445" y2="235"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-dasharray="5 4"
+            marker-end="url(#fleche-axe)"/>
+
+      <text x="455" y="240"
+            font-size="15"
+            fill="currentColor">+x</text>
+
+      <circle cx="340" cy="150" r="4" fill="#1e293b"/>
+    </svg>
+
+    <figcaption style="text-align:center;font-size:.9rem;">
+      Diagramme des forces horizontales exercées
+      sur la caisse (longueurs des flèches proportionnelles
+      aux grandeurs des forces).
+    </figcaption>
+  </figure>
+
+  <!-- ÉTAPE 2 : DONNÉES -->
+  <h4>2. Identification des données</h4>
+
+  <p><strong>Les données connues :</strong></p>
+  <ul>
+    <li>
+      Force exercée par la première personne :
+      \(F_1=75\,\mathrm{N}\), vers la droite.
+    </li>
+    <li>
+      Force exercée par la deuxième personne :
+      \(F_2=45\,\mathrm{N}\), vers la gauche.
+    </li>
+  </ul>
+
+  <p><strong>L'inconnue :</strong></p>
+  <p>
+    La force résultante horizontale
+    \(\vec F_{\mathrm{rés},x}\),
+    c'est-à-dire sa grandeur et son orientation.
+  </p>
+
+  <!-- ÉTAPE 3 : CONVENTION -->
+  <h4>3. Choix du système de référence</h4>
+
+  <p>
+    Nous choisissons l'axe horizontal \(x\)
+    comme axe de référence.
+  </p>
+
+  <p>
+    Par convention, les forces orientées vers la
+    droite sont positives et les forces orientées
+    vers la gauche sont négatives.
+  </p>
+
+  <p>Nous obtenons donc :</p>
+
+  \[
+    F_{1,x}=+75\,\mathrm{N}
+  \]
+
+  \[
+    F_{2,x}=-45\,\mathrm{N}
+  \]
+
+  <p>
+    <strong>Attention :</strong> le signe négatif
+    indique l'orientation de la force et non
+    une grandeur physique négative.
+  </p>
+
+  <!-- ÉTAPE 4 : FORMULE -->
+  <h4>4. Choix de la formule mathématique</h4>
+
+  <p>
+    Pour déterminer la force résultante,
+    nous effectuons la somme vectorielle
+    des forces exercées sur la caisse :
+  </p>
+
+  \[
+    \boxed{\vec F_{\mathrm{rés}}=\sum_i\vec F_i}
+  \]
+
+  <p>
+    Puisque les forces étudiées agissent
+    uniquement sur l'axe horizontal, nous
+    utilisons leurs composantes selon \(x\) :
+  </p>
+
+  \[
+    \boxed{F_{\mathrm{rés},x}=\sum_i F_{i,x}}
+  \]
+
+  <p>
+    Dans cette situation, deux forces horizontales
+    sont considérées :
+  </p>
+
+  \[
+    F_{\mathrm{rés},x}=F_{1,x}+F_{2,x}
+  \]
+
+  <!-- ÉTAPE 5 : RÉSOLUTION -->
+  <h4>5. Résolution mathématique</h4>
+
+  <p>
+    <strong>Étape A — Écrire l'équation générale.</strong>
+  </p>
+
+  \[
+    F_{\mathrm{rés},x}=F_{1,x}+F_{2,x}
+  \]
+
+  <p>
+    <strong>Étape B — Remplacer les variables
+    par les valeurs connues, avec leurs signes.</strong>
+  </p>
+
+  \[
+    F_{\mathrm{rés},x}
+      =(+75\,\mathrm{N})+(-45\,\mathrm{N})
+  \]
+
+  <p>
+    <strong>Étape C — Simplifier l'expression.</strong>
+  </p>
+
+  \[
+    F_{\mathrm{rés},x}
+      =75\,\mathrm{N}-45\,\mathrm{N}
+  \]
+
+  <p>
+    <strong>Étape D — Effectuer le calcul.</strong>
+  </p>
+
+  \[
+    \boxed{F_{\mathrm{rés},x}=+30\,\mathrm{N}}
+  \]
+
+  <!-- ÉTAPE 6 : RÉPONSE -->
+  <h4>6. Réponse finale</h4>
+
+  <div class="answer">
+    <p>
+      La grandeur de la force résultante
+      horizontale est de \(30\,\mathrm{N}\).
+    </p>
+
+    \[
+      \boxed{\vec F_{\mathrm{rés},x}
+      =(30\,\mathrm{N})\,\hat{\imath}}
+    \]
+
+    <p>
+      <strong>Orientation :</strong> vers la droite,
+      soit dans le sens positif de l'axe \(x\).
+    </p>
+  </div>
+
+  <!-- ÉTAPE 7 : INTERPRÉTATION -->
+  <h4>7. Interprétation physique</h4>
+
+  <p>
+    Bien que les deux personnes poussent la
+    caisse dans des directions opposées,
+    leurs forces ne s'annulent pas.
+  </p>
+
+  <p>
+    La force vers la droite est plus grande
+    de \(30\,\mathrm{N}\) que celle vers la gauche.
+    La caisse subit donc une force résultante
+    horizontale orientée vers la droite.
+  </p>
+
+  <p>
+    Selon la deuxième loi de Newton :
+  </p>
+
+  \[
+    \sum \vec F=m\vec a
+  \]
+
+  <p>
+    Si aucune autre force horizontale n'agit
+    sur la caisse, son accélération est
+    dirigée vers la droite.
+  </p>
+
+  <p>
+    <strong>Remarque :</strong> cela ne signifie
+    pas nécessairement que la caisse se déplace
+    déjà vers la droite. Elle pourrait initialement
+    se déplacer vers la gauche tout en
+    accélérant vers la droite.
+  </p>
+
+  <p>
+    Comme la masse de la caisse n'est pas donnée,
+    nous ne pouvons pas calculer numériquement
+    la grandeur de son accélération.
+  </p>
+</article>
+
+
+     <article class="panel note">
+  <div class="pmark">Exemple guidé 2</div>
+  <h3>Deux forces perpendiculaires</h3>
+
+  <p>
+    Une luge subit une force de <strong>30 N vers l’est</strong> et une
+    autre force de <strong>40 N vers le nord</strong>.
+  </p>
+
+  <p>
+    <strong>Question :</strong> Quelle est la grandeur de la force résultante
+    exercée sur la luge, et dans quelle direction agit-elle?
+  </p>
+
+  <!-- ÉTAPE 1 : REPRÉSENTATION VISUELLE -->
+  <h4>1. Représentation de la situation</h4>
+
+  <figure style="margin:1.5rem auto;max-width:700px;">
+    <svg viewBox="0 0 700 320"
+         xmlns="http://www.w3.org/2000/svg"
+         role="img"
+         aria-labelledby="titre-luge description-luge"
+         style="width:100%;height:auto;">
+
+      <title id="titre-luge">
+        Diagramme des forces perpendiculaires sur une luge
+      </title>
+
+      <desc id="description-luge">
+        Une luge subit une force de 30 newtons vers l’est et une force
+        de 40 newtons vers le nord. La force résultante forme la diagonale
+        du triangle rectangle.
+      </desc>
+
+      <defs>
+        <marker id="arrow-blue" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z" fill="#2563eb"/>
+        </marker>
+        <marker id="arrow-green" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z" fill="#16a34a"/>
+        </marker>
+        <marker id="arrow-red" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z" fill="#dc2626"/>
+        </marker>
+        <marker id="arrow-axis" markerWidth="8" markerHeight="7" refX="7" refY="3.5" orient="auto">
+          <path d="M0,0 L8,3.5 L0,7 Z" fill="currentColor"/>
+        </marker>
+      </defs>
+
+      <!-- Axes -->
+      <line x1="150" y1="240" x2="320" y2="240"
+            stroke="currentColor" stroke-width="1.5"
+            stroke-dasharray="5 4" marker-end="url(#arrow-axis)"/>
+      <text x="332" y="245" font-size="16" fill="currentColor">Est (+x)</text>
+
+      <line x1="150" y1="240" x2="150" y2="70"
+            stroke="currentColor" stroke-width="1.5"
+            stroke-dasharray="5 4" marker-end="url(#arrow-axis)"/>
+      <text x="158" y="70" font-size="16" fill="currentColor">Nord (+y)</text>
+
+      <!-- Luge -->
+      <ellipse cx="150" cy="240" rx="28" ry="14"
+               fill="#a3a3a3" stroke="#525252" stroke-width="2"/>
+      <text x="150" y="244" text-anchor="middle" font-size="14" fill="#111827">Luge</text>
+
+      <!-- Force vers l'est -->
+      <line x1="150" y1="240" x2="330" y2="240"
+            stroke="#2563eb" stroke-width="5"
+            marker-end="url(#arrow-blue)"/>
+      <text x="245" y="225" text-anchor="middle"
+            font-size="19" font-weight="bold" fill="#2563eb">30 N</text>
+
+      <!-- Force vers le nord -->
+      <line x1="150" y1="240" x2="150" y2="80"
+            stroke="#16a34a" stroke-width="5"
+            marker-end="url(#arrow-green)"/>
+      <text x="110" y="165" text-anchor="middle"
+            font-size="19" font-weight="bold" fill="#16a34a">40 N</text>
+
+      <!-- Résultante -->
+      <line x1="150" y1="240" x2="330" y2="80"
+            stroke="#dc2626" stroke-width="5"
+            marker-end="url(#arrow-red)"/>
+      <text x="265" y="145" text-anchor="middle"
+            font-size="19" font-weight="bold" fill="#dc2626">\(F_{\mathrm{rés}}\)</text>
+
+      <!-- Triangle de construction -->
+      <line x1="330" y1="240" x2="330" y2="80"
+            stroke="#6b7280" stroke-width="2" stroke-dasharray="6 5"/>
+      <line x1="150" y1="80" x2="330" y2="80"
+            stroke="#6b7280" stroke-width="2" stroke-dasharray="6 5"/>
+
+      <!-- Angle -->
+      <path d="M192,240 A42,42 0 0 0 175,208"
+            fill="none" stroke="#7c3aed" stroke-width="3"/>
+      <text x="210" y="220" font-size="18" font-weight="bold" fill="#7c3aed">\(\theta\)</text>
+
+      <!-- Point d'application -->
+      <circle cx="150" cy="240" r="4" fill="#111827"/>
+    </svg>
+
+    <figcaption style="text-align:center;font-size:.9rem;">
+      Les deux forces sont perpendiculaires. La force résultante correspond
+      à la diagonale du triangle rectangle formé par les composantes.
+    </figcaption>
+  </figure>
+
+  <!-- ÉTAPE 2 : DONNÉES -->
+  <h4>2. Identification des données</h4>
+
+  <p><strong>Les données connues :</strong></p>
+  <ul>
+    <li>
+      Force horizontale vers l’est :
+      \(F_x = 30\,\mathrm{N}\)
+    </li>
+    <li>
+      Force verticale vers le nord :
+      \(F_y = 40\,\mathrm{N}\)
+    </li>
+  </ul>
+
+  <p><strong>Les inconnues :</strong></p>
+  <ul>
+    <li>
+      La grandeur de la force résultante :
+      \(F_{\mathrm{rés}}\)
+    </li>
+    <li>
+      L’orientation de la résultante :
+      \(\theta\), mesurée par rapport à l’est vers le nord
+    </li>
+  </ul>
+
+  <!-- ÉTAPE 3 : ANALYSE -->
+  <h4>3. Analyse de la situation</h4>
+
+  <p>
+    Les deux forces agissent à <strong>angle droit</strong> :
+    l’une est horizontale et l’autre est verticale.
+  </p>
+
+  <p>
+    Nous pouvons donc représenter ces forces comme les deux côtés d’un
+    <strong>triangle rectangle</strong>. La force résultante correspondra à
+    l’<strong>hypoténuse</strong> de ce triangle.
+  </p>
+
+  <!-- ÉTAPE 4 : CHOIX DES FORMULES -->
+  <h4>4. Choix des formules mathématiques</h4>
+
+  <p>
+    Pour trouver la grandeur de la force résultante, nous utilisons
+    le <strong>théorème de Pythagore</strong> :
+  </p>
+
+  \[
+    \boxed{F_{\mathrm{rés}}=\sqrt{F_x^2+F_y^2}}
+  \]
+
+  <p>
+    Pour trouver l’angle de la résultante par rapport à l’est,
+    nous utilisons la relation trigonométrique de la tangente :
+  </p>
+
+  \[
+    \boxed{\tan\theta=\frac{F_y}{F_x}}
+  \]
+
+  <p>
+    Donc :
+  </p>
+
+  \[
+    \boxed{\theta=\tan^{-1}\left(\frac{F_y}{F_x}\right)}
+  \]
+
+  <!-- ÉTAPE 5 : RÉSOLUTION -->
+  <h4>5. Résolution mathématique</h4>
+
+  <p><strong>Partie A — Calcul de la grandeur de la résultante</strong></p>
+
+  <p><strong>Étape 1 — Écrire la formule.</strong></p>
+
+  \[
+    F_{\mathrm{rés}}=\sqrt{F_x^2+F_y^2}
+  \]
+
+  <p><strong>Étape 2 — Remplacer par les valeurs connues.</strong></p>
+
+  \[
+    F_{\mathrm{rés}}=\sqrt{(30)^2+(40)^2}
+  \]
+
+  <p><strong>Étape 3 — Calculer les carrés.</strong></p>
+
+  \[
+    F_{\mathrm{rés}}=\sqrt{900+1600}
+  \]
+
+  <p><strong>Étape 4 — Additionner.</strong></p>
+
+  \[
+    F_{\mathrm{rés}}=\sqrt{2500}
+  \]
+
+  <p><strong>Étape 5 — Extraire la racine carrée.</strong></p>
+
+  \[
+    \boxed{F_{\mathrm{rés}}=50\,\mathrm{N}}
+  \]
+
+  <p><strong>Partie B — Calcul de l’orientation de la résultante</strong></p>
+
+  <p><strong>Étape 1 — Écrire la formule.</strong></p>
+
+  \[
+    \theta=\tan^{-1}\left(\frac{F_y}{F_x}\right)
+  \]
+
+  <p><strong>Étape 2 — Remplacer par les valeurs connues.</strong></p>
+
+  \[
+    \theta=\tan^{-1}\left(\frac{40}{30}\right)
+  \]
+
+  <p><strong>Étape 3 — Simplifier la fraction.</strong></p>
+
+  \[
+    \theta=\tan^{-1}(1{,}333\ldots)
+  \]
+
+  <p><strong>Étape 4 — Calculer l’angle.</strong></p>
+
+  \[
+    \boxed{\theta \approx 53{,}1^\circ}
+  \]
+
+  <!-- ÉTAPE 6 : RÉPONSE -->
+  <h4>6. Réponse finale</h4>
+
+  <div class="answer">
+    <p>
+      La force résultante exercée sur la luge a une grandeur de
+      <strong>\(50\,\mathrm{N}\)</strong>.
+    </p>
+
+    <p>
+      Son orientation est de
+      <strong>\(53{,}1^\circ\)</strong>
+      <strong>au nord de l’est</strong>.
+    </p>
+
+    \[
+      \boxed{F_{\mathrm{rés}}=50\,\mathrm{N}\ \text{à}\ 53{,}1^\circ\ \text{au nord de l’est}}
+    \]
+  </div>
+
+  <!-- ÉTAPE 7 : INTERPRÉTATION -->
+  <h4>7. Interprétation physique</h4>
+
+  <p>
+    Même si aucune des forces n’agit directement dans une direction diagonale,
+    leur combinaison produit une force unique équivalente orientée vers le
+    <strong>nord-est</strong>.
+  </p>
+
+  <p>
+    Comme la composante verticale (\(40\,\mathrm{N}\)) est plus grande que
+    la composante horizontale (\(30\,\mathrm{N}\)), la résultante est inclinée
+    davantage vers le nord que vers l’est.
+  </p>
+
+  <p>
+    Si cette résultante est la seule force horizontale nette significative,
+    la luge accélérera dans la direction de cette force résultante,
+    soit à environ \(53{,}1^\circ\) au nord de l’est.
+  </p>
+</article>
+
+     
+<article class="panel note">
+  <div class="pmark">Exemple guidé 3</div>
+  <h3>Une force qui n’agit pas seule</h3>
+
+  <p>
+    Un livre est posé au repos sur une table horizontale.
+    La Terre exerce sur ce livre une force gravitationnelle,
+    appelée son <strong>poids</strong>, de 12 N vers le bas.
+  </p>
+
+  <p>
+    <strong>Question :</strong> Quelle est la grandeur de la
+    force normale exercée par la table sur le livre?
+    Quelle est la force résultante verticale?
+  </p>
+
+  <!-- ÉTAPE 1 : REPRÉSENTATION VISUELLE -->
+  <h4>1. Représentation de la situation</h4>
+
+  <p>
+    Commençons par représenter la situation. Ensuite,
+    isolons le livre pour identifier les forces qui
+    agissent directement sur lui.
+  </p>
+
+  <figure style="margin:1.5rem auto;max-width:760px;">
+    <svg viewBox="0 0 760 340"
+         xmlns="http://www.w3.org/2000/svg"
+         role="img"
+         aria-labelledby="titre-livre description-livre"
+         style="width:100%;height:auto;">
+
+      <title id="titre-livre">
+        Livre au repos sur une table et diagramme de corps libre
+      </title>
+
+      <desc id="description-livre">
+        À gauche, un livre repose sur une table horizontale.
+        À droite, le livre est isolé et subit deux forces
+        verticales opposées : son poids de 12 N vers le bas
+        et la force normale de 12 N vers le haut.
+      </desc>
+
+      <defs>
+        <marker id="livre-arrow-blue"
+                markerWidth="10"
+                markerHeight="8"
+                refX="9" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z"
+                fill="#2563eb"/>
+        </marker>
+
+        <marker id="livre-arrow-red"
+                markerWidth="10"
+                markerHeight="8"
+                refX="9" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z"
+                fill="#dc2626"/>
+        </marker>
+      </defs>
+
+      <!-- TITRES -->
+      <text x="190" y="36"
+            text-anchor="middle"
+            font-size="18"
+            font-weight="bold"
+            fill="currentColor">
+        Situation réelle
+      </text>
+
+      <text x="565" y="36"
+            text-anchor="middle"
+            font-size="18"
+            font-weight="bold"
+            fill="currentColor">
+        Diagramme de corps libre
+      </text>
+
+      <!-- SÉPARATION -->
+      <line x1="380" y1="55" x2="380" y2="315"
+            stroke="#94a3b8"
+            stroke-width="1.5"
+            stroke-dasharray="5 6"/>
+
+      <!-- SITUATION RÉELLE : TABLE -->
+      <rect x="55" y="220" width="270" height="18"
+            rx="3"
+            fill="#a16207"
+            stroke="#713f12"
+            stroke-width="2"/>
+
+      <rect x="78" y="238" width="15" height="65"
+            fill="#92400e"/>
+      <rect x="287" y="238" width="15" height="65"
+            fill="#92400e"/>
+
+      <!-- LIVRE -->
+      <rect x="135" y="152" width="110" height="68"
+            rx="4"
+            fill="#64748b"
+            stroke="#334155"
+            stroke-width="2.5"/>
+
+      <line x1="143" y1="158" x2="143" y2="213"
+            stroke="#e2e8f0"
+            stroke-width="3"/>
+
+      <text x="190" y="191"
+            text-anchor="middle"
+            font-size="18"
+            font-weight="bold"
+            fill="#fff">Livre</text>
+
+      <text x="190" y="327"
+            text-anchor="middle"
+            font-size="15"
+            fill="currentColor">
+        Le livre est au repos.
+      </text>
+
+      <!-- LIVRE ISOLÉ -->
+      <rect x="535" y="153" width="60" height="54"
+            rx="4"
+            fill="#64748b"
+            stroke="#334155"
+            stroke-width="2.5"/>
+
+      <text x="565" y="185"
+            text-anchor="middle"
+            font-size="15"
+            font-weight="bold"
+            fill="#fff">Livre</text>
+
+      <!-- FORCE NORMALE : VERS LE HAUT -->
+      <line x1="565" y1="180" x2="565" y2="75"
+            stroke="#2563eb"
+            stroke-width="5"
+            marker-end="url(#livre-arrow-blue)"/>
+
+      <text x="590" y="100"
+            font-size="18"
+            font-weight="bold"
+            fill="#2563eb">
+        N = 12 N
+      </text>
+
+      <!-- POIDS : VERS LE BAS -->
+      <line x1="565" y1="180" x2="565" y2="285"
+            stroke="#dc2626"
+            stroke-width="5"
+            marker-end="url(#livre-arrow-red)"/>
+
+      <text x="590" y="270"
+            font-size="18"
+            font-weight="bold"
+            fill="#dc2626">
+        P = 12 N
+      </text>
+
+      <!-- POINT D'APPLICATION CONVENTIONNEL -->
+      <circle cx="565" cy="180" r="4"
+              fill="#1e293b"/>
+    </svg>
+
+    <figcaption style="text-align:center;font-size:.9rem;">
+      À gauche : le livre repose sur la table.
+      À droite : représentation simplifiée des forces
+      agissant sur le livre. Les deux flèches ont la
+      même longueur puisque les forces ont la même grandeur.
+    </figcaption>
+  </figure>
+
+  <p>
+    <strong>Observation :</strong> deux forces verticales
+    agissent sur le livre :
+  </p>
+
+  <ul>
+    <li>
+      Le <strong>poids</strong> \(\vec P\), exercé par
+      la Terre, est dirigé vers le bas.
+    </li>
+    <li>
+      La <strong>force normale</strong> \(\vec N\),
+      exercée par la table, est dirigée vers le haut.
+    </li>
+  </ul>
+
+  <p>
+    Pour construire un diagramme de corps libre,
+    nous isolons uniquement l'objet étudié.
+    Nous ne représentons donc pas les forces
+    exercées sur la table.
+  </p>
+
+  <!-- ÉTAPE 2 : DONNÉES -->
+  <h4>2. Identification des données</h4>
+
+  <p><strong>Les données connues :</strong></p>
+
+  <ul>
+    <li>
+      Poids du livre :
+      \(P=12\,\mathrm{N}\), vers le bas.
+    </li>
+    <li>
+      Le livre est au repos.
+    </li>
+    <li>
+      Accélération verticale :
+      \(a_y=0\,\mathrm{m/s^2}\).
+    </li>
+  </ul>
+
+  <p><strong>Les inconnues :</strong></p>
+
+  <ul>
+    <li>
+      La grandeur de la force normale exercée
+      par la table : \(N=?\)
+    </li>
+    <li>
+      La force résultante verticale :
+      \(F_{\mathrm{rés},y}=?\)
+    </li>
+  </ul>
+
+  <!-- ÉTAPE 3 : CONVENTION -->
+  <h4>3. Choix du système de référence</h4>
+
+  <p>
+    Nous choisissons un axe vertical \(y\).
+  </p>
+
+  <p>
+    Par convention :
+  </p>
+
+  <ul>
+    <li>
+      Les forces orientées vers le haut sont positives.
+    </li>
+    <li>
+      Les forces orientées vers le bas sont négatives.
+    </li>
+  </ul>
+
+  <p>Nous pouvons donc écrire :</p>
+
+  \[
+    P_y=-12\,\mathrm{N}
+  \]
+
+  <p>
+    La force normale est orientée vers le haut.
+    Sa composante verticale est donc positive :
+  </p>
+
+  \[
+    N_y=+N
+  \]
+
+  <p>
+    <strong>Remarque :</strong> nous ne connaissons pas
+    encore la grandeur de \(N\). C'est précisément
+    ce que nous cherchons à déterminer.
+  </p>
+
+  <!-- ÉTAPE 4 : FORMULE -->
+  <h4>4. Choix de la formule mathématique</h4>
+
+  <p>
+    Pour déterminer la force normale, nous utilisons
+    la <strong>deuxième loi de Newton</strong> :
+  </p>
+
+  \[
+    \boxed{\sum \vec F=m\vec a}
+  \]
+
+  <p>
+    Puisque les forces étudiées sont verticales,
+    nous considérons uniquement l'axe \(y\) :
+  </p>
+
+  \[
+    \sum F_y=ma_y
+  \]
+
+  <p>
+    Le livre est au repos. Son accélération
+    verticale est donc nulle :
+  </p>
+
+  \[
+    a_y=0
+  \]
+
+  <p>Par conséquent :</p>
+
+  \[
+    \sum F_y=m(0)
+  \]
+
+  \[
+    \boxed{\sum F_y=0}
+  \]
+
+  <p>
+    Cette relation exprime une situation
+    d'<strong>équilibre statique</strong>.
+  </p>
+
+  <p>
+    Comme les seules forces verticales exercées
+    sur le livre sont son poids et la force normale :
+  </p>
+
+  \[
+    \boxed{N-P=0}
+  \]
+
+  <!-- ÉTAPE 5 : RÉSOLUTION -->
+  <h4>5. Résolution mathématique</h4>
+
+  <p>
+    <strong>Partie A — Calcul de la force normale</strong>
+  </p>
+
+  <p>
+    <strong>Étape 1 — Écrire la deuxième loi de Newton
+    selon l'axe vertical.</strong>
+  </p>
+
+  \[
+    \sum F_y=ma_y
+  \]
+
+  <p>
+    <strong>Étape 2 — Remplacer la somme des forces
+    par les forces présentes.</strong>
+  </p>
+
+  \[
+    N-P=ma_y
+  \]
+
+  <p>
+    <strong>Étape 3 — Remplacer les valeurs connues.</strong>
+  </p>
+
+  \[
+    N-12\,\mathrm{N}=m(0\,\mathrm{m/s^2})
+  \]
+
+  <p>
+    <strong>Étape 4 — Simplifier le membre de droite.</strong>
+  </p>
+
+  \[
+    N-12\,\mathrm{N}=0
+  \]
+
+  <p>
+    <strong>Étape 5 — Isoler l'inconnue \(N\).</strong>
+  </p>
+
+  \[
+    N-12\,\mathrm{N}+12\,\mathrm{N}
+    =0+12\,\mathrm{N}
+  \]
+
+  \[
+    N=12\,\mathrm{N}
+  \]
+
+  <p>
+    <strong>Étape 6 — Écrire le résultat.</strong>
+  </p>
+
+  \[
+    \boxed{N=12\,\mathrm{N}}
+  \]
+
+  <p>
+    La force normale exercée par la table
+    est donc de 12 N vers le haut.
+  </p>
+
+  <p>
+    <strong>Partie B — Vérification de la force résultante</strong>
+  </p>
+
+  <p>
+    <strong>Étape 1 — Écrire l'équation de la résultante.</strong>
+  </p>
+
+  \[
+    F_{\mathrm{rés},y}=N_y+P_y
+  \]
+
+  <p>
+    <strong>Étape 2 — Remplacer par les valeurs
+    connues, en tenant compte des signes.</strong>
+  </p>
+
+  \[
+    F_{\mathrm{rés},y}
+    =(+12\,\mathrm{N})+(-12\,\mathrm{N})
+  \]
+
+  <p>
+    <strong>Étape 3 — Simplifier.</strong>
+  </p>
+
+  \[
+    F_{\mathrm{rés},y}
+    =12\,\mathrm{N}-12\,\mathrm{N}
+  \]
+
+  <p>
+    <strong>Étape 4 — Effectuer le calcul.</strong>
+  </p>
+
+  \[
+    \boxed{F_{\mathrm{rés},y}=0\,\mathrm{N}}
+  \]
+
+  <!-- ÉTAPE 6 : RÉPONSE -->
+  <h4>6. Réponse finale</h4>
+
+  <div class="answer">
+
+    <p>
+      La table exerce sur le livre une
+      <strong>force normale de 12 N vers le haut</strong>.
+    </p>
+
+    \[
+      \boxed{\vec N=(12\,\mathrm{N})\,\hat{\jmath}}
+    \]
+
+    <p>
+      Le poids du livre est de 12 N vers le bas :
+    </p>
+
+    \[
+      \vec P=(-12\,\mathrm{N})\,\hat{\jmath}
+    \]
+
+    <p>
+      La force résultante verticale est :
+    </p>
+
+    \[
+      \boxed{\vec F_{\mathrm{rés},y}=\vec 0}
+    \]
+
+    <p>
+      <strong>Conclusion :</strong> les deux forces
+      se compensent exactement. Le livre demeure
+      en équilibre statique.
+    </p>
+
+  </div>
+
+  <!-- ÉTAPE 7 : INTERPRÉTATION -->
+  <h4>7. Interprétation physique</h4>
+
+  <p>
+    Le livre subit bel et bien deux forces,
+    même s'il ne se déplace pas.
+  </p>
+
+  <p>
+    La Terre attire le livre vers le bas avec
+    une force de 12 N. En même temps, la table
+    exerce une force normale de 12 N vers le haut.
+  </p>
+
+  <p>
+    Ces deux forces ont :
+  </p>
+
+  <ul>
+    <li>La même grandeur : \(12\,\mathrm{N}\).</li>
+    <li>La même direction : verticale.</li>
+    <li>Des orientations opposées.</li>
+  </ul>
+
+  <p>
+    Leur somme vectorielle est donc nulle.
+  </p>
+
+  <p>
+    D'après la deuxième loi de Newton :
+  </p>
+
+  \[
+    \sum \vec F=m\vec a
+  \]
+
+  <p>
+    Une résultante nulle signifie que
+    l'accélération du livre est nulle.
+  </p>
+
+  <p>
+    Puisque le livre était initialement au repos,
+    il demeure au repos.
+  </p>
+
+  <p>
+    <strong>À retenir :</strong> un objet peut subir
+    plusieurs forces sans accélérer, à condition que
+    leur somme vectorielle soit nulle.
+  </p>
+
+  <p>
+    <strong>Attention :</strong> la force normale et
+    le poids ne constituent pas une paire
+    action-réaction de la troisième loi de Newton,
+    puisqu'elles agissent toutes les deux sur
+    le même objet : le livre.
+  </p>
+
+</article>
+
     </section>
 
 
