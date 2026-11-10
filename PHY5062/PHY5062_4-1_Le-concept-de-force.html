@@ -1,35 +1,978 @@
-<!DOCTYPE html><html lang="fr-CA"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="PHY-5062-2 FGA · 4.1 — Le concept de force. Théorie rigoureuse, exemples guidés, diagrammes, deux graphiques interactifs et missions."><title>PHY-5062-2 — 4.1 Le concept de force | learnwithdom.page</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"><script>window.MathJax={tex:{inlineMath:[['\\(','\\)'],['$','$']],displayMath:[['\\[','\\]'],['$$','$$']]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script><style>
-:root{--ardoise:#223A34;--ardoise-deep:#182922;--papier:#EAEEE9;--papier-2:#E0E5DD;--encre:#1C2B3A;--craie:#D9A441;--craie-deep:#B9832C;--brique:#B5524A;--sapin:#4B7A68;--ligne:rgba(28,43,58,.15);--white:#FCFBF7;--ombre:0 14px 30px #1829221c}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--papier);color:var(--encre);font-family:'Literata',Georgia,serif;line-height:1.73} a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--craie);outline-offset:3px}::selection{background:var(--craie);color:var(--ardoise-deep)}
-.topbar{background:#182922f5;color:white;position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);border-bottom:1px solid #ffffff22}.topbarin{max-width:1420px;margin:auto;min-height:66px;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:0 23px}.brand{font:700 1.12rem 'Space Grotesk',sans-serif;letter-spacing:-.035em;text-decoration:none}.brand em{color:var(--craie);font-style:normal}.toplinks{display:flex;gap:9px;flex-wrap:wrap}.toplinks a{font:600 .75rem 'Space Grotesk',sans-serif;padding:9px 12px;border:1px solid #ffffff2b;border-radius:10px;text-decoration:none}.toplinks a:hover{background:#ffffff24}
-.hero{background:radial-gradient(circle at 85% 18%,#D9A44132,transparent 29%),linear-gradient(125deg,#182922,#294c3c);color:#fff;padding:63px 24px 68px}.heroin{max-width:1130px;margin:0 auto}.crumb{font:600 .73rem 'JetBrains Mono',monospace;color:#dbdccd}.crumb a{text-decoration:none}.crumb a:hover{color:#f7d28b}.kicker{font:700 .72rem 'JetBrains Mono',monospace;color:#e4c57b;text-transform:uppercase;letter-spacing:.09em;margin:24px 0 14px}.hero h1{font:700 clamp(2.1rem,5vw,4rem)/1.11 'Space Grotesk',sans-serif;letter-spacing:-.045em;margin:0;max-width:1000px}.hero h1 span{display:block;color:#e5c881;font-size:.49em;letter-spacing:-.012em;margin-bottom:13px}.hero .lede{font-size:1.12rem;max-width:820px;color:#edf2e7d9;margin:24px 0}.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:23px}.chip{border:1px solid #ffffff36;color:#f2eee2;border-radius:999px;padding:6px 12px;font:600 .71rem 'JetBrains Mono',monospace}.navnext{display:flex;gap:10px;flex-wrap:wrap;margin-top:27px}.navnext a{background:#d9a441;color:#182922;border-radius:9px;padding:10px 15px;font:700 .83rem 'Space Grotesk',sans-serif;text-decoration:none}.navnext a.secondary{background:transparent;border:1px solid #ffffff44;color:#fff}
-.layout{max-width:1440px;margin:auto;padding:40px 22px 75px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:44px}.toc{position:sticky;top:90px;max-height:calc(100vh - 110px);overflow:auto;align-self:start;padding:19px 17px;background:#fcfbf7de;border:1px solid var(--ligne);border-radius:16px}.toc h3{font:700 .72rem 'JetBrains Mono',monospace;margin:0 0 10px;text-transform:uppercase;color:var(--ardoise)}.toc a{display:block;text-decoration:none;color:#516057;font:600 .74rem/1.4 'Space Grotesk',sans-serif;padding:8px 8px;border-left:2px solid transparent}.toc a:hover,.toc a.active{border-left-color:var(--craie-deep);background:#d9a44124}.article{min-width:0}.section{scroll-margin-top:90px;margin-bottom:67px}.sectiontag{font:700 .75rem 'JetBrains Mono',monospace;color:#8e611c;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}h2{font:700 clamp(1.6rem,3vw,2.35rem)/1.13 'Space Grotesk',sans-serif;letter-spacing:-.035em;color:var(--ardoise-deep);margin:0 0 21px}h3{font:700 1.25rem 'Space Grotesk',sans-serif;letter-spacing:-.02em;color:var(--ardoise);margin:27px 0 13px}p{margin:0 0 17px}strong{color:#192d25}.lead{font-size:1.07rem;color:#455550}
-.panel{background:var(--white);padding:23px 26px;border:1px solid var(--ligne);border-left:5px solid var(--sapin);border-radius:16px;margin:22px 0;box-shadow:0 5px 20px #1829220d}.panel.note{border-left-color:#bb8c33}.panel.alert{border-left-color:var(--brique);background:#fbf1ee}.panel.dark{background:var(--ardoise);color:#fff;border-left-color:var(--craie)}.panel.dark strong{color:white}.pmark{font:700 .76rem 'JetBrains Mono',monospace;letter-spacing:.065em;text-transform:uppercase;color:var(--ardoise);margin-bottom:8px}.panel.dark .pmark{color:#efd28d}.panel.alert .pmark{color:#93423f}.panel.note .pmark{color:#996c21}
-.eq{background:#f5f2e8;border:1px solid #d9a44157;border-radius:13px;margin:19px 0;padding:17px 12px;text-align:center;overflow:auto;min-height:67px}.skill{padding:13px 17px;background:#e5ede7;border-radius:10px;font:500 .89rem 'Space Grotesk',sans-serif;border-left:3px solid var(--sapin)}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.minicard{border:1px solid var(--ligne);background:var(--white);padding:19px;border-radius:14px}
-.steps{margin:16px 0 12px;padding-left:25px;counter-reset:steps;list-style:none}.steps li{position:relative;margin:13px 0;padding-left:22px}.steps li:before{counter-increment:steps;content:counter(steps);position:absolute;left:-21px;top:1px;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:#e1e8df;color:#1d4035;font:700 .78rem 'JetBrains Mono',monospace}.answer{background:#eaf1e9;color:#234d3c;border-radius:10px;padding:12px 16px;margin-top:10px;font-weight:600}.exercise{background:#fff;border:1px solid var(--ligne);border-radius:13px;margin:12px 0;padding:16px 19px}.exercise summary{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--ardoise)}.exercise p{margin:12px 0 0}.exercise details{margin-top:10px}
-.lab{background:#fcfbf7;border:1px solid var(--ligne);padding:24px;border-radius:20px;box-shadow:var(--ombre);margin:23px 0}.lab h3{margin:0 0 8px}.model{border-left:3px solid var(--craie);padding:10px 15px;background:#f8f3e5;font-size:.89rem;margin:10px 0 20px}.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.control{min-width:0}.control label{display:flex;justify-content:space-between;gap:8px;font:700 .75rem 'Space Grotesk',sans-serif;color:var(--ardoise)}.control output{font:700 .75rem 'JetBrains Mono',monospace;color:#996b22;white-space:nowrap}.control input{width:100%;accent-color:var(--sapin);margin-top:11px}.scene{margin-top:18px;width:100%;border:1px solid var(--ligne);border-radius:12px;background:#fff;display:block;aspect-ratio:900/380}.graph{margin-top:12px;width:100%;border:1px solid var(--ligne);border-radius:12px;background:#fff;display:block;aspect-ratio:900/215}.readout{margin-top:14px;background:#e8efe8;border-radius:10px;padding:15px;color:#24483c;font:600 .93rem/1.6 'Space Grotesk',sans-serif;min-height:56px}.buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:13px}.btn{border:0;border-radius:9px;background:var(--sapin);color:white;padding:10px 15px;font:700 .81rem 'Space Grotesk',sans-serif}.btn.alt{background:#e8e5d8;color:var(--ardoise-deep)}.btn:hover{filter:brightness(.94)}.diagramcap{color:#536259;font:500 .76rem 'Space Grotesk',sans-serif;margin-top:6px}
-.quiz{border:1px solid var(--ligne);background:var(--white);padding:25px;border-radius:18px}.quizstatus{font:700 .75rem 'JetBrains Mono',monospace;color:#9d701f;margin:0 0 17px}.question{font:700 1.17rem 'Space Grotesk',sans-serif;margin:8px 0 15px}.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.choice{border:1.5px solid #d5dad2;border-radius:10px;background:white;padding:13px 15px;text-align:left;font:600 .85rem 'Space Grotesk',sans-serif;color:#2e4035}.choice.selected{background:#eaf0e5;border-color:var(--sapin)}.choice:disabled{opacity:.66;cursor:default}.feedback{padding:13px;border-radius:9px;margin-top:16px;font-size:.91rem}.feedback.ok{background:#e4f1e8;border:1px solid #94b8a0}.feedback.no{background:#fff0e9;border:1px solid #dfaa8f}.progress{width:100%;height:10px;border-radius:100px;background:#e5e5db;overflow:hidden;margin:15px 0}.progress>div{height:100%;width:0;background:var(--sapin);transition:width .25s}
-.sourcelist{padding-left:20px}.sourcelist a{color:#176a54;text-decoration:underline;text-underline-offset:3px}.footer{padding:33px 24px;color:#d8dfd6;background:#182922;font:500 .83rem 'Space Grotesk',sans-serif}.footerin{max-width:1120px;margin:auto;display:flex;justify-content:space-between;gap:20px}.footer a{color:#f1d28e}.numbers{display:flex;gap:12px;flex-wrap:wrap}.numbers span{font:700 .72rem 'JetBrains Mono',monospace;background:#e1eadf;border:1px solid #b6ccbd;border-radius:6px;padding:5px 9px} .print{background:transparent;border:1px solid #ddd7c8;color:#244336;padding:6px 12px;border-radius:7px;font:600 .8rem 'Space Grotesk',sans-serif}
-@media(max-width:1140px){.layout{grid-template-columns:1fr}.toc{position:static;max-height:none;display:flex;gap:9px;flex-wrap:wrap}.toc h3{width:100%}.toc a{display:inline-block;padding:6px 10px;border:1px solid #dbe1d7;border-radius:6px}}
-@media(max-width:730px){.toplinks a:nth-child(2){display:none}.hero{padding:44px 18px 50px}.layout{padding:25px 15px 60px;gap:25px}.grid2,.controls,.choices{grid-template-columns:1fr}.panel,.lab,.quiz{padding:19px}.hero h1{font-size:2.25rem}.footerin{display:block}.toc a{font-size:.7rem}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
-@media print{.topbar,.toc,.lab,.quiz,.footer,.navnext,.print{display:none!important}.layout{display:block;padding:0}.hero{background:#fff;color:#182922;padding:15px}.hero .lede,.hero .crumb,.hero .kicker{color:#182922}.section{break-inside:avoid}.panel,.exercise{box-shadow:none}body{background:#fff}}
+<!DOCTYPE html>
+<html lang="fr-CA">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="PHY-5062-2 FGA · 4.1 — Le concept de force. Théorie rigoureuse, exemples guidés, diagrammes, deux graphiques interactifs et missions.">
+    <title>PHY-5062-2 — 4.1 Le concept de force | learnwithdom.page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>window.MathJax={tex:{inlineMath:[['\\(','\\)'],['$','$']],displayMath:[['\\[','\\]'],['$$','$$']]}};</script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+   <style>
+  /* ==========================================================
+     Variables
+     ========================================================== */
+  :root {
+    --ardoise: #223a34;
+    --ardoise-deep: #182922;
+    --papier: #eaeee9;
+    --papier-2: #e0e5dd;
+    --encre: #1c2b3a;
+    --craie: #d9a441;
+    --craie-deep: #b9832c;
+    --brique: #b5524a;
+    --sapin: #4b7a68;
+    --ligne: rgba(28, 43, 58, 0.15);
+    --white: #fcfbf7;
+    --ombre: 0 14px 30px #1829221c;
+  }
 
-/* Complément : histoire et méthode scientifique */
-.historic-nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0}
-.historic-nav a{font:700 .82rem 'Space Grotesk',sans-serif;color:#1a5848;background:#e5eee7;border-radius:9px;padding:10px 14px;text-decoration:none;border:1px solid #abc7b4}
-.historical-quote{background:#fff9e9;border-left:4px solid var(--craie-deep);padding:14px 19px;border-radius:0 12px 12px 0;margin:18px 0}
-.historic-trace{padding:18px 23px;border-radius:15px;border:1px solid #d6e0d6;background:#fff;margin:20px 0}
-.historic-trace ol{padding-left:22px}.historic-trace li{margin:10px 0}
-.method-check{margin-top:18px;background:#f9f9f3;border:1px solid #d4ddd3;border-radius:15px;padding:18px 22px}
-.method-check fieldset{border:0;margin:0;padding:0;min-width:0}.method-check legend{font:700 1.01rem/1.5 'Space Grotesk',sans-serif;color:var(--ardoise);margin-bottom:15px}
-.method-check label{display:block;padding:9px 10px;margin:6px 0;border-radius:9px;background:#fff;border:1px solid #dae0d7;cursor:pointer;font:500 .93rem 'Space Grotesk',sans-serif}
-.method-check input{accent-color:#4B7A68;margin-right:9px}.method-check .result{margin-top:12px;min-height:22px;font:600 .89rem/1.55 'Space Grotesk',sans-serif}
-.method-check button{margin-top:10px;appearance:none;border:0;background:#4B7A68;color:#fff;padding:10px 16px;border-radius:9px;font:700 .82rem 'Space Grotesk',sans-serif}
-.history-references{padding:17px 22px;background:#f4f6f1;border-radius:12px}.history-references ul{margin:8px 0;padding-left:18px}.history-references li{margin-bottom:7px;overflow-wrap:anywhere}.history-references a{color:#245e4c}
-@media (max-width:750px){.method-check{padding:14px}.historical-quote{padding:12px 14px}.historic-trace{padding:15px}}
-</style></head><body>
-<header class="topbar"><div class="topbarin"><a class="brand" href="https://learnwithdom.page/">learnwithdom<em>.page</em></a><nav class="toplinks" aria-label="Navigation principale"><a href="index.html">Toutes les sections</a><a href="/webwork2">WeBWorK</a><a href="/">Accueil du site</a></nav></div></header>
+  /* ==========================================================
+     Base
+     ========================================================== */
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--papier);
+    color: var(--encre);
+    font-family: "Literata", Georgia, serif;
+    line-height: 1.73;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  button,
+  input,
+  select {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible {
+    outline: 3px solid var(--craie);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--craie);
+    color: var(--ardoise-deep);
+  }
+
+  /* ==========================================================
+     Top bar
+     ========================================================== */
+  .topbar {
+    background: #182922f5;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #ffffff22;
+  }
+
+  .topbarin {
+    max-width: 1420px;
+    margin: auto;
+    min-height: 66px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 0 23px;
+  }
+
+  .brand {
+    font: 700 1.12rem "Space Grotesk", sans-serif;
+    letter-spacing: -0.035em;
+    text-decoration: none;
+  }
+
+  .brand em {
+    color: var(--craie);
+    font-style: normal;
+  }
+
+  .toplinks {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+  }
+
+  .toplinks a {
+    font: 600 0.75rem "Space Grotesk", sans-serif;
+    padding: 9px 12px;
+    border: 1px solid #ffffff2b;
+    border-radius: 10px;
+    text-decoration: none;
+  }
+
+  .toplinks a:hover {
+    background: #ffffff24;
+  }
+
+  /* ==========================================================
+     Hero
+     ========================================================== */
+  .hero {
+    background:
+      radial-gradient(circle at 85% 18%, #d9a44132, transparent 29%),
+      linear-gradient(125deg, #182922, #294c3c);
+    color: #fff;
+    padding: 63px 24px 68px;
+  }
+
+  .heroin {
+    max-width: 1130px;
+    margin: 0 auto;
+  }
+
+  .crumb {
+    font: 600 0.73rem "JetBrains Mono", monospace;
+    color: #dbdccd;
+  }
+
+  .crumb a {
+    text-decoration: none;
+  }
+
+  .crumb a:hover {
+    color: #f7d28b;
+  }
+
+  .kicker {
+    font: 700 0.72rem "JetBrains Mono", monospace;
+    color: #e4c57b;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    margin: 24px 0 14px;
+  }
+
+  .hero h1 {
+    font: 700 clamp(2.1rem, 5vw, 4rem) / 1.11 "Space Grotesk", sans-serif;
+    letter-spacing: -0.045em;
+    margin: 0;
+    max-width: 1000px;
+  }
+
+  .hero h1 span {
+    display: block;
+    color: #e5c881;
+    font-size: 0.49em;
+    letter-spacing: -0.012em;
+    margin-bottom: 13px;
+  }
+
+  .hero .lede {
+    font-size: 1.12rem;
+    max-width: 820px;
+    color: #edf2e7d9;
+    margin: 24px 0;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 23px;
+  }
+
+  .chip {
+    border: 1px solid #ffffff36;
+    color: #f2eee2;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font: 600 0.71rem "JetBrains Mono", monospace;
+  }
+
+  .navnext {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 27px;
+  }
+
+  .navnext a {
+    background: #d9a441;
+    color: #182922;
+    border-radius: 9px;
+    padding: 10px 15px;
+    font: 700 0.83rem "Space Grotesk", sans-serif;
+    text-decoration: none;
+  }
+
+  .navnext a.secondary {
+    background: transparent;
+    border: 1px solid #ffffff44;
+    color: #fff;
+  }
+
+  /* ==========================================================
+     Page layout, table of contents, typography
+     ========================================================== */
+  .layout {
+    max-width: 1440px;
+    margin: auto;
+    padding: 40px 22px 75px;
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 44px;
+  }
+
+  .toc {
+    position: sticky;
+    top: 90px;
+    max-height: calc(100vh - 110px);
+    overflow: auto;
+    align-self: start;
+    padding: 19px 17px;
+    background: #fcfbf7de;
+    border: 1px solid var(--ligne);
+    border-radius: 16px;
+  }
+
+  .toc h3 {
+    font: 700 0.72rem "JetBrains Mono", monospace;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    color: var(--ardoise);
+  }
+
+  .toc a {
+    display: block;
+    text-decoration: none;
+    color: #516057;
+    font: 600 0.74rem / 1.4 "Space Grotesk", sans-serif;
+    padding: 8px 8px;
+    border-left: 2px solid transparent;
+  }
+
+  .toc a:hover,
+  .toc a.active {
+    border-left-color: var(--craie-deep);
+    background: #d9a44124;
+  }
+
+  .article {
+    min-width: 0;
+  }
+
+  .section {
+    scroll-margin-top: 90px;
+    margin-bottom: 67px;
+  }
+
+  .sectiontag {
+    font: 700 0.75rem "JetBrains Mono", monospace;
+    color: #8e611c;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font: 700 clamp(1.6rem, 3vw, 2.35rem) / 1.13 "Space Grotesk", sans-serif;
+    letter-spacing: -0.035em;
+    color: var(--ardoise-deep);
+    margin: 0 0 21px;
+  }
+
+  h3 {
+    font: 700 1.25rem "Space Grotesk", sans-serif;
+    letter-spacing: -0.02em;
+    color: var(--ardoise);
+    margin: 27px 0 13px;
+  }
+
+  p {
+    margin: 0 0 17px;
+  }
+
+  strong {
+    color: #192d25;
+  }
+
+  .lead {
+    font-size: 1.07rem;
+    color: #455550;
+  }
+
+  /* ==========================================================
+     Panels
+     ========================================================== */
+  .panel {
+    background: var(--white);
+    padding: 23px 26px;
+    border: 1px solid var(--ligne);
+    border-left: 5px solid var(--sapin);
+    border-radius: 16px;
+    margin: 22px 0;
+    box-shadow: 0 5px 20px #1829220d;
+  }
+
+  .panel.note {
+    border-left-color: #bb8c33;
+  }
+
+  .panel.alert {
+    border-left-color: var(--brique);
+    background: #fbf1ee;
+  }
+
+  .panel.dark {
+    background: var(--ardoise);
+    color: #fff;
+    border-left-color: var(--craie);
+  }
+
+  .panel.dark strong {
+    color: white;
+  }
+
+  .pmark {
+    font: 700 0.76rem "JetBrains Mono", monospace;
+    letter-spacing: 0.065em;
+    text-transform: uppercase;
+    color: var(--ardoise);
+    margin-bottom: 8px;
+  }
+
+  .panel.dark .pmark {
+    color: #efd28d;
+  }
+
+  .panel.alert .pmark {
+    color: #93423f;
+  }
+
+  .panel.note .pmark {
+    color: #996c21;
+  }
+
+  /* ==========================================================
+     Equations, skill box, cards
+     ========================================================== */
+  .eq {
+    background: #f5f2e8;
+    border: 1px solid #d9a44157;
+    border-radius: 13px;
+    margin: 19px 0;
+    padding: 17px 12px;
+    text-align: center;
+    overflow: auto;
+    min-height: 67px;
+  }
+
+  .skill {
+    padding: 13px 17px;
+    background: #e5ede7;
+    border-radius: 10px;
+    font: 500 0.89rem "Space Grotesk", sans-serif;
+    border-left: 3px solid var(--sapin);
+  }
+
+  .grid2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px;
+  }
+
+  .minicard {
+    border: 1px solid var(--ligne);
+    background: var(--white);
+    padding: 19px;
+    border-radius: 14px;
+  }
+
+  /* ==========================================================
+     Steps, answers, exercises
+     ========================================================== */
+  .steps {
+    margin: 16px 0 12px;
+    padding-left: 25px;
+    counter-reset: steps;
+    list-style: none;
+  }
+
+  .steps li {
+    position: relative;
+    margin: 13px 0;
+    padding-left: 22px;
+  }
+
+  .steps li:before {
+    counter-increment: steps;
+    content: counter(steps);
+    position: absolute;
+    left: -21px;
+    top: 1px;
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #e1e8df;
+    color: #1d4035;
+    font: 700 0.78rem "JetBrains Mono", monospace;
+  }
+
+  .answer {
+    background: #eaf1e9;
+    color: #234d3c;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+
+  .exercise {
+    background: #fff;
+    border: 1px solid var(--ligne);
+    border-radius: 13px;
+    margin: 12px 0;
+    padding: 16px 19px;
+  }
+
+  .exercise summary {
+    cursor: pointer;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    color: var(--ardoise);
+  }
+
+  .exercise p {
+    margin: 12px 0 0;
+  }
+
+  .exercise details {
+    margin-top: 10px;
+  }
+
+  /* ==========================================================
+     Interactive lab (simulation, controls, canvases, buttons)
+     ========================================================== */
+  .lab {
+    background: #fcfbf7;
+    border: 1px solid var(--ligne);
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: var(--ombre);
+    margin: 23px 0;
+  }
+
+  .lab h3 {
+    margin: 0 0 8px;
+  }
+
+  .model {
+    border-left: 3px solid var(--craie);
+    padding: 10px 15px;
+    background: #f8f3e5;
+    font-size: 0.89rem;
+    margin: 10px 0 20px;
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .control {
+    min-width: 0;
+  }
+
+  .control label {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font: 700 0.75rem "Space Grotesk", sans-serif;
+    color: var(--ardoise);
+  }
+
+  .control output {
+    font: 700 0.75rem "JetBrains Mono", monospace;
+    color: #996b22;
+    white-space: nowrap;
+  }
+
+  .control input {
+    width: 100%;
+    accent-color: var(--sapin);
+    margin-top: 11px;
+  }
+
+  .scene {
+    margin-top: 18px;
+    width: 100%;
+    border: 1px solid var(--ligne);
+    border-radius: 12px;
+    background: #fff;
+    display: block;
+    aspect-ratio: 900 / 380;
+  }
+
+  .graph {
+    margin-top: 12px;
+    width: 100%;
+    border: 1px solid var(--ligne);
+    border-radius: 12px;
+    background: #fff;
+    display: block;
+    aspect-ratio: 900 / 215;
+  }
+
+  .readout {
+    margin-top: 14px;
+    background: #e8efe8;
+    border-radius: 10px;
+    padding: 15px;
+    color: #24483c;
+    font: 600 0.93rem / 1.6 "Space Grotesk", sans-serif;
+    min-height: 56px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 13px;
+  }
+
+  .btn {
+    border: 0;
+    border-radius: 9px;
+    background: var(--sapin);
+    color: white;
+    padding: 10px 15px;
+    font: 700 0.81rem "Space Grotesk", sans-serif;
+  }
+
+  .btn.alt {
+    background: #e8e5d8;
+    color: var(--ardoise-deep);
+  }
+
+  .btn:hover {
+    filter: brightness(0.94);
+  }
+
+  .diagramcap {
+    color: #536259;
+    font: 500 0.76rem "Space Grotesk", sans-serif;
+    margin-top: 6px;
+  }
+
+  /* ==========================================================
+     Quiz
+     ========================================================== */
+  .quiz {
+    border: 1px solid var(--ligne);
+    background: var(--white);
+    padding: 25px;
+    border-radius: 18px;
+  }
+
+  .quizstatus {
+    font: 700 0.75rem "JetBrains Mono", monospace;
+    color: #9d701f;
+    margin: 0 0 17px;
+  }
+
+  .question {
+    font: 700 1.17rem "Space Grotesk", sans-serif;
+    margin: 8px 0 15px;
+  }
+
+  .choices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 11px;
+  }
+
+  .choice {
+    border: 1.5px solid #d5dad2;
+    border-radius: 10px;
+    background: white;
+    padding: 13px 15px;
+    text-align: left;
+    font: 600 0.85rem "Space Grotesk", sans-serif;
+    color: #2e4035;
+  }
+
+  .choice.selected {
+    background: #eaf0e5;
+    border-color: var(--sapin);
+  }
+
+  .choice:disabled {
+    opacity: 0.66;
+    cursor: default;
+  }
+
+  .feedback {
+    padding: 13px;
+    border-radius: 9px;
+    margin-top: 16px;
+    font-size: 0.91rem;
+  }
+
+  .feedback.ok {
+    background: #e4f1e8;
+    border: 1px solid #94b8a0;
+  }
+
+  .feedback.no {
+    background: #fff0e9;
+    border: 1px solid #dfaa8f;
+  }
+
+  .progress {
+    width: 100%;
+    height: 10px;
+    border-radius: 100px;
+    background: #e5e5db;
+    overflow: hidden;
+    margin: 15px 0;
+  }
+
+  .progress > div {
+    height: 100%;
+    width: 0;
+    background: var(--sapin);
+    transition: width 0.25s;
+  }
+
+  /* ==========================================================
+     Sources, footer, misc
+     ========================================================== */
+  .sourcelist {
+    padding-left: 20px;
+  }
+
+  .sourcelist a {
+    color: #176a54;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .footer {
+    padding: 33px 24px;
+    color: #d8dfd6;
+    background: #182922;
+    font: 500 0.83rem "Space Grotesk", sans-serif;
+  }
+
+  .footerin {
+    max-width: 1120px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .footer a {
+    color: #f1d28e;
+  }
+
+  .numbers {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .numbers span {
+    font: 700 0.72rem "JetBrains Mono", monospace;
+    background: #e1eadf;
+    border: 1px solid #b6ccbd;
+    border-radius: 6px;
+    padding: 5px 9px;
+  }
+
+  .print {
+    background: transparent;
+    border: 1px solid #ddd7c8;
+    color: #244336;
+    padding: 6px 12px;
+    border-radius: 7px;
+    font: 600 0.8rem "Space Grotesk", sans-serif;
+  }
+
+  /* ==========================================================
+     Responsive, reduced motion, print
+     ========================================================== */
+  @media (max-width: 1140px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+
+    .toc {
+      position: static;
+      max-height: none;
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    .toc h3 {
+      width: 100%;
+    }
+
+    .toc a {
+      display: inline-block;
+      padding: 6px 10px;
+      border: 1px solid #dbe1d7;
+      border-radius: 6px;
+    }
+  }
+
+  @media (max-width: 730px) {
+    .toplinks a:nth-child(2) {
+      display: none;
+    }
+
+    .hero {
+      padding: 44px 18px 50px;
+    }
+
+    .layout {
+      padding: 25px 15px 60px;
+      gap: 25px;
+    }
+
+    .grid2,
+    .controls,
+    .choices {
+      grid-template-columns: 1fr;
+    }
+
+    .panel,
+    .lab,
+    .quiz {
+      padding: 19px;
+    }
+
+    .hero h1 {
+      font-size: 2.25rem;
+    }
+
+    .footerin {
+      display: block;
+    }
+
+    .toc a {
+      font-size: 0.7rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *:before,
+    *:after {
+      transition: none !important;
+    }
+  }
+
+  @media print {
+    .topbar,
+    .toc,
+    .lab,
+    .quiz,
+    .footer,
+    .navnext,
+    .print {
+      display: none !important;
+    }
+
+    .layout {
+      display: block;
+      padding: 0;
+    }
+
+    .hero {
+      background: #fff;
+      color: #182922;
+      padding: 15px;
+    }
+
+    .hero .lede,
+    .hero .crumb,
+    .hero .kicker {
+      color: #182922;
+    }
+
+    .section {
+      break-inside: avoid;
+    }
+
+    .panel,
+    .exercise {
+      box-shadow: none;
+    }
+
+    body {
+      background: #fff;
+    }
+  }
+
+  /* ==========================================================
+     Complément : histoire et méthode scientifique
+     ========================================================== */
+  .historic-nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 18px 0;
+  }
+
+  .historic-nav a {
+    font: 700 0.82rem "Space Grotesk", sans-serif;
+    color: #1a5848;
+    background: #e5eee7;
+    border-radius: 9px;
+    padding: 10px 14px;
+    text-decoration: none;
+    border: 1px solid #abc7b4;
+  }
+
+  .historical-quote {
+    background: #fff9e9;
+    border-left: 4px solid var(--craie-deep);
+    padding: 14px 19px;
+    border-radius: 0 12px 12px 0;
+    margin: 18px 0;
+  }
+
+  .historic-trace {
+    padding: 18px 23px;
+    border-radius: 15px;
+    border: 1px solid #d6e0d6;
+    background: #fff;
+    margin: 20px 0;
+  }
+
+  .historic-trace ol {
+    padding-left: 22px;
+  }
+
+  .historic-trace li {
+    margin: 10px 0;
+  }
+
+  .method-check {
+    margin-top: 18px;
+    background: #f9f9f3;
+    border: 1px solid #d4ddd3;
+    border-radius: 15px;
+    padding: 18px 22px;
+  }
+
+  .method-check fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+  }
+
+  .method-check legend {
+    font: 700 1.01rem / 1.5 "Space Grotesk", sans-serif;
+    color: var(--ardoise);
+    margin-bottom: 15px;
+  }
+
+  .method-check label {
+    display: block;
+    padding: 9px 10px;
+    margin: 6px 0;
+    border-radius: 9px;
+    background: #fff;
+    border: 1px solid #dae0d7;
+    cursor: pointer;
+    font: 500 0.93rem "Space Grotesk", sans-serif;
+  }
+
+  .method-check input {
+    accent-color: #4b7a68;
+    margin-right: 9px;
+  }
+
+  .method-check .result {
+    margin-top: 12px;
+    min-height: 22px;
+    font: 600 0.89rem / 1.55 "Space Grotesk", sans-serif;
+  }
+
+  .method-check button {
+    margin-top: 10px;
+    appearance: none;
+    border: 0;
+    background: #4b7a68;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 9px;
+    font: 700 0.82rem "Space Grotesk", sans-serif;
+  }
+
+  .history-references {
+    padding: 17px 22px;
+    background: #f4f6f1;
+    border-radius: 12px;
+  }
+
+  .history-references ul {
+    margin: 8px 0;
+    padding-left: 18px;
+  }
+
+  .history-references li {
+    margin-bottom: 7px;
+    overflow-wrap: anywhere;
+  }
+
+  .history-references a {
+    color: #245e4c;
+  }
+
+  @media (max-width: 750px) {
+    .method-check {
+      padding: 14px;
+    }
+
+    .historical-quote {
+      padding: 12px 14px;
+    }
+
+    .historic-trace {
+      padding: 15px;
+    }
+  }
+</style>
+</head>
+  <body>
+<header class="topbar">
+  <div class="topbarin">
+    <a class="brand" href="https://learnwithdom.page/">learnwithdom<em>.page</em></a><nav class="toplinks" aria-label="Navigation principale"><a href="index.html">Toutes les sections</a><a href="/webwork2">WeBWorK</a><a href="/">Accueil du site</a></nav></div></header>
 <div class="hero"><div class="heroin"><div class="crumb"><a href="index.html">PHY-5062-2</a> / Chapitre 4 / Section 4.1</div><div class="kicker">Dynamique et transformation de l’énergie mécanique</div><h1><span>Section 4.1 · Chapitre 4</span>Le concept de force</h1><p class="lede">Pourquoi une boîte reste-t-elle immobile quand deux personnes la poussent? Ce n'est pas parce qu'aucune force n'agit sur elle. C'est peut-être parce que plusieurs forces s'équilibrent. Nous allons apprendre à raconter ce qui se passe avec des flèches plutôt qu'avec des intuitions.</p><div class="chips"><span class="chip">Secondaire 5 · FGA</span><span class="chip">3 exemples guidés</span><span class="chip">2 diagrammes interactifs</span><span class="chip">5 missions · 500 XP</span></div><div class="navnext"><a class="secondary" href="index.html">← Parcours complet</a><a href="PHY5062_4-2_La-loi-de-l-inertie.html">4.2 La loi de l’inertie →</a></div></div></div>
 <div class="layout"><aside class="toc" aria-label="Table des matières"><h3>Dans cette leçon</h3><a href="#question">Situation de départ</a><a href="#idees">Faits saillants</a><a href="#histoire">Un peu d’histoire</a><a href="#demarche-historique">Enquête historique</a><a href="#notions">Comprendre les notions</a><a href="#methode">Méthode de résolution</a><a href="#exemples">Exemples guidés</a><a href="#laboratoire">Laboratoire interactif</a><a href="#pieges">Erreurs fréquentes</a><a href="#mission">Mission de révision</a><a href="#entrainement">À toi d’essayer</a><a href="#sources">Références</a><a href="index.html">← Toutes les sections</a></aside><main class="article" id="main">
 <section class="section" id="question"><div class="sectiontag">La situation de départ</div><h2>Et si nous regardions autrement?</h2><p class="lead">Pourquoi une boîte reste-t-elle immobile quand deux personnes la poussent? Ce n'est pas parce qu'aucune force n'agit sur elle. C'est peut-être parce que plusieurs forces s'équilibrent. Nous allons apprendre à raconter ce qui se passe avec des flèches plutôt qu'avec des intuitions.</p><div class="panel dark"><div class="pmark">La grande idée</div><p>Une force ne se résume pas à un chiffre : il faut une intensité, une direction, un sens et, selon la situation, un point d'application. L'unité SI est le newton (N).</p></div><p>Nous allons avancer de la situation concrète vers les symboles, puis revenir au phénomène pour vérifier que le résultat a un sens. En physique, les nombres ne remplacent jamais le raisonnement : ils le rendent vérifiable.</p></section>
