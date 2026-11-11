@@ -1,0 +1,68 @@
+{
+  "generated_at": "2026-11-11T17:56:37+00:00",
+  "items": [
+    {
+      "title": "La sonde Voyager 1 approche d’une distance d’un jour-lumière",
+      "source": "Québec Science",
+      "url": "https://www.quebecscience.qc.ca/espace/entrevue-sonde-voyager-1-distance-jour-lumiere/",
+      "date": "2026-11-05",
+      "topic": "Physique et espace",
+      "lang": "fr",
+      "summary": "Une entrevue sur la mission Voyager, les distances interstellaires et les communications avec la Terre."
+    },
+    {
+      "title": "Une anomalie pourrait remettre en question des modèles de la physique",
+      "source": "Québec Science",
+      "url": "https://www.quebecscience.qc.ca/sciences/physique/revolutionner-physique/",
+      "date": "2026-10-22",
+      "topic": "Physique et espace",
+      "lang": "fr",
+      "summary": "Des observations de particules interrogent les scientifiques sur les limites du modèle standard."
+    },
+    {
+      "title": "A Strange Quantum Theorem Has Killed Einstein’s Reality",
+      "source": "Quanta Magazine",
+      "url": "https://www.quantamagazine.org/a-strange-quantum-theorem-has-killed-einsteins-reality-20261106/",
+      "date": "2026-11-06",
+      "topic": "Physique et espace",
+      "lang": "en",
+      "summary": "Une exploration de ce que les théorèmes quantiques suggèrent sur la réalité physique."
+    },
+    {
+      "title": "The Case for a Bubble at Life’s Start",
+      "source": "Quanta Magazine",
+      "url": "https://www.quantamagazine.org/the-case-for-a-bubble-at-lifes-start-20261110/",
+      "date": "2026-11-10",
+      "topic": "Biologie et chimie",
+      "lang": "en",
+      "summary": "Une hypothèse sur l’apparition des premières structures ayant permis à la vie de se développer."
+    },
+    {
+      "title": "AI’s energy paradox: will the AI boom strain energy systems or be the source of solutions?",
+      "source": "Nature",
+      "url": "https://www.nature.com/articles/d41586-026-03412-5",
+      "date": "2026-11-11",
+      "topic": "Technologies et environnement",
+      "lang": "en",
+      "summary": "Les besoins énergétiques de l’intelligence artificielle et ses possibles contributions à l’efficacité énergétique."
+    },
+    {
+      "title": "Un problème mathématique résolu : une controverse autour de l’IA",
+      "source": "Agence Science-Presse",
+      "url": "https://www.sciencepresse.qc.ca/actualites-scientifiques/2026/09/11/probleme-mathematique-resolu-controverse-autour-ia",
+      "date": "2026-09-11",
+      "topic": "Mathématiques",
+      "lang": "fr",
+      "summary": "Comment évaluer des annonces de percées mathématiques obtenues à l’aide de systèmes d’intelligence artificielle?"
+    },
+    {
+      "title": "La NASA souligne une étape historique pour Voyager 1",
+      "source": "NASA",
+      "url": "https://www.nasa.gov/news-release/nasa-invites-media-public-to-join-voyager-1-one-light-day-activities/",
+      "date": "2026-11-10",
+      "topic": "Physique et espace",
+      "lang": "en",
+      "summary": "La NASA prépare des activités autour de l’étape symbolique du jour-lumière pour Voyager 1."
+    }
+  ]
+}
