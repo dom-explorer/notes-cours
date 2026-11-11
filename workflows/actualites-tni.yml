@@ -1,0 +1,39 @@
+name: Actualités scientifiques du TNI
+
+on:
+  schedule:
+    # Chaque matin vers 5 h 17 / 6 h 17 à Coaticook, selon la saison.
+    - cron: '17 10 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualites-tni
+  cancel-in-progress: false
+
+jobs:
+  actualites:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Récupérer les nouvelles des éditeurs scientifiques
+        run: python scripts/mettre_a_jour_actualites.py
+      - name: Publier les nouveaux titres
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add actualites_sciences.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Mise à jour des actualités scientifiques du TNI"
+            git push
+          else
+            echo "Aucune modification"
+          fi
