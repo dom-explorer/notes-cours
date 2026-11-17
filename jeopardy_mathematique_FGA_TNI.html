@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#132536">
+  <meta name="description" content="Jeu-questionnaire collaboratif de mathématiques FGA pour tableau numérique interactif : 6 catégories, 30 défis, équipes, points et corrigés.">
+  <title>Défi Maths — Jeu des catégories | FGA · TNI</title>
+  <style>
+    :root {
+      font-family: "Space Grotesk", "Avenir Next", "Trebuchet MS", system-ui, sans-serif;
+      color-scheme:light;
+      --navy:#132536; --navy2:#1b3448; --ink:#142638; --muted:#52697c; --paper:#f5f5f1;
+      --line:#d6e0e5; --gold:#f7c76f; --teal:#087e7a; --white:#fff;
+      --shadow:0 8px 30px rgba(12,34,51,.09);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-size:17px;line-height:1.42}
+    button,select,input{font:inherit}
+    button{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:4px solid #f4b342;outline-offset:3px}
+    button:disabled{cursor:not-allowed;opacity:.43}
+    [hidden]{display:none!important}
+    .wrap{max-width:1600px;margin:0 auto;padding:0 clamp(13px,2vw,32px)}
+    .topbar{background:var(--navy);color:white}
+    .top-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px;padding-top:11px;padding-bottom:11px}
+    .brand{font-weight:900;letter-spacing:.11em;text-transform:uppercase;font-size:12px;color:#d2e1e7}
+    h1{margin:1px 0 0;font-size:clamp(25px,2.65vw,41px);letter-spacing:-.04em;line-height:1.05}
+    .top-actions,.controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+    .btn{border:2px solid transparent;border-radius:12px;background:#e8eff3;color:#15283b;padding:9px 15px;min-height:47px;font-weight:850;line-height:1.2}
+    .btn:active{transform:scale(.98)}
+    .btn.header{background:#2d4b60;color:white;border-color:#4b6980}
+    .btn.ghost{background:white;border-color:#cdd9e0}
+    .btn.teal{background:var(--teal);color:white}
+    .btn.gold{background:var(--gold);color:#4d360d}
+    .btn.danger{background:#b64235;color:white}
+    .btn.small{min-height:41px;padding:7px 12px;font-size:15px}
+    .settings{background:#fff;border-bottom:1px solid var(--line)}
+    .setting-row{display:flex;align-items:end;gap:12px 18px;flex-wrap:wrap;padding-top:12px;padding-bottom:14px}
+    .field label{display:block;font-size:12px;letter-spacing:.055em;text-transform:uppercase;color:var(--muted);font-weight:900;margin-bottom:4px}
+    .field select{height:48px;min-width:142px;border:2px solid #cbd8e1;border-radius:10px;background:white;padding:0 10px;font-weight:800;color:var(--ink)}
+    .setup-note{margin:0 0 1px;color:var(--muted);font-size:13px;line-height:1.35;max-width:390px;flex:1 1 250px}
+    main{padding-top:17px;padding-bottom:34px}
+    .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+    h2{margin:0;font-size:clamp(19px,2vw,25px);letter-spacing:-.025em}
+    .help-text{color:var(--muted);font-size:14px;margin:0}
+    .scores{display:grid;grid-template-columns:repeat(var(--team-count,5),minmax(0,1fr));gap:9px;margin-bottom:16px}
+    .team{width:100%;border:2px solid #cfdce4;border-top:6px solid var(--team-accent);border-radius:15px;background:white;color:var(--ink);padding:8px 9px;min-width:0;display:flex;flex-direction:column;gap:2px;box-shadow:var(--shadow);text-align:center;min-height:112px}
+    .team.active{outline:4px solid #f8c76c;outline-offset:0;border-color:var(--team-accent);background:#fffdf5}
+    .team-name{font-size:clamp(15px,1.45vw,22px);font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .team-count{color:var(--muted);font-size:12px}
+    .team-score{font-size:clamp(23px,2.5vw,39px);font-weight:950;line-height:1.08;font-variant-numeric:tabular-nums;letter-spacing:-.035em}
+    .team-score small{font-weight:750;font-size:12px;letter-spacing:0}
+    .board-wrap{padding:10px;background:var(--navy);border-radius:20px;box-shadow:var(--shadow)}
+    .board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;align-items:stretch}
+    .category{background:#24465e;color:#f9fcff;min-height:79px;border-radius:11px;display:flex;align-items:center;justify-content:center;text-align:center;padding:9px 5px;font-size:clamp(15px,1.5vw,22px);font-weight:900;line-height:1.12;letter-spacing:-.02em;hyphens:auto}
+    .tile{font-variant-numeric:tabular-nums;background:#254f75;border:2px solid #3f729b;color:#ffdf91;border-radius:11px;font-size:clamp(23px,3.3vw,51px);font-weight:950;line-height:1;min-height:clamp(67px,9vh,95px);text-align:center;text-shadow:0 2px 0 rgba(0,0,0,.13);transition:background .13s,transform .13s}
+    .tile:hover:not(:disabled){background:#31678f;transform:translateY(-2px)}
+    .tile:disabled{opacity:1}
+    .tile.used{background:#193249;color:#678296;border-color:#294357;font-size:28px}
+    .board-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:7px;margin-top:10px;color:#e0e9ef;font-size:13px;padding:1px 4px}
+    .progressbar{height:7px;border-radius:999px;background:#375165;width:110px;display:inline-block;overflow:hidden;vertical-align:middle;margin:0 8px}
+    .progressbar>span{display:block;height:100%;width:0;background:#eebf70;transition:width .2s}
+    .bottom{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:14px}
+    .bottom p{margin:0;color:var(--muted);font-size:14px}
+    .instructions{margin-top:20px;border:1px solid var(--line);background:white;border-radius:15px;padding:12px 18px}
+    summary{font-weight:850;cursor:pointer;touch-action:manipulation}
+    .instructions p{margin:9px 0 5px;font-size:15px;color:#355066}
+    .instructions ol{margin:8px 0 3px;padding-left:23px;font-size:15px}
+    .instructions li{margin:5px 0}
+    .modal{position:fixed;inset:0;background:rgba(8,21,31,.8);z-index:40;display:flex;align-items:center;justify-content:center;padding:clamp(8px,2vw,22px)}
+    .dialog{background:#fff;color:var(--ink);border-radius:22px;width:min(1120px,100%);max-height:calc(100dvh - 22px);overflow:auto;box-shadow:0 20px 80px rgba(0,0,0,.35);display:flex;flex-direction:column}
+    .dialog-top{background:var(--navy);color:white;padding:14px clamp(16px,2.7vw,32px);display:flex;align-items:center;justify-content:space-between;gap:9px}
+    .dialog-kicker{text-transform:uppercase;letter-spacing:.08em;color:#bad1dd;font-size:13px;font-weight:900}
+    .dialog-title{font-size:clamp(23px,3vw,37px);font-weight:950;line-height:1.12;letter-spacing:-.035em;margin-top:3px}
+    .close{height:49px;min-width:49px;border:2px solid #7891a5;color:white;background:#29495e;border-radius:12px;font-size:26px;line-height:1}
+    .dialog-content{padding:clamp(14px,2.6vw,29px);overflow-y:auto}
+    .question-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:13px}
+    .qpoints{font-size:clamp(18px,2.2vw,25px);font-weight:950;color:#845608;background:#fff0ce;border-radius:999px;padding:6px 15px}
+    .question-timer{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+    #timerClock{font-size:clamp(26px,3vw,40px);font-weight:950;min-width:76px;text-align:center;font-variant-numeric:tabular-nums;color:#1e5267}
+    #timerClock.expired{color:#bb302a}
+    .question-text{font-size:clamp(24px,3.1vw,40px);font-weight:850;letter-spacing:-.025em;line-height:1.33;white-space:pre-line;max-width:1000px;min-height:102px;margin:13px 0 19px;overflow-wrap:anywhere}
+    .diagram{display:flex;justify-content:center;max-height:255px;margin:-6px auto 10px}
+    .diagram svg{width:min(475px,100%);height:auto;max-height:240px}
+    .hint,.answer{border-radius:13px;padding:12px 15px;margin:11px 0;font-size:clamp(16px,1.6vw,21px)}
+    .hint{background:#fff4db;border-left:6px solid #d6a34f}
+    .answer{background:#e8f6ef;border-left:6px solid #218665}
+    .answer strong{font-size:clamp(20px,2vw,26px)}
+    .answer p{margin:7px 0 0;white-space:pre-line}
+    .answer-line{border-top:1px solid #d6e0e5;padding-top:13px;margin-top:12px}
+    .question-actions{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:13px 0}
+    .chooser{border:2px solid #d1dde3;border-radius:13px;background:#f7fafb;padding:12px 13px;margin-top:14px}
+    .chooser-title{font-weight:900;margin-bottom:8px}
+    .chooser-list{display:flex;flex-wrap:wrap;gap:8px}
+    .choice{border:2px solid #b9cad4;background:white;border-radius:10px;padding:9px 14px;font-weight:850;min-height:44px}
+    .choice.chosen{border-color:#087e7a;background:#def5f1;color:#0a625c}
+    .choice.failed{border-color:#d9b7b7;color:#a66e6b;text-decoration:line-through;background:#fbf1f1}
+    .result-actions{display:flex;flex-wrap:wrap;gap:9px;align-items:stretch;margin-top:14px}
+    .result-actions>.btn{flex:1 1 180px;font-size:clamp(15px,1.5vw,20px);min-height:54px}
+    .status{font-size:14px;color:#53697a;margin:8px 0 0;min-height:19px}
+    .status.alert{color:#a02e28;font-weight:850}
+    .endpanel{border:2px solid #d2bd8e;background:#fff8e7;border-radius:15px;padding:15px 17px;margin-top:14px}
+    .endpanel h2{margin-bottom:7px}
+    .endpanel p{margin:5px 0}
+    .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+    @media(max-width:950px){
+      .scores{grid-template-columns:repeat(3,minmax(0,1fr));}
+      .category{font-size:14px;padding:6px 3px;min-height:71px}
+      .tile{font-size:25px;min-height:74px}
+      .board{gap:5px}
+    }
+    @media(max-width:620px){
+      .top-inner{align-items:flex-start}
+      .top-actions .btn{font-size:13px;min-height:40px;padding:6px 9px}
+      .field select{min-width:110px}
+      .scores{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .board-wrap{overflow-x:auto;border-radius:15px;padding:7px}
+      .board{min-width:625px;gap:5px}
+      .tile{min-height:70px;font-size:31px}
+      .category{font-size:14px}
+      .dialog{max-height:calc(100dvh - 10px)}
+      .dialog-content{padding:13px}
+      .question-text{font-size:25px}
+      .question-actions{gap:6px}
+      .result-actions>.btn{flex-basis:145px}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+    @media print{.top-actions,.settings,.bottom,.instructions,.modal{display:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap top-inner">
+      <div>
+        <div class="brand">learnwithdom.page · Mathématiques FGA</div>
+        <h1>Défi Maths <span style="color:#f4c66f">·</span> Jeu des catégories</h1>
+      </div>
+      <div class="top-actions">
+        <button class="btn header" id="fullBtn" type="button">⛶ Plein écran</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="settings" aria-label="Configuration de la partie">
+    <div class="wrap setting-row">
+      <div class="field"><label for="participants">Élèves présents</label><select id="participants"></select></div>
+      <div class="field"><label for="teamCount">Équipes</label><select id="teamCount"></select></div>
+      <div class="field"><label for="timeLimit">Temps par question</label>
+        <select id="timeLimit">
+          <option value="0">Sans limite</option>
+          <option value="45">45 secondes</option>
+          <option value="60" selected>60 secondes</option>
+          <option value="90">90 secondes</option>
+          <option value="120">120 secondes</option>
+        </select>
+      </div>
+      <button class="btn teal" id="newGameBtn" type="button">↻ Nouvelle partie</button>
+      <p class="setup-note">De 15 à 25 élèves. Les équipes peuvent discuter entre elles. Les questions rapportent des <b>points</b>, jamais de l’argent. Les scores sont conservés sur cet appareil.</p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="section-head">
+      <h2>Tableau des équipes</h2>
+      <p class="help-text">Touchez une équipe pour choisir qui joue. Touchez ✎ pour changer son nom.</p>
+    </div>
+    <section id="scoreboard" class="scores" aria-label="Scores des équipes"></section>
+
+    <div class="section-head">
+      <h2>Choisissez un défi</h2>
+      <p class="help-text">6 catégories · 5 niveaux · 30 questions</p>
+    </div>
+    <section class="board-wrap" aria-label="Tableau de jeu mathématique">
+      <div class="board" id="board"></div>
+      <div class="board-footer">
+        <span><b id="remaining">30</b> défis restants <span class="progressbar" aria-hidden="true"><span id="progressFill"></span></span></span>
+        <span>Chaque case peut être jouée une seule fois.</span>
+      </div>
+    </section>
+
+    <div class="bottom">
+      <p>Enseignant : vous décidez qui répond. <b>Bonne réponse :</b> points ajoutés. <b>Mauvaise réponse :</b> points retirés (optionnel). Un autre groupe peut tenter sa chance.</p>
+      <div class="controls">
+        <button class="btn ghost" id="undoBtn" type="button">↶ Annuler la dernière décision</button>
+      </div>
+    </div>
+
+    <section id="endPanel" class="endpanel" hidden>
+      <h2>Bravo à toutes les équipes!</h2>
+      <p id="winnerText"></p>
+      <button class="btn gold" id="replayBtn" type="button">Rejouer avec une nouvelle partie</button>
+    </section>
+
+    <details class="instructions">
+      <summary>Consignes pour l’enseignant et fonctionnement du jeu</summary>
+      <ol>
+        <li>Choisis le nombre réel d’élèves (15 à 25) et le nombre d’équipes (3 à 6), puis lance « Nouvelle partie ». Les tailles d’équipes sont suggérées automatiquement.</li>
+        <li>Touche une équipe pour désigner le groupe qui commence. Chaque groupe choisit une catégorie et une valeur en points.</li>
+        <li>Lis la question sur le TNI. Un indice peut être dévoilé; la minuterie peut être mise en pause.</li>
+        <li>Quand les élèves ont répondu, dévoile le corrigé. Attribue les points au groupe qui répond correctement. En cas d’erreur, tu peux retirer des points et laisser essayer un autre groupe.</li>
+        <li>Les questions résolues disparaissent du tableau. La progression est sauvegardée automatiquement dans le navigateur; actualiser la page ne supprime pas les scores.</li>
+      </ol>
+      <p><b>Conseil FGA :</b> laisse 20 à 40 secondes de discussion collective avant qu’une équipe propose sa réponse. Les défis de 100 à 200 points sont plus accessibles; ceux de 400 à 500 points demandent davantage de raisonnement.</p>
+      <p><b>Raccourcis :</b> touches 1 à 6 pour choisir une équipe, Échap pour fermer une question sans la consommer. Aucun compte ni connexion Internet n’est nécessaire.</p>
+    </details>
+  </main>
+
+  <div class="modal" id="questionModal" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="dialog">
+      <div class="dialog-top">
+        <div><div class="dialog-kicker" id="modalCategory">Catégorie</div><div class="dialog-title" id="modalTitle">Question</div></div>
+        <button class="close" id="closeModal" type="button" aria-label="Fermer sans utiliser la question" title="Fermer sans utiliser la question">×</button>
+      </div>
+      <div class="dialog-content">
+        <div class="question-meta">
+          <span class="qpoints" id="questionPoints">100 points</span>
+          <div class="question-timer" aria-label="Minuterie de la question">
+            <span id="timerClock">1:00</span>
+            <button class="btn small ghost" id="toggleTimer" type="button">Pause</button>
+            <button class="btn small ghost" id="restartTimer" type="button">↺ Temps</button>
+          </div>
+        </div>
+        <div class="question-text" id="questionText"></div>
+        <div class="diagram" id="diagram" hidden></div>
+        <div class="question-actions">
+          <button class="btn ghost" id="hintBtn" type="button">💡 Voir un indice</button>
+          <button class="btn gold" id="answerBtn" type="button">✓ Dévoiler la réponse</button>
+        </div>
+        <div class="hint" id="hintText" hidden></div>
+        <div class="answer" id="answerBox" hidden>
+          <strong id="answerText"></strong>
+          <p id="explanation"></p>
+        </div>
+        <div class="answer-line">
+          <div class="chooser">
+            <div class="chooser-title">Qui répond? <span style="font-weight:500;color:#53697a;font-size:14px">(touches les équipes ci-dessous)</span></div>
+            <div class="chooser-list" id="modalTeams"></div>
+          </div>
+          <div class="result-actions">
+            <button class="btn teal" id="correctBtn" type="button">✓ Bonne réponse : +100 points</button>
+            <button class="btn danger" id="wrongBtn" type="button">✕ Mauvaise réponse : −100 points</button>
+            <button class="btn ghost" id="passBtn" type="button">Passer : 0 point</button>
+          </div>
+          <p class="status" id="modalStatus" role="status" aria-live="polite">Le corrigé reste caché jusqu’à ce que vous le dévoiliez.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  'use strict';
+  // Tous les problèmes et corrigés sont intégrés : la page fonctionne hors ligne.
+  const CATEGORIES = [
+    {name:'Calcul éclair',short:'Calcul',questions:[
+      {q:'Calcule : 7 + 6 × 4.',a:'31',why:'On effectue d’abord la multiplication : 6 × 4 = 24. Ensuite : 7 + 24 = 31.',hint:'La multiplication passe avant l’addition.'},
+      {q:'Quatre cahiers coûtent 3,50 $ chacun. Combien coûtent-ils ensemble?',a:'14,00 $',why:'4 × 3,50 $ = 14,00 $.',hint:'C’est une multiplication : prix unitaire × quantité.'},
+      {q:'Calcule mentalement : 125 × 8.',a:'1 000',why:'125 × 4 = 500, donc 125 × 8 = 500 × 2 = 1 000.',hint:'Tu peux calculer 125 × 4, puis doubler.'},
+      {q:'Une équipe a réussi 18 défis sur 24. Quel pourcentage de ses défis a-t-elle réussi?',a:'75 %',why:'18 ÷ 24 = 0,75; puis 0,75 × 100 = 75 %.',hint:'Divise le nombre de réussites par le nombre de défis, puis multiplie par 100.'},
+      {q:'Un article coûte 80 $. Son prix augmente de 25 %, puis diminue de 20 %. Quel est son prix final?',a:'80 $',why:'Augmentation : 80 × 1,25 = 100 $. Diminution : 100 × 0,80 = 80 $. Les deux pourcentages s’appliquent à des montants différents.',hint:'Fais les deux opérations séparément; ne soustrais pas simplement 25 % − 20 %.'}
+    ]},
+    {name:'Fractions et pourcentages',short:'Fractions',questions:[
+      {q:'Quelle fraction représente la moitié d’un tout?',a:'1/2',why:'Quand un tout est partagé en deux parties égales, une partie représente 1/2.',hint:'Le dénominateur indique en combien de parts égales on partage.'},
+      {q:'Calcule : 1/2 + 1/4.',a:'3/4',why:'1/2 = 2/4. Donc 2/4 + 1/4 = 3/4.',hint:'Transforme les deux fractions pour obtenir le même dénominateur.'},
+      {q:'Les 3/5 d’un groupe de 20 personnes participent à une activité. Combien de personnes participent?',a:'12 personnes',why:'20 ÷ 5 = 4; ensuite 4 × 3 = 12 personnes.',hint:'Commence par trouver un cinquième de 20.'},
+      {q:'Une recette demande 3/4 de tasse de farine. Pour préparer la moitié de la recette, quelle quantité faut-il?',a:'3/8 de tasse',why:'(3/4) × (1/2) = (3 × 1)/(4 × 2) = 3/8.',hint:'Prendre la moitié d’une quantité revient à multiplier par 1/2.'},
+      {q:'Une citerne est remplie aux 2/3. On utilise le quart de l’eau qui se trouve dans la citerne. Quelle fraction de la capacité totale reste-t-il?',a:'1/2 de la capacité totale',why:'On utilise 1/4 de 2/3, soit 1/6 de la capacité. Il reste donc 2/3 − 1/6 = 4/6 − 1/6 = 3/6 = 1/2.',hint:'Le quart utilisé est un quart de l’eau présente, et non un quart de toute la citerne.'}
+    ]},
+    {name:'Logique et stratégies',short:'Logique',questions:[
+      {q:'Trouve le prochain nombre : 2, 4, 6, 8, …',a:'10',why:'On ajoute 2 à chaque étape : 8 + 2 = 10.',hint:'Observe la différence entre deux nombres voisins.'},
+      {q:'Une ferme compte 5 animaux : uniquement des poules et des lapins. Il y a 14 pattes en tout. Combien y a-t-il de poules et de lapins?',a:'3 poules et 2 lapins',why:'3 poules ont 3 × 2 = 6 pattes et 2 lapins ont 2 × 4 = 8 pattes. Cela donne bien 5 animaux et 14 pattes.',hint:'Imagine d’abord 5 poules : combien manquerait-il de pattes?'},
+      {q:'Trouve trois nombres entiers consécutifs dont la somme est 72.',a:'23, 24 et 25',why:'Le nombre du milieu est 72 ÷ 3 = 24. Les deux autres sont 23 et 25. Vérification : 23 + 24 + 25 = 72.',hint:'Le nombre au milieu est aussi la moyenne des trois nombres.'},
+      {q:'Un cadenas possède un code à trois chiffres. Le premier vaut le double du dernier. Le deuxième vaut 3 de plus que le dernier. La somme des trois chiffres est 15. Quel est le code?',a:'663',why:'Si le dernier chiffre vaut x, le premier vaut 2x et le deuxième x + 3. Alors 2x + (x + 3) + x = 15, donc 4x = 12, x = 3. Le code est 6-6-3.',hint:'Appelle x le dernier chiffre, puis exprime les deux autres à partir de x.'},
+      {q:'Neuf boules semblent identiques. Une seule est plus lourde. Avec une balance à deux plateaux, comment trouver la boule plus lourde en au plus DEUX pesées?',a:'Diviser en trois groupes de trois',why:'1) Pèse 3 boules contre 3 boules. Si les masses sont égales, la plus lourde est parmi les 3 restantes; sinon, elle se trouve dans le groupe le plus lourd. 2) Parmi ces 3 boules, pèse 1 boule contre 1 boule. Si elles sont égales, c’est la troisième; sinon, c’est la plus lourde des deux.',hint:'Une pesée peut donner trois résultats : gauche plus lourd, droite plus lourd ou équilibre.'}
+    ]},
+    {name:'Mesures et géométrie',short:'Géométrie',questions:[
+      {q:'Un rectangle mesure 5 cm de long et 3 cm de large. Quel est son périmètre?',a:'16 cm',why:'P = 2 × (5 + 3) = 16 cm.',hint:'Additionne les longueurs des quatre côtés.'},
+      {q:'Un triangle a une base de 8 cm et une hauteur de 5 cm. Quelle est son aire?',a:'20 cm²',why:'A = (base × hauteur) ÷ 2 = (8 × 5) ÷ 2 = 20 cm².',hint:'Un triangle occupe la moitié du rectangle correspondant à sa base et à sa hauteur.'},
+      {q:'Une boîte rectangulaire mesure 2 cm × 3 cm × 4 cm. Quel est son volume?',a:'24 cm³',why:'Volume = longueur × largeur × hauteur = 2 × 3 × 4 = 24 cm³.',hint:'Multiplie les trois dimensions.'},
+      {q:'Une échelle est posée contre un mur. Son pied est à 6 m du mur et elle atteint 8 m de hauteur. Quelle est la longueur de l’échelle?',a:'10 m',why:'Le triangle est rectangle : longueur² = 6² + 8² = 36 + 64 = 100. Donc longueur = √100 = 10 m.',hint:'Utilise le théorème de Pythagore. L’échelle est l’hypoténuse.'},
+      {q:'Un terrain rectangulaire mesure 12 m sur 9 m. On enlève, dans un coin, un rectangle de 4 m sur 3 m. Trouve :\n1) l’aire restante;\n2) le périmètre de la forme en L.',a:'Aire : 96 m²  ·  Périmètre : 42 m',why:'Aire : 12 × 9 − 4 × 3 = 108 − 12 = 96 m².\nPérimètre : en retirant un coin, on enlève 4 m et 3 m du contour extérieur, mais on ajoute ces mêmes longueurs à l’intérieur. Le périmètre reste donc 2 × (12 + 9) = 42 m.',hint:'Pour l’aire, soustrais le petit rectangle. Pour le périmètre, regarde quels segments sont retirés puis ajoutés.',diagram:'terrainL'}
+    ]},
+    {name:'Statistiques et hasard',short:'Statistiques',questions:[
+      {q:'Voici cinq résultats : 2, 3, 3, 5, 7. Quel est le mode?',a:'3',why:'Le mode est la valeur qui revient le plus souvent; 3 apparaît deux fois.',hint:'Cherche la valeur la plus fréquente.'},
+      {q:'Quelle est la moyenne des nombres 6, 8 et 10?',a:'8',why:'(6 + 8 + 10) ÷ 3 = 24 ÷ 3 = 8.',hint:'Additionne les trois nombres, puis divise par 3.'},
+      {q:'On lance un dé équilibré à six faces. Quelle est la probabilité d’obtenir un nombre pair?',a:'1/2, soit 50 %',why:'Les issues paires sont 2, 4 et 6. Il y a 3 résultats favorables sur 6 : 3/6 = 1/2 = 50 %.',hint:'Énumère les nombres pairs entre 1 et 6.'},
+      {q:'Une boîte contient 5 jetons rouges et 3 bleus. On tire un jeton, on le REMET, puis on tire encore. Quelle est la probabilité d’obtenir deux bleus?',a:'9/64, soit environ 14,1 %',why:'À chaque tirage, P(bleu) = 3/8. Puisqu’il y a remise, les tirages sont indépendants : (3/8) × (3/8) = 9/64 ≈ 0,140625, soit environ 14,1 %.',hint:'Comme on remet le premier jeton, la probabilité de bleu reste 3/8 au deuxième tirage.'},
+      {q:'Quatre résultats sont 8, 11, 10 et 15. Quel cinquième résultat faut-il ajouter pour obtenir une moyenne de 12?',a:'16',why:'Pour une moyenne de 12 avec 5 résultats, il faut 5 × 12 = 60 points. Les 4 résultats totalisent 8 + 11 + 10 + 15 = 44. Il manque 60 − 44 = 16.',hint:'Calcule d’abord le total nécessaire pour obtenir une moyenne de 12 avec cinq résultats.'}
+    ]},
+    {name:'Algèbre et régularités',short:'Algèbre',questions:[
+      {q:'Trouve x : x + 7 = 19.',a:'x = 12',why:'On soustrait 7 des deux côtés : x = 19 − 7 = 12.',hint:'Quelle quantité ajoutée à 7 donne 19?'},
+      {q:'Trouve x : 3x = 27.',a:'x = 9',why:'On divise les deux membres par 3 : x = 27 ÷ 3 = 9.',hint:'Ici, 3x signifie 3 fois x.'},
+      {q:'Trouve x : 4x − 5 = 23.',a:'x = 7',why:'4x − 5 = 23. On ajoute 5 : 4x = 28. On divise par 4 : x = 7.',hint:'Commence par ajouter 5 aux deux membres.'},
+      {q:'Un taxi facture 6 $ au départ, puis 2 $ par kilomètre. Une course coûte 24 $. Quelle distance a été parcourue?',a:'9 km',why:'Soit d la distance : 6 + 2d = 24. Alors 2d = 18, donc d = 9 km.',hint:'Retire d’abord les frais de départ du montant total.'},
+      {q:'Résous l’équation : 2(x + 3) = 3x − 4.',a:'x = 10',why:'Développons : 2x + 6 = 3x − 4. On soustrait 2x : 6 = x − 4. On ajoute 4 : x = 10. Vérification : 2(10 + 3) = 26 et 3(10) − 4 = 26.',hint:'Développe la parenthèse avec la distributivité.'}
+    ]}
+  ];
+  const POINTS=[100,200,300,400,500];
+  const COLORS=['#0d8e87','#5264bd','#b85e39','#8d65a8','#bf8c28','#4c7d9b'];
+  const STORE_KEY='fga-jeu-categories-v1';
+  const el=id=>document.getElementById(id);
+  const clone=o=>JSON.parse(JSON.stringify(o));
+  let game;
+  let activeId=null;
+  let hintShown=false;
+  let answerShown=false;
+  let attempts=[];
+  let history=[];
+  let remainingSeconds=60;
+  let until=0;
+  let timerInterval=null;
+  let running=false;
+  let lastFocused=null;
+
+  function createGame(n=20,t=5,limit=60){
+    return {participants:n,teams:t,limit,names:Array.from({length:t},(_,i)=>`Équipe ${String.fromCharCode(65+i)}`),scores:Array(t).fill(0),used:[],chosen:0,attempts:{}};
+  }
+  function validLoaded(o){
+    return o && Number.isInteger(o.participants) && o.participants>=15 && o.participants<=25 && Number.isInteger(o.teams) && o.teams>=3 && o.teams<=6 && [0,45,60,90,120].includes(o.limit) && Array.isArray(o.names) && o.names.length===o.teams && o.names.every(n=>typeof n==='string') && Array.isArray(o.scores) && o.scores.length===o.teams && o.scores.every(n=>Number.isFinite(n)) && Array.isArray(o.used) && o.used.every(n=>typeof n==='string' && /^\d-[0-4]$/.test(n) && +n.split('-')[0]<6) && Number.isInteger(o.chosen) && o.chosen>=0 && o.chosen<o.teams && o.attempts && typeof o.attempts==='object';
+  }
+  function save(){try{localStorage.setItem(STORE_KEY,JSON.stringify(game));}catch(e){/* navigation privée */}}
+  function restore(){
+    try{const stored=JSON.parse(localStorage.getItem(STORE_KEY));if(validLoaded(stored))return stored;}catch(e){}
+    return createGame();
+  }
+  function snapshot(){history.push(clone(game));if(history.length>50)history.shift();}
+  function teamSize(i){return Math.floor(game.participants/game.teams)+(i<(game.participants%game.teams)?1:0)}
+  function qById(id){const [c,r]=id.split('-').map(Number);return {...CATEGORIES[c].questions[r],points:POINTS[r],cat:CATEGORIES[c].name,c,r,id};}
+  function applySelects(){el('participants').value=game.participants;el('teamCount').value=game.teams;el('timeLimit').value=game.limit;}
+  function renderTeams(){
+    const parent=el('scoreboard');parent.replaceChildren();parent.style.setProperty('--team-count',game.teams);
+    for(let i=0;i<game.teams;i++){
+      const button=document.createElement('button');button.type='button';button.className='team'+(i===game.chosen?' active':'');
+      button.style.setProperty('--team-accent',COLORS[i]);button.setAttribute('aria-pressed',String(game.chosen===i));
+      button.setAttribute('aria-label',`${game.names[i]}, ${game.scores[i]} points, ${teamSize(i)} élèves. Toucher pour sélectionner.`);
+      const name=document.createElement('span');name.className='team-name';name.textContent=game.names[i];
+      const size=document.createElement('span');size.className='team-count';size.textContent=`${teamSize(i)} élève${teamSize(i)>1?'s':''} · toucher pour choisir`;
+      const score=document.createElement('span');score.className='team-score';score.textContent=game.scores[i].toLocaleString('fr-CA')+' ';
+      const unit=document.createElement('small');unit.textContent='pts';score.append(unit);
+      button.append(name,size,score);button.addEventListener('click',()=>chooseTeam(i));
+      const cell=document.createElement('div');cell.style.position='relative';cell.style.minWidth='0';
+      const edit=document.createElement('button');edit.type='button';edit.textContent='✎';edit.title=`Renommer ${game.names[i]}`;
+      edit.setAttribute('aria-label',`Renommer ${game.names[i]}`);
+      edit.style.cssText='position:absolute;right:6px;top:3px;border:0;background:#ecf1f5;border-radius:7px;padding:2px 6px;font-size:14px;color:#34506a;min-width:29px;min-height:28px;';
+      edit.addEventListener('click',()=>renameTeam(i));cell.append(button,edit);parent.append(cell);
+    }
+  }
+  function renameTeam(i){const proposed=window.prompt(`Nom de l’équipe ${i+1} :`,game.names[i]);if(proposed===null)return;const n=proposed.trim().slice(0,32);if(!n)return;game.names[i]=n;save();renderTeams();renderModalTeams();}
+  function chooseTeam(i){game.chosen=i;save();renderTeams();renderModalTeams();}
+  function renderBoard(){
+    const b=el('board');b.replaceChildren();
+    for(let c=0;c<CATEGORIES.length;c++){
+      const cat=document.createElement('div');cat.className='category';cat.textContent=CATEGORIES[c].name;b.append(cat);
+    }
+    for(let r=0;r<5;r++)for(let c=0;c<6;c++){
+      const id=`${c}-${r}`,used=game.used.includes(id);
+      const btn=document.createElement('button');btn.type='button';btn.className='tile'+(used?' used':'');btn.textContent=used?'✓':String(POINTS[r]);btn.disabled=used;
+      btn.setAttribute('aria-label',used?`${CATEGORIES[c].name}, ${POINTS[r]} points, déjà joué`:`${CATEGORIES[c].name}, ${POINTS[r]} points`);
+      btn.addEventListener('click',()=>openQuestion(id));b.append(btn);
+    }
+    const count=30-game.used.length;el('remaining').textContent=count;el('progressFill').style.width=`${game.used.length/30*100}%`;
+    const end=el('endPanel');end.hidden=count!==0;
+    if(count===0){const best=Math.max(...game.scores);const names=game.names.filter((n,i)=>game.scores[i]===best);
+      el('winnerText').textContent=`${names.length>1?'Équipes gagnantes':'Équipe gagnante'} : ${names.join(' et ')} avec ${best.toLocaleString('fr-CA')} points. Bravo aussi aux autres équipes pour leur collaboration!`;
+    }
+  }
+  function render(){applySelects();renderTeams();renderBoard();el('undoBtn').disabled=history.length===0;}
+  function renderModalTeams(){
+    if(activeId===null)return;
+    const p=el('modalTeams');p.replaceChildren();const locked=game.attempts[activeId]||[];
+    for(let i=0;i<game.teams;i++){
+      const btn=document.createElement('button');btn.type='button';btn.className='choice'+(game.chosen===i?' chosen':'')+(locked.includes(i)?' failed':'');
+      btn.textContent=game.names[i]+(locked.includes(i)?' · déjà tenté':'');btn.disabled=locked.includes(i);
+      btn.setAttribute('aria-pressed',String(game.chosen===i));btn.addEventListener('click',()=>chooseTeam(i));p.append(btn);
+    }
+    const lockedCurrent=locked.includes(game.chosen);
+    el('correctBtn').disabled=lockedCurrent;
+    el('wrongBtn').disabled=lockedCurrent;
+  }
+  const DIAGRAMS={terrainL:`<svg viewBox="0 0 520 255" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Terrain en forme de L : rectangle de 12 mètres par 9 mètres avec un coin supérieur droit de 4 mètres par 3 mètres retiré"><polygon points="73,22 323,22 323,84 450,84 450,215 73,215" fill="#e1f1ec" stroke="#116a65" stroke-width="5" stroke-linejoin="round"/><path d="M323 22H450V84" fill="none" stroke="#cc6c57" stroke-width="3" stroke-dasharray="7 5"/><text x="261" y="243" fill="#19364a" font-size="20" text-anchor="middle" font-weight="bold">12 m</text><text x="43" y="124" fill="#19364a" font-size="20" text-anchor="middle" font-weight="bold" transform="rotate(-90 43 124)">9 m</text><text x="389" y="75" fill="#974d34" font-size="18" text-anchor="middle" font-weight="bold">4 m</text><text x="310" y="55" fill="#974d34" font-size="18" text-anchor="middle" font-weight="bold">3 m</text></svg>`};
+
+  function openQuestion(id){
+    if(game.used.includes(id))return;
+    closeQuestion();lastFocused=document.activeElement;activeId=id;hintShown=false;answerShown=false;const q=qById(id);
+    el('modalCategory').textContent=q.cat;el('modalTitle').textContent=`Défi de ${q.points} points`;
+    el('questionPoints').textContent=q.points+' points';el('questionText').textContent=q.q;
+    el('answerText').textContent=q.a;el('explanation').textContent=q.why;el('hintText').textContent='Indice : '+q.hint;
+    el('answerBox').hidden=true;el('hintText').hidden=true;
+    el('hintBtn').textContent='💡 Voir un indice';el('answerBtn').textContent='✓ Dévoiler la réponse';
+    el('correctBtn').textContent=`✓ Bonne réponse : +${q.points} points`;
+    el('wrongBtn').textContent=`✕ Mauvaise réponse : −${q.points} points`;
+    el('modalStatus').textContent='Le corrigé reste caché jusqu’à ce que vous le dévoiliez.';
+    el('modalStatus').classList.remove('alert');
+    el('diagram').hidden=!q.diagram;el('diagram').innerHTML=q.diagram?DIAGRAMS[q.diagram]:'';
+    el('questionModal').hidden=false;document.body.style.overflow='hidden';renderModalTeams();resetTimer();el('closeModal').focus();
+  }
+  function closeQuestion(){stopTimer();if(activeId===null)return;activeId=null;el('questionModal').hidden=true;document.body.style.overflow='';if(lastFocused&&typeof lastFocused.focus==='function')lastFocused.focus();}
+  function stopTimer(){if(timerInterval!==null){clearInterval(timerInterval);timerInterval=null;}running=false;}
+  function formatTime(s){return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;}
+  function updateClock(){
+    if(game.limit===0){el('timerClock').textContent='∞';el('timerClock').classList.remove('expired');return;}
+    el('timerClock').textContent=formatTime(remainingSeconds);el('timerClock').classList.toggle('expired',remainingSeconds===0);
+    el('toggleTimer').textContent=running?'Pause':'Reprendre';
+  }
+  function tick(){if(!running)return;remainingSeconds=Math.max(0,Math.ceil((until-Date.now())/1000));if(remainingSeconds===0){stopTimer();el('modalStatus').textContent='Temps écoulé! L’enseignant peut quand même accepter une réponse.';el('modalStatus').classList.add('alert');}updateClock();}
+  function playTimer(){if(game.limit===0||remainingSeconds<=0)return;until=Date.now()+remainingSeconds*1000;running=true;stopExistingInterval();timerInterval=setInterval(tick,200);updateClock();}
+  function stopExistingInterval(){if(timerInterval!==null){clearInterval(timerInterval);timerInterval=null;}}
+  function pauseTimer(){if(!running)return;tick();stopTimer();updateClock();}
+  function resetTimer(){stopTimer();remainingSeconds=game.limit;el('toggleTimer').hidden=game.limit===0;el('restartTimer').hidden=game.limit===0;updateClock();if(game.limit)playTimer();}
+  function showAnswer(){if(activeId===null)return;answerShown=true;el('answerBox').hidden=false;el('answerBtn').textContent='✓ Réponse affichée';pauseTimer();}
+  function setStatus(message,alert=false){el('modalStatus').textContent=message;el('modalStatus').classList.toggle('alert',alert);}
+  function award(isCorrect){
+    if(activeId===null)return;
+    const q=qById(activeId),i=game.chosen;const locked=game.attempts[activeId]||[];
+    if(locked.includes(i)){setStatus('Cette équipe a déjà tenté cette question. Choisis une autre équipe.',true);return;}
+    if(!answerShown){setStatus('Dévoile d’abord le corrigé avant d’attribuer ou de retirer des points.',true);return;}
+    snapshot();game.scores[i]+=isCorrect?q.points:-q.points;
+    if(isCorrect){game.used.push(activeId);closeQuestion();render();save();}
+    else{
+      game.attempts[activeId]=[...locked,i];save();renderTeams();renderModalTeams();
+      const available=Array.from({length:game.teams},(_,j)=>j).filter(j=>!game.attempts[activeId].includes(j));
+      if(available.length){chooseTeam(available[0]);setStatus(`${game.names[i]} perd ${q.points} points. Une autre équipe peut tenter sa chance.`);}
+      else setStatus('Toutes les équipes ont tenté leur chance. Tu peux passer cette question.',true);
+      el('undoBtn').disabled=false;
+    }
+  }
+  function passQuestion(){if(activeId===null)return;const id=activeId;snapshot();game.used.push(id);closeQuestion();render();save();}
+  function undo(){if(history.length===0)return;closeQuestion();game=history.pop();save();render();}
+  function newGame(){
+    const n=Number(el('participants').value),t=Number(el('teamCount').value),limit=Number(el('timeLimit').value);
+    if(!Number.isInteger(n)||n<15||n>25||!Number.isInteger(t)||t<3||t>6)return;
+    if((game.used.length||game.scores.some(n=>n!==0))&&!window.confirm('Recommencer la partie? Les points et les questions déjà jouées seront effacés.')){applySelects();return;}
+    closeQuestion();game=createGame(n,t,limit);history=[];save();render();
+  }
+  function init(){
+    for(let i=15;i<=25;i++){const o=document.createElement('option');o.value=i;o.textContent=`${i} élèves`;el('participants').append(o);}
+    for(let i=3;i<=6;i++){const o=document.createElement('option');o.value=i;o.textContent=`${i} équipes`;el('teamCount').append(o);}
+    game=restore();render();
+    el('newGameBtn').addEventListener('click',newGame);
+    el('replayBtn').addEventListener('click',newGame);
+    el('undoBtn').addEventListener('click',undo);
+    el('closeModal').addEventListener('click',closeQuestion);
+    el('hintBtn').addEventListener('click',()=>{if(activeId===null)return;hintShown=!hintShown;el('hintText').hidden=!hintShown;el('hintBtn').textContent=hintShown?'💡 Masquer l’indice':'💡 Voir un indice';});
+    el('answerBtn').addEventListener('click',showAnswer);
+    el('correctBtn').addEventListener('click',()=>award(true));
+    el('wrongBtn').addEventListener('click',()=>award(false));
+    el('passBtn').addEventListener('click',passQuestion);
+    el('toggleTimer').addEventListener('click',()=>running?pauseTimer():playTimer());
+    el('restartTimer').addEventListener('click',resetTimer);
+    el('fullBtn').addEventListener('click',async()=>{try{if(!document.fullscreenElement&&document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else if(document.exitFullscreen)await document.exitFullscreen();}catch(e){/* mode plein écran peut être bloqué */}});
+    document.addEventListener('fullscreenchange',()=>{el('fullBtn').textContent=document.fullscreenElement?'✕ Quitter le plein écran':'⛶ Plein écran';});
+    document.addEventListener('keydown',(ev)=>{
+      if(ev.key==='Escape'&&activeId!==null){ev.preventDefault();closeQuestion();}
+      if(activeId===null&&/^[1-6]$/.test(ev.key)&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)&&Number(ev.key)<=game.teams)chooseTeam(Number(ev.key)-1);
+    });
+    document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)tick();});
+    window.addEventListener('beforeunload',save);
+  }
+  init();
+  </script>
+</body>
+</html>
