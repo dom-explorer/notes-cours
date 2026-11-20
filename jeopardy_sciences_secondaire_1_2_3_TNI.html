@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#223a34">
+  <meta name="description" content="Jeopardy interactif de sciences et technologie du secteur jeune, révision secondaire 1 à 3 : 30 défis, équipes, corrigés et pointage.">
+  <title>Jeopardy scientifique — Secondaire 1 à 3 | TNI</title>
+  <style>
+    .level{font-size:14px;font-weight:900;background:#e4f0e9;color:#31584a;padding:7px 12px;border-radius:99px;}
+    @media(min-width:951px){.scores[style*="--team-count: 8"] .team{padding:8px 4px}.scores[style*="--team-count: 8"] .team-name{font-size:clamp(14px,1.25vw,19px)}}
+    :root {
+      font-family: "Space Grotesk", "Avenir Next", "Trebuchet MS", system-ui, sans-serif;
+      color-scheme:light;
+      --navy:#223a34; --navy2:#315147; --ink:#1c332c; --muted:#526c62; --paper:#f5f6f0;
+      --line:#d6e0e5; --gold:#d9a441; --teal:#28685e; --white:#fff;
+      --shadow:0 8px 30px rgba(12,34,51,.09);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-size:17px;line-height:1.42}
+    button,select,input{font:inherit}
+    button{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:4px solid #f4b342;outline-offset:3px}
+    button:disabled{cursor:not-allowed;opacity:.43}
+    [hidden]{display:none!important}
+    .wrap{max-width:1600px;margin:0 auto;padding:0 clamp(13px,2vw,32px)}
+    .topbar{background:var(--navy);color:white}
+    .top-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px;padding-top:11px;padding-bottom:11px}
+    .brand{font-weight:900;letter-spacing:.11em;text-transform:uppercase;font-size:12px;color:#d2e1e7}
+    h1{margin:1px 0 0;font-size:clamp(25px,2.65vw,41px);letter-spacing:-.04em;line-height:1.05}
+    .top-actions,.controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+    .btn{border:2px solid transparent;border-radius:12px;background:#e8eff3;color:#15283b;padding:9px 15px;min-height:47px;font-weight:850;line-height:1.2}
+    .btn:active{transform:scale(.98)}
+    .btn.header{background:#2d4b60;color:white;border-color:#4b6980}
+    .btn.ghost{background:white;border-color:#cdd9e0}
+    .btn.teal{background:var(--teal);color:white}
+    .btn.gold{background:var(--gold);color:#4d360d}
+    .btn.danger{background:#b64235;color:white}
+    .btn.small{min-height:41px;padding:7px 12px;font-size:15px}
+    .settings{background:#fff;border-bottom:1px solid var(--line)}
+    .setting-row{display:flex;align-items:end;gap:12px 18px;flex-wrap:wrap;padding-top:12px;padding-bottom:14px}
+    .field label{display:block;font-size:12px;letter-spacing:.055em;text-transform:uppercase;color:var(--muted);font-weight:900;margin-bottom:4px}
+    .field select{height:48px;min-width:142px;border:2px solid #cbd8e1;border-radius:10px;background:white;padding:0 10px;font-weight:800;color:var(--ink)}
+    .penalty-toggle{display:flex;gap:8px;align-items:center;font-size:13px;font-weight:850;max-width:220px;line-height:1.2;cursor:pointer;color:var(--ink)}
+    .penalty-toggle input{width:22px;height:22px;accent-color:var(--teal);flex-shrink:0}
+    .setup-note{margin:0 0 1px;color:var(--muted);font-size:13px;line-height:1.35;max-width:390px;flex:1 1 250px}
+    main{padding-top:17px;padding-bottom:34px}
+    .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+    h2{margin:0;font-size:clamp(19px,2vw,25px);letter-spacing:-.025em}
+    .help-text{color:var(--muted);font-size:14px;margin:0}
+    .scores{display:grid;grid-template-columns:repeat(var(--team-count,5),minmax(0,1fr));gap:9px;margin-bottom:16px}
+    .team{width:100%;border:2px solid #cfdce4;border-top:6px solid var(--team-accent);border-radius:15px;background:white;color:var(--ink);padding:8px 9px;min-width:0;display:flex;flex-direction:column;gap:2px;box-shadow:var(--shadow);text-align:center;min-height:112px}
+    .team.active{outline:4px solid #f8c76c;outline-offset:0;border-color:var(--team-accent);background:#fffdf5}
+    .team-name{font-size:clamp(15px,1.45vw,22px);font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .team-count{color:var(--muted);font-size:12px}
+    .team-score{font-size:clamp(23px,2.5vw,39px);font-weight:950;line-height:1.08;font-variant-numeric:tabular-nums;letter-spacing:-.035em}
+    .team-score small{font-weight:750;font-size:12px;letter-spacing:0}
+    .board-wrap{padding:10px;background:var(--navy);border-radius:20px;box-shadow:var(--shadow)}
+    .board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;align-items:stretch}
+    .category{background:#24465e;color:#f9fcff;min-height:79px;border-radius:11px;display:flex;align-items:center;justify-content:center;text-align:center;padding:9px 5px;font-size:clamp(15px,1.5vw,22px);font-weight:900;line-height:1.12;letter-spacing:-.02em;hyphens:auto}
+    .tile{font-variant-numeric:tabular-nums;background:#254f75;border:2px solid #3f729b;color:#ffdf91;border-radius:11px;font-size:clamp(23px,3.3vw,51px);font-weight:950;line-height:1;min-height:clamp(67px,9vh,95px);text-align:center;text-shadow:0 2px 0 rgba(0,0,0,.13);transition:background .13s,transform .13s}
+    .tile:hover:not(:disabled){background:#31678f;transform:translateY(-2px)}
+    .tile:disabled{opacity:1}
+    .tile.used{background:#193249;color:#678296;border-color:#294357;font-size:28px}
+    .board-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:7px;margin-top:10px;color:#e0e9ef;font-size:13px;padding:1px 4px}
+    .progressbar{height:7px;border-radius:999px;background:#375165;width:110px;display:inline-block;overflow:hidden;vertical-align:middle;margin:0 8px}
+    .progressbar>span{display:block;height:100%;width:0;background:#eebf70;transition:width .2s}
+    .bottom{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:14px}
+    .bottom p{margin:0;color:var(--muted);font-size:14px}
+    .instructions{margin-top:20px;border:1px solid var(--line);background:white;border-radius:15px;padding:12px 18px}
+    summary{font-weight:850;cursor:pointer;touch-action:manipulation}
+    .instructions p{margin:9px 0 5px;font-size:15px;color:#355066}
+    .instructions ol{margin:8px 0 3px;padding-left:23px;font-size:15px}
+    .instructions li{margin:5px 0}
+    .modal{position:fixed;inset:0;background:rgba(8,21,31,.8);z-index:40;display:flex;align-items:center;justify-content:center;padding:clamp(8px,2vw,22px)}
+    .dialog{background:#fff;color:var(--ink);border-radius:22px;width:min(1120px,100%);max-height:calc(100dvh - 22px);overflow:auto;box-shadow:0 20px 80px rgba(0,0,0,.35);display:flex;flex-direction:column}
+    .dialog-top{background:var(--navy);color:white;padding:14px clamp(16px,2.7vw,32px);display:flex;align-items:center;justify-content:space-between;gap:9px}
+    .dialog-kicker{text-transform:uppercase;letter-spacing:.08em;color:#bad1dd;font-size:13px;font-weight:900}
+    .dialog-title{font-size:clamp(23px,3vw,37px);font-weight:950;line-height:1.12;letter-spacing:-.035em;margin-top:3px}
+    .close{height:49px;min-width:49px;border:2px solid #7891a5;color:white;background:#29495e;border-radius:12px;font-size:26px;line-height:1}
+    .dialog-content{padding:clamp(14px,2.6vw,29px);overflow-y:auto}
+    .question-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:13px}
+    .qpoints{font-size:clamp(18px,2.2vw,25px);font-weight:950;color:#845608;background:#fff0ce;border-radius:999px;padding:6px 15px}
+    .question-timer{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+    #timerClock{font-size:clamp(26px,3vw,40px);font-weight:950;min-width:76px;text-align:center;font-variant-numeric:tabular-nums;color:#1e5267}
+    #timerClock.expired{color:#bb302a}
+    .question-text{font-size:clamp(24px,3.1vw,40px);font-weight:850;letter-spacing:-.025em;line-height:1.33;white-space:pre-line;max-width:1000px;min-height:102px;margin:13px 0 19px;overflow-wrap:anywhere}
+    .diagram{display:flex;justify-content:center;max-height:255px;margin:-6px auto 10px}
+    .diagram svg{width:min(475px,100%);height:auto;max-height:240px}
+    .hint,.answer{border-radius:13px;padding:12px 15px;margin:11px 0;font-size:clamp(16px,1.6vw,21px)}
+    .hint{background:#fff4db;border-left:6px solid #d6a34f}
+    .answer{background:#e8f6ef;border-left:6px solid #218665}
+    .answer strong{font-size:clamp(20px,2vw,26px)}
+    .answer p{margin:7px 0 0;white-space:pre-line}
+    .answer-line{border-top:1px solid #d6e0e5;padding-top:13px;margin-top:12px}
+    .question-actions{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:13px 0}
+    .chooser{border:2px solid #d1dde3;border-radius:13px;background:#f7fafb;padding:12px 13px;margin-top:14px}
+    .chooser-title{font-weight:900;margin-bottom:8px}
+    .chooser-list{display:flex;flex-wrap:wrap;gap:8px}
+    .choice{border:2px solid #b9cad4;background:white;border-radius:10px;padding:9px 14px;font-weight:850;min-height:44px}
+    .choice.chosen{border-color:#087e7a;background:#def5f1;color:#0a625c}
+    .choice.failed{border-color:#d9b7b7;color:#a66e6b;text-decoration:line-through;background:#fbf1f1}
+    .result-actions{display:flex;flex-wrap:wrap;gap:9px;align-items:stretch;margin-top:14px}
+    .result-actions>.btn{flex:1 1 180px;font-size:clamp(15px,1.5vw,20px);min-height:54px}
+    .status{font-size:14px;color:#53697a;margin:8px 0 0;min-height:19px}
+    .status.alert{color:#a02e28;font-weight:850}
+    .endpanel{border:2px solid #d2bd8e;background:#fff8e7;border-radius:15px;padding:15px 17px;margin-top:14px}
+    .endpanel h2{margin-bottom:7px}
+    .endpanel p{margin:5px 0}
+    .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+    @media(max-width:950px){
+      .scores{grid-template-columns:repeat(3,minmax(0,1fr));}
+      .category{font-size:14px;padding:6px 3px;min-height:71px}
+      .tile{font-size:25px;min-height:74px}
+      .board{gap:5px}
+    }
+    @media(max-width:620px){
+      .top-inner{align-items:flex-start}
+      .top-actions .btn{font-size:13px;min-height:40px;padding:6px 9px}
+      .field select{min-width:110px}
+      .scores{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .board-wrap{overflow-x:auto;border-radius:15px;padding:7px}
+      .board{min-width:625px;gap:5px}
+      .tile{min-height:70px;font-size:31px}
+      .category{font-size:14px}
+      .dialog{max-height:calc(100dvh - 10px)}
+      .dialog-content{padding:13px}
+      .question-text{font-size:25px}
+      .question-actions{gap:6px}
+      .result-actions>.btn{flex-basis:145px}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+    @media print{.top-actions,.settings,.bottom,.instructions,.modal{display:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap top-inner">
+      <div>
+        <div class="brand">learnwithdom.page · Secteur jeune · Secondaire 1 à 3</div>
+        <h1>Jeopardy <span style="color:#f4c66f">·</span> Sciences 1–3</h1>
+      </div>
+      <div class="top-actions">
+        <button class="btn header" id="fullBtn" type="button">⛶ Plein écran</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="settings" aria-label="Configuration de la partie">
+    <div class="wrap setting-row">
+      <div class="field"><label for="participants">Élèves présents</label><select id="participants"></select></div>
+      <div class="field"><label for="teamCount">Équipes</label><select id="teamCount"></select></div>
+      <div class="field"><label for="timeLimit">Temps par question</label>
+        <select id="timeLimit">
+          <option value="0">Sans limite</option>
+          <option value="45">45 secondes</option>
+          <option value="60" selected>60 secondes</option>
+          <option value="90">90 secondes</option>
+          <option value="120">120 secondes</option>
+        </select>
+      </div>
+      <label class="penalty-toggle" for="penalty"><input id="penalty" type="checkbox"> Retirer les points lors d’une erreur</label>
+      <button class="btn teal" id="newGameBtn" type="button">↻ Nouvelle partie</button>
+      <p class="setup-note">De 3 à 32 élèves, en 2 à 8 équipes. Suggestion automatique : environ <b>4 élèves par équipe</b>. Tu peux modifier le nombre et le nom des équipes; les scores sont sauvegardés sur cet appareil. <span id="teamSuggestion"></span></p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="section-head">
+      <h2>Tableau des équipes</h2>
+      <p class="help-text">Touchez une équipe pour choisir qui joue. Touchez ✎ pour changer son nom.</p>
+    </div>
+    <section id="scoreboard" class="scores" aria-label="Scores des équipes"></section>
+
+    <div class="section-head">
+      <h2>Choisissez un défi</h2>
+      <p class="help-text">6 catégories · 5 niveaux · 30 questions · difficulté progressive</p>
+    </div>
+    <section class="board-wrap" aria-label="Tableau Jeopardy des sciences et technologie">
+      <div class="board" id="board"></div>
+      <div class="board-footer">
+        <span><b id="remaining">30</b> défis restants <span class="progressbar" aria-hidden="true"><span id="progressFill"></span></span></span>
+        <span>Chaque case peut être jouée une seule fois.</span>
+      </div>
+    </section>
+
+    <div class="bottom">
+      <p>Enseignant : vous décidez qui répond. <b>Bonne réponse :</b> points ajoutés. <b>Mauvaise réponse :</b> pas de point, ou pénalité facultative. Un autre groupe peut tenter sa chance.</p>
+      <div class="controls">
+        <button class="btn ghost" id="undoBtn" type="button">↶ Annuler la dernière décision</button>
+      </div>
+    </div>
+
+    <section id="endPanel" class="endpanel" hidden>
+      <h2>Bravo à toutes les équipes!</h2>
+      <p id="winnerText"></p>
+      <button class="btn gold" id="replayBtn" type="button">Rejouer avec une nouvelle partie</button>
+    </section>
+
+    <details class="instructions">
+      <summary>Consignes pour l’enseignant et fonctionnement du jeu</summary>
+      <ol>
+        <li>Choisis le nombre réel d’élèves (3 à 32). Le jeu recommande automatiquement 1 équipe par tranche d’environ 4 élèves, entre 2 et 8 équipes. Tu peux ajuster le nombre d’équipes; elles sont toujours équilibrées.</li>
+        <li>Touche une équipe pour désigner le groupe qui commence. Chaque groupe choisit une catégorie et une valeur en points.</li>
+        <li>Lis la question sur le TNI. Un indice peut être dévoilé; la minuterie peut être mise en pause.</li>
+        <li>Quand les élèves ont répondu, dévoile le corrigé. Attribue les points au groupe qui répond correctement. En cas d’erreur, le groupe peut céder la place à un autre; les pénalités sont facultatives.</li>
+        <li>Les questions résolues disparaissent du tableau. La progression est sauvegardée automatiquement dans le navigateur; actualiser la page ne supprime pas les scores.</li>
+      </ol>
+      <p><b>Conseil secteur jeune :</b> laisse 20 à 40 secondes de discussion collective avant qu’une équipe propose sa réponse. Les défis de 100 à 200 points révisent surtout les notions des premières années du secondaire; les défis de 400 à 500 points font davantage appel à l’analyse et aux calculs de troisième secondaire. Les six catégories couvrent les quatre univers du programme québécois.</p>
+      <p><b>Source pédagogique :</b> catégories inspirées des univers matériel, vivant, Terre et espace, et technologique du <a href="https://www.quebec.ca/education/prescolaire-primaire-et-secondaire/programmes-formations-evaluation/programme-formation-ecole-quebecoise/secondaire/science-technologie" target="_blank" rel="noopener noreferrer">programme de science et technologie du secteur jeune (Québec)</a>. Les questions sont originales et forment un jeu de révision, pas une évaluation ministérielle.</p>
+      <p><b>Raccourcis :</b> touches 1 à 8 pour choisir une équipe, Échap pour fermer une question sans la consommer. Aucun compte ni connexion Internet n’est nécessaire.</p>
+    </details>
+  </main>
+
+  <div class="modal" id="questionModal" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="dialog">
+      <div class="dialog-top">
+        <div><div class="dialog-kicker" id="modalCategory">Catégorie</div><div class="dialog-title" id="modalTitle">Question</div></div>
+        <button class="close" id="closeModal" type="button" aria-label="Fermer sans utiliser la question" title="Fermer sans utiliser la question">×</button>
+      </div>
+      <div class="dialog-content">
+        <div class="question-meta">
+          <span class="qpoints" id="questionPoints">100 points</span><span class="level" id="questionLevel">Secondaire 1</span>
+          <div class="question-timer" aria-label="Minuterie de la question">
+            <span id="timerClock">1:00</span>
+            <button class="btn small ghost" id="toggleTimer" type="button">Pause</button>
+            <button class="btn small ghost" id="restartTimer" type="button">↺ Temps</button>
+          </div>
+        </div>
+        <div class="question-text" id="questionText"></div>
+        <div class="diagram" id="diagram" hidden></div>
+        <div class="question-actions">
+          <button class="btn ghost" id="hintBtn" type="button">💡 Voir un indice</button>
+          <button class="btn gold" id="answerBtn" type="button">✓ Dévoiler la réponse</button>
+        </div>
+        <div class="hint" id="hintText" hidden></div>
+        <div class="answer" id="answerBox" hidden>
+          <strong id="answerText"></strong>
+          <p id="explanation"></p>
+        </div>
+        <div class="answer-line">
+          <div class="chooser">
+            <div class="chooser-title">Qui répond? <span style="font-weight:500;color:#53697a;font-size:14px">(touches les équipes ci-dessous)</span></div>
+            <div class="chooser-list" id="modalTeams"></div>
+          </div>
+          <div class="result-actions">
+            <button class="btn teal" id="correctBtn" type="button">✓ Bonne réponse : +100 points</button>
+            <button class="btn danger" id="wrongBtn" type="button">✕ Mauvaise réponse : 0 point</button>
+            <button class="btn ghost" id="passBtn" type="button">Passer : 0 point</button>
+          </div>
+          <p class="status" id="modalStatus" role="status" aria-live="polite">Le corrigé reste caché jusqu’à ce que vous le dévoiliez.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  'use strict';
+  // Tous les problèmes, schémas et corrigés sont intégrés : la page fonctionne hors ligne.
+  const CATEGORIES = [
+  {
+    "name": "Matière et mélanges",
+    "short": "Matière",
+    "questions": [
+      {
+        "q": "Un glaçon fond sur la table. Quel changement d’état se produit? Est-ce une transformation physique ou chimique?",
+        "a": "Fusion : solide → liquide. C’est une transformation physique.",
+        "why": "La substance demeure de l’eau (H₂O). Elle change d’état, mais aucune nouvelle substance ne se forme.",
+        "hint": "Le glaçon devient liquide : la substance a-t-elle changé de nature?"
+      },
+      {
+        "q": "Une élève mélange du sable et de l’eau. Quel procédé simple lui permet de récupérer le sable? Pourquoi?",
+        "a": "La filtration.",
+        "why": "Le papier filtre retient les grains de sable, qui sont insolubles et plus gros que les pores du filtre, tandis que l’eau traverse.",
+        "hint": "Pense au matériel utilisé pour séparer un solide insoluble d’un liquide."
+      },
+      {
+        "q": "On dissout 18 g de sel et on prépare 300 mL de solution. Calcule la concentration massique en g/L.",
+        "a": "60 g/L.",
+        "why": "1. Convertir le volume : 300 mL = 0,300 L.\n2. C = masse du soluté ÷ volume de solution.\n3. C = 18 g ÷ 0,300 L = 60 g/L.",
+        "hint": "La concentration massique se calcule avec le volume total de la solution, exprimé en litres."
+      },
+      {
+        "q": "Un échantillon de métal a une masse de 135 g et occupe un volume de 50 cm³. Calcule sa masse volumique. Coule-t-il ou flotte-t-il dans l’eau (1,0 g/cm³)?",
+        "a": "2,7 g/cm³; il coule dans l’eau.",
+        "why": "ρ = m/V = 135 g ÷ 50 cm³ = 2,7 g/cm³. Sa masse volumique est supérieure à celle de l’eau : un échantillon compact de ce métal coule, s’il ne retient pas d’air.",
+        "hint": "Calcule m ÷ V, puis compare le résultat à 1,0 g/cm³."
+      },
+      {
+        "q": "Une solution saline a une concentration de 40 g/L et un volume de 250 mL. On ajoute 150 mL d’eau, sans perdre de sel. Quelle est sa nouvelle concentration?",
+        "a": "25 g/L.",
+        "why": "1. Volume initial : 250 mL = 0,250 L.\n2. Masse de sel : m = C × V = 40 × 0,250 = 10 g.\n3. Nouveau volume : 250 + 150 = 400 mL = 0,400 L.\n4. Nouvelle concentration : C = 10 ÷ 0,400 = 25 g/L. La masse de sel reste inchangée.",
+        "hint": "La dilution ne change pas la quantité de sel. Trouve d’abord sa masse."
+      }
+    ]
+  },
+  {
+    "name": "Cellules et corps humain",
+    "short": "Vivant",
+    "questions": [
+      {
+        "q": "Quelle structure entoure la cellule et contrôle les échanges de substances avec son environnement?",
+        "a": "La membrane cellulaire (membrane plasmique).",
+        "why": "Cette membrane délimite la cellule et régule le passage de nombreuses substances vers l’intérieur ou l’extérieur.",
+        "hint": "Il s’agit d’une fine enveloppe présente autour de toutes les cellules."
+      },
+      {
+        "q": "Dans quelle structure des poumons l’oxygène passe-t-il de l’air au sang?",
+        "a": "Dans les alvéoles pulmonaires.",
+        "why": "Les alvéoles ont des parois minces et sont entourées de capillaires sanguins : l’O₂ diffuse vers le sang et le CO₂ diffuse vers les alvéoles.",
+        "hint": "Ce sont de minuscules sacs situés à l’extrémité des bronchioles."
+      },
+      {
+        "q": "Après avoir mangé un sandwich, dans quel organe la majorité des nutriments digérés passe-t-elle dans le sang? Comment s’appelle ce passage?",
+        "a": "Dans l’intestin grêle; c’est l’absorption intestinale.",
+        "why": "La surface interne de l’intestin grêle est très développée grâce aux plis et aux villosités, ce qui favorise l’absorption de nombreux nutriments.",
+        "hint": "Cet organe vient après l’estomac et possède des villosités."
+      },
+      {
+        "q": "Pendant un sprint, les muscles ont besoin de plus d’énergie. Explique comment les systèmes respiratoire et circulatoire collaborent pour répondre à ce besoin.",
+        "a": "Les poumons fournissent plus d’O₂ au sang; le cœur le transporte plus rapidement vers les muscles et aide à évacuer le CO₂.",
+        "why": "Une respiration plus rapide accroît les échanges gazeux. Une circulation plus rapide apporte aux muscles l’oxygène et les nutriments nécessaires à la respiration cellulaire et récupère une partie des déchets métaboliques.",
+        "hint": "Décris d’abord ce qui entre dans le sang aux poumons, puis ce que le cœur apporte aux muscles."
+      },
+      {
+        "q": "Trace le trajet du sang à partir du ventricule droit jusqu’au ventricule gauche. Nomme les principaux organes ou cavités traversés et précise où le sang s’enrichit en oxygène.",
+        "a": "Ventricule droit → artères pulmonaires → poumons → veines pulmonaires → oreillette gauche → ventricule gauche.",
+        "why": "Le ventricule droit envoie le sang pauvre en O₂ vers les poumons. Dans les capillaires pulmonaires, il libère du CO₂ et capte de l’O₂. Le sang oxygéné revient au cœur par les veines pulmonaires, entre dans l’oreillette gauche, puis dans le ventricule gauche.",
+        "hint": "Le trajet commence par la circulation pulmonaire : cœur droit → poumons → cœur gauche."
+      }
+    ]
+  },
+  {
+    "name": "Écosystèmes et vivant",
+    "short": "Écosystèmes",
+    "questions": [
+      {
+        "q": "Dans une chaîne alimentaire, comment appelle-t-on un organisme qui fabrique sa propre matière organique, comme une plante verte?",
+        "a": "Un producteur primaire.",
+        "why": "Grâce à la photosynthèse, la plante transforme l’énergie lumineuse en énergie chimique stockée dans des substances organiques.",
+        "hint": "Dans un écosystème, ce groupe d’organismes est généralement à la base des chaînes alimentaires."
+      },
+      {
+        "q": "Quel est le rôle des décomposeurs, par exemple plusieurs champignons et bactéries, dans un écosystème?",
+        "a": "Ils dégradent la matière organique morte et remettent des éléments nutritifs en circulation.",
+        "why": "Ils transforment les restes d’organismes et les déchets. Les substances libérées contribuent au recyclage de la matière dans les écosystèmes.",
+        "hint": "Que se passerait-il si les feuilles mortes n’étaient jamais décomposées?"
+      },
+      {
+        "q": "Chaîne alimentaire : herbe → lapin → renard. Si la population de lapins diminue fortement, quelles sont deux conséquences possibles pour les renards et pour l’herbe?",
+        "a": "Les renards pourraient manquer de nourriture; l’herbe pourrait être moins consommée et devenir plus abondante.",
+        "why": "À conditions égales, moins de lapins signifie moins de proies pour les renards et une pression de broutage plus faible sur l’herbe. Dans la nature, d’autres facteurs peuvent modifier ces effets.",
+        "hint": "Identifie qui mange le lapin et ce que le lapin mange."
+      },
+      {
+        "q": "Dans un lac, de nombreuses algues microscopiques se multiplient. Pourquoi cela peut-il ensuite provoquer une diminution de l’oxygène dissous lorsque les algues meurent?",
+        "a": "Les décomposeurs consomment de l’oxygène en dégradant les algues mortes.",
+        "why": "La décomposition bactérienne utilise de l’O₂ dissous. Si une grande quantité d’algues meurt et se décompose, l’oxygène disponible peut diminuer, ce qui nuit aux organismes aquatiques.",
+        "hint": "Qui transforme les algues mortes? De quoi cet organisme a-t-il besoin pour respirer?"
+      },
+      {
+        "q": "Un agriculteur utilise trop d’engrais près d’un lac. Explique une chaîne de quatre événements pouvant mener à la mort de poissons, en nommant le phénomène écologique.",
+        "a": "Eutrophisation : nutriments en excès → prolifération d’algues → décomposition importante → baisse d’oxygène → mortalité de poissons.",
+        "why": "Les eaux de ruissellement apportent des nutriments comme les phosphates. Les algues peuvent proliférer. À leur mort, leur décomposition par les microorganismes consomme de l’oxygène dissous. Une diminution importante d’O₂ peut asphyxier les poissons.",
+        "hint": "Commence par les nutriments, puis les algues, les décomposeurs et l’oxygène du lac."
+      }
+    ]
+  },
+  {
+    "name": "Terre, espace et climat",
+    "short": "Terre et espace",
+    "questions": [
+      {
+        "q": "Quel mouvement de la Terre explique l’alternance du jour et de la nuit?",
+        "a": "Sa rotation sur elle-même.",
+        "why": "La Terre tourne sur son axe en environ 24 heures, exposant alternativement ses régions à la lumière solaire puis à l’obscurité.",
+        "hint": "Ce mouvement est différent de la révolution de la Terre autour du Soleil."
+      },
+      {
+        "q": "Pourquoi le Québec connaît-il l’été et l’hiver? Est-ce surtout parce que la Terre s’approche ou s’éloigne du Soleil?",
+        "a": "À cause de l’inclinaison de l’axe terrestre, pas principalement de la distance au Soleil.",
+        "why": "Selon la position de la Terre sur son orbite, l’hémisphère Nord reçoit des rayons solaires plus ou moins directs et des journées plus ou moins longues. Les saisons sont opposées entre les deux hémisphères.",
+        "hint": "Pense à l’angle des rayons du Soleil et à la durée du jour."
+      },
+      {
+        "q": "Explique les trois étapes suivantes du cycle de l’eau, dans l’ordre : une flaque disparaît, des nuages se forment, puis la pluie tombe.",
+        "a": "Évaporation → condensation → précipitations.",
+        "why": "L’eau liquide s’évapore; une partie de la vapeur d’eau se condense en fines gouttelettes ou cristaux formant les nuages; lorsque les particules grossissent suffisamment, elles tombent comme précipitations.",
+        "hint": "Identifie le passage liquide → gaz, puis gaz → liquide, puis le retour au sol."
+      },
+      {
+        "q": "Le CO₂ est un gaz à effet de serre. Explique comment une hausse de sa concentration peut augmenter la température moyenne de la surface terrestre.",
+        "a": "Elle renforce l’effet de serre en modifiant les échanges de rayonnement infrarouge.",
+        "why": "La surface de la Terre émet du rayonnement infrarouge. Le CO₂ en absorbe et en réémet une partie; l’augmentation de sa concentration réduit, à température inchangée, l’énergie qui s’échappe vers l’espace, ce qui entraîne un réchauffement jusqu’à un nouvel équilibre.",
+        "hint": "Quel rayonnement la surface terrestre émet-elle après avoir absorbé de l’énergie solaire?"
+      },
+      {
+        "q": "La distance moyenne Terre–Soleil est d’environ 150 000 000 km. La lumière se déplace à 300 000 km/s. Calcule son temps de trajet en secondes, puis en minutes et secondes.",
+        "a": "500 s, soit environ 8 min 20 s.",
+        "why": "t = distance ÷ vitesse = 150 000 000 km ÷ 300 000 km/s = 500 s. Comme 500 = 8 × 60 + 20, cela correspond à 8 min 20 s.",
+        "hint": "Utilise t = d/v. Une minute contient 60 secondes."
+      }
+    ]
+  },
+  {
+    "name": "Forces, fluides et ondes",
+    "short": "Physique",
+    "questions": [
+      {
+        "q": "Quelle est l’unité SI de la masse : le kilogramme ou le newton?",
+        "a": "Le kilogramme (kg).",
+        "why": "La masse se mesure en kilogrammes. Le newton (N) mesure une force, par exemple le poids.",
+        "hint": "Une balance ordinaire affiche généralement cette unité."
+      },
+      {
+        "q": "Peut-on entendre un son dans le vide spatial, sans air ni autre matière? Explique brièvement.",
+        "a": "Non. Le son a besoin d’un milieu matériel pour se propager.",
+        "why": "Le son est une onde mécanique : ses vibrations se transmettent dans la matière (gaz, liquide ou solide), mais pas dans le vide.",
+        "hint": "Le son est-il une vibration de la matière ou une onde lumineuse?"
+      },
+      {
+        "q": "Une cycliste parcourt 180 m en 30 s à vitesse constante. Calcule sa vitesse en m/s.",
+        "a": "6 m/s.",
+        "why": "v = d/t = 180 m ÷ 30 s = 6 m/s. On exprime le résultat en mètres par seconde.",
+        "hint": "Divise la distance parcourue par la durée du déplacement."
+      },
+      {
+        "q": "Pourquoi la pression exercée par l’eau augmente-t-elle quand on descend plus profondément dans une piscine?",
+        "a": "Parce que la colonne d’eau au-dessus de nous est de plus en plus grande.",
+        "why": "À mesure qu’on descend, davantage d’eau se trouve au-dessus du point considéré. Le poids de cette eau entraîne une pression hydrostatique plus élevée.",
+        "hint": "Imagine tout le poids de l’eau située au-dessus de ta tête."
+      },
+      {
+        "q": "Une personne exerce une force totale de 600 N sur la neige. Avec des bottes, la surface totale de contact est de 0,030 m²; avec des raquettes, elle est de 0,150 m². Calcule les deux pressions et explique la différence.",
+        "a": "Bottes : 20 000 Pa. Raquettes : 4 000 Pa. Les raquettes exercent 5 fois moins de pression.",
+        "why": "P = F/A. Avec les bottes : 600 ÷ 0,030 = 20 000 Pa. Avec les raquettes : 600 ÷ 0,150 = 4 000 Pa. La surface est cinq fois plus grande; la pression est donc cinq fois plus faible pour une même force.",
+        "hint": "La pression est une force répartie sur une surface. Calcule 600/A dans chaque cas."
+      }
+    ]
+  },
+  {
+    "name": "Techno et laboratoire",
+    "short": "Technologie",
+    "questions": [
+      {
+        "q": "Tu dois manipuler un bécher qui vient d’être chauffé. Nomme deux précautions à prendre pour éviter une brûlure ou un accident.",
+        "a": "Porter des lunettes de protection et utiliser une pince adaptée ou des gants thermiques.",
+        "why": "Un verre chauffé peut demeurer brûlant même s’il semble froid. Il faut aussi dégager le poste de travail et suivre les consignes du laboratoire.",
+        "hint": "Pense à protéger tes yeux et tes mains."
+      },
+      {
+        "q": "Deux verres contiennent le même volume d’eau, l’un à 20 °C et l’autre à 60 °C. On mesure le temps de dissolution d’une même masse de sucre. Quelle est la variable indépendante? Quelle est la variable dépendante?",
+        "a": "Indépendante : température de l’eau. Dépendante : temps de dissolution du sucre.",
+        "why": "On modifie volontairement la température pour examiner son effet. Le temps nécessaire à la dissolution est la grandeur mesurée. Les autres facteurs, comme la masse de sucre, doivent rester constants.",
+        "hint": "Une variable est choisie par l’expérimentateur; l’autre est mesurée."
+      },
+      {
+        "q": "Dans une brouette, la roue est le pivot, la charge est placée au milieu et l’effort est appliqué aux poignées. De quel genre de levier s’agit-il?",
+        "a": "D’un levier du deuxième genre.",
+        "why": "L’ordre est pivot → charge → effort. La charge se trouve entre le point d’appui et l’effort : c’est la définition d’un levier du deuxième genre.",
+        "hint": "Repère quel élément se trouve entre les deux autres.",
+        "diagram": "levier"
+      },
+      {
+        "q": "Une roue dentée de 12 dents tourne à 30 tours/minute et entraîne directement une roue de 36 dents. À quelle vitesse et dans quel sens tourne la seconde roue?",
+        "a": "10 tours/minute, dans le sens opposé.",
+        "why": "La vitesse de rotation est inversement proportionnelle au nombre de dents. n₂ = 30 × 12 ÷ 36 = 10 tours/minute. Deux engrenages extérieurs en contact tournent en sens inverse.",
+        "hint": "Une roue trois fois plus grande en nombre de dents tourne trois fois moins vite.",
+        "diagram": "engrenages"
+      },
+      {
+        "q": "Tu veux vérifier si la quantité de sel dissous change la température de congélation de l’eau. Propose : 1) la variable modifiée; 2) la variable mesurée; 3) trois variables contrôlées; 4) un moyen d’améliorer la fiabilité des résultats.",
+        "a": "Modifier la concentration en sel; mesurer la température de début de congélation; contrôler le volume d’eau, le type de sel et les conditions de refroidissement; répéter chaque essai.",
+        "why": "On peut comparer plusieurs solutions de concentrations connues et mesurer leur température de congélation dans des conditions aussi identiques que possible. Maintenir constants le volume, le contenant, le capteur et le refroidissement réduit les biais. Répéter les mesures améliore la fiabilité.",
+        "hint": "Distingue le facteur que tu fais varier, l’effet que tu mesures et ce qui doit rester identique."
+      }
+    ]
+  }
+];
+  const POINTS=[100,200,300,400,500];
+  const COLORS=['#337d75','#5264bd','#b85e39','#8d65a8','#bf8c28','#4c7d9b','#d05f74','#627743'];
+  const STORE_KEY='jeunes-jeopardy-sciences-sec1-3-v1';
+  const el=id=>document.getElementById(id);
+  const clone=o=>JSON.parse(JSON.stringify(o));
+  let game;
+  let activeId=null;
+  let hintShown=false;
+  let answerShown=false;
+  let attempts=[];
+  let history=[];
+  let remainingSeconds=60;
+  let until=0;
+  let timerInterval=null;
+  let running=false;
+  let lastFocused=null;
+
+  function createGame(n=24,t=6,limit=60){
+    return {participants:n,teams:t,limit,penalty:false,names:Array.from({length:t},(_,i)=>`Équipe ${String.fromCharCode(65+i)}`),scores:Array(t).fill(0),used:[],chosen:0,attempts:{}};
+  }
+  function validLoaded(o){
+    return o && Number.isInteger(o.participants) && o.participants>=3 && o.participants<=32 && Number.isInteger(o.teams) && o.teams>=2 && o.teams<=8 && o.teams<=o.participants && [0,45,60,90,120].includes(o.limit) && typeof o.penalty==='boolean' && Array.isArray(o.names) && o.names.length===o.teams && o.names.every(n=>typeof n==='string') && Array.isArray(o.scores) && o.scores.length===o.teams && o.scores.every(n=>Number.isFinite(n)) && Array.isArray(o.used) && o.used.every(n=>typeof n==='string' && /^\d-[0-4]$/.test(n) && +n.split('-')[0]<6) && Number.isInteger(o.chosen) && o.chosen>=0 && o.chosen<o.teams && o.attempts && typeof o.attempts==='object';
+  }
+  function save(){try{localStorage.setItem(STORE_KEY,JSON.stringify(game));}catch(e){/* navigation privée */}}
+  function restore(){
+    try{const stored=JSON.parse(localStorage.getItem(STORE_KEY));if(validLoaded(stored))return stored;}catch(e){}
+    return createGame();
+  }
+  function snapshot(){history.push(clone(game));if(history.length>50)history.shift();}
+  function teamSize(i){return Math.floor(game.participants/game.teams)+(i<(game.participants%game.teams)?1:0)}
+  function qById(id){const [c,r]=id.split('-').map(Number);return {...CATEGORIES[c].questions[r],points:POINTS[r],cat:CATEGORIES[c].name,c,r,id};}
+  // Chaque équipe doit compter au moins un élève. Adapter les choix au nombre d’élèves présents.
+  function suggestedTeams(n){return Math.min(8,Math.max(2,Math.ceil(n/4)));}
+  function updateTeamOptions(autoPick=false){
+    const n=Number(el('participants').value);
+    const teamSelect=el('teamCount');
+    for(const option of teamSelect.options){
+      option.disabled=Number(option.value)>n;
+    }
+    if(autoPick || Number(teamSelect.value)>n){
+      teamSelect.value=String(suggestedTeams(n));
+    }
+    const t=Number(teamSelect.value), base=Math.floor(n/t), extra=n%t;
+    el('teamSuggestion').textContent=` Répartition : ${extra ? extra+' équipe(s) de '+(base+1)+' et '+(t-extra)+' équipe(s) de '+base : t+' équipe(s) de '+base} élève(s).`;
+  }
+  function applySelects(){el('participants').value=game.participants;el('teamCount').value=game.teams;updateTeamOptions();el('timeLimit').value=game.limit;el('penalty').checked=game.penalty;}
+  function renderTeams(){
+    const parent=el('scoreboard');parent.replaceChildren();parent.style.setProperty('--team-count',game.teams);
+    for(let i=0;i<game.teams;i++){
+      const button=document.createElement('button');button.type='button';button.className='team'+(i===game.chosen?' active':'');
+      button.style.setProperty('--team-accent',COLORS[i]);button.setAttribute('aria-pressed',String(game.chosen===i));
+      button.setAttribute('aria-label',`${game.names[i]}, ${game.scores[i]} points, ${teamSize(i)} élèves. Toucher pour sélectionner.`);
+      const name=document.createElement('span');name.className='team-name';name.textContent=game.names[i];
+      const size=document.createElement('span');size.className='team-count';size.textContent=`${teamSize(i)} élève${teamSize(i)>1?'s':''} · toucher pour choisir`;
+      const score=document.createElement('span');score.className='team-score';score.textContent=game.scores[i].toLocaleString('fr-CA')+' ';
+      const unit=document.createElement('small');unit.textContent='pts';score.append(unit);
+      button.append(name,size,score);button.addEventListener('click',()=>chooseTeam(i));
+      const cell=document.createElement('div');cell.style.position='relative';cell.style.minWidth='0';
+      const edit=document.createElement('button');edit.type='button';edit.textContent='✎';edit.title=`Renommer ${game.names[i]}`;
+      edit.setAttribute('aria-label',`Renommer ${game.names[i]}`);
+      edit.style.cssText='position:absolute;right:6px;top:3px;border:0;background:#ecf1f5;border-radius:7px;padding:2px 6px;font-size:14px;color:#34506a;min-width:29px;min-height:28px;';
+      edit.addEventListener('click',()=>renameTeam(i));cell.append(button,edit);parent.append(cell);
+    }
+  }
+  function renameTeam(i){const proposed=window.prompt(`Nom de l’équipe ${i+1} :`,game.names[i]);if(proposed===null)return;const n=proposed.trim().slice(0,32);if(!n)return;game.names[i]=n;save();renderTeams();renderModalTeams();}
+  function chooseTeam(i){game.chosen=i;save();renderTeams();renderModalTeams();}
+  function renderBoard(){
+    const b=el('board');b.replaceChildren();
+    for(let c=0;c<CATEGORIES.length;c++){
+      const cat=document.createElement('div');cat.className='category';cat.textContent=CATEGORIES[c].name;b.append(cat);
+    }
+    for(let r=0;r<5;r++)for(let c=0;c<6;c++){
+      const id=`${c}-${r}`,used=game.used.includes(id);
+      const btn=document.createElement('button');btn.type='button';btn.className='tile'+(used?' used':'');btn.textContent=used?'✓':String(POINTS[r]);btn.disabled=used;
+      btn.setAttribute('aria-label',used?`${CATEGORIES[c].name}, ${POINTS[r]} points, déjà joué`:`${CATEGORIES[c].name}, ${POINTS[r]} points`);
+      btn.addEventListener('click',()=>openQuestion(id));b.append(btn);
+    }
+    const count=30-game.used.length;el('remaining').textContent=count;el('progressFill').style.width=`${game.used.length/30*100}%`;
+    const end=el('endPanel');end.hidden=count!==0;
+    if(count===0){const best=Math.max(...game.scores);const names=game.names.filter((n,i)=>game.scores[i]===best);
+      el('winnerText').textContent=`${names.length>1?'Équipes gagnantes':'Équipe gagnante'} : ${names.join(' et ')} avec ${best.toLocaleString('fr-CA')} points. Bravo aussi aux autres équipes pour leur collaboration!`;
+    }
+  }
+  function render(){applySelects();renderTeams();renderBoard();el('undoBtn').disabled=history.length===0;}
+  function renderModalTeams(){
+    if(activeId===null)return;
+    const p=el('modalTeams');p.replaceChildren();const locked=game.attempts[activeId]||[];
+    for(let i=0;i<game.teams;i++){
+      const btn=document.createElement('button');btn.type='button';btn.className='choice'+(game.chosen===i?' chosen':'')+(locked.includes(i)?' failed':'');
+      btn.textContent=game.names[i]+(locked.includes(i)?' · déjà tenté':'');btn.disabled=locked.includes(i);
+      btn.setAttribute('aria-pressed',String(game.chosen===i));btn.addEventListener('click',()=>chooseTeam(i));p.append(btn);
+    }
+    const lockedCurrent=locked.includes(game.chosen);
+    el('correctBtn').disabled=lockedCurrent;
+    el('wrongBtn').disabled=lockedCurrent;
+  }
+  const DIAGRAMS = {
+  "forces": "<svg viewBox=\"0 0 570 240\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Chariot de 4 kilogrammes : force de 18 newtons vers la droite et force de 6 newtons vers la gauche.\">\n<defs><marker id=\"arrForce\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"8\" markerHeight=\"8\" orient=\"auto-start-reverse\"><path d=\"M0 0L10 5L0 10Z\" fill=\"context-stroke\"/></marker></defs>\n<path d=\"M33 185H540\" stroke=\"#698399\" stroke-width=\"6\" stroke-linecap=\"round\"/>\n<rect x=\"197\" y=\"93\" width=\"175\" height=\"90\" rx=\"13\" fill=\"#daeaf4\" stroke=\"#356782\" stroke-width=\"4\"/>\n<circle cx=\"227\" cy=\"189\" r=\"13\" fill=\"#335168\"/><circle cx=\"344\" cy=\"189\" r=\"13\" fill=\"#335168\"/>\n<text x=\"285\" y=\"135\" fill=\"#1e435d\" font-size=\"26\" text-anchor=\"middle\" font-weight=\"bold\">4 kg</text>\n<path d=\"M194 108H64\" stroke=\"#b65b47\" stroke-width=\"7\" stroke-linecap=\"round\" marker-end=\"url(#arrForce)\"/><text x=\"130\" y=\"92\" fill=\"#9a4637\" font-size=\"23\" text-anchor=\"middle\" font-weight=\"bold\">6 N</text>\n<path d=\"M375 108H518\" stroke=\"#087e7a\" stroke-width=\"7\" stroke-linecap=\"round\" marker-end=\"url(#arrForce)\"/><text x=\"442\" y=\"92\" fill=\"#087e7a\" font-size=\"23\" text-anchor=\"middle\" font-weight=\"bold\">18 N</text>\n</svg>",
+  "serie": "<svg viewBox=\"0 0 570 250\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Circuit électrique en série : une pile et deux lampes sur une seule boucle.\">\n<g stroke=\"#33576c\" stroke-width=\"5\" fill=\"none\" stroke-linejoin=\"round\"><path d=\"M90 180V50H215\"/><path d=\"M255 50H340\"/><path d=\"M380 50H480V180H322\"/><path d=\"M248 180H90\"/></g>\n<circle cx=\"235\" cy=\"50\" r=\"20\" fill=\"#fff1bf\" stroke=\"#a36c20\" stroke-width=\"4\"/><path d=\"M222 37L248 63M248 37L222 63\" stroke=\"#a36c20\" stroke-width=\"3\"/>\n<circle cx=\"360\" cy=\"50\" r=\"20\" fill=\"#fff1bf\" stroke=\"#a36c20\" stroke-width=\"4\"/><path d=\"M347 37L373 63M373 37L347 63\" stroke=\"#a36c20\" stroke-width=\"3\"/>\n<path d=\"M248 162V198M265 170V190\" stroke=\"#33576c\" stroke-width=\"6\"/><path d=\"M248 180H265\" stroke=\"#fff\" stroke-width=\"3\"/><path d=\"M265 180H322\" stroke=\"#33576c\" stroke-width=\"5\"/>\n<g font-family=\"Arial,sans-serif\" font-size=\"19\" fill=\"#23445b\" text-anchor=\"middle\"><text x=\"235\" y=\"20\">Lampe 1</text><text x=\"360\" y=\"20\">Lampe 2</text><text x=\"283\" y=\"226\">Pile</text></g>\n</svg>",
+  "parallele": "<svg viewBox=\"0 0 570 250\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Source de 12 volts alimentant deux branches parallèles avec des résistances de 6 ohms et de 3 ohms.\">\n<g stroke=\"#33576c\" stroke-width=\"5\" fill=\"none\" stroke-linejoin=\"round\"><path d=\"M80 120V38H480V215H80V154\"/><path d=\"M255 38V89M255 153V215\"/><path d=\"M402 38V89M402 153V215\"/></g>\n<path d=\"M63 120H97M69 137H91\" stroke=\"#c47d35\" stroke-width=\"6\"/><text x=\"45\" y=\"134\" font-size=\"18\" fill=\"#9d5c29\" text-anchor=\"end\" font-weight=\"bold\">12 V</text>\n<rect x=\"232\" y=\"89\" width=\"46\" height=\"64\" rx=\"6\" fill=\"#d5eced\" stroke=\"#087e7a\" stroke-width=\"4\"/><rect x=\"379\" y=\"89\" width=\"46\" height=\"64\" rx=\"6\" fill=\"#d5eced\" stroke=\"#087e7a\" stroke-width=\"4\"/>\n<text x=\"255\" y=\"126\" font-size=\"17\" fill=\"#18545e\" text-anchor=\"middle\" font-weight=\"bold\">6 Ω</text><text x=\"402\" y=\"126\" font-size=\"17\" fill=\"#18545e\" text-anchor=\"middle\" font-weight=\"bold\">3 Ω</text>\n<circle cx=\"255\" cy=\"38\" r=\"6\" fill=\"#087e7a\"/><circle cx=\"402\" cy=\"215\" r=\"6\" fill=\"#087e7a\"/>\n</svg>",
+  "levier": "<svg viewBox=\"0 0 570 245\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Levier de la brouette : point d’appui à la roue à gauche, charge au milieu, effort aux poignées à droite.\">\n<path d=\"M50 190H528\" stroke=\"#aec3ce\" stroke-width=\"5\"/><path d=\"M94 164L480 104\" stroke=\"#356782\" stroke-width=\"15\" stroke-linecap=\"round\"/>\n<circle cx=\"113\" cy=\"182\" r=\"28\" fill=\"#2e5168\" stroke=\"#d9e7ed\" stroke-width=\"7\"/><circle cx=\"113\" cy=\"182\" r=\"8\" fill=\"#e8f6f5\"/>\n<rect x=\"217\" y=\"68\" width=\"120\" height=\"75\" rx=\"7\" fill=\"#f2c470\" stroke=\"#a66b23\" stroke-width=\"4\"/>\n<path d=\"M278 35V73\" stroke=\"#b65042\" stroke-width=\"6\" stroke-linecap=\"round\"/><path d=\"M265 60L278 76L291 60\" fill=\"none\" stroke=\"#b65042\" stroke-width=\"5\"/>\n<path d=\"M478 45V99\" stroke=\"#087e7a\" stroke-width=\"6\" stroke-linecap=\"round\"/><path d=\"M464 59L478 43L492 59\" fill=\"none\" stroke=\"#087e7a\" stroke-width=\"5\"/>\n<g font-family=\"Arial,sans-serif\" font-size=\"18\" text-anchor=\"middle\" font-weight=\"bold\"><text x=\"113\" y=\"226\" fill=\"#1c485e\">Pivot</text><text x=\"278\" y=\"26\" fill=\"#a03c33\">Charge</text><text x=\"478\" y=\"26\" fill=\"#086f6b\">Effort</text></g>\n</svg>",
+  "engrenages": "<svg viewBox=\"0 0 570 240\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Deux roues dentées extérieures en prise : la petite 12 dents tourne six tours et entraîne la grande 36 dents.\">\n<g fill=\"#dcecf1\" stroke=\"#346178\" stroke-width=\"5\"><circle cx=\"206\" cy=\"120\" r=\"54\"/><circle cx=\"375\" cy=\"120\" r=\"113\"/></g>\n<g stroke=\"#709caf\" stroke-width=\"8\" stroke-linecap=\"round\"><path d=\"M206 83V157M169 120H243M180 94L232 146M232 94L180 146\"/><path d=\"M375 48V192M303 120H447M324 69L426 171M324 171L426 69\"/></g>\n<circle cx=\"206\" cy=\"120\" r=\"10\" fill=\"#356782\"/><circle cx=\"375\" cy=\"120\" r=\"12\" fill=\"#356782\"/>\n<text x=\"206\" y=\"30\" font-size=\"20\" fill=\"#1d5369\" text-anchor=\"middle\" font-weight=\"bold\">12 dents</text>\n<text x=\"375\" y=\"235\" font-size=\"20\" fill=\"#1d5369\" text-anchor=\"middle\" font-weight=\"bold\">36 dents</text>\n</svg>",
+  "del": "<svg viewBox=\"0 0 570 215\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Une pile de 9 volts branchée en série à une résistance R et à une diode électroluminescente de 2 volts.\">\n<g stroke=\"#375e70\" stroke-width=\"5\" fill=\"none\"><path d=\"M87 90V40H200\"/><path d=\"M300 40H407V90\"/><path d=\"M407 140V177H87V143\"/></g>\n<path d=\"M65 90H109M71 141H103\" stroke=\"#b77728\" stroke-width=\"6\"/>\n<rect x=\"200\" y=\"23\" width=\"100\" height=\"34\" rx=\"6\" fill=\"#d5eaef\" stroke=\"#087e7a\" stroke-width=\"4\"/><text x=\"250\" y=\"45\" font-size=\"21\" text-anchor=\"middle\" fill=\"#18545e\" font-weight=\"bold\">R = ?</text>\n<path d=\"M386 94L428 117L386 140Z\" fill=\"#fad38a\" stroke=\"#a36c20\" stroke-width=\"3\"/><path d=\"M428 94V141\" stroke=\"#a36c20\" stroke-width=\"6\"/>\n<g stroke=\"#c68b26\" stroke-width=\"3\"><path d=\"M433 88L459 61M445 96L471 69\"/></g>\n<text x=\"55\" y=\"120\" font-size=\"19\" text-anchor=\"end\" fill=\"#935720\" font-weight=\"bold\">9 V</text><text x=\"470\" y=\"159\" font-size=\"19\" text-anchor=\"middle\" fill=\"#935720\" font-weight=\"bold\">DEL</text>\n<text x=\"282\" y=\"207\" font-size=\"18\" text-anchor=\"middle\" fill=\"#1d5369\">DEL : 2 V ; 20 mA</text>\n</svg>"
+};
+
+  function openQuestion(id){
+    if(game.used.includes(id))return;
+    closeQuestion();lastFocused=document.activeElement;activeId=id;hintShown=false;answerShown=false;const q=qById(id);
+    el('modalCategory').textContent=q.cat;el('modalTitle').textContent=`Défi de ${q.points} points`;
+    el('questionPoints').textContent=q.points+' points';el('questionLevel').textContent=['Sec. 1 · Découverte','Sec. 1–2 · Compréhension','Sec. 2 · Application','Sec. 2–3 · Analyse','Sec. 3 · Défi avancé'][q.r];el('questionText').textContent=q.q;
+    el('answerText').textContent=q.a;el('explanation').textContent=q.why;el('hintText').textContent='Indice : '+q.hint;
+    el('answerBox').hidden=true;el('hintText').hidden=true;
+    el('hintBtn').textContent='💡 Voir un indice';el('answerBtn').textContent='✓ Dévoiler la réponse';
+    el('correctBtn').textContent=`✓ Bonne réponse : +${q.points} points`;
+    el('wrongBtn').textContent=game.penalty?`✕ Mauvaise réponse : −${q.points} points`:'✕ Mauvaise réponse : 0 point';
+    el('modalStatus').textContent='Le corrigé reste caché jusqu’à ce que vous le dévoiliez.';
+    el('modalStatus').classList.remove('alert');
+    el('diagram').hidden=!q.diagram;el('diagram').innerHTML=q.diagram?DIAGRAMS[q.diagram]:'';
+    el('questionModal').hidden=false;document.body.style.overflow='hidden';renderModalTeams();resetTimer();el('closeModal').focus();
+  }
+  function closeQuestion(){stopTimer();if(activeId===null)return;activeId=null;el('questionModal').hidden=true;document.body.style.overflow='';if(lastFocused&&typeof lastFocused.focus==='function')lastFocused.focus();}
+  function stopTimer(){if(timerInterval!==null){clearInterval(timerInterval);timerInterval=null;}running=false;}
+  function formatTime(s){return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;}
+  function updateClock(){
+    if(game.limit===0){el('timerClock').textContent='∞';el('timerClock').classList.remove('expired');return;}
+    el('timerClock').textContent=formatTime(remainingSeconds);el('timerClock').classList.toggle('expired',remainingSeconds===0);
+    el('toggleTimer').textContent=running?'Pause':'Reprendre';
+  }
+  function tick(){if(!running)return;remainingSeconds=Math.max(0,Math.ceil((until-Date.now())/1000));if(remainingSeconds===0){stopTimer();el('modalStatus').textContent='Temps écoulé! L’enseignant peut quand même accepter une réponse.';el('modalStatus').classList.add('alert');}updateClock();}
+  function playTimer(){if(game.limit===0||remainingSeconds<=0)return;until=Date.now()+remainingSeconds*1000;running=true;stopExistingInterval();timerInterval=setInterval(tick,200);updateClock();}
+  function stopExistingInterval(){if(timerInterval!==null){clearInterval(timerInterval);timerInterval=null;}}
+  function pauseTimer(){if(!running)return;tick();stopTimer();updateClock();}
+  function resetTimer(){stopTimer();remainingSeconds=game.limit;el('toggleTimer').hidden=game.limit===0;el('restartTimer').hidden=game.limit===0;updateClock();if(game.limit)playTimer();}
+  function showAnswer(){if(activeId===null)return;answerShown=true;el('answerBox').hidden=false;el('answerBtn').textContent='✓ Réponse affichée';pauseTimer();}
+  function setStatus(message,alert=false){el('modalStatus').textContent=message;el('modalStatus').classList.toggle('alert',alert);}
+  function award(isCorrect){
+    if(activeId===null)return;
+    const q=qById(activeId),i=game.chosen;const locked=game.attempts[activeId]||[];
+    if(locked.includes(i)){setStatus('Cette équipe a déjà tenté cette question. Choisis une autre équipe.',true);return;}
+    if(!answerShown){setStatus('Dévoile d’abord le corrigé avant d’attribuer ou de retirer des points.',true);return;}
+    snapshot();game.scores[i]+=isCorrect?q.points:(game.penalty?-q.points:0);
+    if(isCorrect){game.used.push(activeId);closeQuestion();render();save();}
+    else{
+      game.attempts[activeId]=[...locked,i];save();renderTeams();renderModalTeams();
+      const available=Array.from({length:game.teams},(_,j)=>j).filter(j=>!game.attempts[activeId].includes(j));
+      if(available.length){chooseTeam(available[0]);setStatus(game.penalty?`${game.names[i]} perd ${q.points} points. Une autre équipe peut tenter sa chance.`:`${game.names[i]} n’obtient aucun point. Une autre équipe peut tenter sa chance.`);}
+      else setStatus('Toutes les équipes ont tenté leur chance. Tu peux passer cette question.',true);
+      el('undoBtn').disabled=false;
+    }
+  }
+  function passQuestion(){if(activeId===null)return;const id=activeId;snapshot();game.used.push(id);closeQuestion();render();save();}
+  function undo(){if(history.length===0)return;closeQuestion();game=history.pop();save();render();}
+  function newGame(){
+    const n=Number(el('participants').value),t=Number(el('teamCount').value),limit=Number(el('timeLimit').value),penalty=el('penalty').checked;
+    if(!Number.isInteger(n)||n<3||n>32||!Number.isInteger(t)||t<2||t>8||t>n)return;
+    if((game.used.length||game.scores.some(n=>n!==0))&&!window.confirm('Recommencer la partie? Les points et les questions déjà jouées seront effacés.')){applySelects();return;}
+    closeQuestion();game=createGame(n,t,limit);game.penalty=penalty;history=[];save();render();
+  }
+  function init(){
+    for(let i=3;i<=32;i++){const o=document.createElement('option');o.value=i;o.textContent=`${i} élèves`;el('participants').append(o);}
+    for(let i=2;i<=8;i++){const o=document.createElement('option');o.value=i;o.textContent=`${i} équipes`;el('teamCount').append(o);}
+    game=restore();render();
+    el('participants').addEventListener('change',()=>updateTeamOptions(true));
+    el('teamCount').addEventListener('change',()=>updateTeamOptions(false));
+    el('newGameBtn').addEventListener('click',newGame);
+    el('penalty').addEventListener('change',()=>{game.penalty=el('penalty').checked;save();});
+    el('replayBtn').addEventListener('click',newGame);
+    el('undoBtn').addEventListener('click',undo);
+    el('closeModal').addEventListener('click',closeQuestion);
+    el('hintBtn').addEventListener('click',()=>{if(activeId===null)return;hintShown=!hintShown;el('hintText').hidden=!hintShown;el('hintBtn').textContent=hintShown?'💡 Masquer l’indice':'💡 Voir un indice';});
+    el('answerBtn').addEventListener('click',showAnswer);
+    el('correctBtn').addEventListener('click',()=>award(true));
+    el('wrongBtn').addEventListener('click',()=>award(false));
+    el('passBtn').addEventListener('click',passQuestion);
+    el('toggleTimer').addEventListener('click',()=>running?pauseTimer():playTimer());
+    el('restartTimer').addEventListener('click',resetTimer);
+    el('fullBtn').addEventListener('click',async()=>{try{if(!document.fullscreenElement&&document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else if(document.exitFullscreen)await document.exitFullscreen();}catch(e){/* mode plein écran peut être bloqué */}});
+    document.addEventListener('fullscreenchange',()=>{el('fullBtn').textContent=document.fullscreenElement?'✕ Quitter le plein écran':'⛶ Plein écran';});
+    document.addEventListener('keydown',(ev)=>{
+      if(ev.key==='Escape'&&activeId!==null){ev.preventDefault();closeQuestion();}
+      if(activeId===null&&/^[1-8]$/.test(ev.key)&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)&&Number(ev.key)<=game.teams)chooseTeam(Number(ev.key)-1);
+    });
+    document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)tick();});
+    window.addEventListener('beforeunload',save);
+  }
+  init();
+  </script>
+</body>
+</html>
