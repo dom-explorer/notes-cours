@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#223a34">
+  <meta name="description" content="Jeopardy de science et technologie pour la 4e secondaire au Québec : 30 défis progressifs, équipes, minuterie, indices et corrigés.">
+  <title>Jeopardy scientifique — 4e secondaire | TNI</title>
+  <style>
+    .level{font-size:14px;font-weight:900;background:#e4f0e9;color:#31584a;padding:7px 12px;border-radius:99px;}
+    @media(min-width:951px){.scores[style*="--team-count: 8"] .team{padding:8px 4px}.scores[style*="--team-count: 8"] .team-name{font-size:clamp(14px,1.25vw,19px)}}
+    :root {
+      font-family: "Space Grotesk", "Avenir Next", "Trebuchet MS", system-ui, sans-serif;
+      color-scheme:light;
+      --navy:#223a34; --navy2:#315147; --ink:#1c332c; --muted:#526c62; --paper:#f5f6f0;
+      --line:#d6e0e5; --gold:#d9a441; --teal:#28685e; --white:#fff;
+      --shadow:0 8px 30px rgba(12,34,51,.09);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-size:17px;line-height:1.42}
+    button,select,input{font:inherit}
+    button{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:4px solid #f4b342;outline-offset:3px}
+    button:disabled{cursor:not-allowed;opacity:.43}
+    [hidden]{display:none!important}
+    .wrap{max-width:1600px;margin:0 auto;padding:0 clamp(13px,2vw,32px)}
+    .topbar{background:var(--navy);color:white}
+    .top-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px;padding-top:11px;padding-bottom:11px}
+    .brand{font-weight:900;letter-spacing:.11em;text-transform:uppercase;font-size:12px;color:#d2e1e7}
+    h1{margin:1px 0 0;font-size:clamp(25px,2.65vw,41px);letter-spacing:-.04em;line-height:1.05}
+    .top-actions,.controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+    .btn{border:2px solid transparent;border-radius:12px;background:#e8eff3;color:#15283b;padding:9px 15px;min-height:47px;font-weight:850;line-height:1.2}
+    .btn:active{transform:scale(.98)}
+    .btn.header{background:#2d4b60;color:white;border-color:#4b6980}
+    .btn.ghost{background:white;border-color:#cdd9e0}
+    .btn.teal{background:var(--teal);color:white}
+    .btn.gold{background:var(--gold);color:#4d360d}
+    .btn.danger{background:#b64235;color:white}
+    .btn.small{min-height:41px;padding:7px 12px;font-size:15px}
+    .settings{background:#fff;border-bottom:1px solid var(--line)}
+    .setting-row{display:flex;align-items:end;gap:12px 18px;flex-wrap:wrap;padding-top:12px;padding-bottom:14px}
+    .field label{display:block;font-size:12px;letter-spacing:.055em;text-transform:uppercase;color:var(--muted);font-weight:900;margin-bottom:4px}
+    .field select{height:48px;min-width:142px;border:2px solid #cbd8e1;border-radius:10px;background:white;padding:0 10px;font-weight:800;color:var(--ink)}
+    .penalty-toggle{display:flex;gap:8px;align-items:center;font-size:13px;font-weight:850;max-width:220px;line-height:1.2;cursor:pointer;color:var(--ink)}
+    .penalty-toggle input{width:22px;height:22px;accent-color:var(--teal);flex-shrink:0}
+    .setup-note{margin:0 0 1px;color:var(--muted);font-size:13px;line-height:1.35;max-width:390px;flex:1 1 250px}
+    main{padding-top:17px;padding-bottom:34px}
+    .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+    h2{margin:0;font-size:clamp(19px,2vw,25px);letter-spacing:-.025em}
+    .help-text{color:var(--muted);font-size:14px;margin:0}
+    .scores{display:grid;grid-template-columns:repeat(var(--team-count,5),minmax(0,1fr));gap:9px;margin-bottom:16px}
+    .team{width:100%;border:2px solid #cfdce4;border-top:6px solid var(--team-accent);border-radius:15px;background:white;color:var(--ink);padding:8px 9px;min-width:0;display:flex;flex-direction:column;gap:2px;box-shadow:var(--shadow);text-align:center;min-height:112px}
+    .team.active{outline:4px solid #f8c76c;outline-offset:0;border-color:var(--team-accent);background:#fffdf5}
+    .team-name{font-size:clamp(15px,1.45vw,22px);font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .team-count{color:var(--muted);font-size:12px}
+    .team-score{font-size:clamp(23px,2.5vw,39px);font-weight:950;line-height:1.08;font-variant-numeric:tabular-nums;letter-spacing:-.035em}
+    .team-score small{font-weight:750;font-size:12px;letter-spacing:0}
+    .board-wrap{padding:10px;background:var(--navy);border-radius:20px;box-shadow:var(--shadow)}
+    .board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;align-items:stretch}
+    .category{background:#24465e;color:#f9fcff;min-height:79px;border-radius:11px;display:flex;align-items:center;justify-content:center;text-align:center;padding:9px 5px;font-size:clamp(15px,1.5vw,22px);font-weight:900;line-height:1.12;letter-spacing:-.02em;hyphens:auto}
+    .tile{font-variant-numeric:tabular-nums;background:#254f75;border:2px solid #3f729b;color:#ffdf91;border-radius:11px;font-size:clamp(23px,3.3vw,51px);font-weight:950;line-height:1;min-height:clamp(67px,9vh,95px);text-align:center;text-shadow:0 2px 0 rgba(0,0,0,.13);transition:background .13s,transform .13s}
+    .tile:hover:not(:disabled){background:#31678f;transform:translateY(-2px)}
+    .tile:disabled{opacity:1}
+    .tile.used{background:#193249;color:#678296;border-color:#294357;font-size:28px}
+    .board-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:7px;margin-top:10px;color:#e0e9ef;font-size:13px;padding:1px 4px}
+    .progressbar{height:7px;border-radius:999px;background:#375165;width:110px;display:inline-block;overflow:hidden;vertical-align:middle;margin:0 8px}
+    .progressbar>span{display:block;height:100%;width:0;background:#eebf70;transition:width .2s}
+    .bottom{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:14px}
+    .bottom p{margin:0;color:var(--muted);font-size:14px}
+    .instructions{margin-top:20px;border:1px solid var(--line);background:white;border-radius:15px;padding:12px 18px}
+    summary{font-weight:850;cursor:pointer;touch-action:manipulation}
+    .instructions p{margin:9px 0 5px;font-size:15px;color:#355066}
+    .instructions ol{margin:8px 0 3px;padding-left:23px;font-size:15px}
+    .instructions li{margin:5px 0}
+    .modal{position:fixed;inset:0;background:rgba(8,21,31,.8);z-index:40;display:flex;align-items:center;justify-content:center;padding:clamp(8px,2vw,22px)}
+    .dialog{background:#fff;color:var(--ink);border-radius:22px;width:min(1120px,100%);max-height:calc(100dvh - 22px);overflow:hidden;box-shadow:0 20px 80px rgba(0,0,0,.35);display:flex;flex-direction:column}
+    .dialog-top{background:var(--navy);color:white;padding:14px clamp(16px,2.7vw,32px);display:flex;align-items:center;justify-content:space-between;gap:9px}
+    .dialog-kicker{text-transform:uppercase;letter-spacing:.08em;color:#bad1dd;font-size:13px;font-weight:900}
+    .dialog-title{font-size:clamp(23px,3vw,37px);font-weight:950;line-height:1.12;letter-spacing:-.035em;margin-top:3px}
+    .close{height:49px;min-width:49px;border:2px solid #7891a5;color:white;background:#29495e;border-radius:12px;font-size:26px;line-height:1}
+    .dialog-content{padding:clamp(14px,2.6vw,29px);overflow-y:auto;overscroll-behavior:contain}
+    .question-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:13px}
+    .qpoints{font-size:clamp(18px,2.2vw,25px);font-weight:950;color:#845608;background:#fff0ce;border-radius:999px;padding:6px 15px}
+    .question-timer{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+    #timerClock{font-size:clamp(26px,3vw,40px);font-weight:950;min-width:76px;text-align:center;font-variant-numeric:tabular-nums;color:#1e5267}
+    #timerClock.expired{color:#bb302a}
+    .question-text{font-size:clamp(24px,3.1vw,40px);font-weight:850;letter-spacing:-.025em;line-height:1.33;white-space:pre-line;max-width:1000px;min-height:102px;margin:13px 0 19px;overflow-wrap:anywhere}
+    .diagram{display:flex;justify-content:center;max-height:255px;margin:-6px auto 10px}
+    .diagram svg{width:min(475px,100%);height:auto;max-height:240px}
+    .hint,.answer{border-radius:13px;padding:12px 15px;margin:11px 0;font-size:clamp(16px,1.6vw,21px)}
+    .hint{background:#fff4db;border-left:6px solid #d6a34f}
+    .answer{background:#e8f6ef;border-left:6px solid #218665}
+    .answer strong{font-size:clamp(20px,2vw,26px)}
+    .answer p{margin:7px 0 0;white-space:pre-line}
+    .answer-line{border-top:1px solid #d6e0e5;padding-top:13px;margin-top:12px}
+    .question-actions{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:13px 0}
+    .chooser{border:2px solid #d1dde3;border-radius:13px;background:#f7fafb;padding:12px 13px;margin-top:14px}
+    .chooser-title{font-weight:900;margin-bottom:8px}
+    .chooser-list{display:flex;flex-wrap:wrap;gap:8px}
+    .choice{border:2px solid #b9cad4;background:white;border-radius:10px;padding:9px 14px;font-weight:850;min-height:44px}
+    .choice.chosen{border-color:#087e7a;background:#def5f1;color:#0a625c}
+    .choice.failed{border-color:#d9b7b7;color:#a66e6b;text-decoration:line-through;background:#fbf1f1}
+    .result-actions{display:flex;flex-wrap:wrap;gap:9px;align-items:stretch;margin-top:14px}
+    .result-actions>.btn{flex:1 1 180px;font-size:clamp(15px,1.5vw,20px);min-height:54px}
+    .status{font-size:14px;color:#53697a;margin:8px 0 0;min-height:19px}
+    .status.alert{color:#a02e28;font-weight:850}
+    .endpanel{border:2px solid #d2bd8e;background:#fff8e7;border-radius:15px;padding:15px 17px;margin-top:14px}
+    .endpanel h2{margin-bottom:7px}
+    .endpanel p{margin:5px 0}
+    .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+    @media(max-width:950px){
+      .scores{grid-template-columns:repeat(3,minmax(0,1fr));}
+      .category{font-size:14px;padding:6px 3px;min-height:71px}
+      .tile{font-size:25px;min-height:74px}
+      .board{gap:5px}
+    }
+    @media(max-width:620px){
+      .top-inner{align-items:flex-start}
+      .top-actions .btn{font-size:13px;min-height:40px;padding:6px 9px}
+      .field select{min-width:110px}
+      .scores{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .board-wrap{overflow-x:auto;border-radius:15px;padding:7px}
+      .board{min-width:625px;gap:5px}
+      .tile{min-height:70px;font-size:31px}
+      .category{font-size:14px}
+      .dialog{max-height:calc(100dvh - 10px)}
+      .dialog-content{padding:13px}
+      .question-text{font-size:25px}
+      .question-actions{gap:6px}
+      .result-actions>.btn{flex-basis:145px}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+    @media print{.top-actions,.settings,.bottom,.instructions,.modal{display:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap top-inner">
+      <div>
+        <div class="brand">learnwithdom.page · Secteur jeune · 4e secondaire</div>
+        <h1>Jeopardy <span style="color:#f4c66f">·</span> Sciences 4</h1>
+      </div>
+      <div class="top-actions">
+        <button class="btn header" id="fullBtn" type="button">⛶ Plein écran</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="settings" aria-label="Configuration de la partie">
+    <div class="wrap setting-row">
+      <div class="field"><label for="participants">Élèves présents</label><select id="participants"></select></div>
+      <div class="field"><label for="teamCount">Équipes</label><select id="teamCount"></select></div>
+      <div class="field"><label for="timeLimit">Temps par question</label>
+        <select id="timeLimit">
+          <option value="0">Sans limite</option>
+          <option value="45">45 secondes</option>
+          <option value="60" selected>60 secondes</option>
+          <option value="90">90 secondes</option>
+          <option value="120">120 secondes</option>
+        </select>
+      </div>
+      <label class="penalty-toggle" for="penalty"><input id="penalty" type="checkbox"> Retirer les points lors d’une erreur</label>
+      <button class="btn teal" id="newGameBtn" type="button">↻ Nouvelle partie</button>
+      <p class="setup-note">De 3 à 32 élèves, en 2 à 8 équipes. Suggestion automatique : environ <b>4 élèves par équipe</b>. Tu peux modifier le nombre et le nom des équipes; les scores sont sauvegardés sur cet appareil. <span id="teamSuggestion"></span></p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="section-head">
+      <h2>Tableau des équipes</h2>
+      <p class="help-text">Touchez une équipe pour choisir qui joue. Touchez ✎ pour changer son nom.</p>
+    </div>
+    <section id="scoreboard" class="scores" aria-label="Scores des équipes"></section>
+
+    <div class="section-head">
+      <h2>Choisissez un défi</h2>
+      <p class="help-text">6 catégories · 5 niveaux · 30 questions · secondaire 4</p>
+    </div>
+    <section class="board-wrap" aria-label="Tableau Jeopardy des sciences de quatrième secondaire">
+      <div class="board" id="board"></div>
+      <div class="board-footer">
+        <span><b id="remaining">30</b> défis restants <span class="progressbar" aria-hidden="true"><span id="progressFill"></span></span></span>
+        <span>Chaque case peut être jouée une seule fois.</span>
+      </div>
+    </section>
+
+    <div class="bottom">
+      <p>Enseignant : vous décidez qui répond. <b>Bonne réponse :</b> points ajoutés. <b>Mauvaise réponse :</b> pas de point, ou pénalité facultative. Un autre groupe peut tenter sa chance.</p>
+      <div class="controls">
+        <button class="btn ghost" id="undoBtn" type="button">↶ Annuler la dernière décision</button>
+      </div>
+    </div>
+
+    <section id="endPanel" class="endpanel" hidden>
+      <h2>Bravo à toutes les équipes!</h2>
+      <p id="winnerText"></p>
+      <button class="btn gold" id="replayBtn" type="button">Rejouer avec une nouvelle partie</button>
+    </section>
+
+    <details class="instructions">
+      <summary>Consignes pour l’enseignant et fonctionnement du jeu</summary>
+      <ol>
+        <li>Choisis le nombre réel d’élèves (3 à 32). Le jeu suggère automatiquement environ 4 élèves par équipe, entre 2 et 8 équipes. Tu peux ajuster le nombre d’équipes; elles sont toujours équilibrées.</li>
+        <li>Touche une équipe pour désigner le groupe qui commence. Chaque groupe choisit une catégorie et une valeur en points.</li>
+        <li>Lis la question sur le TNI. Un indice peut être dévoilé; la minuterie peut être mise en pause.</li>
+        <li>Quand les élèves ont répondu, dévoile le corrigé. Attribue les points au groupe qui répond correctement. En cas d’erreur, le groupe peut céder la place à un autre; les pénalités sont facultatives.</li>
+        <li>Les questions résolues disparaissent du tableau. La progression est sauvegardée automatiquement dans le navigateur; actualiser la page ne supprime pas les scores.</li>
+      </ol>
+      <p><b>Conseil secteur jeune :</b> laisse 20 à 40 secondes de discussion collective avant qu’une équipe propose sa réponse. Les défis de 100 à 200 points portent sur les fondements des sciences de 4e secondaire; les défis de 400 à 500 points demandent des calculs, des justifications ou plusieurs étapes de raisonnement. Les six catégories mettent l’accent sur les univers matériel, Terre et espace, et technologique du programme ST québécois.</p>
+      <p><b>Source pédagogique :</b> catégories inspirées des univers matériel, vivant, Terre et espace, et technologique du <a href="https://www.quebec.ca/education/prescolaire-primaire-et-secondaire/programmes-formations-evaluation/programme-formation-ecole-quebecoise/secondaire/science-technologie" target="_blank" rel="noopener noreferrer">programme de science et technologie du secteur jeune (Québec)</a>. Jeu de révision original conçu principalement pour Science et technologie (ST), 4e secondaire; il ne reproduit pas les questions d’une épreuve ministérielle. Les contenus peuvent varier entre ST, ATS, STE et SE.</p>
+      <p><b>Conception :</b> learnwithdom.page — jeu de révision pour usage en classe. Aucune bibliothèque externe, aucune connexion nécessaire.</p>
+      <p><b>Raccourcis :</b> touches 1 à 8 pour choisir une équipe, Échap pour fermer une question sans la consommer. Aucun compte ni connexion Internet n’est nécessaire.</p>
+    </details>
+  </main>
+
+  <div class="modal" id="questionModal" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="dialog">
+      <div class="dialog-top">
+        <div><div class="dialog-kicker" id="modalCategory">Catégorie</div><div class="dialog-title" id="modalTitle">Question</div></div>
+        <button class="close" id="closeModal" type="button" aria-label="Fermer sans utiliser la question" title="Fermer sans utiliser la question">×</button>
+      </div>
+      <div class="dialog-content">
+        <div class="question-meta">
+          <span class="qpoints" id="questionPoints">100 points</span><span class="level" id="questionLevel">Secondaire 1</span>
+          <div class="question-timer" aria-label="Minuterie de la question">
+            <span id="timerClock">1:00</span>
+            <button class="btn small ghost" id="toggleTimer" type="button">Pause</button>
+            <button class="btn small ghost" id="restartTimer" type="button">↺ Temps</button>
+          </div>
+        </div>
+        <div class="question-text" id="questionText"></div>
+        <div class="diagram" id="diagram" hidden></div>
+        <div class="question-actions">
+          <button class="btn ghost" id="hintBtn" type="button">💡 Voir un indice</button>
+          <button class="btn gold" id="answerBtn" type="button">✓ Dévoiler la réponse</button>
+        </div>
+        <div class="hint" id="hintText" hidden></div>
+        <div class="answer" id="answerBox" hidden>
+          <strong id="answerText"></strong>
+          <p id="explanation"></p>
+        </div>
+        <div class="answer-line">
+          <div class="chooser">
+            <div class="chooser-title">Qui répond? <span style="font-weight:500;color:#53697a;font-size:14px">(touches les équipes ci-dessous)</span></div>
+            <div class="chooser-list" id="modalTeams"></div>
+          </div>
+          <div class="result-actions">
+            <button class="btn teal" id="correctBtn" type="button">✓ Bonne réponse : +100 points</button>
+            <button class="btn danger" id="wrongBtn" type="button">✕ Mauvaise réponse : 0 point</button>
+            <button class="btn ghost" id="passBtn" type="button">Passer : 0 point</button>
+          </div>
+          <p class="status" id="modalStatus" role="status" aria-live="polite">Le corrigé reste caché jusqu’à ce que vous le dévoiliez.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  'use strict';
+  // Tous les problèmes, schémas et corrigés sont intégrés : la page fonctionne hors ligne.
+  const CATEGORIES = [
+  {
+    "name": "Atomes et réactions",
+    "short": "Chimie",
+    "questions": [
+      {
+        "q": "Dans le modèle atomique de Rutherford-Bohr, quelle particule du noyau détermine l’identité d’un élément chimique?",
+        "a": "Le proton.",
+        "why": "Le numéro atomique Z est le nombre de protons du noyau. Deux atomes qui ont le même nombre de protons appartiennent au même élément, même si leur nombre de neutrons diffère.",
+        "hint": "Cette particule porte une charge électrique positive."
+      },
+      {
+        "q": "Un atome de chlore possède 17 protons et est électriquement neutre. Combien possède-t-il d’électrons? Combien d’électrons se trouvent sur sa couche externe (modèle de Rutherford-Bohr)?",
+        "a": "17 électrons au total, dont 7 sur la couche externe.",
+        "why": "Un atome neutre contient autant d’électrons que de protons : 17. Sa répartition simplifiée par couches est 2 – 8 – 7 : la troisième couche contient donc 7 électrons.",
+        "hint": "Le nombre de protons est égal au nombre d’électrons d’un atome neutre; répartis les électrons en couches 2, 8, puis le reste."
+      },
+      {
+        "q": "Équilibre l’équation chimique de formation de l’oxyde de fer(III) : Fe + O₂ → Fe₂O₃. Quels coefficients faut-il placer devant Fe, O₂ et Fe₂O₃?",
+        "a": "4 Fe + 3 O₂ → 2 Fe₂O₃.",
+        "why": "À droite, 2 Fe₂O₃ contiennent 4 atomes de Fe et 6 atomes d’O. À gauche, 4 Fe et 3 O₂ donnent exactement 4 atomes de Fe et 6 atomes d’O. Les atomes sont conservés.",
+        "hint": "Commence par rendre le nombre d’atomes d’oxygène pair à droite, puis ajuste le fer."
+      },
+      {
+        "q": "La combustion complète du méthane s’écrit CH₄ + 2 O₂ → CO₂ + 2 H₂O. Combien d’atomes de carbone, d’hydrogène et d’oxygène trouve-t-on de chaque côté? Explique pourquoi la masse se conserve.",
+        "a": "De chaque côté : 1 atome de C, 4 de H et 4 de O.",
+        "why": "Réactifs : CH₄ fournit 1 C et 4 H; 2 O₂ fournissent 4 O. Produits : CO₂ fournit 1 C et 2 O; 2 H₂O fournissent 4 H et 2 O. Les atomes sont réorganisés, non créés ni détruits; la masse totale se conserve en système fermé.",
+        "hint": "Compte les atomes de chaque élément en multipliant les indices par les coefficients."
+      },
+      {
+        "q": "On fait réagir complètement 24 g de magnésium avec 16 g de dioxygène pour former uniquement de l’oxyde de magnésium. Quelle masse de produit obtient-on? Pourquoi la masse du solide augmente-t-elle si l’expérience a lieu à l’air libre?",
+        "a": "40 g d’oxyde de magnésium. Les 16 g supplémentaires proviennent du dioxygène de l’air.",
+        "why": "La réaction s’écrit 2 Mg + O₂ → 2 MgO. Par conservation de la masse, m(MgO) = 24 g + 16 g = 40 g. Dans un récipient ouvert, le solide incorpore l’oxygène provenant de l’air : sa masse augmente sans violer la conservation de la masse.",
+        "hint": "Additionne la masse des réactifs. Demande-toi d’où vient l’oxygène qui entre dans le solide."
+      }
+    ]
+  },
+  {
+    "name": "Solutions et pH",
+    "short": "Solutions",
+    "questions": [
+      {
+        "q": "Une solution a un pH de 3. Est-elle acide, neutre ou basique? Quel est le pH d’une solution neutre à 25 °C?",
+        "a": "Elle est acide. Une solution neutre a un pH de 7 à 25 °C.",
+        "why": "À 25 °C, pH inférieur à 7 : acide; pH égal à 7 : neutre; pH supérieur à 7 : basique. Le pH est une mesure liée à la concentration d’ions hydronium en solution.",
+        "hint": "Sur l’échelle de pH, 7 sert de référence pour la neutralité à 25 °C."
+      },
+      {
+        "q": "Pourquoi une solution de sel de table dissous dans l’eau conduit-elle généralement le courant électrique, tandis qu’une solution de sucre ne le conduit presque pas?",
+        "a": "Le sel fournit des ions mobiles en solution; le sucre dissous reste essentiellement sous forme de molécules neutres.",
+        "why": "Le chlorure de sodium se dissocie en ions Na⁺ et Cl⁻, qui peuvent transporter des charges dans la solution. Le sucre se dissout en molécules sans produire d’ions en quantité significative.",
+        "hint": "Quelles particules électriques peuvent se déplacer dans l’eau?"
+      },
+      {
+        "q": "Une élève dissout 24 g de sel pour obtenir 400 mL de solution. Calcule la concentration massique en g/L.",
+        "a": "60 g/L.",
+        "why": "Formule : C = m/V. Convertir 400 mL en 0,400 L. Calcul : C = 24 g ÷ 0,400 L = 60 g/L. Attention : il s’agit du volume final de la solution, pas seulement du volume d’eau ajouté.",
+        "hint": "Transforme les millilitres en litres puis divise la masse du soluté par le volume de la solution."
+      },
+      {
+        "q": "On prélève 150 mL d’une solution à 40 g/L, puis on ajoute de l’eau jusqu’à un volume final de 600 mL. Quelle est la nouvelle concentration massique?",
+        "a": "10 g/L.",
+        "why": "Masse de soluté initiale : m = CV = 40 g/L × 0,150 L = 6 g. L’ajout d’eau ne change pas cette masse. Volume final = 0,600 L. Donc C₂ = 6 g ÷ 0,600 L = 10 g/L. On peut aussi utiliser C₁V₁ = C₂V₂.",
+        "hint": "Pendant une dilution, la masse de soluté reste constante : C₁V₁ = C₂V₂."
+      },
+      {
+        "q": "On mélange 120 mL d’une solution de sel à 25 g/L avec 280 mL d’une autre solution du même sel à 10 g/L. En supposant que les volumes s’additionnent, quelle est la concentration finale?",
+        "a": "14,5 g/L.",
+        "why": "Solution 1 : m₁ = 25 × 0,120 = 3,0 g. Solution 2 : m₂ = 10 × 0,280 = 2,8 g. Masse totale = 5,8 g. Volume total = 0,120 + 0,280 = 0,400 L. Concentration finale = 5,8 ÷ 0,400 = 14,5 g/L.",
+        "hint": "Calcule séparément la masse de sel de chaque solution. Additionne les masses, puis divise par le volume total."
+      }
+    ]
+  },
+  {
+    "name": "Circuits électriques",
+    "short": "Électricité",
+    "questions": [
+      {
+        "q": "Deux objets portent chacun une charge électrique positive. S’attirent-ils ou se repoussent-ils? Que se passe-t-il si leurs charges sont de signes opposés?",
+        "a": "Deux charges positives se repoussent; des charges de signes opposés s’attirent.",
+        "why": "Des charges de même signe exercent l’une sur l’autre une force électrique répulsive. Des charges de signes contraires exercent une force attractive.",
+        "hint": "Rappelle-toi la règle des charges de même signe et de signes contraires."
+      },
+      {
+        "q": "Une résistance de 5 Ω est branchée à une source idéale de 15 V. Quelle intensité de courant traverse la résistance?",
+        "a": "3 A.",
+        "why": "Loi d’Ohm : U = RI. Donc I = U/R = 15 V ÷ 5 Ω = 3 A.",
+        "hint": "I = U ÷ R."
+      },
+      {
+        "q": "Deux résistances de 4 Ω et 8 Ω sont branchées en série sur une pile idéale de 24 V. Calcule la résistance équivalente, le courant et la tension aux bornes de chaque résistance.",
+        "a": "Rₑq = 12 Ω; I = 2 A; tensions : 8 V et 16 V.",
+        "why": "En série : Rₑq = 4 + 8 = 12 Ω. Courant identique partout : I = 24/12 = 2 A. Loi d’Ohm : U₁ = 2 × 4 = 8 V; U₂ = 2 × 8 = 16 V. Vérification : 8 + 16 = 24 V.",
+        "hint": "En série, les résistances s’additionnent et le courant est identique dans chaque composant."
+      },
+      {
+        "q": "Deux résistances de 6 Ω et de 3 Ω sont branchées en parallèle sur une source idéale de 12 V. Calcule le courant dans chaque branche, le courant total et la résistance équivalente.",
+        "a": "I₆Ω = 2 A; I₃Ω = 4 A; Itotal = 6 A; Rₑq = 2 Ω.",
+        "why": "En parallèle, chaque résistance reçoit 12 V. I₆Ω = 12/6 = 2 A; I₃Ω = 12/3 = 4 A. Courant total : 2 + 4 = 6 A. Résistance équivalente : Rₑq = U/Itotal = 12/6 = 2 Ω.",
+        "hint": "Les deux branches reçoivent chacune 12 V. Applique I = U/R, puis additionne les courants.",
+        "diagram": "parallele_sec4"
+      },
+      {
+        "q": "Une résistance de 2 Ω est branchée en série avec deux résistances de 6 Ω et 3 Ω montées en parallèle. La source idéale fournit 12 V. Détermine Rₑq, le courant total, la tension du groupe parallèle et le courant de chaque branche.",
+        "a": "Rₑq = 4 Ω; Itotal = 3 A; groupe parallèle : 6 V; courants : 1 A (6 Ω) et 2 A (3 Ω).",
+        "why": "1) Groupe parallèle : 1/Rp = 1/6 + 1/3 = 1/2, donc Rp = 2 Ω. 2) Série : Rₑq = 2 + 2 = 4 Ω. 3) Itotal = 12/4 = 3 A. 4) Tension sur la résistance série : 3 × 2 = 6 V; il reste 6 V pour le groupe parallèle. 5) Branches : 6/6 = 1 A et 6/3 = 2 A; total 3 A.",
+        "hint": "Remplace d’abord les deux résistances en parallèle par leur équivalent, puis ajoute celle en série.",
+        "diagram": "mixte_sec4"
+      }
+    ]
+  },
+  {
+    "name": "Énergie et rendement",
+    "short": "Énergie",
+    "questions": [
+      {
+        "q": "Quelle unité mesure une énergie : le joule (J) ou le watt (W)? Que mesure l’autre unité?",
+        "a": "Le joule (J) mesure l’énergie; le watt (W) mesure la puissance.",
+        "why": "L’énergie est une quantité transférée ou transformée. La puissance exprime la vitesse de transfert de l’énergie : 1 W = 1 J/s.",
+        "hint": "Une unité mesure une quantité; l’autre mesure une quantité par seconde."
+      },
+      {
+        "q": "Un appareil électrique fonctionne à 120 V et laisse passer un courant de 0,75 A. Quelle est sa puissance électrique?",
+        "a": "90 W.",
+        "why": "Puissance électrique : P = UI = 120 V × 0,75 A = 90 W.",
+        "hint": "Multiplie la tension (en volts) par l’intensité (en ampères)."
+      },
+      {
+        "q": "Une lampe de 80 W fonctionne pendant 3 heures. Quelle énergie consomme-t-elle en wattheures (Wh), puis en kilowattheures (kWh)?",
+        "a": "240 Wh = 0,240 kWh.",
+        "why": "E = Pt. En heures : 80 W × 3 h = 240 Wh. Comme 1 kWh = 1 000 Wh, 240 Wh = 0,240 kWh.",
+        "hint": "Énergie = puissance × durée. Divise ensuite les Wh par 1 000."
+      },
+      {
+        "q": "Une bouilloire de 1 500 W fonctionne 20 minutes. Si l’électricité coûte 0,15 $/kWh, quelle énergie consomme-t-elle et quel est son coût?",
+        "a": "0,50 kWh, pour 0,075 $ (7,5 cents).",
+        "why": "1 500 W = 1,5 kW. Vingt minutes = 20/60 h = 1/3 h. Énergie = 1,5 × 1/3 = 0,50 kWh. Coût = 0,50 × 0,15 $ = 0,075 $, soit 7,5 cents. Il s’agit du coût énergétique seulement.",
+        "hint": "Convertis les watts en kilowatts et les minutes en heures avant de multiplier."
+      },
+      {
+        "q": "Un moteur absorbe 800 W pendant 5 minutes. Son rendement énergétique est de 75 %. Calcule l’énergie reçue, l’énergie utile et l’énergie dissipée.",
+        "a": "Énergie reçue : 240 000 J; utile : 180 000 J; dissipée : 60 000 J.",
+        "why": "Durée : 5 min = 300 s. Énergie reçue : E = Pt = 800 J/s × 300 s = 240 000 J. Énergie utile : 0,75 × 240 000 = 180 000 J. Énergie dissipée : 240 000 − 180 000 = 60 000 J. Vérification : utile + dissipée = reçue.",
+        "hint": "Calcule d’abord E = P × t en secondes. Ensuite, applique le rendement de 0,75."
+      }
+    ]
+  },
+  {
+    "name": "Terre et environnement",
+    "short": "Terre",
+    "questions": [
+      {
+        "q": "Quelle différence y a-t-il entre un glacier et la banquise?",
+        "a": "Un glacier est une masse de glace formée sur la terre ferme; la banquise est de la glace de mer flottante.",
+        "why": "Le glacier résulte de l’accumulation et de la compaction de neige sur les continents. La banquise se forme lorsque l’eau de mer gèle. Cette différence influence notamment les effets de leur fonte sur le niveau de la mer.",
+        "hint": "L’un repose sur le sol; l’autre flotte à la surface de la mer."
+      },
+      {
+        "q": "Comment une augmentation du CO₂ atmosphérique peut-elle contribuer au réchauffement climatique?",
+        "a": "Le CO₂ absorbe et réémet une partie du rayonnement infrarouge terrestre, ce qui renforce l’effet de serre.",
+        "why": "La surface terrestre, réchauffée par le Soleil, émet de l’infrarouge. Une hausse de la concentration de certains gaz à effet de serre modifie les échanges radiatifs et tend à augmenter la température d’équilibre du système climatique.",
+        "hint": "Pense au rayonnement infrarouge émis par la surface de la Terre."
+      },
+      {
+        "q": "Qu’appelle-t-on un bassin versant? Explique comment un engrais épandu sur un champ peut atteindre une rivière ou un lac éloigné.",
+        "a": "Un bassin versant est un territoire dont les eaux s’écoulent vers un même exutoire. Le ruissellement peut y entraîner des engrais jusqu’aux cours d’eau.",
+        "why": "L’eau de pluie ou de fonte suit la pente du terrain et rejoint ruisseaux, rivières ou lacs d’un même bassin. Les substances entraînées depuis les sols agricoles peuvent donc circuler jusqu’à des milieux aquatiques situés en aval.",
+        "hint": "Pense à la pente du terrain, au ruissellement et au réseau des cours d’eau."
+      },
+      {
+        "q": "Une surface glacée reçoit 1 000 J d’énergie solaire et en réfléchit 60 %, tandis qu’une surface d’eau voisine n’en réfléchit que 10 %. Calcule l’énergie absorbée par chacune et explique le lien avec la fonte des glaces.",
+        "a": "Glace : 400 J absorbés; eau : 900 J. L’eau absorbe 500 J de plus.",
+        "why": "Glace : 1 000 × (1 − 0,60) = 400 J. Eau : 1 000 × (1 − 0,10) = 900 J. Une diminution des surfaces glacées expose davantage d’eau sombre, qui absorbe plus d’énergie et favorise le réchauffement : c’est une rétroaction positive de l’albédo.",
+        "hint": "Énergie absorbée = énergie incidente × (1 − fraction réfléchie)."
+      },
+      {
+        "q": "Après de fortes pluies, un lac reçoit beaucoup d’engrais. Peu après, des algues prolifèrent, puis des poissons meurent. Explique la chaîne des causes en au moins quatre étapes et propose deux mesures de prévention.",
+        "a": "Eutrophisation : nutriments → prolifération d’algues → algues mortes décomposées → consommation d’oxygène dissous → mortalité de poissons.",
+        "why": "Les phosphates et nitrates provenant des engrais favorisent la croissance d’algues. Quand de grandes quantités d’algues meurent, les microorganismes qui les décomposent utilisent de l’oxygène dissous. Le manque d’oxygène peut faire mourir les poissons. Prévention : réduire les apports d’engrais et aménager des bandes riveraines végétalisées (ou améliorer le traitement des eaux).",
+        "hint": "Relie les nutriments, la croissance des algues, leur décomposition et la quantité d’oxygène disponible."
+      }
+    ]
+  },
+  {
+    "name": "Technologie et mécanismes",
+    "short": "Techno",
+    "questions": [
+      {
+        "q": "Sur un vélo, la chaîne transmet le mouvement du pédalier à la roue arrière. S’agit-il d’un système de transmission ou de transformation du mouvement?",
+        "a": "D’un système de transmission du mouvement.",
+        "why": "Un système à chaîne et roues dentées transmet un mouvement de rotation entre des axes. La nature du mouvement reste la même : rotation à l’entrée et rotation à la sortie.",
+        "hint": "Le mouvement d’entrée et le mouvement de sortie sont-ils tous deux des rotations?"
+      },
+      {
+        "q": "Quel est le rôle d’un fusible dans un circuit électrique? Pourquoi est-il important?",
+        "a": "Il interrompt le circuit lorsque le courant dépasse une valeur déterminée, pour protéger les composants et réduire le risque d’échauffement dangereux.",
+        "why": "Le fil fusible fond si le courant demeure trop élevé pendant suffisamment longtemps. Il coupe alors le passage du courant; il faut corriger la cause de la surintensité avant de le remplacer.",
+        "hint": "Ce composant est une protection qui peut interrompre la circulation du courant."
+      },
+      {
+        "q": "Un pignon de 15 dents tourne à 90 tours/minute et entraîne directement une roue dentée de 45 dents. Quelle est la vitesse de la seconde roue et dans quel sens tourne-t-elle?",
+        "a": "30 tours/minute, dans le sens opposé au premier pignon.",
+        "why": "Dans deux engrenages extérieurs : n₁ × Z₁ = n₂ × Z₂. Donc n₂ = 90 × 15/45 = 30 tours/minute. Les deux roues en contact tournent en sens contraires.",
+        "hint": "La seconde roue a trois fois plus de dents : elle tournera trois fois moins vite.",
+        "diagram": "pignons_sec4"
+      },
+      {
+        "q": "Une crémaillère se déplace horizontalement lorsque son pignon tourne. Ce mécanisme transmet-il ou transforme-t-il le mouvement? Nomme les mouvements d’entrée et de sortie, puis donne un exemple d’utilisation.",
+        "a": "Il transforme le mouvement : rotation du pignon → translation de la crémaillère. Exemple : système de direction d’une automobile.",
+        "why": "Le pignon est une roue dentée en rotation; ses dents déplacent la crémaillère en ligne droite. Il s’agit d’un système de transformation parce que le type de mouvement change.",
+        "hint": "La rotation se transforme-t-elle en rotation, ou en déplacement rectiligne?"
+      },
+      {
+        "q": "Dans un train d’engrenages, A (10 dents) entraîne B (30 dents). B est fixé sur le même axe que C (12 dents), qui entraîne D (48 dents). Si A tourne à 240 tours/minute, trouve la vitesse de D et son sens par rapport à A.",
+        "a": "D tourne à 20 tours/minute, dans le même sens que A.",
+        "why": "Première paire : nB = 240 × 10/30 = 80 tours/minute, en sens inverse de A. B et C sont solidaires : nC = 80 tours/minute, même sens que B. Deuxième paire : nD = 80 × 12/48 = 20 tours/minute, en sens inverse de C. Deux inversions : D tourne dans le même sens que A.",
+        "hint": "Calcule séparément chaque paire d’engrenages. B et C tournent à la même vitesse parce qu’ils partagent un axe.",
+        "diagram": "train_sec4"
+      }
+    ]
+  }
+];
+  const POINTS=[100,200,300,400,500];
+  const COLORS=['#337d75','#5264bd','#b85e39','#8d65a8','#bf8c28','#4c7d9b','#d05f74','#627743'];
+  const STORE_KEY='jeunes-jeopardy-sciences-sec4-st-v1';
+  const el=id=>document.getElementById(id);
+  const clone=o=>JSON.parse(JSON.stringify(o));
+  let game;
+  let activeId=null;
+  let hintShown=false;
+  let answerShown=false;
+  let attempts=[];
+  let history=[];
+  let remainingSeconds=60;
+  let until=0;
+  let timerInterval=null;
+  let running=false;
+  let lastFocused=null;
+
+  function createGame(n=24,t=6,limit=60){
+    return {participants:n,teams:t,limit,penalty:false,names:Array.from({length:t},(_,i)=>`Équipe ${String.fromCharCode(65+i)}`),scores:Array(t).fill(0),used:[],chosen:0,attempts:{}};
+  }
+  function validLoaded(o){
+    return o && Number.isInteger(o.participants) && o.participants>=3 && o.participants<=32 && Number.isInteger(o.teams) && o.teams>=2 && o.teams<=8 && o.teams<=o.participants && [0,45,60,90,120].includes(o.limit) && typeof o.penalty==='boolean' && Array.isArray(o.names) && o.names.length===o.teams && o.names.every(n=>typeof n==='string') && Array.isArray(o.scores) && o.scores.length===o.teams && o.scores.every(n=>Number.isFinite(n)) && Array.isArray(o.used) && o.used.every(n=>typeof n==='string' && /^\d-[0-4]$/.test(n) && +n.split('-')[0]<6) && Number.isInteger(o.chosen) && o.chosen>=0 && o.chosen<o.teams && o.attempts && typeof o.attempts==='object';
+  }
+  function save(){try{localStorage.setItem(STORE_KEY,JSON.stringify(game));}catch(e){/* navigation privée */}}
+  function restore(){
+    try{const stored=JSON.parse(localStorage.getItem(STORE_KEY));if(validLoaded(stored))return stored;}catch(e){}
+    return createGame();
+  }
+  function snapshot(){history.push(clone(game));if(history.length>50)history.shift();}
+  function teamSize(i){return Math.floor(game.participants/game.teams)+(i<(game.participants%game.teams)?1:0)}
+  function qById(id){const [c,r]=id.split('-').map(Number);return {...CATEGORIES[c].questions[r],points:POINTS[r],cat:CATEGORIES[c].name,c,r,id};}
+  // Chaque équipe doit compter au moins un élève. Adapter les choix au nombre d’élèves présents.
+  function suggestedTeams(n){return Math.min(8,Math.max(2,Math.ceil(n/4)));}
+  function updateTeamOptions(autoPick=false){
+    const n=Number(el('participants').value);
+    const teamSelect=el('teamCount');
+    for(const option of teamSelect.options){
+      option.disabled=Number(option.value)>n;
+    }
+    if(autoPick || Number(teamSelect.value)>n){
+      teamSelect.value=String(suggestedTeams(n));
+    }
+    const t=Number(teamSelect.value), base=Math.floor(n/t), extra=n%t;
+    el('teamSuggestion').textContent=` Répartition : ${extra ? extra+' équipe(s) de '+(base+1)+' et '+(t-extra)+' équipe(s) de '+base : t+' équipe(s) de '+base} élève(s).`;
+  }
+  function applySelects(){el('participants').value=game.participants;el('teamCount').value=game.teams;updateTeamOptions();el('timeLimit').value=game.limit;el('penalty').checked=game.penalty;}
+  function renderTeams(){
+    const parent=el('scoreboard');parent.replaceChildren();parent.style.setProperty('--team-count',game.teams);
+    for(let i=0;i<game.teams;i++){
+      const button=document.createElement('button');button.type='button';button.className='team'+(i===game.chosen?' active':'');
+      button.style.setProperty('--team-accent',COLORS[i]);button.setAttribute('aria-pressed',String(game.chosen===i));
+      button.setAttribute('aria-label',`${game.names[i]}, ${game.scores[i]} points, ${teamSize(i)} élèves. Toucher pour sélectionner.`);
+      const name=document.createElement('span');name.className='team-name';name.textContent=game.names[i];
+      const size=document.createElement('span');size.className='team-count';size.textContent=`${teamSize(i)} élève${teamSize(i)>1?'s':''} · toucher pour choisir`;
+      const score=document.createElement('span');score.className='team-score';score.textContent=game.scores[i].toLocaleString('fr-CA')+' ';
+      const unit=document.createElement('small');unit.textContent='pts';score.append(unit);
+      button.append(name,size,score);button.addEventListener('click',()=>chooseTeam(i));
+      const cell=document.createElement('div');cell.style.position='relative';cell.style.minWidth='0';
+      const edit=document.createElement('button');edit.type='button';edit.textContent='✎';edit.title=`Renommer ${game.names[i]}`;
+      edit.setAttribute('aria-label',`Renommer ${game.names[i]}`);
+      edit.style.cssText='position:absolute;right:6px;top:3px;border:0;background:#ecf1f5;border-radius:7px;padding:2px 6px;font-size:14px;color:#34506a;min-width:29px;min-height:28px;';
+      edit.addEventListener('click',()=>renameTeam(i));cell.append(button,edit);parent.append(cell);
+    }
+  }
+  function renameTeam(i){const proposed=window.prompt(`Nom de l’équipe ${i+1} :`,game.names[i]);if(proposed===null)return;const n=proposed.trim().slice(0,32);if(!n)return;game.names[i]=n;save();renderTeams();renderModalTeams();}
+  function chooseTeam(i){game.chosen=i;save();renderTeams();renderModalTeams();}
+  function renderBoard(){
+    const b=el('board');b.replaceChildren();
+    for(let c=0;c<CATEGORIES.length;c++){
+      const cat=document.createElement('div');cat.className='category';cat.textContent=CATEGORIES[c].name;b.append(cat);
+    }
+    for(let r=0;r<5;r++)for(let c=0;c<6;c++){
+      const id=`${c}-${r}`,used=game.used.includes(id);
+      const btn=document.createElement('button');btn.type='button';btn.className='tile'+(used?' used':'');btn.textContent=used?'✓':String(POINTS[r]);btn.disabled=used;
+      btn.setAttribute('aria-label',used?`${CATEGORIES[c].name}, ${POINTS[r]} points, déjà joué`:`${CATEGORIES[c].name}, ${POINTS[r]} points`);
+      btn.addEventListener('click',()=>openQuestion(id));b.append(btn);
+    }
+    const count=30-game.used.length;el('remaining').textContent=count;el('progressFill').style.width=`${game.used.length/30*100}%`;
+    const end=el('endPanel');end.hidden=count!==0;
+    if(count===0){const best=Math.max(...game.scores);const names=game.names.filter((n,i)=>game.scores[i]===best);
+      el('winnerText').textContent=`${names.length>1?'Équipes gagnantes':'Équipe gagnante'} : ${names.join(' et ')} avec ${best.toLocaleString('fr-CA')} points. Bravo aussi aux autres équipes pour leur collaboration!`;
+    }
+  }
+  function render(){applySelects();renderTeams();renderBoard();el('undoBtn').disabled=history.length===0;}
+  function renderModalTeams(){
+    if(activeId===null)return;
+    const p=el('modalTeams');p.replaceChildren();const locked=game.attempts[activeId]||[];
+    for(let i=0;i<game.teams;i++){
+      const btn=document.createElement('button');btn.type='button';btn.className='choice'+(game.chosen===i?' chosen':'')+(locked.includes(i)?' failed':'');
+      btn.textContent=game.names[i]+(locked.includes(i)?' · déjà tenté':'');btn.disabled=locked.includes(i);
+      btn.setAttribute('aria-pressed',String(game.chosen===i));btn.addEventListener('click',()=>chooseTeam(i));p.append(btn);
+    }
+    const lockedCurrent=locked.includes(game.chosen);
+    el('correctBtn').disabled=lockedCurrent;
+    el('wrongBtn').disabled=lockedCurrent;
+  }
+  const DIAGRAMS = {
+  "parallele_sec4": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 580 245\" role=\"img\" aria-label=\"Source de 12 volts alimentant deux résistances de 6 et 3 ohms en parallèle\">\n<g stroke=\"#31546a\" stroke-width=\"5\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M85 115V50H460\"/><path d=\"M85 153V205H460\"/><path d=\"M270 50V96M270 153V205M460 50V96M460 153V205\"/></g>\n<path d=\"M57 115H113M69 153H101\" stroke=\"#d49a38\" stroke-width=\"6\"/><text x=\"34\" y=\"144\" font-size=\"21\" font-weight=\"bold\" text-anchor=\"start\" fill=\"#98601d\">12 V</text>\n<rect x=\"244\" y=\"96\" width=\"52\" height=\"57\" rx=\"7\" fill=\"#e0f2ee\" stroke=\"#147769\" stroke-width=\"4\"/><rect x=\"434\" y=\"96\" width=\"52\" height=\"57\" rx=\"7\" fill=\"#e0f2ee\" stroke=\"#147769\" stroke-width=\"4\"/>\n<g font-family=\"Arial,sans-serif\" text-anchor=\"middle\" font-weight=\"bold\" font-size=\"20\" fill=\"#1e4e60\"><text x=\"270\" y=\"130\">6 Ω</text><text x=\"460\" y=\"130\">3 Ω</text><text x=\"290\" y=\"236\" font-size=\"16\">Deux branches, même tension</text></g>\n</svg>",
+  "mixte_sec4": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 580 245\" role=\"img\" aria-label=\"Source de 12 volts, une résistance de 2 ohms en série avec un groupement parallèle de 6 ohms et 3 ohms\">\n<g stroke=\"#31546a\" stroke-width=\"5\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M67 113V50H147\"/><path d=\"M237 50H455\"/><path d=\"M67 148V207H455\"/><path d=\"M284 50V95M284 151V207M455 50V95M455 151V207\"/></g>\n<path d=\"M42 113H92M50 148H84\" stroke=\"#d49a38\" stroke-width=\"6\"/><text x=\"10\" y=\"141\" font-size=\"18\" fill=\"#98601d\">12 V</text>\n<rect x=\"147\" y=\"34\" width=\"90\" height=\"32\" rx=\"6\" fill=\"#e5f0f9\" stroke=\"#416eb0\" stroke-width=\"4\"/>\n<rect x=\"257\" y=\"95\" width=\"54\" height=\"56\" rx=\"7\" fill=\"#e0f2ee\" stroke=\"#147769\" stroke-width=\"4\"/><rect x=\"428\" y=\"95\" width=\"54\" height=\"56\" rx=\"7\" fill=\"#e0f2ee\" stroke=\"#147769\" stroke-width=\"4\"/>\n<g font-family=\"Arial,sans-serif\" text-anchor=\"middle\" font-weight=\"bold\" font-size=\"20\" fill=\"#1e4e60\"><text x=\"192\" y=\"56\">2 Ω</text><text x=\"284\" y=\"128\">6 Ω</text><text x=\"455\" y=\"128\">3 Ω</text><text x=\"356\" y=\"233\" font-size=\"16\">Groupement en parallèle</text></g>\n</svg>",
+  "pignons_sec4": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 580 240\" role=\"img\" aria-label=\"Schéma de deux engrenages extérieurs : pignon de quinze dents entraînant une roue dentée de quarante-cinq dents\">\n<g fill=\"#d6e9f3\" stroke=\"#315b77\" stroke-width=\"5\"><circle cx=\"180\" cy=\"120\" r=\"45\"/><circle cx=\"340\" cy=\"120\" r=\"115\"/></g>\n<circle cx=\"180\" cy=\"120\" r=\"9\" fill=\"#315b77\"/><circle cx=\"340\" cy=\"120\" r=\"11\" fill=\"#315b77\"/>\n<g font-family=\"Arial,sans-serif\" fill=\"#16445e\" text-anchor=\"middle\" font-weight=\"bold\"><text x=\"140\" y=\"37\" font-size=\"21\">15 dents</text><text x=\"340\" y=\"122\" font-size=\"22\">45 dents</text><text x=\"140\" y=\"62\" font-size=\"17\">90 tr/min</text></g>\n<path d=\"M135 161q-20 -20 -10 -43\" fill=\"none\" stroke=\"#b05c37\" stroke-width=\"6\" stroke-linecap=\"round\"/><path d=\"M125 118l-9 15 18 -4\" fill=\"none\" stroke=\"#b05c37\" stroke-width=\"5\"/>\n<path d=\"M450 108q13 33 -4 58\" fill=\"none\" stroke=\"#147769\" stroke-width=\"6\" stroke-linecap=\"round\"/><path d=\"M446 166l16 -10 -2 18\" fill=\"none\" stroke=\"#147769\" stroke-width=\"5\"/>\n<text x=\"475\" y=\"220\" font-family=\"Arial,sans-serif\" fill=\"#16445e\" font-size=\"15\" text-anchor=\"middle\">Schéma non à l’échelle</text>\n</svg>",
+  "train_sec4": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 235\" role=\"img\" aria-label=\"Train d'engrenages : A dix dents entraîne B trente dents; B et C douze dents partagent un axe; C entraîne D quarante-huit dents\">\n<g font-family=\"Arial,sans-serif\" font-size=\"18\" font-weight=\"bold\" text-anchor=\"middle\">\n<rect x=\"10\" y=\"48\" width=\"108\" height=\"72\" rx=\"12\" fill=\"#e3effa\" stroke=\"#346080\" stroke-width=\"4\"/><text x=\"64\" y=\"77\" fill=\"#184962\">A · 10 dents</text><text x=\"64\" y=\"104\" fill=\"#184962\" font-size=\"17\">240 tr/min</text>\n<rect x=\"166\" y=\"48\" width=\"108\" height=\"72\" rx=\"12\" fill=\"#e3effa\" stroke=\"#346080\" stroke-width=\"4\"/><text x=\"220\" y=\"77\" fill=\"#184962\">B · 30 dents</text><text x=\"220\" y=\"104\" fill=\"#184962\" font-size=\"17\">? tr/min</text>\n<rect x=\"326\" y=\"48\" width=\"108\" height=\"72\" rx=\"12\" fill=\"#e3f4e8\" stroke=\"#147769\" stroke-width=\"4\"/><text x=\"380\" y=\"77\" fill=\"#164f43\">C · 12 dents</text><text x=\"380\" y=\"104\" fill=\"#164f43\" font-size=\"17\">? tr/min</text>\n<rect x=\"480\" y=\"48\" width=\"108\" height=\"72\" rx=\"12\" fill=\"#e3effa\" stroke=\"#346080\" stroke-width=\"4\"/><text x=\"534\" y=\"77\" fill=\"#184962\">D · 48 dents</text><text x=\"534\" y=\"104\" fill=\"#184962\" font-size=\"17\">? tr/min</text>\n<g stroke=\"#aa763a\" stroke-width=\"5\" stroke-linecap=\"round\" fill=\"none\"><path d=\"M120 85H160m-10 -10 10 10 -10 10\"/><path d=\"M438 85H472m-10 -10 10 10 -10 10\"/></g>\n<g stroke=\"#147769\" stroke-width=\"5\" fill=\"none\"><path d=\"M275 85H320\"/></g>\n<text x=\"142\" y=\"154\" fill=\"#9b6229\" font-size=\"15\">Engrenage</text><text x=\"298\" y=\"166\" fill=\"#147769\" font-size=\"15\">Même axe</text><text x=\"456\" y=\"154\" fill=\"#9b6229\" font-size=\"15\">Engrenage</text>\n<text x=\"300\" y=\"209\" fill=\"#344e61\" font-size=\"17\">Deux paires de roues dentées</text>\n</g></svg>"
+};
+
+  function openQuestion(id){
+    if(game.used.includes(id))return;
+    closeQuestion();lastFocused=document.activeElement;activeId=id;hintShown=false;answerShown=false;const q=qById(id);
+    el('modalCategory').textContent=q.cat;el('modalTitle').textContent=`Défi de ${q.points} points`;
+    el('questionPoints').textContent=q.points+' points';el('questionLevel').textContent=['Sec. 4 · Bases','Sec. 4 · Compréhension','Sec. 4 · Application','Sec. 4 · Analyse','Sec. 4 · Défi avancé'][q.r];el('questionText').textContent=q.q;
+    el('answerText').textContent=q.a;el('explanation').textContent=q.why;el('hintText').textContent='Indice : '+q.hint;
+    el('answerBox').hidden=true;el('hintText').hidden=true;
+    el('hintBtn').textContent='💡 Voir un indice';el('answerBtn').textContent='✓ Dévoiler la réponse';
+    el('correctBtn').textContent=`✓ Bonne réponse : +${q.points} points`;
+    el('wrongBtn').textContent=game.penalty?`✕ Mauvaise réponse : −${q.points} points`:'✕ Mauvaise réponse : 0 point';
+    el('modalStatus').textContent='Le corrigé reste caché jusqu’à ce que vous le dévoiliez.';
+    el('modalStatus').classList.remove('alert');
+    el('diagram').hidden=!q.diagram;el('diagram').innerHTML=q.diagram?DIAGRAMS[q.diagram]:'';
+    el('questionModal').hidden=false;document.body.style.overflow='hidden';renderModalTeams();resetTimer();el('closeModal').focus();
+  }
+  function closeQuestion(){stopTimer();if(activeId===null)return;activeId=null;el('questionModal').hidden=true;document.body.style.overflow='';if(lastFocused&&typeof lastFocused.focus==='function')lastFocused.focus();}
+  function stopTimer(){if(timerInterval!==null){clearInterval(timerInterval);timerInterval=null;}running=false;}
+  function formatTime(s){return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;}
+  function updateClock(){
+    if(game.limit===0){el('timerClock').textContent='∞';el('timerClock').classList.remove('expired');return;}
+    el('timerClock').textContent=formatTime(remainingSeconds);el('timerClock').classList.toggle('expired',remainingSeconds===0);
+    el('toggleTimer').textContent=running?'Pause':'Reprendre';
+  }
+  function tick(){if(!running)return;remainingSeconds=Math.max(0,Math.ceil((until-Date.now())/1000));if(remainingSeconds===0){stopTimer();el('modalStatus').textContent='Temps écoulé! L’enseignant peut quand même accepter une réponse.';el('modalStatus').classList.add('alert');}updateClock();}
+  function playTimer(){if(game.limit===0||remainingSeconds<=0)return;until=Date.now()+remainingSeconds*1000;running=true;stopExistingInterval();timerInterval=setInterval(tick,200);updateClock();}
+  function stopExistingInterval(){if(timerInterval!==null){clearInterval(timerInterval);timerInterval=null;}}
+  function pauseTimer(){if(!running)return;tick();stopTimer();updateClock();}
+  function resetTimer(){stopTimer();remainingSeconds=game.limit;el('toggleTimer').hidden=game.limit===0;el('restartTimer').hidden=game.limit===0;updateClock();if(game.limit)playTimer();}
+  function showAnswer(){if(activeId===null)return;answerShown=true;el('answerBox').hidden=false;el('answerBtn').textContent='✓ Réponse affichée';pauseTimer();}
+  function setStatus(message,alert=false){el('modalStatus').textContent=message;el('modalStatus').classList.toggle('alert',alert);}
+  function award(isCorrect){
+    if(activeId===null)return;
+    const q=qById(activeId),i=game.chosen;const locked=game.attempts[activeId]||[];
+    if(locked.includes(i)){setStatus('Cette équipe a déjà tenté cette question. Choisis une autre équipe.',true);return;}
+    if(!answerShown){setStatus('Dévoile d’abord le corrigé avant d’attribuer ou de retirer des points.',true);return;}
+    snapshot();game.scores[i]+=isCorrect?q.points:(game.penalty?-q.points:0);
+    if(isCorrect){game.used.push(activeId);closeQuestion();render();save();}
+    else{
+      game.attempts[activeId]=[...locked,i];save();renderTeams();renderModalTeams();
+      const available=Array.from({length:game.teams},(_,j)=>j).filter(j=>!game.attempts[activeId].includes(j));
+      if(available.length){chooseTeam(available[0]);setStatus(game.penalty?`${game.names[i]} perd ${q.points} points. Une autre équipe peut tenter sa chance.`:`${game.names[i]} n’obtient aucun point. Une autre équipe peut tenter sa chance.`);}
+      else setStatus('Toutes les équipes ont tenté leur chance. Tu peux passer cette question.',true);
+      el('undoBtn').disabled=false;
+    }
+  }
+  function passQuestion(){if(activeId===null)return;const id=activeId;snapshot();game.used.push(id);closeQuestion();render();save();}
+  function undo(){if(history.length===0)return;closeQuestion();game=history.pop();save();render();}
+  function newGame(){
+    const n=Number(el('participants').value),t=Number(el('teamCount').value),limit=Number(el('timeLimit').value),penalty=el('penalty').checked;
+    if(!Number.isInteger(n)||n<3||n>32||!Number.isInteger(t)||t<2||t>8||t>n)return;
+    if((game.used.length||game.scores.some(n=>n!==0))&&!window.confirm('Recommencer la partie? Les points et les questions déjà jouées seront effacés.')){applySelects();return;}
+    closeQuestion();game=createGame(n,t,limit);game.penalty=penalty;history=[];save();render();
+  }
+  function init(){
+    for(let i=3;i<=32;i++){const o=document.createElement('option');o.value=i;o.textContent=`${i} élèves`;el('participants').append(o);}
+    for(let i=2;i<=8;i++){const o=document.createElement('option');o.value=i;o.textContent=`${i} équipes`;el('teamCount').append(o);}
+    game=restore();render();
+    el('participants').addEventListener('change',()=>updateTeamOptions(true));
+    el('teamCount').addEventListener('change',()=>updateTeamOptions(false));
+    el('newGameBtn').addEventListener('click',newGame);
+    el('penalty').addEventListener('change',()=>{game.penalty=el('penalty').checked;save();});
+    el('replayBtn').addEventListener('click',newGame);
+    el('undoBtn').addEventListener('click',undo);
+    el('closeModal').addEventListener('click',closeQuestion);
+    el('hintBtn').addEventListener('click',()=>{if(activeId===null)return;hintShown=!hintShown;el('hintText').hidden=!hintShown;el('hintBtn').textContent=hintShown?'💡 Masquer l’indice':'💡 Voir un indice';});
+    el('answerBtn').addEventListener('click',showAnswer);
+    el('correctBtn').addEventListener('click',()=>award(true));
+    el('wrongBtn').addEventListener('click',()=>award(false));
+    el('passBtn').addEventListener('click',passQuestion);
+    el('toggleTimer').addEventListener('click',()=>running?pauseTimer():playTimer());
+    el('restartTimer').addEventListener('click',resetTimer);
+    el('fullBtn').addEventListener('click',async()=>{try{if(!document.fullscreenElement&&document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else if(document.exitFullscreen)await document.exitFullscreen();}catch(e){/* mode plein écran peut être bloqué */}});
+    document.addEventListener('fullscreenchange',()=>{el('fullBtn').textContent=document.fullscreenElement?'✕ Quitter le plein écran':'⛶ Plein écran';});
+    document.addEventListener('keydown',(ev)=>{
+      if(ev.key==='Escape'&&activeId!==null){ev.preventDefault();closeQuestion();}
+      if(activeId===null&&/^[1-8]$/.test(ev.key)&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)&&Number(ev.key)<=game.teams)chooseTeam(Number(ev.key)-1);
+    });
+    document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)tick();});
+    window.addEventListener('beforeunload',save);
+  }
+  init();
+  </script>
+</body>
+</html>
