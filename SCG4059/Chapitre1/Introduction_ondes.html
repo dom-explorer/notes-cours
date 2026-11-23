@@ -10,7 +10,270 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Literata:opsz,wght@18..144,400;18..144,500;18..144,600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css">
+
+  <!-- ========================================================= -->
+  <!-- STYLE INTÉGRÉ : fonctionne directement sur GitHub Pages.   -->
+  <!-- Aucun fichier /styles.css externe n'est nécessaire.       -->
+  <!-- ========================================================= -->
+  <style>
+    /* 01. Palette et bases — comme les autres notes de learnwithdom */
+    :root {
+      color-scheme: light;
+      --ardoise: #223a34;
+      --ardoise-deep: #182922;
+      --papier: #eaeee9;
+      --papier-2: #e0e5dd;
+      --encre: #1c2b3a;
+      --craie: #d9a441;
+      --sapin: #4b7a68;
+      --blanc: #fcfbf7;
+      --bord: #d4ded5;
+      --ombre: 0 14px 36px rgba(24, 41, 34, .075);
+      --rayon: 18px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background: var(--papier);
+      color: var(--encre);
+      font-family: "Literata", Georgia, serif;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--ardoise); }
+    a:hover { color: #356352; }
+    a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--craie);
+      outline-offset: 3px;
+    }
+    img, svg { max-width: 100%; }
+    .wrap { width: min(1140px, calc(100% - 3rem)); margin-inline: auto; }
+    h1, h2, h3 { font-family: "Space Grotesk", Arial, sans-serif; letter-spacing: -.025em; }
+    h2 { color: var(--ardoise); font-size: clamp(1.75rem, 3.5vw, 2.45rem); line-height: 1.17; }
+    h3 { color: var(--ardoise); line-height: 1.28; }
+    p { margin: 0 0 1.15rem; }
+    strong { color: var(--ardoise); }
+    main { display: block; }
+    .compact { padding-block: clamp(2.5rem, 5vw, 4.1rem); }
+    .rule.wrap { border: 0; border-top: 1px solid #cad6cb; margin-block: 0; }
+    .section-head { margin-bottom: 1.45rem; }
+    .section-head h2 { margin: .4rem 0 0; }
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      font-size: .73rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      line-height: 1.6;
+      text-transform: uppercase;
+      color: var(--sapin);
+    }
+    .reveal { opacity: 1; }
+
+    /* 02. Barre de navigation */
+    header.site {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(24, 41, 34, .98);
+      color: var(--blanc);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 2px 14px rgba(0,0,0,.08);
+    }
+    header.site nav {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      min-height: 71px;
+    }
+    .brand {
+      white-space: nowrap;
+      color: var(--blanc);
+      font: 700 1.2rem "Space Grotesk", sans-serif;
+      letter-spacing: -.045em;
+      text-decoration: none;
+    }
+    .brand:hover { color: white; }
+    .brand span { color: var(--craie); }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.6rem;
+      align-items: center;
+      padding: 0;
+      margin: 0 auto 0 0;
+      font: 500 .9rem "Space Grotesk", sans-serif;
+    }
+    .nav-links a, header.site .nav-cta { text-decoration: none; }
+    .nav-links a { color: #e1e9e2; }
+    .nav-links a:hover { color: var(--craie); }
+    header.site .nav-cta {
+      flex: 0 0 auto;
+      padding: .64rem 1rem;
+      border: 1px solid #e0ad58;
+      border-radius: 10px;
+      color: #ffdd9b;
+      font: 600 .86rem "Space Grotesk", sans-serif;
+    }
+    header.site .nav-cta:hover { background: #ffffff15; color: white; }
+
+    /* 03. En-tête du chapitre */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(128deg, var(--ardoise-deep), var(--ardoise) 76%);
+      color: var(--blanc);
+    }
+    .hero::before {
+      position: absolute;
+      content: "";
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+      background-size: 34px 34px;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; padding-block: clamp(3.2rem, 7vw, 5.8rem); }
+    .hero .eyebrow { color: #d3ddcb; }
+    .hero .eyebrow a { color: #ecc17e; text-decoration: none; }
+    .hero .eyebrow a:hover { text-decoration: underline; }
+    .course-title {
+      display: flex;
+      align-items: center;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      line-height: 1.08;
+      letter-spacing: -.05em;
+      color: var(--blanc);
+      margin: 1.15rem 0 .55rem;
+    }
+    .course-title .dot { flex: 0 0 14px; display: inline-block; border-radius: 50%; background: var(--craie); }
+    .hero .lede {
+      color: #ffdaa0;
+      font: 500 clamp(1.18rem, 2.4vw, 1.45rem) "Space Grotesk", sans-serif;
+      margin-bottom: 1.25rem;
+    }
+    .hero p:not(.lede) { max-width: 785px; color: #e2eae4; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.9rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .8rem 1.1rem;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 11px;
+      color: var(--blanc);
+      background: rgba(255,255,255,.06);
+      text-decoration: none;
+      font: 700 .9rem "Space Grotesk", sans-serif;
+      transition: transform .18s ease, background .18s ease;
+    }
+    .btn:hover { transform: translateY(-2px); background: rgba(255,255,255,.14); color: white; }
+    .btn-primary { border-color: var(--craie); background: var(--craie); color: #1b2a24; }
+    .btn-primary:hover { background: #f0bc61; color: #1b2a24; }
+    .hero .scg-mini-nav a { border-color: rgba(255,255,255,.25); color: #e8eee9; }
+    .hero .scg-mini-nav a:hover { background: rgba(255,255,255,.14); color: white; }
+
+    /* 04. Conteneurs pédagogiques, cartes et activités */
+    .scg-quote { background: #dfe7dd; border-left-color: var(--sapin); }
+    .scg-quote p { color: var(--ardoise); }
+    .scg-example, .scg-step, .scg-chapter-card,
+    .scg-chapter-detail, .scg-resource-box,
+    .wave-block, .wave-concept {
+      background: var(--blanc);
+      border: 1px solid var(--bord);
+      box-shadow: var(--ombre);
+    }
+    .scg-example h3, .scg-resource-box h3, .wave-block h3,
+    .scg-chapter-detail h3 { margin-top: .25rem; }
+    .scg-chapter-card { color: var(--encre); }
+    .scg-chapter-card:hover { background: #fff; border-color: var(--sapin); color: var(--ardoise); }
+    .scg-chapter-num, .scg-chapter-action { color: #3d6a58; }
+    .scg-detail-actions a { color: #2c5c4c; }
+    .scg-chapter-detail { scroll-margin-top: 100px; }
+    .wave-concept h3 { display: flex; align-items: center; gap: .55rem; }
+    .wave-chip { color: var(--ardoise); background: #eaf0e9; }
+    .wave-vis { background: #f5f8f4; }
+    .wave-control input { accent-color: #4b7a68; }
+    .wave-control output { color: var(--ardoise); }
+    .wave-overview .wave-check { color: #2f7660; }
+    .wave-test details { background: transparent; }
+    .wave-test summary { color: var(--ardoise); }
+    .wave-test summary:hover { color: #356b56; }
+
+    /* 05. Bibliographie et pied de page */
+    .resource-list { display: grid; gap: .7rem; }
+    a.resource {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.1rem;
+      border-radius: 13px;
+      border: 1px solid var(--bord);
+      background: var(--blanc);
+      color: var(--ardoise);
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(24, 41, 34, .045);
+    }
+    a.resource:hover { border-color: var(--sapin); background: #fff; }
+    .resource > .icon {
+      flex: 0 0 auto;
+      display: inline-flex;
+      min-width: 3.25rem;
+      justify-content: center;
+      padding: .38rem .4rem;
+      border-radius: 7px;
+      background: #e4ece3;
+      color: #305e4d;
+      font: 700 .7rem "JetBrains Mono", monospace;
+    }
+    .resource .label { font: 700 .95rem/1.5 "Space Grotesk", sans-serif; }
+    .resource .sub { color: #56675e; font: 400 .83rem/1.5 "Space Grotesk", sans-serif; }
+    footer {
+      margin-top: 2.3rem;
+      padding: 2.4rem 0;
+      background: var(--ardoise-deep);
+      color: #d6dfd7;
+      font: 400 .87rem/1.8 "Space Grotesk", sans-serif;
+    }
+    .footer-grid { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; }
+    .brand-mono { font: 700 1.05rem "JetBrains Mono", monospace; color: var(--blanc); }
+    footer a { color: #edc27b; text-decoration: none; }
+    footer a:hover { color: white; text-decoration: underline; }
+
+    /* 06. Adaptation aux petits écrans et à l'impression */
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 2rem, 1140px); }
+      header.site nav { gap: .8rem; min-height: 64px; }
+      .brand { font-size: 1.03rem; }
+      .nav-links { gap: .7rem; font-size: .78rem; }
+      header.site .nav-cta { font-size: .76rem; padding: .5rem .65rem; }
+      .footer-grid { flex-direction: column; gap: .5rem; }
+      .hero-inner { padding-block: 3.2rem; }
+    }
+    @media (max-width: 460px) {
+      header.site nav { flex-wrap: wrap; padding-block: .6rem; }
+      .nav-links { order: 3; width: 100%; justify-content: center; }
+      header.site .nav-cta { margin-left: auto; }
+      .course-title { font-size: 2.7rem; }
+      .hero-actions .btn { width: 100%; }
+      .resource > .icon { min-width: 2.7rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn { transition: none; }
+    }
+    @media print {
+      header.site, .hero-actions, .scg-mini-nav { display: none; }
+      body { background: #fff; }
+      .hero { background: #223a34 !important; print-color-adjust: exact; }
+      .compact { padding-block: 1.3rem; }
+      .scg-chapter-card, .scg-chapter-detail, .wave-block { break-inside: avoid; box-shadow: none; }
+      footer { margin-top: 1rem; }
+    }
+  </style>
+
 
   <!-- Mêmes styles de base que l’introduction de SCG4059; ajouts propres aux ondes -->
   <style>
@@ -174,10 +437,10 @@
   <header class="site">
     <div class="wrap">
       <nav>
-        <a class="brand" href="/">learnwithdom<span>.page</span></a>
+        <a class="brand" href="https://learnwithdom.page/">learnwithdom<span>.page</span></a>
         <ul class="nav-links">
-          <li><a href="/#apropos">À propos</a></li>
-          <li><a href="/#cours">Cours</a></li>
+          <li><a href="https://learnwithdom.page/#apropos">À propos</a></li>
+          <li><a href="https://learnwithdom.page/#cours">Cours</a></li>
         </ul>
         <a class="nav-cta" href="https://learnwithdom.page/webwork2/SCG4059">WeBWorK →</a>
       </nav>
@@ -190,7 +453,7 @@
   <section class="hero">
     <div class="wrap hero-inner compact">
       <div class="eyebrow">
-        <a href="/cours/scg4059.html">← Science générale 1</a> · SCG-4059-2 · Chapitre 1
+        <a href="https://learnwithdom.page/cours/scg4059.html">← Science générale 1</a> · SCG-4059-2 · Chapitre 1
       </div>
       <h1 class="course-title">
         <span class="dot" style="width:14px;height:14px;margin-right:12px;vertical-align:middle;"></span>Les ondes
@@ -573,7 +836,7 @@
           <article class="scg-resource-box reveal">
             <h3>Retour au cours</h3>
             <p>Reviens à la page principale de Science générale 1 pour consulter les autres chapitres et poursuivre ton apprentissage.</p>
-            <a class="btn" href="/cours/scg4059.html">← Introduction au cours SCG-4059-2</a>
+            <a class="btn" href="https://learnwithdom.page/cours/scg4059.html">← Introduction au cours SCG-4059-2</a>
           </article>
         </div>
         <div class="scg-resource-box reveal">
@@ -607,7 +870,7 @@
         <div class="brand-mono">learnwithdom.page</div>
         <div style="margin-top:6px;">CEA Coaticook · Dominic Denault Pilon</div>
       </div>
-      <div><a href="/cours/scg4059.html">Retour à Science générale 1</a></div>
+      <div><a href="https://learnwithdom.page/cours/scg4059.html">Retour à Science générale 1</a></div>
     </div>
   </footer>
 
