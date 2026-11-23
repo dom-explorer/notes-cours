@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SCG-4059-2 — Science générale 1, chapitre 1, section 1.1 : les caractéristiques des ondes. Types et propagation, amplitude, longueur d'onde, fréquence, simulations et exercices corrigés.">
+  <title>1.1 — Les caractéristiques des ondes | SCG-4059-2 | learnwithdom.page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Literata:opsz,wght@18..144,400;18..144,500;18..144,600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+
+  <!-- Tous les styles sont intégrés : aucun lien vers /styles.css. -->
+  <style>
+    /* 01. Palette et bases — comme les autres notes de learnwithdom */
+    :root {
+      color-scheme: light;
+      --ardoise: #223a34;
+      --ardoise-deep: #182922;
+      --papier: #eaeee9;
+      --papier-2: #e0e5dd;
+      --encre: #1c2b3a;
+      --craie: #d9a441;
+      --sapin: #4b7a68;
+      --blanc: #fcfbf7;
+      --bord: #d4ded5;
+      --ombre: 0 14px 36px rgba(24, 41, 34, .075);
+      --rayon: 18px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background: var(--papier);
+      color: var(--encre);
+      font-family: "Literata", Georgia, serif;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--ardoise); }
+    a:hover { color: #356352; }
+    a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--craie);
+      outline-offset: 3px;
+    }
+    img, svg { max-width: 100%; }
+    .wrap { width: min(1140px, calc(100% - 3rem)); margin-inline: auto; }
+    h1, h2, h3 { font-family: "Space Grotesk", Arial, sans-serif; letter-spacing: -.025em; }
+    h2 { color: var(--ardoise); font-size: clamp(1.75rem, 3.5vw, 2.45rem); line-height: 1.17; }
+    h3 { color: var(--ardoise); line-height: 1.28; }
+    p { margin: 0 0 1.15rem; }
+    strong { color: var(--ardoise); }
+    main { display: block; }
+    .compact { padding-block: clamp(2.5rem, 5vw, 4.1rem); }
+    .rule.wrap { border: 0; border-top: 1px solid #cad6cb; margin-block: 0; }
+    .section-head { margin-bottom: 1.45rem; }
+    .section-head h2 { margin: .4rem 0 0; }
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      font-size: .73rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      line-height: 1.6;
+      text-transform: uppercase;
+      color: var(--sapin);
+    }
+    .reveal { opacity: 1; }
+
+    /* 02. Barre de navigation */
+    header.site {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(24, 41, 34, .98);
+      color: var(--blanc);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 2px 14px rgba(0,0,0,.08);
+    }
+    header.site nav {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      min-height: 71px;
+    }
+    .brand {
+      white-space: nowrap;
+      color: var(--blanc);
+      font: 700 1.2rem "Space Grotesk", sans-serif;
+      letter-spacing: -.045em;
+      text-decoration: none;
+    }
+    .brand:hover { color: white; }
+    .brand span { color: var(--craie); }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.6rem;
+      align-items: center;
+      padding: 0;
+      margin: 0 auto 0 0;
+      font: 500 .9rem "Space Grotesk", sans-serif;
+    }
+    .nav-links a, header.site .nav-cta { text-decoration: none; }
+    .nav-links a { color: #e1e9e2; }
+    .nav-links a:hover { color: var(--craie); }
+    header.site .nav-cta {
+      flex: 0 0 auto;
+      padding: .64rem 1rem;
+      border: 1px solid #e0ad58;
+      border-radius: 10px;
+      color: #ffdd9b;
+      font: 600 .86rem "Space Grotesk", sans-serif;
+    }
+    header.site .nav-cta:hover { background: #ffffff15; color: white; }
+
+    /* 03. En-tête du chapitre */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(128deg, var(--ardoise-deep), var(--ardoise) 76%);
+      color: var(--blanc);
+    }
+    .hero::before {
+      position: absolute;
+      content: "";
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+      background-size: 34px 34px;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; padding-block: clamp(3.2rem, 7vw, 5.8rem); }
+    .hero .eyebrow { color: #d3ddcb; }
+    .hero .eyebrow a { color: #ecc17e; text-decoration: none; }
+    .hero .eyebrow a:hover { text-decoration: underline; }
+    .course-title {
+      display: flex;
+      align-items: center;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      line-height: 1.08;
+      letter-spacing: -.05em;
+      color: var(--blanc);
+      margin: 1.15rem 0 .55rem;
+    }
+    .course-title .dot { flex: 0 0 14px; display: inline-block; border-radius: 50%; background: var(--craie); }
+    .hero .lede {
+      color: #ffdaa0;
+      font: 500 clamp(1.18rem, 2.4vw, 1.45rem) "Space Grotesk", sans-serif;
+      margin-bottom: 1.25rem;
+    }
+    .hero p:not(.lede) { max-width: 785px; color: #e2eae4; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.9rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .8rem 1.1rem;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 11px;
+      color: var(--blanc);
+      background: rgba(255,255,255,.06);
+      text-decoration: none;
+      font: 700 .9rem "Space Grotesk", sans-serif;
+      transition: transform .18s ease, background .18s ease;
+    }
+    .btn:hover { transform: translateY(-2px); background: rgba(255,255,255,.14); color: white; }
+    .btn-primary { border-color: var(--craie); background: var(--craie); color: #1b2a24; }
+    .btn-primary:hover { background: #f0bc61; color: #1b2a24; }
+    .hero .scg-mini-nav a { border-color: rgba(255,255,255,.25); color: #e8eee9; }
+    .hero .scg-mini-nav a:hover { background: rgba(255,255,255,.14); color: white; }
+
+    /* 04. Conteneurs pédagogiques, cartes et activités */
+    .scg-quote { background: #dfe7dd; border-left-color: var(--sapin); }
+    .scg-quote p { color: var(--ardoise); }
+    .scg-example, .scg-step, .scg-chapter-card,
+    .scg-chapter-detail, .scg-resource-box,
+    .wave-block, .wave-concept {
+      background: var(--blanc);
+      border: 1px solid var(--bord);
+      box-shadow: var(--ombre);
+    }
+    .scg-example h3, .scg-resource-box h3, .wave-block h3,
+    .scg-chapter-detail h3 { margin-top: .25rem; }
+    .scg-chapter-card { color: var(--encre); }
+    .scg-chapter-card:hover { background: #fff; border-color: var(--sapin); color: var(--ardoise); }
+    .scg-chapter-num, .scg-chapter-action { color: #3d6a58; }
+    .scg-detail-actions a { color: #2c5c4c; }
+    .scg-chapter-detail { scroll-margin-top: 100px; }
+    .wave-concept h3 { display: flex; align-items: center; gap: .55rem; }
+    .wave-chip { color: var(--ardoise); background: #eaf0e9; }
+    .wave-vis { background: #f5f8f4; }
+    .wave-control input { accent-color: #4b7a68; }
+    .wave-control output { color: var(--ardoise); }
+    .wave-overview .wave-check { color: #2f7660; }
+    .wave-test details { background: transparent; }
+    .wave-test summary { color: var(--ardoise); }
+    .wave-test summary:hover { color: #356b56; }
+
+    /* 05. Bibliographie et pied de page */
+    .resource-list { display: grid; gap: .7rem; }
+    a.resource {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.1rem;
+      border-radius: 13px;
+      border: 1px solid var(--bord);
+      background: var(--blanc);
+      color: var(--ardoise);
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(24, 41, 34, .045);
+    }
+    a.resource:hover { border-color: var(--sapin); background: #fff; }
+    .resource > .icon {
+      flex: 0 0 auto;
+      display: inline-flex;
+      min-width: 3.25rem;
+      justify-content: center;
+      padding: .38rem .4rem;
+      border-radius: 7px;
+      background: #e4ece3;
+      color: #305e4d;
+      font: 700 .7rem "JetBrains Mono", monospace;
+    }
+    .resource .label { font: 700 .95rem/1.5 "Space Grotesk", sans-serif; }
+    .resource .sub { color: #56675e; font: 400 .83rem/1.5 "Space Grotesk", sans-serif; }
+    footer {
+      margin-top: 2.3rem;
+      padding: 2.4rem 0;
+      background: var(--ardoise-deep);
+      color: #d6dfd7;
+      font: 400 .87rem/1.8 "Space Grotesk", sans-serif;
+    }
+    .footer-grid { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; }
+    .brand-mono { font: 700 1.05rem "JetBrains Mono", monospace; color: var(--blanc); }
+    footer a { color: #edc27b; text-decoration: none; }
+    footer a:hover { color: white; text-decoration: underline; }
+
+    /* 06. Adaptation aux petits écrans et à l'impression */
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 2rem, 1140px); }
+      header.site nav { gap: .8rem; min-height: 64px; }
+      .brand { font-size: 1.03rem; }
+      .nav-links { gap: .7rem; font-size: .78rem; }
+      header.site .nav-cta { font-size: .76rem; padding: .5rem .65rem; }
+      .footer-grid { flex-direction: column; gap: .5rem; }
+      .hero-inner { padding-block: 3.2rem; }
+    }
+    @media (max-width: 460px) {
+      header.site nav { flex-wrap: wrap; padding-block: .6rem; }
+      .nav-links { order: 3; width: 100%; justify-content: center; }
+      header.site .nav-cta { margin-left: auto; }
+      .course-title { font-size: 2.7rem; }
+      .hero-actions .btn { width: 100%; }
+      .resource > .icon { min-width: 2.7rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn { transition: none; }
+    }
+    @media print {
+      header.site, .hero-actions, .scg-mini-nav { display: none; }
+      body { background: #fff; }
+      .hero { background: #223a34 !important; print-color-adjust: exact; }
+      .compact { padding-block: 1.3rem; }
+      .scg-chapter-card, .scg-chapter-detail, .wave-block { break-inside: avoid; box-shadow: none; }
+      footer { margin-top: 1rem; }
+    }
+  
+
+
+    .scg-intro { max-width: 860px; }
+    .scg-intro p { line-height: 1.85; }
+    .scg-lead { font-size: clamp(1.08rem, 2vw, 1.26rem); }
+    .scg-mini-nav { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.4rem; }
+    .scg-mini-nav a {
+      padding: .55rem .9rem;
+      border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+      border-radius: 999px;
+      color: inherit;
+      font-size: .87rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .scg-mini-nav a:hover, .scg-mini-nav a:focus-visible {
+      background: color-mix(in srgb, currentColor 7%, transparent);
+    }
+    .scg-quote {
+      margin: 1.5rem 0;
+      padding: 1.2rem 1.5rem;
+      border-left: 4px solid currentColor;
+      background: color-mix(in srgb, currentColor 4%, transparent);
+      border-radius: 0 12px 12px 0;
+    }
+    .scg-quote p { margin: 0; font-family: "Literata", serif; font-size: 1.06rem; }
+    .scg-section { scroll-margin-top: 90px; }
+    .scg-section .section-head { margin-bottom: 1.2rem; }
+    .scg-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+      gap: 1rem;
+      margin-top: 1.6rem;
+    }
+    .scg-step, .scg-example, .scg-chapter-card, .scg-chapter-detail, .scg-resource-box {
+      border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+      border-radius: 16px;
+      background: color-mix(in srgb, currentColor 3%, transparent);
+    }
+    .scg-step { padding: 1.25rem; }
+    .scg-step-number {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 2rem;
+      height: 2rem;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      font-family: "JetBrains Mono", monospace;
+      font-size: .82rem;
+      font-weight: 700;
+    }
+    .scg-step h3 { margin: .8rem 0 .45rem; font-size: 1.05rem; }
+    .scg-step p { margin: 0; line-height: 1.65; }
+    .scg-example { margin-top: 1.5rem; padding: 1.4rem; }
+    .scg-example h3 { margin-top: 0; }
+    .scg-example dl { display: grid; grid-template-columns: minmax(135px, 210px) 1fr; gap: .65rem 1rem; }
+    .scg-example dt { font-weight: 700; }
+    .scg-example dd { margin: 0; line-height: 1.6; }
+    .scg-example summary { cursor: pointer; font-weight: 700; }
+    .scg-example details { margin-top: 1rem; }
+    .scg-example details p { margin-bottom: 0; }
+    .scg-chapter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 275px), 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .scg-chapter-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 225px;
+      padding: 1.35rem;
+      gap: .75rem;
+      color: inherit;
+      text-decoration: none;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .scg-chapter-card:hover, .scg-chapter-card:focus-visible {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, currentColor 45%, transparent);
+      background: color-mix(in srgb, currentColor 6%, transparent);
+    }
+    .scg-chapter-card:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+    .scg-card-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .scg-chapter-num, .scg-chapter-state {
+      font-family: "JetBrains Mono", monospace;
+      font-size: .78rem;
+      opacity: .8;
+    }
+    .scg-chapter-title { font: 700 1.22rem/1.3 "Space Grotesk", sans-serif; }
+    .scg-chapter-desc { flex: 1; line-height: 1.6; opacity: .85; }
+    .scg-chapter-action { font-weight: 700; font-size: .88rem; }
+    .scg-chapter-detail { padding: 1.5rem; margin-top: 1.1rem; scroll-margin-top: 90px; }
+    .scg-chapter-detail h3 { margin: .3rem 0 .6rem; }
+    .scg-chapter-detail p { line-height: 1.65; }
+    .scg-chapter-detail ul { padding-left: 1.35rem; line-height: 1.9; }
+    .scg-detail-actions { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; margin-top: 1rem; }
+    .scg-detail-actions a { font-size: .88rem; font-weight: 700; }
+    .scg-resource-box { padding: 1.4rem; margin-top: 1rem; }
+    .scg-resource-box h3 { margin-top: 0; }
+    .scg-resource-box p { line-height: 1.7; }
+    .scg-muted { opacity: .75; }
+    @media (max-width: 600px) {
+      .scg-example dl { grid-template-columns: 1fr; gap: .25rem; }
+      .scg-example dd { margin-bottom: .7rem; }
+      .scg-chapter-card { min-height: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .scg-chapter-card { transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  
+
+    /* Styles complémentaires pour le chapitre 1 — Les ondes */
+    .wave-intro { max-width: 860px; }
+    .wave-intro p { line-height: 1.85; }
+    .wave-figure { margin: 1.5rem 0 0; overflow: hidden; }
+    .wave-figure svg { display: block; width: 100%; height: auto; }
+    .wave-figure figcaption { margin-top: .75rem; font-size: .86rem; opacity: .75; line-height: 1.5; }
+    .wave-kicker { font-family: "JetBrains Mono", monospace; font-size: .8rem; letter-spacing: .02em; opacity: .78; }
+    .wave-block { margin-top: 1.5rem; padding: 1.4rem; border: 1px solid color-mix(in srgb, currentColor 16%, transparent); border-radius: 16px; background: color-mix(in srgb, currentColor 3%, transparent); }
+    .wave-block h3 { margin: 0 0 .85rem; }
+    .wave-block p { line-height: 1.7; }
+    .wave-block :last-child { margin-bottom: 0; }
+    .wave-controls { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,250px),1fr)); gap: 1.25rem; margin: 1rem 0; }
+    .wave-control { display: grid; gap: .35rem; }
+    .wave-control label { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; font-size: .9rem; font-weight: 650; }
+    .wave-control input { width: 100%; accent-color: #638fc7; cursor: pointer; }
+    .wave-control output { font-family: "JetBrains Mono", monospace; font-size: .81rem; opacity: .8; }
+    .wave-vis { padding: .75rem; border: 1px solid color-mix(in srgb, currentColor 13%, transparent); border-radius: 12px; }
+    .wave-note { font-size: .85rem; opacity: .78; }
+    .wave-concept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 225px),1fr)); gap: .8rem; margin-top: 1.25rem; }
+    .wave-concept { padding: 1.1rem; border-radius: 12px; border: 1px solid color-mix(in srgb, currentColor 14%, transparent); background: color-mix(in srgb,currentColor 3%,transparent); }
+    .wave-concept h3 { margin: 0 0 .45rem; font-size: 1rem; }
+    .wave-concept p { margin: 0; font-size: .93rem; line-height: 1.65; }
+    .wave-chip { display: inline-block; padding: .2rem .55rem; border-radius: 999px; font-family: "JetBrains Mono", monospace; font-size: .73rem; border: 1px solid color-mix(in srgb,currentColor 25%,transparent); }
+    .wave-list { margin: .7rem 0 1rem; padding-left: 1.3rem; line-height: 1.95; }
+    .wave-overview { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .65rem; }
+    .wave-overview li { display: flex; gap: .75rem; align-items: flex-start; line-height: 1.6; }
+    .wave-overview .wave-check { font-weight: 700; flex: 0 0 auto; }
+    .wave-two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,290px),1fr)); gap: 1rem; }
+    .wave-test details { border-top: 1px solid color-mix(in srgb,currentColor 15%,transparent); padding: 1rem 0; }
+    .wave-test details:first-child { border-top: 0; }
+    .wave-test summary { font-weight: 700; cursor: pointer; line-height: 1.6; }
+    .wave-test details p { margin: .75rem 0 0; line-height: 1.7; }
+    .wave-resource-links { display: grid; gap: .65rem; margin-top: 1rem; }
+    .wave-resource-links a { color: inherit; }
+    .scg-chapter-card { min-height: 205px; }
+    @media (max-width:600px) { .wave-block { padding:1.05rem; } }
+
+  
+
+    /* =============================================================
+       SECTION 1.1 : styles propres à la leçon
+       Pour personnaliser cette page, modifier les règles ci-dessous.
+       ============================================================= */
+    .lesson-article { max-width: 850px; }
+    .lesson-article > p, .lesson-article li { line-height: 1.85; }
+    .lesson-lead { font-size: clamp(1.05rem, 1.8vw, 1.2rem); }
+    .lesson-outline { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,240px),1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .lesson-outline a { display: flex; flex-direction: column; gap: .5rem; padding: 1.15rem; border: 1px solid var(--bord); border-radius: 15px; background: var(--blanc); box-shadow: var(--ombre); text-decoration: none; color: var(--ardoise); }
+    .lesson-outline a:hover { border-color: var(--sapin); transform: translateY(-2px); }
+    .lesson-outline .num { color: #3a755e; font: 700 .8rem 'JetBrains Mono',monospace; }
+    .lesson-outline .label { font: 700 1.1rem/1.3 'Space Grotesk',sans-serif; }
+    .lesson-outline .desc { font: 400 .9rem/1.5 'Space Grotesk',sans-serif; color: #4c6155; }
+    .lesson-section { scroll-margin-top: 98px; }
+    .lesson-section h2 { margin: .3rem 0 1.15rem; }
+    .lesson-section h3 { margin: 1.6rem 0 .6rem; font-size: 1.18rem; }
+    .lesson-section ul { padding-left: 1.4rem; }
+    .lesson-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,260px),1fr)); gap: 1rem; }
+    .lesson-panel { padding: 1.35rem; border: 1px solid var(--bord); border-radius: 16px; background: var(--blanc); box-shadow: var(--ombre); }
+    .lesson-panel h3 { margin: 0 0 .6rem; }
+    .lesson-panel > :last-child { margin-bottom: 0; }
+    .lesson-note { border-left: 4px solid var(--sapin); padding: 1.1rem 1.3rem; margin: 1.4rem 0; background: #e0e9df; border-radius: 0 12px 12px 0; }
+    .lesson-note.warning { border-left-color: #b57f2c; background: #f7ebd3; }
+    .lesson-note p:last-child { margin-bottom: 0; }
+    .lesson-formula { background: #edf2ea; border: 1px solid #cbd9cd; padding: .95rem 1.15rem; border-radius: 12px; margin: 1rem 0; color: var(--ardoise); font: 600 clamp(1.1rem, 2.5vw, 1.35rem) 'Space Grotesk',sans-serif; text-align: center; }
+    .lesson-formula small { display: block; font: 400 .82rem 'Space Grotesk',sans-serif; padding-top: .4rem; color: #4d6255; }
+    .lesson-mono { font-family: 'JetBrains Mono',monospace; font-size: .91em; }
+    .lesson-table-wrapper { overflow-x: auto; margin: 1.2rem 0; border-radius: 12px; border: 1px solid var(--bord); background: var(--blanc); }
+    .lesson-table { border-collapse: collapse; width: 100%; min-width: 490px; }
+    .lesson-table th { background: #dfebe2; text-align: left; color: var(--ardoise); font: 700 .9rem 'Space Grotesk',sans-serif; }
+    .lesson-table th,.lesson-table td { padding: .85rem 1rem; border-bottom: 1px solid #dce4db; vertical-align: top; }
+    .lesson-table tr:last-child td { border-bottom: 0; }
+    .lesson-figure { margin: 1.4rem 0; padding: 1.1rem; background: #f8faf5; border: 1px solid var(--bord); border-radius: 16px; }
+    .lesson-figure svg { display: block; width: 100%; height: auto; }
+    .lesson-figure figcaption { font: 400 .85rem/1.6 'Space Grotesk',sans-serif; color: #4d6156; margin-top: .55rem; }
+    .lesson-examples { display: grid; gap: .85rem; margin: 1.2rem 0; }
+    .lesson-example { padding: 1.25rem 1.4rem; border-radius: 14px; background: var(--blanc); border: 1px solid var(--bord); }
+    .lesson-example h3 { margin: 0 0 .5rem; font-size: 1.03rem; }
+    .lesson-example p:last-child { margin-bottom: 0; }
+    .lesson-example details { border-top: 1px solid #d8e3da; margin-top: 1rem; padding-top: .7rem; }
+    .lesson-example summary, .lesson-quiz details summary { cursor: pointer; font: 700 .92rem 'Space Grotesk',sans-serif; color: #2d634f; }
+    .lesson-example details > div { padding-top: .75rem; }
+    .lesson-example .math-steps { padding-left: 1.5rem; }
+    .lesson-example .math-steps li { margin: .45rem 0; }
+    .lesson-experiments { counter-reset: experience; padding-left: 1.45rem; }
+    .lesson-experiments li { padding-left: .2rem; margin-bottom: .55rem; }
+    .lesson-sim-box { padding: clamp(1rem, 3vw, 1.65rem); background: var(--blanc); border: 1px solid var(--bord); border-radius: 18px; box-shadow: var(--ombre); }
+    .lesson-controls { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,210px),1fr)); gap: 1rem; margin: 1.3rem 0 1rem; }
+    .lesson-control { display: grid; gap: .4rem; font: 600 .88rem 'Space Grotesk',sans-serif; }
+    .lesson-control label { display: flex; justify-content: space-between; gap: .5rem; }
+    .lesson-control input { width: 100%; accent-color: #467b62; }
+    .lesson-control output { font-family: 'JetBrains Mono',monospace; font-size: .82rem; }
+    .lesson-visual { background: #f3f7f2; border: 1px solid var(--bord); border-radius: 14px; overflow: hidden; }
+    .lesson-visual svg { display: block; width: 100%; height: auto; }
+    .lesson-sim-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin: 1rem 0 0; align-items: center; }
+    .lesson-btn { padding: .65rem 1rem; border-radius: 9px; border: 1px solid #42735e; background: #285844; color: white; cursor: pointer; font: 700 .88rem 'Space Grotesk',sans-serif; }
+    .lesson-btn:hover { background: #1d4333; }
+    .lesson-readings { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+    .lesson-readings span { padding: .4rem .65rem; background: #e6efe4; border-radius: 7px; color: #265841; font: 600 .78rem 'JetBrains Mono',monospace; }
+    .lesson-quiz { display: grid; gap: 1.2rem; }
+    .lesson-quiz fieldset { border: 1px solid var(--bord); border-radius: 14px; padding: 1rem 1.25rem; background: var(--blanc); }
+    .lesson-quiz legend { font: 700 1rem 'Space Grotesk',sans-serif; color: var(--ardoise); padding: 0 .3rem; }
+    .lesson-quiz label { display: block; cursor: pointer; padding: .4rem .1rem; }
+    .lesson-quiz input[type=radio] { margin-right: .4rem; accent-color: #396d55; }
+    .lesson-feedback { margin-top: .9rem; border-radius: 9px; padding: .8rem; background: #e7eee5; font: 600 .88rem 'Space Grotesk',sans-serif; }
+    .lesson-feedback:empty { display:none; }
+    .lesson-footer-link { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+    .lesson-footer-link a { font: 700 .9rem 'Space Grotesk',sans-serif; }
+    @media (max-width:680px) {
+      .lesson-figure,.lesson-panel { padding: .9rem; }
+      .lesson-example { padding: 1rem; }
+    }
+    @media print {
+      .lesson-outline, .lesson-sim-actions, .lesson-quiz button { display:none; }
+      .lesson-example, .lesson-panel, .lesson-figure, .lesson-sim-box { box-shadow:none; break-inside:avoid; }
+      .lesson-section { break-before:auto; }
+      .lesson-visual { print-color-adjust:exact; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .lesson-outline a { transition:none; transform:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- EN-TÊTE : navigation absolue pour fonctionner sur GitHub Pages. -->
+  <header class="site">
+    <div class="wrap">
+      <nav aria-label="Navigation principale">
+        <a class="brand" href="https://learnwithdom.page/">learnwithdom<span>.page</span></a>
+        <ul class="nav-links">
+          <li><a href="https://learnwithdom.page/#apropos">À propos</a></li>
+          <li><a href="https://learnwithdom.page/#cours">Cours</a></li>
+        </ul>
+        <a class="nav-cta" href="https://learnwithdom.page/webwork2/SCG4059">WeBWorK →</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- BANNIÈRE DE LA LEÇON -->
+  <section class="hero">
+    <div class="wrap hero-inner compact">
+      <div class="eyebrow">
+        <a href="https://dom-explorer.github.io/notes-cours/SCG4059/Chapitre1/Introduction_ondes.html">← Chapitre 1 — Les ondes</a>
+        · Science générale 1 · SCG-4059-2
+      </div>
+      <h1 class="course-title"><span class="dot" style="width:14px;height:14px;margin-right:12px;vertical-align:middle;"></span>1.1 — Les caractéristiques des ondes</h1>
+      <p class="lede">Comment décrire une vibration et comprendre sa propagation?</p>
+      <p>Une corde de guitare, un haut-parleur et une lumière n'ont pas le même fonctionnement, mais les ondes qui interviennent possèdent des caractéristiques que l'on peut observer, mesurer et comparer.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#parcours">Commencer la leçon →</a>
+        <a class="btn" href="https://learnwithdom.page/webwork2/SCG4059">Exercices WeBWorK →</a>
+      </div>
+      <div class="scg-mini-nav" aria-label="Navigation dans la section">
+        <a href="#types">1.1.1 Types d'ondes</a>
+        <a href="#amplitude">1.1.2 Amplitude</a>
+        <a href="#longueur">1.1.3 Longueur d'onde</a>
+        <a href="#frequence">1.1.4 Fréquence</a>
+        <a href="#simulation">Simulation</a>
+        <a href="#exercices">Consolidation</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- 0. SOMMAIRE ET OBJECTIFS -->
+    <section class="compact scg-section" id="parcours" aria-labelledby="parcours-titre">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow">Ton parcours · Quatre sous-sections</div>
+          <h2 id="parcours-titre">Ce que tu vas apprendre</h2>
+        </div>
+        <p class="lesson-lead lesson-article">À la fin de cette leçon, tu seras capable de <strong>reconnaître différents types d'ondes</strong>, de distinguer l'<strong>amplitude</strong> et la <strong>longueur d'onde</strong>, puis de calculer une <strong>fréquence</strong> à partir d'un nombre d'oscillations et d'un temps.</p>
+        <div class="lesson-outline reveal">
+          <a href="#types"><span class="num">1.1.1</span><span class="label">Types et propagation</span><span class="desc">Comment l'onde se déplace-t-elle?</span></a>
+          <a href="#amplitude"><span class="num">1.1.2</span><span class="label">Amplitude</span><span class="desc">Quelle est l'importance de l'oscillation?</span></a>
+          <a href="#longueur"><span class="num">1.1.3</span><span class="label">Longueur d'onde</span><span class="desc">Quelle distance sépare deux cycles?</span></a>
+          <a href="#frequence"><span class="num">1.1.4</span><span class="label">Fréquence</span><span class="desc">Combien de cycles en une seconde?</span></a>
+        </div>
+        <aside class="lesson-note lesson-article">
+          <p><strong>Le point de départ :</strong> une onde est une perturbation qui se propage en transportant de l'énergie, sans transporter globalement la matière du milieu avec elle. Dans une corde, la perturbation avance, mais chaque petit morceau de corde oscille autour de sa position de repos.</p>
+        </aside>
+      </div>
+    </section>
+
+    <hr class="rule wrap">
+
+    <!-- 1.1.1 : TYPES D'ONDES ET PROPAGATION -->
+    <section class="compact lesson-section" id="types" aria-labelledby="types-titre">
+      <div class="wrap">
+        <div class="section-head reveal"><div class="eyebrow">Sous-section 1.1.1</div><h2 id="types-titre">Les types d'ondes et leur propagation</h2></div>
+        <div class="lesson-article reveal">
+          <p>Imagine une corde tendue entre deux personnes. Si l'une d'elles l'agite une seule fois, une déformation se déplace le long de la corde. Chaque petit morceau de corde monte et descend, mais ne voyage pas jusqu'à l'autre extrémité. C'est <strong>la perturbation</strong> qui se propage.</p>
+          <p>On peut classer les ondes selon <strong>ce dont elles ont besoin pour se déplacer</strong> et selon <strong>la direction du mouvement local</strong> qu'elles produisent.</p>
+        </div>
+        <div class="lesson-grid reveal">
+          <article class="lesson-panel">
+            <div class="eyebrow">Selon le milieu</div>
+            <h3>Ondes mécaniques</h3>
+            <p>Elles ont besoin de matière pour se propager : un solide, un liquide ou un gaz.</p>
+            <p><strong>Exemples :</strong> le son dans l'air, une vibration dans une corde, une vague à la surface de l'eau.</p>
+            <p><strong>Dans le vide :</strong> elles ne se propagent pas.</p>
+          </article>
+          <article class="lesson-panel">
+            <div class="eyebrow">Selon le milieu</div>
+            <h3>Ondes électromagnétiques</h3>
+            <p>Elles peuvent se propager dans le vide et dans certains matériaux.</p>
+            <p><strong>Exemples :</strong> lumière visible, ondes radio et micro-ondes.</p>
+            <p>La lumière du Soleil traverse l'espace presque vide avant de nous parvenir.</p>
+          </article>
+        </div>
+        <h3>Transversales et longitudinales</h3>
+        <div class="lesson-grid reveal">
+          <article class="lesson-panel">
+            <h3>Onde transversale</h3>
+            <p>La vibration locale est <strong>perpendiculaire</strong> à la direction de propagation.</p>
+            <figure class="lesson-figure">
+              <svg viewBox="0 0 700 165" role="img" aria-label="Onde transversale : la perturbation se déplace vers la droite tandis qu'un point de la corde oscille de haut en bas.">
+                <defs><marker id="arrTrans" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#4b7a68" stroke-width="1.5"/></marker></defs>
+                <path d="M20 90 Q63 22 106 90 T192 90 T278 90 T364 90 T450 90 T536 90 T622 90 T708 90" fill="none" stroke="#4b7a68" stroke-width="4"/>
+                <line x1="35" y1="23" x2="250" y2="23" stroke="#a9752b" stroke-width="3" marker-end="url(#arrTrans)"/>
+                <text x="35" y="16" fill="#80591f" font-size="17">Propagation →</text>
+                <line x1="364" y1="43" x2="364" y2="135" stroke="#4b7a68" stroke-width="2.6"/>
+                <path d="M357 52 L364 42 L371 52 M357 125 L364 135 L371 125" fill="none" stroke="#4b7a68" stroke-width="2.4"/>
+                <text x="380" y="52" fill="#305443" font-size="16">Vibration ↑↓</text>
+              </svg>
+              <figcaption>Exemple simplifié : onde se propageant le long d'une corde.</figcaption>
+            </figure>
+          </article>
+          <article class="lesson-panel">
+            <h3>Onde longitudinale</h3>
+            <p>La vibration locale est <strong>parallèle</strong> à la direction de propagation.</p>
+            <figure class="lesson-figure">
+              <svg viewBox="0 0 750 165" role="img" aria-label="Onde longitudinale : les particules vibrent de gauche à droite dans l'axe de propagation.">
+                <defs><marker id="arrLong" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#a9752b" stroke-width="1.5"/></marker></defs>
+                <text x="28" y="21" fill="#80591f" font-size="18">Propagation →</text>
+                <line x1="200" y1="16" x2="380" y2="16" stroke="#a9752b" stroke-width="3" marker-end="url(#arrLong)" />
+                <circle cx="55.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="80.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="103.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="124.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="142.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="158.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="172.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="186.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="201.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="219.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="240.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="264.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="289.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="314.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="337.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="358.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="376.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="392.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="406.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="420.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="435.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="453.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="474.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="498.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="523.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="548.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="571.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="592.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="610.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="626.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="640.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="654.0" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="669.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="687.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <circle cx="708.5" cy="76" r="7" fill="#527d6d" stroke="#f8faf6" stroke-width="1.2" />
+                <path d="M274 115 H426" stroke="#3d725a" stroke-width="2.5" fill="none"/>
+                <path d="M284 109 L274 115 L284 121 M416 109 L426 115 L416 121" fill="none" stroke="#3d725a" stroke-width="2"/>
+                <text x="288" y="145" fill="#305443" font-size="17">Vibration ↔</text>
+              </svg>
+              <figcaption>Schéma des zones de compression et de raréfaction, comme dans une onde sonore.</figcaption>
+            </figure>
+          </article>
+        </div>
+        <div class="lesson-note lesson-article"><p><strong>À ne pas confondre :</strong> « mécanique » et « transversale » ne sont pas deux catégories opposées. Une onde mécanique peut être transversale <em>ou</em> longitudinale. Le son dans l'air est une onde mécanique longitudinale.</p></div>
+        <div class="lesson-table-wrapper reveal">
+          <table class="lesson-table">
+            <thead><tr><th>Exemple</th><th>Milieu nécessaire?</th><th>Type ou mouvement</th></tr></thead>
+            <tbody>
+              <tr><td>Son dans l'air</td><td>Oui</td><td>Mécanique, longitudinale</td></tr>
+              <tr><td>Corde vibrante</td><td>Oui</td><td>Mécanique, transversale (modèle simple)</td></tr>
+              <tr><td>Lumière du Soleil</td><td>Non</td><td>Électromagnétique</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="lesson-examples">
+          <article class="lesson-example"><h3>Exemple 1 — La sonnerie d'un téléphone</h3><p>Un téléphone sonne dans une pièce. Le son se rend jusqu'à une personne située plus loin. Que se déplace-t-il?</p><details><summary>Afficher le raisonnement</summary><div><p>La vibration du haut-parleur produit une succession de compressions et de raréfactions de l'air. La perturbation se propage jusqu'à l'oreille : <strong>le son transporte de l'énergie</strong>. Les molécules d'air oscillent localement, sans traverser toute la pièce avec l'onde.</p></div></details></article>
+          <article class="lesson-example"><h3>Exemple 2 — Une lampe dans le vide</h3><p>Pourquoi la lumière peut-elle traverser l'espace alors que le son ne le peut pas?</p><details><summary>Afficher le raisonnement</summary><div><p>La lumière est électromagnétique : elle peut se propager dans le vide. Le son est mécanique : sans milieu matériel à comprimer et à raréfier, il ne peut pas se propager.</p></div></details></article>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule wrap">
+
+    <!-- 1.1.2 : AMPLITUDE -->
+    <section class="compact lesson-section" id="amplitude" aria-labelledby="amplitude-titre">
+      <div class="wrap">
+        <div class="section-head reveal"><div class="eyebrow">Sous-section 1.1.2</div><h2 id="amplitude-titre">L'amplitude d'une onde</h2></div>
+        <div class="lesson-article reveal">
+          <p>L'<strong>amplitude</strong>, représentée par <strong>A</strong>, est l'écart maximal entre la position d'équilibre d'un point qui oscille et sa position extrême. Sur le dessin d'une corde vibrante, on la mesure <strong>verticalement</strong> entre l'équilibre et une crête (ou un creux).</p>
+          <p>L'amplitude <strong>n'est pas</strong> la distance entre une crête et un creux : cette distance vaut <strong>2A</strong> sur une onde symétrique.</p>
+        </div>
+        <figure class="lesson-figure reveal">
+          <svg viewBox="0 0 800 260" role="img" aria-labelledby="amplitude-fig-title amplitude-fig-desc">
+            <title id="amplitude-fig-title">Mesurer l'amplitude d'une onde</title>
+            <desc id="amplitude-fig-desc">L'onde oscille de part et d'autre de l'équilibre. Une flèche verticale de l'équilibre à la crête montre l'amplitude A et une autre montre la hauteur totale 2A.</desc>
+            <defs><marker id="ampMarker" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse"><path d="M1 1 L7 4 L1 7 Z" fill="#b47b2b"/></marker></defs>
+            <line x1="25" x2="775" y1="130" y2="130" stroke="#869b8f" stroke-width="1.5" stroke-dasharray="7 5"/>
+            <text x="27" y="122" fill="#40584b" font-size="17">Équilibre</text>
+            <path d="M25.0,130.0 L28.0,122.5 L31.0,115.0 L34.0,107.7 L37.0,100.6 L40.0,93.7 L43.0,87.1 L46.0,81.0 L49.0,75.2 L52.0,70.0 L55.0,65.3 L58.0,61.1 L61.0,57.6 L64.0,54.7 L67.0,52.5 L70.0,51.0 L73.0,50.2 L76.0,50.0 L79.0,50.6 L82.0,51.9 L85.0,53.9 L88.0,56.6 L91.0,59.9 L94.0,63.8 L97.0,68.4 L100.0,73.4 L103.0,79.0 L106.0,85.0 L109.0,91.5 L112.0,98.2 L115.0,105.3 L118.0,112.5 L121.0,120.0 L124.0,127.5 L127.0,135.0 L130.0,142.5 L133.0,149.9 L136.0,157.1 L139.0,164.1 L142.0,170.7 L145.0,177.0 L148.0,182.9 L151.0,188.3 L154.0,193.2 L157.0,197.5 L160.0,201.3 L163.0,204.4 L166.0,206.8 L169.0,208.6 L172.0,209.6 L175.0,210.0 L178.0,209.6 L181.0,208.6 L184.0,206.8 L187.0,204.4 L190.0,201.3 L193.0,197.5 L196.0,193.2 L199.0,188.3 L202.0,182.9 L205.0,177.0 L208.0,170.7 L211.0,164.1 L214.0,157.1 L217.0,149.9 L220.0,142.5 L223.0,135.0 L226.0,127.5 L229.0,120.0 L232.0,112.5 L235.0,105.3 L238.0,98.2 L241.0,91.5 L244.0,85.0 L247.0,79.0 L250.0,73.4 L253.0,68.4 L256.0,63.8 L259.0,59.9 L262.0,56.6 L265.0,53.9 L268.0,51.9 L271.0,50.6 L274.0,50.0 L277.0,50.2 L280.0,51.0 L283.0,52.5 L286.0,54.7 L289.0,57.6 L292.0,61.1 L295.0,65.3 L298.0,70.0 L301.0,75.2 L304.0,81.0 L307.0,87.1 L310.0,93.7 L313.0,100.6 L316.0,107.7 L319.0,115.0 L322.0,122.5 L325.0,130.0 L328.0,137.5 L331.0,145.0 L334.0,152.3 L337.0,159.4 L340.0,166.3 L343.0,172.9 L346.0,179.0 L349.0,184.8 L352.0,190.0 L355.0,194.7 L358.0,198.9 L361.0,202.4 L364.0,205.3 L367.0,207.5 L370.0,209.0 L373.0,209.8 L376.0,210.0 L379.0,209.4 L382.0,208.1 L385.0,206.1 L388.0,203.4 L391.0,200.1 L394.0,196.2 L397.0,191.6 L400.0,186.6 L403.0,181.0 L406.0,175.0 L409.0,168.5 L412.0,161.8 L415.0,154.7 L418.0,147.5 L421.0,140.0 L424.0,132.5 L427.0,125.0 L430.0,117.5 L433.0,110.1 L436.0,102.9 L439.0,95.9 L442.0,89.3 L445.0,83.0 L448.0,77.1 L451.0,71.7 L454.0,66.8 L457.0,62.5 L460.0,58.7 L463.0,55.6 L466.0,53.2 L469.0,51.4 L472.0,50.4 L475.0,50.0 L478.0,50.4 L481.0,51.4 L484.0,53.2 L487.0,55.6 L490.0,58.7 L493.0,62.5 L496.0,66.8 L499.0,71.7 L502.0,77.1 L505.0,83.0 L508.0,89.3 L511.0,95.9 L514.0,102.9 L517.0,110.1 L520.0,117.5 L523.0,125.0 L526.0,132.5 L529.0,140.0 L532.0,147.5 L535.0,154.7 L538.0,161.8 L541.0,168.5 L544.0,175.0 L547.0,181.0 L550.0,186.6 L553.0,191.6 L556.0,196.2 L559.0,200.1 L562.0,203.4 L565.0,206.1 L568.0,208.1 L571.0,209.4 L574.0,210.0 L577.0,209.8 L580.0,209.0 L583.0,207.5 L586.0,205.3 L589.0,202.4 L592.0,198.9 L595.0,194.7 L598.0,190.0 L601.0,184.8 L604.0,179.0 L607.0,172.9 L610.0,166.3 L613.0,159.4 L616.0,152.3 L619.0,145.0 L622.0,137.5 L625.0,130.0 L628.0,122.5 L631.0,115.0 L634.0,107.7 L637.0,100.6 L640.0,93.7 L643.0,87.1 L646.0,81.0 L649.0,75.2 L652.0,70.0 L655.0,65.3 L658.0,61.1 L661.0,57.6 L664.0,54.7 L667.0,52.5 L670.0,51.0 L673.0,50.2 L676.0,50.0 L679.0,50.6 L682.0,51.9 L685.0,53.9 L688.0,56.6 L691.0,59.9 L694.0,63.8 L697.0,68.4 L700.0,73.4 L703.0,79.0 L706.0,85.0 L709.0,91.5 L712.0,98.2 L715.0,105.3 L718.0,112.5 L721.0,120.0 L724.0,127.5 L727.0,135.0 L730.0,142.5 L733.0,149.9 L736.0,157.1 L739.0,164.1 L742.0,170.7 L745.0,177.0 L748.0,182.9 L751.0,188.3 L754.0,193.2 L757.0,197.5 L760.0,201.3 L763.0,204.4 L766.0,206.8 L769.0,208.6 L772.0,209.6 L775.0,210.0" stroke="#497b69" stroke-width="4" fill="none"/>
+            <line x1="75" y1="130" x2="75" y2="50" stroke="#b47b2b" stroke-width="2.5" marker-start="url(#ampMarker)" marker-end="url(#ampMarker)"/>
+            <text x="87" y="92" fill="#865b25" font-size="18" font-weight="bold">A</text>
+            <line x1="555" y1="50" x2="555" y2="210" stroke="#b47b2b" stroke-width="2.5" marker-start="url(#ampMarker)" marker-end="url(#ampMarker)"/>
+            <text x="565" y="92" fill="#865b25" font-size="18" font-weight="bold">2A</text>
+            <text x="80" y="27" fill="#40584b" font-size="15">Crête</text>
+            <text x="179" y="239" fill="#40584b" font-size="15">Creux</text>
+          </svg>
+          <figcaption>L'amplitude est mesurée depuis l'équilibre. Le dessin est schématique; le graphique représente un déplacement et non directement le niveau sonore en décibels.</figcaption>
+        </figure>
+        <div class="lesson-note lesson-article"><p><strong>Dans la vie courante :</strong> si un haut-parleur produit un son d'amplitude plus grande, l'intensité sonore augmente généralement, et on perçoit un son plus fort. La <strong>hauteur</strong> (grave ou aiguë) dépend plutôt de la fréquence. Nous étudierons les décibels à la section 1.2.</p></div>
+        <div class="lesson-formula" aria-label="La distance de la crête au creux égale deux fois l'amplitude">Hauteur crête–creux = 2 × A<small>Pour une oscillation symétrique autour de l'équilibre.</small></div>
+        <div class="lesson-examples reveal">
+          <article class="lesson-example"><h3>Exemple 3 — Une corde qui oscille</h3><p>La distance verticale entre la crête et le creux est de <strong>10 cm</strong>. Quelle est l'amplitude?</p><details><summary>Afficher la démarche complète</summary><div><ol class="math-steps"><li>On identifie la mesure donnée : hauteur totale = 10 cm.</li><li>On sait que hauteur totale = 2 × A.</li><li>On isole A : A = 10 cm ÷ 2.</li><li><strong>A = 5 cm.</strong></li></ol></div></details></article>
+          <article class="lesson-example"><h3>Exemple 4 — Deux sons</h3><p>Deux haut-parleurs produisent un son de même fréquence, mais le deuxième a une amplitude plus grande. Lequel sera généralement perçu comme le plus fort? Lequel sera le plus aigu?</p><details><summary>Afficher la réponse expliquée</summary><div><p>Le <strong>deuxième</strong> sera généralement perçu comme plus fort, car son amplitude est plus grande. Mais les deux ont la <strong>même hauteur</strong> (grave/aigu), puisque leur fréquence est identique.</p></div></details></article>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule wrap">
+
+    <!-- 1.1.3 : LONGUEUR D'ONDE -->
+    <section class="compact lesson-section" id="longueur" aria-labelledby="longueur-titre">
+      <div class="wrap">
+        <div class="section-head reveal"><div class="eyebrow">Sous-section 1.1.3</div><h2 id="longueur-titre">La longueur d'onde</h2></div>
+        <div class="lesson-article reveal">
+          <p>La <strong>longueur d'onde</strong>, notée <strong>λ</strong> (la lettre grecque « lambda »), représente la distance entre deux points successifs qui vibrent de la même manière, <strong>à un instant donné</strong>. Sur le dessin d'une onde, il s'agit par exemple de la distance <strong>entre deux crêtes consécutives</strong> ou entre deux creux consécutifs.</p>
+          <p>Pour une onde longitudinale, on peut aussi mesurer la distance entre deux compressions consécutives. Une longueur d'onde est une <strong>distance</strong> : on l'exprime donc en mètres (m), en centimètres (cm), etc.</p>
+        </div>
+        <figure class="lesson-figure reveal">
+          <svg viewBox="0 0 800 245" role="img" aria-labelledby="lambda-title lambda-desc">
+            <title id="lambda-title">La longueur d'onde entre deux crêtes</title>
+            <desc id="lambda-desc">Deux crêtes successives sont reliées par une flèche horizontale. La distance entre elles est la longueur d'onde lambda.</desc>
+            <defs><marker id="lamMarker" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse"><path d="M1 1 L7 4 L1 7 Z" fill="#b47b2b"/></marker></defs>
+            <line x1="25" x2="775" y1="141" y2="141" stroke="#869b8f" stroke-width="1.5" stroke-dasharray="6 6"/>
+            <path d="M25.0,141.0 L28.0,135.7 L31.0,130.4 L34.0,125.2 L37.0,120.0 L40.0,115.0 L43.0,110.2 L46.0,105.5 L49.0,101.0 L52.0,96.8 L55.0,92.8 L58.0,89.1 L61.0,85.6 L64.0,82.6 L67.0,79.8 L70.0,77.4 L73.0,75.4 L76.0,73.7 L79.0,72.4 L82.0,71.6 L85.0,71.1 L88.0,71.0 L91.0,71.4 L94.0,72.1 L97.0,73.2 L100.0,74.8 L103.0,76.7 L106.0,79.0 L109.0,81.6 L112.0,84.6 L115.0,87.9 L118.0,91.5 L121.0,95.4 L124.0,99.6 L127.0,104.0 L130.0,108.6 L133.0,113.4 L136.0,118.4 L139.0,123.5 L142.0,128.7 L145.0,133.9 L148.0,139.2 L151.0,144.5 L154.0,149.8 L157.0,155.1 L160.0,160.3 L163.0,165.3 L166.0,170.2 L169.0,175.0 L172.0,179.5 L175.0,183.8 L178.0,187.9 L181.0,191.7 L184.0,195.3 L187.0,198.5 L190.0,201.3 L193.0,203.8 L196.0,206.0 L199.0,207.8 L202.0,209.2 L205.0,210.2 L208.0,210.8 L211.0,211.0 L214.0,210.8 L217.0,210.2 L220.0,209.2 L223.0,207.8 L226.0,206.0 L229.0,203.8 L232.0,201.3 L235.0,198.5 L238.0,195.3 L241.0,191.7 L244.0,187.9 L247.0,183.8 L250.0,179.5 L253.0,175.0 L256.0,170.2 L259.0,165.3 L262.0,160.3 L265.0,155.1 L268.0,149.8 L271.0,144.5 L274.0,139.2 L277.0,133.9 L280.0,128.7 L283.0,123.5 L286.0,118.4 L289.0,113.4 L292.0,108.6 L295.0,104.0 L298.0,99.6 L301.0,95.4 L304.0,91.5 L307.0,87.9 L310.0,84.6 L313.0,81.6 L316.0,79.0 L319.0,76.7 L322.0,74.8 L325.0,73.2 L328.0,72.1 L331.0,71.4 L334.0,71.0 L337.0,71.1 L340.0,71.6 L343.0,72.4 L346.0,73.7 L349.0,75.4 L352.0,77.4 L355.0,79.8 L358.0,82.6 L361.0,85.6 L364.0,89.1 L367.0,92.8 L370.0,96.8 L373.0,101.0 L376.0,105.5 L379.0,110.2 L382.0,115.0 L385.0,120.0 L388.0,125.2 L391.0,130.4 L394.0,135.7 L397.0,141.0 L400.0,146.3 L403.0,151.6 L406.0,156.8 L409.0,162.0 L412.0,167.0 L415.0,171.8 L418.0,176.5 L421.0,181.0 L424.0,185.2 L427.0,189.2 L430.0,192.9 L433.0,196.4 L436.0,199.4 L439.0,202.2 L442.0,204.6 L445.0,206.6 L448.0,208.3 L451.0,209.6 L454.0,210.4 L457.0,210.9 L460.0,211.0 L463.0,210.6 L466.0,209.9 L469.0,208.8 L472.0,207.2 L475.0,205.3 L478.0,203.0 L481.0,200.4 L484.0,197.4 L487.0,194.1 L490.0,190.5 L493.0,186.6 L496.0,182.4 L499.0,178.0 L502.0,173.4 L505.0,168.6 L508.0,163.6 L511.0,158.5 L514.0,153.3 L517.0,148.1 L520.0,142.8 L523.0,137.5 L526.0,132.2 L529.0,126.9 L532.0,121.7 L535.0,116.7 L538.0,111.8 L541.0,107.0 L544.0,102.5 L547.0,98.2 L550.0,94.1 L553.0,90.3 L556.0,86.7 L559.0,83.5 L562.0,80.7 L565.0,78.2 L568.0,76.0 L571.0,74.2 L574.0,72.8 L577.0,71.8 L580.0,71.2 L583.0,71.0 L586.0,71.2 L589.0,71.8 L592.0,72.8 L595.0,74.2 L598.0,76.0 L601.0,78.2 L604.0,80.7 L607.0,83.5 L610.0,86.7 L613.0,90.3 L616.0,94.1 L619.0,98.2 L622.0,102.5 L625.0,107.0 L628.0,111.8 L631.0,116.7 L634.0,121.7 L637.0,126.9 L640.0,132.2 L643.0,137.5 L646.0,142.8 L649.0,148.1 L652.0,153.3 L655.0,158.5 L658.0,163.6 L661.0,168.6 L664.0,173.4 L667.0,178.0 L670.0,182.4 L673.0,186.6 L676.0,190.5 L679.0,194.1 L682.0,197.4 L685.0,200.4 L688.0,203.0 L691.0,205.3 L694.0,207.2 L697.0,208.8 L700.0,209.9 L703.0,210.6 L706.0,211.0 L709.0,210.9 L712.0,210.4 L715.0,209.6 L718.0,208.3 L721.0,206.6 L724.0,204.6 L727.0,202.2 L730.0,199.4 L733.0,196.4 L736.0,192.9 L739.0,189.2 L742.0,185.2 L745.0,181.0 L748.0,176.5 L751.0,171.8 L754.0,167.0 L757.0,162.0 L760.0,156.8 L763.0,151.6 L766.0,146.3 L769.0,141.0 L772.0,135.7 L775.0,130.4" fill="none" stroke="#497b69" stroke-width="4"/>
+            <line x1="87" y1="141" x2="87" y2="71" stroke="#bd9e6b" stroke-dasharray="4 5"/>
+            <line x1="335" y1="141" x2="335" y2="71" stroke="#bd9e6b" stroke-dasharray="4 5"/>
+            <line x1="87" y1="69" x2="335" y2="69" stroke="#b47b2b" stroke-width="2.5" marker-start="url(#lamMarker)" marker-end="url(#lamMarker)"/>
+            <text x="192" y="56" fill="#80571f" font-size="20" font-weight="bold">λ</text>
+            <text x="55" y="210" fill="#375844" font-size="16">Crête 1</text>
+            <text x="305" y="210" fill="#375844" font-size="16">Crête 2</text>
+          </svg>
+          <figcaption>La longueur d'onde se mesure horizontalement sur un dessin de l'onde en fonction de la position; l'amplitude se mesure verticalement.</figcaption>
+        </figure>
+        <div class="lesson-note lesson-article"><p><strong>Astuce :</strong> pour mesurer λ dans un dessin, repère deux crêtes <em>voisines</em>. Si tu mesures de la première à la quatrième crête, tu as parcouru <strong>3 longueurs d'onde</strong>, et non 4.</p></div>
+        <div class="lesson-examples reveal">
+          <article class="lesson-example"><h3>Exemple 5 — Distance entre crêtes</h3><p>Les crêtes successives d'une onde se trouvent à <strong>4 cm</strong> et à <strong>13 cm</strong> sur une règle. Quelle est λ?</p><details><summary>Afficher la démarche complète</summary><div><ol class="math-steps"><li>Distance entre les deux crêtes : 13 cm − 4 cm.</li><li>On soustrait : 13 − 4 = 9.</li><li><strong>λ = 9 cm</strong>, ou 0,09 m.</li></ol></div></details></article>
+          <article class="lesson-example"><h3>Exemple 6 — Plusieurs cycles</h3><p>Une distance de <strong>30 cm</strong> contient exactement <strong>5 longueurs d'onde complètes</strong>. Quelle est la longueur d'une onde?</p><details><summary>Afficher la démarche complète</summary><div><ol class="math-steps"><li>On divise la distance totale par le nombre de longueurs d'onde.</li><li>λ = 30 cm ÷ 5.</li><li><strong>λ = 6 cm.</strong></li></ol></div></details></article>
+        </div>
+        <div class="lesson-table-wrapper reveal">
+          <table class="lesson-table">
+            <thead><tr><th>Quantité</th><th>Ce qu'elle indique</th><th>Unité courante</th></tr></thead>
+            <tbody><tr><td>Amplitude A</td><td>Écart maximal à l'équilibre</td><td>cm, m (pour un déplacement)</td></tr><tr><td>Longueur d'onde λ</td><td>Distance d'un cycle spatial</td><td>m, cm, nm</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule wrap">
+
+    <!-- 1.1.4 : FRÉQUENCE -->
+    <section class="compact lesson-section" id="frequence" aria-labelledby="frequence-titre">
+      <div class="wrap">
+        <div class="section-head reveal"><div class="eyebrow">Sous-section 1.1.4</div><h2 id="frequence-titre">La fréquence d'une onde</h2></div>
+        <div class="lesson-article reveal">
+          <p>La <strong>fréquence</strong>, représentée par la lettre <strong>f</strong>, est le nombre d'oscillations ou de cycles effectués <strong>chaque seconde</strong>. Son unité est le <strong>hertz (Hz)</strong> : <strong>1 Hz = 1 cycle par seconde</strong>.</p>
+          <p>Une vibration lente a une faible fréquence. Une vibration rapide a une fréquence élevée. Pour le son, une fréquence basse correspond à un son <strong>grave</strong>; une fréquence élevée correspond à un son <strong>aigu</strong>.</p>
+        </div>
+        <div class="lesson-formula">f = N ÷ t<small>f : fréquence en Hz · N : nombre de cycles · t : durée en secondes (s).</small></div>
+        <h3>La période : le temps d'un cycle</h3>
+        <div class="lesson-article">
+          <p>La <strong>période</strong>, notée <strong>T</strong>, est le temps nécessaire pour effectuer <strong>un seul cycle</strong>. Elle s'exprime en secondes (s). La fréquence et la période sont inverses.</p>
+        </div>
+        <div class="lesson-formula">T = 1 ÷ f &nbsp;&nbsp; et &nbsp;&nbsp; f = 1 ÷ T<small>T : période en secondes · f : fréquence en hertz.</small></div>
+        <div class="lesson-grid reveal">
+          <article class="lesson-panel"><h3>Faible fréquence</h3><p>Peu de cycles par seconde. Pour un son audible : une note plus grave.</p><p><strong>Exemple :</strong> 100 Hz = 100 cycles en une seconde.</p></article>
+          <article class="lesson-panel"><h3>Fréquence élevée</h3><p>Plus de cycles par seconde. Pour un son audible : une note plus aiguë.</p><p><strong>Exemple :</strong> 1 000 Hz = 1 000 cycles en une seconde.</p></article>
+        </div>
+        <div class="lesson-examples reveal">
+          <article class="lesson-example"><h3>Exemple 7 — Compter les vibrations</h3><p>Une corde effectue <strong>36 oscillations en 6 secondes</strong>. Quelle est sa fréquence?</p><details><summary>Afficher la démarche complète</summary><div><ol class="math-steps"><li>On identifie N = 36 cycles et t = 6 s.</li><li>On utilise f = N ÷ t.</li><li>On remplace : f = 36 ÷ 6.</li><li><strong>f = 6 Hz.</strong></li></ol></div></details></article>
+          <article class="lesson-example"><h3>Exemple 8 — Trouver la période</h3><p>Une onde a une fréquence de <strong>4 Hz</strong>. Combien de temps dure un cycle?</p><details><summary>Afficher la démarche complète</summary><div><ol class="math-steps"><li>On utilise T = 1 ÷ f.</li><li>On remplace f par 4 Hz : T = 1 ÷ 4.</li><li><strong>T = 0,25 s.</strong></li></ol></div></details></article>
+        </div>
+        <div class="lesson-note lesson-article"><p><strong>Attention :</strong> une fréquence de 200 Hz ne veut pas dire « un son deux fois plus fort » qu'un son de 100 Hz. La fréquence est liée à la <em>hauteur</em> du son (grave ou aigu), pas directement à son intensité.</p></div>
+        <h3>Pour aller plus loin : la vitesse de propagation</h3>
+        <p class="lesson-article">Pour une onde périodique se propageant à une vitesse constante <strong>v</strong>, on peut relier vitesse, fréquence et longueur d'onde par la formule ci-dessous. À vitesse fixée, une fréquence plus élevée signifie une longueur d'onde plus courte.</p>
+        <div class="lesson-formula">v = λ × f<small>v en m/s · λ en mètres · f en hertz. Notion complémentaire de modélisation.</small></div>
+        <div class="lesson-examples"><article class="lesson-example"><h3>Exemple 9 — Relier les trois grandeurs</h3><p>Une onde se déplace à <strong>6 m/s</strong> et effectue <strong>2 oscillations par seconde</strong>. Quelle est sa longueur d'onde?</p><details><summary>Afficher la démarche complète</summary><div><ol class="math-steps"><li>On identifie v = 6 m/s et f = 2 Hz.</li><li>On utilise v = λ × f.</li><li>On isole λ : λ = v ÷ f.</li><li>On remplace : λ = 6 ÷ 2.</li><li><strong>λ = 3 m.</strong></li></ol></div></details></article></div>
+      </div>
+    </section>
+
+    <hr class="rule wrap">
+
+    <!-- SIMULATION INTERACTIVE -->
+    <section class="compact lesson-section" id="simulation" aria-labelledby="simulation-titre">
+      <div class="wrap">
+        <div class="section-head reveal"><div class="eyebrow">Expérimentation numérique</div><h2 id="simulation-titre">Laboratoire virtuel : observe une onde</h2></div>
+        <p class="lesson-article">Modifie l'amplitude et la fréquence d'une <strong>onde transversale idéalisée</strong> qui se propage vers la droite. La vitesse de propagation est fixée à <strong>6 m/s</strong> : lorsque tu augmentes la fréquence, la longueur d'onde diminue.</p>
+        <div class="lesson-sim-box reveal">
+          <div class="lesson-controls">
+            <div class="lesson-control"><label for="sim-amp">Amplitude <output id="out-amp" for="sim-amp">0,8 cm</output></label><input id="sim-amp" type="range" min="0.3" max="1.3" step="0.1" value="0.8"></div>
+            <div class="lesson-control"><label for="sim-freq">Fréquence <output id="out-freq" for="sim-freq">2 Hz</output></label><input id="sim-freq" type="range" min="1" max="6" step="1" value="2"></div>
+          </div>
+          <div class="lesson-visual">
+            <svg id="sim-svg" viewBox="0 0 800 320" role="img" aria-labelledby="sim-svg-title sim-svg-desc">
+              <title id="sim-svg-title">Simulation d'une onde transversale se propageant vers la droite</title>
+              <desc id="sim-svg-desc">La courbe et ses repères changent selon l'amplitude et la fréquence sélectionnées. La vitesse de propagation est maintenue à 6 mètres par seconde.</desc>
+              <defs><marker id="simArrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse"><path d="M1 1 L7 4 L1 7 Z" fill="#a7732a"/></marker></defs>
+              <line x1="35" y1="165" x2="765" y2="165" stroke="#9cab9d" stroke-width="1.4" stroke-dasharray="7 6"/>
+              <path id="sim-wave" d="M35 165 Q120 75 205 165 T375 165 T545 165 T715 165" fill="none" stroke="#3d8066" stroke-width="4" stroke-linecap="round"/>
+              <line id="sim-a" x1="92" x2="92" y1="165" y2="133" stroke="#a7732a" stroke-width="3" />
+              <line id="sim-lam" x1="92" x2="260" y1="45" y2="45" stroke="#a7732a" stroke-width="3" />
+              <text id="sim-a-text" x="102" y="129" fill="#835920" font-size="18" font-weight="bold">A</text>
+              <text id="sim-lam-text" x="176" y="35" fill="#835920" font-size="18" font-weight="bold">λ</text>
+              <text x="45" y="188" fill="#506a5b" font-size="17">Position d'équilibre</text>
+              <text x="610" y="290" fill="#42624f" font-size="17">Position →</text>
+              <text x="46" y="25" fill="#42624f" font-size="16">Onde vers la droite →</text>
+            </svg>
+          </div>
+          <div class="lesson-readings" aria-live="polite">
+            <span id="sim-read-lam">λ = 3,00 m</span>
+            <span id="sim-read-period">T = 0,50 s</span>
+            <span>v = 6,00 m/s</span>
+          </div>
+          <div class="lesson-sim-actions">
+            <button type="button" class="lesson-btn" id="sim-toggle" aria-pressed="false">Mettre l'onde en mouvement</button>
+            <button type="button" class="lesson-btn" id="sim-reset">Réinitialiser</button>
+          </div>
+          <p class="scg-muted" style="font-size:.85rem;margin-top:1rem;">Dans ce modèle, l'amplitude est exprimée en centimètres de déplacement d'une corde; la longueur d'onde en mètres. Le dessin est agrandi pour observer facilement les variations. La fréquence détermine la vitesse d'oscillation de chaque point.</p>
+          <noscript><p>La simulation nécessite JavaScript. Les explications et les exemples de la leçon demeurent accessibles.</p></noscript>
+        </div>
+        <div class="lesson-note lesson-article"><p><strong>Trois expériences à essayer :</strong> (1) garde f à 2 Hz et augmente seulement A; (2) garde A à 0,8 cm et change f de 2 à 4 Hz; (3) explique pourquoi λ passe de 3 m à 1,5 m lorsque f double à vitesse constante.</p></div>
+      </div>
+    </section>
+
+    <hr class="rule wrap">
+
+    <!-- ACTIVITÉ À RÉALISER EN CLASSE -->
+    <section class="compact lesson-section" id="activite" aria-labelledby="activite-titre">
+      <div class="wrap">
+        <div class="section-head reveal"><div class="eyebrow">Démarche scientifique · En classe</div><h2 id="activite-titre">Expérience : une règle qui vibre</h2></div>
+        <div class="lesson-grid reveal">
+          <article class="lesson-panel">
+            <h3>Matériel</h3><p>Une règle souple en plastique, une table, un chronomètre et un cahier d'observation.</p>
+            <p><strong>Question scientifique :</strong> comment la longueur libre de la règle influence-t-elle la vitesse de vibration et le son produit?</p>
+          </article>
+          <article class="lesson-panel">
+            <h3>Hypothèse possible</h3><p>« Si la partie de la règle qui dépasse de la table est plus courte, alors les vibrations seront plus rapides et le son sera plus aigu. »</p>
+          </article>
+        </div>
+        <ol class="lesson-experiments lesson-article" style="margin-top:1.5rem;">
+          <li>Dépose la règle sur la table en laissant dépasser environ 15 cm. Maintiens fermement la partie posée sur la table.</li>
+          <li>Écarte légèrement l'extrémité libre, puis relâche-la. Observe les vibrations et écoute le son produit.</li>
+          <li>Recommence en laissant dépasser environ 10 cm, puis 5 cm. Essaie de garder une déformation initiale raisonnable et comparable.</li>
+          <li>Note tes observations dans un tableau : longueur libre, vitesse de vibration apparente, son grave ou aigu.</li>
+          <li>Compare les observations à ton hypothèse et rédige une conclusion en utilisant le mot <strong>fréquence</strong>.</li>
+        </ol>
+        <div class="lesson-note warning lesson-article"><p><strong>Sécurité :</strong> utilise une règle en bon état, déplace-la doucement et garde ton visage à distance de son extrémité. Ne fais jamais vibrer la règle près de l'oreille d'un camarade.</p></div>
+        <div class="lesson-example lesson-article"><h3>Question d'analyse</h3><p>Pourquoi est-il préférable de ne faire varier qu'un seul paramètre (la longueur libre), tout en gardant les autres conditions semblables?</p><details><summary>Afficher un exemple de réponse</summary><div><p>Pour déterminer si la différence de fréquence provient bien de la longueur libre de la règle, et non d'un changement de matériau, de force appliquée ou de méthode. C'est le principe du <strong>contrôle des variables</strong>.</p></div></details></div>
+      </div>
+    </section>
+
+    <hr class="rule wrap">
+
+    <!-- CONCLUSIONS / RÉVISION -->
+    <section class="compact lesson-section" id="synthese" aria-labelledby="synthese-titre">
+      <div class="wrap">
+        <div class="section-head reveal"><div class="eyebrow">Aide-mémoire</div><h2 id="synthese-titre">L'essentiel à retenir</h2></div>
+        <div class="lesson-table-wrapper reveal"><table class="lesson-table">
+          <thead><tr><th>Notion</th><th>Définition simple</th><th>Unité ou idée-clé</th></tr></thead>
+          <tbody>
+            <tr><td>Onde mécanique</td><td>Perturbation nécessitant un milieu matériel</td><td>Ne traverse pas le vide</td></tr>
+            <tr><td>Onde électromagnétique</td><td>Onde pouvant se propager sans milieu matériel</td><td>La lumière traverse le vide</td></tr>
+            <tr><td>Onde transversale</td><td>Oscillation perpendiculaire au sens de propagation</td><td>↕ tandis que l'onde avance →</td></tr>
+            <tr><td>Onde longitudinale</td><td>Oscillation parallèle au sens de propagation</td><td>↔ tandis que l'onde avance →</td></tr>
+            <tr><td>Amplitude A</td><td>Écart maximal à la position d'équilibre</td><td>Souvent en m ou cm pour une corde</td></tr>
+            <tr><td>Longueur d'onde λ</td><td>Distance entre deux points successifs en même phase</td><td>m</td></tr>
+            <tr><td>Fréquence f</td><td>Nombre de cycles par seconde</td><td>Hz ; f = N ÷ t</td></tr>
+            <tr><td>Période T</td><td>Temps nécessaire pour un cycle</td><td>s ; T = 1 ÷ f</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <hr class="rule wrap">
+
+    <!-- EXERCICES ET CORRIGÉS -->
+    <section class="compact lesson-section" id="exercices" aria-labelledby="exercices-titre">
+      <div class="wrap">
+        <div class="section-head reveal"><div class="eyebrow">Consolidation · Corrigés progressifs</div><h2 id="exercices-titre">Exercices à faire avant WeBWorK</h2></div>
+        <p class="lesson-article">Essaie chaque question sur papier, avec les unités et ta démarche. Clique ensuite sur « Voir le corrigé ». Les exemples et exercices de cette page ont été rédigés pour l'apprentissage; ils ne proviennent pas d'une épreuve ministérielle.</p>
+        <div class="lesson-examples reveal">
+          <article class="lesson-example"><h3>1. Type d'onde</h3><p>Un son se propage dans l'air. Indique s'il est mécanique ou électromagnétique et s'il est transversal ou longitudinal.</p><details><summary>Voir le corrigé</summary><div><p>Le son dans l'air est <strong>mécanique</strong> (il nécessite l'air) et <strong>longitudinal</strong> (les compressions se propagent dans la même direction que la vibration locale des particules).</p></div></details></article>
+          <article class="lesson-example"><h3>2. Vrai ou faux?</h3><p>« L'onde qui voyage sur une corde emporte tous les morceaux de corde avec elle. » Explique.</p><details><summary>Voir le corrigé</summary><div><p><strong>Faux.</strong> Chaque morceau de corde oscille autour de sa position d'équilibre; c'est la perturbation qui se propage le long de la corde.</p></div></details></article>
+          <article class="lesson-example"><h3>3. Amplitude</h3><p>Une onde présente une hauteur de 16 mm entre une crête et un creux. Détermine son amplitude.</p><details><summary>Voir le corrigé</summary><div><p>Hauteur totale = 2A. Donc A = 16 mm ÷ 2 = <strong>8 mm</strong>.</p></div></details></article>
+          <article class="lesson-example"><h3>4. Longueur d'onde</h3><p>La crête A se trouve à la position 8 cm et la crête B, immédiatement suivante, à la position 21 cm. Quelle est la longueur d'onde?</p><details><summary>Voir le corrigé</summary><div><p>λ = 21 − 8 = <strong>13 cm</strong>.</p></div></details></article>
+          <article class="lesson-example"><h3>5. Plusieurs crêtes</h3><p>La distance entre la première et la cinquième crête successives est de 28 cm. Quelle est λ?</p><details><summary>Voir le corrigé</summary><div><p>Entre 5 crêtes, il y a <strong>4</strong> intervalles, donc 4 longueurs d'onde. λ = 28 ÷ 4 = <strong>7 cm</strong>.</p></div></details></article>
+          <article class="lesson-example"><h3>6. Fréquence</h3><p>Un objet effectue 45 vibrations en 9 secondes. Calcule sa fréquence.</p><details><summary>Voir le corrigé</summary><div><p>f = N ÷ t = 45 ÷ 9 = <strong>5 Hz</strong>.</p></div></details></article>
+          <article class="lesson-example"><h3>7. Nombre de vibrations</h3><p>Une source oscille à une fréquence de 12 Hz. Combien de cycles effectue-t-elle en 5 secondes?</p><details><summary>Voir le corrigé</summary><div><p>N = f × t = 12 × 5 = <strong>60 cycles</strong>.</p></div></details></article>
+          <article class="lesson-example"><h3>8. Période</h3><p>Une onde a une fréquence de 8 Hz. Quelle est sa période?</p><details><summary>Voir le corrigé</summary><div><p>T = 1 ÷ f = 1 ÷ 8 = <strong>0,125 s</strong>.</p></div></details></article>
+          <article class="lesson-example"><h3>9. Grave ou aigu?</h3><p>Deux notes ont des fréquences de 150 Hz et 600 Hz. Laquelle est la plus aiguë? Peut-on savoir laquelle est la plus forte?</p><details><summary>Voir le corrigé</summary><div><p>La note de <strong>600 Hz</strong> est plus aiguë. On <strong>ne peut pas</strong> déterminer laquelle est la plus forte à partir de la fréquence seulement : il manque une information sur l'amplitude ou l'intensité sonore.</p></div></details></article>
+          <article class="lesson-example"><h3>10. Défi : vitesse et longueur d'onde</h3><p>Une onde se propage à 6 m/s avec une fréquence de 3 Hz. Quelle est λ? (Indice : v = λ × f.)</p><details><summary>Voir le corrigé</summary><div><p>λ = v ÷ f = 6 ÷ 3 = <strong>2 m</strong>.</p></div></details></article>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule wrap">
+
+    <!-- MINI QUIZ INTERACTIF -->
+    <section class="compact lesson-section" id="quiz" aria-labelledby="quiz-titre">
+      <div class="wrap">
+        <div class="section-head reveal"><div class="eyebrow">Autovérification</div><h2 id="quiz-titre">Mini-quiz : as-tu compris?</h2></div>
+        <form class="lesson-quiz" id="quiz-form">
+          <fieldset><legend>1. Le son dans l'air est une onde...</legend><label><input type="radio" name="q1" value="a"> électromagnétique transversale</label><label><input type="radio" name="q1" value="b"> mécanique longitudinale</label><label><input type="radio" name="q1" value="c"> qui se déplace dans le vide</label></fieldset>
+          <fieldset><legend>2. La distance entre une crête et le creux est de 12 cm. Quelle est A?</legend><label><input type="radio" name="q2" value="a"> 12 cm</label><label><input type="radio" name="q2" value="b"> 24 cm</label><label><input type="radio" name="q2" value="c"> 6 cm</label></fieldset>
+          <fieldset><legend>3. Deux crêtes consécutives sont séparées de 0,40 m. Quelle est λ?</legend><label><input type="radio" name="q3" value="a"> 0,40 m</label><label><input type="radio" name="q3" value="b"> 0,20 m</label><label><input type="radio" name="q3" value="c"> 0,80 m</label></fieldset>
+          <fieldset><legend>4. Une source effectue 20 cycles en 4 s. Quelle est f?</legend><label><input type="radio" name="q4" value="a"> 80 Hz</label><label><input type="radio" name="q4" value="b"> 0,20 Hz</label><label><input type="radio" name="q4" value="c"> 5 Hz</label></fieldset>
+          <fieldset><legend>5. Quelle grandeur détermine principalement si un son pur est grave ou aigu?</legend><label><input type="radio" name="q5" value="a"> La fréquence</label><label><input type="radio" name="q5" value="b"> L'amplitude</label><label><input type="radio" name="q5" value="c"> La distance jusqu'au haut-parleur</label></fieldset>
+          <div><button type="submit" class="lesson-btn">Corriger mes réponses</button> <button type="reset" class="lesson-btn" style="background:#5a6c62;border-color:#5a6c62;">Recommencer</button><div class="lesson-feedback" id="quiz-feedback" aria-live="polite"></div></div>
+        </form>
+      </div>
+    </section>
+
+    <hr class="rule wrap">
+
+    <!-- RESSOURCES / LIENS -->
+    <section class="compact lesson-section" id="ressources" aria-labelledby="ressources-titre">
+      <div class="wrap">
+        <div class="section-head reveal"><div class="eyebrow">Continuer à apprendre</div><h2 id="ressources-titre">Révision et ressources</h2></div>
+        <div class="resource-list reveal">
+          <a class="resource" href="https://learnwithdom.page/webwork2/SCG4059" target="_blank" rel="noopener noreferrer"><span class="icon">WEB</span><span><span class="label">WeBWorK — SCG-4059-2</span><span class="sub">Accéder aux exercices du cours (connexion possiblement requise).</span></span></a>
+          <a class="resource" href="https://dom-explorer.github.io/notes-cours/SCG4059/Chapitre1/Introduction_ondes.html"><span class="icon">HTML</span><span><span class="label">Retour à l'introduction du chapitre 1</span><span class="sub">Histoire des sciences, survol des ondes et parcours du chapitre.</span></span></a>
+          <a class="resource" href="https://www.alloprof.qc.ca/fr/eleves/bv/sciences/les-caracteristiques-d-une-onde-s1141" target="_blank" rel="noopener noreferrer"><span class="icon">AIDE</span><span><span class="label">Alloprof — Les caractéristiques d'une onde</span><span class="sub">Pour réviser les définitions et consulter des exemples supplémentaires.</span></span></a>
+          <a class="resource" href="https://fgacssdm.cssdm.gouv.qc.ca/wp-content/uploads/sites/4/2021/12/SCG-4059-2.pdf" target="_blank" rel="noopener noreferrer"><span class="icon">PDF</span><span><span class="label">Programme de formation — Science générale 1</span><span class="sub">Référence ministérielle, concept général « Ondes ».</span></span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-grid"><div><div class="brand-mono">learnwithdom.page</div><div style="margin-top:6px;">CEA Coaticook · Dominic Denault Pilon</div><div>SCG-4059-2 · Chapitre 1 · Section 1.1</div></div><div><a href="https://dom-explorer.github.io/notes-cours/SCG4059/Chapitre1/Introduction_ondes.html">Retour au chapitre 1</a><br><a href="https://learnwithdom.page/cours/scg4059.html">Retour au cours</a></div></div></footer>
+
+  <!-- =========================================================
+       SCRIPT 1 : onde animée (sans bibliothèque externe)
+       Modèle : y(x,t) = A sin(2π(x/λ − ft)), v = λf = 6 m/s.
+       ========================================================= -->
+  <script>
+    (() => {
+      const amplitude = document.getElementById('sim-amp');
+      const frequence = document.getElementById('sim-freq');
+      const path = document.getElementById('sim-wave');
+      const aLine = document.getElementById('sim-a');
+      const lambdaLine = document.getElementById('sim-lam');
+      const aText = document.getElementById('sim-a-text');
+      const lambdaText = document.getElementById('sim-lam-text');
+      const toggle = document.getElementById('sim-toggle');
+      const reset = document.getElementById('sim-reset');
+      const fNumber = (v, n) => Number(v).toFixed(n).replace('.', ',');
+      const speed = 6; // mètres par seconde dans le modèle
+      const x0 = 35, plotWidth = 730, y0 = 165, totalMeters = 12;
+      let running = false;
+      let phaseTime = 0;
+      let lastFrame = 0;
+      let rafId = 0;
+      const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false;
+
+      function draw() {
+        const a = Number(amplitude.value), f = Number(frequence.value);
+        const lambda = speed / f;
+        const ampPx = a * 43;
+        const nPoints = 730;
+        let d = '';
+        for (let i = 0; i <= nPoints; i++) {
+          const xMeters = totalMeters * i / nPoints;
+          const x = x0 + plotWidth * i / nPoints;
+          const y = y0 - ampPx * Math.sin(2 * Math.PI * (xMeters / lambda - f * phaseTime));
+          d += `${i === 0 ? 'M' : 'L'}${x.toFixed(2)},${y.toFixed(2)} `;
+        }
+        path.setAttribute('d', d);
+        // Position d'une crête, en choisissant une paire visible dans le graphique.
+        let crestM = (0.25 + f * phaseTime) * lambda;
+        while (crestM < 1) crestM += lambda;
+        while (crestM >= 1 + lambda) crestM -= lambda;
+        const crestX = x0 + plotWidth * crestM / totalMeters;
+        const crest2X = x0 + plotWidth * (crestM + lambda) / totalMeters;
+        const crestY = y0 - ampPx;
+        aLine.setAttribute('x1',crestX); aLine.setAttribute('x2',crestX);
+        aLine.setAttribute('y1',crestY); aLine.setAttribute('y2',y0);
+        aText.setAttribute('x',Math.min(crestX+10,735)); aText.setAttribute('y',crestY+ampPx/2);
+        lambdaLine.setAttribute('x1',crestX); lambdaLine.setAttribute('x2',Math.min(crest2X,765));
+        lambdaText.setAttribute('x',Math.min((crestX+crest2X)/2,745));
+        document.getElementById('out-amp').textContent = `${fNumber(a,1)} cm`;
+        document.getElementById('out-freq').textContent = `${f} Hz`;
+        document.getElementById('sim-read-lam').textContent = `λ = ${fNumber(lambda,2)} m`;
+        document.getElementById('sim-read-period').textContent = `T = ${fNumber(1/f,2)} s`;
+      }
+
+      function stop() {
+        running = false;
+        cancelAnimationFrame(rafId);
+        lastFrame = 0;
+        toggle.textContent = 'Mettre l’onde en mouvement';
+        toggle.setAttribute('aria-pressed','false');
+      }
+      function frame(timestamp) {
+        if (!running) return;
+        if (lastFrame) phaseTime += Math.min((timestamp - lastFrame) / 1000, 0.05) * 0.35;
+        lastFrame = timestamp;
+        draw();
+        rafId = requestAnimationFrame(frame);
+      }
+      toggle.addEventListener('click', () => {
+        if (running) { stop(); return; }
+        running = true;
+        toggle.textContent = 'Mettre en pause';
+        toggle.setAttribute('aria-pressed','true');
+        rafId = requestAnimationFrame(frame);
+      });
+      reset.addEventListener('click', () => {
+        stop(); amplitude.value = '0.8'; frequence.value = '2'; phaseTime = 0; draw();
+      });
+      amplitude.addEventListener('input',draw);
+      frequence.addEventListener('input',draw);
+      if (reducedMotion) stop();
+      draw();
+    })();
+  </script>
+
+  <!-- SCRIPT 2 : correction du mini-quiz, aucune note n'est envoyée. -->
+  <script>
+    (() => {
+      const form = document.getElementById('quiz-form');
+      const feedback = document.getElementById('quiz-feedback');
+      const correct = {q1:'b',q2:'c',q3:'a',q4:'c',q5:'a'};
+      const notes = {
+        q1:'Le son a besoin d’un milieu matériel et se propage par compressions.',
+        q2:'L’amplitude est la moitié de la distance crête–creux : 12 ÷ 2 = 6 cm.',
+        q3:'Une longueur d’onde est la distance entre deux crêtes consécutives : 0,40 m.',
+        q4:'f = N ÷ t = 20 ÷ 4 = 5 Hz.',
+        q5:'La hauteur (grave/aigu) dépend de la fréquence, non de l’amplitude.'
+      };
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        let score = 0, answered = 0;
+        const mistakes=[];
+        Object.entries(correct).forEach(([question,answer],idx) => {
+          const chosen = form.querySelector(`input[name="${question}"]:checked`);
+          if (chosen) {
+            answered++;
+            if (chosen.value === answer) score++;
+            else mistakes.push(`Question ${idx+1} : ${notes[question]}`);
+          }
+        });
+        feedback.textContent = `${score} / 5 bonnes réponses · ${answered} / 5 questions complétées.` +
+          (mistakes.length ? ' À revoir : ' + mistakes.join(' ') : '') +
+          (answered < 5 ? ' Réponds aux questions restantes pour terminer.' : '');
+      });
+      form.addEventListener('reset', () => {feedback.textContent = ''});
+    })();
+  </script>
+</body>
+</html>
