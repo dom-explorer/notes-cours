@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MAT-P101-4 : section 1.11 — Vue d’ensemble : synthèse des savoirs. Notes, exemples détaillés, exercices avec corrigés cachés et activité interactive.">
+  <title>MAT-P101-4 · 1.11 — Vue d’ensemble : synthèse des savoirs | learnwithdom.page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Literata:opsz,wght@18..144,400;18..144,500;18..144,600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+
+
+/* ========================================================
+   MAT-P101 — Styles autonomes inspirés de learnwithdom.page
+   Palette, typographie, composants, interactivité, mobile
+   ======================================================== */
+:root{color-scheme:light;--ardoise:#223a34;--ardoise-deep:#182922;--papier:#eaeee9;--papier-2:#e0e5dd;--encre:#1c2b3a;--craie:#d9a441;--sapin:#4b7a68;--blanc:#fcfbf7;--bord:#d4ded5;--ombre:0 14px 36px rgba(24,41,34,.075);--rayon:18px}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;background:var(--papier);color:var(--encre);font:400 16px/1.75 "Literata",Georgia,serif;-webkit-font-smoothing:antialiased}
+.wrap{width:min(1140px,calc(100% - 3rem));margin-inline:auto}
+h1,h2,h3,h4,button,.ui-font{font-family:"Space Grotesk",Arial,sans-serif;letter-spacing:-.025em}
+h2{font-size:clamp(1.75rem,3.7vw,2.45rem);line-height:1.17;color:var(--ardoise)}
+h3{color:var(--ardoise);line-height:1.28}
+p{margin:0 0 1.15rem}
+a{color:#285d4b}a:hover{color:#2b775c}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #c48725;outline-offset:3px}
+button,input,select{font:inherit}button{cursor:pointer}
+img,svg{display:block;max-width:100%}figure{margin:0}
+.eyebrow{font:600 .74rem/1.7 "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--sapin)}
+.muted{color:#596b62}.small{font-size:.86rem}.kicker{font:700 .81rem "JetBrains Mono",monospace;letter-spacing:.08em;color:#d2e3d7}
+.content-section{padding:clamp(2.9rem,6vw,5.3rem) 0;border-top:1px solid #cbd9ce;scroll-margin-top:100px}
+.section-head{margin-bottom:1.65rem}.section-head h2{margin:.35rem 0 .8rem}.section-head p{max-width:78ch}
+header.site{position:sticky;top:0;z-index:50;background:rgba(24,41,34,.98);color:var(--blanc);border-bottom:1px solid rgba(255,255,255,.12)}
+header.site nav{display:flex;align-items:center;gap:1.8rem;min-height:71px}
+.brand{white-space:nowrap;color:white;font:700 1.22rem "Space Grotesk",sans-serif;letter-spacing:-.045em;text-decoration:none}.brand span{color:var(--craie)}
+.nav-links{display:flex;gap:1.6rem;list-style:none;margin:0 auto 0 0;padding:0;font:500 .9rem "Space Grotesk",sans-serif}
+.nav-links a{color:#e1e9e2;text-decoration:none}.nav-links a:hover{color:var(--craie)}
+.nav-cta{color:#ffdd9b;border:1px solid #d7ac65;border-radius:10px;padding:.58rem .9rem;text-decoration:none;white-space:nowrap;font:600 .88rem "Space Grotesk",sans-serif}
+.hero{position:relative;overflow:hidden;background:linear-gradient(125deg,var(--ardoise-deep),var(--ardoise) 78%);color:var(--blanc)}
+.hero::before{position:absolute;content:"";inset:0;background-image:linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:3rem;align-items:center;padding:clamp(3.1rem,7vw,6rem) 0}
+.hero .eyebrow{color:#e8d6af}.hero .eyebrow a{color:#f3ca86;text-decoration:none}
+.hero h1{font-size:clamp(3rem,7vw,5.3rem);line-height:1.03;letter-spacing:-.065em;margin:.8rem 0 .65rem;color:white}
+.hero .lede{font:600 clamp(1.25rem,2.6vw,1.7rem) "Space Grotesk",sans-serif;color:#f5d092;line-height:1.3}
+.hero .intro{color:#e0e9e3;max-width:70ch}
+.hero-stats{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.25rem 0 0}
+.hero-stats span{border:1px solid #ffffff45;border-radius:100px;padding:.35rem .7rem;color:#e6eee7;font:500 .79rem "Space Grotesk",sans-serif}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.3rem;border:1px solid var(--sapin);border-radius:11px;padding:.75rem 1rem;text-decoration:none;font:700 .9rem "Space Grotesk",sans-serif;transition:transform .15s ease,background .15s ease}
+.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--craie);color:#1b2a24;border-color:var(--craie)}.btn-primary:hover{color:#1b2a24;background:#f0bc61}
+.btn-ghost{border-color:#ffffff65;color:white;background:#ffffff10}.btn-ghost:hover{color:white;background:#ffffff28}
+.btn-light{background:#fff;color:#274638;border-color:var(--bord)}.btn-light:hover{background:#eff6ef}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.8rem}
+.hero-visual{position:relative;min-height:320px;background:linear-gradient(140deg,#37584c,#284339);border:1px solid #ffffff35;border-radius:22px;padding:1.6rem;box-shadow:0 24px 56px #00000021;display:flex;flex-direction:column;justify-content:center;gap:1rem}
+.hero-visual .mini-top{font:500 .73rem "JetBrains Mono",monospace;color:#e1c58f;letter-spacing:.08em}
+.hero-paper{background:#f9f8f0;color:#243c32;border-radius:12px;padding:1.15rem 1.25rem;transform:rotate(-2deg);box-shadow:0 15px 32px #00000026}
+.hero-paper .receipt-head{text-align:center;font:700 .9rem "Space Grotesk",sans-serif;letter-spacing:.1em;padding-bottom:.5rem;border-bottom:1px dashed #95a89c}
+.receipt-line{display:flex;justify-content:space-between;gap:.5rem;font:500 .83rem/2 "JetBrains Mono",monospace}
+.receipt-total{margin-top:.4rem;padding-top:.35rem;border-top:1px dashed #95a89c;font-weight:700;font-size:1.08rem}
+.hero-stamp{align-self:flex-end;color:#efd7a4;font:600 .84rem "Space Grotesk",sans-serif}
+.quick-nav{background:#dbe5da;border-bottom:1px solid #c6d5c7}.quick-nav-inner{display:flex;gap:.8rem;flex-wrap:wrap;padding:.9rem 0;font:600 .79rem "Space Grotesk",sans-serif}.quick-nav a{padding:.3rem .55rem;text-decoration:none;border-radius:7px}.quick-nav a:hover{background:#f4f8f3}
+.story-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:2rem;align-items:center}.lead{font-size:1.12rem;color:#344f42}.story-note{border-left:4px solid var(--craie);background:#f8f8f1;border-radius:0 12px 12px 0;padding:1rem 1.3rem;margin-top:1.4rem}
+.photo{background:#e4ebe1;border:1px solid var(--bord);border-radius:17px;overflow:hidden;box-shadow:var(--ombre)}.photo img{width:100%;height:270px;object-fit:cover;background:#dce5dd}
+.photo figcaption{font:400 .75rem/1.5 "Space Grotesk",sans-serif;padding:.7rem 1rem;color:#53655b}.photo figcaption a{font-weight:600}
+.photo-collage{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.photo-collage figure:first-child{grid-column:1/-1}.photo-collage figure:not(:first-child) img{height:150px}.photo-collage figure:first-child img{height:230px}
+.card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.chapter-card{display:flex;flex-direction:column;gap:.8rem;min-height:255px;text-decoration:none;color:var(--encre);background:var(--blanc);border:1px solid var(--bord);border-radius:17px;padding:1.35rem;box-shadow:var(--ombre);transition:transform .18s ease,border-color .18s ease}
+.chapter-card:hover{transform:translateY(-4px);border-color:var(--sapin);color:var(--encre)}.chapter-card-top{display:flex;justify-content:space-between;gap:1rem;font:600 .72rem "JetBrains Mono",monospace;color:var(--sapin)}
+.chapter-card strong{font:700 1.22rem/1.32 "Space Grotesk",sans-serif;color:var(--ardoise)}.chapter-desc{font:400 .91rem/1.6 "Literata",serif}.chapter-link{margin-top:auto;color:#386c55;font:700 .85rem "Space Grotesk",sans-serif}
+.chapter-detail{padding:2.7rem 0}.chapter-context{font-size:1.02rem;max-width:80ch}.section-drawer{background:var(--blanc);border:1px solid var(--bord);border-radius:14px;box-shadow:var(--ombre);overflow:hidden}
+.section-drawer summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;padding:1.1rem 1.3rem;font:700 .96rem "Space Grotesk",sans-serif;color:var(--ardoise);background:#f7faf6}
+.section-drawer summary::marker{content:""}.section-drawer summary::-webkit-details-marker{display:none}.section-drawer[open] summary{border-bottom:1px solid var(--bord)}
+.syllabus{list-style:none;padding:.6rem 1rem .8rem;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.1rem 1rem}
+.syllabus li{display:grid;grid-template-columns:3.5rem 1fr;gap:.5rem;align-items:start;padding:.55rem;border-bottom:1px solid #e8eee7;font-size:.92rem}
+.sec-no{font:600 .78rem "JetBrains Mono",monospace;color:#36705a}.section-after{margin:1rem 0 0;font:600 .84rem "Space Grotesk",sans-serif}
+.learning-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.learning-step{background:#fdfcf7;border:1px solid var(--bord);border-radius:15px;padding:1.3rem}.step-circle{display:inline-grid;place-items:center;width:2.35rem;height:2.35rem;border-radius:50%;background:#e1e9df;color:#255341;font:700 .9rem "JetBrains Mono",monospace}.learning-step h3{font-size:1.08rem;margin:.8rem 0 .4rem}.learning-step p{font-size:.92rem;margin:0}
+.activity-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;align-items:stretch}.activity{background:var(--blanc);border:1px solid var(--bord);border-radius:19px;padding:1.45rem;box-shadow:var(--ombre)}.activity h3{font-size:1.22rem;margin:.4rem 0 .4rem}.activity p{font-size:.91rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin:1.2rem 0}.field{display:flex;flex-direction:column;gap:.35rem;min-width:0}.field label,.slider-top{font:600 .82rem "Space Grotesk",sans-serif;color:var(--ardoise)}
+.field input,.field select{min-width:0;width:100%;padding:.72rem .8rem;background:#f9fbf8;border:1px solid #b7cdbb;border-radius:9px;color:var(--encre);font:500 .95rem "Space Grotesk",sans-serif}
+.result{margin-top:1.15rem;border-radius:12px;background:#e5efe7;border:1px solid #b5cdb8;padding:1rem 1.15rem}
+.result .big{font:700 1.75rem/1.2 "Space Grotesk",sans-serif;color:#214b38}.result .result-row{display:flex;justify-content:space-between;gap:.6rem;border-bottom:1px solid #c8d8cb;padding:.24rem 0;font:500 .9rem "Space Grotesk",sans-serif}.result .result-row:last-child{border:0}.result-foot{font-size:.78rem;color:#5b6a61;margin-top:.6rem}
+.slider-field{margin:1rem 0}.slider-top{display:flex;justify-content:space-between;gap:.5rem}.slider-field input[type="range"]{width:100%;accent-color:#477d64;cursor:pointer}.budget-meter{background:#e7eee7;border-radius:100px;height:18px;overflow:hidden;display:flex;margin:.8rem 0}.budget-spent{background:#ca9251;width:0%;transition:width .2s}.budget-left{background:#4b7a68;width:0%;transition:width .2s}.budget-over{background:#a84742;width:0%;transition:width .2s}.budget-legend{display:flex;flex-wrap:wrap;gap:1rem;font:600 .8rem "Space Grotesk",sans-serif}.budget-legend span::before{content:"";display:inline-block;width:.7rem;height:.7rem;border-radius:50%;margin-right:.35rem;background:#ca9251}.budget-legend span:nth-child(2)::before{background:#4b7a68}
+.emphasis{padding:1rem 1.2rem;background:#e2eadd;border-left:4px solid var(--sapin);border-radius:0 10px 10px 0}
+.quiz{background:#fdfcf8;border:1px solid var(--bord);border-radius:18px;padding:1.3rem;max-width:900px}.question{border:0;border-bottom:1px solid var(--bord);margin:0 0 1rem;padding:0 0 1rem}.question:last-of-type{border-bottom:0}.question legend{font:700 1.02rem/1.45 "Space Grotesk",sans-serif;color:var(--ardoise);margin-bottom:.45rem}.option{display:flex;align-items:flex-start;gap:.55rem;padding:.3rem .1rem;font-size:.93rem;cursor:pointer}.option input{margin-top:.42rem;accent-color:#3e735d}.quiz-feedback{margin-top:1rem;min-height:1.2rem;font-weight:600;color:var(--ardoise);white-space:pre-line}
+.references{display:grid;gap:.55rem}.reference{padding:.85rem 1rem;background:#fafcf8;border:1px solid var(--bord);border-radius:10px;font:500 .89rem "Space Grotesk",sans-serif}.reference a{font-weight:700}
+footer{background:var(--ardoise-deep);color:#d6dfd7;font:400 .88rem/1.7 "Space Grotesk",sans-serif;padding:2rem 0}.footer-grid{display:flex;align-items:center;justify-content:space-between;gap:1rem}.brand-mono{font:700 1.1rem "JetBrains Mono",monospace;color:white}footer a{color:#edc27b;text-decoration:none}
+@media(max-width:900px){.hero-grid,.story-grid{grid-template-columns:1fr}.hero-visual{max-width:580px;min-height:260px}.card-grid{grid-template-columns:1fr 1fr}.activity-grid{grid-template-columns:1fr}.learning-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.wrap{width:min(100% - 2rem,1140px)}header.site nav{flex-wrap:wrap;padding:.5rem 0;gap:.7rem}.nav-links{order:3;width:100%;margin:0;justify-content:center;gap:1rem}.nav-cta{margin-left:auto}.hero-grid{padding:3rem 0;gap:1rem}.hero h1{font-size:clamp(2.65rem,11vw,4rem)}.card-grid,.learning-grid,.syllabus{grid-template-columns:1fr}.photo-collage{grid-template-columns:1fr 1fr}.activity{padding:1rem}.footer-grid{flex-direction:column;align-items:start}}
+@media(max-width:420px){.form-grid{grid-template-columns:1fr}.photo-collage{grid-template-columns:1fr}.photo-collage figure:first-child{grid-column:auto}.hero-actions .btn{width:100%}.brand{font-size:1.05rem}.quick-nav-inner{gap:.2rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.chapter-card,.budget-spent,.budget-left,.budget-over{transition:none}}
+@media print{header.site,.quick-nav,.hero-actions,.activity button{display:none!important}.hero{background:white;color:black}.hero h1,.hero .lede,.hero .intro{color:black}.content-section{padding:1.4rem 0}.section-drawer{break-inside:avoid}.activity{break-inside:avoid}body{background:white}.hero-grid{display:block}.hero-visual{display:none}.photo img{height:150px}}
+
+
+/* === Ajouts propres aux pages d'introduction des chapitres === */
+.hero-grid{grid-template-columns:1.13fr .87fr}
+.hero h1{font-size:clamp(2.6rem,5.6vw,4.65rem)}
+.hero-visual{min-height:275px}.hero-visual svg{width:100%;height:auto;max-height:250px}
+.tag-line{font:600 .79rem "JetBrains Mono",monospace;color:#f0cc8c}
+.question-intro{max-width:83ch}
+.chapter-outline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem}
+.chapter-block{background:#fcfbf7;border:1px solid var(--bord);border-radius:17px;padding:1.25rem;box-shadow:var(--ombre)}
+.chapter-block h3{font-size:1.12rem;margin:0 0 .5rem}
+.chapter-block p{font-size:.88rem;color:#52675c;margin:0 0 .85rem}
+.lesson-list{list-style:none;margin:.6rem 0 0;padding:0}
+.lesson-list li{display:grid;grid-template-columns:3.65rem 1fr;gap:.65rem;border-top:1px solid #e5ebe3;padding:.62rem 0;font-size:.86rem;line-height:1.5;scroll-margin-top:125px}
+.lesson-list code{font:.7rem 'JetBrains Mono',monospace;color:#2e7154;padding-top:.15rem}
+.lesson-list strong{font-family:'Space Grotesk',sans-serif;color:var(--ardoise);font-size:.9rem;display:block}
+.lesson-list small{color:#536b5e;display:block;font-size:.79rem}
+.story-grid{grid-template-columns:1.14fr .86fr}
+.hero-visual .mini-top{font-size:.78rem}
+.mini-board{background:#fdfcf5;border-radius:14px;padding:1.25rem;color:#223b31;min-height:200px}
+.mini-board .board-title{font:700 .82rem 'JetBrains Mono',monospace;letter-spacing:.035em;color:#47725c}
+.photo img{height:310px}
+.concept-tile{background:var(--blanc);border:1px solid var(--bord);padding:1.25rem;border-radius:15px}
+.concept-tile strong{display:block;font:700 1.04rem 'Space Grotesk',sans-serif;color:var(--ardoise);margin-bottom:.35rem}
+.concept-tile p{font-size:.9rem;margin:0}
+.mini-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.activity-result{background:#f1f6ee;border-left:4px solid #56816a;border-radius:0 12px 12px 0;padding:1rem 1.1rem;margin-top:1rem;color:#203d2c}
+.activity-result strong{font:700 1.4rem 'Space Grotesk',sans-serif;display:block}
+.activity-result p{font-size:.89rem;margin:.35rem 0 0;line-height:1.6}
+.activity svg{width:100%;height:auto;max-height:270px}
+.field input[type='number'],.field select{width:100%;min-width:0;background:white;border:1px solid #aebeb1;border-radius:9px;padding:.6rem .7rem;color:#1b3028}
+.field input[type='range']{width:100%;accent-color:#477d64}
+.mini-caption{font:400 .76rem/1.5 'Space Grotesk',sans-serif;color:#55705f}
+.illustration{width:100%;background:#f2f5ec;border:1px solid var(--bord);border-radius:15px;padding:.8rem;overflow:hidden}
+.illustration svg{max-height:250px;width:100%}
+.chapter-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.info-block{border:1px solid var(--bord);background:#fdfcf9;border-radius:14px;padding:1.15rem}
+.info-block .eyebrow{font-size:.69rem}
+.info-block h3{font-size:1rem;margin:.4rem 0 .5rem}
+.info-block p{font-size:.87rem;margin:0}
+.activity small{font-size:.79rem}
+.tabular{font-variant-numeric:tabular-nums;font-family:'JetBrains Mono',monospace}
+.status{font:600 .84rem 'Space Grotesk',sans-serif}
+.link-note{font:400 .82rem/1.6 'Space Grotesk',sans-serif;color:#576b61}
+/* Respect des préférences et de l'utilisation mobile */
+@media(max-width:900px){.chapter-outline{grid-template-columns:1fr}.hero-grid{grid-template-columns:1fr}.mini-grid,.chapter-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.mini-grid,.chapter-steps{grid-template-columns:1fr}.photo img{height:240px}.hero-visual{min-height:230px}}
+@media print{.lesson-list li{break-inside:avoid}.chapter-block{break-inside:avoid}.hero-visual{display:none}}
+
+  
+
+/* =========================================================
+   MAT-P101 — Ajouts pédagogiques pour les sections 1.1 à 1.12
+   Pages autonomes : cette feuille est intégrée à chaque HTML.
+   ========================================================= */
+.lesson-hero .hero-grid {grid-template-columns: minmax(0,1.15fr) minmax(260px,.85fr)}
+.lesson-hero h1 {font-size:clamp(2.1rem,5vw,4.15rem);line-height:1.1}
+.lesson-hero .chapter-tag {display:inline-block;font:600 .78rem 'JetBrains Mono',monospace;letter-spacing:.05em;color:#f0cf92;margin:0 0 .5rem}
+.lesson-hero .hero-visual {min-height:285px;padding:1.1rem}
+.lesson-hero .hero-visual figcaption {color:#e6ede6;font:500 .75rem 'Space Grotesk',sans-serif;margin:.4rem 0 0;text-align:center}
+.lesson-hero svg {width:100%;max-height:260px;height:auto}
+.lesson-top {display:flex;gap:.5rem;flex-wrap:wrap;margin:.8rem 0 1.2rem}
+.lesson-top span{display:inline-block;border-radius:100px;border:1px solid #ffffff40;padding:.28rem .58rem;color:#e7f1e9;font:600 .76rem 'Space Grotesk',sans-serif}
+.lesson-breadcrumb {font:500 .8rem/1.6 'Space Grotesk',sans-serif;margin-bottom:.8rem;color:#f1d8ab}
+.lesson-breadcrumb a {color:inherit}
+.lesson-intro {font-size:1.1rem;max-width:76ch}
+.lesson-story {background:#f9f9f3;border-left:5px solid var(--craie);padding:1.25rem 1.5rem;border-radius:0 14px 14px 0;box-shadow:var(--ombre);margin:1.4rem 0}
+.lesson-story .eyebrow{margin-bottom:.4rem}
+.lesson-story p{margin-bottom:0}
+.lesson-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.lesson-card {background:var(--blanc);border:1px solid var(--bord);border-radius:16px;padding:1.2rem 1.3rem;box-shadow:var(--ombre)}
+.lesson-card h3 {font-size:1.14rem;margin:0 0 .45rem}
+.lesson-card p {margin:0;font-size:.94rem;line-height:1.72}
+.lesson-steps {list-style:none;counter-reset:lessonsteps;display:grid;gap:.75rem;padding:0;margin:1.2rem 0 0}
+.lesson-steps li {counter-increment:lessonsteps;display:grid;grid-template-columns:2.5rem 1fr;gap:.75rem;align-items:start;padding:1rem 1.15rem;background:#f9fbf7;border:1px solid var(--bord);border-radius:13px}
+.lesson-steps li::before {content:counter(lessonsteps);font:700 .95rem 'JetBrains Mono',monospace;display:grid;place-items:center;width:2.3rem;height:2.3rem;border-radius:50%;color:white;background:var(--sapin)}
+.example-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;align-items:stretch}
+.example-card {background:#fafaf5;border:1px solid var(--bord);border-radius:16px;padding:1.25rem 1.4rem;min-width:0}
+.example-card h3{font-size:1.07rem;margin:.4rem 0 .85rem}
+.example-card .eyebrow{font-size:.69rem}
+.example-card ol {padding-left:1.2rem;margin:.55rem 0 1rem}
+.example-card li{padding-left:.12rem;margin:.4rem 0;line-height:1.55;font-size:.9rem}
+.answer-box {background:#e6efe7;border-left:4px solid var(--sapin);padding:.75rem 1rem;border-radius:0 9px 9px 0;font:700 .96rem 'Space Grotesk',sans-serif;color:#254c3c}
+.practice-top {display:flex;gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:0 0 1.2rem}
+.practice-controls {display:flex;gap:.6rem;flex-wrap:wrap}
+.lesson-btn {border:1px solid var(--sapin);color:#244739;border-radius:9px;background:white;padding:.55rem .85rem;font:600 .81rem 'Space Grotesk',sans-serif}
+.lesson-btn:hover{background:#e6f0e8}
+.practice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem}
+.practice-card {background:var(--blanc);border:1px solid var(--bord);border-radius:14px;padding:1.15rem 1.2rem;min-width:0}
+.practice-card h3 {font:700 1.02rem/1.35 'Space Grotesk',sans-serif;margin:.25rem 0 .8rem}
+.practice-card .eyebrow {font-size:.71rem}
+.practice-card details {margin-top:.75rem;border:1px solid #ccd8cd;border-radius:9px;overflow:hidden}
+.practice-card details summary {cursor:pointer;padding:.7rem .9rem;background:#eef4ee;color:#2e5b45;font:700 .81rem 'Space Grotesk',sans-serif;list-style:revert}
+.practice-card details[open] summary {border-bottom:1px solid #d2ded4}
+.practice-card details .detail-body {padding:.8rem .95rem}
+.practice-card details .detail-body ol {margin:0 0 .65rem;padding-left:1.2rem}
+.practice-card details .detail-body li {margin:.25rem 0;font-size:.91rem;line-height:1.55}
+.practice-card .hint summary{background:#f7f2e5;color:#6b552b}
+.practice-card .hint p {font-size:.89rem;margin:0}
+.practice-card .solution-answer {margin:.4rem 0 0;background:#e6efe7;border-radius:7px;padding:.55rem .65rem;font:700 .9rem 'Space Grotesk',sans-serif;color:#264937}
+.live-wrap {display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;align-items:start}
+.live-panel {border:1px solid var(--bord);background:var(--blanc);border-radius:17px;padding:1.4rem;box-shadow:var(--ombre)}
+.live-panel h3{font-size:1.2rem;margin:0 0 1.1rem}
+.live-panel label {display:block;font:700 .85rem 'Space Grotesk',sans-serif;color:#355344;margin:0 0 .3rem}
+.live-panel input[type=number]{display:block;width:100%;max-width:100%;padding:.7rem .85rem;border:1px solid #b9cbbb;border-radius:9px;background:#f7faf5;font:600 1rem 'JetBrains Mono',monospace;color:#1d4534;margin:0 0 1.1rem}
+.live-result {border:1px dashed #adc4ae;background:#e7f0e8;border-radius:13px;padding:1.2rem;min-height:135px;overflow-wrap:anywhere}
+.live-result .big {display:block;font:700 clamp(1.25rem,3vw,1.9rem)/1.3 'Space Grotesk',sans-serif;color:#234a37;margin:.25rem 0 .5rem}
+.live-result .small {font-size:.88rem;color:#435b4f;line-height:1.5}
+.live-note {background:#f6f5ed;border-radius:13px;padding:1.1rem 1.3rem;border:1px solid #dbd9c5}
+.live-note h3{font-size:1.1rem;margin:0 0 .5rem}
+.live-note p{margin:0;font-size:.94rem}
+.quiz-panel{background:var(--blanc);border:1px solid var(--bord);padding:1.4rem;border-radius:16px}
+.quiz-panel fieldset {border:0;border-top:1px solid var(--bord);padding:1rem 0;margin:0}
+.quiz-panel fieldset:first-child {border-top:0}
+.quiz-panel legend {font:700 1rem/1.5 'Space Grotesk',sans-serif;color:#263e32;white-space:normal;padding-top:.5rem}
+.quiz-panel .q-option {display:block;padding:.45rem .55rem;border:1px solid transparent;border-radius:7px;font-size:.93rem;cursor:pointer}
+.quiz-panel .q-option:hover {background:#f0f5ed}
+.quiz-panel input{accent-color:#3b6f59;margin-right:.5rem}
+.quiz-result{margin-top:1.1rem;border-left:4px solid var(--sapin);background:#eef5ef;border-radius:0 11px 11px 0;padding:1rem 1.2rem}
+.quiz-result:empty{display:none}
+.lesson-bottom-nav {display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;padding:1.4rem 0 0}
+.lesson-bottom-nav a{display:inline-flex;align-items:center;padding:.65rem .95rem;background:var(--blanc);border:1px solid var(--bord);border-radius:11px;font:700 .86rem 'Space Grotesk',sans-serif;text-decoration:none}
+.lesson-sources {margin:1.2rem 0 0;padding:.95rem 1.2rem;background:#f7f8f1;border:1px solid var(--bord);border-radius:12px;font:400 .83rem/1.6 'Space Grotesk',sans-serif}
+.lesson-sources a{font-weight:700}
+.lesson-toc {display:flex;flex-wrap:wrap;gap:.45rem}
+.lesson-toc a{color:#325747;border:1px solid #bbccbf;background:#f5f9f3;border-radius:7px;padding:.32rem .52rem;text-decoration:none;font:600 .77rem 'JetBrains Mono',monospace}
+.lesson-toc a[aria-current=page]{color:white;background:#3e6c57;border-color:#3e6c57}
+.svg-panel {background:#eff4ed;border:1px solid #c9d9ca;border-radius:14px;padding:1rem;margin:1rem 0}
+.svg-panel svg{width:100%;max-height:300px;height:auto}
+.svg-panel figcaption{text-align:center;font:.82rem/1.6 'Space Grotesk',sans-serif;color:#4e6659;padding:.5rem 0 0}
+@media(max-width:800px){.lesson-hero .hero-grid,.lesson-grid,.example-grid,.practice-grid,.live-wrap{grid-template-columns:1fr}.lesson-hero .hero-grid{gap:1.4rem}.lesson-hero .hero-visual{min-height:230px}}
+@media print {header.site,.quick-nav,.hero-actions,.practice-controls,.lesson-toc,.lesson-bottom-nav,.quiz-panel button{display:none!important}.hero{background:white!important;color:black!important}.hero h1,.hero .lede{color:black!important} .practice-card details:not([open]) .detail-body{display:none!important} .content-section{padding:1.3rem 0} }
+
+  </style>
+</head>
+<body>
+  <!-- Navigation identique à la page d'introduction MAT-P101 -->
+  <header class="site"><div class="wrap"><nav>
+    <a class="brand" href="https://learnwithdom.page/">learnwithdom<span>.page</span></a>
+    <ul class="nav-links"><li><a href="../Introduction.html">MAT-P101</a></li><li><a href="Introduction.html">Chapitre 1</a></li><li><a href="https://learnwithdom.page/#cours">Cours</a></li></ul>
+    <a class="nav-cta" href="https://learnwithdom.page/webwork2">WeBWorK →</a>
+  </nav></div></header>
+
+  <!-- Présentation de la section et schéma SVG autonome -->
+  <section class="hero lesson-hero"><div class="wrap hero-grid">
+    <div>
+      <div class="lesson-breadcrumb"><a href="../Introduction.html">MAT-P101-4</a> / <a href="Introduction.html">Chapitre 1</a> / Section 1.11</div>
+      <div class="chapter-tag">CHAPITRE 01 · SECTION 1.11</div>
+      <h1>Vue d’ensemble : synthèse des savoirs</h1>
+      <p class="lede">Faire des liens entre les nombres, les opérations et l’argent.</p>
+      <div class="lesson-top"><span>Présecondaire FGA</span><span>4 exemples expliqués</span><span>8 exercices corrigés</span></div>
+      <div class="hero-actions"><a class="btn btn-primary" href="#notions">Commencer la leçon ↓</a><a class="btn btn-ghost" href="#exercices">Aller aux exercices ↓</a></div>
+    </div>
+    <figure class="hero-visual"><svg viewBox="0 0 520 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration mathématique originale"><rect x="0" y="0" width="520" height="280" rx="16" fill="#f6f6ed"/><text x="23" y="40" font-size="21" fill="#274a3a" font-family="Space Grotesk,Arial,sans-serif" font-weight="700">Une démarche complète</text><rect x="26" y="102" width="110" height="76" rx="11" fill="#d8e7d9"/><text x="36" y="144" font-size="16" fill="#274a3a" font-family="Space Grotesk,Arial,sans-serif" font-weight="700">Données</text><rect x="155" y="102" width="110" height="76" rx="11" fill="#f4e4c4"/><text x="165" y="144" font-size="16" fill="#274a3a" font-family="Space Grotesk,Arial,sans-serif" font-weight="700">Opération</text><rect x="284" y="102" width="110" height="76" rx="11" fill="#d8e7d9"/><text x="294" y="144" font-size="16" fill="#274a3a" font-family="Space Grotesk,Arial,sans-serif" font-weight="700">Calcul</text><rect x="413" y="102" width="110" height="76" rx="11" fill="#f4e4c4"/><text x="423" y="144" font-size="16" fill="#274a3a" font-family="Space Grotesk,Arial,sans-serif" font-weight="700">Réponse</text><text x="60" y="226" font-size="19" fill="#274a3a" font-family="Space Grotesk,Arial,sans-serif" font-weight="700">Comprendre → Calculer → Vérifier</text></svg><figcaption>Illustration pédagogique originale · Section 1.11</figcaption></figure>
+  </div></section>
+
+  <nav class="quick-nav" aria-label="Navigation dans la leçon"><div class="wrap quick-nav-inner">
+    <a href="#notions">Notions</a><a href="#methode">Méthode</a><a href="#exemples">Exemples résolus</a><a href="#activite">Activité interactive</a><a href="#exercices">Exercices</a><a href="#quiz">Mini-quiz</a><a href="#suivant">Parcours</a>
+  </div></nav>
+
+  <main>
+    <section class="content-section reveal" id="notions"><div class="wrap">
+      <div class="section-head"><div class="eyebrow">Section 1.11 · Comprendre</div><h2>Les notions essentielles</h2><p class="lesson-intro">Faire des liens entre les nombres, les opérations et l’argent.</p></div>
+      <div class="lesson-story"><div class="eyebrow">Situation de départ</div><p>Tu aménages une pièce avec un budget de 150 $. Tu achètes 3 lampes à 19,95 $ chacune et un tapis à 42,50 $. Quel montant reste?</p></div>
+      <h3>Ce que tu sauras faire</h3><ul><li>Choisir la bonne opération dans chaque situation.</li><li>Comparer et arrondir les résultats pour vérifier.</li><li>Organiser une solution écrite en plusieurs étapes.</li></ul>
+      <div class="lesson-grid"><article class="lesson-card"><h3>Une démarche complète</h3><p>Une bonne résolution comporte les données, un modèle, les calculs et une phrase-réponse.</p></article><article class="lesson-card"><h3>L’ordre des opérations</h3><p>Lorsqu’un problème mêle quantités et montants, calcule d’abord le prix des groupes, puis additionne les dépenses, puis soustrais du budget.</p></article><article class="lesson-card"><h3>Vérification</h3><p>Comparer le résultat exact à une estimation mentale permet de repérer les erreurs de virgule ou d’ordre de grandeur.</p></article><article class="lesson-card"><h3>Unités</h3><p>Toujours identifier les dollars, cents, articles, personnes ou unités de mesure dans le résultat.</p></article></div>
+    </div></section>
+
+    <section class="content-section reveal" id="methode"><div class="wrap">
+      <div class="section-head"><div class="eyebrow">À mémoriser</div><h2>Une méthode à suivre</h2><p>Le but est de comprendre et d’expliquer chaque étape, pas seulement de donner un nombre.</p></div>
+      <ol class="lesson-steps"><li>Écrire les données utiles.</li><li>Formuler ce qu’il faut trouver.</li><li>Déterminer un modèle arithmétique.</li><li>Résoudre étape par étape, sans mélanger les unités.</li><li>Faire une estimation et écrire la phrase-réponse.</li></ol>
+    </div></section>
+
+    <section class="content-section reveal" id="exemples"><div class="wrap">
+      <div class="section-head"><div class="eyebrow">Développement complet</div><h2>Quatre exemples résolus, étape par étape</h2><p>Observe pourquoi chaque opération est utilisée. Tu peux reproduire cette démarche dans ton cahier.</p></div>
+      <div class="example-grid"><article class="example-card">
+        <div class="eyebrow">Exemple détaillé 01</div>
+        <h3>Budget de 150 $; trois lampes à 19,95 $ et un tapis à 42,50 $.</h3>
+        <ol><li>Coût des lampes : 3 × 19,95 = 59,85 $.</li><li>Total des dépenses : 59,85 + 42,50 = 102,35 $.</li><li>Reste : 150,00 − 102,35 = 47,65 $.</li><li>Vérification : 3 × 20 + 43 ≈ 103; reste ≈ 47.</li></ol>
+        <div class="answer-box">Réponse : 47,65 $.</div>
+      </article><article class="example-card">
+        <div class="eyebrow">Exemple détaillé 02</div>
+        <h3>Comparer deux offres : 4 articles pour 11,20 $ ou 1 article à 2,95 $.</h3>
+        <ol><li>Prix unitaire du lot : 11,20 ÷ 4 = 2,80 $.</li><li>Prix de l’article à l’unité : 2,95 $.</li><li>Différence par article : 2,95 − 2,80 = 0,15 $.</li></ol>
+        <div class="answer-box">Réponse : Le lot coûte 0,15 $ de moins par article.</div>
+      </article><article class="example-card">
+        <div class="eyebrow">Exemple détaillé 03</div>
+        <h3>Rendre la monnaie pour 2 objets à 6,75 $ et 1 à 4,50 $, payé 25 $.</h3>
+        <ol><li>Deux articles : 2 × 6,75 = 13,50 $.</li><li>Ajouter 4,50 $ : total 18,00 $.</li><li>Soustraire du montant remis : 25,00 − 18,00 = 7,00 $.</li></ol>
+        <div class="answer-box">Réponse : 7,00 $ de monnaie.</div>
+      </article><article class="example-card">
+        <div class="eyebrow">Exemple détaillé 04</div>
+        <h3>Estimer 38,70 $ + 21,45 $, puis calculer exactement.</h3>
+        <ol><li>Estimation à l’unité : 39 + 21 = 60 $.</li><li>Calcul exact : 38,70 + 21,45 = 60,15 $.</li><li>L’estimation de 60 $ est très proche de 60,15 $.</li></ol>
+        <div class="answer-box">Réponse : Environ 60 $; exactement 60,15 $.</div>
+      </article></div>
+    </div></section>
+
+    <section class="content-section reveal" id="activite"><div class="wrap">
+      <div class="section-head"><div class="eyebrow">Explorer et expérimenter</div><h2>Une activité interactive</h2><p>Modifie les nombres pour voir comment le résultat et la démarche évoluent.</p></div>
+      <div class="live-wrap"><div class="live-panel">
+        <h3>Teste un budget simple</h3><label for="live-a">Budget disponible ($)</label><input id="live-a" inputmode="decimal" type="number" step="0.01" value="150">
+        <label for="live-b">Prix d’un article ($)</label><input id="live-b" inputmode="decimal" type="number" step="0.01" value="19.95">
+        <div class="live-result" id="live-result" aria-live="polite"></div>
+      </div><aside class="live-note"><h3>À toi de réfléchir</h3>
+        <p>Avant de changer les chiffres, essaie de prédire si la réponse augmentera ou diminuera. Ensuite, teste ton hypothèse. Le simulateur t’aide à vérifier, mais écrire ta démarche reste essentiel.</p>
+      </aside></div>
+    </div></section>
+
+    <section class="content-section reveal" id="exercices"><div class="wrap">
+      <div class="section-head"><div class="eyebrow">Pratique autonome</div><h2>Huit exercices avec corrigés dévoilables</h2><p>Fais les calculs sur une feuille. Si tu bloques, consulte l’indice. Quand tu as terminé, clique sur « Afficher la réponse et la démarche » pour comparer tes étapes.</p></div>
+      <div class="practice-top"><div class="muted small">Les réponses sont cachées au chargement de la page.</div>
+        <div class="practice-controls"><button class="lesson-btn" id="show-solutions" type="button">Afficher tous les corrigés</button><button class="lesson-btn" id="hide-solutions" type="button">Tout masquer</button></div>
+      </div>
+      <div class="practice-grid"><article class="practice-card">
+        <div class="eyebrow">Exercice 01</div>
+        <h3>3 articles à 8,25 $ et un article à 5,50 $. Total?</h3>
+        <details class="hint"><summary>Voir un indice</summary><div class="detail-body"><p>Multiplie puis additionne.</p></div></details>
+        <details class="solution"><summary>Afficher la réponse et la démarche</summary>
+          <div class="detail-body"><ol><li>3 × 8,25 = 24,75.</li><li>24,75 + 5,50 = 30,25.</li></ol>
+            <p class="solution-answer">Réponse : 30,25 $.</p></div>
+        </details>
+      </article><article class="practice-card">
+        <div class="eyebrow">Exercice 02</div>
+        <h3>Budget 100 $ et dépense 67,85 $. Reste?</h3>
+        <details class="hint"><summary>Voir un indice</summary><div class="detail-body"><p>Budget − dépense.</p></div></details>
+        <details class="solution"><summary>Afficher la réponse et la démarche</summary>
+          <div class="detail-body"><ol><li>100,00 − 67,85 = 32,15.</li></ol>
+            <p class="solution-answer">Réponse : 32,15 $.</p></div>
+        </details>
+      </article><article class="practice-card">
+        <div class="eyebrow">Exercice 03</div>
+        <h3>Quel montant est plus grand : 12,09 $ ou 12,90 $?</h3>
+        <details class="hint"><summary>Voir un indice</summary><div class="detail-body"><p>Compare les dixièmes.</p></div></details>
+        <details class="solution"><summary>Afficher la réponse et la démarche</summary>
+          <div class="detail-body"><ol><li>12 unités de chaque côté.</li><li>0 dixième &lt; 9 dixièmes.</li></ol>
+            <p class="solution-answer">Réponse : 12,90 $.</p></div>
+        </details>
+      </article><article class="practice-card">
+        <div class="eyebrow">Exercice 04</div>
+        <h3>Arrondis 23,76 au dixième.</h3>
+        <details class="hint"><summary>Voir un indice</summary><div class="detail-body"><p>Le centième est 6.</p></div></details>
+        <details class="solution"><summary>Afficher la réponse et la démarche</summary>
+          <div class="detail-body"><ol><li>7 dixièmes augmentent à 8.</li></ol>
+            <p class="solution-answer">Réponse : 23,8.</p></div>
+        </details>
+      </article><article class="practice-card">
+        <div class="eyebrow">Exercice 05</div>
+        <h3>54 $ pour 6 personnes : part individuelle?</h3>
+        <details class="hint"><summary>Voir un indice</summary><div class="detail-body"><p>Division égale.</p></div></details>
+        <details class="solution"><summary>Afficher la réponse et la démarche</summary>
+          <div class="detail-body"><ol><li>54 ÷ 6 = 9.</li></ol>
+            <p class="solution-answer">Réponse : 9,00 $.</p></div>
+        </details>
+      </article><article class="practice-card">
+        <div class="eyebrow">Exercice 06</div>
+        <h3>3 billets à 7,50 $, payé avec 30 $. Monnaie?</h3>
+        <details class="hint"><summary>Voir un indice</summary><div class="detail-body"><p>Multiplie puis soustrais.</p></div></details>
+        <details class="solution"><summary>Afficher la réponse et la démarche</summary>
+          <div class="detail-body"><ol><li>3 × 7,50 = 22,50.</li><li>30,00 − 22,50 = 7,50.</li></ol>
+            <p class="solution-answer">Réponse : 7,50 $.</p></div>
+        </details>
+      </article><article class="practice-card">
+        <div class="eyebrow">Exercice 07</div>
+        <h3>Calcule 10 + 4 × 3.</h3>
+        <details class="hint"><summary>Voir un indice</summary><div class="detail-body"><p>Priorité à la multiplication.</p></div></details>
+        <details class="solution"><summary>Afficher la réponse et la démarche</summary>
+          <div class="detail-body"><ol><li>4 × 3 = 12.</li><li>10 + 12 = 22.</li></ol>
+            <p class="solution-answer">Réponse : 22.</p></div>
+        </details>
+      </article><article class="practice-card">
+        <div class="eyebrow">Exercice 08</div>
+        <h3>Écris vingt-quatre dollars et six cents en chiffres.</h3>
+        <details class="hint"><summary>Voir un indice</summary><div class="detail-body"><p>Six cents = 0,06 dollar.</p></div></details>
+        <details class="solution"><summary>Afficher la réponse et la démarche</summary>
+          <div class="detail-body"><ol><li>24 + 0,06 = 24,06.</li></ol>
+            <p class="solution-answer">Réponse : 24,06 $.</p></div>
+        </details>
+      </article></div>
+    </div></section>
+
+    <section class="content-section reveal" id="quiz"><div class="wrap">
+      <div class="section-head"><div class="eyebrow">Vérification rapide</div><h2>Mini-quiz autocorrigé</h2><p>Réponds aux trois questions, puis demande une correction. Le score et les explications apparaissent après le clic.</p></div>
+      <div class="quiz-panel"><form id="lesson-quiz"><fieldset>
+      <legend>1. 50 $ − (3 × 8 $) =…</legend>
+      <label class="q-option"><input type="radio" name="quiz1" value="0"/> 26 $</label><label class="q-option"><input type="radio" name="quiz1" value="1"/> 42 $</label><label class="q-option"><input type="radio" name="quiz1" value="2"/> 126 $</label>
+    </fieldset>
+<fieldset>
+      <legend>2. Le résultat de 14,09 + 0,91 est…</legend>
+      <label class="q-option"><input type="radio" name="quiz2" value="0"/> 14,10</label><label class="q-option"><input type="radio" name="quiz2" value="1"/> 15,00</label><label class="q-option"><input type="radio" name="quiz2" value="2"/> 14,90</label>
+    </fieldset>
+<fieldset>
+      <legend>3. Un achat de 7,02 $ payé comptant vaut…</legend>
+      <label class="q-option"><input type="radio" name="quiz3" value="0"/> 7,00 $</label><label class="q-option"><input type="radio" name="quiz3" value="1"/> 7,02 $</label><label class="q-option"><input type="radio" name="quiz3" value="2"/> 7,05 $</label>
+    </fieldset>
+        <div class="practice-controls"><button class="btn btn-primary" type="submit">Corriger le quiz</button><button class="lesson-btn" type="button" id="quiz-reset">Recommencer</button></div>
+      </form><div class="quiz-result" id="quiz-result" aria-live="polite"></div></div>
+    </div></section>
+
+    <section class="content-section reveal" id="suivant"><div class="wrap">
+      <div class="section-head"><div class="eyebrow">Continuer les apprentissages</div><h2>Les 12 sections du chapitre</h2><p>Chaque numéro mène à une leçon complète. Reviens facilement aux notions précédentes.</p></div>
+      <nav class="lesson-toc" aria-label="Sections du chapitre 1"><a href="1.1_Nombres_naturels.html" >1.1</a><a href="1.2_Nombres_entiers.html" >1.2</a><a href="1.3_Nombres_decimaux.html" >1.3</a><a href="1.4_Addition_soustraction_decimaux.html" >1.4</a><a href="1.5_Multiplication_division_decimaux.html" >1.5</a><a href="1.6_Arrondissement_decimaux.html" >1.6</a><a href="1.7_Lecture_ecriture_decimaux.html" >1.7</a><a href="1.8_Modeles_arithmetiques.html" >1.8</a><a href="1.9_Priorite_operations.html" >1.9</a><a href="1.10_Systeme_monetaire_canadien.html" >1.10</a><a href="1.11_Synthese_des_savoirs.html" aria-current=page>1.11</a><a href="1.12_Situations_de_vie.html" >1.12</a></nav>
+      <div class="lesson-bottom-nav"><a href="1.10_Systeme_monetaire_canadien.html">← Section 1.10</a><a href="Introduction.html">Sommaire du chapitre</a><a href="1.12_Situations_de_vie.html">Section 1.12 →</a></div>
+      <div class="lesson-sources"><strong>Références pédagogiques.</strong> Titres et ordre des sections : <a href="https://cdnc.heyzine.com/flip-book/pdf/3d3bd49653c5721e0f8fc38311ba53136a134f5f-4.pdf" target="_blank" rel="noopener noreferrer">table des matières MAT-P101 (Kinésis)</a>. Contenus généraux : <a href="https://cdn-contenu.quebec.ca/cdn-contenu/education/formation-generale-adultes/programmes/FGA-DomMathSciTech-mathematique-presecondaire.pdf" target="_blank" rel="noopener noreferrer">programme du ministère</a>. Les exercices, explications et SVG sont des créations pédagogiques originales. Les exemples sont donnés avant taxes sauf mention contraire.</div>
+    </div></section>
+  </main>
+
+  <footer><div class="wrap footer-grid"><div><div class="brand-mono">learnwithdom.page</div><div style="margin-top:6px;">CEA Coaticook · Dominic Denault Pilon</div></div><div><a href="Introduction.html">Retour au chapitre 1</a></div></div></footer>
+
+  <script>
+(function(){
+  'use strict';
+  const f=document.getElementById('lesson-quiz');
+  const questions=[{"correct": 0, "explanation": "3 × 8 = 24; 50 − 24 = 26."}, {"correct": 1, "explanation": "0,09 + 0,91 = 1."}, {"correct": 0, "explanation": "Le total comptant s’arrondit au plus proche 0,05 $."}];
+  const feedback=document.getElementById('quiz-result');
+  f.addEventListener('submit',function(event){
+    event.preventDefault();
+    let score=0;
+    const lines=[];
+    for(let i=0;i<questions.length;i++){
+      const picked=f.querySelector(`input[name="quiz${i+1}"]:checked`);
+      const ok=picked && Number(picked.value)===questions[i].correct;
+      if(ok)score++;
+      lines.push(`${i+1}. ${picked?(ok?'Bonne réponse':'À revoir'):'Sans réponse'} — ${questions[i].explanation}`);
+    }
+    feedback.replaceChildren();
+    const header=document.createElement('strong');
+    header.textContent=`Résultat : ${score} / ${questions.length}`;
+    feedback.appendChild(header);
+    const list=document.createElement('ol');
+    lines.forEach(t=>{const li=document.createElement('li');li.textContent=t;list.appendChild(li);});
+    feedback.appendChild(list);
+  });
+  document.getElementById('quiz-reset').addEventListener('click',function(){
+    f.reset();feedback.replaceChildren();
+  });
+  document.getElementById('show-solutions').addEventListener('click',function(){
+    document.querySelectorAll('details.solution').forEach(d=>{d.open=true;});
+  });
+  document.getElementById('hide-solutions').addEventListener('click',function(){
+    document.querySelectorAll('details.solution').forEach(d=>{d.open=false;});
+  });
+  const aEl=document.getElementById('live-a');
+  const bEl=document.getElementById('live-b');
+  const result=document.getElementById('live-result');
+  const fr=new Intl.NumberFormat('fr-CA',{minimumFractionDigits:2,maximumFractionDigits:2});
+  function money(x){return fr.format(Math.round((x+Number.EPSILON)*100)/100)+' $';}
+  function fmt(x,places){return new Intl.NumberFormat('fr-CA',{minimumFractionDigits:places,maximumFractionDigits:places}).format(x);}
+  function show(big,detail){result.replaceChildren();const strong=document.createElement('strong');strong.className='big';strong.textContent=big;const text=document.createElement('span');text.className='small';text.textContent=detail;result.append(strong,text);}
+  function run(){const a=Number(aEl.value);const b=Number(bEl.value);if(!Number.isFinite(a)||!Number.isFinite(b)){show('Valeurs invalides','Entre des nombres valides.');return;}
+    const dep=3*b+42.5;show(money(a-dep),`3 articles à ${money(b)} et un accessoire à 42,50 $ : dépenses de ${money(dep)}. Reste = ${money(a)} − ${money(dep)}.`);
+  }
+  aEl.addEventListener('input',run);bEl.addEventListener('input',run);run();
+  const animEls=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');observer.unobserve(e.target);}}),{threshold:.07});
+    animEls.forEach(el=>observer.observe(el));
+  }else animEls.forEach(el=>el.classList.add('in'));
+})();
+  </script>
+</body>
+</html>
