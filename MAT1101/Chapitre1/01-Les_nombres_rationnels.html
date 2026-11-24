@@ -8,7 +8,7 @@
 
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,0,7..72,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,0,7..72,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 
 <script>
   window.MathJax = {
@@ -19,197 +19,495 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
 <style>
+/* ============================================================
+   MAT1101 — Introduction au chapitre 1
+   Habillage visuel harmonisé avec MAT-P101 / learnwithdom.page
+   Les contenus pédagogiques et les scripts restent inchangés.
+   ============================================================ */
+
+/* 1. Palette et typographies */
 :root {
-  --ardoise: #223A34;
+  color-scheme: light;
+  --ardoise: #223a34;
   --ardoise-deep: #182922;
-  --papier: #EAEEE9;
-  --papier-2: #E0E5DD;
-  --encre: #1C2B3A;
-  --craie: #D9A441;
-  --craie-deep: #B9832C;
-  --brique: #B5524A;
-  --sapin: #4B7A68;
-  --ligne: rgba(28, 43, 58, 0.14);
-  --white: #FCFBF7;
-  --font-display: "Space Grotesk", sans-serif;
+  --papier: #eaeee9;
+  --papier-2: #e0e5dd;
+  --encre: #1c2b3a;
+  --craie: #d9a441;
+  --craie-deep: #b9832c;
+  --brique: #b5524a;
+  --sapin: #4b7a68;
+  --white: #fcfbf7;
+  --ligne: #d4ded5;
+  --font-display: "Space Grotesk", Arial, sans-serif;
   --font-body: "Literata", Georgia, serif;
   --font-mono: "JetBrains Mono", monospace;
+  --ombre: 0 14px 36px rgba(24, 41, 34, .075);
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 150px; }
 body {
-  background: var(--papier);
+  margin: 0;
   color: var(--encre);
-  font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.6;
+  background: var(--papier);
+  font: 400 16px/1.75 var(--font-body);
   -webkit-font-smoothing: antialiased;
 }
-
-a { color: inherit; }
-.wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
-
-a:focus-visible, button:focus-visible {
-  outline: 2px solid var(--craie-deep);
+p { margin: 0 0 1.1rem; max-width: 80ch; }
+a { color: #285d4b; }
+a:hover { color: #2b775c; }
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid #c48725;
   outline-offset: 3px;
-  border-radius: 2px;
 }
+.wrap { width: min(1140px, calc(100% - 3rem)); margin-inline: auto; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+img, svg { max-width: 100%; }
 
+/* 2. En-tête sombre, comme MAT-P101 */
 header.site {
-  position: sticky; top: 0; z-index: 40;
-  background: rgba(234, 238, 233, 0.92);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--ligne);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  color: var(--white);
+  background: rgba(24, 41, 34, .98);
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
 }
-nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
-.brand { font-family: var(--font-mono); font-size: 15px; font-weight: 600; letter-spacing: .02em; text-decoration: none; }
-.brand span { color: var(--craie-deep); }
-.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; font-family: var(--font-display); font-size: 14px; font-weight: 500; }
-.nav-links a { text-decoration: none; opacity: .85; }
-.nav-links a:hover { opacity: 1; color: var(--craie-deep); }
+header.site nav {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  min-height: 71px;
+}
+.brand {
+  white-space: nowrap;
+  color: var(--white);
+  font: 700 1.22rem var(--font-display);
+  letter-spacing: -.045em;
+  text-decoration: none;
+}
+.brand:hover { color: var(--white); }
+.brand span { color: var(--craie); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  list-style: none;
+  margin: 0 auto 0 0;
+  padding: 0;
+  font: 500 .9rem var(--font-display);
+}
+.nav-links a { color: #e1e9e2; text-decoration: none; }
+.nav-links a:hover { color: var(--craie); }
+.nav-cta {
+  border: 1px solid #d7ac65;
+  border-radius: 10px;
+  padding: .58rem .9rem;
+  white-space: nowrap;
+  color: #ffdd9b;
+  text-decoration: none;
+  font: 600 .88rem var(--font-display);
+}
+.nav-cta:hover { color: #fff; background: rgba(255, 255, 255, .09); }
 
+/* 3. Grande présentation en deux colonnes */
 .hero {
-  background: var(--ardoise); color: var(--white); position: relative; overflow: hidden;
-  background-image:
-    repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px);
-  padding: 56px 0;
+  position: relative;
+  overflow: hidden;
+  color: var(--white);
+  background: linear-gradient(125deg, var(--ardoise-deep), var(--ardoise) 78%);
 }
-.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--craie); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
-.eyebrow a { text-decoration: none; opacity: .75; color: inherit; }
-.eyebrow a:hover { opacity: 1; }
-.hero .course-title { font-family: var(--font-display); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; font-size: clamp(1.9rem, 4vw, 2.8rem); margin-bottom: 14px; }
-.hero .course-description { font-family: var(--font-body); font-size: 16px; line-height: 1.65; max-width: 68ch; color: rgba(252, 251, 247, 0.82); }
+.hero::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(#ffffff09 1px, transparent 1px),
+                    linear-gradient(90deg, #ffffff09 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+.hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 3rem;
+  align-items: center;
+  padding: clamp(3.2rem, 6.5vw, 5.5rem) 0;
+}
+.eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-bottom: 1rem;
+  font: 600 .74rem/1.7 var(--font-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #f3ca86;
+}
+.eyebrow a { color: inherit; text-decoration: none; }
+.eyebrow a:hover { text-decoration: underline; }
+.hero .course-title {
+  margin: .8rem 0 1rem;
+  color: #fff;
+  font: 700 clamp(2.9rem, 6.6vw, 5rem)/1.06 var(--font-display);
+  letter-spacing: -.06em;
+}
+.hero .course-description {
+  margin: 0;
+  max-width: 58ch;
+  color: #e0e9e3;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.8rem; }
+.hero-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, .5);
+  border-radius: 11px;
+  text-decoration: none;
+  font: 700 .9rem var(--font-display);
+  transition: transform .15s ease, background .15s ease;
+}
+.hero-actions a:hover { transform: translateY(-2px); }
+.hero-actions a:first-child { color: #1b2a24; border-color: var(--craie); background: var(--craie); }
+.hero-actions a:first-child:hover { background: #f0bc61; }
+.hero-actions a:last-child { color: #fff; background: rgba(255, 255, 255, .08); }
+.hero-actions a:last-child:hover { background: rgba(255, 255, 255, .18); }
+.hero-visual {
+  display: grid;
+  place-items: center;
+  min-height: 310px;
+  padding: 1.4rem;
+  background: linear-gradient(140deg, #37584c, #284339);
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 22px;
+  box-shadow: 0 24px 56px rgba(0, 0, 0, .13);
+}
+.hero-paper {
+  display: grid;
+  justify-items: center;
+  gap: .75rem;
+  width: min(100%, 310px);
+  padding: 1.5rem 1.25rem;
+  color: #243c32;
+  background: #f9f8f0;
+  border-radius: 14px;
+  transform: rotate(-2deg);
+  box-shadow: 0 15px 32px rgba(0, 0, 0, .2);
+}
+.hero-paper svg { width: min(100%, 185px); height: auto; }
+.hero-math { font: 700 clamp(1.25rem, 2.5vw, 1.65rem) var(--font-mono); }
+.hero-tag { font: 600 .75rem var(--font-mono); color: #577366; letter-spacing: .04em; }
 
-.page-layout { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 48px; max-width: 1360px; margin: 0 auto; padding: 40px 28px; align-items: start; }
-.page-layout > main.wrap { max-width: none; padding: 0; grid-column: 1; }
-
+/* 4. Navigation horizontale, similaire à MAT-P101 */
+.page-layout { display: flex; flex-direction: column; width: 100%; }
+.page-layout > main.wrap { order: 2; width: min(1000px, calc(100% - 3rem)); margin-inline: auto; }
+.page-layout > main.wrap .chapitre { width: 100%; padding: 1.6rem 0 5rem; }
 .toc-flottante {
-  grid-column: 2; position: sticky; top: 96px; align-self: start;
-  max-height: calc(100vh - 130px); overflow-y: auto; padding: 20px;
-  background: var(--white); border: 1px solid var(--ligne); border-radius: 8px; font-family: var(--font-display);
+  order: 1;
+  position: sticky;
+  top: 71px;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  padding: .8rem max(1.5rem, calc((100vw - 1140px)/2));
+  background: #dbe5da;
+  border-bottom: 1px solid #c6d5c7;
+  font-family: var(--font-display);
 }
-.toc-flottante h2 { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--craie-deep); margin-bottom: 12px; }
-.toc-flottante ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
-.toc-flottante li a { display: block; text-decoration: none; font-size: 13.5px; font-weight: 500; color: var(--encre); opacity: .65; padding: 6px 0 6px 12px; border-left: 2px solid var(--ligne); transition: all .15s ease; line-height: 1.3; }
-.toc-flottante li a:hover { opacity: 1; border-left-color: var(--craie-deep); }
-.toc-flottante li a.active { opacity: 1; color: var(--ardoise-deep); border-left-color: var(--craie-deep); font-weight: 600; }
+.toc-flottante h2 {
+  flex: none;
+  color: #396851;
+  white-space: nowrap;
+  font: 700 .73rem var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.toc-flottante ol {
+  display: flex;
+  gap: .4rem;
+  flex: 1;
+  overflow-x: auto;
+  list-style: none;
+  margin: 0;
+  padding: .15rem 0;
+  scrollbar-width: thin;
+}
+.toc-flottante li { flex: none; margin: 0; }
+.toc-flottante li a {
+  display: block;
+  padding: .38rem .55rem;
+  white-space: nowrap;
+  border: 0;
+  border-radius: 7px;
+  color: #305744;
+  text-decoration: none;
+  font: 600 .77rem var(--font-display);
+  transition: background .15s ease;
+}
+.toc-flottante li a:hover, .toc-flottante li a.active { color: #203d2e; background: #f4f8f3; }
 
-@media(max-width: 1180px) { .page-layout { display: block; padding: 30px 20px; } .toc-flottante { display: none; } }
+/* 5. Sections et cartes de contenu */
+.chapitre > .rule { border: 0; border-top: 1px solid #cbd9ce; margin: 0; }
+.chapitre > section { padding: clamp(2.3rem, 4vw, 3.4rem) 0; scroll-margin-top: 156px; }
+.section-titre {
+  margin: 0 0 1.35rem;
+  max-width: 25ch;
+  font: 700 clamp(1.8rem, 4vw, 2.5rem)/1.18 var(--font-display);
+  letter-spacing: -.035em;
+  color: var(--ardoise);
+}
+.section-num {
+  display: block;
+  margin-bottom: .6rem;
+  color: var(--sapin);
+  font: 700 .74rem var(--font-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.sous-titre {
+  margin: 2.3rem 0 1rem;
+  font: 700 clamp(1.18rem, 2.5vw, 1.4rem)/1.3 var(--font-display);
+  color: var(--ardoise);
+}
+.chapitre ul, .chapitre ol { margin: 0 0 1.15rem 1.5rem; max-width: 78ch; }
+.chapitre li { margin: .35rem 0; }
+.sommaire {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2.6rem;
+}
+.sommaire a {
+  display: block;
+  padding: 1.2rem 1.35rem;
+  color: var(--encre);
+  background: var(--white);
+  border: 1px solid var(--ligne);
+  border-radius: 17px;
+  box-shadow: var(--ombre);
+  text-decoration: none;
+  font: 700 1rem/1.5 var(--font-display);
+  transition: transform .18s ease, border-color .18s ease;
+}
+.sommaire a:hover { color: var(--ardoise); border-color: var(--sapin); transform: translateY(-3px); }
+.sommaire a span { display: block; color: var(--sapin); margin-bottom: .4rem; font: 600 .75rem var(--font-mono); }
 
-.chapitre { padding-bottom: 80px; }
-.section-titre { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.01em; margin: 56px 0 16px; padding-top: 24px; border-top: 1px solid var(--ligne); scroll-margin-top: 96px; }
-.section-titre:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
-.section-num { font-family: var(--font-mono); font-size: 13px; color: var(--craie-deep); letter-spacing: 0.06em; display: block; margin-bottom: 6px; text-transform: uppercase; }
-.sous-titre { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; margin: 36px 0 14px; color: var(--ardoise); }
-
-p { margin: 0 0 16px; max-width: 72ch; }
-ul, ol { margin: 0 0 20px 22px; max-width: 68ch; }
-li { margin: 6px 0; }
-
-.sommaire { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 40px; }
-.sommaire a { display: block; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px; padding: 14px 18px; text-decoration: none; font-family: var(--font-display); font-size: 14.5px; font-weight: 500; color: var(--encre); transition: border-color 0.15s ease, transform 0.15s ease; }
-.sommaire a:hover { border-color: var(--craie-deep); transform: translateX(3px); }
-.sommaire a span { display: block; font-family: var(--font-mono); font-size: 11.5px; color: var(--craie-deep); margin-bottom: 4px; }
-
-.boite, .encadre { background: var(--white); border: 1px solid var(--ligne); border-left: 4px solid var(--ardoise); border-radius: 6px; padding: 22px 26px; margin: 24px 0; }
-.boite-titre, .encadre-label { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--ardoise); }
-.boite p:last-child, .boite ul:last-child, .boite ol:last-child, .encadre p:last-child, .encadre ul:last-child { margin-bottom: 0; }
-
-.boite.idee { border-left-color: var(--craie-deep); background: #FBF4E4; }
-.boite.idee .boite-titre { color: var(--craie-deep); }
+/* 6. Encadrés et aides visuelles */
+.boite, .encadre {
+  max-width: 100%;
+  margin: 1.6rem 0;
+  padding: 1.3rem 1.5rem;
+  border: 1px solid var(--ligne);
+  border-left: 4px solid var(--sapin);
+  border-radius: 15px;
+  background: var(--white);
+  box-shadow: var(--ombre);
+}
+.boite-titre, .encadre-label {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .75rem;
+  color: var(--ardoise);
+  font: 700 .78rem var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.boite p:last-child, .boite ul:last-child, .boite ol:last-child, .encadre p:last-child { margin-bottom: 0; }
 .boite.definition, .encadre-definition { border-left-color: var(--sapin); }
-.boite.definition .boite-titre, .encadre-definition .encadre-label { color: var(--sapin); }
-.boite.notation, .boite.application, .encadre-methode { border-left-color: var(--sapin); background: #EEF3F0; }
-.boite.notation .boite-titre, .boite.application .boite-titre, .encadre-methode .encadre-label { color: var(--sapin); }
-.boite.graphique { border-left-color: var(--ardoise-deep); background: var(--papier-2); }
-.boite.graphique .boite-titre { color: var(--ardoise-deep); }
-.boite.methode { border-left-color: var(--sapin); }
-.boite.methode .boite-titre { color: var(--sapin); }
-.boite.exemple, .encadre-exemple { border-left-color: var(--craie-deep); background: var(--papier-2); }
-.boite.exemple .boite-titre, .encadre-exemple .encadre-label { color: var(--craie-deep); }
-.boite.erreur, .encadre-attention, .encadre-note { border-left-color: var(--brique); background: #FBEFEE; }
-.boite.erreur .boite-titre, .encadre-attention .encadre-label, .encadre-note .encadre-label { color: var(--brique); }
-.boite.retenir { border-left-color: var(--ardoise); background: var(--ardoise); color: var(--white); }
-.boite.retenir .boite-titre { color: var(--craie); }
-.boite.retenir li { color: rgba(252, 251, 247, 0.92); }
-.boite.avenir { border-left-color: var(--ligne); background: var(--papier); }
-.boite.avenir .boite-titre { color: rgba(28,43,58,.55); }
-.boite.avenir p { color: rgba(28,43,58,.65); font-style: italic; }
-
-.table-wrap { border: 1px solid var(--ligne); border-radius: 6px; overflow-x: auto; margin: 22px 0; }
-table, table.valeurs { border-collapse: collapse; width: 100%; font-size: 15px; background: var(--white); }
-th, td { border-bottom: 1px solid var(--ligne); padding: 11px 16px; text-align: left; }
-table.valeurs th, table.valeurs td { border: 1px solid var(--ligne); text-align: center; font-family: var(--font-mono); }
-th { font-family: var(--font-display); font-weight: 600; font-size: 13.5px; background: var(--ardoise); color: var(--white); }
-tr:last-child td { border-bottom: none; }
-tr:nth-child(even) td { background: var(--papier); }
-
-.canvas-container, .svg-container, .interactif {
-  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  margin: 24px 0; padding: 22px; background: var(--white); border: 1px solid var(--ligne); border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+.boite.definition .boite-titre, .encadre-definition .encadre-label { color: #36705a; }
+.boite.idee { border-left-color: var(--craie); background: #fbf4e4; }
+.boite.idee .boite-titre { color: #93631e; }
+.boite.notation, .boite.application, .boite.methode, .encadre-methode {
+  border-left-color: var(--sapin); background: #eef3f0;
 }
-canvas { border: 1px solid var(--ligne); border-radius: 4px; background-color: var(--white); max-width: 100%; height: auto; }
-.graph svg, .svg-container svg { max-width: 100%; height: auto; }
+.boite.notation .boite-titre, .boite.application .boite-titre, .boite.methode .boite-titre { color: #36705a; }
+.boite.graphique { border-left-color: var(--ardoise); background: var(--papier-2); }
+.boite.exemple, .encadre-exemple { border-left-color: var(--craie); background: #fcfaf2; }
+.boite.erreur, .encadre-attention, .encadre-note { border-left-color: var(--brique); background: #fbefee; }
+.boite.retenir { color: #fff; border-left-color: var(--craie); background: var(--ardoise); }
+.boite.retenir .boite-titre { color: #f4d396; }
+.boite.retenir li { color: #eef3ef; }
+.boite.avenir { background: #f1f4ef; border-left-color: #a2b7aa; }
+.boite.avenir .boite-titre { color: #63796d; }
+.boite.avenir p { color: #607066; font-style: italic; }
 
-.info-box { background-color: #EEF3F0; border-left: 4px solid var(--sapin); padding: 12px 16px; margin-top: 15px; border-radius: 0 4px 4px 0; font-size: 0.95rem; width: 100%; }
-
-.controles { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; width: 100%; max-width: 480px; margin-bottom: 6px; }
-.controle-item { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 170px; }
-.controle-item label { font-family: var(--font-mono); font-size: 12px; color: var(--ardoise); font-weight: 600; display: flex; justify-content: space-between; }
-.controle-item output { color: var(--craie-deep); }
+/* 7. Simulations, tableaux et contrôles : fonctions conservées */
+.interactif, .canvas-container, .svg-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .8rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 1.7rem auto;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  background: var(--white);
+  border: 1px solid var(--ligne);
+  border-radius: 19px;
+  box-shadow: var(--ombre);
+}
+.interactif .canvas-container { margin: .5rem auto; padding: .6rem; border: 0; box-shadow: none; }
+canvas { max-width: 100%; height: auto; border: 1px solid #d8e2d8; border-radius: 12px; background: var(--white); }
+.svg-container svg, .interactif svg { max-width: 100%; height: auto; }
+.info-box {
+  width: 100%;
+  margin-top: .75rem;
+  padding: .95rem 1.15rem;
+  color: #315343;
+  background: #edf4ed;
+  border-left: 4px solid var(--sapin);
+  border-radius: 0 10px 10px 0;
+  font-size: .9rem;
+}
+.controles { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem; width: 100%; max-width: 540px; }
+.controle-item { display: flex; flex: 1; flex-direction: column; gap: .5rem; min-width: 170px; }
+.controle-item label {
+  display: flex; justify-content: space-between;
+  gap: .7rem; color: var(--ardoise); font: 600 .78rem var(--font-mono);
+}
+.controle-item output { color: #93631e; }
 input[type="range"] { width: 100%; accent-color: var(--sapin); }
-
-.boutons-contexte { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; justify-content: center; }
+.boutons-contexte { display: flex; flex-wrap: wrap; justify-content: center; gap: .65rem; margin-bottom: 1rem; }
 .btn-contexte {
-  font-family: var(--font-display); font-size: 13.5px; font-weight: 600; padding: 9px 18px; border-radius: 20px;
-  border: 1.5px solid var(--ligne); background: var(--white); color: var(--encre); cursor: pointer; transition: all .15s ease;
+  padding: .6rem 1.05rem;
+  color: var(--ardoise);
+  background: #f7faf6;
+  border: 1px solid #cbd9ce;
+  border-radius: 11px;
+  font: 600 .84rem var(--font-display);
+  transition: background .15s ease, border-color .15s ease;
 }
-.btn-contexte:hover { border-color: var(--craie-deep); }
-.btn-contexte.actif { background: var(--sapin); border-color: var(--sapin); color: var(--white); }
-
-.resultat-fraction { display: flex; align-items: center; gap: 22px; font-family: var(--font-mono); font-size: 1.05rem; margin-top: 14px; flex-wrap: wrap; justify-content: center; }
+.btn-contexte:hover { border-color: var(--sapin); }
+.btn-contexte.actif { color: #fff; background: var(--sapin); border-color: var(--sapin); }
+.resultat-fraction { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1rem; font: 600 1rem var(--font-mono); }
 .frac-visuelle { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.1; }
-.frac-visuelle .num { border-bottom: 2px solid var(--encre); padding: 0 4px 2px; }
-.frac-visuelle .den { padding-top: 2px; }
-.resultat-fraction .fleche { color: var(--craie-deep); font-weight: 700; }
+.frac-visuelle .num { padding: 0 .3rem .15rem; border-bottom: 2px solid var(--encre); }
+.frac-visuelle .den { padding-top: .15rem; }
+.resultat-fraction .fleche { color: #b9832c; font-weight: 700; }
+.table-wrap { max-width: 100%; margin: 1.3rem 0; overflow-x: auto; border: 1px solid var(--ligne); border-radius: 13px; }
+table, table.valeurs { width: 100%; border-collapse: collapse; background: var(--white); font-size: .9rem; }
+th, td { text-align: left; padding: .7rem .95rem; border-bottom: 1px solid var(--ligne); }
+th { color: #fff; background: var(--ardoise); font: 600 .85rem var(--font-display); }
+table.valeurs th, table.valeurs td { text-align: center; border: 1px solid var(--ligne); font-family: var(--font-mono); }
+tr:last-child td { border-bottom: 0; }
+tr:nth-child(even) td { background: #f2f5ef; }
 
-footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; background: var(--white); font-family: var(--font-mono); font-size: 0.85rem; color: rgba(28, 43, 58, 0.7); text-align: center; }
-
-.nav-suivant { border-top: 1px solid var(--ligne); background: var(--papier-2); }
-.nav-suivant .wrap { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; }
-.nav-suivant .label { display: block; font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--craie-deep); margin-bottom: 4px; }
-.nav-suivant .titre { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
-.btn-primary { background: var(--sapin); color: var(--white); text-decoration: none; padding: 11px 20px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 14px; white-space: nowrap; }
-
-@media (max-width: 720px) {
-  .sommaire { grid-template-columns: 1fr; }
-  .boite, .encadre { padding: 18px; }
-  .nav-suivant .wrap { flex-direction: column; gap: 14px; text-align: center; }
+/* 8. Photographies déjà présentes, au format des cartes de MAT-P101 */
+.photo-illustration {
+  max-width: 720px;
+  margin: 1.5rem auto 2.1rem;
+  overflow: hidden;
+  background: #e4ebe1;
+  border: 1px solid var(--ligne);
+  border-radius: 17px;
+  box-shadow: var(--ombre);
 }
+.photo-illustration img {
+  display: block;
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+  background: #dce5dd;
+}
+.photo-illustration.photo-objet img { object-fit: contain; background: #eceae5; padding: 12px; }
+.photo-illustration figcaption {
+  padding: .8rem 1rem;
+  color: #53655b;
+  font: 400 .8rem/1.6 var(--font-display);
+}
+.photo-illustration figcaption .credit-photo {
+  display: block;
+  margin-top: .25rem;
+  color: #60766a;
+  font: 400 .72rem/1.6 var(--font-mono);
+}
+.photo-illustration figcaption .credit-photo a { font-weight: 600; }
+
+/* 9. Poursuivre le cours et pied de page */
+.nav-suivant { padding: 1.5rem 0; background: #dbe5da; border-top: 1px solid #c6d5c7; }
+.nav-suivant .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; }
+.nav-suivant .label { display: block; margin-bottom: .25rem; color: #36705a; font: 600 .75rem var(--font-mono); text-transform: uppercase; letter-spacing: .06em; }
+.nav-suivant .titre { color: var(--ardoise); font: 700 1.1rem var(--font-display); }
+.btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: .75rem 1rem; white-space: normal; color: #1b2a24; background: var(--craie); border: 1px solid var(--craie); border-radius: 11px; font: 700 .9rem var(--font-display); text-decoration: none; }
+.btn-primary:hover { color: #1b2a24; background: #f0bc61; }
+footer.site-footer { padding: 2rem; background: var(--ardoise-deep); border-top: 1px solid rgba(255,255,255,.1); color: #e0e9e3; text-align: center; font: 500 .85rem var(--font-mono); }
+
+/* 10. Accessibilité et petits écrans */
+@media (max-width: 850px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .hero-visual { min-height: 220px; }
+  .hero-paper { max-width: 310px; }
+  .toc-flottante { gap: .8rem; }
+  .toc-flottante h2 { display: none; }
+}
+@media (max-width: 620px) {
+  .wrap, .page-layout > main.wrap { width: calc(100% - 2rem); }
+  header.site nav { gap: .7rem; flex-wrap: wrap; padding: .8rem 0; }
+  .brand { font-size: 1.12rem; }
+  .nav-links { order: 3; width: 100%; font-size: .83rem; gap: 1rem; }
+  .nav-cta { margin-left: auto; font-size: .78rem; padding: .42rem .6rem; }
+  .hero-grid { padding: 2.7rem 0; }
+  .hero .course-title { font-size: clamp(2.3rem, 11vw, 3.3rem); }
+  .hero-visual { display: none; }
+  .toc-flottante { position: relative; top: 0; padding: .55rem 1rem; }
+  .sommaire { grid-template-columns: 1fr; }
+  .boite, .encadre { padding: 1rem 1.1rem; }
+  .photo-illustration img { height: 210px; }
+  .nav-suivant .wrap { flex-direction: column; text-align: center; }
+  .resultat-fraction { gap: .65rem; font-size: .9rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}
+
 </style>
 </head>
 <body>
 
 <header class="site">
 <nav class="wrap">
-<a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span></a>
+<a class="brand" href="https://learnwithdom.page" aria-label="learnwithdom.page — Accueil">learnwithdom<span>.page</span></a>
 <ul class="nav-links">
 <li><a href="https://learnwithdom.page">Accueil</a></li>
 <li><a href="https://learnwithdom.page/cours/mat1101.html">MAT1101</a></li>
 </ul>
+<a class="nav-cta" href="https://learnwithdom.page/webwork2/MAT1101">WeBWorK →</a>
 </nav>
 </header>
 
 <div class="hero">
-<div class="wrap hero-inner compact">
-<div class="eyebrow"><a href="https://learnwithdom.page/cours/mat1101.html">MAT1101 · Introduction aux nombres rationnels</a></div>
-<h1 class="course-title">1 — Les nombres rationnels</h1>
-<p class="course-description">Introduction à l'ensemble Q : ce que sont les fractions, pourquoi on les étudie, et comment elles représentent des quantités.</p>
-</div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow"><a href="https://learnwithdom.page/cours/mat1101.html">MAT1101 · Introduction aux nombres rationnels</a></div>
+      <h1 class="course-title">1 — Les nombres rationnels</h1>
+      <p class="course-description">Introduction à l'ensemble Q : ce que sont les fractions, pourquoi on les étudie, et comment elles représentent des quantités.</p>
+      <div class="hero-actions" aria-label="Accès rapides">
+        <a href="#definition">Découvrir le chapitre ↓</a>
+        <a href="#notions">Explorer les notions →</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-paper">
+        <div class="hero-tag">MÊME QUANTITÉ · TROIS ÉCRITURES</div>
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="82" fill="#f0efe7" stroke="#2b4c3c" stroke-width="3"/>
+          <path d="M100 100 L100 18 A82 82 0 1 1 18 100 Z" fill="#4b7a68" stroke="#f8f7ef" stroke-width="2"/>
+          <path d="M100 18 V182 M18 100 H182" stroke="#f8f7ef" stroke-width="3"/>
+          <circle cx="100" cy="100" r="82" fill="none" stroke="#2b4c3c" stroke-width="3"/>
+        </svg>
+        <div class="hero-math">3/4 = 3 ÷ 4 = 0,75</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="page-layout">
@@ -248,6 +546,16 @@ footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; backgr
     $$ \frac{3}{4} = 3 \div 4 = 0{,}75 $$
     <p>Ces trois écritures représentent exactement la même quantité — c'est cette équivalence que l'outil ci-dessous permet d'explorer.</p>
 
+    <!-- Photo pédagogique CC0 : Pizza entière photographiée sur une assiette, pour illustrer le partage d’une quantité en parts égales -->
+    <figure class="photo-illustration">
+      <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Pizza_image.jpg/960px-Pizza_image.jpg" alt="Pizza entière photographiée sur une assiette, pour illustrer le partage d’une quantité en parts égales" loading="lazy" decoding="async" referrerpolicy="no-referrer"/>
+      <figcaption>
+        Une pizza peut être partagée en parts égales : les fractions servent à exprimer la portion d’un tout.
+        <small class="credit-photo">Photo : MuthuLakshmi Vijaya, <a href="https://commons.wikimedia.org/wiki/File:Pizza_image.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> · Licence <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.fr" target="_blank" rel="noopener noreferrer">CC0 1.0</a>.</small>
+      </figcaption>
+    </figure>
+
+
     <div class="interactif">
       <div class="controles">
         <div class="controle-item">
@@ -276,6 +584,16 @@ footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; backgr
   <section id="pourquoi">
     <div class="section-titre"><span class="section-num">2 · Motivation</span>Pourquoi étudier les nombres rationnels ?</div>
     <p>Dès qu'une quantité doit être partagée, comparée ou exprimée « en partie » plutôt qu'en tout, les nombres entiers ne suffisent plus. Une pizza coupée en parts, un salaire versé à l'heure, une remise sur un prix : dans chacun de ces cas, on a besoin d'un nombre qui se situe <em>entre</em> deux entiers. Les nombres rationnels — et les fractions qui les représentent — sont l'outil qui permet de nommer et de manipuler ces quantités avec précision, que ce soit sous forme de fraction, de division ou de nombre décimal.</p>
+
+    <!-- Photo pédagogique CC0 : Panier d'épicerie contenant des produits pour illustrer les achats et les prix -->
+    <figure class="photo-illustration">
+      <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Shopping_Cart_Supermarket.jpg/960px-Shopping_Cart_Supermarket.jpg" alt="Panier d'épicerie contenant des produits pour illustrer les achats et les prix" loading="lazy" decoding="async" referrerpolicy="no-referrer"/>
+      <figcaption>
+        À l’épicerie, les prix, les rabais et les quantités font intervenir des fractions, des décimaux et des pourcentages.
+        <small class="credit-photo">Photo : Safaritravelplus, <a href="https://commons.wikimedia.org/wiki/File:Shopping_Cart_Supermarket.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> · Licence <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.fr" target="_blank" rel="noopener noreferrer">CC0 1.0</a>.</small>
+      </figcaption>
+    </figure>
+
     <div class="boite idee">
       <div class="boite-titre">À retenir</div>
       <p>Étudier \(\mathbb{Q}\), c'est se donner les moyens de travailler avec des quantités qui ne sont pas des nombres entiers, tout en gardant un lien exact et non approximatif avec ces quantités.</p>
@@ -325,6 +643,16 @@ footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; backgr
       $$ \frac{25}{100} = 25\% $$
       <p>Les fractions constituent donc une base importante pour comprendre les pourcentages et les proportions.</p>
 
+    <!-- Photo pédagogique CC0 : Étals de fruits et étiquettes de prix dans un supermarché -->
+    <figure class="photo-illustration">
+      <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Fruits_at_a_supermarket.jpg/960px-Fruits_at_a_supermarket.jpg" alt="Étals de fruits et étiquettes de prix dans un supermarché" loading="lazy" decoding="async" referrerpolicy="no-referrer"/>
+      <figcaption>
+        Une réduction de 25 % sur un achat correspond à 25 parts sur 100 du prix initial. Les pourcentages apparaissent souvent dans le commerce.
+        <small class="credit-photo">Photo : ProjectManhattan, <a href="https://commons.wikimedia.org/wiki/File:Fruits_at_a_supermarket.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> · Licence <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.fr" target="_blank" rel="noopener noreferrer">CC0 1.0</a>.</small>
+      </figcaption>
+    </figure>
+
+
       <div class="interactif" style="margin-top:18px;">
         <div class="controles" style="max-width:100%;">
           <div class="controle-item" style="min-width:100%;">
@@ -350,6 +678,16 @@ footer.site-footer { border-top: 1px solid var(--ligne); padding: 32px 0; backgr
       <p>Une des idées les plus importantes à retenir est qu'une fraction n'est pas simplement deux nombres placés l'un au-dessus de l'autre : elle représente une quantité.</p>
     </div>
     <p>Considérons \(\dfrac{1}{2}\). Cette fraction peut représenter la moitié d'une pizza, la moitié d'une heure, la moitié d'un dollar, la moitié d'une longueur — la moitié de n'importe quelle quantité. Le contexte change, mais la relation mathématique reste la même.</p>
+
+    <!-- Photo pédagogique CC0 : Tasse à mesurer graduée en millilitres pour illustrer les fractions de litre -->
+    <figure class="photo-illustration photo-objet">
+      <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Plastic_measuring_cup_2017_B1.jpg/960px-Plastic_measuring_cup_2017_B1.jpg" alt="Tasse à mesurer graduée en millilitres pour illustrer les fractions de litre" loading="lazy" decoding="async" referrerpolicy="no-referrer"/>
+      <figcaption>
+        En cuisine, on utilise des fractions pour mesurer des volumes : par exemple, un demi-litre correspond à 500 mL.
+        <small class="credit-photo">Photo : Fructibus, <a href="https://commons.wikimedia.org/wiki/File:Plastic_measuring_cup_2017_B1.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> · Licence <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.fr" target="_blank" rel="noopener noreferrer">CC0 1.0</a>.</small>
+      </figcaption>
+    </figure>
+
 
     <div class="interactif">
       <div class="boutons-contexte">
