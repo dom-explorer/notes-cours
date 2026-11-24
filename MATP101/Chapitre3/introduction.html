@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MAT-P101-4 — Chapitre 3 : Les relations de proportionnalité. Introduction, sections, activités interactives et quiz de la FGA.">
+  <title>MAT-P101-4 — Chapitre 3 : Les relations de proportionnalité | learnwithdom.page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Literata:opsz,wght@18..144,400;18..144,500;18..144,600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+
+/* ========================================================
+   MAT-P101 — Styles autonomes inspirés de learnwithdom.page
+   Palette, typographie, composants, interactivité, mobile
+   ======================================================== */
+:root{color-scheme:light;--ardoise:#223a34;--ardoise-deep:#182922;--papier:#eaeee9;--papier-2:#e0e5dd;--encre:#1c2b3a;--craie:#d9a441;--sapin:#4b7a68;--blanc:#fcfbf7;--bord:#d4ded5;--ombre:0 14px 36px rgba(24,41,34,.075);--rayon:18px}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;background:var(--papier);color:var(--encre);font:400 16px/1.75 "Literata",Georgia,serif;-webkit-font-smoothing:antialiased}
+.wrap{width:min(1140px,calc(100% - 3rem));margin-inline:auto}
+h1,h2,h3,h4,button,.ui-font{font-family:"Space Grotesk",Arial,sans-serif;letter-spacing:-.025em}
+h2{font-size:clamp(1.75rem,3.7vw,2.45rem);line-height:1.17;color:var(--ardoise)}
+h3{color:var(--ardoise);line-height:1.28}
+p{margin:0 0 1.15rem}
+a{color:#285d4b}a:hover{color:#2b775c}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #c48725;outline-offset:3px}
+button,input,select{font:inherit}button{cursor:pointer}
+img,svg{display:block;max-width:100%}figure{margin:0}
+.eyebrow{font:600 .74rem/1.7 "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--sapin)}
+.muted{color:#596b62}.small{font-size:.86rem}.kicker{font:700 .81rem "JetBrains Mono",monospace;letter-spacing:.08em;color:#d2e3d7}
+.content-section{padding:clamp(2.9rem,6vw,5.3rem) 0;border-top:1px solid #cbd9ce;scroll-margin-top:100px}
+.section-head{margin-bottom:1.65rem}.section-head h2{margin:.35rem 0 .8rem}.section-head p{max-width:78ch}
+header.site{position:sticky;top:0;z-index:50;background:rgba(24,41,34,.98);color:var(--blanc);border-bottom:1px solid rgba(255,255,255,.12)}
+header.site nav{display:flex;align-items:center;gap:1.8rem;min-height:71px}
+.brand{white-space:nowrap;color:white;font:700 1.22rem "Space Grotesk",sans-serif;letter-spacing:-.045em;text-decoration:none}.brand span{color:var(--craie)}
+.nav-links{display:flex;gap:1.6rem;list-style:none;margin:0 auto 0 0;padding:0;font:500 .9rem "Space Grotesk",sans-serif}
+.nav-links a{color:#e1e9e2;text-decoration:none}.nav-links a:hover{color:var(--craie)}
+.nav-cta{color:#ffdd9b;border:1px solid #d7ac65;border-radius:10px;padding:.58rem .9rem;text-decoration:none;white-space:nowrap;font:600 .88rem "Space Grotesk",sans-serif}
+.hero{position:relative;overflow:hidden;background:linear-gradient(125deg,var(--ardoise-deep),var(--ardoise) 78%);color:var(--blanc)}
+.hero::before{position:absolute;content:"";inset:0;background-image:linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:3rem;align-items:center;padding:clamp(3.1rem,7vw,6rem) 0}
+.hero .eyebrow{color:#e8d6af}.hero .eyebrow a{color:#f3ca86;text-decoration:none}
+.hero h1{font-size:clamp(3rem,7vw,5.3rem);line-height:1.03;letter-spacing:-.065em;margin:.8rem 0 .65rem;color:white}
+.hero .lede{font:600 clamp(1.25rem,2.6vw,1.7rem) "Space Grotesk",sans-serif;color:#f5d092;line-height:1.3}
+.hero .intro{color:#e0e9e3;max-width:70ch}
+.hero-stats{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.25rem 0 0}
+.hero-stats span{border:1px solid #ffffff45;border-radius:100px;padding:.35rem .7rem;color:#e6eee7;font:500 .79rem "Space Grotesk",sans-serif}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.3rem;border:1px solid var(--sapin);border-radius:11px;padding:.75rem 1rem;text-decoration:none;font:700 .9rem "Space Grotesk",sans-serif;transition:transform .15s ease,background .15s ease}
+.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--craie);color:#1b2a24;border-color:var(--craie)}.btn-primary:hover{color:#1b2a24;background:#f0bc61}
+.btn-ghost{border-color:#ffffff65;color:white;background:#ffffff10}.btn-ghost:hover{color:white;background:#ffffff28}
+.btn-light{background:#fff;color:#274638;border-color:var(--bord)}.btn-light:hover{background:#eff6ef}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.8rem}
+.hero-visual{position:relative;min-height:320px;background:linear-gradient(140deg,#37584c,#284339);border:1px solid #ffffff35;border-radius:22px;padding:1.6rem;box-shadow:0 24px 56px #00000021;display:flex;flex-direction:column;justify-content:center;gap:1rem}
+.hero-visual .mini-top{font:500 .73rem "JetBrains Mono",monospace;color:#e1c58f;letter-spacing:.08em}
+.hero-paper{background:#f9f8f0;color:#243c32;border-radius:12px;padding:1.15rem 1.25rem;transform:rotate(-2deg);box-shadow:0 15px 32px #00000026}
+.hero-paper .receipt-head{text-align:center;font:700 .9rem "Space Grotesk",sans-serif;letter-spacing:.1em;padding-bottom:.5rem;border-bottom:1px dashed #95a89c}
+.receipt-line{display:flex;justify-content:space-between;gap:.5rem;font:500 .83rem/2 "JetBrains Mono",monospace}
+.receipt-total{margin-top:.4rem;padding-top:.35rem;border-top:1px dashed #95a89c;font-weight:700;font-size:1.08rem}
+.hero-stamp{align-self:flex-end;color:#efd7a4;font:600 .84rem "Space Grotesk",sans-serif}
+.quick-nav{background:#dbe5da;border-bottom:1px solid #c6d5c7}.quick-nav-inner{display:flex;gap:.8rem;flex-wrap:wrap;padding:.9rem 0;font:600 .79rem "Space Grotesk",sans-serif}.quick-nav a{padding:.3rem .55rem;text-decoration:none;border-radius:7px}.quick-nav a:hover{background:#f4f8f3}
+.story-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:2rem;align-items:center}.lead{font-size:1.12rem;color:#344f42}.story-note{border-left:4px solid var(--craie);background:#f8f8f1;border-radius:0 12px 12px 0;padding:1rem 1.3rem;margin-top:1.4rem}
+.photo{background:#e4ebe1;border:1px solid var(--bord);border-radius:17px;overflow:hidden;box-shadow:var(--ombre)}.photo img{width:100%;height:270px;object-fit:cover;background:#dce5dd}
+.photo figcaption{font:400 .75rem/1.5 "Space Grotesk",sans-serif;padding:.7rem 1rem;color:#53655b}.photo figcaption a{font-weight:600}
+.photo-collage{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.photo-collage figure:first-child{grid-column:1/-1}.photo-collage figure:not(:first-child) img{height:150px}.photo-collage figure:first-child img{height:230px}
+.card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.chapter-card{display:flex;flex-direction:column;gap:.8rem;min-height:255px;text-decoration:none;color:var(--encre);background:var(--blanc);border:1px solid var(--bord);border-radius:17px;padding:1.35rem;box-shadow:var(--ombre);transition:transform .18s ease,border-color .18s ease}
+.chapter-card:hover{transform:translateY(-4px);border-color:var(--sapin);color:var(--encre)}.chapter-card-top{display:flex;justify-content:space-between;gap:1rem;font:600 .72rem "JetBrains Mono",monospace;color:var(--sapin)}
+.chapter-card strong{font:700 1.22rem/1.32 "Space Grotesk",sans-serif;color:var(--ardoise)}.chapter-desc{font:400 .91rem/1.6 "Literata",serif}.chapter-link{margin-top:auto;color:#386c55;font:700 .85rem "Space Grotesk",sans-serif}
+.chapter-detail{padding:2.7rem 0}.chapter-context{font-size:1.02rem;max-width:80ch}.section-drawer{background:var(--blanc);border:1px solid var(--bord);border-radius:14px;box-shadow:var(--ombre);overflow:hidden}
+.section-drawer summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;padding:1.1rem 1.3rem;font:700 .96rem "Space Grotesk",sans-serif;color:var(--ardoise);background:#f7faf6}
+.section-drawer summary::marker{content:""}.section-drawer summary::-webkit-details-marker{display:none}.section-drawer[open] summary{border-bottom:1px solid var(--bord)}
+.syllabus{list-style:none;padding:.6rem 1rem .8rem;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.1rem 1rem}
+.syllabus li{display:grid;grid-template-columns:3.5rem 1fr;gap:.5rem;align-items:start;padding:.55rem;border-bottom:1px solid #e8eee7;font-size:.92rem}
+.sec-no{font:600 .78rem "JetBrains Mono",monospace;color:#36705a}.section-after{margin:1rem 0 0;font:600 .84rem "Space Grotesk",sans-serif}
+.learning-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.learning-step{background:#fdfcf7;border:1px solid var(--bord);border-radius:15px;padding:1.3rem}.step-circle{display:inline-grid;place-items:center;width:2.35rem;height:2.35rem;border-radius:50%;background:#e1e9df;color:#255341;font:700 .9rem "JetBrains Mono",monospace}.learning-step h3{font-size:1.08rem;margin:.8rem 0 .4rem}.learning-step p{font-size:.92rem;margin:0}
+.activity-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;align-items:stretch}.activity{background:var(--blanc);border:1px solid var(--bord);border-radius:19px;padding:1.45rem;box-shadow:var(--ombre)}.activity h3{font-size:1.22rem;margin:.4rem 0 .4rem}.activity p{font-size:.91rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin:1.2rem 0}.field{display:flex;flex-direction:column;gap:.35rem;min-width:0}.field label,.slider-top{font:600 .82rem "Space Grotesk",sans-serif;color:var(--ardoise)}
+.field input,.field select{min-width:0;width:100%;padding:.72rem .8rem;background:#f9fbf8;border:1px solid #b7cdbb;border-radius:9px;color:var(--encre);font:500 .95rem "Space Grotesk",sans-serif}
+.result{margin-top:1.15rem;border-radius:12px;background:#e5efe7;border:1px solid #b5cdb8;padding:1rem 1.15rem}
+.result .big{font:700 1.75rem/1.2 "Space Grotesk",sans-serif;color:#214b38}.result .result-row{display:flex;justify-content:space-between;gap:.6rem;border-bottom:1px solid #c8d8cb;padding:.24rem 0;font:500 .9rem "Space Grotesk",sans-serif}.result .result-row:last-child{border:0}.result-foot{font-size:.78rem;color:#5b6a61;margin-top:.6rem}
+.slider-field{margin:1rem 0}.slider-top{display:flex;justify-content:space-between;gap:.5rem}.slider-field input[type="range"]{width:100%;accent-color:#477d64;cursor:pointer}.budget-meter{background:#e7eee7;border-radius:100px;height:18px;overflow:hidden;display:flex;margin:.8rem 0}.budget-spent{background:#ca9251;width:0%;transition:width .2s}.budget-left{background:#4b7a68;width:0%;transition:width .2s}.budget-over{background:#a84742;width:0%;transition:width .2s}.budget-legend{display:flex;flex-wrap:wrap;gap:1rem;font:600 .8rem "Space Grotesk",sans-serif}.budget-legend span::before{content:"";display:inline-block;width:.7rem;height:.7rem;border-radius:50%;margin-right:.35rem;background:#ca9251}.budget-legend span:nth-child(2)::before{background:#4b7a68}
+.emphasis{padding:1rem 1.2rem;background:#e2eadd;border-left:4px solid var(--sapin);border-radius:0 10px 10px 0}
+.quiz{background:#fdfcf8;border:1px solid var(--bord);border-radius:18px;padding:1.3rem;max-width:900px}.question{border:0;border-bottom:1px solid var(--bord);margin:0 0 1rem;padding:0 0 1rem}.question:last-of-type{border-bottom:0}.question legend{font:700 1.02rem/1.45 "Space Grotesk",sans-serif;color:var(--ardoise);margin-bottom:.45rem}.option{display:flex;align-items:flex-start;gap:.55rem;padding:.3rem .1rem;font-size:.93rem;cursor:pointer}.option input{margin-top:.42rem;accent-color:#3e735d}.quiz-feedback{margin-top:1rem;min-height:1.2rem;font-weight:600;color:var(--ardoise);white-space:pre-line}
+.references{display:grid;gap:.55rem}.reference{padding:.85rem 1rem;background:#fafcf8;border:1px solid var(--bord);border-radius:10px;font:500 .89rem "Space Grotesk",sans-serif}.reference a{font-weight:700}
+footer{background:var(--ardoise-deep);color:#d6dfd7;font:400 .88rem/1.7 "Space Grotesk",sans-serif;padding:2rem 0}.footer-grid{display:flex;align-items:center;justify-content:space-between;gap:1rem}.brand-mono{font:700 1.1rem "JetBrains Mono",monospace;color:white}footer a{color:#edc27b;text-decoration:none}
+@media(max-width:900px){.hero-grid,.story-grid{grid-template-columns:1fr}.hero-visual{max-width:580px;min-height:260px}.card-grid{grid-template-columns:1fr 1fr}.activity-grid{grid-template-columns:1fr}.learning-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.wrap{width:min(100% - 2rem,1140px)}header.site nav{flex-wrap:wrap;padding:.5rem 0;gap:.7rem}.nav-links{order:3;width:100%;margin:0;justify-content:center;gap:1rem}.nav-cta{margin-left:auto}.hero-grid{padding:3rem 0;gap:1rem}.hero h1{font-size:clamp(2.65rem,11vw,4rem)}.card-grid,.learning-grid,.syllabus{grid-template-columns:1fr}.photo-collage{grid-template-columns:1fr 1fr}.activity{padding:1rem}.footer-grid{flex-direction:column;align-items:start}}
+@media(max-width:420px){.form-grid{grid-template-columns:1fr}.photo-collage{grid-template-columns:1fr}.photo-collage figure:first-child{grid-column:auto}.hero-actions .btn{width:100%}.brand{font-size:1.05rem}.quick-nav-inner{gap:.2rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.chapter-card,.budget-spent,.budget-left,.budget-over{transition:none}}
+@media print{header.site,.quick-nav,.hero-actions,.activity button{display:none!important}.hero{background:white;color:black}.hero h1,.hero .lede,.hero .intro{color:black}.content-section{padding:1.4rem 0}.section-drawer{break-inside:avoid}.activity{break-inside:avoid}body{background:white}.hero-grid{display:block}.hero-visual{display:none}.photo img{height:150px}}
+
+
+/* === Ajouts propres aux pages d'introduction des chapitres === */
+.hero-grid{grid-template-columns:1.13fr .87fr}
+.hero h1{font-size:clamp(2.6rem,5.6vw,4.65rem)}
+.hero-visual{min-height:275px}.hero-visual svg{width:100%;height:auto;max-height:250px}
+.tag-line{font:600 .79rem "JetBrains Mono",monospace;color:#f0cc8c}
+.question-intro{max-width:83ch}
+.chapter-outline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem}
+.chapter-block{background:#fcfbf7;border:1px solid var(--bord);border-radius:17px;padding:1.25rem;box-shadow:var(--ombre)}
+.chapter-block h3{font-size:1.12rem;margin:0 0 .5rem}
+.chapter-block p{font-size:.88rem;color:#52675c;margin:0 0 .85rem}
+.lesson-list{list-style:none;margin:.6rem 0 0;padding:0}
+.lesson-list li{display:grid;grid-template-columns:3.65rem 1fr;gap:.65rem;border-top:1px solid #e5ebe3;padding:.62rem 0;font-size:.86rem;line-height:1.5;scroll-margin-top:125px}
+.lesson-list code{font:.7rem 'JetBrains Mono',monospace;color:#2e7154;padding-top:.15rem}
+.lesson-list strong{font-family:'Space Grotesk',sans-serif;color:var(--ardoise);font-size:.9rem;display:block}
+.lesson-list small{color:#536b5e;display:block;font-size:.79rem}
+.story-grid{grid-template-columns:1.14fr .86fr}
+.hero-visual .mini-top{font-size:.78rem}
+.mini-board{background:#fdfcf5;border-radius:14px;padding:1.25rem;color:#223b31;min-height:200px}
+.mini-board .board-title{font:700 .82rem 'JetBrains Mono',monospace;letter-spacing:.035em;color:#47725c}
+.photo img{height:310px}
+.concept-tile{background:var(--blanc);border:1px solid var(--bord);padding:1.25rem;border-radius:15px}
+.concept-tile strong{display:block;font:700 1.04rem 'Space Grotesk',sans-serif;color:var(--ardoise);margin-bottom:.35rem}
+.concept-tile p{font-size:.9rem;margin:0}
+.mini-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.activity-result{background:#f1f6ee;border-left:4px solid #56816a;border-radius:0 12px 12px 0;padding:1rem 1.1rem;margin-top:1rem;color:#203d2c}
+.activity-result strong{font:700 1.4rem 'Space Grotesk',sans-serif;display:block}
+.activity-result p{font-size:.89rem;margin:.35rem 0 0;line-height:1.6}
+.activity svg{width:100%;height:auto;max-height:270px}
+.field input[type='number'],.field select{width:100%;min-width:0;background:white;border:1px solid #aebeb1;border-radius:9px;padding:.6rem .7rem;color:#1b3028}
+.field input[type='range']{width:100%;accent-color:#477d64}
+.mini-caption{font:400 .76rem/1.5 'Space Grotesk',sans-serif;color:#55705f}
+.illustration{width:100%;background:#f2f5ec;border:1px solid var(--bord);border-radius:15px;padding:.8rem;overflow:hidden}
+.illustration svg{max-height:250px;width:100%}
+.chapter-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.info-block{border:1px solid var(--bord);background:#fdfcf9;border-radius:14px;padding:1.15rem}
+.info-block .eyebrow{font-size:.69rem}
+.info-block h3{font-size:1rem;margin:.4rem 0 .5rem}
+.info-block p{font-size:.87rem;margin:0}
+.activity small{font-size:.79rem}
+.tabular{font-variant-numeric:tabular-nums;font-family:'JetBrains Mono',monospace}
+.status{font:600 .84rem 'Space Grotesk',sans-serif}
+.link-note{font:400 .82rem/1.6 'Space Grotesk',sans-serif;color:#576b61}
+/* Respect des préférences et de l'utilisation mobile */
+@media(max-width:900px){.chapter-outline{grid-template-columns:1fr}.hero-grid{grid-template-columns:1fr}.mini-grid,.chapter-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.mini-grid,.chapter-steps{grid-template-columns:1fr}.photo img{height:240px}.hero-visual{min-height:230px}}
+@media print{.lesson-list li{break-inside:avoid}.chapter-block{break-inside:avoid}.hero-visual{display:none}}
+
+  </style>
+</head>
+<body>
+<header class="site"><div class="wrap"><nav><a class="brand" href="https://learnwithdom.page/">learnwithdom<span>.page</span></a><ul class="nav-links"><li><a href="../Introduction.html">MAT-P101</a></li><li><a href="https://learnwithdom.page/#cours">Cours</a></li></ul><a class="nav-cta" href="https://learnwithdom.page/webwork2" target="_blank" rel="noopener noreferrer">WeBWorK →</a></nav></div></header><section class="hero" aria-labelledby="page-title"><div class="wrap hero-grid"><div><div class="eyebrow"><a href="../Introduction.html">← Retour au module MAT-P101</a> · Présecondaire · Mathématiques</div><div class="tag-line">CHAPITRE 03 · ARITHMÉTIQUE APPLIQUÉE AUX FINANCES</div><h1 id="page-title">Les relations de proportionnalité</h1><p class="lede">Comparer des taux, des prix et des quantités</p><p class="intro">Si un kilogramme de pommes coûte 3 $, combien coûtent 2,5 kg? Et comment comparer deux formats de produit à partir de leur prix unitaire?</p><div class="hero-stats"><span>4 sections</span><span>2 activités interactives</span><span>Autoévaluation</span></div><div class="hero-actions"><a class="btn btn-primary" href="#sommaire">Découvrir les sections ↓</a><a class="btn btn-ghost" href="#activites">Essayer les activités</a></div></div><div class="hero-visual"><div class="mini-top">APERÇU · CHAPITRE 03</div><svg role="img" aria-label="Graphique d'une relation proportionnelle prix-quantité passant par zéro" viewBox="0 0 480 286" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="15" width="450" height="256" rx="16" fill="#fcfbf4"/><path d="M76 40 V223 H430" stroke="#345445" stroke-width="3" fill="none"/><g stroke="#d6e4d6" stroke-width="1"><path d="M76 177 H425 M76 132 H425 M76 86 H425 M163 40 V223 M250 40 V223 M337 40 V223"/></g><path d="M76 223 L337 86" stroke="#d09a49" stroke-width="4" fill="none"/><g fill="#315e48"><circle cx="76" cy="223" r="6"/><circle cx="163" cy="177" r="6"/><circle cx="250" cy="132" r="6"/><circle cx="337" cy="86" r="6"/></g><g font-family="sans-serif" font-size="13" fill="#315e48"><text x="75" y="240">0</text><text x="152" y="240">1</text><text x="244" y="240">2</text><text x="330" y="240">3</text><text x="362" y="258">Quantité</text><text x="14" y="35">Prix ($)</text></g></svg><div class="hero-stamp">Apprendre à partir de situations réelles</div></div></div></section><div class="quick-nav"><div class="wrap quick-nav-inner"><a href="#histoire">Une situation de vie</a><a href="#objectifs">Objectifs</a><a href="#sommaire">Toutes les sections</a><a href="#activites">Activités</a><a href="#quiz">Mini-quiz</a><a href="#ressources">Ressources</a><span class="ui-font" style="margin-left:auto"><a href="../Chapitre1/Introduction.html">Chapitre 1</a> <a href="../Chapitre2/Introduction.html">Chapitre 2</a> <span aria-current="page">Chapitre 3</span></span></div></div><main><section class="content-section" id="histoire"><div class="wrap story-grid"><div><div class="eyebrow">Une situation pour commencer</div><h2>À quoi vont servir ces mathématiques?</h2><p class="lead">Au marché, tu vois deux affiches : 750 g de fraises pour 4,50 $ ou 1 kg pour 5,80 $. Le deuxième contenant est plus cher, mais offre-t-il un meilleur prix par kilogramme? En ramenant les prix à une même unité, tu peux comparer des offres de tailles différentes et prendre une décision éclairée.</p><div class="story-note"><strong class="ui-font">Question de départ</strong><p style="margin:.4rem 0 0">Compare 750 g de fraises pour 4,50 $ et 1 kg pour 5,80 $. Quelle offre coûte le moins par kilogramme?</p><details><summary class="ui-font" style="font-weight:700">Voir une démarche possible</summary><p style="margin:.5rem 0 0">4,50 $ ÷ 0,75 kg = 6 $/kg; 5,80 $ ÷ 1 kg = 5,80 $/kg. Le format de 1 kg est le moins cher par kilogramme.</p></details></div></div><figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Piggy-bank-968302.jpg/640px-Piggy-bank-968302.jpg" alt="Comparer les coûts permet de mieux planifier ses dépenses." loading="lazy" decoding="async"><figcaption>Comparer les coûts permet de mieux planifier ses dépenses. Photo : Pixeltoo / Pixabay · <a href="https://commons.wikimedia.org/wiki/File:Piggy-bank-968302.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons, CC0 1.0</a>.</figcaption></figure></div></section><section class="content-section" id="objectifs"><div class="wrap"><div class="section-head"><div class="eyebrow">Ce que tu vas apprendre</div><h2>Trois objectifs pour progresser</h2><p>Le but n’est pas simplement de trouver la bonne réponse : il faut comprendre, expliquer et vérifier ton raisonnement.</p></div><div class="mini-grid"><article class="concept-tile"><strong>Identifier</strong><p>Reconnaître ce qui varie de façon proportionnelle.</p></article><article class="concept-tile"><strong>Calculer</strong><p>Déterminer une valeur manquante à partir d’un taux constant.</p></article><article class="concept-tile"><strong>Comparer</strong><p>Mettre deux offres dans la même unité avant de choisir.</p></article></div></div></section><section class="content-section" id="sommaire"><div class="wrap"><div class="section-head"><div class="eyebrow">Parcours d'apprentissage</div><h2>Les sections du chapitre</h2><p>Ce plan reprend les intitulés du cahier MAT P101 de Kinésis Éducation. Les regroupements en étapes, les résumés et les exemples sont originaux. Les leçons individuelles ne sont pas encore liées : les numéros ci-dessous sont des repères dans cette page.</p></div><div class="chapter-outline"><article class="chapter-block"><div class="eyebrow">Étape 01</div><h3>Comparer des taux</h3><p>Ramener des grandeurs à une unité commune.</p><ol class="lesson-list"><li id="section-3-1"><code>3.1</code><span><strong>Les taux</strong><small>Trouver un prix par kilogramme, par article ou par heure.</small></span></li></ol></article><article class="chapter-block"><div class="eyebrow">Étape 02</div><h3>Résoudre une proportion</h3><p>Passer d’une quantité à une autre.</p><ol class="lesson-list"><li id="section-3-2"><code>3.2</code><span><strong>Les proportions</strong><small>Utiliser la multiplication, le tableau ou la règle de trois.</small></span></li></ol></article><article class="chapter-block"><div class="eyebrow">Étape 03</div><h3>Synthétiser</h3><p>Reconnaître les situations proportionnelles.</p><ol class="lesson-list"><li id="section-3-3"><code>3.3</code><span><strong>Vue d’ensemble : synthèse des savoirs</strong><small>Comparer plusieurs méthodes et vérifier le résultat.</small></span></li></ol></article><article class="chapter-block"><div class="eyebrow">Étape 04</div><h3>Appliquer</h3><p>Utiliser les taux dans les dépenses réelles.</p><ol class="lesson-list"><li id="section-3-4"><code>3.4</code><span><strong>Situations de vie</strong><small>Comparer des forfaits, produits, achats et budgets.</small></span></li></ol></article></div><p class="link-note" style="margin-top:1.1rem">Lorsque tes pages de leçons seront publiées, remplace simplement les titres par des liens dans la liste correspondante.</p></div></section><section class="content-section" id="activites"><div class="wrap"><div class="section-head"><div class="eyebrow">Apprendre en expérimentant</div><h2>Deux activités interactives</h2><p>Modifie les valeurs pour voir leurs effets. Les données sont fictives; aucun résultat n’est transmis à un serveur.</p></div><div class="activity-grid">
+<article class="activity"><div class="eyebrow">Activité 1 · Observer une proportion</div><h3>Quel prix pour cette quantité?</h3><p>Quand le taux par kilogramme demeure constant, le prix augmente proportionnellement à la quantité.</p><div class="slider-field"><div class="slider-top"><label for="c3unit">Prix par kilogramme</label><output id="c3unitV" for="c3unit">4 $/kg</output></div><input id="c3unit" type="range" min="1" max="15" step="0.5" value="4"></div><div class="slider-field"><div class="slider-top"><label for="c3weight">Quantité achetée</label><output id="c3weightV" for="c3weight">2,5 kg</output></div><input id="c3weight" type="range" min="0" max="5" step="0.25" value="2.5"></div><svg id="c3plot" role="img" aria-label="Graphique du prix selon la quantité, passant par l’origine" viewBox="0 0 640 270"><rect x="1" y="1" width="638" height="268" rx="12" fill="#f1f6ec"/><g stroke="#d0ddd0" stroke-width="1" id="c3grid"></g><path d="M55 25 V220 H600" stroke="#2c5644" stroke-width="3" fill="none"/><path id="c3line" d="" stroke="#a47b31" stroke-width="4" fill="none"/><circle id="c3dot" r="7" fill="#276749" stroke="#fff" stroke-width="2"/><text x="50" y="242" fill="#315e47" font-size="14">0</text><text x="545" y="252" fill="#315e47" font-size="14">Quantité (kg)</text><text x="60" y="18" fill="#315e47" font-size="14">Prix ($)</text></svg><div class="activity-result" aria-live="polite"><strong id="c3total">—</strong><p id="c3steps"></p></div></article>
+<article class="activity"><div class="eyebrow">Activité 2 · Comparer deux offres</div><h3>Quel format revient le moins cher?</h3><p>Compare les deux offres en les ramenant à <strong>1 kg</strong>, peu importe leurs formats.</p><div class="form-grid"><div class="field"><label for="c3aprice">Offre A : prix ($)</label><input id="c3aprice" type="number" min="0.01" max="10000" step="0.01" value="4.50"></div><div class="field"><label for="c3aweight">Offre A : quantité (g)</label><input id="c3aweight" type="number" min="1" max="100000" step="1" value="750"></div><div class="field"><label for="c3bprice">Offre B : prix ($)</label><input id="c3bprice" type="number" min="0.01" max="10000" step="0.01" value="5.80"></div><div class="field"><label for="c3bweight">Offre B : quantité (g)</label><input id="c3bweight" type="number" min="1" max="100000" step="1" value="1000"></div></div><div class="activity-result" aria-live="polite"><strong id="c3best">—</strong><p id="c3compare"></p></div></article>
+</div></div></section><section class="content-section" id="quiz"><div class="wrap"><div class="section-head"><div class="eyebrow">Autoévaluation</div><h2>Quatre questions pour vérifier tes connaissances</h2><p>Réponds à ton rythme. Après correction, tu verras une explication pour chaque question.</p></div><form id="chapter-quiz" class="quiz"><fieldset class="question"><legend>1. 3 kg coûtent 12 $. Combien coûte 1 kg ?</legend><label class="option"><input type="radio" name="q1" value="0"> 4 $</label><label class="option"><input type="radio" name="q1" value="1"> 9 $</label><label class="option"><input type="radio" name="q1" value="2"> 36 $</label></fieldset><fieldset class="question"><legend>2. Si 1 kg coûte 4 $, combien coûtent 2,5 kg ?</legend><label class="option"><input type="radio" name="q2" value="0"> 6,50 $</label><label class="option"><input type="radio" name="q2" value="1"> 10 $</label><label class="option"><input type="radio" name="q2" value="2"> 12,50 $</label></fieldset><fieldset class="question"><legend>3. Lequel est le moins cher par litre ?</legend><label class="option"><input type="radio" name="q3" value="0"> 500 mL à 2,50 $</label><label class="option"><input type="radio" name="q3" value="1"> 1 L à 4,40 $</label><label class="option"><input type="radio" name="q3" value="2"> Les deux sont égaux</label></fieldset><fieldset class="question"><legend>4. Un prix de départ fixe de 10 $ plus 3 $/h est-il proportionnel au nombre d’heures ?</legend><label class="option"><input type="radio" name="q4" value="0"> Oui</label><label class="option"><input type="radio" name="q4" value="1"> Non</label><label class="option"><input type="radio" name="q4" value="2"> Toujours à partir de 2 h</label></fieldset><button type="submit" class="btn btn-primary">Vérifier mes réponses</button><button type="reset" class="btn btn-light" style="margin:.4rem">Recommencer</button><div id="quiz-feedback" class="quiz-feedback" aria-live="polite" role="status"></div></form></div></section></main><section class="content-section" id="ressources"><div class="wrap"><div class="section-head"><div class="eyebrow">Continuer le parcours</div><h2>Ressources et navigation</h2><p>Tu peux revenir à la présentation générale ou poursuivre vers une autre introduction. Les exercices sont accessibles par l’accueil WeBWorK; l’existence d’un cours MATP101 spécifique sur le serveur n’a pas été vérifiée.</p></div><div class="hero-actions" style="margin:0 0 1.4rem"><a class="btn btn-light" href="../Chapitre2/Introduction.html">← Chapitre 2</a><a class="btn btn-light" href="../Introduction.html">Revoir le module →</a><a class="btn btn-light" href="https://learnwithdom.page/webwork2" target="_blank" rel="noopener noreferrer">WeBWorK ↗</a></div><div class="references"><div class="reference"><a href="https://cdnc.heyzine.com/flip-book/pdf/3d3bd49653c5721e0f8fc38311ba53136a134f5f-4.pdf" target="_blank" rel="noopener noreferrer">Kinésis Éducation — Table des matières MAT P101 ↗</a><div class="small muted">Numéros et noms des sections repris de la table des matières publique. Les explications, illustrations et activités de cette page sont des créations originales.</div></div><div class="reference"><a href="https://cdn-contenu.quebec.ca/cdn-contenu/education/formation-generale-adultes/programmes/FGA-DomMathSciTech-mathematique-presecondaire.pdf" target="_blank" rel="noopener noreferrer">Ministère de l’Éducation du Québec — Programme de mathématique présecondaire ↗</a></div><div class="reference"><a href="https://commons.wikimedia.org/wiki/File:Piggy-bank-968302.jpg" target="_blank" rel="noopener noreferrer">Crédit de la photographie : Piggy-bank-968302 — CC0 1.0 (Wikimedia Commons) ↗</a><div class="small muted">Les schémas SVG de cette page sont des créations originales réutilisables librement. La photographie nécessite une connexion Internet.</div></div></div></div></section><footer><div class="wrap footer-grid"><div><div class="brand-mono">learnwithdom.page</div><div>CEA Coaticook · Dominic Denault Pilon</div></div><div><a href="../Introduction.html">← MAT-P101</a></div></div></footer><script>
+
+'use strict';
+(() => {
+const QUIZ = [{"answer": 0, "reason": "Le taux unitaire est 12 $ ÷ 3 = 4 $ par kg."}, {"answer": 1, "reason": "2,5 × 4 $ = 10 $."}, {"answer": 1, "reason": "500 mL à 2,50 $ revient à 5 $/L; 4,40 $/L est moins cher."}, {"answer": 1, "reason": "Non : à 0 h on paie déjà 10 $. Une relation proportionnelle passe par l’origine."}];
+const fmt = n => Number(n).toLocaleString('fr-CA',{minimumFractionDigits:2,maximumFractionDigits:2})+' $';
+const val = id => Number(document.getElementById(id).value);
+const byId = id => document.getElementById(id);
+const signed = n => n<0 ? 'négatif' : (n>0 ? 'positif' : 'nul');
+const number = (id,min,max) => {
+  const el=byId(id); const x=Number(el.value);
+  if(!Number.isFinite(x) || x<min || x>max) return null;
+  return x;
+};
+function updateQuiz(){
+  const answers=QUIZ;
+  let score=0;const parts=[];
+  answers.forEach((q,i)=>{
+    const v=document.querySelector('input[name="q'+(i+1)+'"]:checked');
+    if(v && Number(v.value)===q.answer) score++;
+    parts.push('Question '+(i+1)+' : '+(v&&Number(v.value)===q.answer?'✓ Bonne réponse':'À revoir')+' — '+q.reason);
+  });
+  byId('quiz-feedback').textContent='Résultat : '+score+' / '+answers.length+'\n'+parts.join('\n');
+}
+byId('chapter-quiz').addEventListener('submit',e=>{e.preventDefault();updateQuiz()});
+byId('chapter-quiz').addEventListener('reset',()=>{byId('quiz-feedback').textContent=''});
+function updateProportion(){
+ const rate=val('c3unit'), w=val('c3weight');
+ byId('c3unitV').textContent=rate.toLocaleString('fr-CA')+' $/kg';
+ byId('c3weightV').textContent=w.toLocaleString('fr-CA')+' kg';
+ byId('c3total').textContent=fmt(rate*w);
+ byId('c3steps').textContent=w.toLocaleString('fr-CA')+' kg × '+rate.toLocaleString('fr-CA')+' $/kg = '+fmt(rate*w)+'. Le graphique passe par l’origine : 0 kg coûte 0 $.';
+ const mapX=x=>55+x/5*545,mapY=y=>220-y/75*190;
+ byId('c3line').setAttribute('d',`M ${mapX(0)} ${mapY(0)} L ${mapX(5)} ${mapY(5*rate)}`);
+ byId('c3dot').setAttribute('cx',mapX(w));byId('c3dot').setAttribute('cy',mapY(w*rate));
+ byId('c3plot').setAttribute('aria-label','Relation proportionnelle : '+rate.toLocaleString('fr-CA')+' dollars par kilogramme; '+w.toLocaleString('fr-CA')+' kilogrammes coûtent '+fmt(rate*w));
+}
+['c3unit','c3weight'].forEach(x=>byId(x).addEventListener('input',updateProportion));
+function compare(){
+ const a=number('c3aprice',.01,10000),aw=number('c3aweight',1,100000),b=number('c3bprice',.01,10000),bw=number('c3bweight',1,100000);
+ if([a,aw,b,bw].includes(null)){byId('c3best').textContent='Valeur invalide';byId('c3compare').textContent='Entre des prix et des quantités supérieurs à zéro.';return}
+ const ra=a*1000/aw,rb=b*1000/bw;
+ const winner=Math.abs(ra-rb)<.0000001?'Les deux offres ont le même prix unitaire':ra<rb?'Offre A : meilleure valeur par kg':'Offre B : meilleure valeur par kg';
+ byId('c3best').textContent=winner;
+ byId('c3compare').textContent='A : '+fmt(ra)+' / kg · B : '+fmt(rb)+' / kg. On compare la même quantité (1 kg).';
+}
+['c3aprice','c3aweight','c3bprice','c3bweight'].forEach(x=>byId(x).addEventListener('input',compare));updateProportion();compare();
+})();
+</script>
+</body>
+</html>
