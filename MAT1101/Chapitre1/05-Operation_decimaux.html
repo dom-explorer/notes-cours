@@ -1,15 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="fr-CA">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>MAT-1101 — Les opérations sur les nombres décimaux | learnwithdom.page</title>
-<meta name="description" content="Notes de cours — MAT-1101. Additionner, soustraire, multiplier et diviser des nombres décimaux, les puissances de 10, l'ordre des opérations, l'estimation, et un générateur de problèmes interactif.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<meta content="Notes de cours — MAT-1101. Additionner, soustraire, multiplier et diviser des nombres décimaux, les puissances de 10, l'ordre des opérations, l'estimation, et un générateur de problèmes interactif." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Literata:opsz,wght@7..72,400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <script>
 window.MathJax = {
   tex: {
@@ -19,8 +18,7 @@ window.MathJax = {
   svg: { fontCache: 'global' }
 };
 </script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-
+<script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 <style>
 :root{
   --ardoise:#223A34;
@@ -173,189 +171,734 @@ input[type="range"]{width:100%;accent-color:var(--sapin)}
   th,td{padding:10px}
   .next{flex-direction:column}
 }
+
+
+/* ===== Harmonisation avec les pages précédentes de MAT1101 / MAT-P101 ===== */
+
+/* ============================================================
+   MAT1101 — Section 1.3 · Les nombres décimaux
+   Habillage visuel harmonisé avec MAT-P101 / learnwithdom.page
+   Les contenus pédagogiques et les scripts restent inchangés.
+   ============================================================ */
+
+/* 1. Palette et typographies */
+:root {
+  color-scheme: light;
+  --ardoise: #223a34;
+  --ardoise-deep: #182922;
+  --papier: #eaeee9;
+  --papier-2: #e0e5dd;
+  --encre: #1c2b3a;
+  --craie: #d9a441;
+  --craie-deep: #b9832c;
+  --brique: #b5524a;
+  --sapin: #4b7a68;
+  --white: #fcfbf7;
+  --ligne: #d4ded5;
+  --font-display: "Space Grotesk", Arial, sans-serif;
+  --font-body: "Literata", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --ombre: 0 14px 36px rgba(24, 41, 34, .075);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 150px; }
+body {
+  margin: 0;
+  color: var(--encre);
+  background: var(--papier);
+  font: 400 16px/1.75 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+p { margin: 0 0 1.1rem; max-width: 80ch; }
+a { color: #285d4b; }
+a:hover { color: #2b775c; }
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid #c48725;
+  outline-offset: 3px;
+}
+.wrap { width: min(1140px, calc(100% - 3rem)); margin-inline: auto; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+img, svg { max-width: 100%; }
+
+/* 2. En-tête sombre, comme MAT-P101 */
+header.site {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  color: var(--white);
+  background: rgba(24, 41, 34, .98);
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+header.site nav {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  min-height: 71px;
+}
+.brand {
+  white-space: nowrap;
+  color: var(--white);
+  font: 700 1.22rem var(--font-display);
+  letter-spacing: -.045em;
+  text-decoration: none;
+}
+.brand:hover { color: var(--white); }
+.brand span { color: var(--craie); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  list-style: none;
+  margin: 0 auto 0 0;
+  padding: 0;
+  font: 500 .9rem var(--font-display);
+}
+.nav-links a { color: #e1e9e2; text-decoration: none; }
+.nav-links a:hover { color: var(--craie); }
+.nav-cta {
+  border: 1px solid #d7ac65;
+  border-radius: 10px;
+  padding: .58rem .9rem;
+  white-space: nowrap;
+  color: #ffdd9b;
+  text-decoration: none;
+  font: 600 .88rem var(--font-display);
+}
+.nav-cta:hover { color: #fff; background: rgba(255, 255, 255, .09); }
+
+/* 3. Grande présentation en deux colonnes */
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: var(--white);
+  background: linear-gradient(125deg, var(--ardoise-deep), var(--ardoise) 78%);
+}
+.hero::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(#ffffff09 1px, transparent 1px),
+                    linear-gradient(90deg, #ffffff09 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+.hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 3rem;
+  align-items: center;
+  padding: clamp(3.2rem, 6.5vw, 5.5rem) 0;
+}
+.eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-bottom: 1rem;
+  font: 600 .74rem/1.7 var(--font-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #f3ca86;
+}
+.eyebrow a { color: inherit; text-decoration: none; }
+.eyebrow a:hover { text-decoration: underline; }
+.hero .course-title {
+  margin: .8rem 0 1rem;
+  color: #fff;
+  font: 700 clamp(2.9rem, 6.6vw, 5rem)/1.06 var(--font-display);
+  letter-spacing: -.06em;
+}
+.hero .course-description {
+  margin: 0;
+  max-width: 58ch;
+  color: #e0e9e3;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.8rem; }
+.hero-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, .5);
+  border-radius: 11px;
+  text-decoration: none;
+  font: 700 .9rem var(--font-display);
+  transition: transform .15s ease, background .15s ease;
+}
+.hero-actions a:hover { transform: translateY(-2px); }
+.hero-actions a:first-child { color: #1b2a24; border-color: var(--craie); background: var(--craie); }
+.hero-actions a:first-child:hover { background: #f0bc61; }
+.hero-actions a:last-child { color: #fff; background: rgba(255, 255, 255, .08); }
+.hero-actions a:last-child:hover { background: rgba(255, 255, 255, .18); }
+.hero-visual {
+  display: grid;
+  place-items: center;
+  min-height: 310px;
+  padding: 1.4rem;
+  background: linear-gradient(140deg, #37584c, #284339);
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 22px;
+  box-shadow: 0 24px 56px rgba(0, 0, 0, .13);
+}
+.hero-paper {
+  display: grid;
+  justify-items: center;
+  gap: .75rem;
+  width: min(100%, 310px);
+  padding: 1.5rem 1.25rem;
+  color: #243c32;
+  background: #f9f8f0;
+  border-radius: 14px;
+  transform: rotate(-2deg);
+  box-shadow: 0 15px 32px rgba(0, 0, 0, .2);
+}
+.hero-paper svg { width: min(100%, 185px); height: auto; }
+.hero-math { font: 700 clamp(1.25rem, 2.5vw, 1.65rem) var(--font-mono); }
+.hero-tag { font: 600 .75rem var(--font-mono); color: #577366; letter-spacing: .04em; }
+
+/* 4. Navigation horizontale, similaire à MAT-P101 */
+.page-layout { display: flex; flex-direction: column; width: 100%; }
+.page-layout > main.wrap { order: 2; width: min(1000px, calc(100% - 3rem)); margin-inline: auto; }
+.page-layout > main.wrap .chapitre { width: 100%; padding: 1.6rem 0 5rem; }
+.toc-flottante {
+  order: 1;
+  position: sticky;
+  top: 71px;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  padding: .8rem max(1.5rem, calc((100vw - 1140px)/2));
+  background: #dbe5da;
+  border-bottom: 1px solid #c6d5c7;
+  font-family: var(--font-display);
+}
+.toc-flottante h2 {
+  flex: none;
+  color: #396851;
+  white-space: nowrap;
+  font: 700 .73rem var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.toc-flottante ol {
+  display: flex;
+  gap: .4rem;
+  flex: 1;
+  overflow-x: auto;
+  list-style: none;
+  margin: 0;
+  padding: .15rem 0;
+  scrollbar-width: thin;
+}
+.toc-flottante li { flex: none; margin: 0; }
+.toc-flottante li a {
+  display: block;
+  padding: .38rem .55rem;
+  white-space: nowrap;
+  border: 0;
+  border-radius: 7px;
+  color: #305744;
+  text-decoration: none;
+  font: 600 .77rem var(--font-display);
+  transition: background .15s ease;
+}
+.toc-flottante li a:hover, .toc-flottante li a.active { color: #203d2e; background: #f4f8f3; }
+
+/* 5. Sections et cartes de contenu */
+.chapitre > .rule { border: 0; border-top: 1px solid #cbd9ce; margin: 0; }
+.chapitre > section { padding: clamp(2.3rem, 4vw, 3.4rem) 0; scroll-margin-top: 156px; }
+.section-titre {
+  margin: 0 0 1.35rem;
+  max-width: 25ch;
+  font: 700 clamp(1.8rem, 4vw, 2.5rem)/1.18 var(--font-display);
+  letter-spacing: -.035em;
+  color: var(--ardoise);
+}
+.section-num {
+  display: block;
+  margin-bottom: .6rem;
+  color: var(--sapin);
+  font: 700 .74rem var(--font-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.sous-titre {
+  margin: 2.3rem 0 1rem;
+  font: 700 clamp(1.18rem, 2.5vw, 1.4rem)/1.3 var(--font-display);
+  color: var(--ardoise);
+}
+.chapitre ul, .chapitre ol { margin: 0 0 1.15rem 1.5rem; max-width: 78ch; }
+.chapitre li { margin: .35rem 0; }
+.sommaire {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2.6rem;
+}
+.sommaire a {
+  display: block;
+  padding: 1.2rem 1.35rem;
+  color: var(--encre);
+  background: var(--white);
+  border: 1px solid var(--ligne);
+  border-radius: 17px;
+  box-shadow: var(--ombre);
+  text-decoration: none;
+  font: 700 1rem/1.5 var(--font-display);
+  transition: transform .18s ease, border-color .18s ease;
+}
+.sommaire a:hover { color: var(--ardoise); border-color: var(--sapin); transform: translateY(-3px); }
+.sommaire a span { display: block; color: var(--sapin); margin-bottom: .4rem; font: 600 .75rem var(--font-mono); }
+
+/* 6. Encadrés et aides visuelles */
+.boite, .encadre {
+  max-width: 100%;
+  margin: 1.6rem 0;
+  padding: 1.3rem 1.5rem;
+  border: 1px solid var(--ligne);
+  border-left: 4px solid var(--sapin);
+  border-radius: 15px;
+  background: var(--white);
+  box-shadow: var(--ombre);
+}
+.boite-titre, .encadre-label {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .75rem;
+  color: var(--ardoise);
+  font: 700 .78rem var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.boite p:last-child, .boite ul:last-child, .boite ol:last-child, .encadre p:last-child { margin-bottom: 0; }
+.boite.definition, .encadre-definition { border-left-color: var(--sapin); }
+.boite.definition .boite-titre, .encadre-definition .encadre-label { color: #36705a; }
+.boite.idee { border-left-color: var(--craie); background: #fbf4e4; }
+.boite.idee .boite-titre { color: #93631e; }
+.boite.notation, .boite.application, .boite.methode, .encadre-methode {
+  border-left-color: var(--sapin); background: #eef3f0;
+}
+.boite.notation .boite-titre, .boite.application .boite-titre, .boite.methode .boite-titre { color: #36705a; }
+.boite.graphique { border-left-color: var(--ardoise); background: var(--papier-2); }
+.boite.exemple, .encadre-exemple { border-left-color: var(--craie); background: #fcfaf2; }
+.boite.erreur, .encadre-attention, .encadre-note { border-left-color: var(--brique); background: #fbefee; }
+.boite.retenir { color: #fff; border-left-color: var(--craie); background: var(--ardoise); }
+.boite.retenir .boite-titre { color: #f4d396; }
+.boite.retenir li { color: #eef3ef; }
+.boite.avenir { background: #f1f4ef; border-left-color: #a2b7aa; }
+.boite.avenir .boite-titre { color: #63796d; }
+.boite.avenir p { color: #607066; font-style: italic; }
+
+/* 7. Simulations, tableaux et contrôles : fonctions conservées */
+.interactif, .canvas-container, .svg-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .8rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 1.7rem auto;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  background: var(--white);
+  border: 1px solid var(--ligne);
+  border-radius: 19px;
+  box-shadow: var(--ombre);
+}
+.interactif .canvas-container { margin: .5rem auto; padding: .6rem; border: 0; box-shadow: none; }
+canvas { max-width: 100%; height: auto; border: 1px solid #d8e2d8; border-radius: 12px; background: var(--white); }
+.svg-container svg, .interactif svg { max-width: 100%; height: auto; }
+.info-box {
+  width: 100%;
+  margin-top: .75rem;
+  padding: .95rem 1.15rem;
+  color: #315343;
+  background: #edf4ed;
+  border-left: 4px solid var(--sapin);
+  border-radius: 0 10px 10px 0;
+  font-size: .9rem;
+}
+.controles { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem; width: 100%; max-width: 540px; }
+.controle-item { display: flex; flex: 1; flex-direction: column; gap: .5rem; min-width: 170px; }
+.controle-item label {
+  display: flex; justify-content: space-between;
+  gap: .7rem; color: var(--ardoise); font: 600 .78rem var(--font-mono);
+}
+.controle-item output { color: #93631e; }
+input[type="range"] { width: 100%; accent-color: var(--sapin); }
+.boutons-contexte { display: flex; flex-wrap: wrap; justify-content: center; gap: .65rem; margin-bottom: 1rem; }
+.btn-contexte {
+  padding: .6rem 1.05rem;
+  color: var(--ardoise);
+  background: #f7faf6;
+  border: 1px solid #cbd9ce;
+  border-radius: 11px;
+  font: 600 .84rem var(--font-display);
+  transition: background .15s ease, border-color .15s ease;
+}
+.btn-contexte:hover { border-color: var(--sapin); }
+.btn-contexte.actif { color: #fff; background: var(--sapin); border-color: var(--sapin); }
+.resultat-fraction { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1rem; font: 600 1rem var(--font-mono); }
+.frac-visuelle { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.1; }
+.frac-visuelle .num { padding: 0 .3rem .15rem; border-bottom: 2px solid var(--encre); }
+.frac-visuelle .den { padding-top: .15rem; }
+.resultat-fraction .fleche { color: #b9832c; font-weight: 700; }
+.table-wrap { max-width: 100%; margin: 1.3rem 0; overflow-x: auto; border: 1px solid var(--ligne); border-radius: 13px; }
+table, table.valeurs { width: 100%; border-collapse: collapse; background: var(--white); font-size: .9rem; }
+th, td { text-align: left; padding: .7rem .95rem; border-bottom: 1px solid var(--ligne); }
+th { color: #fff; background: var(--ardoise); font: 600 .85rem var(--font-display); }
+table.valeurs th, table.valeurs td { text-align: center; border: 1px solid var(--ligne); font-family: var(--font-mono); }
+tr:last-child td { border-bottom: 0; }
+tr:nth-child(even) td { background: #f2f5ef; }
+
+/* 8. Photographies déjà présentes, au format des cartes de MAT-P101 */
+.photo-illustration {
+  max-width: 720px;
+  margin: 1.5rem auto 2.1rem;
+  overflow: hidden;
+  background: #e4ebe1;
+  border: 1px solid var(--ligne);
+  border-radius: 17px;
+  box-shadow: var(--ombre);
+}
+.photo-illustration img {
+  display: block;
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+  background: #dce5dd;
+}
+.photo-illustration.photo-objet img { object-fit: contain; background: #eceae5; padding: 12px; }
+.photo-illustration figcaption {
+  padding: .8rem 1rem;
+  color: #53655b;
+  font: 400 .8rem/1.6 var(--font-display);
+}
+.photo-illustration figcaption .credit-photo {
+  display: block;
+  margin-top: .25rem;
+  color: #60766a;
+  font: 400 .72rem/1.6 var(--font-mono);
+}
+.photo-illustration figcaption .credit-photo a { font-weight: 600; }
+
+/* 9. Poursuivre le cours et pied de page */
+.nav-suivant { padding: 1.5rem 0; background: #dbe5da; border-top: 1px solid #c6d5c7; }
+.nav-suivant .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; }
+.nav-suivant .label { display: block; margin-bottom: .25rem; color: #36705a; font: 600 .75rem var(--font-mono); text-transform: uppercase; letter-spacing: .06em; }
+.nav-suivant .titre { color: var(--ardoise); font: 700 1.1rem var(--font-display); }
+.btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: .75rem 1rem; white-space: normal; color: #1b2a24; background: var(--craie); border: 1px solid var(--craie); border-radius: 11px; font: 700 .9rem var(--font-display); text-decoration: none; }
+.btn-primary:hover { color: #1b2a24; background: #f0bc61; }
+footer.site-footer { padding: 2rem; background: var(--ardoise-deep); border-top: 1px solid rgba(255,255,255,.1); color: #e0e9e3; text-align: center; font: 500 .85rem var(--font-mono); }
+
+/* 10. Accessibilité et petits écrans */
+@media (max-width: 850px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .hero-visual { min-height: 220px; }
+  .hero-paper { max-width: 310px; }
+  .toc-flottante { gap: .8rem; }
+  .toc-flottante h2 { display: none; }
+}
+@media (max-width: 620px) {
+  .wrap, .page-layout > main.wrap { width: calc(100% - 2rem); }
+  header.site nav { gap: .7rem; flex-wrap: wrap; padding: .8rem 0; }
+  .brand { font-size: 1.12rem; }
+  .nav-links { order: 3; width: 100%; font-size: .83rem; gap: 1rem; }
+  .nav-cta { margin-left: auto; font-size: .78rem; padding: .42rem .6rem; }
+  .hero-grid { padding: 2.7rem 0; }
+  .hero .course-title { font-size: clamp(2.3rem, 11vw, 3.3rem); }
+  .hero-visual { display: none; }
+  .toc-flottante { position: relative; top: 0; padding: .55rem 1rem; }
+  .sommaire { grid-template-columns: 1fr; }
+  .boite, .encadre { padding: 1rem 1.1rem; }
+  .photo-illustration img { height: 210px; }
+  .nav-suivant .wrap { flex-direction: column; text-align: center; }
+  .resultat-fraction { gap: .65rem; font-size: .9rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}
+
+
+/* Compléments pour les représentations et contrôles propres aux fractions */
+.controle-item select {
+  width: 100%; padding: .7rem .85rem;
+  border: 1px solid #c9d8cf; border-radius: 11px;
+  color: var(--ardoise); background: #fff;
+  font: 600 .9rem var(--font-mono);
+}
+.controle-item select:focus-visible { outline: 3px solid var(--craie); outline-offset: 2px; }
+.pizza-row { display:flex; justify-content:center; flex-wrap:wrap; align-items:flex-start; gap:2rem; margin: .75rem 0; }
+.pizza-item { display:flex; flex-direction:column; align-items:center; gap:.5rem; font:600 .85rem var(--font-mono); }
+.etapes-simp { width: 100%; text-align:center; font:600 clamp(.9rem,2.5vw,1.12rem)/2 var(--font-mono); overflow-wrap:anywhere; }
+.icones-op { display:flex; justify-content:center; flex-wrap:wrap; gap:1.1rem; margin:1.4rem 0; }
+.icone-op { display:flex; align-items:center; flex-direction:column; gap:.6rem; font:600 .85rem var(--font-display); }
+.icone-op .rond { display:grid; place-items:center; width:52px; height:52px; border-radius:16px; background:var(--sapin); color:var(--white); font:700 1.5rem var(--font-display); }
+.centre { margin:1.1rem auto; text-align:center; color:var(--ardoise); font:600 .95rem/1.8 var(--font-mono); }
+.info-box.alerte { background:#fbefee; border-left-color:var(--brique); color:#853b35; }
+.btn-secondaire {display:inline-flex;align-items:center;justify-content:center; padding:.75rem 1rem; color:var(--ardoise); background:#f4f8f3; border:1px solid #bbcfc1; border-radius:11px; font:700 .9rem var(--font-display); text-decoration:none;}
+.btn-secondaire:hover {color:var(--ardoise);background:#e5efe6;}
+.nav-suivant .wrap {flex-wrap:wrap;}
+.nav-suivant .wrap > div {flex:1;min-width:190px;}
+/* Pour que les expressions de MathJax s'ajustent sans casser la mise en page mobile */
+mjx-container[display="true"] {max-width:100%; overflow-x:auto; overflow-y:hidden;}
+@media(max-width: 620px){
+  .page-layout > main.wrap .chapitre {padding-top:1.2rem;}
+  .interactif {padding:1rem;}
+  .controle-item {min-width:min(160px,100%);}
+  .pizza-row {gap:1rem;}
+  .nav-suivant .wrap > div {min-width:0;}
+  .photo-illustration img {height:200px;}
+}
+
+
+
+/* Compléments d'habillage : spécificités de MAT1101 — 1.3 */
+.nombre-affiche {
+  width:100%; margin:.75rem auto; text-align:center;
+  font:700 clamp(1.65rem,5vw,2.4rem)/1.4 var(--font-mono); color:var(--ardoise);
+  overflow-wrap:anywhere;
+}
+.nombre-affiche .chiffre { display:inline-block; padding:.1rem .27rem; border-radius:8px; }
+.nombre-affiche .chiffre.surligne { background:var(--craie); color:var(--ardoise-deep); }
+.table-wrap table.valposition { width:100%; border-collapse:collapse; }
+.table-wrap table.valposition th, .table-wrap table.valposition td { text-align:center; font:600 .8rem/1.6 var(--font-mono); }
+.table-wrap table.valposition td.actif { background:#f3dfad; color:var(--ardoise-deep); font-weight:700; }
+.interactif .table-wrap { width:100%; }
+.controle-item select { width:100%; border:1px solid #c9d8cf; border-radius:11px; padding:.7rem .85rem; background:#fff; color:var(--ardoise); font:600 .82rem var(--font-mono); }
+.controle-item select:focus-visible { outline:3px solid var(--craie); outline-offset:2px; }
+input[type=checkbox] { accent-color:var(--sapin); margin-right:.5rem; }
+.etapes { width:100%; padding:1rem 1.15rem; border:1px solid #dce6dd; border-radius:12px; background:#f0f4ee; font:500 .87rem/1.9 var(--font-mono); overflow-wrap:anywhere; }
+.info-box.alerte { background:#fbefee; border-left-color:var(--brique); color:#853b35; }
+.strategie-grille { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin:1.4rem 0; }
+.strategie-grille .boite { margin:0; }
+.boite.strategie { border-left-color:var(--sapin); }
+.centre { margin:1rem auto; text-align:center; font:600 .95rem/1.9 var(--font-mono); color:var(--ardoise); }
+.btn-secondaire { display:inline-flex;align-items:center;justify-content:center;padding:.75rem 1rem; color:var(--ardoise);background:#f4f8f3;border:1px solid #bbcfc1;border-radius:11px;font:700 .9rem var(--font-display);text-decoration:none; }
+.btn-secondaire:hover { color:var(--ardoise);background:#e5efe6; }
+.nav-suivant .wrap { flex-wrap:wrap; }
+.nav-suivant .wrap > div { flex:1;min-width:150px; }
+.hero-paper svg { width:min(100%,270px); }
+.hero-math { text-align:center; font:600 .84rem/1.6 var(--font-mono); }
+mjx-container[display="true"] { max-width:100%;overflow-x:auto;overflow-y:hidden; }
+@media (max-width: 620px) {
+  .strategie-grille { grid-template-columns:1fr; }
+  .interactif { padding:1rem; }
+  .controle-item { min-width:min(170px,100%); }
+  .nav-suivant .wrap > div { min-width:0; }
+  .table-wrap table.valposition th, .table-wrap table.valposition td { font-size:.72rem;padding:.6rem .45rem; }
+}
+
+
+/* Intégration MAT1101 — 1.4 : maintien de la logique des outils d'origine */
+html {scroll-padding-top:155px}
+.page-layout > main.wrap .chapitre {overflow-x:clip;}
+.page-layout .chapitre > .section {scroll-margin-top:160px;margin-bottom:0;padding:clamp(2.2rem,4vw,3.4rem) 0;border-bottom:1px solid #cbd9ce}
+.page-layout > main.wrap {order:2;width:min(1000px,calc(100% - 3rem))}
+.page-layout .chapitre{padding-bottom:4rem}
+.intro-example{margin:1.8rem 0 2rem;padding:clamp(1.2rem,3vw,2rem);background:var(--white);border:1px solid var(--ligne);border-radius:18px;box-shadow:var(--ombre);font-size:1rem;overflow-x:auto}
+.intro-example .photo-illustration{margin-bottom:0}
+.hero-tags{display:flex;gap:.55rem;flex-wrap:wrap;margin:1rem 0 0}
+.hero-chip{color:#e4ecdf;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:9px;padding:.35rem .6rem;font:500 .74rem var(--font-mono)}
+.hero-paper svg{width:100%;max-width:290px}
+.hero-math{text-align:center;font:700 .82rem/1.5 var(--font-mono)}
+.section-kicker{margin-bottom:.55rem;color:var(--sapin);font:700 .75rem var(--font-mono);letter-spacing:.1em;text-transform:uppercase}
+.chapitre > .section h2{margin:0 0 1.6rem;max-width:26ch;color:var(--ardoise);font:700 clamp(1.75rem,4vw,2.5rem)/1.17 var(--font-display);letter-spacing:-.04em}
+.chapitre > .section h3{margin:2rem 0 .75rem;color:var(--ardoise);font:700 1.3rem/1.3 var(--font-display)}
+.chapitre > .section h4{margin:1.1rem 0 .6rem;color:var(--ardoise);font:700 1rem/1.3 var(--font-display)}
+.chapitre .lead{font-size:1.08rem;color:#40584a}
+.chapitre .definition,.chapitre .example,.chapitre .note,.chapitre .attention,.chapitre .method,
+.chapitre .idee,.chapitre .retenir{margin:1.5rem 0;padding:1.3rem 1.5rem;border:1px solid var(--ligne);border-left:5px solid var(--sapin);border-radius:15px;background:var(--white);box-shadow:var(--ombre)}
+.chapitre .example{border-left-color:var(--craie)}
+.chapitre .note{border-left-color:var(--ardoise)}
+.chapitre .attention{border-left-color:var(--brique);background:#fbefee}
+.chapitre .method{border-left-color:var(--sapin);background:#eef3f0}
+.chapitre .idee{border-left-color:var(--craie);background:#fbf4e4}
+.chapitre .retenir{border-left-color:var(--craie);color:#fff;background:var(--ardoise)}
+.chapitre .retenir h3,.chapitre .retenir strong{color:#f4d396}
+.chapitre .retenir p,.chapitre .retenir li{color:#f2f6f3}
+.chapitre .box-title{display:flex;gap:.5rem;align-items:center;margin:0 0 .75rem;color:var(--sapin);font:700 .78rem var(--font-mono);text-transform:uppercase;letter-spacing:.06em}
+.chapitre .box-title::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.chapitre .attention .box-title{color:var(--brique)}
+.chapitre .example .box-title{color:#93631e}
+.chapitre .equation,.chapitre .math-display{margin:1.2rem 0;padding:1.1rem .6rem;overflow-x:auto;border:1px solid #e6dbbe;border-radius:13px;background:#fbf7ea}
+.chapitre .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.4rem 0}
+.chapitre .mini-card{padding:1.2rem 1.35rem;background:#fcfbf7;border:1px solid var(--ligne);border-radius:16px}
+.chapitre .interactif{width:100%;max-width:100%;margin:1.6rem 0;padding:clamp(1rem,3vw,1.8rem);border-radius:19px;gap:.7rem}
+.chapitre .interactif-title{align-self:flex-start;color:var(--sapin);font:700 .77rem var(--font-mono);text-transform:uppercase;letter-spacing:.07em}
+.chapitre .etapes{width:100%;white-space:pre-line;overflow-wrap:anywhere;background:#f0f4ee;border:1px solid #dce6dd;border-radius:12px;padding:1rem;font:500 .87rem/1.85 var(--font-mono)}
+.chapitre .controle-item input[type="text"],.chapitre .controle-item input[type="number"]{width:100%;max-width:100%;border:1px solid #c9d8cf;border-radius:10px;padding:.65rem .75rem;background:var(--white);color:var(--ardoise);font:600 .92rem var(--font-mono)}
+.chapitre .controle-item select{width:100%;border:1px solid #c9d8cf;border-radius:10px;padding:.65rem .75rem;background:#fff;color:var(--ardoise);font:600 .84rem var(--font-mono)}
+.chapitre .pile-nombres{width:min(100%,340px);margin:.8rem auto;background:var(--papier);padding:1.2rem;border-radius:13px;font:600 1.2rem/1.7 var(--font-mono);text-align:right}
+.chapitre .pile-nombres .op{float:left;color:#93631e}
+.chapitre .pile-nombres hr{margin:.5rem 0;border:0;border-top:2px solid var(--ardoise)}
+.chapitre .mode-btn{padding:.48rem .7rem;border:1px solid #bed3c5;border-radius:10px;color:var(--ardoise);background:#f8faf7;font:700 .82rem var(--font-display);cursor:pointer}
+.chapitre .mode-btn.actif{background:var(--sapin);border-color:var(--sapin);color:#fff}
+.chapitre .btn-jeu{padding:.7rem 1rem;background:var(--sapin);color:#fff;border:1px solid var(--sapin);border-radius:10px;font:700 .86rem var(--font-display);cursor:pointer}
+.chapitre .btn-jeu.secondaire{background:#fff;border-color:#c2d3c8;color:var(--ardoise)}
+.chapitre .stat-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;width:100%;margin:1rem 0}
+.chapitre .stat-item{padding:.9rem 1.2rem;text-align:center;background:var(--papier);border-radius:12px}
+.chapitre .stat-item .val{display:block;color:var(--ardoise);font:700 1.5rem var(--font-mono)}
+.chapitre .stat-item .lbl{font:600 .67rem var(--font-mono);text-transform:uppercase;color:var(--sapin)}
+.chapitre .probleme-enonce{display:block;width:100%;min-height:58px;margin:1rem 0;padding:1rem 1.2rem;border:1px solid #d8e1d8;border-radius:12px;background:var(--papier);font-style:italic}
+.chapitre table{width:100%;border-collapse:collapse;display:table;max-width:100%;}
+.chapitre .summary{margin:0;padding:1.5rem 2rem;background:var(--ardoise-deep);color:#fff;border-radius:18px}
+.chapitre .summary h2,.chapitre .summary strong{color:#f4d396}
+.chapitre .summary li{color:#f4f6f2}
+.chapitre .photo-illustration img{object-fit:cover}
+.chapitre .photo-illustration.photo-objet img{object-fit:contain}
+.btn-secondaire{display:inline-flex;align-items:center;justify-content:center;padding:.75rem 1rem;background:#f4f8f3;color:var(--ardoise);border:1px solid #bbcfc1;border-radius:11px;font:700 .9rem var(--font-display);text-decoration:none}
+.nav-suivant .wrap{flex-wrap:wrap}
+.nav-suivant .wrap>div{flex:1;min-width:160px}
+mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:hidden}
+@media(max-width:760px){.chapitre .grid-2{grid-template-columns:1fr}.page-layout > main.wrap{width:calc(100% - 2rem)}.chapitre .section h2{font-size:1.8rem}.intro-example{padding:1.1rem}}
+@media(max-width:620px){.hero-visual{display:none}.sommaire{grid-template-columns:1fr}.nav-suivant .wrap>div{min-width:0}}
 </style>
 </head>
-
 <body>
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span>.page</a>
-    <nav class="nav" aria-label="Navigation principale">
-      <a href="https://learnwithdom.page">Accueil</a>
-      <a href="https://learnwithdom.page/niveau/secondaire1.html">Secondaire 1</a>
-      <a href="https://learnwithdom.page/cours/mat1101.html">MAT-1101</a>
-    </nav>
-  </div>
+<header class="site">
+<nav aria-label="Navigation principale" class="wrap">
+<a aria-label="learnwithdom.page — Accueil" class="brand" href="https://learnwithdom.page">learnwithdom<span>.page</span></a>
+<ul class="nav-links">
+<li><a href="https://learnwithdom.page">Accueil</a></li>
+<li><a href="https://learnwithdom.page/cours/mat1101.html">MAT1101</a></li>
+</ul>
+<a class="nav-cta" href="https://learnwithdom.page/webwork2/MAT1101">WeBWorK →</a>
+</nav>
 </header>
-
-<section class="hero">
-  <div class="hero-inner">
-    <div class="breadcrumb">
-      <a href="https://learnwithdom.page">learnwithdom.page</a>
-      &nbsp; / &nbsp;
-      <a href="https://learnwithdom.page/niveau/secondaire1.html">Secondaire 1</a>
-      &nbsp; / &nbsp;
-      MAT-1101
-    </div>
-
-    <div class="eyebrow">MAT-1101 · 1.4</div>
-
-    <h1>Les opérations sur les nombres décimaux</h1>
-
-    <p class="hero-lead">
-      Additionner, soustraire, multiplier et diviser des nombres décimaux. Travailler avec les
+<div class="hero">
+<div class="wrap hero-grid"><div class="hero-copy">
+<div class="eyebrow"><a href="04-Nombres_decimaux.html">MAT1101 · 1.3 Les nombres décimaux</a></div>
+<h1 class="course-title">1.4 — Les opérations sur les nombres décimaux</h1><p class="course-description">Additionner, soustraire, multiplier et diviser des nombres décimaux. Travailler avec les
       puissances de 10, respecter l'ordre des opérations et s'entraîner avec un générateur de
-      problèmes qui ne manque jamais d'exemples.
-    </p>
-
-    <div class="hero-meta">
-      <span class="tag">Secondaire 1</span>
-      <span class="tag">Arithmétique</span>
-      <span class="tag">Nombres décimaux</span>
-      <span class="tag">Générateur de problèmes</span>
-    </div>
-  </div>
-</section>
-
-<main class="page">
-
-<aside class="toc" aria-label="Table des matières">
-  <div class="toc-title">Dans cette page</div>
-  <a href="#addition">Additionner</a>
-  <a href="#soustraction">Soustraire</a>
-  <a href="#multiplication">Multiplier</a>
-  <a href="#division">Diviser</a>
-  <a href="#puissances10">Puissances de 10</a>
-  <a href="#ordre">Ordre des opérations</a>
-  <a href="#estimation">Estimation et vérification</a>
-  <a href="#erreurs">Erreurs fréquentes</a>
-  <a href="#applications">Applications</a>
-  <a href="#jeu">Jeu — génère tes problèmes</a>
-  <a href="#retenir">À retenir</a>
-</aside>
-
-<div class="content">
+      problèmes qui ne manque jamais d'exemples.</p>
+<div class="hero-tags"><span class="hero-chip">Secondaire 1</span><span class="hero-chip">Arithmétique</span><span class="hero-chip">Nombres décimaux</span><span class="hero-chip">Générateur de problèmes</span></div>
+<div class="hero-actions"><a href="#addition">Découvrir la leçon ↓</a><a href="#jeu">S’entraîner avec des problèmes →</a></div></div>
+<div aria-hidden="true" class="hero-visual"><div class="hero-paper"><div class="hero-tag">LES QUATRE OPÉRATIONS</div>
+<svg role="img" viewbox="0 0 300 236" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#f9f8f0" height="226" rx="15" width="290" x="5" y="4"></rect>
+<g font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">
+<rect fill="#dcece3" height="72" rx="11" width="116" x="24" y="24"></rect>
+<text fill="#2b5d48" font-size="22" x="82" y="48">+</text><text fill="#234738" font-size="12" x="82" y="74">12,5 + 3,7</text>
+<rect fill="#f9ebc4" height="72" rx="11" width="116" x="160" y="24"></rect>
+<text fill="#93631e" font-size="22" x="218" y="48">−</text><text fill="#6a501e" font-size="12" x="218" y="74">8,6 − 2,1</text>
+<rect fill="#f9ebc4" height="72" rx="11" width="116" x="24" y="112"></rect>
+<text fill="#93631e" font-size="22" x="82" y="136">×</text><text fill="#6a501e" font-size="12" x="82" y="162">0,3 × 0,7</text>
+<rect fill="#dcece3" height="72" rx="11" width="116" x="160" y="112"></rect>
+<text fill="#2b5d48" font-size="22" x="218" y="136">÷</text><text fill="#234738" font-size="12" x="218" y="162">12,6 ÷ 0,3</text>
+<text fill="#365d4b" font-size="11" x="150" y="211">VIRGULE · CALCUL · VÉRIFIER</text>
+</g></svg>
+<div class="hero-math">Comprendre · Calculer · Vérifier</div>
+</div></div>
+</div></div>
+<div class="page-layout"><main class="wrap"><div class="wrap chapitre"><div aria-label="Accès aux sections" class="sommaire"><a href="#addition"><span>01</span>Additionner</a><a href="#soustraction"><span>02</span>Soustraire</a><a href="#multiplication"><span>03</span>Multiplier</a><a href="#division"><span>04</span>Diviser</a><a href="#puissances10"><span>05</span>Puissances de 10</a><a href="#ordre"><span>06</span>Ordre des opérations</a><a href="#estimation"><span>07</span>Estimation et vérification</a><a href="#erreurs"><span>08</span>Erreurs fréquentes</a><a href="#applications"><span>09</span>Applications</a><a href="#jeu"><span>10</span>Jeu — génère tes problèmes</a></div><div class="intro-example">
 Observez la facture ci-dessous:
   
 \[
 \begin{array}{rll{\qquad}l}
-  8&,&99\,\$ & \text{Soupe}\\
- 19&,&49\,\$ & \text{Repas principal}\\
-+3&,&99\,\$ & \text{Boisson}\\
+  8&amp;,&amp;99\,\$ &amp; \text{Soupe}\\
+ 19&amp;,&amp;49\,\$ &amp; \text{Repas principal}\\
++3&amp;,&amp;99\,\$ &amp; \text{Boisson}\\
 \hline
- 32&,&97\,\$ &
+ 32&amp;,&amp;97\,\$ &amp;
 \end{array}
 \]
 <p>
 Vous pouvez remarquer que chaque article de la facture est tarifé en dollars et en sous.
 Dans ce cas, nous avons aligné les dollars avec les dollars et les sous avec les sous, en prenant soin d’aligner les virgules décimales. Il ne reste alors qu’à additionner les nombres colonne par colonne, comme nous le faisons avec les nombres entiers.
 En alignant ainsi les nombres décimaux, nous pouvons facilement effectuer des additions et des soustractions, exactement comme nous le faisons avec les nombres entiers.
-</p>
-
-  
-<section class="section" id="addition">
-  <div class="section-kicker">Opération 1</div>
-  <h2>Additionner des nombres décimaux</h2>
-
-  <p class="lead">L'addition de nombres décimaux repose essentiellement sur la valeur de position.</p>
-
-  <div class="method">
-    <div class="box-title">Méthode</div>
-    <ol>
-      <li>Aligner les virgules.</li>
-      <li>Ajouter des zéros si nécessaire pour que les deux nombres aient le même nombre de décimales.</li>
-      <li>Additionner colonne par colonne, de droite à gauche.</li>
-      <li>Placer la virgule dans le résultat, sous les autres virgules.</li>
-    </ol>
-  </div>
-
-  <div class="interactif">
-    <div class="interactif-title">Aligneur de virgules — addition</div>
-    <div class="controles">
-      <div class="controle-item"><label>Premier nombre <output id="outAddA">23,5</output></label><input id="rangeAddA" max="99.99" min="0" step="0.01" type="range" value="23.5"/></div>
-      <div class="controle-item"><label>Deuxième nombre <output id="outAddB">41,38</output></label><input id="rangeAddB" max="99.99" min="0" step="0.01" type="range" value="41.38"/></div>
-    </div>
-    <div class="pile-nombres" id="pileAddition">
+</p><figure class="photo-illustration"><img alt="Panier dans un supermarché, exemple concret de calcul du prix total d’achats." decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Shopping_Cart_Supermarket.jpg/960px-Shopping_Cart_Supermarket.jpg"/><figcaption>À l’épicerie, additionner les prix et prévoir le total nécessite de bien aligner les décimales. <small class="credit-photo">Photo : safaritravelplus · <a href="https://commons.wikimedia.org/wiki/File:Shopping_Cart_Supermarket.jpg" rel="noopener noreferrer" target="_blank">Wikimedia Commons — CC0 1.0</a>.</small></figcaption></figure></div><section class="section" id="addition">
+<div class="section-kicker">Opération 1</div>
+<h2>Additionner des nombres décimaux</h2>
+<p class="lead">L'addition de nombres décimaux repose essentiellement sur la valeur de position.</p>
+<div class="method">
+<div class="box-title">Méthode</div>
+<ol>
+<li>Aligner les virgules.</li>
+<li>Ajouter des zéros si nécessaire pour que les deux nombres aient le même nombre de décimales.</li>
+<li>Additionner colonne par colonne, de droite à gauche.</li>
+<li>Placer la virgule dans le résultat, sous les autres virgules.</li>
+</ol>
+</div>
+<div class="interactif">
+<div class="interactif-title">Aligneur de virgules — addition</div>
+<div class="controles">
+<div class="controle-item"><label>Premier nombre <output id="outAddA">23,5</output></label><input id="rangeAddA" max="99.99" min="0" step="0.01" type="range" value="23.5"/></div>
+<div class="controle-item"><label>Deuxième nombre <output id="outAddB">41,38</output></label><input id="rangeAddB" max="99.99" min="0" step="0.01" type="range" value="41.38"/></div>
+</div>
+<div class="pile-nombres" id="pileAddition">
       23,50<br/><span class="op">+</span>41,38<hr/>64,88
     </div>
-    <div class="info-box" id="addInfo">23,5 = 23,50 — on ajoute un zéro pour aligner le nombre de décimales, puis on additionne colonne par colonne.</div>
-  </div>
-</section>
-
-<section class="section" id="soustraction">
-  <div class="section-kicker">Opération 2</div>
-  <h2>Soustraire des nombres décimaux</h2>
-
-  <p>La soustraction suit la même logique que l'addition : on aligne les virgules, on complète avec des zéros, puis on soustrait colonne par colonne (avec des emprunts si nécessaire).</p>
-
-  <div class="interactif">
-    <div class="interactif-title">Aligneur de virgules — soustraction</div>
-    <div class="controles">
-      <div class="controle-item"><label>Nombre de départ <output id="outSubA">7,368</output></label><input id="rangeSubA" max="99.999" min="0" step="0.001" type="range" value="7.368"/></div>
-      <div class="controle-item"><label>Nombre soustrait <output id="outSubB">1,15</output></label><input id="rangeSubB" max="99.999" min="0" step="0.001" type="range" value="1.15"/></div>
-    </div>
-    <div class="pile-nombres" id="pileSoustraction">
+<div class="info-box" id="addInfo">23,5 = 23,50 — on ajoute un zéro pour aligner le nombre de décimales, puis on additionne colonne par colonne.</div>
+</div>
+</section><section class="section" id="soustraction">
+<div class="section-kicker">Opération 2</div>
+<h2>Soustraire des nombres décimaux</h2>
+<p>La soustraction suit la même logique que l'addition : on aligne les virgules, on complète avec des zéros, puis on soustrait colonne par colonne (avec des emprunts si nécessaire).</p>
+<div class="interactif">
+<div class="interactif-title">Aligneur de virgules — soustraction</div>
+<div class="controles">
+<div class="controle-item"><label>Nombre de départ <output id="outSubA">7,368</output></label><input id="rangeSubA" max="99.999" min="0" step="0.001" type="range" value="7.368"/></div>
+<div class="controle-item"><label>Nombre soustrait <output id="outSubB">1,15</output></label><input id="rangeSubB" max="99.999" min="0" step="0.001" type="range" value="1.15"/></div>
+</div>
+<div class="pile-nombres" id="pileSoustraction">
       7,368<br/><span class="op">−</span>1,150<hr/>6,218
     </div>
-    <div class="info-box" id="subInfo">Le résultat est positif : le nombre de départ est plus grand que le nombre soustrait.</div>
-  </div>
-
-  <div class="note">
-    <div class="box-title">Déterminer le signe avant de calculer</div>
-    <p>Si le nombre que l'on soustrait est plus grand que le nombre de départ, le résultat est négatif. Par exemple, \(2{,}51-7{,}4\) : puisque \(7{,}4>2{,}51\), on calcule d'abord \(7{,}40-2{,}51=4{,}89\), puis on écrit \(2{,}51-7{,}4=-4{,}89\).</p>
-  </div>
-</section>
-
-<section class="section" id="multiplication">
-  <div class="section-kicker">Opération 3</div>
-  <h2>Multiplier des nombres décimaux</h2>
-
-<p> La multiplication de nombres décimaux ressemble beaucoup à la multiplication de nombres entiers. La principale différence consiste à <strong>déterminer où placer la virgule décimale dans le résultat</strong>. </p> <p> Pour comprendre la méthode, commençons par revoir comment nous multiplions les fractions. </p> <p> Vous souvenez-vous de la façon de multiplier deux fractions? Pour multiplier des fractions, nous multiplions les <strong>numérateurs entre eux</strong> et les <strong>dénominateurs entre eux</strong>. </p> <p> Voyons maintenant ce qui se produit lorsque nous transformons des nombres décimaux en fractions avant de les multiplier. Cette démarche nous permettra de dégager une règle. </p> <p>Considérons les deux exemples suivants :</p> <table> <thead> <tr> <th></th> <th>Exemple A</th> <th>Exemple B</th> </tr> </thead> <tbody> <tr> <th>Multiplication</th> <td>\(0,3\times0,7\)</td> <td>\(0,2\times0,46\)</td> </tr> <tr> <th>Écriture sous forme de fractions</th> <td>\(\dfrac{3}{10}\times\dfrac{7}{10}\)</td> <td>\(\dfrac{2}{10}\times\dfrac{46}{100}\)</td> </tr> <tr> <th>Multiplication</th> <td>\(\dfrac{21}{100}\)</td> <td>\(\dfrac{92}{1000}\)</td> </tr> <tr> <th>Écriture décimale</th> <td>\(0,21\)</td> <td>\(0,092\)</td> </tr> </tbody> </table> <p>Observons ce qui se passe.</p> <p> Dans l'exemple A, nous avons multiplié deux nombres qui comportent chacun <strong>une décimale</strong>. Le résultat comporte <strong>deux décimales</strong>. </p> <p> Dans l'exemple B, nous avons multiplié un nombre qui comporte <strong>une décimale</strong> par un nombre qui en comporte <strong>deux</strong>. Le résultat comporte alors <strong>trois décimales</strong>. </p> <div class="idee"> <h3>Une règle à retenir</h3> <p> Pour multiplier des nombres décimaux, le résultat doit comporter autant de décimales que le total des décimales présentes dans les facteurs. </p> </div> <p> Par exemple, combien de décimales devrions-nous avoir dans le résultat de </p> <div class="math-display"> \[ 0,01\times0,004\;? \] </div> <p> Le nombre \(0,01\) comporte <strong>2 décimales</strong>, tandis que le nombre \(0,004\) en comporte <strong>3</strong>. </p> <p>Nous devons donc avoir</p> <div class="math-display"> \[ 2+3=5 \] </div> <p> décimales dans le résultat. </p> <p>Effectuons la multiplication :</p> <div class="math-display"> \[ 0,01\times0,004=0,00004. \] </div> <p> Le résultat comporte bien <strong>5 décimales</strong>. </p> <p> Nous pouvons également comprendre cette règle en écrivant les nombres sous forme de fractions : </p> <div class="math-display"> \[ 0,01\times0,004 = \frac{1}{100}\times\frac{4}{1000} = \frac{4}{100\,000} = 0,00004. \] </div> <p> Le dénominateur du résultat comporte cinq zéros, ce qui correspond aux <strong>5 décimales</strong> du résultat. </p> <div class="retenir"> <h3>La règle</h3> <p> Une fois que nous savons déterminer le nombre de décimales que doit comporter le résultat, nous pouvons multiplier directement les nombres décimaux, sans avoir à les transformer en fractions. </p> <p> <strong>Pour multiplier deux nombres décimaux :</strong> </p> <ol> <li> On effectue la multiplication comme s'il s'agissait de nombres entiers, sans tenir compte des virgules. </li> <li> On compte le nombre total de décimales dans les deux facteurs. </li> <li> On place la virgule dans le résultat de façon à obtenir ce même nombre de décimales. </li> </ol> </div> <h3>Exemple</h3> <p>Calculons :</p> <div class="math-display"> \[ 0,23\times0,4 \] </div> <p> Le nombre \(0,23\) comporte <strong>2 décimales</strong> et le nombre \(0,4\) en comporte <strong>1</strong>. Le résultat doit donc comporter </p> <div class="math-display"> \[ 2+1=3 \] </div> <p>décimales.</p> <p> On effectue d'abord la multiplication sans tenir compte des virgules : </p> <div class="math-display"> \[ 23\times4=92. \] </div> <p> Puisque le résultat doit comporter trois décimales, on obtient : </p> <div class="math-display"> \[ 0,23\times0,4=0,092. \] </div> <div class="retenir"> <h3>Et les signes?</h3> <p> Les règles concernant les signes s'appliquent également aux nombres décimaux. Ainsi, comme pour les nombres entiers : </p> <ul> <li> un nombre positif multiplié par un nombre positif donne un résultat <strong>positif</strong>; </li> <li> un nombre négatif multiplié par un nombre négatif donne un résultat <strong>positif</strong>; </li> <li> un nombre positif multiplié par un nombre négatif donne un résultat <strong>négatif</strong>; </li> <li> un nombre négatif multiplié par un nombre positif donne un résultat <strong>négatif</strong>. </li> </ul> </div>
- <div class="method">
-  <div class="box-title">Méthode : multiplier des nombres décimaux</div>
-  <ol>
-    <li>
-      <strong>Déterminer le signe du produit.</strong>
-    </li>
+<div class="info-box" id="subInfo">Le résultat est positif : le nombre de départ est plus grand que le nombre soustrait.</div>
+</div>
+<div class="note">
+<div class="box-title">Déterminer le signe avant de calculer</div>
+<p>Si le nombre que l'on soustrait est plus grand que le nombre de départ, le résultat est négatif. Par exemple, \(2{,}51-7{,}4\) : puisque \(7{,}4&gt;2{,}51\), on calcule d'abord \(7{,}40-2{,}51=4{,}89\), puis on écrit \(2{,}51-7{,}4=-4{,}89\).</p>
+</div>
+</section><section class="section" id="multiplication">
+<div class="section-kicker">Opération 3</div>
+<h2>Multiplier des nombres décimaux</h2>
+<p> La multiplication de nombres décimaux ressemble beaucoup à la multiplication de nombres entiers. La principale différence consiste à <strong>déterminer où placer la virgule décimale dans le résultat</strong>. </p> <p> Pour comprendre la méthode, commençons par revoir comment nous multiplions les fractions. </p> <p> Vous souvenez-vous de la façon de multiplier deux fractions? Pour multiplier des fractions, nous multiplions les <strong>numérateurs entre eux</strong> et les <strong>dénominateurs entre eux</strong>. </p> <p> Voyons maintenant ce qui se produit lorsque nous transformons des nombres décimaux en fractions avant de les multiplier. Cette démarche nous permettra de dégager une règle. </p> <p>Considérons les deux exemples suivants :</p> <div aria-label="Tableau mathématique défilable" class="table-wrap" role="region" tabindex="0"><table> <thead> <tr> <th></th> <th>Exemple A</th> <th>Exemple B</th> </tr> </thead> <tbody> <tr> <th>Multiplication</th> <td>\(0,3\times0,7\)</td> <td>\(0,2\times0,46\)</td> </tr> <tr> <th>Écriture sous forme de fractions</th> <td>\(\dfrac{3}{10}\times\dfrac{7}{10}\)</td> <td>\(\dfrac{2}{10}\times\dfrac{46}{100}\)</td> </tr> <tr> <th>Multiplication</th> <td>\(\dfrac{21}{100}\)</td> <td>\(\dfrac{92}{1000}\)</td> </tr> <tr> <th>Écriture décimale</th> <td>\(0,21\)</td> <td>\(0,092\)</td> </tr> </tbody> </table></div> <p>Observons ce qui se passe.</p> <p> Dans l'exemple A, nous avons multiplié deux nombres qui comportent chacun <strong>une décimale</strong>. Le résultat comporte <strong>deux décimales</strong>. </p> <p> Dans l'exemple B, nous avons multiplié un nombre qui comporte <strong>une décimale</strong> par un nombre qui en comporte <strong>deux</strong>. Le résultat comporte alors <strong>trois décimales</strong>. </p> <div class="idee"> <h3>Une règle à retenir</h3> <p> Pour multiplier des nombres décimaux, le résultat doit comporter autant de décimales que le total des décimales présentes dans les facteurs. </p> </div> <p> Par exemple, combien de décimales devrions-nous avoir dans le résultat de </p> <div class="math-display"> \[ 0,01\times0,004\;? \] </div> <p> Le nombre \(0,01\) comporte <strong>2 décimales</strong>, tandis que le nombre \(0,004\) en comporte <strong>3</strong>. </p> <p>Nous devons donc avoir</p> <div class="math-display"> \[ 2+3=5 \] </div> <p> décimales dans le résultat. </p> <p>Effectuons la multiplication :</p> <div class="math-display"> \[ 0,01\times0,004=0,00004. \] </div> <p> Le résultat comporte bien <strong>5 décimales</strong>. </p> <p> Nous pouvons également comprendre cette règle en écrivant les nombres sous forme de fractions : </p> <div class="math-display"> \[ 0,01\times0,004 = \frac{1}{100}\times\frac{4}{1000} = \frac{4}{100\,000} = 0,00004. \] </div> <p> Le dénominateur du résultat comporte cinq zéros, ce qui correspond aux <strong>5 décimales</strong> du résultat. </p> <div class="retenir"> <h3>La règle</h3> <p> Une fois que nous savons déterminer le nombre de décimales que doit comporter le résultat, nous pouvons multiplier directement les nombres décimaux, sans avoir à les transformer en fractions. </p> <p> <strong>Pour multiplier deux nombres décimaux :</strong> </p> <ol> <li> On effectue la multiplication comme s'il s'agissait de nombres entiers, sans tenir compte des virgules. </li> <li> On compte le nombre total de décimales dans les deux facteurs. </li> <li> On place la virgule dans le résultat de façon à obtenir ce même nombre de décimales. </li> </ol> </div> <h3>Exemple</h3> <p>Calculons :</p> <div class="math-display"> \[ 0,23\times0,4 \] </div> <p> Le nombre \(0,23\) comporte <strong>2 décimales</strong> et le nombre \(0,4\) en comporte <strong>1</strong>. Le résultat doit donc comporter </p> <div class="math-display"> \[ 2+1=3 \] </div> <p>décimales.</p> <p> On effectue d'abord la multiplication sans tenir compte des virgules : </p> <div class="math-display"> \[ 23\times4=92. \] </div> <p> Puisque le résultat doit comporter trois décimales, on obtient : </p> <div class="math-display"> \[ 0,23\times0,4=0,092. \] </div> <div class="retenir"> <h3>Et les signes?</h3> <p> Les règles concernant les signes s'appliquent également aux nombres décimaux. Ainsi, comme pour les nombres entiers : </p> <ul> <li> un nombre positif multiplié par un nombre positif donne un résultat <strong>positif</strong>; </li> <li> un nombre négatif multiplié par un nombre négatif donne un résultat <strong>positif</strong>; </li> <li> un nombre positif multiplié par un nombre négatif donne un résultat <strong>négatif</strong>; </li> <li> un nombre négatif multiplié par un nombre positif donne un résultat <strong>négatif</strong>. </li> </ul> </div>
+<div class="method">
+<div class="box-title">Méthode : multiplier des nombres décimaux</div>
+<ol>
 <li>
-  <strong>Écrire les nombres en colonne</strong> en alignant leurs chiffres
+<strong>Déterminer le signe du produit.</strong>
+</li>
+<li>
+<strong>Écrire les nombres en colonne</strong> en alignant leurs chiffres
   vers la droite.
 </li>
 <li>
-  <strong>Effectuer la multiplication</strong> comme s'il s'agissait de
+<strong>Effectuer la multiplication</strong> comme s'il s'agissait de
   nombres entiers, sans tenir compte temporairement des virgules.
 </li>
 <li>
-  <strong>Placer la virgule.</strong> Le nombre de chiffres après la virgule
+<strong>Placer la virgule.</strong> Le nombre de chiffres après la virgule
   dans le produit est égal à la somme du nombre de chiffres après la virgule
   dans les deux facteurs. Au besoin, on ajoute des zéros pour compléter.
 </li>
 <li>
-  <strong>Écrire le produit avec le signe approprié.</strong>
+<strong>Écrire le produit avec le signe approprié.</strong>
 </li>
-  </ol>
+</ol>
 </div>
-
-
-  <div class="interactif">
-    <div class="interactif-title">Compteur de décimales — multiplication</div>
-    <div class="controles">
-      <div class="controle-item"><label>Premier facteur <output id="outMulA">0,3</output></label><input id="rangeMulA" max="9.99" min="0" step="0.01" type="range" value="0.3"/></div>
-      <div class="controle-item"><label>Deuxième facteur <output id="outMulB">0,7</output></label><input id="rangeMulB" max="9.99" min="0" step="0.01" type="range" value="0.7"/></div>
-    </div>
-    <div class="etapes" id="mulEtapes">0,3 × 0,7
+<figure class="photo-illustration photo-objet"><img alt="Tasse à mesurer transparente avec graduations de volume." decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Plastic_measuring_cup_2017_B1.jpg/960px-Plastic_measuring_cup_2017_B1.jpg"/><figcaption>En cuisine, multiplier une quantité décimale permet d’adapter le volume d’un ingrédient à une recette. <small class="credit-photo">Photo : Fructibus · <a href="https://commons.wikimedia.org/wiki/File:Plastic_measuring_cup_2017_B1.jpg" rel="noopener noreferrer" target="_blank">Wikimedia Commons — CC0 1.0</a>.</small></figcaption></figure><div class="interactif">
+<div class="interactif-title">Compteur de décimales — multiplication</div>
+<div class="controles">
+<div class="controle-item"><label>Premier facteur <output id="outMulA">0,3</output></label><input id="rangeMulA" max="9.99" min="0" step="0.01" type="range" value="0.3"/></div>
+<div class="controle-item"><label>Deuxième facteur <output id="outMulB">0,7</output></label><input id="rangeMulB" max="9.99" min="0" step="0.01" type="range" value="0.7"/></div>
+</div>
+<div class="etapes" id="mulEtapes">0,3 × 0,7
 → sans les virgules : 3 × 7 = 21
 → décimales au total : 1 + 1 = 2
 → résultat : 0,21</div>
-    <div class="info-box" id="mulInfo">Pourquoi ça marche : 0,3 × 0,7 = 3/10 × 7/10 = 21/100 = 0,21.</div>
-  </div>
-</section>
-
-<section class="section" id="division">
-  <div class="section-kicker">Opération 4</div>
-  <h2>Diviser des nombres décimaux</h2>
-
+<div class="info-box" id="mulInfo">Pourquoi ça marche : 0,3 × 0,7 = 3/10 × 7/10 = 21/100 = 0,21.</div>
+</div>
+</section><section class="section" id="division">
+<div class="section-kicker">Opération 4</div>
+<h2>Diviser des nombres décimaux</h2>
 <p> La division de nombres décimaux ressemble beaucoup à la division de nombres entiers. La principale difficulté consiste à savoir <strong>où placer la virgule dans le quotient</strong>. </p>
 <p> Avant de commencer une division longue, il faut toutefois s'assurer que le <strong>diviseur est un nombre entier</strong>. Si le diviseur comporte une virgule, nous pouvons transformer la division en une division équivalente dont le diviseur est entier. </p>
 <div class="idee"> <h3>Une propriété importante</h3>
@@ -363,7 +906,6 @@ En alignant ainsi les nombres décimaux, nous pouvons facilement effectuer des a
   Si nous multiplions le dividende et le diviseur par un même nombre
   non nul, le quotient ne change pas.
 </p>
-
 <div class="math-display">
   \[
     \frac{a}{b}
@@ -375,7 +917,6 @@ En alignant ainsi les nombres décimaux, nous pouvons facilement effectuer des a
     \cdots
   \]
 </div>
-
 <p>
   Cette propriété nous permet de déplacer la virgule du dividende et du
   diviseur du même nombre de positions vers la droite.
@@ -392,35 +933,30 @@ En alignant ainsi les nombres décimaux, nous pouvons facilement effectuer des a
 <div class="math-display"> \[ \boxed{12,48\div2,6=4,8} \] </div>
 <div class="method"> <div class="box-title">Méthode : diviser des nombres décimaux</div>
 <ol>
-  <li>
-    <strong>Déterminer le signe du quotient.</strong>
+<li>
+<strong>Déterminer le signe du quotient.</strong>
     Les règles des signes sont les mêmes que pour les nombres entiers.
   </li>
-
-  <li>
-    <strong>Transformer le diviseur en nombre entier.</strong>
+<li>
+<strong>Transformer le diviseur en nombre entier.</strong>
     Déplacer la virgule du diviseur vers la droite jusqu'à ce qu'il
     devienne un nombre entier.
   </li>
-
-  <li>
-    <strong>Déplacer la virgule du dividende du même nombre de positions.</strong>
+<li>
+<strong>Déplacer la virgule du dividende du même nombre de positions.</strong>
     Il faut multiplier le dividende et le diviseur par la même puissance
     de \(10\).
   </li>
-
-  <li>
-    <strong>Effectuer la division longue</strong> comme avec des nombres
+<li>
+<strong>Effectuer la division longue</strong> comme avec des nombres
     entiers.
   </li>
-
-  <li>
-    <strong>Placer la virgule dans le quotient</strong> au moment approprié
+<li>
+<strong>Placer la virgule dans le quotient</strong> au moment approprié
     lors de la division du dividende.
   </li>
-
-  <li>
-    <strong>Vérifier le résultat</strong> en utilisant une estimation ou
+<li>
+<strong>Vérifier le résultat</strong> en utilisant une estimation ou
     la multiplication :
     \[
       \text{diviseur}\times\text{quotient}=\text{dividende}.
@@ -437,16 +973,13 @@ En alignant ainsi les nombres décimaux, nous pouvons facilement effectuer des a
 <li>
   \(2\times3=6\). Il reste \(1\).
 </li>
-
 <li>
   On abaisse le \(5\), ce qui donne \(15\).
 </li>
-
 <li>
   Dans \(15\), le nombre \(3\) entre \(5\) fois.
   On écrit \(5\) au quotient.
 </li>
-
 <li>
   \(5\times3=15\). Il reste \(0\).
 </li>
@@ -469,7 +1002,7 @@ En alignant ainsi les nombres décimaux, nous pouvons facilement effectuer des a
 <p> Calculons : </p>
 <div class="math-display"> \[ 12,48\div2,6 \] </div>
 <p> Le diviseur \(2,6\) comporte une décimale. Nous déplaçons donc sa virgule d'une position vers la droite. Nous devons faire exactement la même chose avec le dividende : </p>
-<div class="math-display"> \[ \begin{aligned} 12,48 &\longrightarrow 124,8\\ 2,6 &\longrightarrow 26 \end{aligned} \] </div>
+<div class="math-display"> \[ \begin{aligned} 12,48 &amp;\longrightarrow 124,8\\ 2,6 &amp;\longrightarrow 26 \end{aligned} \] </div>
 <p> La division devient donc : </p>
 <div class="math-display"> \[ 124,8\div26 \] </div>
 <p> Nous pouvons maintenant effectuer la division longue. </p>
@@ -478,15 +1011,13 @@ En alignant ainsi les nombres décimaux, nous pouvons facilement effectuer des a
 <div class="math-display"> \[ \boxed{12,48\div2,6=4,8} \] </div>
 <div class="retenir"> <h3>À retenir</h3>
 <p>
-  <strong>Le diviseur doit être un nombre entier avant d'effectuer
+<strong>Le diviseur doit être un nombre entier avant d'effectuer
   la division longue.</strong>
 </p>
-
 <p>
   Pour y arriver, on multiplie le dividende et le diviseur par la
   même puissance de \(10\).
 </p>
-
 <div class="math-display">
   \[
     4,56\div1,2
@@ -496,7 +1027,6 @@ En alignant ainsi les nombres décimaux, nous pouvons facilement effectuer des a
     3,8
   \]
 </div>
-
 <p>
   On peut voir cette opération comme un déplacement de la virgule,
   mais il est important de comprendre que nous sommes en réalité
@@ -516,7 +1046,6 @@ En alignant ainsi les nombres décimaux, nous pouvons facilement effectuer des a
   Pour vérifier une division, nous pouvons utiliser la multiplication.
   Le produit du diviseur et du quotient devrait redonner le dividende :
 </p>
-
 <div class="math-display">
   \[
     \text{diviseur}\times\text{quotient}
@@ -524,213 +1053,164 @@ En alignant ainsi les nombres décimaux, nous pouvons facilement effectuer des a
     \text{dividende}.
   \]
 </div>
-
 <p>
   Par exemple :
 </p>
-
 <div class="math-display">
   \[
     2,6\times4,8=12,48.
   \]
 </div>
-
 <p>
   Notre quotient est donc cohérent.
 </p>
 </div>
-
-
-  <div class="interactif">
-    <div class="interactif-title">Transformateur de diviseur — division</div>
-    <div class="controles">
-      <div class="controle-item"><label>Dividende <output id="outDivA">12,6</output></label><input id="rangeDivA" max="200" min="0.1" step="0.1" type="range" value="12.6"/></div>
-      <div class="controle-item"><label>Diviseur <output id="outDivB">0,3</output></label><input id="rangeDivB" max="9.9" min="0.1" step="0.1" type="range" value="0.3"/></div>
-    </div>
-    <div class="etapes" id="divEtapes">12,6 ÷ 0,3
+<div class="interactif">
+<div class="interactif-title">Transformateur de diviseur — division</div>
+<div class="controles">
+<div class="controle-item"><label>Dividende <output id="outDivA">12,6</output></label><input id="rangeDivA" max="200" min="0.1" step="0.1" type="range" value="12.6"/></div>
+<div class="controle-item"><label>Diviseur <output id="outDivB">0,3</output></label><input id="rangeDivB" max="9.9" min="0.1" step="0.1" type="range" value="0.3"/></div>
+</div>
+<div class="etapes" id="divEtapes">12,6 ÷ 0,3
 → le diviseur a 1 décimale → on multiplie les deux nombres par 10
 → 126 ÷ 3 = 42</div>
-    <div class="info-box" id="divInfo">On ne « déplace » pas réellement une virgule au hasard : multiplier le dividende et le diviseur par la même puissance de 10 ne change pas le résultat de la division.</div>
-  </div>
-
-  <div class="attention">
-    <div class="box-title">Quand le quotient ne « tombe pas juste »</div>
-    <p>Certaines divisions ne donnent pas un nombre décimal fini : \(10\div3=3{,}3333\ldots\) Dans une situation pratique, on arrondit à la précision demandée — par exemple \(3{,}33\) au centième près.</p>
-  </div>
-</section>
-
-<section class="section" id="puissances10">
-  <div class="section-kicker">Raccourci</div>
-  <h2>Multiplier et diviser par une puissance de 10</h2>
-
-  <p>Multiplier par 10, 100, 1000... déplace la virgule vers la <strong>droite</strong>. Diviser par 10, 100, 1000... déplace la virgule vers la <strong>gauche</strong>. Le nombre de zéros indique le nombre de déplacements.</p>
-
-  <div class="interactif">
-    <div class="interactif-title">Simulateur — déplacer la virgule</div>
-    <div class="controles">
-      <div class="controle-item"><label>Nombre de départ <output id="outP10Base">5,63</output></label><input id="rangeP10Base" max="99.99" min="0.01" step="0.01" type="range" value="5.63"/></div>
-      <div class="controle-item"><label>Puissance de 10 <output id="outP10Exp">× 10</output></label><input id="rangeP10Exp" max="3" min="-3" type="range" value="1"/></div>
-    </div>
-    <div class="etapes" id="p10Etapes">5,63 × 10 = 56,3  (la virgule se déplace de 1 position vers la droite)</div>
-  </div>
-</section>
-
-<section class="section" id="ordre">
-  <div class="section-kicker">Règle de priorité</div>
-  <h2>Ordre des opérations avec des décimaux</h2>
-
-  <p>Les nombres décimaux ne changent pas les règles de priorité des opérations :</p>
-  <div class="equation">\[ \text{parenthèses} \rightarrow \text{exposants} \rightarrow \text{multiplications/divisions} \rightarrow \text{additions/soustractions} \]</div>
-  <p>Lorsque deux opérations ont la même priorité, on travaille de gauche à droite.</p>
-
-  <div class="grid-2">
-    <div class="mini-card">
-      <h4>Sans parenthèses</h4>
-      <div class="equation">\[ 3{,}5+2{,}4\times3 \]</div>
-      <p>On multiplie d'abord : \(2{,}4\times3=7{,}2\). Puis \(3{,}5+7{,}2=\boxed{10{,}7}\).</p>
-    </div>
-    <div class="mini-card">
-      <h4>Avec parenthèses</h4>
-      <div class="equation">\[ (3{,}5+2{,}4)\times3 \]</div>
-      <p>On commence par les parenthèses : \(3{,}5+2{,}4=5{,}9\). Puis \(5{,}9\times3=\boxed{17{,}7}\).</p>
-    </div>
-  </div>
-
-  <div class="attention">
-    <div class="box-title">Erreur fréquente</div>
-    <p>Ne pas calculer les opérations automatiquement dans l'ordre où elles sont écrites. Dans \(3{,}5+2{,}4\times3\), on ne commence <strong>pas</strong> par \(3{,}5+2{,}4\) — la multiplication vient avant l'addition.</p>
-  </div>
-</section>
-
-<section class="section" id="estimation">
-  <div class="section-kicker">Vérification</div>
-  <h2>Estimation et vérification</h2>
-
-  <p>L'estimation permet de vérifier si une réponse est raisonnable, de détecter une erreur de virgule, et de décider si un résultat de calculatrice est plausible.</p>
-
-  <div class="example">
-    <div class="box-title">Estimer avant de calculer</div>
-    <p>Pour \(19{,}8\times4{,}9\), on approxime : \(19{,}8\approx20\) et \(4{,}9\approx5\), donc \(19{,}8\times4{,}9\approx20\times5=100\). Le résultat exact, \(97{,}02\), est cohérent avec cette estimation.</p>
-  </div>
-
-  <div class="attention">
-    <div class="box-title">Détecter une erreur de virgule</div>
-    <p>Si un calcul donne \(19{,}8\times4{,}9=9702\), l'estimation (proche de 100) permet de voir immédiatement qu'une virgule est mal placée — le vrai résultat est \(97{,}02\).</p>
-  </div>
-
-  <div class="note">
-    <div class="box-title">Vérifier par l'opération inverse</div>
-    <p>Si \(7{,}368-1{,}15=6{,}218\), on vérifie avec \(6{,}218+1{,}15=7{,}368\). Pour une multiplication \(4{,}5\times2=9\), on vérifie avec \(9\div2=4{,}5\).</p>
-  </div>
-</section>
-
-<section class="section" id="erreurs">
-  <div class="section-kicker">Pièges classiques</div>
-  <h2>Erreurs fréquentes</h2>
-
-  <div class="attention">
-    <div class="box-title">Les cinq pièges les plus courants</div>
-    <ol>
-      <li><strong>Aligner les chiffres plutôt que les virgules</strong> lors d'une addition ou soustraction écrite en colonne.</li>
-      <li><strong>Croire que \(0{,}8<0{,}75\)</strong> à cause du nombre de chiffres — en réalité \(0{,}8=0{,}80>0{,}75\).</li>
-      <li><strong>Oublier les zéros</strong> : pour \(5-2{,}34\), écrire \(5{,}00-2{,}34\) rend la soustraction beaucoup plus claire.</li>
-      <li><strong>Mal placer la virgule après une multiplication</strong> en oubliant de compter toutes les décimales des deux facteurs.</li>
-      <li><strong>Déplacer seulement la virgule du diviseur</strong> dans une division — il faut déplacer celle du dividende du même nombre de positions.</li>
-    </ol>
-  </div>
-</section>
-
-<section class="section" id="applications">
-  <div class="section-kicker">Dans la vraie vie</div>
-  <h2>Applications : argent et mesures</h2>
-
-  <div class="grid-2">
-    <div class="mini-card">
-      <h4>Monnaie</h4>
-      <p>Un achat coûte \(14{,}65\)$. En payant avec \(20{,}00\)$, la monnaie rendue est \(20{,}00-14{,}65=5{,}35\)$.</p>
-    </div>
-    <div class="mini-card">
-      <h4>Mesures</h4>
-      <p>Attention aux unités : \(2{,}5\text{ m}+75\text{ cm}\) ne se calcule pas directement. On convertit \(75\text{ cm}=0{,}75\text{ m}\), puis \(2{,}5+0{,}75=3{,}25\text{ m}\).</p>
-    </div>
-  </div>
-
-  <div class="method">
-    <div class="box-title">Résoudre un problème écrit</div>
-    <p>Lire le problème, déterminer ce que l'on cherche, identifier les données utiles, vérifier les unités, choisir l'opération, écrire le calcul, l'effectuer, arrondir si nécessaire, puis vérifier si la réponse est raisonnable avant d'écrire une phrase-réponse.</p>
-  </div>
-</section>
-
-<section class="section" id="jeu">
-  <div class="section-kicker">Jeu interactif</div>
-  <h2>Génère tes propres problèmes</h2>
-  <p class="lead">Choisis une opération, essaie de résoudre le problème généré, puis vérifie ta réponse.</p>
-
-  <div class="interactif">
-    <div class="interactif-title">Générateur de problèmes de décimaux</div>
-    <div class="mode-toggle">
-      <button class="mode-btn actif" data-op="add" id="btnOpAdd">Addition</button>
-      <button class="mode-btn" data-op="sub" id="btnOpSub">Soustraction</button>
-      <button class="mode-btn" data-op="mul" id="btnOpMul">Multiplication</button>
-      <button class="mode-btn" data-op="div" id="btnOpDiv">Division</button>
-    </div>
-    <div class="mode-toggle">
-      <button class="mode-btn actif" data-mode="calcul" id="btnModeCalcul">Calcul pur</button>
-      <button class="mode-btn" data-mode="probleme" id="btnModeProbleme">Problème écrit</button>
-    </div>
-
-    <div class="probleme-enonce" id="problemeEnonce">3,2 + 4,7 = ?</div>
-
-    <div class="controles">
-      <div class="controle-item"><label>Ta réponse</label><input id="reponseJoueur" placeholder="ex. 7,9" type="text"/></div>
-    </div>
-    <div class="rangee-boutons">
-      <button class="btn-jeu" id="btnVerifierJeu">Vérifier</button>
-      <button class="btn-jeu secondaire" id="btnSolutionJeu">Voir la solution</button>
-      <button class="btn-jeu secondaire" id="btnNouveauJeu">Nouveau problème</button>
-    </div>
-    <div class="info-box" id="jeuFeedback">Choisis une opération et essaie de résoudre le problème ci-dessus.</div>
-    <div class="etapes" id="jeuSolution" style="display:none;"></div>
-    <div class="stat-grille">
-      <div class="stat-item"><span class="val" id="jeuScore">0</span><span class="lbl">Bonnes réponses</span></div>
-      <div class="stat-item"><span class="val" id="jeuTotal">0</span><span class="lbl">Essais</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="retenir">
-  <div class="summary">
-    <div class="section-kicker" style="color:#e7c56d;">Fiche de référence rapide</div>
-    <h2>À retenir</h2>
-    <ul>
-      <li><strong>Addition et soustraction</strong> — aligner les virgules, compléter avec des zéros.</li>
-      <li><strong>Multiplication</strong> — multiplier normalement, puis compter les décimales.</li>
-      <li><strong>Division</strong> — transformer le diviseur en entier (multiplier les deux nombres par la même puissance de 10).</li>
-      <li><strong>Puissances de 10</strong> — \(\times10^n\) déplace la virgule de \(n\) positions à droite; \(\div10^n\), vers la gauche.</li>
-      <li><strong>Ordre des opérations</strong> — parenthèses, puis multiplication/division, puis addition/soustraction.</li>
-      <li><strong>Vérification</strong> — estimer avant ou après le calcul, ou utiliser l'opération inverse.</li>
-    </ul>
-  </div>
-</section>
-
-<div class="next">
-  <a href="04-Nombres_decimaux.html">← 1.3 — Les nombres décimaux</a>
-  <a href="#">1.5 — À venir →</a>
+<div class="info-box" id="divInfo">On ne « déplace » pas réellement une virgule au hasard : multiplier le dividende et le diviseur par la même puissance de 10 ne change pas le résultat de la division.</div>
 </div>
-
+<div class="attention">
+<div class="box-title">Quand le quotient ne « tombe pas juste »</div>
+<p>Certaines divisions ne donnent pas un nombre décimal fini : \(10\div3=3{,}3333\ldots\) Dans une situation pratique, on arrondit à la précision demandée — par exemple \(3{,}33\) au centième près.</p>
 </div>
-</main>
-
-<footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand">learnwithdom.page</div>
-      <div class="footer-small">MAT-1101 · Nombres décimaux · Secondaire 1</div>
-    </div>
-    <div class="footer-small">Notes de cours · Les opérations sur les nombres décimaux</div>
-  </div>
-</footer>
-
+</section><section class="section" id="puissances10">
+<div class="section-kicker">Raccourci</div>
+<h2>Multiplier et diviser par une puissance de 10</h2>
+<p>Multiplier par 10, 100, 1000... déplace la virgule vers la <strong>droite</strong>. Diviser par 10, 100, 1000... déplace la virgule vers la <strong>gauche</strong>. Le nombre de zéros indique le nombre de déplacements.</p>
+<div class="interactif">
+<div class="interactif-title">Simulateur — déplacer la virgule</div>
+<div class="controles">
+<div class="controle-item"><label>Nombre de départ <output id="outP10Base">5,63</output></label><input id="rangeP10Base" max="99.99" min="0.01" step="0.01" type="range" value="5.63"/></div>
+<div class="controle-item"><label>Puissance de 10 <output id="outP10Exp">× 10</output></label><input id="rangeP10Exp" max="3" min="-3" type="range" value="1"/></div>
+</div>
+<div class="etapes" id="p10Etapes">5,63 × 10 = 56,3  (la virgule se déplace de 1 position vers la droite)</div>
+</div>
+</section><section class="section" id="ordre">
+<div class="section-kicker">Règle de priorité</div>
+<h2>Ordre des opérations avec des décimaux</h2>
+<p>Les nombres décimaux ne changent pas les règles de priorité des opérations :</p>
+<div class="equation">\[ \text{parenthèses} \rightarrow \text{exposants} \rightarrow \text{multiplications/divisions} \rightarrow \text{additions/soustractions} \]</div>
+<p>Lorsque deux opérations ont la même priorité, on travaille de gauche à droite.</p>
+<div class="grid-2">
+<div class="mini-card">
+<h4>Sans parenthèses</h4>
+<div class="equation">\[ 3{,}5+2{,}4\times3 \]</div>
+<p>On multiplie d'abord : \(2{,}4\times3=7{,}2\). Puis \(3{,}5+7{,}2=\boxed{10{,}7}\).</p>
+</div>
+<div class="mini-card">
+<h4>Avec parenthèses</h4>
+<div class="equation">\[ (3{,}5+2{,}4)\times3 \]</div>
+<p>On commence par les parenthèses : \(3{,}5+2{,}4=5{,}9\). Puis \(5{,}9\times3=\boxed{17{,}7}\).</p>
+</div>
+</div>
+<div class="attention">
+<div class="box-title">Erreur fréquente</div>
+<p>Ne pas calculer les opérations automatiquement dans l'ordre où elles sont écrites. Dans \(3{,}5+2{,}4\times3\), on ne commence <strong>pas</strong> par \(3{,}5+2{,}4\) — la multiplication vient avant l'addition.</p>
+</div>
+</section><section class="section" id="estimation">
+<div class="section-kicker">Vérification</div>
+<h2>Estimation et vérification</h2>
+<p>L'estimation permet de vérifier si une réponse est raisonnable, de détecter une erreur de virgule, et de décider si un résultat de calculatrice est plausible.</p>
+<div class="example">
+<div class="box-title">Estimer avant de calculer</div>
+<p>Pour \(19{,}8\times4{,}9\), on approxime : \(19{,}8\approx20\) et \(4{,}9\approx5\), donc \(19{,}8\times4{,}9\approx20\times5=100\). Le résultat exact, \(97{,}02\), est cohérent avec cette estimation.</p>
+</div>
+<div class="attention">
+<div class="box-title">Détecter une erreur de virgule</div>
+<p>Si un calcul donne \(19{,}8\times4{,}9=9702\), l'estimation (proche de 100) permet de voir immédiatement qu'une virgule est mal placée — le vrai résultat est \(97{,}02\).</p>
+</div>
+<div class="note">
+<div class="box-title">Vérifier par l'opération inverse</div>
+<p>Si \(7{,}368-1{,}15=6{,}218\), on vérifie avec \(6{,}218+1{,}15=7{,}368\). Pour une multiplication \(4{,}5\times2=9\), on vérifie avec \(9\div2=4{,}5\).</p>
+</div>
+</section><section class="section" id="erreurs">
+<div class="section-kicker">Pièges classiques</div>
+<h2>Erreurs fréquentes</h2>
+<div class="attention">
+<div class="box-title">Les cinq pièges les plus courants</div>
+<ol>
+<li><strong>Aligner les chiffres plutôt que les virgules</strong> lors d'une addition ou soustraction écrite en colonne.</li>
+<li><strong>Croire que \(0{,}8&lt;0{,}75\)</strong> à cause du nombre de chiffres — en réalité \(0{,}8=0{,}80&gt;0{,}75\).</li>
+<li><strong>Oublier les zéros</strong> : pour \(5-2{,}34\), écrire \(5{,}00-2{,}34\) rend la soustraction beaucoup plus claire.</li>
+<li><strong>Mal placer la virgule après une multiplication</strong> en oubliant de compter toutes les décimales des deux facteurs.</li>
+<li><strong>Déplacer seulement la virgule du diviseur</strong> dans une division — il faut déplacer celle du dividende du même nombre de positions.</li>
+</ol>
+</div>
+</section><section class="section" id="applications">
+<div class="section-kicker">Dans la vraie vie</div>
+<h2>Applications : argent et mesures</h2>
+<div class="grid-2">
+<div class="mini-card">
+<h4>Monnaie</h4>
+<p>Un achat coûte \(14{,}65\)$. En payant avec \(20{,}00\)$, la monnaie rendue est \(20{,}00-14{,}65=5{,}35\)$.</p>
+</div>
+<div class="mini-card">
+<h4>Mesures</h4>
+<p>Attention aux unités : \(2{,}5\text{ m}+75\text{ cm}\) ne se calcule pas directement. On convertit \(75\text{ cm}=0{,}75\text{ m}\), puis \(2{,}5+0{,}75=3{,}25\text{ m}\).</p>
+</div>
+</div><figure class="photo-illustration"><img alt="Règle graduée utilisée pour mesurer des longueurs." decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Ruler_on_table.jpg/960px-Ruler_on_table.jpg"/><figcaption>Les opérations décimales servent aussi à additionner des longueurs et à convertir les unités de mesure. <small class="credit-photo">Photo : Douglas Perkins · <a href="https://commons.wikimedia.org/wiki/File:Ruler_on_table.jpg" rel="noopener noreferrer" target="_blank">Wikimedia Commons — CC0 1.0</a>.</small></figcaption></figure>
+<div class="method">
+<div class="box-title">Résoudre un problème écrit</div>
+<p>Lire le problème, déterminer ce que l'on cherche, identifier les données utiles, vérifier les unités, choisir l'opération, écrire le calcul, l'effectuer, arrondir si nécessaire, puis vérifier si la réponse est raisonnable avant d'écrire une phrase-réponse.</p>
+</div>
+</section><section class="section" id="jeu">
+<div class="section-kicker">Jeu interactif</div>
+<h2>Génère tes propres problèmes</h2>
+<p class="lead">Choisis une opération, essaie de résoudre le problème généré, puis vérifie ta réponse.</p>
+<div class="interactif">
+<div class="interactif-title">Générateur de problèmes de décimaux</div>
+<div class="mode-toggle">
+<button class="mode-btn actif" data-op="add" id="btnOpAdd">Addition</button>
+<button class="mode-btn" data-op="sub" id="btnOpSub">Soustraction</button>
+<button class="mode-btn" data-op="mul" id="btnOpMul">Multiplication</button>
+<button class="mode-btn" data-op="div" id="btnOpDiv">Division</button>
+</div>
+<div class="mode-toggle">
+<button class="mode-btn actif" data-mode="calcul" id="btnModeCalcul">Calcul pur</button>
+<button class="mode-btn" data-mode="probleme" id="btnModeProbleme">Problème écrit</button>
+</div>
+<div class="probleme-enonce" id="problemeEnonce">3,2 + 4,7 = ?</div>
+<div class="controles">
+<div class="controle-item"><label>Ta réponse</label><input id="reponseJoueur" placeholder="ex. 7,9" type="text"/></div>
+</div>
+<div class="rangee-boutons">
+<button class="btn-jeu" id="btnVerifierJeu">Vérifier</button>
+<button class="btn-jeu secondaire" id="btnSolutionJeu">Voir la solution</button>
+<button class="btn-jeu secondaire" id="btnNouveauJeu">Nouveau problème</button>
+</div>
+<div class="info-box" id="jeuFeedback">Choisis une opération et essaie de résoudre le problème ci-dessus.</div>
+<div class="etapes" id="jeuSolution" style="display:none;"></div>
+<div class="stat-grille">
+<div class="stat-item"><span class="val" id="jeuScore">0</span><span class="lbl">Bonnes réponses</span></div>
+<div class="stat-item"><span class="val" id="jeuTotal">0</span><span class="lbl">Essais</span></div>
+</div>
+</div>
+</section><section class="section" id="retenir">
+<div class="summary">
+<div class="section-kicker" style="color:#e7c56d;">Fiche de référence rapide</div>
+<h2>À retenir</h2>
+<ul>
+<li><strong>Addition et soustraction</strong> — aligner les virgules, compléter avec des zéros.</li>
+<li><strong>Multiplication</strong> — multiplier normalement, puis compter les décimales.</li>
+<li><strong>Division</strong> — transformer le diviseur en entier (multiplier les deux nombres par la même puissance de 10).</li>
+<li><strong>Puissances de 10</strong> — \(\times10^n\) déplace la virgule de \(n\) positions à droite; \(\div10^n\), vers la gauche.</li>
+<li><strong>Ordre des opérations</strong> — parenthèses, puis multiplication/division, puis addition/soustraction.</li>
+<li><strong>Vérification</strong> — estimer avant ou après le calcul, ou utiliser l'opération inverse.</li>
+</ul>
+</div>
+</section></div></main><nav aria-label="Table des matières" class="toc-flottante"><h2>Sur cette page</h2><ol id="toc-list"><li><a href="#addition">Additionner</a></li><li><a href="#soustraction">Soustraire</a></li><li><a href="#multiplication">Multiplier</a></li><li><a href="#division">Diviser</a></li><li><a href="#puissances10">Puissances de 10</a></li><li><a href="#ordre">Ordre des opérations</a></li><li><a href="#estimation">Estimation et vérification</a></li><li><a href="#erreurs">Erreurs fréquentes</a></li><li><a href="#applications">Applications</a></li><li><a href="#jeu">Jeu — génère tes problèmes</a></li><li><a href="#retenir">À retenir</a></li></ol></nav></div><div class="nav-suivant"><div class="wrap"><div><span class="label">Section précédente</span><span class="titre">1.3 — Les nombres décimaux</span></div>
+<a class="btn-secondaire" href="04-Nombres_decimaux.html">← Retour</a>
+<div><span class="label">Section suivante</span><span class="titre">1.5 — À venir</span></div>
+<a class="btn-primary" href="#">Bientôt disponible →</a>
+</div></div>
+<footer class="site-footer">MAT1101 · Section 1.4 · learnwithdom.page</footer>
 <script>
 const sections = document.querySelectorAll(".section[id]");
 const links = document.querySelectorAll(".toc a");
@@ -748,7 +1228,6 @@ if ('IntersectionObserver' in window) {
   sections.forEach(section => observer.observe(section));
 }
 </script>
-
 <script>
 (function(){
   function fmtFr(n, dec){
@@ -1034,6 +1513,5 @@ if ('IntersectionObserver' in window) {
   genererProbleme();
 })();
 </script>
-
 </body>
 </html>
