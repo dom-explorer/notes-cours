@@ -467,6 +467,73 @@ footer a{color:#e9c96e;text-decoration:none}
   th,td{padding:10px}
   .next{flex-direction:column}
 }
+
+/* MAT-P101 — Harmonisation visuelle de la page historique MAT-2101.
+   CSS additionnel : les sections, leur texte, les formules et les scripts d'origine restent intacts. */
+:root{--rayon:19px;--ombre:0 18px 45px rgba(24,41,34,.095)}
+body{overflow-x:hidden}
+.topbar{z-index:1000}
+.brand{letter-spacing:-.045em}
+.hero{background:radial-gradient(ellipse at 90% 4%,rgba(217,164,65,.22),transparent 37%),linear-gradient(122deg,#182922,#294b3d);padding:0 27px;overflow:hidden}
+.hero-grid{max-width:1260px;display:grid;grid-template-columns:minmax(0,1.14fr) minmax(315px,.86fr);gap:clamp(26px,4vw,62px);align-items:center;min-height:475px;padding:clamp(54px,6vw,80px) 0}
+.hero-copy{min-width:0}
+.hero h1{font-size:clamp(2.1rem,4.5vw,3.8rem);max-width:700px;line-height:1.09}
+.hero-lead{max-width:670px;margin-top:23px;color:#e5eee7}
+.hero-meta{margin-top:25px;gap:8px}
+.tag{background:#ffffff14;border-color:#ffffff24;color:#f4f5ee}
+.hero-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}
+.hero-actions a{background:#dfc27b;color:#203a2b;border:1px solid #d6b569;border-radius:10px;padding:10px 15px;text-decoration:none;font:700 12px var(--font-display);transition:transform .18s,background .18s}
+.hero-actions a:hover{transform:translateY(-2px);background:#f2d593}
+.hero-actions a:not(:first-child){color:#f4f6f0;background:#ffffff13;border-color:#ffffff3c}
+.hero-actions a:not(:first-child):hover{background:#ffffff23}
+.hero-visual{min-width:0;filter:drop-shadow(0 19px 31px rgba(5,20,13,.25))}
+.hero-paper{padding:16px 16px 12px;background:#fcfbf7;border-radius:22px;border:1px solid #e1eadd;box-shadow:0 0 0 9px #ffffff0a;transform:rotate(1.2deg)}
+.hero-paper-top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:2px 6px 12px;color:#5c7564;letter-spacing:.07em;font:700 10px var(--font-mono)}
+.hero-paper-top span:last-child{background:#e9efe5;padding:6px 8px;border-radius:8px;white-space:nowrap}
+.hero-paper svg{display:block;max-width:430px;height:auto;width:100%;margin:auto}
+.hero-paper-caption{font:500 11px/1.55 var(--font-mono);color:#52745f;text-align:center;margin:9px 3px 0}
+.lesson-tabs{position:sticky;top:66px;z-index:850;background:rgba(250,250,246,.97);backdrop-filter:blur(12px);border-bottom:1px solid #d9e1d7;box-shadow:0 5px 14px rgba(20,49,36,.045)}
+.lesson-tabs-inner{max-width:1380px;margin:auto;padding:9px 24px;display:flex;gap:7px;align-items:center;overflow-x:auto;scrollbar-width:thin;white-space:nowrap}
+.tabs-prefix{font:700 10px var(--font-mono);color:#9b7b42;letter-spacing:.06em;padding-right:13px}
+.lesson-tabs a{flex-shrink:0;color:#355344;text-decoration:none;font:600 12px var(--font-display);padding:9px 12px;border-radius:9px;border:1px solid transparent}
+.lesson-tabs a:hover,.lesson-tabs a:focus-visible{background:#edf2eb;border-color:#d3dfd1}
+.page{max-width:1350px;padding-top:52px;grid-template-columns:238px minmax(0,1fr);gap:48px}
+.page>.toc{top:138px;max-height:calc(100vh - 165px);background:#fafbf6;border-radius:18px;box-shadow:0 5px 25px rgba(34,58,52,.035)}
+.content{width:100%;max-width:950px;min-width:0}
+.page .section{scroll-margin-top:170px;margin-bottom:0;margin-top:54px;padding-bottom:57px;border-bottom:1px solid #cfdbd0}
+.page .section:first-child{margin-top:0}
+.page .section:last-child{border-bottom:0;padding-bottom:0}
+.section-kicker{font-size:11px;color:#58806b}
+.content h2{font-size:clamp(1.65rem,3vw,2.5rem)}
+.content h3{scroll-margin-top:175px}
+.content p{line-height:1.78}
+.definition,.example,.note,.attention,.method{border-radius:18px;box-shadow:0 8px 24px rgba(30,56,45,.055);padding:clamp(20px,2.5vw,27px)}
+.grid-2{gap:16px}
+.mini-card{border-radius:17px;transition:transform .16s ease,box-shadow .16s ease}
+.mini-card:hover{transform:translateY(-2px);box-shadow:0 8px 17px rgba(34,58,52,.07)}
+.timeline{background:linear-gradient(90deg,#e8ede5,transparent);border-left:3px solid #c69c50;border-radius:0 15px 15px 0;padding:16px 20px 17px 31px}
+.timeline-item{margin-bottom:21px}
+.timeline-item::before{background:#d5ab5a}
+.equation{max-width:100%;border-radius:15px}
+.content table{display:table;max-width:100%}
+.content .summary{border-radius:19px}
+.historic-figure{max-width:775px;margin:30px auto 28px;background:#fafaf5;border:1px solid #d3e0d4;border-radius:19px;overflow:hidden;box-shadow:0 11px 28px rgba(24,41,34,.075)}
+.historic-figure-media{display:flex;align-items:center;justify-content:center;min-height:245px;padding:14px;background:#f0f1eb}
+.historic-figure img{display:block;max-height:340px;max-width:100%;width:auto;height:auto;object-fit:contain;border-radius:8px}
+.historic-figure--tablet .historic-figure-media{background:#212624}
+.historic-figure--tablet img{max-height:345px}
+.historic-figure--papyrus img{max-height:275px}
+.historic-figure--manuscript .historic-figure-media{background:#e9e3d3}
+.historic-figure--manuscript img{max-height:335px}
+.historic-figure figcaption{padding:15px 21px 17px;font:500 14px/1.65 var(--font-body);color:#405a4b;background:#fcfcf8}
+.historic-credit{display:block;font:500 11px/1.65 var(--font-mono);color:#5c7062;margin-top:8px}
+.historic-credit a{color:#2f6c4b;text-decoration:underline;text-underline-offset:2px}
+.next{padding:24px 0;margin-top:34px}
+@media(max-width:1180px){.page{grid-template-columns:1fr;padding:40px 24px 65px;max-width:1030px}.page .toc{display:none}.content{max-width:100%}}
+@media(max-width:950px){.hero-grid{grid-template-columns:1fr;max-width:780px;min-height:0;gap:28px;padding:48px 0}.hero-visual{width:min(100%,455px);margin:0 auto}.lesson-tabs-inner{padding:8px 16px}.page{padding:36px 20px 62px}}
+@media(max-width:760px){.topbar-inner{min-height:66px}.hero{padding:0 17px}.hero-grid{padding:34px 0 40px;gap:24px}.hero h1{font-size:clamp(2rem,8.5vw,3rem)}.hero-lead{font-size:.97rem}.hero-actions a{font-size:11px;padding:9px 11px}.hero-paper{padding:11px}.lesson-tabs{top:65px}.tabs-prefix{display:none}.lesson-tabs-inner{gap:4px;padding:6px 10px}.lesson-tabs a{font-size:11px;padding:8px 10px}.page{padding:27px 15px 55px}.page .section{margin-top:34px;padding-bottom:38px;scroll-margin-top:150px}.content h2{font-size:clamp(1.55rem,6vw,2.15rem)}.historic-figure{margin:24px auto}.historic-figure-media{min-height:170px;padding:10px}.historic-figure--tablet img,.historic-figure--manuscript img{max-height:250px}.historic-figure figcaption{font-size:13px;padding:13px 15px}.historic-credit{font-size:10px}.timeline{padding:15px 10px 12px 28px}.next{flex-wrap:wrap}}
+@media print{.topbar,.lesson-tabs,.toc,.hero-visual,.hero-actions{display:none!important}.hero{background:#fff;color:#111;min-height:0;padding:0}.hero-grid{display:block;min-height:0;padding:0}.hero h1,.hero-lead{color:#111}.page{display:block;padding:12px 0}.content{max-width:100%}.page .section{break-inside:auto;margin-top:28px;padding-bottom:18px}.historic-figure{box-shadow:none}.historic-figure img{max-height:160px}}
+
 </style>
 </head>
 
@@ -484,7 +551,8 @@ footer a{color:#e9c96e;text-decoration:none}
 </header>
 
 <section class="hero">
-  <div class="hero-inner">
+  <div class="hero-inner hero-grid">
+    <div class="hero-copy">
     <div class="breadcrumb">
       <a href="https://learnwithdom.page">learnwithdom.page</a>
       &nbsp; / &nbsp;
@@ -508,8 +576,56 @@ footer a{color:#e9c96e;text-decoration:none}
       <span class="tag">Histoire des mathématiques</span>
       <span class="tag">10 pages · notes de cours</span>
     </div>
+
+    <div class="hero-actions">
+      <a href="#histoire">Explorer la chronologie <span aria-hidden="true">↓</span></a>
+      <a href="#mesopotamie">Les premières civilisations</a>
+      <a href="#khwarizmi">Al-Khwarizmi</a>
+    </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-paper">
+        <div class="hero-paper-top"><span>UNE IDÉE, MILLE ANS D'HISTOIRE</span><span>MAT · 2101</span></div>
+        <svg viewBox="0 0 440 340" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="histDot" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.1" fill="#b9cbbf"/></pattern>
+            <linearGradient id="histGreen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2d5847"/><stop offset="1" stop-color="#1d3e30"/></linearGradient>
+          </defs>
+          <rect x="1" y="1" width="438" height="338" rx="18" fill="#f6f7f0" stroke="#d7e0d5"/>
+          <rect x="14" y="14" width="412" height="310" rx="13" fill="url(#histDot)"/>
+          <text x="29" y="45" font-size="12" letter-spacing="2" font-family="monospace" font-weight="bold" fill="#5b7a67">CONNU → INCONNU</text>
+          <rect x="28" y="67" width="384" height="70" rx="15" fill="#ffffff" stroke="#dce4d9" stroke-width="1.5"/>
+          <circle cx="57" cy="102" r="16" fill="#ead39d"/><text x="57" y="108" text-anchor="middle" font-size="17" font-family="Georgia, serif" fill="#64491b">?</text>
+          <text x="86" y="100" font-size="14" font-family="Georgia,serif" fill="#3e5549">« Un nombre et cinq</text>
+          <text x="86" y="119" font-size="14" font-family="Georgia,serif" fill="#3e5549">donnent douze. »</text>
+          <path d="M220 144 L220 159 M212 152 L220 162 L228 152" stroke="#ad8641" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="57" y="172" width="326" height="75" rx="16" fill="url(#histGreen)"/>
+          <text x="220" y="202" text-anchor="middle" font-family="monospace" font-size="12" letter-spacing="2" fill="#cfdbd1">LA RELATION</text>
+          <text x="220" y="232" text-anchor="middle" font-family="Georgia,serif" font-size="32" font-style="italic" fill="#fff8e9">x + 5 = 12</text>
+          <path d="M220 255 L220 274 M212 267 L220 277 L228 267" stroke="#ad8641" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="152" y="284" width="136" height="35" rx="12" fill="#e4c47c" stroke="#ccaa5f"/>
+          <text x="220" y="307" text-anchor="middle" font-family="Georgia,serif" font-size="24" font-weight="bold" fill="#233f33">x = 7</text>
+        </svg>
+        <p class="hero-paper-caption">D’un problème formulé avec des mots à une méthode générale.</p>
+      </div>
+    </div>
   </div>
 </section>
+
+<nav class="lesson-tabs" aria-label="Parcours de la leçon">
+  <div class="lesson-tabs-inner">
+    <span class="tabs-prefix">EXPLORER</span>
+    <a href="#introduction">Introduction</a>
+    <a href="#histoire">Chronologie</a>
+    <a href="#mesopotamie">Mésopotamie</a>
+    <a href="#egypte">Égypte</a>
+    <a href="#grece">Grèce</a>
+    <a href="#inde">Inde</a>
+    <a href="#chine">Chine</a>
+    <a href="#khwarizmi">Al-Khwarizmi</a>
+    <a href="#retenir">À retenir</a>
+  </div>
+</nav>
 
 <main class="page">
 
@@ -719,6 +835,11 @@ l’une des caractéristiques fondamentales du raisonnement algébrique.  </p>
     relations entre différentes quantités.
   </p>
 
+  <figure class="historic-figure historic-figure--tablet">
+    <div class="historic-figure-media"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/YBC-7289-OBV-REV.jpg" alt="Photographies du recto et du verso de la tablette mathématique babylonienne YBC 7289, en argile gravée." loading="lazy" decoding="async" referrerpolicy="no-referrer"></div>
+    <figcaption>La tablette YBC 7289 montre un calcul babylonien, notamment une approximation remarquable de √2. Elle témoigne de la sophistication des mathématiques mésopotamiennes.<span class="historic-credit">Photographie : Yale Peabody Museum / A. Urcia; montage : Theodor Langhorne Franklin · CC0 1.0 · <a href="https://commons.wikimedia.org/wiki/File:YBC-7289-OBV-REV.jpg" target="_blank" rel="noopener noreferrer">Source Wikimedia Commons</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">Licence</a></span></figcaption>
+  </figure>
+
   <div class="example">
     <div class="box-title">Notre notation moderne</div>
     <p>Un problème pouvait correspondre à une relation telle que :</p>
@@ -753,6 +874,11 @@ l’une des caractéristiques fondamentales du raisonnement algébrique.  </p>
     contient notamment des problèmes où une quantité inconnue doit être
     déterminée à partir d’une relation donnée.
   </p>
+
+  <figure class="historic-figure historic-figure--papyrus">
+    <div class="historic-figure-media"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Rhind_Mathematical_Papyrus.jpg" alt="Fragment du papyrus mathématique Rhind, sur lequel figurent des écritures hiératiques et des figures." loading="lazy" decoding="async" referrerpolicy="no-referrer"></div>
+    <figcaption>Un fragment du papyrus mathématique Rhind (vers 1650 av. notre ère), témoin des méthodes de calcul et des problèmes mathématiques égyptiens.<span class="historic-credit">Papyrus Rhind, British Museum · reproduction du domaine public · <a href="https://commons.wikimedia.org/wiki/File:Rhind_Mathematical_Papyrus.jpg" target="_blank" rel="noopener noreferrer">Source Wikimedia Commons</a> · <a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener noreferrer">Licence</a></span></figcaption>
+  </figure>
 
   <div class="method">
     <div class="box-title">Méthode de la fausse position</div>
@@ -993,6 +1119,11 @@ l’une des caractéristiques fondamentales du raisonnement algébrique.  </p>
     Vers <strong>820</strong>, al-Khwarizmi rédige un ouvrage dont le titre est
     généralement translittéré :
   </p>
+
+  <figure class="historic-figure historic-figure--manuscript">
+    <div class="historic-figure-media"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Image-Al-Kit%C4%81b_al-mu%E1%B8%ABta%E1%B9%A3ar_f%C4%AB_%E1%B8%A5is%C4%81b_al-%C4%9Fabr_wa-l-muq%C4%81bala.jpg" alt="Page manuscrite en écriture arabe provenant d’une copie du traité d’algèbre associé à al-Khwarizmi." loading="lazy" decoding="async" referrerpolicy="no-referrer"></div>
+    <figcaption>Une reproduction d’une page du traité d’algèbre associé à al-Khwarizmi. La notation historique employait principalement des mots, bien avant nos symboles modernes.<span class="historic-credit">Reproduction historique · domaine public (Wikimedia Commons) · <a href="https://commons.wikimedia.org/wiki/File:Image-Al-Kit%C4%81b_al-mu%E1%B8%ABta%E1%B9%A3ar_f%C4%AB_%E1%B8%A5is%C4%81b_al-%C4%9Fabr_wa-l-muq%C4%81bala.jpg" target="_blank" rel="noopener noreferrer">Source Wikimedia Commons</a> · <a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener noreferrer">Licence</a></span></figcaption>
+  </figure>
 
   <div class="callout">
     <div class="small">Titre arabe</div>
