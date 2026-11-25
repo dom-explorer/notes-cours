@@ -1,15 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="fr-CA">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>MAT-1101 — Pourcentages et conversions | learnwithdom.page</title>
-<meta name="description" content="Notes de cours — MAT-1101. Pourcentages, décimaux et fractions, calculer une partie/un taux/le tout, augmentations, diminutions, rabais, et un générateur de problèmes interactif.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<meta content="Notes de cours — MAT-1101. Pourcentages, décimaux et fractions, calculer une partie/un taux/le tout, augmentations, diminutions, rabais, et un générateur de problèmes interactif." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Literata:opsz,wght@7..72,400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <script>
 window.MathJax = {
   tex: {
@@ -19,8 +18,7 @@ window.MathJax = {
   svg: { fontCache: 'global' }
 };
 </script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-
+<script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 <style>
 :root{
   --ardoise:#223A34; --ardoise-deep:#182922; --papier:#EAEEE9; --papier-2:#E0E5DD;
@@ -162,321 +160,833 @@ input[type="range"]{width:100%;accent-color:var(--sapin)}
   th,td{padding:10px}
   .next{flex-direction:column}
 }
+
+
+/* ===== Harmonisation avec les pages précédentes de MAT1101 / MAT-P101 ===== */
+
+/* ============================================================
+   MAT1101 — Section 1.3 · Les nombres décimaux
+   Habillage visuel harmonisé avec MAT-P101 / learnwithdom.page
+   Les contenus pédagogiques et les scripts restent inchangés.
+   ============================================================ */
+
+/* 1. Palette et typographies */
+:root {
+  color-scheme: light;
+  --ardoise: #223a34;
+  --ardoise-deep: #182922;
+  --papier: #eaeee9;
+  --papier-2: #e0e5dd;
+  --encre: #1c2b3a;
+  --craie: #d9a441;
+  --craie-deep: #b9832c;
+  --brique: #b5524a;
+  --sapin: #4b7a68;
+  --white: #fcfbf7;
+  --ligne: #d4ded5;
+  --font-display: "Space Grotesk", Arial, sans-serif;
+  --font-body: "Literata", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --ombre: 0 14px 36px rgba(24, 41, 34, .075);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 150px; }
+body {
+  margin: 0;
+  color: var(--encre);
+  background: var(--papier);
+  font: 400 16px/1.75 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+p { margin: 0 0 1.1rem; max-width: 80ch; }
+a { color: #285d4b; }
+a:hover { color: #2b775c; }
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid #c48725;
+  outline-offset: 3px;
+}
+.wrap { width: min(1140px, calc(100% - 3rem)); margin-inline: auto; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+img, svg { max-width: 100%; }
+
+/* 2. En-tête sombre, comme MAT-P101 */
+header.site {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  color: var(--white);
+  background: rgba(24, 41, 34, .98);
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+header.site nav {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  min-height: 71px;
+}
+.brand {
+  white-space: nowrap;
+  color: var(--white);
+  font: 700 1.22rem var(--font-display);
+  letter-spacing: -.045em;
+  text-decoration: none;
+}
+.brand:hover { color: var(--white); }
+.brand span { color: var(--craie); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  list-style: none;
+  margin: 0 auto 0 0;
+  padding: 0;
+  font: 500 .9rem var(--font-display);
+}
+.nav-links a { color: #e1e9e2; text-decoration: none; }
+.nav-links a:hover { color: var(--craie); }
+.nav-cta {
+  border: 1px solid #d7ac65;
+  border-radius: 10px;
+  padding: .58rem .9rem;
+  white-space: nowrap;
+  color: #ffdd9b;
+  text-decoration: none;
+  font: 600 .88rem var(--font-display);
+}
+.nav-cta:hover { color: #fff; background: rgba(255, 255, 255, .09); }
+
+/* 3. Grande présentation en deux colonnes */
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: var(--white);
+  background: linear-gradient(125deg, var(--ardoise-deep), var(--ardoise) 78%);
+}
+.hero::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(#ffffff09 1px, transparent 1px),
+                    linear-gradient(90deg, #ffffff09 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+.hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 3rem;
+  align-items: center;
+  padding: clamp(3.2rem, 6.5vw, 5.5rem) 0;
+}
+.eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-bottom: 1rem;
+  font: 600 .74rem/1.7 var(--font-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #f3ca86;
+}
+.eyebrow a { color: inherit; text-decoration: none; }
+.eyebrow a:hover { text-decoration: underline; }
+.hero .course-title {
+  margin: .8rem 0 1rem;
+  color: #fff;
+  font: 700 clamp(2.9rem, 6.6vw, 5rem)/1.06 var(--font-display);
+  letter-spacing: -.06em;
+}
+.hero .course-description {
+  margin: 0;
+  max-width: 58ch;
+  color: #e0e9e3;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.8rem; }
+.hero-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, .5);
+  border-radius: 11px;
+  text-decoration: none;
+  font: 700 .9rem var(--font-display);
+  transition: transform .15s ease, background .15s ease;
+}
+.hero-actions a:hover { transform: translateY(-2px); }
+.hero-actions a:first-child { color: #1b2a24; border-color: var(--craie); background: var(--craie); }
+.hero-actions a:first-child:hover { background: #f0bc61; }
+.hero-actions a:last-child { color: #fff; background: rgba(255, 255, 255, .08); }
+.hero-actions a:last-child:hover { background: rgba(255, 255, 255, .18); }
+.hero-visual {
+  display: grid;
+  place-items: center;
+  min-height: 310px;
+  padding: 1.4rem;
+  background: linear-gradient(140deg, #37584c, #284339);
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 22px;
+  box-shadow: 0 24px 56px rgba(0, 0, 0, .13);
+}
+.hero-paper {
+  display: grid;
+  justify-items: center;
+  gap: .75rem;
+  width: min(100%, 310px);
+  padding: 1.5rem 1.25rem;
+  color: #243c32;
+  background: #f9f8f0;
+  border-radius: 14px;
+  transform: rotate(-2deg);
+  box-shadow: 0 15px 32px rgba(0, 0, 0, .2);
+}
+.hero-paper svg { width: min(100%, 185px); height: auto; }
+.hero-math { font: 700 clamp(1.25rem, 2.5vw, 1.65rem) var(--font-mono); }
+.hero-tag { font: 600 .75rem var(--font-mono); color: #577366; letter-spacing: .04em; }
+
+/* 4. Navigation horizontale, similaire à MAT-P101 */
+.page-layout { display: flex; flex-direction: column; width: 100%; }
+.page-layout > main.wrap { order: 2; width: min(1000px, calc(100% - 3rem)); margin-inline: auto; }
+.page-layout > main.wrap .chapitre { width: 100%; padding: 1.6rem 0 5rem; }
+.toc-flottante {
+  order: 1;
+  position: sticky;
+  top: 71px;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  padding: .8rem max(1.5rem, calc((100vw - 1140px)/2));
+  background: #dbe5da;
+  border-bottom: 1px solid #c6d5c7;
+  font-family: var(--font-display);
+}
+.toc-flottante h2 {
+  flex: none;
+  color: #396851;
+  white-space: nowrap;
+  font: 700 .73rem var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.toc-flottante ol {
+  display: flex;
+  gap: .4rem;
+  flex: 1;
+  overflow-x: auto;
+  list-style: none;
+  margin: 0;
+  padding: .15rem 0;
+  scrollbar-width: thin;
+}
+.toc-flottante li { flex: none; margin: 0; }
+.toc-flottante li a {
+  display: block;
+  padding: .38rem .55rem;
+  white-space: nowrap;
+  border: 0;
+  border-radius: 7px;
+  color: #305744;
+  text-decoration: none;
+  font: 600 .77rem var(--font-display);
+  transition: background .15s ease;
+}
+.toc-flottante li a:hover, .toc-flottante li a.active { color: #203d2e; background: #f4f8f3; }
+
+/* 5. Sections et cartes de contenu */
+.chapitre > .rule { border: 0; border-top: 1px solid #cbd9ce; margin: 0; }
+.chapitre > section { padding: clamp(2.3rem, 4vw, 3.4rem) 0; scroll-margin-top: 156px; }
+.section-titre {
+  margin: 0 0 1.35rem;
+  max-width: 25ch;
+  font: 700 clamp(1.8rem, 4vw, 2.5rem)/1.18 var(--font-display);
+  letter-spacing: -.035em;
+  color: var(--ardoise);
+}
+.section-num {
+  display: block;
+  margin-bottom: .6rem;
+  color: var(--sapin);
+  font: 700 .74rem var(--font-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.sous-titre {
+  margin: 2.3rem 0 1rem;
+  font: 700 clamp(1.18rem, 2.5vw, 1.4rem)/1.3 var(--font-display);
+  color: var(--ardoise);
+}
+.chapitre ul, .chapitre ol { margin: 0 0 1.15rem 1.5rem; max-width: 78ch; }
+.chapitre li { margin: .35rem 0; }
+.sommaire {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2.6rem;
+}
+.sommaire a {
+  display: block;
+  padding: 1.2rem 1.35rem;
+  color: var(--encre);
+  background: var(--white);
+  border: 1px solid var(--ligne);
+  border-radius: 17px;
+  box-shadow: var(--ombre);
+  text-decoration: none;
+  font: 700 1rem/1.5 var(--font-display);
+  transition: transform .18s ease, border-color .18s ease;
+}
+.sommaire a:hover { color: var(--ardoise); border-color: var(--sapin); transform: translateY(-3px); }
+.sommaire a span { display: block; color: var(--sapin); margin-bottom: .4rem; font: 600 .75rem var(--font-mono); }
+
+/* 6. Encadrés et aides visuelles */
+.boite, .encadre {
+  max-width: 100%;
+  margin: 1.6rem 0;
+  padding: 1.3rem 1.5rem;
+  border: 1px solid var(--ligne);
+  border-left: 4px solid var(--sapin);
+  border-radius: 15px;
+  background: var(--white);
+  box-shadow: var(--ombre);
+}
+.boite-titre, .encadre-label {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .75rem;
+  color: var(--ardoise);
+  font: 700 .78rem var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.boite p:last-child, .boite ul:last-child, .boite ol:last-child, .encadre p:last-child { margin-bottom: 0; }
+.boite.definition, .encadre-definition { border-left-color: var(--sapin); }
+.boite.definition .boite-titre, .encadre-definition .encadre-label { color: #36705a; }
+.boite.idee { border-left-color: var(--craie); background: #fbf4e4; }
+.boite.idee .boite-titre { color: #93631e; }
+.boite.notation, .boite.application, .boite.methode, .encadre-methode {
+  border-left-color: var(--sapin); background: #eef3f0;
+}
+.boite.notation .boite-titre, .boite.application .boite-titre, .boite.methode .boite-titre { color: #36705a; }
+.boite.graphique { border-left-color: var(--ardoise); background: var(--papier-2); }
+.boite.exemple, .encadre-exemple { border-left-color: var(--craie); background: #fcfaf2; }
+.boite.erreur, .encadre-attention, .encadre-note { border-left-color: var(--brique); background: #fbefee; }
+.boite.retenir { color: #fff; border-left-color: var(--craie); background: var(--ardoise); }
+.boite.retenir .boite-titre { color: #f4d396; }
+.boite.retenir li { color: #eef3ef; }
+.boite.avenir { background: #f1f4ef; border-left-color: #a2b7aa; }
+.boite.avenir .boite-titre { color: #63796d; }
+.boite.avenir p { color: #607066; font-style: italic; }
+
+/* 7. Simulations, tableaux et contrôles : fonctions conservées */
+.interactif, .canvas-container, .svg-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .8rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 1.7rem auto;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  background: var(--white);
+  border: 1px solid var(--ligne);
+  border-radius: 19px;
+  box-shadow: var(--ombre);
+}
+.interactif .canvas-container { margin: .5rem auto; padding: .6rem; border: 0; box-shadow: none; }
+canvas { max-width: 100%; height: auto; border: 1px solid #d8e2d8; border-radius: 12px; background: var(--white); }
+.svg-container svg, .interactif svg { max-width: 100%; height: auto; }
+.info-box {
+  width: 100%;
+  margin-top: .75rem;
+  padding: .95rem 1.15rem;
+  color: #315343;
+  background: #edf4ed;
+  border-left: 4px solid var(--sapin);
+  border-radius: 0 10px 10px 0;
+  font-size: .9rem;
+}
+.controles { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem; width: 100%; max-width: 540px; }
+.controle-item { display: flex; flex: 1; flex-direction: column; gap: .5rem; min-width: 170px; }
+.controle-item label {
+  display: flex; justify-content: space-between;
+  gap: .7rem; color: var(--ardoise); font: 600 .78rem var(--font-mono);
+}
+.controle-item output { color: #93631e; }
+input[type="range"] { width: 100%; accent-color: var(--sapin); }
+.boutons-contexte { display: flex; flex-wrap: wrap; justify-content: center; gap: .65rem; margin-bottom: 1rem; }
+.btn-contexte {
+  padding: .6rem 1.05rem;
+  color: var(--ardoise);
+  background: #f7faf6;
+  border: 1px solid #cbd9ce;
+  border-radius: 11px;
+  font: 600 .84rem var(--font-display);
+  transition: background .15s ease, border-color .15s ease;
+}
+.btn-contexte:hover { border-color: var(--sapin); }
+.btn-contexte.actif { color: #fff; background: var(--sapin); border-color: var(--sapin); }
+.resultat-fraction { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1rem; font: 600 1rem var(--font-mono); }
+.frac-visuelle { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.1; }
+.frac-visuelle .num { padding: 0 .3rem .15rem; border-bottom: 2px solid var(--encre); }
+.frac-visuelle .den { padding-top: .15rem; }
+.resultat-fraction .fleche { color: #b9832c; font-weight: 700; }
+.table-wrap { max-width: 100%; margin: 1.3rem 0; overflow-x: auto; border: 1px solid var(--ligne); border-radius: 13px; }
+table, table.valeurs { width: 100%; border-collapse: collapse; background: var(--white); font-size: .9rem; }
+th, td { text-align: left; padding: .7rem .95rem; border-bottom: 1px solid var(--ligne); }
+th { color: #fff; background: var(--ardoise); font: 600 .85rem var(--font-display); }
+table.valeurs th, table.valeurs td { text-align: center; border: 1px solid var(--ligne); font-family: var(--font-mono); }
+tr:last-child td { border-bottom: 0; }
+tr:nth-child(even) td { background: #f2f5ef; }
+
+/* 8. Photographies déjà présentes, au format des cartes de MAT-P101 */
+.photo-illustration {
+  max-width: 720px;
+  margin: 1.5rem auto 2.1rem;
+  overflow: hidden;
+  background: #e4ebe1;
+  border: 1px solid var(--ligne);
+  border-radius: 17px;
+  box-shadow: var(--ombre);
+}
+.photo-illustration img {
+  display: block;
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+  background: #dce5dd;
+}
+.photo-illustration.photo-objet img { object-fit: contain; background: #eceae5; padding: 12px; }
+.photo-illustration figcaption {
+  padding: .8rem 1rem;
+  color: #53655b;
+  font: 400 .8rem/1.6 var(--font-display);
+}
+.photo-illustration figcaption .credit-photo {
+  display: block;
+  margin-top: .25rem;
+  color: #60766a;
+  font: 400 .72rem/1.6 var(--font-mono);
+}
+.photo-illustration figcaption .credit-photo a { font-weight: 600; }
+
+/* 9. Poursuivre le cours et pied de page */
+.nav-suivant { padding: 1.5rem 0; background: #dbe5da; border-top: 1px solid #c6d5c7; }
+.nav-suivant .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; }
+.nav-suivant .label { display: block; margin-bottom: .25rem; color: #36705a; font: 600 .75rem var(--font-mono); text-transform: uppercase; letter-spacing: .06em; }
+.nav-suivant .titre { color: var(--ardoise); font: 700 1.1rem var(--font-display); }
+.btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: .75rem 1rem; white-space: normal; color: #1b2a24; background: var(--craie); border: 1px solid var(--craie); border-radius: 11px; font: 700 .9rem var(--font-display); text-decoration: none; }
+.btn-primary:hover { color: #1b2a24; background: #f0bc61; }
+footer.site-footer { padding: 2rem; background: var(--ardoise-deep); border-top: 1px solid rgba(255,255,255,.1); color: #e0e9e3; text-align: center; font: 500 .85rem var(--font-mono); }
+
+/* 10. Accessibilité et petits écrans */
+@media (max-width: 850px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .hero-visual { min-height: 220px; }
+  .hero-paper { max-width: 310px; }
+  .toc-flottante { gap: .8rem; }
+  .toc-flottante h2 { display: none; }
+}
+@media (max-width: 620px) {
+  .wrap, .page-layout > main.wrap { width: calc(100% - 2rem); }
+  header.site nav { gap: .7rem; flex-wrap: wrap; padding: .8rem 0; }
+  .brand { font-size: 1.12rem; }
+  .nav-links { order: 3; width: 100%; font-size: .83rem; gap: 1rem; }
+  .nav-cta { margin-left: auto; font-size: .78rem; padding: .42rem .6rem; }
+  .hero-grid { padding: 2.7rem 0; }
+  .hero .course-title { font-size: clamp(2.3rem, 11vw, 3.3rem); }
+  .hero-visual { display: none; }
+  .toc-flottante { position: relative; top: 0; padding: .55rem 1rem; }
+  .sommaire { grid-template-columns: 1fr; }
+  .boite, .encadre { padding: 1rem 1.1rem; }
+  .photo-illustration img { height: 210px; }
+  .nav-suivant .wrap { flex-direction: column; text-align: center; }
+  .resultat-fraction { gap: .65rem; font-size: .9rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}
+
+
+/* Compléments pour les représentations et contrôles propres aux fractions */
+.controle-item select {
+  width: 100%; padding: .7rem .85rem;
+  border: 1px solid #c9d8cf; border-radius: 11px;
+  color: var(--ardoise); background: #fff;
+  font: 600 .9rem var(--font-mono);
+}
+.controle-item select:focus-visible { outline: 3px solid var(--craie); outline-offset: 2px; }
+.pizza-row { display:flex; justify-content:center; flex-wrap:wrap; align-items:flex-start; gap:2rem; margin: .75rem 0; }
+.pizza-item { display:flex; flex-direction:column; align-items:center; gap:.5rem; font:600 .85rem var(--font-mono); }
+.etapes-simp { width: 100%; text-align:center; font:600 clamp(.9rem,2.5vw,1.12rem)/2 var(--font-mono); overflow-wrap:anywhere; }
+.icones-op { display:flex; justify-content:center; flex-wrap:wrap; gap:1.1rem; margin:1.4rem 0; }
+.icone-op { display:flex; align-items:center; flex-direction:column; gap:.6rem; font:600 .85rem var(--font-display); }
+.icone-op .rond { display:grid; place-items:center; width:52px; height:52px; border-radius:16px; background:var(--sapin); color:var(--white); font:700 1.5rem var(--font-display); }
+.centre { margin:1.1rem auto; text-align:center; color:var(--ardoise); font:600 .95rem/1.8 var(--font-mono); }
+.info-box.alerte { background:#fbefee; border-left-color:var(--brique); color:#853b35; }
+.btn-secondaire {display:inline-flex;align-items:center;justify-content:center; padding:.75rem 1rem; color:var(--ardoise); background:#f4f8f3; border:1px solid #bbcfc1; border-radius:11px; font:700 .9rem var(--font-display); text-decoration:none;}
+.btn-secondaire:hover {color:var(--ardoise);background:#e5efe6;}
+.nav-suivant .wrap {flex-wrap:wrap;}
+.nav-suivant .wrap > div {flex:1;min-width:190px;}
+/* Pour que les expressions de MathJax s'ajustent sans casser la mise en page mobile */
+mjx-container[display="true"] {max-width:100%; overflow-x:auto; overflow-y:hidden;}
+@media(max-width: 620px){
+  .page-layout > main.wrap .chapitre {padding-top:1.2rem;}
+  .interactif {padding:1rem;}
+  .controle-item {min-width:min(160px,100%);}
+  .pizza-row {gap:1rem;}
+  .nav-suivant .wrap > div {min-width:0;}
+  .photo-illustration img {height:200px;}
+}
+
+
+
+/* Compléments d'habillage : spécificités de MAT1101 — 1.3 */
+.nombre-affiche {
+  width:100%; margin:.75rem auto; text-align:center;
+  font:700 clamp(1.65rem,5vw,2.4rem)/1.4 var(--font-mono); color:var(--ardoise);
+  overflow-wrap:anywhere;
+}
+.nombre-affiche .chiffre { display:inline-block; padding:.1rem .27rem; border-radius:8px; }
+.nombre-affiche .chiffre.surligne { background:var(--craie); color:var(--ardoise-deep); }
+.table-wrap table.valposition { width:100%; border-collapse:collapse; }
+.table-wrap table.valposition th, .table-wrap table.valposition td { text-align:center; font:600 .8rem/1.6 var(--font-mono); }
+.table-wrap table.valposition td.actif { background:#f3dfad; color:var(--ardoise-deep); font-weight:700; }
+.interactif .table-wrap { width:100%; }
+.controle-item select { width:100%; border:1px solid #c9d8cf; border-radius:11px; padding:.7rem .85rem; background:#fff; color:var(--ardoise); font:600 .82rem var(--font-mono); }
+.controle-item select:focus-visible { outline:3px solid var(--craie); outline-offset:2px; }
+input[type=checkbox] { accent-color:var(--sapin); margin-right:.5rem; }
+.etapes { width:100%; padding:1rem 1.15rem; border:1px solid #dce6dd; border-radius:12px; background:#f0f4ee; font:500 .87rem/1.9 var(--font-mono); overflow-wrap:anywhere; }
+.info-box.alerte { background:#fbefee; border-left-color:var(--brique); color:#853b35; }
+.strategie-grille { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin:1.4rem 0; }
+.strategie-grille .boite { margin:0; }
+.boite.strategie { border-left-color:var(--sapin); }
+.centre { margin:1rem auto; text-align:center; font:600 .95rem/1.9 var(--font-mono); color:var(--ardoise); }
+.btn-secondaire { display:inline-flex;align-items:center;justify-content:center;padding:.75rem 1rem; color:var(--ardoise);background:#f4f8f3;border:1px solid #bbcfc1;border-radius:11px;font:700 .9rem var(--font-display);text-decoration:none; }
+.btn-secondaire:hover { color:var(--ardoise);background:#e5efe6; }
+.nav-suivant .wrap { flex-wrap:wrap; }
+.nav-suivant .wrap > div { flex:1;min-width:150px; }
+.hero-paper svg { width:min(100%,270px); }
+.hero-math { text-align:center; font:600 .84rem/1.6 var(--font-mono); }
+mjx-container[display="true"] { max-width:100%;overflow-x:auto;overflow-y:hidden; }
+@media (max-width: 620px) {
+  .strategie-grille { grid-template-columns:1fr; }
+  .interactif { padding:1rem; }
+  .controle-item { min-width:min(170px,100%); }
+  .nav-suivant .wrap > div { min-width:0; }
+  .table-wrap table.valposition th, .table-wrap table.valposition td { font-size:.72rem;padding:.6rem .45rem; }
+}
+
+
+/* Intégration MAT1101 — 1.5 : maintien de la logique des outils d'origine */
+html {scroll-padding-top:155px}
+.page-layout > main.wrap .chapitre {overflow-x:clip;}
+.page-layout .chapitre > .section {scroll-margin-top:160px;margin-bottom:0;padding:clamp(2.2rem,4vw,3.4rem) 0;border-bottom:1px solid #cbd9ce}
+.page-layout > main.wrap {order:2;width:min(1000px,calc(100% - 3rem))}
+.page-layout .chapitre{padding-bottom:4rem}
+.intro-example{margin:1.8rem 0 2rem;padding:clamp(1.2rem,3vw,2rem);background:var(--white);border:1px solid var(--ligne);border-radius:18px;box-shadow:var(--ombre);font-size:1rem;overflow-x:auto}
+.intro-example .photo-illustration{margin-bottom:0}
+.hero-tags{display:flex;gap:.55rem;flex-wrap:wrap;margin:1rem 0 0}
+.hero-chip{color:#e4ecdf;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:9px;padding:.35rem .6rem;font:500 .74rem var(--font-mono)}
+.hero-paper svg{width:100%;max-width:290px}
+.hero-math{text-align:center;font:700 .82rem/1.5 var(--font-mono)}
+.section-kicker{margin-bottom:.55rem;color:var(--sapin);font:700 .75rem var(--font-mono);letter-spacing:.1em;text-transform:uppercase}
+.chapitre > .section h2{margin:0 0 1.6rem;max-width:26ch;color:var(--ardoise);font:700 clamp(1.75rem,4vw,2.5rem)/1.17 var(--font-display);letter-spacing:-.04em}
+.chapitre > .section h3{margin:2rem 0 .75rem;color:var(--ardoise);font:700 1.3rem/1.3 var(--font-display)}
+.chapitre > .section h4{margin:1.1rem 0 .6rem;color:var(--ardoise);font:700 1rem/1.3 var(--font-display)}
+.chapitre .lead{font-size:1.08rem;color:#40584a}
+.chapitre .definition,.chapitre .example,.chapitre .note,.chapitre .attention,.chapitre .method,
+.chapitre .idee,.chapitre .retenir{margin:1.5rem 0;padding:1.3rem 1.5rem;border:1px solid var(--ligne);border-left:5px solid var(--sapin);border-radius:15px;background:var(--white);box-shadow:var(--ombre)}
+.chapitre .example{border-left-color:var(--craie)}
+.chapitre .note{border-left-color:var(--ardoise)}
+.chapitre .attention{border-left-color:var(--brique);background:#fbefee}
+.chapitre .method{border-left-color:var(--sapin);background:#eef3f0}
+.chapitre .idee{border-left-color:var(--craie);background:#fbf4e4}
+.chapitre .retenir{border-left-color:var(--craie);color:#fff;background:var(--ardoise)}
+.chapitre .retenir h3,.chapitre .retenir strong{color:#f4d396}
+.chapitre .retenir p,.chapitre .retenir li{color:#f2f6f3}
+.chapitre .box-title{display:flex;gap:.5rem;align-items:center;margin:0 0 .75rem;color:var(--sapin);font:700 .78rem var(--font-mono);text-transform:uppercase;letter-spacing:.06em}
+.chapitre .box-title::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.chapitre .attention .box-title{color:var(--brique)}
+.chapitre .example .box-title{color:#93631e}
+.chapitre .equation,.chapitre .math-display{margin:1.2rem 0;padding:1.1rem .6rem;overflow-x:auto;border:1px solid #e6dbbe;border-radius:13px;background:#fbf7ea}
+.chapitre .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.4rem 0}
+.chapitre .mini-card{padding:1.2rem 1.35rem;background:#fcfbf7;border:1px solid var(--ligne);border-radius:16px}
+.chapitre .interactif{width:100%;max-width:100%;margin:1.6rem 0;padding:clamp(1rem,3vw,1.8rem);border-radius:19px;gap:.7rem}
+.chapitre .interactif-title{align-self:flex-start;color:var(--sapin);font:700 .77rem var(--font-mono);text-transform:uppercase;letter-spacing:.07em}
+.chapitre .etapes{width:100%;white-space:pre-line;overflow-wrap:anywhere;background:#f0f4ee;border:1px solid #dce6dd;border-radius:12px;padding:1rem;font:500 .87rem/1.85 var(--font-mono)}
+.chapitre .controle-item input[type="text"],.chapitre .controle-item input[type="number"]{width:100%;max-width:100%;border:1px solid #c9d8cf;border-radius:10px;padding:.65rem .75rem;background:var(--white);color:var(--ardoise);font:600 .92rem var(--font-mono)}
+.chapitre .controle-item select{width:100%;border:1px solid #c9d8cf;border-radius:10px;padding:.65rem .75rem;background:#fff;color:var(--ardoise);font:600 .84rem var(--font-mono)}
+.chapitre .pile-nombres{width:min(100%,340px);margin:.8rem auto;background:var(--papier);padding:1.2rem;border-radius:13px;font:600 1.2rem/1.7 var(--font-mono);text-align:right}
+.chapitre .pile-nombres .op{float:left;color:#93631e}
+.chapitre .pile-nombres hr{margin:.5rem 0;border:0;border-top:2px solid var(--ardoise)}
+.chapitre .mode-btn{padding:.48rem .7rem;border:1px solid #bed3c5;border-radius:10px;color:var(--ardoise);background:#f8faf7;font:700 .82rem var(--font-display);cursor:pointer}
+.chapitre .mode-btn.actif{background:var(--sapin);border-color:var(--sapin);color:#fff}
+.chapitre .btn-jeu{padding:.7rem 1rem;background:var(--sapin);color:#fff;border:1px solid var(--sapin);border-radius:10px;font:700 .86rem var(--font-display);cursor:pointer}
+.chapitre .btn-jeu.secondaire{background:#fff;border-color:#c2d3c8;color:var(--ardoise)}
+.chapitre .stat-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;width:100%;margin:1rem 0}
+.chapitre .stat-item{padding:.9rem 1.2rem;text-align:center;background:var(--papier);border-radius:12px}
+.chapitre .stat-item .val{display:block;color:var(--ardoise);font:700 1.5rem var(--font-mono)}
+.chapitre .stat-item .lbl{font:600 .67rem var(--font-mono);text-transform:uppercase;color:var(--sapin)}
+.chapitre .probleme-enonce{display:block;width:100%;min-height:58px;margin:1rem 0;padding:1rem 1.2rem;border:1px solid #d8e1d8;border-radius:12px;background:var(--papier);font-style:italic}
+.chapitre table{width:100%;border-collapse:collapse;display:table;max-width:100%;}
+.chapitre .summary{margin:0;padding:1.5rem 2rem;background:var(--ardoise-deep);color:#fff;border-radius:18px}
+.chapitre .summary h2,.chapitre .summary strong{color:#f4d396}
+.chapitre .summary li{color:#f4f6f2}
+.chapitre .photo-illustration img{object-fit:cover}
+.chapitre .photo-illustration.photo-objet img{object-fit:contain}
+.btn-secondaire{display:inline-flex;align-items:center;justify-content:center;padding:.75rem 1rem;background:#f4f8f3;color:var(--ardoise);border:1px solid #bbcfc1;border-radius:11px;font:700 .9rem var(--font-display);text-decoration:none}
+.nav-suivant .wrap{flex-wrap:wrap}
+.nav-suivant .wrap>div{flex:1;min-width:160px}
+mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:hidden}
+@media(max-width:760px){.chapitre .grid-2{grid-template-columns:1fr}.page-layout > main.wrap{width:calc(100% - 2rem)}.chapitre .section h2{font-size:1.8rem}.intro-example{padding:1.1rem}}
+@media(max-width:620px){.hero-visual{display:none}.sommaire{grid-template-columns:1fr}.nav-suivant .wrap>div{min-width:0}}
 </style>
 </head>
-
 <body>
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="https://learnwithdom.page">learnwith<span>dom</span>.page</a>
-    <nav class="nav" aria-label="Navigation principale">
-      <a href="https://learnwithdom.page">Accueil</a>
-      <a href="https://learnwithdom.page/niveau/secondaire1.html">Secondaire 1</a>
-      <a href="https://learnwithdom.page/cours/mat1101.html">MAT-1101</a>
-    </nav>
-  </div>
+<header class="site">
+<nav aria-label="Navigation principale" class="wrap">
+<a aria-label="learnwithdom.page — Accueil" class="brand" href="https://learnwithdom.page">learnwithdom<span>.page</span></a>
+<ul class="nav-links">
+<li><a href="https://learnwithdom.page">Accueil</a></li>
+<li><a href="https://learnwithdom.page/cours/mat1101.html">MAT1101</a></li>
+</ul>
+<a class="nav-cta" href="https://learnwithdom.page/webwork2/MAT1101">WeBWorK →</a>
+</nav>
 </header>
-
-<section class="hero">
-  <div class="hero-inner">
-    <div class="breadcrumb">
-      <a href="https://learnwithdom.page">learnwithdom.page</a>
-      &nbsp; / &nbsp;
-      <a href="https://learnwithdom.page/niveau/secondaire1.html">Secondaire 1</a>
-      &nbsp; / &nbsp;
-      MAT-1101
-    </div>
-
-    <div class="eyebrow">MAT-1101 · 1.5</div>
-
-    <h1>Pourcentages et conversions</h1>
-
-    <p class="hero-lead">
-      Fractions, décimaux et pourcentages sont trois façons de représenter la même proportion.
+<div class="hero">
+<div class="wrap hero-grid"><div class="hero-copy">
+<div class="eyebrow"><a href="05-Operation_decimaux.html">MAT1101 · 1.4 Les opérations sur les décimaux</a></div>
+<h1 class="course-title">1.5 — Pourcentages et conversions</h1><p class="course-description">Fractions, décimaux et pourcentages sont trois façons de représenter la même proportion.
       Apprends à passer de l'un à l'autre, à calculer une partie, un taux ou un tout, à gérer
-      les augmentations et les rabais — puis entraîne-toi avec un générateur de problèmes.
-    </p>
-
-    <div class="hero-meta">
-      <span class="tag">Secondaire 1</span>
-      <span class="tag">Arithmétique</span>
-      <span class="tag">Pourcentages</span>
-      <span class="tag">Générateur de problèmes</span>
-    </div>
-  </div>
-</section>
-
-<main class="page">
-
-<aside class="toc" aria-label="Table des matières">
-  <div class="toc-title">Dans cette page</div>
-  <a href="#symbole">Le symbole %</a>
-  <a href="#conversions">Convertir entre les trois formes</a>
-  <a href="#partie">Calculer une partie</a>
-  <a href="#taux">Trouver le taux ou le tout</a>
-  <a href="#variation">Augmentation et diminution</a>
-  <a href="#calculmental">Calcul mental</a>
-  <a href="#erreurs">Erreurs fréquentes</a>
-  <a href="#jeu">Jeu — génère tes problèmes</a>
-  <a href="#retenir">À retenir</a>
-</aside>
-
-<div class="content">
-
-<section class="section" id="symbole">
-  <div class="section-kicker">1.5.1 · Idée de base</div>
-  <h2>Comprendre le symbole pourcentage</h2>
-
-  <p class="lead">Le symbole % signifie littéralement « sur 100 ».</p>
-
-  <div class="definition">
-    <div class="box-title">Définition</div>
-    <p>Un <strong>pourcentage</strong> exprime une proportion par rapport à 100 :</p>
-    <div class="equation">\[ p\% = \frac{p}{100} \]</div>
-  </div>
-
-  <p>Un pourcentage peut être inférieur à 100% (une partie du tout), égal à 100% (le tout en entier), ou supérieur à 100% (plus que le tout initial). Par exemple, \(50\% = \tfrac{50}{100} = \tfrac12\) représente la moitié, et \(25\% = \tfrac14\) représente le quart.</p>
-
-  <div class="note">
-    <div class="box-title">Idée importante</div>
-    <p>Les pourcentages, les fractions et les nombres décimaux sont trois façons différentes de représenter <strong>une même proportion</strong>. Pour passer d'un pourcentage à un décimal, on divise par 100; pour passer d'un décimal à un pourcentage, on multiplie par 100.</p>
-  </div>
-</section>
-
-<section class="section" id="conversions">
-  <div class="section-kicker">1.5.2–1.5.5 · Conversions</div>
-  <h2>Convertir entre fraction, décimal et pourcentage</h2>
-
-  <div class="grid-2">
-    <div class="mini-card">
-      <h4>Pourcentage → décimal</h4>
-      <p>On divise par 100 (la virgule se déplace de 2 positions vers la gauche) : \(45\% = \tfrac{45}{100} = 0{,}45\).</p>
-    </div>
-    <div class="mini-card">
-      <h4>Décimal → pourcentage</h4>
-      <p>On multiplie par 100 (la virgule se déplace de 2 positions vers la droite) : \(0{,}37 \times 100 = 37\), donc \(0{,}37 = 37\%\).</p>
-    </div>
-  </div>
-
-  <p>Pour une <strong>fraction</strong>, on la transforme d'abord en décimal, puis en pourcentage : \(\tfrac35 = 0{,}6 \to 0{,}6\times100 = 60\%\).</p>
-
-  <div class="interactif">
-    <div class="interactif-title">Convertisseur triple — fraction ⇄ décimal ⇄ pourcentage</div>
-    <div class="controles">
-      <div class="controle-item"><label>Pourcentage <output id="outConvPct">50</output> %</label><input id="rangeConvPct" max="200" min="0" type="range" value="50"/></div>
-    </div>
-    <div class="barre-pourcent"><div class="barre-pourcent-remplie" id="barreConv" style="width:50%;">50%</div></div>
-    <div class="etapes" id="convEtapes">50% = 50/100 = 1/2 = 0,5</div>
-  </div>
-
-  <table class="chiffres">
-    <thead><tr><th>Fraction</th><th>Décimal</th><th>Pourcentage</th></tr></thead>
-    <tbody>
-      <tr><td>1/2</td><td>0,5</td><td>50%</td></tr>
-      <tr><td>1/4</td><td>0,25</td><td>25%</td></tr>
-      <tr><td>3/4</td><td>0,75</td><td>75%</td></tr>
-      <tr><td>1/10</td><td>0,1</td><td>10%</td></tr>
-      <tr><td>3/5</td><td>0,6</td><td>60%</td></tr>
-    </tbody>
-  </table>
-
-  <div class="attention">
-    <div class="box-title">Erreur fréquente — confondre 0,5% et 50%</div>
-    <p>Ces deux valeurs sont très différentes : \(0{,}5\% = 0{,}005\), alors que \(50\% = 0{,}50\).</p>
-  </div>
-</section>
-
-<section class="section" id="partie">
-  <div class="section-kicker">1.5.6 · Application directe</div>
-  <h2>Calculer un pourcentage d'une quantité</h2>
-
-  <div class="method">
-    <div class="box-title">Méthode</div>
-    <div class="equation">\[ \text{partie} = \text{tout} \times \text{taux décimal} \]</div>
-    <p>Exemple : 20% de 80. On transforme \(20\% = 0{,}20\), puis \(80\times0{,}20=16\).</p>
-  </div>
-
-  <div class="interactif">
-    <div class="interactif-title">Calculateur — partie d'une quantité</div>
-    <div class="controles">
-      <div class="controle-item"><label>Quantité (le tout) <output id="outPartTout">80</output></label><input id="rangePartTout" max="500" min="1" type="range" value="80"/></div>
-      <div class="controle-item"><label>Pourcentage <output id="outPartTaux">20</output>%</label><input id="rangePartTaux" max="150" min="0" type="range" value="20"/></div>
-    </div>
-    <div class="etapes" id="partEtapes">20% de 80 : 20% = 0,20 → 80 × 0,20 = 16</div>
-  </div>
-</section>
-
-<section class="section" id="taux">
-  <div class="section-kicker">1.5.7–1.5.8 · Problèmes inverses</div>
-  <h2>Trouver le taux ou le tout</h2>
-
-  <div class="grid-2">
-    <div class="mini-card">
-      <h4>Trouver le taux</h4>
-      <div class="equation">\[ \text{taux} = \frac{\text{partie}}{\text{tout}} \times 100 \]</div>
-      <p>Exemple : 10 élèves sur 25. \(\tfrac{10}{25}\times100=40\%\).</p>
-    </div>
-    <div class="mini-card">
-      <h4>Trouver le tout</h4>
-      <div class="equation">\[ \text{tout} = \frac{\text{partie}}{\text{taux décimal}} \]</div>
-      <p>Exemple : 18 représente 30% d'une quantité. \(\tfrac{18}{0{,}30}=60\).</p>
-    </div>
-  </div>
-
-  <div class="attention">
-    <div class="box-title">Erreur fréquente</div>
-    <p>Il faut toujours placer la <strong>partie au numérateur</strong> et le <strong>tout au dénominateur</strong>. Pour 12 personnes sur 30 : \(\tfrac{12}{30}\times100=40\%\), et non l'inverse.</p>
-  </div>
-
-  <div class="interactif">
-    <div class="interactif-title">Calculateur universel — partie, tout ou taux</div>
-    <div class="mode-toggle">
-      <button class="mode-btn actif" data-inconnue="partie" id="btnIncPartie">Trouver la partie</button>
-      <button class="mode-btn" data-inconnue="taux" id="btnIncTaux">Trouver le taux</button>
-      <button class="mode-btn" data-inconnue="tout" id="btnIncTout">Trouver le tout</button>
-    </div>
-    <div class="controles" id="universelControles"></div>
-    <div class="etapes" id="universelEtapes"></div>
-  </div>
-</section>
-
-<section class="section" id="variation">
-  <div class="section-kicker">1.5.9–1.5.12 · Variations</div>
-  <h2>Augmentation, diminution et rabais</h2>
-
-  <div class="note">
-    <div class="box-title">Facteurs multiplicatifs</div>
-    <p>Une augmentation de \(p\%\) multiplie par \(\left(1+\tfrac{p}{100}\right)\); une diminution de \(p\%\) multiplie par \(\left(1-\tfrac{p}{100}\right)\). Par exemple, une augmentation de 15% utilise le facteur \(1{,}15\); un rabais de 30% utilise le facteur \(0{,}70\).</p>
-  </div>
-
-  <div class="interactif">
-    <div class="interactif-title">Simulateur d'augmentation / diminution</div>
-    <div class="mode-toggle">
-      <button class="mode-btn actif" data-sens="augmentation" id="btnAugmentation">Augmentation</button>
-      <button class="mode-btn" data-sens="diminution" id="btnDiminution">Diminution</button>
-    </div>
-    <div class="controles">
-      <div class="controle-item"><label>Montant initial <output id="outVarMontant">80</output> $</label><input id="rangeVarMontant" max="2000" min="1" step="1" type="range" value="80"/></div>
-      <div class="controle-item"><label>Pourcentage de variation <output id="outVarPct">15</output>%</label><input id="rangeVarPct" max="100" min="0" type="range" value="15"/></div>
-    </div>
-    <div class="etapes" id="varEtapes">Augmentation de 15% : facteur = 1 + 0,15 = 1,15 → 80 × 1,15 = 92,00 $</div>
-  </div>
-
-  <table class="chiffres">
-    <thead><tr><th>Variation</th><th>Pourcentage restant</th><th>Facteur</th></tr></thead>
-    <tbody>
-      <tr><td>Augmentation de 10%</td><td>110%</td><td>1,10</td></tr>
-      <tr><td>Augmentation de 25%</td><td>125%</td><td>1,25</td></tr>
-      <tr><td>Diminution de 10%</td><td>90%</td><td>0,90</td></tr>
-      <tr><td>Diminution de 25%</td><td>75%</td><td>0,75</td></tr>
-    </tbody>
-  </table>
-
-  <div class="attention">
-    <div class="box-title">Attention — un rabais dépend du prix initial</div>
-    <p>Un rabais de 30% ne signifie pas qu'on soustrait 30 dollars. Le montant retiré dépend toujours du prix de départ : 30% de 60$ fait 18$, pas 30$.</p>
-  </div>
-</section>
-
-<section class="section" id="calculmental">
-  <div class="section-kicker">1.5.13 · Raccourcis</div>
-  <h2>Calcul mental</h2>
-  <p>Quelques pourcentages sont particulièrement utiles à connaître par cœur : \(50\%=\tfrac12\), \(25\%=\tfrac14\), \(10\%=\tfrac1{10}\), \(5\%=\tfrac1{20}\), \(1\%=\tfrac1{100}\).</p>
-
-  <div class="interactif">
-    <div class="interactif-title">Grille de pourcentages usuels</div>
-    <div class="controles">
-      <div class="controle-item"><label>Quantité <output id="outMentalQte">240</output></label><input id="rangeMentalQte" max="1000" min="1" type="range" value="240"/></div>
-    </div>
-    <table class="chiffres" style="margin-top:10px;">
-      <thead><tr><th>50%</th><th>25%</th><th>10%</th><th>5%</th><th>1%</th></tr></thead>
-      <tbody><tr id="ligneMental"><td>120</td><td>60</td><td>24</td><td>12</td><td>2,4</td></tr></tbody>
-    </table>
-  </div>
-</section>
-
-<section class="section" id="erreurs">
-  <div class="section-kicker">1.5.14 · Pièges classiques</div>
-  <h2>Erreurs fréquentes</h2>
-  <div class="attention">
-    <div class="box-title">Les quatre pièges les plus courants</div>
-    <ol>
-      <li><strong>Oublier de diviser par 100</strong> : \(25\% \neq 25\), mais \(25\%=0{,}25\).</li>
-      <li><strong>Confondre 0,5% et 50%</strong> : \(0{,}5\%=0{,}005\), alors que \(50\%=0{,}50\).</li>
-      <li><strong>Confondre le montant d'une variation et la nouvelle valeur</strong> : si 100$ augmente de 20%, l'augmentation est \(100\times0{,}20=20\), mais le <strong>nouveau prix</strong> est \(100+20=120\).</li>
-      <li><strong>Inverser partie et tout</strong> : le taux est toujours \(\dfrac{\text{partie}}{\text{tout}}\times100\), jamais l'inverse.</li>
-    </ol>
-  </div>
-</section>
-
-<section class="section" id="jeu">
-  <div class="section-kicker">Jeu interactif</div>
-  <h2>Génère tes propres problèmes</h2>
-  <p class="lead">Choisis un type de problème, résous-le, puis vérifie ta réponse.</p>
-
-  <div class="interactif">
-    <div class="interactif-title">Générateur de problèmes de pourcentage</div>
-    <div class="mode-toggle">
-      <button class="mode-btn actif" data-type="partie" id="btnTypePartie">Trouver la partie</button>
-      <button class="mode-btn" data-type="taux" id="btnTypeTaux">Trouver le taux</button>
-      <button class="mode-btn" data-type="tout" id="btnTypeTout">Trouver le tout</button>
-      <button class="mode-btn" data-type="variation" id="btnTypeVariation">Augmentation/rabais</button>
-    </div>
-
-    <div class="probleme-enonce" id="problemeEnonce">20% de 80 = ?</div>
-
-    <div class="controles">
-      <div class="controle-item"><label>Ta réponse</label><input id="reponseJoueur" placeholder="ex. 16" type="text"/></div>
-    </div>
-    <div class="rangee-boutons">
-      <button class="btn-jeu" id="btnVerifierJeu">Vérifier</button>
-      <button class="btn-jeu secondaire" id="btnSolutionJeu">Voir la solution</button>
-      <button class="btn-jeu secondaire" id="btnNouveauJeu">Nouveau problème</button>
-    </div>
-    <div class="info-box" id="jeuFeedback">Choisis un type de problème et essaie de le résoudre.</div>
-    <div class="etapes" id="jeuSolution" style="display:none;"></div>
-    <div class="stat-grille">
-      <div class="stat-item"><span class="val" id="jeuScore">0</span><span class="lbl">Bonnes réponses</span></div>
-      <div class="stat-item"><span class="val" id="jeuTotal">0</span><span class="lbl">Essais</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="retenir">
-  <div class="summary">
-    <div class="section-kicker" style="color:#e7c56d;">Fiche de référence rapide</div>
-    <h2>À retenir</h2>
-    <ul>
-      <li>\(p\% = \dfrac{p}{100}\) — un pourcentage est une fraction sur 100.</li>
-      <li><strong>Partie</strong> \(= \text{tout} \times \text{taux décimal}\).</li>
-      <li><strong>Taux</strong> \(= \dfrac{\text{partie}}{\text{tout}} \times 100\).</li>
-      <li><strong>Tout</strong> \(= \dfrac{\text{partie}}{\text{taux décimal}}\).</li>
-      <li><strong>Augmentation de p%</strong> : multiplier par \(\left(1+\tfrac{p}{100}\right)\).</li>
-      <li><strong>Diminution de p%</strong> : multiplier par \(\left(1-\tfrac{p}{100}\right)\).</li>
-    </ul>
-    <p>La compétence importante n'est pas seulement de connaître une formule : c'est de reconnaître quelle quantité représente le <strong>tout</strong>, quelle quantité représente la <strong>partie</strong>, et quelle quantité représente le <strong>taux</strong>.</p>
-  </div>
-</section>
-
-<div class="next">
-  <a href="https://dom-explorer.github.io/notes-cours/MAT1101/05-Operation_decimaux.html">← 1.4 — Opérations sur les décimaux</a>
-  <a href="#">Chapitre 2 — À venir →</a>
+      les augmentations et les rabais — puis entraîne-toi avec un générateur de problèmes.</p>
+<div class="hero-tags"><span class="hero-chip">Secondaire 1</span><span class="hero-chip">Arithmétique</span><span class="hero-chip">Pourcentages</span><span class="hero-chip">Générateur de problèmes</span></div>
+<div class="hero-actions"><a href="#symbole">Découvrir la leçon ↓</a><a href="#jeu">S’entraîner avec des problèmes →</a></div></div>
+<div aria-hidden="true" class="hero-visual"><div class="hero-paper"><div class="hero-tag">POURCENTAGES &amp; CONVERSIONS</div>
+<svg role="img" viewbox="0 0 300 236" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#f9f8f0" height="226" rx="15" width="290" x="5" y="4"></rect>
+<rect fill="#e2eee6" height="96" rx="11" width="250" x="25" y="23"></rect>
+<g fill="#42745d"><rect height="18" rx="3" width="18" x="36" y="32"></rect><rect height="18" rx="3" width="18" x="59" y="32"></rect><rect height="18" rx="3" width="18" x="82" y="32"></rect><rect height="18" rx="3" width="18" x="105" y="32"></rect><rect height="18" rx="3" width="18" x="128" y="32"></rect><rect height="18" rx="3" width="18" x="36" y="55"></rect><rect height="18" rx="3" width="18" x="59" y="55"></rect><rect height="18" rx="3" width="18" x="82" y="55"></rect><rect height="18" rx="3" width="18" x="105" y="55"></rect><rect height="18" rx="3" width="18" x="128" y="55"></rect></g>
+<g fill="#abc7b6"><rect height="18" rx="3" width="18" x="151" y="32"></rect><rect height="18" rx="3" width="18" x="174" y="32"></rect><rect height="18" rx="3" width="18" x="197" y="32"></rect><rect height="18" rx="3" width="18" x="220" y="32"></rect><rect height="18" rx="3" width="18" x="243" y="32"></rect><rect height="18" rx="3" width="18" x="151" y="55"></rect><rect height="18" rx="3" width="18" x="174" y="55"></rect><rect height="18" rx="3" width="18" x="197" y="55"></rect><rect height="18" rx="3" width="18" x="220" y="55"></rect><rect height="18" rx="3" width="18" x="243" y="55"></rect></g>
+<g font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">
+<text fill="#254c38" font-size="20" x="150" y="104">50 % = 1/2 = 0,5</text>
+<rect fill="#f9ebc4" height="57" rx="11" width="116" x="25" y="133"></rect>
+<text fill="#76511a" font-size="17" x="83" y="156">−25 %</text><text fill="#76511a" font-size="11" x="83" y="176">RABAIS</text>
+<rect fill="#e2eee6" height="57" rx="11" width="116" x="158" y="133"></rect>
+<text fill="#254c38" font-size="17" x="216" y="156">+15 %</text><text fill="#254c38" font-size="11" x="216" y="176">AUGMENTATION</text>
+<text fill="#365d4b" font-size="11" x="150" y="210">FRACTION · DÉCIMAL · TAUX</text>
+</g></svg>
+<div class="hero-math">Comprendre · Convertir · Appliquer</div>
+</div></div>
+</div></div>
+<div class="page-layout"><main class="wrap"><div class="wrap chapitre"><div aria-label="Accès aux sections" class="sommaire"><a href="#symbole"><span>01</span>Le symbole %</a><a href="#conversions"><span>02</span>Convertir entre les trois formes</a><a href="#partie"><span>03</span>Calculer une partie</a><a href="#taux"><span>04</span>Trouver le taux ou le tout</a><a href="#variation"><span>05</span>Augmentation et diminution</a><a href="#calculmental"><span>06</span>Calcul mental</a><a href="#erreurs"><span>07</span>Erreurs fréquentes</a><a href="#jeu"><span>08</span>Jeu — génère tes problèmes</a></div><section class="section" id="symbole">
+<div class="section-kicker">1.5.1 · Idée de base</div>
+<h2>Comprendre le symbole pourcentage</h2>
+<p class="lead">Le symbole % signifie littéralement « sur 100 ».</p>
+<div class="definition">
+<div class="box-title">Définition</div>
+<p>Un <strong>pourcentage</strong> exprime une proportion par rapport à 100 :</p>
+<div class="equation">\[ p\% = \frac{p}{100} \]</div>
 </div>
-
+<p>Un pourcentage peut être inférieur à 100% (une partie du tout), égal à 100% (le tout en entier), ou supérieur à 100% (plus que le tout initial). Par exemple, \(50\% = \tfrac{50}{100} = \tfrac12\) représente la moitié, et \(25\% = \tfrac14\) représente le quart.</p>
+<div class="note">
+<div class="box-title">Idée importante</div>
+<p>Les pourcentages, les fractions et les nombres décimaux sont trois façons différentes de représenter <strong>une même proportion</strong>. Pour passer d'un pourcentage à un décimal, on divise par 100; pour passer d'un décimal à un pourcentage, on multiplie par 100.</p>
+</div><figure class="photo-illustration"><img alt="Panier d’épicerie, exemple d’achats et de budgets." decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Shopping_Cart_Supermarket.jpg/960px-Shopping_Cart_Supermarket.jpg"/><figcaption>Au quotidien, un pourcentage peut représenter une part de dépenses ou un rabais sur des achats. <small class="credit-photo">Photo : safaritravelplus · <a href="https://commons.wikimedia.org/wiki/File:Shopping_Cart_Supermarket.jpg" rel="noopener noreferrer" target="_blank">Wikimedia Commons — CC0 1.0</a>.</small></figcaption></figure>
+</section><section class="section" id="conversions">
+<div class="section-kicker">1.5.2–1.5.5 · Conversions</div>
+<h2>Convertir entre fraction, décimal et pourcentage</h2>
+<div class="grid-2">
+<div class="mini-card">
+<h4>Pourcentage → décimal</h4>
+<p>On divise par 100 (la virgule se déplace de 2 positions vers la gauche) : \(45\% = \tfrac{45}{100} = 0{,}45\).</p>
 </div>
-</main>
-
-<footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand">learnwithdom.page</div>
-      <div class="footer-small">MAT-1101 · Pourcentages · Secondaire 1</div>
-    </div>
-    <div class="footer-small">Notes de cours · Pourcentages et conversions</div>
-  </div>
-</footer>
-
+<div class="mini-card">
+<h4>Décimal → pourcentage</h4>
+<p>On multiplie par 100 (la virgule se déplace de 2 positions vers la droite) : \(0{,}37 \times 100 = 37\), donc \(0{,}37 = 37\%\).</p>
+</div>
+</div>
+<p>Pour une <strong>fraction</strong>, on la transforme d'abord en décimal, puis en pourcentage : \(\tfrac35 = 0{,}6 \to 0{,}6\times100 = 60\%\).</p>
+<div class="interactif">
+<div class="interactif-title">Convertisseur triple — fraction ⇄ décimal ⇄ pourcentage</div>
+<div class="controles">
+<div class="controle-item"><label>Pourcentage <output id="outConvPct">50</output> %</label><input id="rangeConvPct" max="200" min="0" type="range" value="50"/></div>
+</div>
+<div class="barre-pourcent"><div class="barre-pourcent-remplie" id="barreConv" style="width:50%;">50%</div></div>
+<div class="etapes" id="convEtapes">50% = 50/100 = 1/2 = 0,5</div>
+</div>
+<div aria-label="Tableau mathématique défilable" class="table-wrap" role="region" tabindex="0"><table class="chiffres">
+<thead><tr><th>Fraction</th><th>Décimal</th><th>Pourcentage</th></tr></thead>
+<tbody>
+<tr><td>1/2</td><td>0,5</td><td>50%</td></tr>
+<tr><td>1/4</td><td>0,25</td><td>25%</td></tr>
+<tr><td>3/4</td><td>0,75</td><td>75%</td></tr>
+<tr><td>1/10</td><td>0,1</td><td>10%</td></tr>
+<tr><td>3/5</td><td>0,6</td><td>60%</td></tr>
+</tbody>
+</table></div>
+<div class="attention">
+<div class="box-title">Erreur fréquente — confondre 0,5% et 50%</div>
+<p>Ces deux valeurs sont très différentes : \(0{,}5\% = 0{,}005\), alors que \(50\% = 0{,}50\).</p>
+</div>
+</section><section class="section" id="partie">
+<div class="section-kicker">1.5.6 · Application directe</div>
+<h2>Calculer un pourcentage d'une quantité</h2>
+<div class="method">
+<div class="box-title">Méthode</div>
+<div class="equation">\[ \text{partie} = \text{tout} \times \text{taux décimal} \]</div>
+<p>Exemple : 20% de 80. On transforme \(20\% = 0{,}20\), puis \(80\times0{,}20=16\).</p>
+</div>
+<div class="interactif">
+<div class="interactif-title">Calculateur — partie d'une quantité</div>
+<div class="controles">
+<div class="controle-item"><label>Quantité (le tout) <output id="outPartTout">80</output></label><input id="rangePartTout" max="500" min="1" type="range" value="80"/></div>
+<div class="controle-item"><label>Pourcentage <output id="outPartTaux">20</output>%</label><input id="rangePartTaux" max="150" min="0" type="range" value="20"/></div>
+</div>
+<div class="etapes" id="partEtapes">20% de 80 : 20% = 0,20 → 80 × 0,20 = 16</div>
+</div>
+</section><section class="section" id="taux">
+<div class="section-kicker">1.5.7–1.5.8 · Problèmes inverses</div>
+<h2>Trouver le taux ou le tout</h2>
+<div class="grid-2">
+<div class="mini-card">
+<h4>Trouver le taux</h4>
+<div class="equation">\[ \text{taux} = \frac{\text{partie}}{\text{tout}} \times 100 \]</div>
+<p>Exemple : 10 élèves sur 25. \(\tfrac{10}{25}\times100=40\%\).</p>
+</div>
+<div class="mini-card">
+<h4>Trouver le tout</h4>
+<div class="equation">\[ \text{tout} = \frac{\text{partie}}{\text{taux décimal}} \]</div>
+<p>Exemple : 18 représente 30% d'une quantité. \(\tfrac{18}{0{,}30}=60\).</p>
+</div>
+</div>
+<div class="attention">
+<div class="box-title">Erreur fréquente</div>
+<p>Il faut toujours placer la <strong>partie au numérateur</strong> et le <strong>tout au dénominateur</strong>. Pour 12 personnes sur 30 : \(\tfrac{12}{30}\times100=40\%\), et non l'inverse.</p>
+</div>
+<div class="interactif">
+<div class="interactif-title">Calculateur universel — partie, tout ou taux</div>
+<div class="mode-toggle">
+<button class="mode-btn actif" data-inconnue="partie" id="btnIncPartie">Trouver la partie</button>
+<button class="mode-btn" data-inconnue="taux" id="btnIncTaux">Trouver le taux</button>
+<button class="mode-btn" data-inconnue="tout" id="btnIncTout">Trouver le tout</button>
+</div>
+<div class="controles" id="universelControles"></div>
+<div class="etapes" id="universelEtapes"></div>
+</div>
+</section><section class="section" id="variation">
+<div class="section-kicker">1.5.9–1.5.12 · Variations</div>
+<h2>Augmentation, diminution et rabais</h2>
+<div class="note">
+<div class="box-title">Facteurs multiplicatifs</div>
+<p>Une augmentation de \(p\%\) multiplie par \(\left(1+\tfrac{p}{100}\right)\); une diminution de \(p\%\) multiplie par \(\left(1-\tfrac{p}{100}\right)\). Par exemple, une augmentation de 15% utilise le facteur \(1{,}15\); un rabais de 30% utilise le facteur \(0{,}70\).</p>
+</div>
+<div class="interactif">
+<div class="interactif-title">Simulateur d'augmentation / diminution</div>
+<div class="mode-toggle">
+<button class="mode-btn actif" data-sens="augmentation" id="btnAugmentation">Augmentation</button>
+<button class="mode-btn" data-sens="diminution" id="btnDiminution">Diminution</button>
+</div>
+<div class="controles">
+<div class="controle-item"><label>Montant initial <output id="outVarMontant">80</output> $</label><input id="rangeVarMontant" max="2000" min="1" step="1" type="range" value="80"/></div>
+<div class="controle-item"><label>Pourcentage de variation <output id="outVarPct">15</output>%</label><input id="rangeVarPct" max="100" min="0" type="range" value="15"/></div>
+</div>
+<div class="etapes" id="varEtapes">Augmentation de 15% : facteur = 1 + 0,15 = 1,15 → 80 × 1,15 = 92,00 $</div>
+</div>
+<div aria-label="Tableau mathématique défilable" class="table-wrap" role="region" tabindex="0"><table class="chiffres">
+<thead><tr><th>Variation</th><th>Pourcentage restant</th><th>Facteur</th></tr></thead>
+<tbody>
+<tr><td>Augmentation de 10%</td><td>110%</td><td>1,10</td></tr>
+<tr><td>Augmentation de 25%</td><td>125%</td><td>1,25</td></tr>
+<tr><td>Diminution de 10%</td><td>90%</td><td>0,90</td></tr>
+<tr><td>Diminution de 25%</td><td>75%</td><td>0,75</td></tr>
+</tbody>
+</table><figure class="photo-illustration"><img alt="Étiquettes de prix près de légumes en épicerie." decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Parsley_for_99_cents%2C_and_other_vegetables%2C_in_supermarket_in_Clearwater%2C_Florida%2C_US_on_25_September_2020.jpg/960px-Parsley_for_99_cents%2C_and_other_vegetables%2C_in_supermarket_in_Clearwater%2C_Florida%2C_US_on_25_September_2020.jpg"/><figcaption>Pour calculer une réduction, on multiplie le prix de départ par le pourcentage de rabais. Les prix visibles sur la photo sont illustratifs. <small class="credit-photo">Photo : MatthewHoobin · <a href="https://commons.wikimedia.org/wiki/File:Parsley_for_99_cents,_and_other_vegetables,_in_supermarket_in_Clearwater,_Florida,_US_on_25_September_2020.jpg" rel="noopener noreferrer" target="_blank">Wikimedia Commons — CC0 1.0</a>.</small></figcaption></figure></div>
+<div class="attention">
+<div class="box-title">Attention — un rabais dépend du prix initial</div>
+<p>Un rabais de 30% ne signifie pas qu'on soustrait 30 dollars. Le montant retiré dépend toujours du prix de départ : 30% de 60$ fait 18$, pas 30$.</p>
+</div>
+</section><section class="section" id="calculmental">
+<div class="section-kicker">1.5.13 · Raccourcis</div>
+<h2>Calcul mental</h2>
+<p>Quelques pourcentages sont particulièrement utiles à connaître par cœur : \(50\%=\tfrac12\), \(25\%=\tfrac14\), \(10\%=\tfrac1{10}\), \(5\%=\tfrac1{20}\), \(1\%=\tfrac1{100}\).</p>
+<div class="interactif">
+<div class="interactif-title">Grille de pourcentages usuels</div>
+<div class="controles">
+<div class="controle-item"><label>Quantité <output id="outMentalQte">240</output></label><input id="rangeMentalQte" max="1000" min="1" type="range" value="240"/></div>
+</div>
+<div aria-label="Tableau mathématique défilable" class="table-wrap" role="region" tabindex="0"><table class="chiffres" style="margin-top:10px;">
+<thead><tr><th>50%</th><th>25%</th><th>10%</th><th>5%</th><th>1%</th></tr></thead>
+<tbody><tr id="ligneMental"><td>120</td><td>60</td><td>24</td><td>12</td><td>2,4</td></tr></tbody>
+</table><figure class="photo-illustration"><img alt="Produits laitiers étiquetés en rayon de supermarché." decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Milk_at_supermarket.jpg/960px-Milk_at_supermarket.jpg"/><figcaption>Savoir calculer mentalement 10 %, 25 % ou 50 % aide à comparer rapidement les prix. <small class="credit-photo">Photo : ProjectManhattan · <a href="https://commons.wikimedia.org/wiki/File:Milk_at_supermarket.jpg" rel="noopener noreferrer" target="_blank">Wikimedia Commons — CC0 1.0</a>.</small></figcaption></figure></div>
+</div>
+</section><section class="section" id="erreurs">
+<div class="section-kicker">1.5.14 · Pièges classiques</div>
+<h2>Erreurs fréquentes</h2>
+<div class="attention">
+<div class="box-title">Les quatre pièges les plus courants</div>
+<ol>
+<li><strong>Oublier de diviser par 100</strong> : \(25\% \neq 25\), mais \(25\%=0{,}25\).</li>
+<li><strong>Confondre 0,5% et 50%</strong> : \(0{,}5\%=0{,}005\), alors que \(50\%=0{,}50\).</li>
+<li><strong>Confondre le montant d'une variation et la nouvelle valeur</strong> : si 100$ augmente de 20%, l'augmentation est \(100\times0{,}20=20\), mais le <strong>nouveau prix</strong> est \(100+20=120\).</li>
+<li><strong>Inverser partie et tout</strong> : le taux est toujours \(\dfrac{\text{partie}}{\text{tout}}\times100\), jamais l'inverse.</li>
+</ol>
+</div>
+</section><section class="section" id="jeu">
+<div class="section-kicker">Jeu interactif</div>
+<h2>Génère tes propres problèmes</h2>
+<p class="lead">Choisis un type de problème, résous-le, puis vérifie ta réponse.</p>
+<div class="interactif">
+<div class="interactif-title">Générateur de problèmes de pourcentage</div>
+<div class="mode-toggle">
+<button class="mode-btn actif" data-type="partie" id="btnTypePartie">Trouver la partie</button>
+<button class="mode-btn" data-type="taux" id="btnTypeTaux">Trouver le taux</button>
+<button class="mode-btn" data-type="tout" id="btnTypeTout">Trouver le tout</button>
+<button class="mode-btn" data-type="variation" id="btnTypeVariation">Augmentation/rabais</button>
+</div>
+<div class="probleme-enonce" id="problemeEnonce">20% de 80 = ?</div>
+<div class="controles">
+<div class="controle-item"><label>Ta réponse</label><input id="reponseJoueur" placeholder="ex. 16" type="text"/></div>
+</div>
+<div class="rangee-boutons">
+<button class="btn-jeu" id="btnVerifierJeu">Vérifier</button>
+<button class="btn-jeu secondaire" id="btnSolutionJeu">Voir la solution</button>
+<button class="btn-jeu secondaire" id="btnNouveauJeu">Nouveau problème</button>
+</div>
+<div class="info-box" id="jeuFeedback">Choisis un type de problème et essaie de le résoudre.</div>
+<div class="etapes" id="jeuSolution" style="display:none;"></div>
+<div class="stat-grille">
+<div class="stat-item"><span class="val" id="jeuScore">0</span><span class="lbl">Bonnes réponses</span></div>
+<div class="stat-item"><span class="val" id="jeuTotal">0</span><span class="lbl">Essais</span></div>
+</div>
+</div>
+</section><section class="section" id="retenir">
+<div class="summary">
+<div class="section-kicker" style="color:#e7c56d;">Fiche de référence rapide</div>
+<h2>À retenir</h2>
+<ul>
+<li>\(p\% = \dfrac{p}{100}\) — un pourcentage est une fraction sur 100.</li>
+<li><strong>Partie</strong> \(= \text{tout} \times \text{taux décimal}\).</li>
+<li><strong>Taux</strong> \(= \dfrac{\text{partie}}{\text{tout}} \times 100\).</li>
+<li><strong>Tout</strong> \(= \dfrac{\text{partie}}{\text{taux décimal}}\).</li>
+<li><strong>Augmentation de p%</strong> : multiplier par \(\left(1+\tfrac{p}{100}\right)\).</li>
+<li><strong>Diminution de p%</strong> : multiplier par \(\left(1-\tfrac{p}{100}\right)\).</li>
+</ul>
+<p>La compétence importante n'est pas seulement de connaître une formule : c'est de reconnaître quelle quantité représente le <strong>tout</strong>, quelle quantité représente la <strong>partie</strong>, et quelle quantité représente le <strong>taux</strong>.</p>
+</div>
+</section></div></main><nav aria-label="Table des matières" class="toc-flottante"><h2>Sur cette page</h2><ol id="toc-list"><li><a href="#symbole">Le symbole %</a></li><li><a href="#conversions">Convertir entre les trois formes</a></li><li><a href="#partie">Calculer une partie</a></li><li><a href="#taux">Trouver le taux ou le tout</a></li><li><a href="#variation">Augmentation et diminution</a></li><li><a href="#calculmental">Calcul mental</a></li><li><a href="#erreurs">Erreurs fréquentes</a></li><li><a href="#jeu">Jeu — génère tes problèmes</a></li><li><a href="#retenir">À retenir</a></li></ol></nav></div><div class="nav-suivant"><div class="wrap"><div><span class="label">Section précédente</span><span class="titre">1.4 — Les opérations sur les décimaux</span></div>
+<a class="btn-secondaire" href="05-Operation_decimaux.html">← Retour</a>
+<div><span class="label">Pour continuer</span><span class="titre">Chapitre 2 — À venir</span></div>
+<a class="btn-primary" href="#">Bientôt disponible →</a>
+</div></div>
+<footer class="site-footer">MAT1101 · Section 1.5 · learnwithdom.page</footer>
 <script>
 const sections = document.querySelectorAll(".section[id]");
 const links = document.querySelectorAll(".toc a");
@@ -494,7 +1004,6 @@ if ('IntersectionObserver' in window) {
   sections.forEach(section => observer.observe(section));
 }
 </script>
-
 <script>
 (function(){
   function fmtFr(n, dec){ return n.toFixed(dec).replace('.', ','); }
@@ -755,6 +1264,5 @@ if ('IntersectionObserver' in window) {
   genererProbleme();
 })();
 </script>
-
 </body>
 </html>
